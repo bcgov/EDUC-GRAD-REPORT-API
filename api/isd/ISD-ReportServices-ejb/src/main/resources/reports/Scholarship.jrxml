@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Scholarship" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="reports\resources\i18n\Scholarship" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="5a0adfda-468c-4c62-ae31-d6ce9293eb62">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\StudentAdapter.xml"/>
+	<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+	<property name="net.sf.jasperreports.export.html.between.pages" value=""/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.IMAGE_LOGO_SVG"/>
+	<property name="net.sf.jasperreports.export.pdf.exclude.key.IMAGE_LOGO_PNG"/>
+	<property name="net.sf.jasperreports.export.html.size.unit" value="px"/>
+	<property name="net.sf.jasperreports.export.html.remove.empty.space.between.rows" value="false"/>
+	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<import value="net.sf.jasperreports.engine.util.JRLoader"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBREPORTS_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_COMMON_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "common/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "scholarship/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_DATE" class="java.util.Date">
+		<parameterDescription><![CDATA[Date the report data was last updated.]]></parameterDescription>
+		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SESSION_DATE" class="java.lang.String"/>
+	<field name="student" class="ca.bc.gov.educ.isd.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
+	<field name="student.scholarships" class="java.util.List">
+		<fieldDescription><![CDATA[student.scholarships]]></fieldDescription>
+	</field>
+	<field name="student.firstName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.firstName]]></fieldDescription>
+	</field>
+	<field name="student.lastName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
+	</field>
+	<field name="student.middleNames" class="java.lang.String">
+		<fieldDescription><![CDATA[student.middleNames]]></fieldDescription>
+	</field>
+	<field name="student.birthdate" class="java.util.Date">
+		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
+	</field>
+	<field name="student.school.address.formattedStreet" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.formattedStreet]]></fieldDescription>
+	</field>
+	<field name="student.school.address.city" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.city]]></fieldDescription>
+	</field>
+	<field name="student.school.address.region" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.region]]></fieldDescription>
+	</field>
+	<field name="student.school.address.postalCode" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.postalCode]]></fieldDescription>
+	</field>
+	<field name="student.school.name" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.name]]></fieldDescription>
+	</field>
+	<field name="student.school.districtOrganisation.name" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.districtOrganisation.name]]></fieldDescription>
+	</field>
+	<field name="student.school.districtOrganisation.logoCode" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.districtOrganisation.logoCode]]></fieldDescription>
+	</field>
+	<variable name="V_CURRENT_PAGE_NUMBER" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER} + 1]]></initialValueExpression>
+	</variable>
+	<variable name="V_STUDENT_FULL_NAME" class="java.lang.String">
+		<variableExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></variableExpression>
+		<initialValueExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE" class="java.lang.String">
+		<initialValueExpression><![CDATA[$F{student.school.address.postalCode}.replaceAll("\\s","").toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_SCHOOL_ADDRESS_POSTAL_CODE" class="java.lang.String">
+		<initialValueExpression><![CDATA[$V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.length() == 6 ? (
+$V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 3 )
+) : ""]]></initialValueExpression>
+	</variable>
+	<variable name="V_SCHOOL_ADDRESS_STREET" class="java.lang.String">
+		<initialValueExpression><![CDATA[$F{student.school.address.formattedStreet}.toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_STUDENT_BIRTHDATE" class="java.lang.String">
+		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="130">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="66" uuid="1985a463-331d-41f5-85b9-bb3a76041a96"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BASE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_COMMON_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_COMMON_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_RESOURCES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_IMAGES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_DATE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TITLE">
+					<subreportParameterExpression><![CDATA[$F{student.school.districtOrganisation.name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBTITLE">
+					<subreportParameterExpression><![CDATA["Provincial Scholarships Program"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_LOGO_CODE">
+					<subreportParameterExpression><![CDATA[$F{student.school.districtOrganisation.logoCode}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_LOGO_MOE">
+					<subreportParameterExpression><![CDATA[java.lang.Boolean.FALSE]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{P_REPORT_COMMON_PATH} + "Title.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="74" width="567" height="28" uuid="c80eb8e6-0949-46b5-905a-48595e519bad"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_SESSION_DATE">
+					<subreportParameterExpression><![CDATA[$P{P_SESSION_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_STUDENT_FULL_NAME">
+					<subreportParameterExpression><![CDATA[$V{V_STUDENT_FULL_NAME}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Header.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement style="StaticText" positionType="FixRelativeToBottom" x="0" y="110" width="567" height="12" uuid="775b0cbf-5fcc-4236-9d96-055432aa3442"/>
+				<text><![CDATA[The following is a list of scholarships you have been awarded under the Provincial Scholarships Program:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="115">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<subreport isUsingCache="true" overflowType="Stretch">
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="567" height="30" uuid="1eb81223-e6b4-4929-93e3-d5b49ee71344"/>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.scholarships})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail.jasper"]]></subreportExpression>
+			</subreport>
+			<frame>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="40" width="567" height="75" uuid="cb5af4f7-ca24-41b3-98ce-be2d6710d9c7">
+					<property name="ShowOutOfBoundContent" value="false"/>
+				</reportElement>
+				<staticText>
+					<reportElement style="StaticText" x="0" y="0" width="567" height="15" uuid="94768fb3-547f-4fa5-8925-c97cb9d71496"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Provincial Scholarships Program winners will be able to view their scholarships by the fall of their graduation year.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="StaticText" x="0" y="20" width="567" height="15" uuid="033a8766-14fa-441b-9410-a8fa5e594915"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Please note scholarships will not be displayed for students who graduated before 2012.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="StaticText" x="0" y="40" width="567" height="15" uuid="06ae3c00-f745-4083-8001-2e9225b2cd61"/>
+					<text><![CDATA[For more information on the program, visit the Ministry of Education website:]]></text>
+				</staticText>
+				<textField hyperlinkType="Reference">
+					<reportElement style="StaticText" x="0" y="60" width="567" height="15" uuid="df8b2283-9fe4-4397-a4e0-98cdc952578f"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA["http://www.gov.bc.ca/scholarshipsprogram"]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA["http://www.gov.bc.ca/scholarshipsprogram"]]></hyperlinkReferenceExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>
