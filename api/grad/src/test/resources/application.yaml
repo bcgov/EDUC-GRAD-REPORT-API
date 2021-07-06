@@ -1,0 +1,42 @@
+#Spring boot Properties
+spring:
+  jmx:
+    enabled: false
+  mvc:
+    log-request-details: true
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+
+#Logging properties
+logging:
+  file:
+    max-history: 1
+    clean-history-on-start: true
+    max-size: 20MB
+    name: /logs/app.log
+  #pattern:
+  #  file: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
+  #  console: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
+  level:
+    ca:
+      bc:
+        gov:
+          educ:
+            api:
+              report: INFO
+    org:
+      springframework:
+        web: INFO
+        security: INFO
+        boot:
+          autoconfigure:
+            logging: INFO
+
+#API Documentation
+springdoc:
+  api-docs:
+    path: /api/v1/api-docs
+  swagger-ui:
+    path: /api/v1/api-docs-ui.html
+    operationsSorter: alpha

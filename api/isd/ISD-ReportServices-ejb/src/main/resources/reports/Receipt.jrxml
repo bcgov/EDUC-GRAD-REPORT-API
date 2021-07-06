@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Receipt" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="5a0adfda-468c-4c62-ae31-d6ce9293eb62">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\ReceiptAdapter.xml"/>
+	<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+	<property name="net.sf.jasperreports.export.html.between.pages" value=""/>
+	<property name="net.sf.jasperreports.export.html.size.unit" value="px"/>
+	<property name="net.sf.jasperreports.export.html.remove.empty.space.between.rows" value="false"/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.IMAGE_LOGO_SVG"/>
+	<property name="net.sf.jasperreports.export.pdf.exclude.key.IMAGE_LOGO_PNG"/>
+	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<import value="net.sf.jasperreports.engine.util.JRLoader"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBREPORTS_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_COMMON_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "common/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "receipt/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "Admin.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_DATE" class="java.util.Date">
+		<parameterDescription><![CDATA[Date the receipt was generated.]]></parameterDescription>
+		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_TITLE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_FOOTER" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
+	<field name="lineItems" class="java.util.List">
+		<fieldDescription><![CDATA[lineItems]]></fieldDescription>
+	</field>
+	<field name="payment" class="ca.bc.gov.educ.isd.ecommerce.payment.receipt.Payment">
+		<fieldDescription><![CDATA[payment]]></fieldDescription>
+	</field>
+	<field name="payment.orderNumber" class="java.lang.Long">
+		<fieldDescription><![CDATA[payment.orderNumber]]></fieldDescription>
+	</field>
+	<field name="payment.referenceNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[payment.referenceNumber]]></fieldDescription>
+	</field>
+	<field name="payment.purchased" class="java.util.Date">
+		<fieldDescription><![CDATA[payment.purchased]]></fieldDescription>
+	</field>
+	<field name="payment.amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[payment.amount]]></fieldDescription>
+	</field>
+	<field name="payment.paymentMethod.name" class="java.lang.String">
+		<fieldDescription><![CDATA[payment.paymentMethod.name]]></fieldDescription>
+	</field>
+	<field name="payment.paymentStatus.name" class="java.lang.String">
+		<fieldDescription><![CDATA[payment.paymentStatus.name]]></fieldDescription>
+	</field>
+	<variable name="V_CURRENT_PAGE_NUMBER" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="70">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<printWhenExpression><![CDATA[$P{P_REPORT_TITLE}]]></printWhenExpression>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="572" height="64" isRemoveLineWhenBlank="true" uuid="21e3045d-e066-4b1d-b338-dcedccd50651">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$P{P_REPORT_TITLE}]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="P_REPORT_BASE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_COMMON_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_COMMON_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_RESOURCES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_IMAGES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_DATE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TITLE">
+					<subreportParameterExpression><![CDATA["Ministry of Education"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBTITLE">
+					<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_LOGO_CODE">
+					<subreportParameterExpression><![CDATA["BC"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_LOGO_MOE">
+					<subreportParameterExpression><![CDATA[java.lang.Boolean.FALSE]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_INCLUDE_UPDATED_DATE">
+					<subreportParameterExpression><![CDATA[java.lang.Boolean.FALSE]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{P_REPORT_COMMON_PATH} + "Title.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<detail>
+		<band height="125">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<line>
+				<reportElement x="0" y="5" width="572" height="1" uuid="5344651e-0770-4601-9bc5-ddc3c1530ae8">
+					<printWhenExpression><![CDATA[$V{REPORT_COUNT} > 1]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<frame>
+				<reportElement x="0" y="10" width="572" height="15" uuid="553c47df-966a-47c3-aa82-3c364c5ef458"/>
+				<textField>
+					<reportElement x="92" y="0" width="92" height="15" uuid="bc0dd54f-5bcc-49e1-a00a-593bc5526c89"/>
+					<textFieldExpression><![CDATA[$F{payment.orderNumber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Label" x="0" y="0" width="92" height="15" uuid="c29ace69-638b-49bf-b81d-9d1708968b3b"/>
+					<text><![CDATA[Order #:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Label" x="368" y="0" width="92" height="15" uuid="82c2c05d-ef5c-437d-a551-f3383bcbe566"/>
+					<text><![CDATA[Request Date:]]></text>
+				</staticText>
+				<textField pattern="yyyy-MMM-dd">
+					<reportElement x="460" y="0" width="112" height="15" uuid="0d2f43c1-7ad0-4357-9f41-21e06d8f25ae"/>
+					<textFieldExpression><![CDATA[$F{payment.purchased}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Label" x="184" y="0" width="92" height="15" uuid="f1588570-79b3-4dfc-918b-cc04febef536"/>
+					<text><![CDATA[Total Amount:]]></text>
+				</staticText>
+				<textField pattern="¤ #,##0.00;¤ -#,##0.00">
+					<reportElement x="276" y="0" width="92" height="15" uuid="50edb771-c677-40bd-a340-4c12535ef29f"/>
+					<textFieldExpression><![CDATA[$F{payment.amount}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="25" width="572" height="15" isRemoveLineWhenBlank="true" uuid="2451eb0f-7982-45e9-bc8c-58f5a395f67c">
+					<printWhenExpression><![CDATA[$F{payment}.hasTransaction()]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement style="Label" x="0" y="0" width="92" height="15" uuid="a0e2033d-d78b-4ecc-ad0a-23703fba9d69"/>
+					<text><![CDATA[Transaction Id:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="92" y="0" width="92" height="15" uuid="115789cc-a9ba-4c52-9f05-d3281efc1bd3"/>
+					<textFieldExpression><![CDATA[$F{payment.referenceNumber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Label" x="184" y="0" width="92" height="15" uuid="2e35efda-b2e9-4c73-90ee-5bcb708fd138"/>
+					<text><![CDATA[Card Type:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="276" y="0" width="92" height="15" uuid="45da0ed7-906e-48d6-9a1e-f75201200124"/>
+					<textFieldExpression><![CDATA[$F{payment.paymentMethod.name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Label" x="368" y="0" width="92" height="15" uuid="5c7d15f3-1678-4934-a85d-a7004bc24669"/>
+					<text><![CDATA[Card Status:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="460" y="0" width="112" height="15" uuid="da73a5e9-c517-4750-a5ee-2470d2caa449"/>
+					<textFieldExpression><![CDATA[$F{payment.paymentStatus.name}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="Label" positionType="Float" x="0" y="50" width="572" height="20" uuid="0049ab92-1b8d-4289-a051-fe4ab4a28e35"/>
+				<text><![CDATA[Order Summary]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="70" width="572" height="45" uuid="433a3fe4-24e9-45da-997d-b4820ac3380d"/>
+				<subreportParameter name="P_REPORT_BASE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_COMMON_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_COMMON_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_RESOURCES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "Admin.jrtx"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_IMAGES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_DATE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_PAYMENT_AMOUNT">
+					<subreportParameterExpression><![CDATA[$F{payment.amount}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{lineItems})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "LineItems.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<printWhenExpression><![CDATA[$P{P_REPORT_FOOTER}]]></printWhenExpression>
+			<frame>
+				<reportElement x="0" y="0" width="572" height="15" isRemoveLineWhenBlank="true" uuid="ce65549a-c55f-4774-9308-55f5ecca1d7e"/>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Base" x="0" y="0" width="120" height="15" uuid="f0511b9c-0283-4c1c-b2e9-502e32c08a9e"/>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat( "MMM dd, yyyy hh:mm aaaa" ).format( new java.util.Date() )]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Auto" isBlankWhenNull="true">
+					<reportElement style="Base" x="447" y="0" width="125" height="15" uuid="2c641403-c1b5-495d-828e-a9d812205023"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[msg("Page {0} of {1}", $V{V_CURRENT_PAGE_NUMBER}, $V{PAGE_NUMBER})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Base" x="236" y="0" width="100" height="15" uuid="8844622d-5525-4363-b4a0-89e4b4e7c1b7"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[StudentTranscripts]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+	<fontFamily name="Arimo">
+		<normal><![CDATA[fonts/Arimo/Arimo-Regular.ttf]]></normal>
+		<bold><![CDATA[fonts/Arimo/Arimo-Bold.ttf]]></bold>
+		<italic><![CDATA[fonts/Arimo/Arimo-Italic.ttf]]></italic>
+		<boldItalic><![CDATA[fonts/Arimo/Arimo-BoldItalic.ttf]]></boldItalic>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[false]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="Carlito">
+		<normal><![CDATA[fonts/Carlito/Carlito-Regular.ttf]]></normal>
+		<bold><![CDATA[fonts/Carlito/Carlito-Bold.ttf]]></bold>
+		<italic><![CDATA[fonts/Carlito/Carlito-Italic.ttf]]></italic>
+		<boldItalic><![CDATA[fonts/Carlito/Carlito-BoldItalic.ttf]]></boldItalic>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="Inconsolata">
+		<normal><![CDATA[fonts/Inconsolata/InconsolataNoslash-Regular.otf]]></normal>
+		<bold><![CDATA[fonts/Inconsolata/InconsolataNoslash-Bold.otf]]></bold>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="LiberationSans">
+		<normal><![CDATA[fonts/LiberationSans/LiberationSans-Regular.ttf]]></normal>
+		<bold><![CDATA[fonts/LiberationSans/LiberationSans-Bold.ttf]]></bold>
+		<italic><![CDATA[fonts/LiberationSans/LiberationSans-Italic.ttf]]></italic>
+		<boldItalic><![CDATA[fonts/LiberationSans/LiberationSans-BoldItalic.ttf]]></boldItalic>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="TexGyreSchola">
+		<normal><![CDATA[fonts/TexGyreSchola/texgyreschola-regular.otf]]></normal>
+		<bold><![CDATA[fonts/TexGyreSchola/texgyreschola-bold.otf]]></bold>
+		<italic><![CDATA[fonts/TexGyreSchola/texgyreschola-italic.otf]]></italic>
+		<boldItalic><![CDATA[fonts/TexGyreSchola/texgyreschola-bolditalic.otf]]></boldItalic>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
+	<fontFamily name="Tinos">
+		<normal><![CDATA[fonts/Tinos/Tinos-Regular.ttf]]></normal>
+		<bold><![CDATA[fonts/Tinos/Tinos-Bold.ttf]]></bold>
+		<italic><![CDATA[fonts/Tinos/Tinos-Italic.ttf]]></italic>
+		<boldItalic><![CDATA[fonts/Tinos/Tinos-BoldItalic.ttf]]></boldItalic>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+		<exportFonts/>
+	</fontFamily>
+</fontFamilies>

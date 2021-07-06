@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Detail" pageWidth="572" pageHeight="400" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="76eecab4-31d9-402a-9fe5-041a3ed91a5f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<style name="RawScoreBorder">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT} == 1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#D9D9D9">
+				<box>
+					<topPen lineWidth="0.0"/>
+				</box>
+			</style>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT} > 1]]></conditionExpression>
+			<style mode="Opaque" backcolor="#D9D9D9">
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</style>
+		</conditionalStyle>
+	</style>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBREPORTS_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "GLA/"]]></defaultValueExpression>
+	</parameter>
+	<field name="rawScoreCategory" class="ca.bc.gov.educ.isd.assessment.RawScoreCategory">
+		<fieldDescription><![CDATA[rawScoreCategory]]></fieldDescription>
+	</field>
+	<field name="rawScoreCategory.title" class="java.lang.String">
+		<fieldDescription><![CDATA[rawScoreCategory.title]]></fieldDescription>
+	</field>
+	<field name="totalStudentScore" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalStudentScore]]></fieldDescription>
+	</field>
+	<field name="totalScore" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalScore]]></fieldDescription>
+	</field>
+	<field name="assessmentScores" class="java.util.List">
+		<fieldDescription><![CDATA[assessmentScores]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="16">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="572" height="16" backcolor="#D9D9D9" uuid="5b82283c-22a9-413a-bc31-0a1865523170"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement style="Body" x="490" y="0" width="82" height="16" uuid="f877a53b-1b8d-40ea-b439-501ae5e2d922"/>
+					<box>
+						<leftPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Out Of]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Body" x="408" y="0" width="82" height="16" uuid="ba0307d1-5cf2-4cd3-a44d-15707f85c72e"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Your Score]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="31">
+			<subreport isUsingCache="false" overflowType="Stretch">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="572" height="15" uuid="0d7e7b28-2100-44b9-929e-b3cdccb0e2dc"/>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BASE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_RESOURCES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{assessmentScores})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "AssessmentScores.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

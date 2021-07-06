@@ -1,0 +1,95 @@
+/* *********************************************************************
+ *  Copyright (c) 2016, Ministry of Education, BC.
+ *
+ *  All rights reserved.
+ *    This information contained herein may not be used in whole
+ *    or in part without the express written consent of the
+ *    Government of British Columbia, Canada.
+ *
+ *  Revision Control Information
+ *  File:                $Id:: DomainEntity.java 7094 2017-05-11 21:17:35Z CGO#$
+ *  Date of Last Commit: $Date:: 2017-05-11 14:17:35 -0700 (Thu, 11 May 2017)  $
+ *  Revision Number:     $Rev:: 7094                                           $
+ *  Last Commit by:      $Author:: CGOMEZTE                                    $
+ *
+ * ********************************************************************** */
+package ca.bc.gov.educ.isd.eis.common;
+
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * A common interface of all entities in the domain.
+ *
+ * Notice there is no setEntityId. Domain entities can only be created and
+ * populated by the Entity's data service. The underlying implementation may
+ * have a setter, but that is transparent to the service consumer.
+ * <p>
+ * Each Entity ID is intended to represent exactly one real world instance of
+ * the entity. This is helpful when the data is owned/controlled by external
+ * systems or the data could span multiple databases. (similar to the OID
+ * pattern)
+ *
+ * @author CGI Information Management Consultants Inc.
+ */
+public interface DomainEntity extends Serializable {
+
+    /**
+     * Retrieve the globally unique identity of the entity.
+     *
+     * @return A globally unique identifier for the entity.
+     */
+    String getEntityId();
+
+    /**
+     * Retrieve the stateless transaction number for this entity.
+     *
+     * This value may be different for the same entity in duplicate data stores
+     * and hence should be considered informational only.
+     *
+     * @return Stateless transaction number of the currently persisted entity
+     * instance.
+     */
+    Integer getXactId();
+
+    /**
+     * Retrieve the timestamp on which this entity was first created.
+     *
+     * @return Timestamp of when the entity was created.
+     */
+    Date getCreatedOn();
+
+    /**
+     * Retrieve name of the user or system that created this entity.
+     *
+     * The value of the created by is the value of the User Principal object at
+     * the time of creation.
+     *
+     * @return Name of the user which created this entity.
+     */
+    String getCreatedBy();
+
+    /**
+     * Retrieve the timestamp on which this entity was last updated.
+     *
+     * @return Timestamp of when this entity was last updated.
+     */
+    Date getLastUpdatedOn();
+
+    /**
+     * Retrieve name of the user or system that last updated this entity.
+     *
+     * The value of the created by is the value of the User Principal object at
+     * the time of last update.
+     *
+     * @return User who last updated this entity.
+     */
+    String getLastUpdatedBy();
+
+    /**
+     * Retrieve the primary key id for persistence.
+     *
+     * @return id
+     */
+    Long getId();
+}

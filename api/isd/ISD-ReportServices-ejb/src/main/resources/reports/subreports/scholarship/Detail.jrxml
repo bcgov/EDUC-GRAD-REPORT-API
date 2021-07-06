@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Scholarship Detail" pageWidth="567" pageHeight="792" whenNoDataType="NoDataSection" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="c0036d4f-8c7c-4d4d-8580-00a67cc9ef1b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<field name="scholarship.name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="scholarship.expiry" class="java.util.Date">
+		<fieldDescription><![CDATA[expiry]]></fieldDescription>
+	</field>
+	<field name="scholarship.redeemed" class="java.lang.String">
+		<fieldDescription><![CDATA[redeemed]]></fieldDescription>
+	</field>
+	<field name="scholarship.amount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[amount]]></fieldDescription>
+	</field>
+	<field name="scholarship.code" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="scholarship.yearAwarded" class="java.util.Date">
+		<fieldDescription><![CDATA[yearAwarded]]></fieldDescription>
+	</field>
+	<variable name="V_TOTAL_PAGES" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[$V{REPORT_COUNT}]]></variableExpression>
+		<initialValueExpression><![CDATA[1]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="15">
+			<staticText>
+				<reportElement style="TabularHeader" mode="Opaque" x="0" y="0" width="360" height="15" backcolor="#DDDDDD" uuid="1e4fbd91-e932-4f40-9680-e202c7a006e1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TabularHeader" mode="Opaque" x="360" y="0" width="60" height="15" backcolor="#DDDDDD" uuid="87d53021-b173-4fab-9a33-e16ca63aed91"/>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TabularHeader" mode="Opaque" x="420" y="0" width="90" height="15" backcolor="#DDDDDD" uuid="072d4bc7-7b4b-4166-8d84-c687d5f36574">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<text><![CDATA[Expiry]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TabularHeader" mode="Opaque" x="510" y="0" width="57" height="15" backcolor="#DDDDDD" uuid="b875538d-0da4-4bad-b36c-6dc1bb1c2c33">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[Redeemed]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="15" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="TabularRow" stretchType="RelativeToBandHeight" x="0" y="0" width="360" height="15" uuid="65ca292c-1b86-4310-90d9-16222c37f6a2"/>
+				<textElement verticalAlignment="Top">
+					<paragraph spacingBefore="0" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{scholarship.name}.trim()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤###0.##;¤-###0.##" isBlankWhenNull="true">
+				<reportElement style="TabularRow" stretchType="RelativeToBandHeight" x="360" y="0" width="60" height="15" uuid="5aea2c94-0348-4ba4-8a84-937bcfaedbc7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<paragraph rightIndent="2" spacingBefore="0" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{scholarship.amount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="d-MMM-yyyy" isBlankWhenNull="false">
+				<reportElement style="TabularRow" stretchType="RelativeToBandHeight" x="420" y="0" width="90" height="15" uuid="426fc316-761f-4c5a-905c-f981d990e8ad"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<paragraph rightIndent="2" spacingBefore="0" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{scholarship.expiry} == null
+? "N/A"
+: "A".equalsIgnoreCase($F{scholarship.code}) ? "N/A" : $F{scholarship.expiry}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="TabularRow" stretchType="RelativeToBandHeight" x="510" y="0" width="57" height="15" uuid="7cdd5d3c-7ad5-453e-8e40-949d5ac7dd67"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<paragraph spacingBefore="0" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{scholarship.redeemed}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<noData>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="567" height="30" uuid="bfd15c3c-c7f9-4192-9bae-08cbe0001b9a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No scholarships to report]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>
