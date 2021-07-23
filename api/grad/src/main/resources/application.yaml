@@ -70,3 +70,9 @@ springdoc:
   swagger-ui:
     path: /api/v1/api-docs-ui.html
     operationsSorter: alpha
+
+#Endpoint properties
+endpoint:
+  grad-report-api:
+    signature-image-by-code:
+      url: https://educ-grad-program-management-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/programmanagement/specialprograms/id/%s
