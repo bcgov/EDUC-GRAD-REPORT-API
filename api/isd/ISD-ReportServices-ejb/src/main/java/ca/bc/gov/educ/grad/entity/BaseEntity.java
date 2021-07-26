@@ -13,16 +13,16 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 public class BaseEntity {
-	@Column(name = "CREATED_BY", nullable = true)
+	@Column(name = "CREATE_USER", nullable = true)
     private String createdBy;
 	
-	@Column(name = "CREATED_TIMESTAMP", nullable = true)
+	@Column(name = "CREATE_DATE", nullable = true)
     private Date createdTimestamp;
 	
-	@Column(name = "UPDATED_BY", nullable = true)
+	@Column(name = "UPDATE_USER", nullable = true)
     private String updatedBy;
 	
-	@Column(name = "UPDATED_TIMESTAMP", nullable = true)
+	@Column(name = "UPDATE_DATE", nullable = true)
     private Date updatedTimestamp;
 	
 	@PrePersist
