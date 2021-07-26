@@ -47,6 +47,14 @@ public abstract class GradReportBaseTest {
 
     }
 
+    protected byte[] loadTestImage(String path) throws Exception {
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(path);
+        byte[] imageBytes = inputStream.readAllBytes();
+        inputStream.close();
+        return imageBytes;
+    }
+
     protected GenerateReportRequest createReportRequest(String jsonPath) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
