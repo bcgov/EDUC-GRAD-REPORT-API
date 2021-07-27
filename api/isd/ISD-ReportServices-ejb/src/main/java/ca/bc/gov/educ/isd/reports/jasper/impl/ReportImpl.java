@@ -17,12 +17,14 @@
  */
 package ca.bc.gov.educ.isd.reports.jasper.impl;
 
+import ca.bc.gov.educ.grad.utils.EducGradSignatureImageApiConstants;
 import ca.bc.gov.educ.isd.common.Predicate;
 import ca.bc.gov.educ.isd.reports.Parameters;
 import ca.bc.gov.educ.isd.reports.Report;
 import ca.bc.gov.educ.isd.reports.ReportFormat;
 import ca.bc.gov.educ.isd.reports.impl.ParametersImpl;
 import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -566,6 +568,9 @@ public abstract class ReportImpl implements Report {
 
         // Relative paths for subreports, images, etc.
         setParameter("P_REPORT_BASE", DIR_JASPER_BASE);
+
+        // Relative paths for signatures.
+        setParameter("P_REPORT_SIGNATURES_PATH", EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_BASE_URL);
 
         // Toggle pagination for HTML reports.
         setParameter(IS_IGNORE_PAGINATION, !isPaginated);
