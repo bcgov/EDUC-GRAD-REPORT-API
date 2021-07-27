@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.InputStream;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,7 +39,18 @@ public class GradReportSignatureService {
     public GragReportSignatureImage getSignatureImageByCode(String code) {
         String _m = String.format("getSignatureImageByCode(String %s)", code);
         log.debug("<{}.{}", _m, CLASS_NAME);
-        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(signatureImageRepository.findBySignatureCode(code));
+        GragReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
+        if(entity ==  null) {
+            try {
+                entity = new GragReportSignatureImageEntity();
+                byte[] imageBinary = loadBlankImage("reports/resources/images/signatures/BLANK.png");
+                entity.setGradReportSignatureCode("BLANK.png");
+                entity.setSignatureContent(imageBinary);
+            } catch (Exception e) {
+                log.error("Unable to load BLANK image from resources", e);
+            }
+        }
+        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
         log.debug(">{}.{}", _m, CLASS_NAME);
         return  signatureImage;
     }
@@ -55,5 +67,13 @@ public class GradReportSignatureService {
             }
         }
         return gradReportSignatureTransformer.transformToDTO(signatureImageRepository.save(toBeSaved));
+    }
+
+    private byte[] loadBlankImage(String path) throws Exception {
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(path);
+        byte[] imageBytes = inputStream.readAllBytes();
+        inputStream.close();
+        return imageBytes;
     }
 }
