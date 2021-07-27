@@ -58,6 +58,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void saveSignatureImageTest() throws Exception {
+		LOG.debug("<{}.saveSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
+		assertNotNull(imageBinary);
+		assertNotEquals(0, imageBinary.length);
+		LOG.debug("Test image loaded {} bytes", imageBinary.length);
+
+		String signatureCode = "TEST.png";
+		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+		signatureImage.setGradReportSignatureCode(signatureCode);
+		signatureImage.setSignatureContent(imageBinary);
+		signatureImage.setSignatureId(UUID.randomUUID());
+
+		signatureImage = reportSignatureService.saveSignatureImage(signatureImage);
+		assertNotNull(signatureImage);
+
+		LOG.debug(">saveSignatureImageTest");
+	}
+
+	@Test
 	public void createTranscriptReport_2004() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2004 at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");

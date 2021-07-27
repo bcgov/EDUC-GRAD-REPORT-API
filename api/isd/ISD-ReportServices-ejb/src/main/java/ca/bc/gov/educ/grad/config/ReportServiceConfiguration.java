@@ -3,17 +3,17 @@ package ca.bc.gov.educ.grad.config;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("ca.bc.gov.educ.grad")
+@ComponentScans({
+        @ComponentScan("ca.bc.gov.educ.isd"),
+        @ComponentScan("ca.bc.gov.educ.grad")
+})
 @EntityScan(basePackages = {"ca.bc.gov.educ.grad.entity"} )
 @EnableJpaRepositories(basePackages = {"ca.bc.gov.educ.grad.dao"})
 @PropertySource("classpath:messages.properties")

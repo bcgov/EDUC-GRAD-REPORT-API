@@ -64,9 +64,6 @@ public abstract class ReportImpl implements Report {
     private static final String DIR_INTERNATIONALIZATION
             = DIR_JASPER_BASE + DIR_RESOURCES + "i18n";
 
-    @Autowired
-    EducGradSignatureImageApiConstants signatureImageApiConstants;
-
     /**
      * Canadian English locale by default.
      */
@@ -573,7 +570,7 @@ public abstract class ReportImpl implements Report {
         setParameter("P_REPORT_BASE", DIR_JASPER_BASE);
 
         // Relative paths for signatures.
-        setParameter("P_REPORT_SIGNATURES_PATH", signatureImageApiConstants.getSignatureImageBaseUrl());
+        setParameter("P_REPORT_SIGNATURES_PATH", EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_BASE_URL);
 
         // Toggle pagination for HTML reports.
         setParameter(IS_IGNORE_PAGINATION, !isPaginated);

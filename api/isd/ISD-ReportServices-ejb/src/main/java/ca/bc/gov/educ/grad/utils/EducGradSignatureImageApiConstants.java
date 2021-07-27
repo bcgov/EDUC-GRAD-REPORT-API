@@ -25,13 +25,19 @@ public class EducGradSignatureImageApiConstants {
     public static final Date DEFAULT_UPDATED_TIMESTAMP = new Date();
 
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
-
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
+
+    public static String GRAD_SIGNATURE_IMAGE_BASE_URL;
+    public static String GRAD_SIGNATURE_IMAGE_BY_CODE_URL;
 
     //Endpoints
     @Value("${endpoint.grad-report-api.signature-image-base.url}")
-    private String signatureImageBaseUrl;
+    public void setSignatureImageBaseUrl(String signatureImageBAseUrl) {
+        GRAD_SIGNATURE_IMAGE_BASE_URL = signatureImageBAseUrl;
+    }
     @Value("${endpoint.grad-report-api.signature-image-by-code.url}")
-    private String signatureImageByCodeUrl;
+    public void setSignatureImageByCodeUrl(String signatureImageByCodeUrl) {
+        GRAD_SIGNATURE_IMAGE_BY_CODE_URL = signatureImageByCodeUrl;
+    }
 
 }
