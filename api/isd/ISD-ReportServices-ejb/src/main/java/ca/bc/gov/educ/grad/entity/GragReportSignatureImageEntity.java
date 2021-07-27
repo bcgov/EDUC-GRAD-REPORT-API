@@ -17,10 +17,10 @@ public class GragReportSignatureImageEntity extends BaseEntity {
     private UUID signatureId;
 
     @Lob
-    @Column(name = "GRAD_REPORT_SIGNATURE", columnDefinition="LOB")
+    @Column(name = "GRAD_REPORT_SIGNATURE", columnDefinition="BLOB", nullable = false)
     private byte[] signatureContent;
 
-    @Column(name = "GRAD_REPORT_SIGNATURE_CODE", nullable = true)
+    @Column(name = "GRAD_REPORT_SIGNATURE_CODE", nullable = false)
     private String gradReportSignatureCode;
 
 }

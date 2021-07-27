@@ -3,6 +3,7 @@ package ca.bc.gov.educ.api.report.controller;
 import ca.bc.gov.educ.api.report.service.ReportService;
 import ca.bc.gov.educ.api.report.util.PermissionsContants;
 import ca.bc.gov.educ.api.report.util.ReportApiConstants;
+import ca.bc.gov.educ.grad.controller.BaseController;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping (ReportApiConstants.REPORT_API_ROOT_MAPPING)
 @EnableResourceServer
 @OpenAPIDefinition(info = @Info(title = "API for Report Generation", description = "This API is for Report Generation", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_COURSE_DATA"})})
-public class ReportController {
+public class ReportController extends BaseController {
 
     private static Logger logger = LoggerFactory.getLogger(ReportController.class);
 
@@ -36,6 +37,7 @@ public class ReportController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity getStudentAchievementReport(@RequestBody GenerateReportRequest report) {
         logger.debug("getStudentAchievementReportCDogs");
+        logRequest();
         return reportService.getStudentAchievementReport(report);
     }
     
@@ -44,7 +46,8 @@ public class ReportController {
     @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity getStudentTranscriptReport(@RequestBody GenerateReportRequest report) {
-        logger.debug("getStudentTranscriptReportCDogs"); 
+        logger.debug("getStudentTranscriptReportCDogs");
+        logRequest();
         return reportService.getStudentTranscriptReport(report);
     }
     
@@ -53,7 +56,8 @@ public class ReportController {
     @Operation(summary = "Generate Student Certificate", description = "Generate Student Certificate", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity getStudentCertificate(@RequestBody GenerateReportRequest report) {
-        logger.debug("getStudentCertificateCDogs"); 
+        logger.debug("getStudentCertificateCDogs");
+        logRequest();
         return reportService.getStudentCertificateReport(report);
     }
 }

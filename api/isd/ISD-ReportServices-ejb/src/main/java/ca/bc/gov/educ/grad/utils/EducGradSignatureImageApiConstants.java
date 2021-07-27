@@ -15,7 +15,7 @@ public class EducGradSignatureImageApiConstants {
     public static final String API_ROOT_MAPPING = "";
     public static final String API_VERSION = "v1";
     public static final String GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING = "/api/" + API_VERSION + "/signatures" ;
-    public static final String GET_SIGNATURE_IMAGE_BY_CODE = "/{cpCode}";
+    public static final String GET_SIGNATURE_IMAGE_BY_CODE = "/{signCode}";
     public static final String SAVE_SIGNATURE_IMAGE = "/save";
 
     //Default Date format constants
@@ -29,6 +29,8 @@ public class EducGradSignatureImageApiConstants {
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
 
     //Endpoints
+    @Value("${endpoint.grad-report-api.signature-image-base.url}")
+    private String signatureImageBaseUrl;
     @Value("${endpoint.grad-report-api.signature-image-by-code.url}")
     private String signatureImageByCodeUrl;
 

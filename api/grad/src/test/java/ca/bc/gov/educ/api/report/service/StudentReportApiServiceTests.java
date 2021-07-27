@@ -2,6 +2,8 @@ package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.api.report.GradReportBaseTest;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
+import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
+import ca.bc.gov.educ.grad.service.GradReportSignatureService;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -13,7 +15,9 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class StudentReportApiServiceTests extends GradReportBaseTest {
@@ -24,10 +28,33 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	@Autowired
 	ReportService reportService;
+	@Autowired
+	GradReportSignatureService reportSignatureService;
 
 	@Before
 	public void init() throws Exception {
 
+	}
+
+	@Test
+	public void getSignatureImageTest() throws Exception {
+		LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
+		assertNotNull(imageBinary);
+		assertNotEquals(0, imageBinary.length);
+		LOG.debug("Test image loaded {} bytes", imageBinary.length);
+
+		String signatureCode = "MOE.png";
+		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+		signatureImage.setGradReportSignatureCode(signatureCode);
+		signatureImage.setSignatureContent(imageBinary);
+		signatureImage.setSignatureId(UUID.randomUUID());
+
+		reportSignatureService.saveSignatureImage(signatureImage);
+		signatureImage = reportSignatureService.getSignatureImageByCode(signatureCode);
+		assertNotNull(signatureImage);
+
+		LOG.debug(">getSignatureImageTest");
 	}
 
 	@Test

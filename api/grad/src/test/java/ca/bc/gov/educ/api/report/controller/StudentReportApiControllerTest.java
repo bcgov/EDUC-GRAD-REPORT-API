@@ -2,7 +2,10 @@ package ca.bc.gov.educ.api.report.controller;
 
 import ca.bc.gov.educ.api.report.GradReportBaseTest;
 import ca.bc.gov.educ.api.report.service.ReportService;
+import ca.bc.gov.educ.grad.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
+import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
+import ca.bc.gov.educ.grad.service.GradReportSignatureService;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
 import ca.bc.gov.educ.isd.reports.bundle.service.BCMPBundleService;
@@ -26,13 +29,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
+@WebAppConfiguration
 @ExtendWith(MockitoExtension.class)
 public class StudentReportApiControllerTest extends GradReportBaseTest {
 
@@ -41,18 +49,50 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Autowired
+    WebApplicationContext wac;
+
+    @Autowired
     StudentTranscriptService transcriptService;
+
     @Autowired
     GradCertificateService gradCertificateService;
+
     @Autowired
     BCMPBundleService bcmpBundleService;
 
     @Mock
     ReportService reportService;
 
+    @Mock
+    GradReportSignatureService reportSignatureService;
+
     @InjectMocks
     private ReportController reportController;
 
+    @InjectMocks
+    private GradReportSignatureController reportSignatureController;
+
+
+    @Test
+    public void getSignatureImageTest() throws Exception {
+        LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+        byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
+        assertNotNull(imageBinary);
+        assertNotEquals(0, imageBinary.length);
+        LOG.debug("Test image loaded {} bytes", imageBinary.length);
+
+        String signatureCode = "MOE.png";
+        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+        signatureImage.setGradReportSignatureCode(signatureCode);
+        signatureImage.setSignatureContent(imageBinary);
+        signatureImage.setSignatureId(UUID.randomUUID());
+
+        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode)).thenReturn(signatureImage);
+        reportSignatureController.getSignatureImageByCode(signatureCode);
+        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
+
+        LOG.debug(">getSignatureImageTest");
+    }
 
     @Test
     public void getStudentAchievementReportTest() throws Exception {
