@@ -73,6 +73,9 @@
 	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
 	<field name="student.numeracyAssessmentResult" class="ca.bc.gov.educ.isd.reports.data.assessment.impl.NumeracyAssessmentResult">
 		<fieldDescription><![CDATA[student.numeracyAssessmentResult]]></fieldDescription>
 	</field>
@@ -134,6 +137,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_IMAGES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_INCLUDE_UPDATED_DATE">
 					<subreportParameterExpression><![CDATA[Boolean.FALSE]]></subreportParameterExpression>
@@ -322,6 +328,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_BASE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>

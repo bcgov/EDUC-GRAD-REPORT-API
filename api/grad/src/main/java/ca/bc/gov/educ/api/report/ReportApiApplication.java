@@ -39,9 +39,15 @@ public class ReportApiApplication {
 	  }
 	  @Override
 	  public void configure(WebSecurity web) {
-		  web.ignoring().antMatchers("/api/v1/api-docs-ui.html",
-				  "/api/v1/swagger-ui/**", "/api/v1/api-docs/**",
-				  "/actuator/health","/actuator/prometheus", "/health");
+		  web.ignoring().antMatchers(
+		  		"/api/v1/api-docs-ui.html",
+				  		"/api/v1/swagger-ui/**",
+				  		"/api/v1/api-docs/**",
+				  		"/actuator/health",
+				  		"/actuator/prometheus",
+				  		"/health",
+				  		"/api/v1/signatures/**"
+		  );
 	  }
 	}
 }

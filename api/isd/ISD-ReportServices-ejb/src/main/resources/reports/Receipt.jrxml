@@ -39,6 +39,9 @@
 	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
 		<parameterDescription><![CDATA[Date the receipt was generated.]]></parameterDescription>
 		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>
@@ -108,6 +111,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_IMAGES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_DATE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_DATE}]]></subreportParameterExpression>
@@ -227,6 +233,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_IMAGES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_DATE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_DATE}]]></subreportParameterExpression>

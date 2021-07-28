@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @OpenAPIDefinition(info = @Info(title = "API for Report Generation", description = "This API is for Report Generation", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_COURSE_DATA"})})
 public class ReportController extends BaseController {
 
-    private static Logger logger = LoggerFactory.getLogger(ReportController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
 
     @Autowired
     ReportService reportService;
@@ -56,7 +56,7 @@ public class ReportController extends BaseController {
     @Operation(summary = "Generate Student Certificate", description = "Generate Student Certificate", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity getStudentCertificate(@RequestBody GenerateReportRequest report) {
-        logger.debug("getStudentCertificateCDogs");
+        logger.debug("getStudentCertificate");
         logRequest();
         return reportService.getStudentCertificateReport(report);
     }

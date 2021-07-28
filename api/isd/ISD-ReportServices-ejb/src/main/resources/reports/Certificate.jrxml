@@ -28,6 +28,9 @@
 	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String">
 		<parameterDescription><![CDATA["Regular", "Adult", or "SCCP"]]></parameterDescription>
 		<defaultValueExpression><![CDATA["SCCP"]]></defaultValueExpression>
@@ -60,6 +63,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_IMAGES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_TYPE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>

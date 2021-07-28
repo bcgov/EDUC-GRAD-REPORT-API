@@ -30,7 +30,18 @@ public class GradReportSignatureService {
     public GragReportSignatureImage getSignatureImageBySignatureId(String id) {
         String _m = String.format("getSignatureImageBySignatureId(String %s)", id);
         log.debug("<{}.{}", _m, CLASS_NAME);
-        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(signatureImageRepository.findById(UUID.fromString(id)));
+        Optional<GragReportSignatureImageEntity> entity = signatureImageRepository.findById(UUID.fromString(id));
+        if(!entity.isPresent()) {
+            try {
+                entity = Optional.of(new GragReportSignatureImageEntity());
+                byte[] imageBinary = loadBlankImage("reports/resources/images/signatures/BLANK.png");
+                entity.get().setGradReportSignatureCode("BLANK.png");
+                entity.get().setSignatureContent(imageBinary);
+            } catch (Exception e) {
+                log.error("Unable to load BLANK image from resources", e);
+            }
+        }
+        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
         log.debug(">{}.{}", _m, CLASS_NAME);
         return  signatureImage;
     }
