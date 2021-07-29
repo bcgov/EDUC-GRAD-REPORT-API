@@ -68,23 +68,23 @@
 	</variable>
 	<title>
 		<band height="557">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="57" width="792" height="29" uuid="7d4b4b94-866e-4765-8eb0-52d5ca4bafde"/>
 				<textFieldExpression><![CDATA[$R{header.title.regular}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="86" width="792" height="30" uuid="bbac1e82-4607-4c52-957c-c865249188cf"/>
 				<textFieldExpression><![CDATA[$R{header.title.issuer.regular}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" x="0" y="117" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
 				<textFieldExpression><![CDATA[$R{header.certify.prefix}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Awardee" x="0" y="150" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" x="0" y="203" width="792" height="38" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107"/>
 				<textFieldExpression><![CDATA[$P{P_REPORT_SUBTYPE}.equalsIgnoreCase("FRANCOPHONE") ?
 $R{header.certify.suffix.francophone} : $R{header.certify.suffix.regular}]]></textFieldExpression>
@@ -103,7 +103,7 @@ $R{header.certify.suffix.francophone} : $R{header.certify.suffix.regular}]]></te
 					<reportElement x="2" y="19" width="212" height="62" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0"/>
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + ".png")]]></imageExpression>
 				</image>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="9" y="67" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
 					<textFieldExpression><![CDATA[$R{signature.minister.education}]]></textFieldExpression>
 				</textField>
@@ -116,9 +116,9 @@ $R{header.certify.suffix.francophone} : $R{header.certify.suffix.regular}]]></te
 					<reportElement x="14" y="-1" width="264" height="52" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH} + $F{signatures.schoolSignatory} + ".png"]]></imageExpression>
+					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + ".png")]]></imageExpression>
 				</image>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="0" y="54" width="264" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
 					<box>
 						<topPen lineWidth="0.0"/>
@@ -136,22 +136,22 @@ $R{signature.superintendent.school}]]></textFieldExpression>
 			</frame>
 			<frame>
 				<reportElement x="505" y="399" width="235" height="56" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="28" width="235" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
 					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="235" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86"/>
 					<textFieldExpression><![CDATA[$R{signature.school}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
 				<reportElement x="505" y="496" width="235" height="61" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="33" width="235" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97"/>
 					<textFieldExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}.format( $F{issued} ).toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="45" width="235" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a"/>
 					<textFieldExpression><![CDATA[$R{signature.date}]]></textFieldExpression>
 				</textField>

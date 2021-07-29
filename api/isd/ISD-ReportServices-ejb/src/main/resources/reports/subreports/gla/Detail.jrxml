@@ -90,7 +90,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$R{scores.yourscore}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="Body" x="490" y="0" width="82" height="16" uuid="8feda72c-ca0e-4272-a806-20b1eccf9e4d"/>
 					<box>
 						<pen lineWidth="0.5"/>

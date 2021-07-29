@@ -33,7 +33,7 @@
 	</variable>
 	<pageHeader>
 		<band height="74" splitType="Prevent">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="InfoContent" x="0" y="0" width="567" height="12" uuid="04c24414-9b4b-42e7-b40f-64075c684194">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -63,7 +63,7 @@
 					</reportElement>
 					<text><![CDATA[School of Record]]></text>
 				</staticText>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="InfoContent" x="337" y="12" width="230" height="12" uuid="20eee797-d4da-489f-82d6-eedec68d53ad">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>

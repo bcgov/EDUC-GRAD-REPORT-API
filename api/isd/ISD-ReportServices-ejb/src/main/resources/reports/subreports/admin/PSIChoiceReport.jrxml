@@ -115,19 +115,19 @@
 	</columnHeader>
 	<detail>
 		<band height="17">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="0" y="0" width="300" height="17" uuid="7d0af953-87d3-4a1a-bd25-12fa9eaaf620"/>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="300" y="0" width="60" height="17" uuid="8b383c03-dad6-4819-bd51-4b6e9c22ac3f"/>
 				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="360" y="0" width="90" height="17" uuid="520d064c-7f56-4e2c-a7e1-5802396ee347"/>
 				<textFieldExpression><![CDATA[$F{transmission}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRowNUMERIC" stretchType="RelativeToBandHeight" x="450" y="0" width="60" height="17" uuid="55feeb0d-09ac-4b97-bb1f-c2a9a4ff948c"/>
 				<textFieldExpression><![CDATA[$F{tally}]]></textFieldExpression>
 			</textField>
