@@ -138,7 +138,7 @@
 					<reportElement x="-44" y="14" width="227" height="66" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH} + $F{signatures.ministerOfEducation} + ".png"]]></imageExpression>
+					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + ".png")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="0" y="65" width="191" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d">

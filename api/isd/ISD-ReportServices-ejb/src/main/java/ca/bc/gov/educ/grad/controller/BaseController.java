@@ -1,12 +1,15 @@
 package ca.bc.gov.educ.grad.controller;
 
 import ca.bc.gov.educ.grad.utils.AuditingUtils;
+import ca.bc.gov.educ.grad.utils.EducGradSignatureImageApiConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 public abstract class BaseController {
 
@@ -23,11 +26,26 @@ public abstract class BaseController {
                 username = httpServletRequest.getUserPrincipal().getName();
                 AuditingUtils.setCurrentUserId(username);
             }
-            if (log.isInfoEnabled()) {
+            if(AuditingUtils.getSignatureImageUrl() == null) {
+                Enumeration<String> requestHeaders = httpServletRequest.getHeaders("Authorization");
+                String accessToken = null;
+                String authorization = requestHeaders.hasMoreElements() ? requestHeaders.nextElement() : null;
+                if(authorization != null) {
+                    accessToken = StringUtils.substringAfter(authorization, "Bearer ");
+                } else {
+                    accessToken = httpServletRequest.getParameterValues("access_token")[0];
+                }
+                String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
+                String serverName = httpServletRequest.getServerName();
+                int port = httpServletRequest.getServerPort();
+                String path = EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
                 String method = httpServletRequest.getMethod();
-                String path = httpServletRequest.getServletPath();
-                String query = httpServletRequest.getQueryString();
-                log.info(username + ": " + method + " " + path + (query == null ? "" : "?" + query));
+                String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
+                String signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
+                AuditingUtils.setSignatureImageUrl(signatureImageUrl);
+                if (log.isInfoEnabled()) {
+                    log.info(username + ": " + method + " " + path);
+                }
             }
         }
     }

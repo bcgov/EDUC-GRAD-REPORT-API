@@ -54,7 +54,7 @@
 				</reportElement>
 				<image onErrorType="Blank">
 					<reportElement x="20" y="19" width="212" height="62" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0"/>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH} + $F{signatures.ministerOfEducation} + ".png"]]></imageExpression>
+					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + ".png")]]></imageExpression>
 				</image>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="20" y="67" width="239" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>

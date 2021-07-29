@@ -45,8 +45,7 @@ public class ReportApiApplication {
 				  		"/api/v1/api-docs/**",
 				  		"/actuator/health",
 				  		"/actuator/prometheus",
-				  		"/health",
-				  		"/api/v1/signatures/**"
+				  		"/health"
 		  );
 	  }
 	}

@@ -35,7 +35,7 @@ public class GradReportSignatureController extends BaseController {
     GradValidation validation;
     
     @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGE_BY_CODE)
-    //@PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
+    @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image", description = "Retrieve Signature Image by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public byte[] getSignatureImageByCode(@PathVariable String signCode) {
