@@ -76,7 +76,7 @@
 				<subreportParameter name="P_SIGNATURE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "/SUMMARY_1950.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "SUMMARY_1950.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

@@ -569,7 +569,8 @@ public abstract class ReportImpl implements Report {
         setParameter("P_REPORT_BASE", DIR_JASPER_BASE);
 
         // Relative paths for signatures.
-        setParameter("P_REPORT_SIGNATURES_PATH", AuditingUtils.getSignatureImageUrl());
+        String signatureImageUrl = AuditingUtils.getSignatureImageUrl();
+        setParameter("P_REPORT_SIGNATURES_PATH", signatureImageUrl == null ? "" : signatureImageUrl);
 
         // Toggle pagination for HTML reports.
         setParameter(IS_IGNORE_PAGINATION, !isPaginated);

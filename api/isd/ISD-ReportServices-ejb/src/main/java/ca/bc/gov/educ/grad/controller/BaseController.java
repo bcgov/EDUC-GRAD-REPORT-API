@@ -33,7 +33,10 @@ public abstract class BaseController {
                 if(authorization != null) {
                     accessToken = StringUtils.substringAfter(authorization, "Bearer ");
                 } else {
-                    accessToken = httpServletRequest.getParameterValues("access_token")[0];
+                    String[] parameterValues = httpServletRequest.getParameterValues("access_token");
+                    if(parameterValues != null && parameterValues.length > 0) {
+                        accessToken = parameterValues[0];
+                    }
                 }
                 String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
                 String serverName = httpServletRequest.getServerName();
