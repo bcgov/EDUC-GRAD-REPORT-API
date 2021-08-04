@@ -12,6 +12,6 @@ public class Base64Deserializer extends JsonDeserializer<byte[]>  {
 
     @Override
     public byte[] deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-        return Base64.getDecoder().decode(jsonParser.getBinaryValue());
+        return Base64.getDecoder().decode(jsonParser.getValueAsString());
     }
 }
