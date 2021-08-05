@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class GradReportSignatureController extends BaseController {
 
     private static final String CLASS_NAME = GradReportSignatureController.class.getName();
-    private static Logger logger = LoggerFactory.getLogger(CLASS_NAME);
+    private static final Logger logger = LoggerFactory.getLogger(CLASS_NAME);
 
     @Autowired
     GradReportSignatureService gradReportSignatureService;

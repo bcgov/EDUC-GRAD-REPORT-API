@@ -40,6 +40,9 @@
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "gla/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<field name="rawScoreCategory" class="ca.bc.gov.educ.isd.assessment.RawScoreCategory">
 		<fieldDescription><![CDATA[rawScoreCategory]]></fieldDescription>
 	</field>
@@ -87,7 +90,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$R{scores.yourscore}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="Body" x="490" y="0" width="82" height="16" uuid="8feda72c-ca0e-4272-a806-20b1eccf9e4d"/>
 					<box>
 						<pen lineWidth="0.5"/>
@@ -114,6 +117,9 @@
 				</subreportParameter>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{assessmentScores})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "AssessmentScores.jasper"]]></subreportExpression>

@@ -67,14 +67,14 @@
 				</reportElement>
 				<textFieldExpression><![CDATA[str($P{P_SUBREPORT_NAME} + ".subtitle")]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="MMM d, yyyy" isBlankWhenNull="true">
 				<reportElement style="ReportParameter" x="700" y="15" width="102" height="15" uuid="bc3b0543-56ca-404f-8e57-8938f3b969a3">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$P{P_DATE_ENDED}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="MMM d, yyyy" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="MMM d, yyyy" isBlankWhenNull="true">
 				<reportElement style="ReportParameter" x="700" y="0" width="102" height="15" uuid="40ead644-5965-473e-bd89-a411053759ae">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>

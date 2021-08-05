@@ -62,12 +62,12 @@
 					<topPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="lessPad" x="0" y="0" width="408" height="16" uuid="c98d1a74-17a9-4884-8543-f99850a7c8a2"/>
 					<textElement markup="html"/>
 					<textFieldExpression><![CDATA[msg($R{scores.task.base}, $F{assessmentCode.label}, $F{assessmentCode.description}, $F{assessmentCode.detail})]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="Body" stretchType="ContainerHeight" x="408" y="0" width="82" height="16" uuid="4664bedb-6821-47fa-af9e-f6a61158d11b"/>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -78,7 +78,7 @@
 					<textElement textAlignment="Center" verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{studentScore} == -1 ? $R{scores.invalid} : $F{studentScore}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="Body" stretchType="ContainerHeight" x="490" y="0" width="82" height="16" uuid="216a712c-6059-4a8c-b50f-31398cbc8f8e"/>
 					<box>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

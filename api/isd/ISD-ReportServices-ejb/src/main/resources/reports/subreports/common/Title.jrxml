@@ -58,7 +58,7 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{P_REPORT_TITLE}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="172" y="16" width="223" height="15" isRemoveLineWhenBlank="true" uuid="a6d2646f-7db0-484b-addd-97b683955e69"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{P_REPORT_SUBTITLE}]]></textFieldExpression>

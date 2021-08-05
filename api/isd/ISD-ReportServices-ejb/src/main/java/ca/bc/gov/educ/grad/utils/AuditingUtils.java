@@ -3,6 +3,7 @@ package ca.bc.gov.educ.grad.utils;
 
 public class AuditingUtils {
     private static final ThreadLocal<String> userThreadLocal = new ThreadLocal<String>();
+    private static final ThreadLocal<String> signatureImageUrlThreadLocal = new ThreadLocal<String>();
 
     public static String getCurrentUserId() {
         return userThreadLocal.get();
@@ -13,6 +14,18 @@ public class AuditingUtils {
             userThreadLocal.remove();
         } else {
             userThreadLocal.set(currentUserId);
+        }
+    }
+
+    public static String getSignatureImageUrl() {
+        return signatureImageUrlThreadLocal.get();
+    }
+
+    public static void setSignatureImageUrl(String imageUrl) {
+        if (imageUrl == null) {
+            signatureImageUrlThreadLocal.remove();
+        } else {
+            signatureImageUrlThreadLocal.set(imageUrl);
         }
     }
 
