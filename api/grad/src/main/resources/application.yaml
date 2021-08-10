@@ -29,13 +29,17 @@ spring:
   jackson:
     deserialization:
       fail-on-unknown-properties: false
-
+  flyway:
+    enabled: ${ENABLE_FLYWAY}
+    baseline-on-migrate: false
+    table: FLYWAY_SCHEMA_HISTORY
+    url: ${JDBC_URL}
+    user: ${ORACLE_USERNAME}
+    password: ${ORACLE_PASSWORD}
+    locations: classpath:db/migration
 #Logging properties
 logging:
   file:
-    max-history: 1
-    clean-history-on-start: true
-    max-size: 20MB
     name: /logs/app.log
   #pattern:
   #  file: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
@@ -54,6 +58,11 @@ logging:
         boot:
           autoconfigure:
             logging: ${SPRING_BOOT_AUTOCONFIG_LOG_LEVEL}
+  logback:
+    rollingpolicy:
+      max-history: 1
+      clean-history-on-start: true
+      max-file-size: 20MB
 
 #Local properties
 server:
