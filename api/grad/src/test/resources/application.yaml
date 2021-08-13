@@ -5,10 +5,13 @@ spring:
   datasource:
     hikari:
       pool-name: grad-report-api-cp
-      maximum-pool-size: 1
+      maximum-pool-size: 5
       connection-timeout: 6000
       max-lifetime: 600000
-    driver-class: org.h2.Driver
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:grad-report-api-h2db;MODE=Oracle
+    username: user
+    password: password
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
@@ -20,13 +23,19 @@ spring:
   jackson:
     deserialization:
       fail-on-unknown-properties: false
+  flyway:
+    enabled: false
+    baseline-on-migrate: true
+    table: FLYWAY_SCHEMA_HISTORY
+    url: jdbc:oracle:thin:@//localhost:1522/XEPDB1
+    schemas: GRAD_REPORT_API
+    user: GRAD_REPORT_API
+    password: grad_report_api
+    locations: classpath:db/migration
 
 #Logging properties
 logging:
   file:
-    max-history: 1
-    clean-history-on-start: true
-    max-size: 20MB
     name: /logs/app.log
   #pattern:
   #  file: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
@@ -35,9 +44,7 @@ logging:
     ca:
       bc:
         gov:
-          educ:
-            api:
-              report: INFO
+          educ: DEBUG
     org:
       springframework:
         web: INFO
@@ -45,6 +52,11 @@ logging:
         boot:
           autoconfigure:
             logging: INFO
+  logback:
+    rollingpolicy:
+      max-history: 1
+      max-file-size: 20MB
+      clean-history-on-start: true
 
 #API Documentation
 springdoc:
