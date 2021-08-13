@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2017-11-23T13:16:49 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SelfServeOrderReport" pageWidth="802" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="Admin" uuid="e56f9aec-863f-497e-9adf-2cf97921b85d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\admin\SelfServeOrderReportAdapter.xml"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<style name="DataRow" style="DataRow">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowBOOLEAN" style="DataRowBOOLEAN">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowNUMERIC" style="DataRowNUMERIC">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowYMD" style="DataRowYMD">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowYM" style="DataRowYM">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowMONEY" style="DataRowMONEY">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowQUEUED" style="DataRowQUEUED">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<field name="ordered" class="java.util.Date">
+		<fieldDescription><![CDATA[ordered]]></fieldDescription>
+	</field>
+	<field name="order" class="java.lang.Long">
+		<fieldDescription><![CDATA[order]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<field name="transcript" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[transcript]]></fieldDescription>
+	</field>
+	<field name="certificate" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[certificate]]></fieldDescription>
+	</field>
+	<field name="delivery" class="java.lang.String">
+		<fieldDescription><![CDATA[delivery]]></fieldDescription>
+	</field>
+	<field name="payment" class="java.lang.String">
+		<fieldDescription><![CDATA[payment]]></fieldDescription>
+	</field>
+	<field name="cost" class="java.lang.Double">
+		<fieldDescription><![CDATA[cost]]></fieldDescription>
+	</field>
+	<variable name="ZEBRA_STRIPE" class="java.lang.Boolean">
+		<variableExpression><![CDATA[$V{REPORT_COUNT} %2 == 1]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{REPORT_COUNT} %2 == 1]]></initialValueExpression>
+	</variable>
+	<variable name="costSubtotal" class="java.lang.Double" resetType="Group" resetGroup="MonthGroup" calculation="Sum">
+		<variableExpression><![CDATA[$F{cost}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.lang.Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="costTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{cost}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.lang.Double(0)]]></initialValueExpression>
+	</variable>
+	<group name="MonthGroup">
+		<groupExpression><![CDATA[new SimpleDateFormat( "yyyyMM" ).format( $F{ordered} )]]></groupExpression>
+		<groupHeader>
+			<band height="17">
+				<textField>
+					<reportElement style="GroupHeader" x="0" y="0" width="670" height="17" uuid="e812a072-6df1-4530-8523-925a1db77b80"/>
+					<textFieldExpression><![CDATA[$R{report.label.grouping} + " " + new SimpleDateFormat( "MMM, yyyy" ).format( $F{ordered} )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="17">
+				<textField>
+					<reportElement style="GroupFooter" x="0" y="0" width="610" height="17" uuid="12599c55-5f38-4309-b29d-2aa3e2d65b4a"/>
+					<textFieldExpression><![CDATA[$R{report.label.subtotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="GroupFooterMONEY" x="610" y="0" width="60" height="17" uuid="87f6170e-5dfd-4fbe-8a70-c81136e09ac8"/>
+					<textFieldExpression><![CDATA[$V{costSubtotal}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<columnHeader>
+		<band height="17">
+			<textField>
+				<reportElement style="HeaderRow" x="0" y="0" width="80" height="17" uuid="9d7e60f2-7176-40ac-a976-7f3ef3fb1d3b"/>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.ordered}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRow" x="80" y="0" width="70" height="17" uuid="33b06205-341e-45e1-a2b5-fb021a57f6b3"/>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.order}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRow" x="150" y="0" width="80" height="17" uuid="447a809d-b0ae-43c9-af3c-4543c4067386"/>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRowBOOLEAN" x="230" y="0" width="50" height="17" uuid="37558574-243f-4dc5-b68c-ffbb78e9433b"/>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.transcript}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRowBOOLEAN" x="280" y="0" width="50" height="17" uuid="212c4a72-afcb-438e-b4ac-c706c525c299"/>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.certificate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRow" x="330" y="0" width="180" height="17" uuid="1292973d-6aae-48c7-b640-0fef243219d1">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.delivery}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRow" x="510" y="0" width="100" height="17" uuid="5c8e5085-175e-42a8-bb84-d32983c07f84">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.payment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRowNUMERIC" x="610" y="0" width="60" height="17" uuid="c0e3d80f-62b8-4587-a2e1-141e9711648c"/>
+				<textFieldExpression><![CDATA[$R{SelfServeOrder.header.cost}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRowYMD" stretchType="RelativeToBandHeight" x="0" y="0" width="80" height="17" uuid="c884165a-04f6-49f4-9530-6c36b5c904a6"/>
+				<textFieldExpression><![CDATA[$F{ordered}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="80" y="0" width="70" height="17" uuid="a84a223e-b963-4c5b-8326-9dc40d3d58ed"/>
+				<textFieldExpression><![CDATA[$F{order}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="150" y="0" width="80" height="17" uuid="38d806bd-d30a-4a30-b914-31fc69275ea3"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRowBOOLEAN" stretchType="RelativeToBandHeight" x="230" y="0" width="50" height="17" uuid="a2596918-c7e7-4f1a-a829-ea281c471eb0"/>
+				<textFieldExpression><![CDATA[$F{transcript} ? 'Y' : 'N']]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRowBOOLEAN" stretchType="RelativeToBandHeight" x="280" y="0" width="50" height="17" uuid="62ac7d35-cfc1-4693-be66-1c63dd16038a"/>
+				<textFieldExpression><![CDATA[$F{certificate} ? 'Y' : 'N']]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="330" y="0" width="180" height="17" uuid="60525031-7fa6-405b-8ff9-57423dd381a6"/>
+				<textFieldExpression><![CDATA[$F{delivery}.replaceAll(",","\n")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="510" y="0" width="100" height="17" uuid="d3124486-8e01-4a01-9c48-54908d8ff08f"/>
+				<textFieldExpression><![CDATA[$F{payment}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRowMONEY" stretchType="RelativeToBandHeight" x="610" y="0" width="60" height="17" uuid="32d9503c-eba8-49d3-bdf5-8841672f25b3"/>
+				<textFieldExpression><![CDATA[$F{cost}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="34">
+			<textField>
+				<reportElement style="GrandTotalRow" x="0" y="0" width="610" height="17" uuid="fd1d841a-2a8a-404c-870d-5bb1e0b620ca"/>
+				<textFieldExpression><![CDATA[$R{report.label.total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="GrandTotalMONEY" x="610" y="0" width="60" height="17" uuid="8e313f89-b51a-44ac-9615-2aa8dd564d91"/>
+				<textFieldExpression><![CDATA[$V{costTotal}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="RowCount" x="0" y="17" width="670" height="17" uuid="48fbbc93-3bdd-414f-8f38-d267abacf67d"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT} + " " + $R{report.label.tally}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

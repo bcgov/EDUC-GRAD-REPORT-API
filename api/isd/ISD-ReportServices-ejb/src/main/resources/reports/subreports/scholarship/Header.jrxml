@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2018-01-22T14:41:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Header" pageWidth="567" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b43f8564-f5a0-4fca-a3c6-9c5fc90458db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="net.sf.jasperreports.export.html.remove.emtpy.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.export.html.remove.empty.space.between.rows" value="true"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<parameter name="P_REPORT_DATE" class="java.lang.String"/>
+	<parameter name="P_STUDENT_FULL_NAME" class="java.lang.String"/>
+	<parameter name="P_STUDENT_ADDRESS_STREET" class="java.lang.String"/>
+	<parameter name="P_STUDENT_ADDRESS_MRC" class="java.lang.String"/>
+	<parameter name="P_SCHOOL_ADDRESS_STREET" class="java.lang.String"/>
+	<parameter name="P_SCHOOL_ADDRESS_POSTAL_CODE" class="java.lang.String"/>
+	<field name="student.PEN" class="java.lang.String">
+		<fieldDescription><![CDATA[student.PEN]]></fieldDescription>
+	</field>
+	<field name="student.school.name" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.name]]></fieldDescription>
+	</field>
+	<field name="student.school.ministryCode" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.ministryCode]]></fieldDescription>
+	</field>
+	<field name="student.school.address.city" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.city]]></fieldDescription>
+	</field>
+	<field name="student.birthdate" class="java.util.Date">
+		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
+	</field>
+	<variable name="V_DATE_FORMAT" class="java.text.DateFormat" calculation="System">
+		<initialValueExpression><![CDATA[new java.text.SimpleDateFormat($R{date.format})]]></initialValueExpression>
+	</variable>
+	<pageHeader>
+		<band height="74" splitType="Prevent">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="InfoContent" x="0" y="0" width="567" height="12" uuid="04c24414-9b4b-42e7-b40f-64075c684194">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{P_STUDENT_FULL_NAME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement positionType="Float" x="0" y="20" width="567" height="30" uuid="2444f4ca-fec1-45bb-a4a6-b8d81dbcd640"/>
+				<box bottomPadding="5"/>
+				<staticText>
+					<reportElement style="InfoHeader" x="0" y="0" width="230" height="12" uuid="af880db9-cf76-4556-9f4a-be376d1ce686">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[Personal Education Number]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement style="InfoContent" isPrintRepeatedValues="false" x="0" y="12" width="230" height="12" uuid="9f731223-971e-4727-bb01-645dcb05058f">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{student.PEN}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="InfoHeader" x="337" y="0" width="230" height="12" uuid="cdcc6791-821c-461d-8596-2185a4f6c3c4">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[School of Record]]></text>
+				</staticText>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement style="InfoContent" x="337" y="12" width="230" height="12" uuid="20eee797-d4da-489f-82d6-eedec68d53ad">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="50" width="567" height="24" uuid="6eed6380-2812-440c-a776-77abe84d8e89"/>
+				<box bottomPadding="0"/>
+				<staticText>
+					<reportElement style="InfoHeader" positionType="Float" x="0" y="0" width="230" height="12" uuid="52863c2e-ec48-4b2f-bf05-53e2904256f0"/>
+					<text><![CDATA[Birthdate]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement style="InfoContent" positionType="Float" isPrintRepeatedValues="false" x="0" y="12" width="230" height="12" uuid="b4ad2d0e-a2f5-4861-872d-ab7f98313277"/>
+					<textFieldExpression><![CDATA[$V{V_DATE_FORMAT}.format($F{student.birthdate}).toUpperCase()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="InfoHeader" positionType="Float" x="337" y="0" width="230" height="12" uuid="809e4eb6-1606-4a8c-848e-151d9fc9add8">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[School Code]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement style="InfoContent" positionType="Float" isPrintRepeatedValues="false" x="337" y="12" width="230" height="12" uuid="65a3f46d-b56b-4b82-a579-fbbba9debef3"/>
+					<textFieldExpression><![CDATA[$F{student.school.ministryCode}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+</jasperReport>

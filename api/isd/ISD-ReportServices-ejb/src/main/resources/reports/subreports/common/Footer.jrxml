@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2018-01-22T14:48:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Title" pageWidth="567" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b43f8564-f5a0-4fca-a3c6-9c5fc90458db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
+	<import value="ca.bc.gov.educ.isd.reports.jasper.EmbeddedImageTranscoder"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<parameter name="P_REPORT_SUBTITLE" class="java.lang.String"/>
+	<pageFooter>
+		<band height="15">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="183" y="0" width="200" height="15" isRemoveLineWhenBlank="true" uuid="d7f504eb-8f22-4b7c-9453-f208d64e4cfc">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{P_REPORT_SUBTITLE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="170" height="15" isRemoveLineWhenBlank="true" uuid="9d6516d5-3368-4c19-a7b7-efa89d0bcbb4"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat( "dd-MMM-yyyy hh:mm aaaa" ).format( new java.util.Date() ).toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

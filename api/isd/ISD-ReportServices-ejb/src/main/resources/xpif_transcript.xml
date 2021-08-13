@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xpif SYSTEM "xpif-v02021.dtd">
+<xpif version="1.0" xml:lang="en-US" cpss-version="2.01">
+    <job-template-attributes>
+        <copies syntax="integer">1</copies>
+        <finishings syntax="1setOf">
+            <value syntax="enum">3</value>
+        </finishings>
+        <sheet-collate syntax="keyword">collated</sheet-collate>
+        <sides syntax="keyword">two-sided-long-edge</sides>
+        <job-save-disposition syntax="collection">
+           <save-disposition syntax="keyword">none</save-disposition>
+        </job-save-disposition>
+        <x-side1-image-shift syntax="integer">0</x-side1-image-shift>
+        <y-side1-image-shift syntax="integer">0</y-side1-image-shift>
+        <job-recipient-name syntax="name" xml:space="preserve">${JOB_RECIPIENT_NAME}</job-recipient-name>
+        <page-overrides syntax="1setOf">
+            <value syntax="collection">
+                <input-documents syntax="1setOf">
+                    <value syntax="rangeOfInteger">
+                        <lower-bound syntax="integer">1</lower-bound>
+                        <upper-bound syntax="integer">1</upper-bound>
+                    </value>
+                </input-documents>
+                <pages syntax="1setOf">
+                    <value syntax="rangeOfInteger">
+                        <lower-bound syntax="integer">1</lower-bound>
+                        <upper-bound syntax="integer">2</upper-bound>
+                    </value>
+                </pages>
+                <media-col syntax="collection">
+                    <media-color syntax="name" xml:space="preserve">Pink</media-color>
+                    <media-type syntax="keyword">Y24P</media-type>
+                    <media-hole-count syntax="integer">0</media-hole-count>
+                    <media-weight-metric syntax="integer">75</media-weight-metric>
+                    <media-size syntax="collection">
+                        <x-dimension syntax="integer">21600</x-dimension>
+                        <y-dimension syntax="integer">27900</y-dimension>
+                    </media-size>
+                </media-col>
+            </value>
+         </page-overrides>
+         <media-col syntax="collection">
+             <media-color syntax="keyword">YED4</media-color>
+             <media-type syntax="keyword">YED4</media-type>
+             <media-hole-count syntax="integer">0</media-hole-count>
+             <media-weight-metric syntax="integer">75</media-weight-metric>
+             <media-size syntax="collection">
+                 <x-dimension syntax="integer">21600</x-dimension>
+                 <y-dimension syntax="integer">27900</y-dimension>
+             </media-size>
+         </media-col>
+     </job-template-attributes>
+     <xpif-operation-attributes>
+         <job-name syntax="name" xml:space="preserve">${JOB_NAME}</job-name>
+         <requesting-user-name syntax="name" xml:space="preserve">EDSTS_SFTP</requesting-user-name>
+     </xpif-operation-attributes>
+</xpif>
