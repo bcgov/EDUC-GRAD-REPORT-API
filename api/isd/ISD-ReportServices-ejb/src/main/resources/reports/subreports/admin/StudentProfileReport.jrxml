@@ -85,15 +85,15 @@
 	</columnHeader>
 	<detail>
 		<band height="17" splitType="Stretch">
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRowYMD" stretchType="RelativeToBandHeight" x="0" y="0" width="80" height="17" uuid="fe1e7127-4bfd-4a79-948f-71e33154ebf5"/>
 				<textFieldExpression><![CDATA[$F{registered}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRowNUMERIC" stretchType="RelativeToBandHeight" x="80" y="0" width="60" height="17" uuid="eb2ad803-6687-4eee-be1a-5ce59a934912"/>
 				<textFieldExpression><![CDATA[$F{bceId}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRowNUMERIC" stretchType="RelativeToBandHeight" x="140" y="0" width="60" height="17" uuid="686b9e0f-d530-4c52-8d50-b4304e8af412"/>
 				<textFieldExpression><![CDATA[$F{bcServices}]]></textFieldExpression>
 			</textField>

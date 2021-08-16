@@ -42,7 +42,7 @@
 					<topPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="Body" x="0" y="0" width="408" height="16" uuid="c98d1a74-17a9-4884-8543-f99850a7c8a2"/>
 					<box leftPadding="16">
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

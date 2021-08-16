@@ -9,33 +9,37 @@ security:
 spring:
   jmx:
     enabled: false
-  #datasource:
-  #  hikari:
-  #    pool-name: report-api-cp
-  #    maximum-pool-size: ${MAXIMUM_POOL_SIZE}
-  #    connection-timeout: ${CONNECTION_TIMEOUT}
-  #    max-lifetime: ${MAX_LIFETIME}
-  #  url: ${JDBC_URL}
-  #  username: ${ORACLE_USERNAME}
-  #  password: ${ORACLE_PASSWORD}
-  #  driver-class: oracle.jdbc.driver.OracleDriver
-  #jpa:
-  #  show-sql: true
-  #  database-platform: org.hibernate.dialect.Oracle12cDialect
-  #  hibernate:
-  #    ddl-auto: none
+  datasource:
+    hikari:
+      pool-name: grad-report-api-cp
+      maximum-pool-size: ${MAXIMUM_POOL_SIZE}
+      connection-timeout: ${CONNECTION_TIMEOUT}
+      max-lifetime: ${MAX_LIFETIME}
+    url: ${JDBC_URL}
+    username: ${ORACLE_USERNAME}
+    password: ${ORACLE_PASSWORD}
+    driver-class: oracle.jdbc.driver.OracleDriver
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      ddl-auto: none
   mvc:
     log-request-details: ${SPRING_SHOW_REQUEST_DETAILS}
   jackson:
     deserialization:
       fail-on-unknown-properties: false
-
+  flyway:
+    enabled: ${ENABLE_FLYWAY}
+    baseline-on-migrate: false
+    table: FLYWAY_SCHEMA_HISTORY
+    url: ${JDBC_URL}
+    user: ${ORACLE_USERNAME}
+    password: ${ORACLE_PASSWORD}
+    locations: classpath:db/migration
 #Logging properties
 logging:
   file:
-    max-history: 1
-    clean-history-on-start: true
-    max-size: 20MB
     name: /logs/app.log
   #pattern:
   #  file: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
@@ -54,6 +58,11 @@ logging:
         boot:
           autoconfigure:
             logging: ${SPRING_BOOT_AUTOCONFIG_LOG_LEVEL}
+  logback:
+    rollingpolicy:
+      max-history: 1
+      clean-history-on-start: true
+      max-file-size: 20MB
 
 #Local properties
 server:
@@ -70,3 +79,5 @@ springdoc:
   swagger-ui:
     path: /api/v1/api-docs-ui.html
     operationsSorter: alpha
+
+#Endpoint properties

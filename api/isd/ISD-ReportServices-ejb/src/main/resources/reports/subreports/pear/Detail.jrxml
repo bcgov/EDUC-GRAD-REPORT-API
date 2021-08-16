@@ -144,7 +144,7 @@ Grade]]></text>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$V{V_FORMATTED_SESSION_DATE}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true" hyperlinkType="Reference">
 				<reportElement style="TabularRow" stretchType="RelativeToTallestObject" x="45" y="0" width="218" height="15" uuid="471d6120-77ce-4a9a-804a-96e047bd6243"/>
 				<textFieldExpression><![CDATA[$V{V_FORMATTED_COURSE_NAME}]]></textFieldExpression>
 				<hyperlinkReferenceExpression><![CDATA[$V{V_HYPERLINK_URL}]]></hyperlinkReferenceExpression>

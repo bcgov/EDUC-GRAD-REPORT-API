@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.isd.reports.jasper.impl;
 
+import ca.bc.gov.educ.grad.utils.AuditingUtils;
 import ca.bc.gov.educ.isd.common.Predicate;
 import ca.bc.gov.educ.isd.reports.Parameters;
 import ca.bc.gov.educ.isd.reports.Report;
@@ -566,6 +567,10 @@ public abstract class ReportImpl implements Report {
 
         // Relative paths for subreports, images, etc.
         setParameter("P_REPORT_BASE", DIR_JASPER_BASE);
+
+        // Relative paths for signatures.
+        String signatureImageUrl = AuditingUtils.getSignatureImageUrl();
+        setParameter("P_REPORT_SIGNATURES_PATH", signatureImageUrl == null ? "" : signatureImageUrl);
 
         // Toggle pagination for HTML reports.
         setParameter(IS_IGNORE_PAGINATION, !isPaginated);

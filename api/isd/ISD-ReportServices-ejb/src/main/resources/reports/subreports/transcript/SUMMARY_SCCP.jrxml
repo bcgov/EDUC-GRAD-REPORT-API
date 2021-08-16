@@ -37,7 +37,7 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_SIGNATURE_FILE" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH} + "SALLY3.png"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","SALLY3.png")]]></defaultValueExpression>
 	</parameter>
 	<summary>
 		<band height="792">
@@ -77,7 +77,7 @@
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "/SUMMARY_1950.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "SUMMARY_1950.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

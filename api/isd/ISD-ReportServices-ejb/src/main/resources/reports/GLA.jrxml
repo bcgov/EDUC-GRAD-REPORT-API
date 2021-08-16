@@ -73,6 +73,9 @@
 	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
 	<field name="student.literacyAssessmentResult" class="ca.bc.gov.educ.isd.reports.data.assessment.impl.LiteracyAssessmentResult">
 		<fieldDescription><![CDATA[student.literacyAssessmentResult]]></fieldDescription>
 	</field>
@@ -135,6 +138,9 @@
 				<subreportParameter name="P_REPORT_IMAGES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="P_INCLUDE_UPDATED_DATE">
 					<subreportParameterExpression><![CDATA[Boolean.FALSE]]></subreportParameterExpression>
 				</subreportParameter>
@@ -169,17 +175,17 @@
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" x="0" y="115" width="572" height="15" uuid="03be582e-80b9-44e2-b328-9153f955942b"/>
 				<textElement markup="styled"/>
 				<textFieldExpression><![CDATA[$R{section.introduction.literacy}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" positionType="Float" x="0" y="138" width="572" height="15" uuid="401630a7-81d3-423a-8247-28b87c7c080a"/>
 				<textElement markup="styled"/>
 				<textFieldExpression><![CDATA[$R{section.introduction.results}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="SectionTitle" positionType="Float" x="0" y="169" width="572" height="15" uuid="2e5649d5-7061-482b-aa20-8bf4036fd1d0"/>
 				<textElement markup="styled"/>
 				<textFieldExpression><![CDATA[$R{section.assessment.title.intro} + " " + msg( $R{section.assessment.result.level}, $F{student.literacyAssessmentResult.proficiencyScore}, str("assessment.legend.score." + $F{student.literacyAssessmentResult.proficiencyScore} + ".title") ) + "."]]></textFieldExpression>
@@ -207,14 +213,14 @@
 						<reportElement style="TableHeader" isPrintRepeatedValues="false" x="0" y="1" width="143" height="12" uuid="000ff648-0491-4bcb-83e8-b7a9df323a7d"/>
 						<textFieldExpression><![CDATA[msg( $R{section.assessment.result.level}, $R{assessment.legend.score.1.code}, $R{assessment.legend.score.1.title})]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement style="TableBody" isPrintRepeatedValues="false" x="0" y="13" width="143" height="15" uuid="da31aff2-228b-42a9-be27-b6c8e84cf72d">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-body"/>
 						</reportElement>
 						<textElement markup="html"/>
 						<textFieldExpression><![CDATA[msg( $R{assessment.legend.score.base.understanding}, $R{assessment.legend.score.1.understanding.preposition}, $R{assessment.legend.score.1.understanding.text} )]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement style="TableBodyList" positionType="Float" isPrintRepeatedValues="false" x="0" y="29" width="143" height="15" uuid="eb142f9d-e8cd-47a3-a3cb-5c53a907dc52">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-list"/>
 						</reportElement>
@@ -233,14 +239,14 @@
 						<reportElement key="" style="TableHeader" isPrintRepeatedValues="false" x="0" y="1" width="143" height="12" uuid="5839f214-d1a4-4f62-92a9-761ae734a2f9"/>
 						<textFieldExpression><![CDATA[msg( $R{section.assessment.result.level}, $R{assessment.legend.score.2.code}, $R{assessment.legend.score.2.title})]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement key="" style="TableBody" isPrintRepeatedValues="false" x="0" y="13" width="143" height="15" uuid="30e83ea7-aea7-44bf-a59d-3a076fb47baf">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-body"/>
 						</reportElement>
 						<textElement markup="html"/>
 						<textFieldExpression><![CDATA[msg( $R{assessment.legend.score.base.understanding}, $R{assessment.legend.score.2.understanding.preposition}, $R{assessment.legend.score.2.understanding.text} )]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement style="TableBodyList" positionType="Float" isPrintRepeatedValues="false" x="0" y="29" width="143" height="15" uuid="e2f37807-9ed9-49c1-bba9-77194f80f026">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-list"/>
 						</reportElement>
@@ -260,14 +266,14 @@
 						<reportElement key="" style="TableHeader" isPrintRepeatedValues="false" x="0" y="1" width="143" height="12" uuid="220a578f-d7fb-494e-8f30-5c3350c744a0"/>
 						<textFieldExpression><![CDATA[msg( $R{section.assessment.result.level}, $R{assessment.legend.score.3.code}, $R{assessment.legend.score.3.title})]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement key="" style="TableBody" isPrintRepeatedValues="false" x="0" y="13" width="143" height="15" uuid="6b63d0f7-dbc2-439e-b001-e037f7a00f66">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-body"/>
 						</reportElement>
 						<textElement markup="html"/>
 						<textFieldExpression><![CDATA[msg( $R{assessment.legend.score.base.understanding}, $R{assessment.legend.score.3.understanding.preposition}, $R{assessment.legend.score.3.understanding.text} )]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement style="TableBodyList" positionType="Float" isPrintRepeatedValues="false" x="0" y="29" width="143" height="15" uuid="bf36e985-b6c6-41e1-ac85-909da0fd35c1">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-list"/>
 						</reportElement>
@@ -286,14 +292,14 @@
 						<reportElement key="" style="TableHeader" isPrintRepeatedValues="false" x="0" y="1" width="143" height="12" uuid="dd9505b9-8f7b-4618-8fc8-0545c77e70fd"/>
 						<textFieldExpression><![CDATA[msg( $R{section.assessment.result.level}, $R{assessment.legend.score.4.code}, $R{assessment.legend.score.4.title})]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement key="" style="TableBody" isPrintRepeatedValues="false" x="0" y="13" width="143" height="15" uuid="241df8ff-6082-4658-b476-e4b88e8f5eef">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-body"/>
 						</reportElement>
 						<textElement markup="html"/>
 						<textFieldExpression><![CDATA[msg( $R{assessment.legend.score.base.understanding}, $R{assessment.legend.score.4.understanding.preposition}, $R{assessment.legend.score.4.understanding.text} )]]></textFieldExpression>
 					</textField>
-					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement style="TableBodyList" positionType="Float" isPrintRepeatedValues="false" x="0" y="29" width="143" height="15" uuid="7da8cafb-265d-4fef-8d6c-5b5f9fdf368e">
 							<property name="net.sf.jasperreports.export.html.class" value="assessment-legend-list"/>
 						</reportElement>
@@ -308,7 +314,7 @@
 				<reportElement style="SectionTitle" positionType="Float" x="0" y="0" width="572" height="16" uuid="21e80c59-0b3b-4b78-8c46-fa6e84ff56d9"/>
 				<textFieldExpression><![CDATA[$R{section.scores.title}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" positionType="Float" x="0" y="16" width="572" height="12" uuid="64145b02-b6c5-499d-8de1-c07b6db7740a"/>
 				<textElement markup="styled"/>
 				<textFieldExpression><![CDATA[$R{section.scores.description}]]></textFieldExpression>
@@ -326,6 +332,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_BASE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>

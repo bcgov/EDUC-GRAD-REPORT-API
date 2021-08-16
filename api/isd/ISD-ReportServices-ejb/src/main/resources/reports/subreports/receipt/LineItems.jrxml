@@ -69,7 +69,7 @@
 	<detail>
 		<band height="17">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="0" y="0" width="300" height="17" uuid="65ca292c-1b86-4310-90d9-16222c37f6a2">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -80,7 +80,7 @@
 				</box>
 				<textFieldExpression><![CDATA[$F{recipient}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
 				<reportElement style="DataRowNUMERIC" stretchType="RelativeToBandHeight" x="440" y="0" width="50" height="17" uuid="5aea2c94-0348-4ba4-8a84-937bcfaedbc7"/>
 				<box>
 					<bottomPen lineWidth="0.5"/>
@@ -88,7 +88,7 @@
 				</box>
 				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="¤ #0.00;¤ -#0.00" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="¤ #0.00;¤ -#0.00" isBlankWhenNull="true">
 				<reportElement style="DataRowMONEY" stretchType="RelativeToBandHeight" x="490" y="0" width="82" height="17" uuid="5aea2c94-0348-4ba4-8a84-937bcfaedbc7"/>
 				<box>
 					<bottomPen lineWidth="0.5"/>
@@ -96,7 +96,7 @@
 				</box>
 				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="" isBlankWhenNull="true">
 				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="300" y="0" width="140" height="17" uuid="0a4a9fcb-29a9-41df-b6de-4a121332ba6d"/>
 				<box>
 					<bottomPen lineWidth="0.5"/>
