@@ -19,6 +19,7 @@ import ca.bc.gov.educ.isd.assessment.LiteracyAssessmentReport;
 import ca.bc.gov.educ.isd.assessment.NumeracyAssessmentReport;
 import ca.bc.gov.educ.isd.ecommerce.payment.receipt.Receipt;
 import ca.bc.gov.educ.isd.transcript.ParameterPredicate;
+
 import java.util.List;
 
 /**
@@ -132,4 +133,13 @@ public interface ReportService extends ReportExportService {
      * @return How are parameters used?
      */
     Parameters createParameters();
+
+    /**
+     * Creates an achievement  instance that can be exported into
+     * a final report document. The calling class is responsible for setting the
+     * required fields on the report instance returned from this method.
+     *
+     * @return A non-null report instance that must be populated with data.
+     */
+    AchievementReport createAchievementReport();
 }

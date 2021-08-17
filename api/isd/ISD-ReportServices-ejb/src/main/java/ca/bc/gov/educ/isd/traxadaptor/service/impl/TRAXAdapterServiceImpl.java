@@ -21,9 +21,11 @@ import ca.bc.gov.educ.isd.eis.EISException;
 import ca.bc.gov.educ.isd.eis.assessment.AssessmentCourseCode;
 import ca.bc.gov.educ.isd.eis.common.DomainServiceException;
 import ca.bc.gov.educ.isd.eis.trax.db.*;
+import ca.bc.gov.educ.isd.traxadaptor.impl.AchievementCourseImpl;
 import ca.bc.gov.educ.isd.traxadaptor.impl.TSWRegistryImpl;
 import ca.bc.gov.educ.isd.traxadaptor.service.*;
 import ca.bc.gov.educ.isd.traxadaptor.utils.ExceptionUtilities;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -1247,5 +1249,152 @@ public class TRAXAdapterServiceImpl implements TRAXAdapter {
             throws DomainServiceException {
         final List<? extends StudentProfileMasterLite> result = studentDao.searchStudentPartialMatchAll(tokens);
         return result;
+    }
+
+    @Override
+    public StudentInfo readStudent_Achievement(String pen) throws EISException {
+        final String _m = "readStudent_Achievement(String)";
+        LOG.entering(CLASSNAME, _m, pen);
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} start, for PEN {1}.", new Object[]{_m, pen});
+
+        //<editor-fold defaultstate="collapsed" desc="Verify inputs and pre-conditions.">
+        {
+
+            final RuntimeException ex;
+            ex = verifyPEN(pen);
+
+            throwInvalidPreconditions(ex, LOG, CLASSNAME, _m);
+
+        }
+        //</editor-fold>
+        LOG.fine("Verified Inputs and Pre-conditions.");
+
+        final StudentInfo retValue;
+        List<? extends StudentInfo> students;
+        students = this.transcriptDao.findStudentByPEN(pen);
+        LOG.log(Level.FINE, "Searched for all student transcript information for the PEN in TRAX {0}.", students.size());
+
+        boolean emptyList = students.isEmpty();
+        if (emptyList) {
+            retValue = null;
+            LOG.finer("Searched for Transcript information for student but found nothing.");
+        } else {
+            final int numCerts = students.size();
+            if (numCerts == 1) {
+                retValue = students.get(0);
+                LOG.finer("Found Transcript information for the student.");
+            } else {
+                retValue = null;
+                final String msg = "Found multiple students with a Transcript associated with PEN=" + pen;
+                LOG.log(Level.WARNING, msg);
+                final TRAXStudentRecordException tsre = new TRAXStudentRecordException(pen, msg);
+                LOG.throwing(CLASSNAME, _m, tsre);
+            }
+        }
+        LOG.fine("Extracted information for student transcript search results.");
+
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} done, for PEN {1}.", new Object[]{_m, pen});
+
+        LOG.exiting(CLASSNAME, _m, retValue);
+        return retValue;
+    }
+
+    @Override
+    public Integer countCourses_Achievement(String pen) throws EISException {
+        final String _m = "countCourses_Achievement(String)";
+        LOG.entering(CLASSNAME, _m, pen);
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} start, with pen {1}.", new Object[]{_m, pen});
+
+        //<editor-fold defaultstate="collapsed" desc="Verify inputs and pre-conditions.">
+        {
+            RuntimeException ex = verifyPEN(pen);
+
+            throwInvalidPreconditions(ex, LOG, CLASSNAME, _m);
+
+        }
+        //</editor-fold>
+        LOG.fine("Verified Inputs and Pre-conditions.");
+
+        Integer count = this.transcriptDao.countCoursesByPEN(pen);
+
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} done, with pen {1}.", new Object[]{_m, pen});
+        LOG.exiting(CLASSNAME, _m);
+        return count;
+    }
+
+    @Override
+    public List<AchievementCourse> readCourses_InterimAchievement(String pen) throws EISException {
+        final String _m = "readCourses_InterimAchievement(final String pen)";
+        LOG.entering(CLASSNAME, _m, pen);
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} start, with pen {1}.", new Object[]{_m, pen});
+
+        //<editor-fold defaultstate="collapsed" desc="Verify inputs and pre-conditions.">
+        {
+            RuntimeException ex = verifyPEN(pen);
+
+            throwInvalidPreconditions(ex, LOG, CLASSNAME, _m);
+
+        }
+        //</editor-fold>
+        LOG.fine("Verified Inputs and Pre-conditions.");
+
+        final List<AchievementCourse> retList;
+
+        List<? extends TranscriptCourse> courses = this.transcriptDao.findInterimCoursesByPEN(pen);
+        LOG.fine("Searched for all transcript courses for the PEN in TRAX.");
+
+        if (courses == null || courses.isEmpty()) {
+            retList = null;
+            LOG.finer("Searched for course information for Transcript but found nothing.");
+        } else {
+            retList = new ArrayList<>();
+            for(TranscriptCourse course: courses) {
+                AchievementCourseImpl c = new AchievementCourseImpl();
+                BeanUtils.copyProperties(course, c);
+                retList.add(c);
+            }
+        }
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} done, with pen {1}.", new Object[]{_m, pen});
+
+        LOG.exiting(CLASSNAME, _m);
+        return retList;
+    }
+
+    @Override
+    public List<AchievementCourse> readCourses_Achievement(String pen) throws EISException {
+        final String _m = "readCourses_Transcript(String)";
+        LOG.entering(CLASSNAME, _m, pen);
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} start, with pen {1}.", new Object[]{_m, pen});
+
+        //<editor-fold defaultstate="collapsed" desc="Verify inputs and pre-conditions.">
+        {
+            RuntimeException ex = verifyPEN(pen);
+
+            throwInvalidPreconditions(ex, LOG, CLASSNAME, _m);
+
+        }
+        //</editor-fold>
+        LOG.fine("Verified Inputs and Pre-conditions.");
+
+        final List<AchievementCourse> retList;
+
+        List<? extends TranscriptCourse> courses = this.transcriptDao.findCoursesByPEN(pen);
+        LOG.fine("Searched for all transcript courses for the PEN in TRAX.");
+
+        if (courses == null || courses.isEmpty()) {
+            retList = null;
+            LOG.finer("Searched for course information for Transcript but found nothing.");
+        } else {
+            retList = new ArrayList<>();
+            for(TranscriptCourse course: courses) {
+                AchievementCourseImpl c = new AchievementCourseImpl();
+                BeanUtils.copyProperties(course, c);
+                retList.add(c);
+            }
+        }
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} done, with pen {1}.", new Object[]{_m, pen});
+
+        LOG.exiting(CLASSNAME, _m);
+        return retList;
     }
 }

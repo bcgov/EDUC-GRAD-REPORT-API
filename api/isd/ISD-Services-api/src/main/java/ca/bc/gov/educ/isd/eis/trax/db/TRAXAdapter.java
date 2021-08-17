@@ -258,4 +258,27 @@ public interface TRAXAdapter extends TRAXData {
      */
     List<? extends StudentProfileMasterLite> searchStudentPartialMatchAll(List<String> tokens)
             throws DomainServiceException;
+
+    /**
+     * Provides student information as defined by xml achievement and text
+     * achievement.
+     *
+     * @param pen Personal Education Number of the student
+     * @return StudentInfo object
+     * @throws EISException Could not find any matching students.
+     */
+    StudentInfo readStudent_Achievement(String pen) throws EISException;
+
+    /**
+     * Provides a count of courses which the student has taken.
+     *
+     * @param pen Personal Education Number of the student
+     * @return List of TranscriptCourse objects
+     * @throws EISException Could not find any matching students.
+     */
+    Integer countCourses_Achievement(String pen) throws EISException;
+
+    List<AchievementCourse> readCourses_InterimAchievement(String pen) throws EISException;
+
+    List<AchievementCourse> readCourses_Achievement(String pen) throws EISException;
 }
