@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio -->
+<jasperTemplate xmlns="http://jasperreports.sourceforge.net/jasperreports/template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/template http://jasperreports.sourceforge.net/xsd/jaspertemplate.xsd">
+	<style name="Address" fontName="Inconsolata" fontSize="9"/>
+	<style name="Body" vTextAlign="Middle" fontName="LiberationSans" fontSize="12"/>
+	<style name="OrderBlock" style="Body" hTextAlign="Left">
+		<box leftPadding="4">
+			<bottomPen lineWidth="0.25"/>
+			<rightPen lineWidth="0.25"/>
+		</box>
+	</style>
+	<style name="OrderFieldName" style="OrderBlock"/>
+	<style name="OrderFieldValue" style="OrderBlock"/>
+	<style name="Numbers" style="Body" hTextAlign="Left" vTextAlign="Middle" vImageAlign="Middle" rotation="Left"/>
+</jasperTemplate>

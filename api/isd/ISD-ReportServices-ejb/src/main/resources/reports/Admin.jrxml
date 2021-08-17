@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Admin" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="ca.bc.gov.educ.isd.reports.jasper.impl.TupleSumScriplet" resourceBundle="Admin" whenResourceMissingType="Error" uuid="7c15843b-30d0-46c0-b1a8-aeb5468623a8">
+	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.1" value="pageFooter"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\admin\StudentProfileReportAdapter.xml"/>
+	<property name="net.sf.jasperreports.export.html.exclude.origin.band.1" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.html.remove.emtpy.space.between.rows" value="false"/>
+	<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+	<property name="net.sf.jasperreports.export.html.between.pages" value=""/>
+	<property name="net.sf.jasperreports.export.html.size.unit" value="pt"/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.IMAGE_LOGO_SVG"/>
+	<property name="net.sf.jasperreports.export.pdf.exclude.key.IMAGE_LOGO_PNG"/>
+	<import value="ca.bc.gov.educ.isd.reports.jasper.EmbeddedImageTranscoder"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{REPORT_DATA_SOURCE}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBREPORTS_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "subreports/admin/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "Admin.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SUBREPORT_NAME" class="java.lang.String">
+		<defaultValueExpression><![CDATA["PSIChoiceReport"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_DATE_BEGAN" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date(111234567890L)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_DATE_ENDED" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date(121234567890L)]]></defaultValueExpression>
+	</parameter>
+	<variable name="V_CURRENT_PAGE_NUMBER" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER}+1]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="80" splitType="Stretch">
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement key="IMAGE_LOGO_SVG" x="0" y="0" width="100" height="66" uuid="cdef544c-b75b-4cf6-bea0-94871559de9e"/>
+				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($P{P_REPORT_IMAGES_PATH} + "logo_bc.svg")]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement key="IMAGE_LOGO_HTML" x="0" y="0" width="100" height="66" uuid="cdef544c-b75b-4cf6-bea0-94871559de9e"/>
+				<imageExpression><![CDATA[EmbeddedImageTranscoder.asPNG($P{P_REPORT_IMAGES_PATH} + "logo_bc.svg")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="222" y="0" width="358" height="30" uuid="daf5d731-ba16-4a69-9b80-42b33e5daf42"/>
+				<text><![CDATA[Ministry of Education]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Subtitle" x="151" y="30" width="500" height="30" uuid="664b0a68-e28b-4dfd-ba7a-7321626fef0c">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[str($P{P_SUBREPORT_NAME} + ".subtitle")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="MMM d, yyyy" isBlankWhenNull="true">
+				<reportElement style="ReportParameter" x="700" y="15" width="102" height="15" uuid="bc3b0543-56ca-404f-8e57-8938f3b969a3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{P_DATE_ENDED}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" pattern="MMM d, yyyy" isBlankWhenNull="true">
+				<reportElement style="ReportParameter" x="700" y="0" width="102" height="15" uuid="40ead644-5965-473e-bd89-a411053759ae">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$P{P_DATE_BEGAN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="ReportParameter" x="601" y="0" width="99" height="15" uuid="93dcf3d1-dbde-4080-9824-081d9253c343"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Period Starting:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="ReportParameter" x="601" y="15" width="99" height="15" uuid="3a17b5d5-8817-444b-b058-3594e43938a2"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Period Ending:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="30">
+			<subreport>
+				<reportElement x="0" y="0" width="802" height="30" uuid="7b3c20fa-cbd9-4872-b971-9d4050172521"/>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_LOCALE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_SCRIPTLET">
+					<subreportParameterExpression><![CDATA[$P{REPORT_SCRIPTLET}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{P_DATA_SOURCE}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + $P{P_SUBREPORT_NAME} + ".jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="0" width="802" height="15" uuid="606c3c1f-3b4c-4dc7-b312-92570e233d27"/>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Base" x="0" y="0" width="280" height="15" uuid="cbcf326e-e080-483f-9351-11bb4c8a836a"/>
+					<textFieldExpression><![CDATA[new java.text.SimpleDateFormat( "MMM dd, yyyy hh:mm aaaa" ).format( new java.util.Date() )]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Master" isBlankWhenNull="true">
+					<reportElement style="Base" x="580" y="0" width="222" height="15" uuid="0d7280fa-b27a-4862-b8cb-24a254899b36"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[msg("Page {0} of {1}",$V{MASTER_CURRENT_PAGE},$V{MASTER_TOTAL_PAGES})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="15">
+			<subreport>
+				<reportElement x="0" y="0" width="802" height="15" isRemoveLineWhenBlank="true" uuid="caf152b8-9721-49f3-abd6-87c186a6d8ec">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[$P{REPORT_SCRIPTLET}.getDataSource()]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "GrandTotals.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

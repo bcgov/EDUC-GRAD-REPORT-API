@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-09-20T15:19:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Scholarship Status" pageWidth="567" pageHeight="792" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="81dc4b19-60f4-4c84-845b-3f4954132346">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<summary>
+		<band height="80">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="5" width="567" height="15" uuid="cb1ace22-ccb8-4407-8bad-c2e0a8499d49"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincial Scholarships Program winners will be able to view their scholarships by the fall of their graduation year.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="25" width="567" height="15" uuid="17008f62-16af-41df-b050-cdf19f474689"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Please note scholarships will not be displayed for students who graduated before 2012.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="567" height="15" uuid="db195f1a-67b5-4ea7-9874-881acf5a3221"/>
+				<text><![CDATA[For more information on the program, visit the Ministry of Education website:]]></text>
+			</staticText>
+			<textField hyperlinkType="Reference">
+				<reportElement x="0" y="65" width="567" height="15" uuid="f96f6fec-6d63-4e3a-baf3-50baa615875a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["http://www.gov.bc.ca/scholarshipsprogram"]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://www.gov.bc.ca/scholarshipsprogram"]]></hyperlinkReferenceExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

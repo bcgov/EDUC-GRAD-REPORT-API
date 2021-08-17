@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2017-07-10T16:16:02 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RegistrationIssueReport" pageWidth="802" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="Admin" uuid="e51b257c-a02b-4ef6-b373-18823b772209">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="net.sf.jasperreports.export.html.remove.emtpy.space.between.rows" value="true"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<style name="DataRow" style="DataRow">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowBOOLEAN" style="DataRowBOOLEAN">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowNUMERIC" style="DataRowNUMERIC">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowYMD" style="DataRowYMD">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowYM" style="DataRowYM">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowMONEY" style="DataRowMONEY">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<style name="DataRowQUEUED" style="DataRowQUEUED">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{ZEBRA_STRIPE}]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEEEE"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<field name="registered" class="java.util.Date">
+		<fieldDescription><![CDATA[registered]]></fieldDescription>
+	</field>
+	<field name="reference" class="java.lang.String">
+		<fieldDescription><![CDATA[reference]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<field name="queued" class="java.lang.String">
+		<fieldDescription><![CDATA[queued]]></fieldDescription>
+	</field>
+	<variable name="ZEBRA_STRIPE" class="java.lang.Boolean">
+		<variableExpression><![CDATA[$V{REPORT_COUNT} %2 == 1]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{REPORT_COUNT} %2 == 1]]></initialValueExpression>
+	</variable>
+	<columnHeader>
+		<band height="17">
+			<textField>
+				<reportElement style="HeaderRow" x="0" y="0" width="80" height="17" uuid="b305227b-9c01-42aa-a1a5-80a07f58fe38"/>
+				<textFieldExpression><![CDATA[$R{RegistrationIssue.header.registered}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRow" x="80" y="0" width="60" height="17" uuid="3252811c-55b1-4379-b636-fa953a51a028"/>
+				<textFieldExpression><![CDATA[$R{RegistrationIssue.header.reference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRow" x="140" y="0" width="80" height="17" uuid="720832b7-9a48-415b-9f2c-5442f9dbb1d1"/>
+				<textFieldExpression><![CDATA[$R{RegistrationIssue.header.status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="HeaderRowNUMERIC" x="220" y="0" width="100" height="17" uuid="651db66d-f5f8-4e35-99c5-f34a02d1095d"/>
+				<textFieldExpression><![CDATA[$R{RegistrationIssue.header.queued}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRowYMD" stretchType="RelativeToBandHeight" x="0" y="0" width="80" height="17" uuid="3bb6b229-1fdd-4a40-a56a-269ee82135c0"/>
+				<textFieldExpression><![CDATA[$F{registered}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="80" y="0" width="60" height="17" uuid="30f843a3-a549-4ed3-bc4b-162a29b2f8c9"/>
+				<textFieldExpression><![CDATA[$F{reference}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRow" stretchType="RelativeToBandHeight" x="140" y="0" width="80" height="17" uuid="7ac17e6c-464e-484f-aa64-d98da9f7a9b9"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="DataRowQUEUED" stretchType="RelativeToBandHeight" x="220" y="0" width="100" height="17" uuid="ce87bae4-9cde-41ee-bcd5-74bcd0181dc5"/>
+				<textFieldExpression><![CDATA[$F{queued}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="17">
+			<textField evaluationTime="Report">
+				<reportElement style="RowCount" x="0" y="0" width="320" height="17" uuid="c7deeaf7-7d23-43ac-a34b-19593d29f1b0"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT} + " " + $R{report.label.tally}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+	<noData>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="50" uuid="feacdbc5-0e88-48cf-9e95-8e7b35734371"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No Data Found]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

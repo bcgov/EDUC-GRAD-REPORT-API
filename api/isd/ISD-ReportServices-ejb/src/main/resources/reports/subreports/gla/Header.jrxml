@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Header" pageWidth="567" pageHeight="24" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b43f8564-f5a0-4fca-a3c6-9c5fc90458db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\StudentAdapter.xml"/>
+	<property name="net.sf.jasperreports.export.html.remove.empty.space.between.rows" value="true"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["resources/styles/ETS.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_SESSION_DATE" class="java.lang.String"/>
+	<field name="student.firstName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.firstName]]></fieldDescription>
+	</field>
+	<field name="student.lastName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
+	</field>
+	<field name="student.middleNames" class="java.lang.String">
+		<fieldDescription><![CDATA[student.middleNames]]></fieldDescription>
+	</field>
+	<field name="student.PEN" class="java.lang.String">
+		<fieldDescription><![CDATA[student.PEN]]></fieldDescription>
+	</field>
+	<field name="student.school.name" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.name]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="24">
+			<textField>
+				<reportElement style="InfoHeader" x="0" y="0" width="80" height="12" uuid="cdcc6791-821c-461d-8596-2185a4f6c3c4"/>
+				<textFieldExpression><![CDATA[$R{header.student}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="InfoContent" x="80" y="0" width="270" height="12" uuid="04c24414-9b4b-42e7-b40f-64075c684194"/>
+				<textFieldExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="InfoHeader" x="0" y="12" width="80" height="12" uuid="cdcc6791-821c-461d-8596-2185a4f6c3c4"/>
+				<textFieldExpression><![CDATA[$R{header.school}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="InfoContent" x="80" y="12" width="270" height="12" uuid="20eee797-d4da-489f-82d6-eedec68d53ad"/>
+				<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="360" y="0" width="207" height="12" uuid="c53f405d-219e-44d4-b982-bb7b87f7d37e"/>
+				<textField>
+					<reportElement style="InfoHeader" x="0" y="0" width="145" height="12" uuid="430c3489-c366-4c21-ab5c-2046e82ba63b"/>
+					<textFieldExpression><![CDATA[$R{header.pen}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="InfoContent" x="145" y="0" width="62" height="12" uuid="df2044ce-03fd-48a1-a7d2-0e8eda74175b"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{student.PEN}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="360" y="12" width="207" height="12" uuid="e802fb0f-c5f9-4949-965c-ca9dab0bffeb">
+					<printWhenExpression><![CDATA[$P{P_SESSION_DATE} != null && !$P{P_SESSION_DATE}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textField>
+					<reportElement style="InfoHeader" x="0" y="0" width="80" height="12" uuid="4ce4dbeb-db2a-4b02-8e67-b1b9df7471b8"/>
+					<textFieldExpression><![CDATA[$R{header.session}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="InfoContent" x="80" y="0" width="127" height="12" uuid="067f5540-3bb8-435e-abc6-03d66e25acbb"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$P{P_SESSION_DATE}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+</jasperReport>

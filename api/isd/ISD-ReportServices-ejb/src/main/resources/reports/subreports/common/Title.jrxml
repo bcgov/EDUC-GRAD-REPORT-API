@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Title" pageWidth="567" pageHeight="66" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="b43f8564-f5a0-4fca-a3c6-9c5fc90458db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\StudentAdapter.xml"/>
+	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
+	<import value="ca.bc.gov.educ.isd.reports.jasper.EmbeddedImageTranscoder"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_TITLE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Ministry of Education"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBTITLE" class="java.lang.String"/>
+	<parameter name="P_REPORT_DATE" class="java.util.Date"/>
+	<parameter name="P_LOGO_CODE" class="java.lang.String">
+		<defaultValueExpression><![CDATA["BC"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_LOGO_MOE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[java.lang.Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_INCLUDE_UPDATED_DATE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[java.lang.Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
+	<variable name="V_LOGO_MOE" class="java.lang.String">
+		<initialValueExpression><![CDATA[$P{P_REPORT_LOGO_MOE} ? "_moe" : ""]]></initialValueExpression>
+	</variable>
+	<variable name="V_LOGO_FILE" class="java.lang.String">
+		<initialValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $P{P_LOGO_CODE}.trim().toLowerCase() + $V{V_LOGO_MOE}]]></initialValueExpression>
+	</variable>
+	<variable name="V_DATE_FORMAT" class="java.text.DateFormat" calculation="System">
+		<initialValueExpression><![CDATA[new java.text.SimpleDateFormat($R{date.format})]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="66">
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement key="IMAGE_LOGO_PNG" x="7" y="0" width="100" height="66" uuid="e163ac69-ca00-4567-840b-d12ef58c2c7f"/>
+				<imageExpression><![CDATA[EmbeddedImageTranscoder.asPNG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement key="IMAGE_LOGO_SVG" x="7" y="0" width="100" height="66" uuid="d98635f5-0274-4acb-8e75-d19dc9e1408e"/>
+				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Title" x="172" y="0" width="223" height="15" uuid="999805d4-d9b4-4389-a8d9-eacfb014b12b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{P_REPORT_TITLE}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Title" x="172" y="16" width="223" height="15" isRemoveLineWhenBlank="true" uuid="a6d2646f-7db0-484b-addd-97b683955e69"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{P_REPORT_SUBTITLE}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="460" y="0" width="107" height="31" uuid="dd5c993d-3252-47ff-a1f8-c8c1a2c13d25">
+					<printWhenExpression><![CDATA[$P{P_INCLUDE_UPDATED_DATE}]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement x="0" y="0" width="107" height="15" uuid="2b29d25f-9b0a-4a65-a239-6b5aa7fc3818"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Last Updated Date]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="16" width="107" height="15" uuid="5ee816da-2176-487c-9174-e27f4eef2d3f"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{V_DATE_FORMAT}.format($P{P_REPORT_DATE}).toUpperCase()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+</jasperReport>
