@@ -458,7 +458,12 @@ public class TRAXAdapterServiceImpl implements TRAXAdapter {
         LOG.exiting(CLASSNAME, _m, result);
         return result;
     }
-    
+
+    @Override
+    public AssessmentResult readStudent_Assessment(String pen) throws EISException {
+        return null;
+    }
+
     /**
      * An externally exposed method to provide examination results from the TRAX
      * database to a requesting service.
@@ -1390,6 +1395,42 @@ public class TRAXAdapterServiceImpl implements TRAXAdapter {
                 AchievementCourseImpl c = new AchievementCourseImpl();
                 BeanUtils.copyProperties(course, c);
                 retList.add(c);
+            }
+        }
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} done, with pen {1}.", new Object[]{_m, pen});
+
+        LOG.exiting(CLASSNAME, _m);
+        return retList;
+    }
+
+    @Override
+    public List<AssessmentResult> readCourses_Assessment(String pen) throws EISException {
+        final String _m = "readCourses_Assessment(String)";
+        LOG.entering(CLASSNAME, _m, pen);
+        LOG.log(PERF_LOGGING, "In TRAXAdapter {0} start, with pen {1}.", new Object[]{_m, pen});
+
+        //<editor-fold defaultstate="collapsed" desc="Verify inputs and pre-conditions.">
+        {
+            RuntimeException ex = verifyPEN(pen);
+
+            throwInvalidPreconditions(ex, LOG, CLASSNAME, _m);
+
+        }
+        //</editor-fold>
+        LOG.fine("Verified Inputs and Pre-conditions.");
+
+        final List<AssessmentResult> retList;
+
+        List<? extends NumAssessmentResult> courses = this.assessmentDao.findAssessments(pen);
+        LOG.fine("Searched for all transcript courses for the PEN in TRAX.");
+
+        if (courses == null || courses.isEmpty()) {
+            retList = null;
+            LOG.finer("Searched for course information for Transcript but found nothing.");
+        } else {
+            retList = new ArrayList<>();
+            for(AssessmentResult course: courses) {
+                retList.add(course);
             }
         }
         LOG.log(PERF_LOGGING, "In TRAXAdapter {0} done, with pen {1}.", new Object[]{_m, pen});

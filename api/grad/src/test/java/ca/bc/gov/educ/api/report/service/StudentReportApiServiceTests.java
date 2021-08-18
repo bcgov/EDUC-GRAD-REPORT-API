@@ -77,7 +77,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">saveSignatureImageTest");
 	}
 
-	@Test
+	//@Test
 	public void createStudentAchievementReport() throws Exception {
 		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");

@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.isd.reports.impl;
 
+import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.grad.GradProgram;
 import ca.bc.gov.educ.isd.grad.GraduationProgramCode;
 import ca.bc.gov.educ.isd.grad.NonGradReason;
@@ -56,6 +57,8 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
     public static final String ACHIEVEMENT_REPORT_NAME = "StudentAchievement";
 
     private static final String SUMMARY_REPORT_NAME_PREFIX = "subreports/transcript/SUMMARY_";
+
+    private Assessment assessment;
 
     private GraduationProgramCode graduationProgramCode;
 
@@ -102,6 +105,26 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      */
     private String getReportType() {
         return getGraduationProgramCode().toString();
+    }
+
+    /**
+     * Returns the Assessment
+     *
+     * @return A non-null value.
+     */
+    public Assessment getAssessment() {
+        return assessment;
+    }
+
+    /**
+     *
+     * Sets the Assessment
+     *
+     * @param assessment Data to be set.
+     */
+    @Override
+    public void setAssessment(Assessment assessment) {
+        this.assessment = assessment;
     }
 
     /**

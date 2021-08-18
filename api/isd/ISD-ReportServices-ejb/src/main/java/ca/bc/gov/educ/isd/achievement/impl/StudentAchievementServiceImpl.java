@@ -26,10 +26,9 @@ import ca.bc.gov.educ.isd.achievement.StudentAchievementService;
 import ca.bc.gov.educ.isd.common.DataException;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.eis.EISException;
-import ca.bc.gov.educ.isd.eis.trax.db.AchievementCourse;
-import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
-import ca.bc.gov.educ.isd.eis.trax.db.StudentInfo;
-import ca.bc.gov.educ.isd.eis.trax.db.TRAXAdapter;
+import ca.bc.gov.educ.isd.eis.trax.db.*;
+import ca.bc.gov.educ.isd.exam.Assessment;
+import ca.bc.gov.educ.isd.exam.impl.AssessmentImpl;
 import ca.bc.gov.educ.isd.grad.GradProgram;
 import ca.bc.gov.educ.isd.grad.GraduationProgramCode;
 import ca.bc.gov.educ.isd.grad.NonGradReason;
@@ -236,6 +235,27 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         LOG.exiting(CLASSNAME, _m);
         return achievement;
+    }
+
+    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
+    public Assessment getAssessment(
+            final String pen) throws DomainServiceException {
+        final String _m = "getAssessment(String)";
+        LOG.entering(CLASSNAME, _m);
+
+        final List<AssessmentResult> assessmentResults = getAssessmentResultList(pen);
+        final StudentInfo studentInfo = getStudentInfo(pen);
+        final String programCode = studentInfo.getGradProgram();
+        final GradProgram program = createGradProgram(programCode);
+        final Date reportDate = studentInfo.getReportDate();
+
+        final Assessment assessment = adapt(
+                assessmentResults,
+                reportDate
+        );
+
+        LOG.exiting(CLASSNAME, _m);
+        return assessment;
     }
 
     @Override
@@ -494,6 +514,50 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     }
 
     /**
+     * Read the collection of achievement courses from the TRAX Adaptor which is
+     * required for the achievement service.
+     *
+     * @param pen Student identifier.
+     *
+     * @return
+     */
+    private List<AssessmentResult> getAssessmentResultList(
+            final String pen)
+            throws DataException, DomainServiceException {
+        final String m_ = "getAssessmentList(String, boolean)";
+        LOG.entering(CLASSNAME, m_);
+
+        final List<AssessmentResult> results;
+
+        try {
+            LOG.log(Level.INFO,
+                    "Retrieved the collection of exam results from TRAX for PEN: {0}",
+                    new Object[]{pen});
+
+            results = traxAdapter.readCourses_Assessment(pen);
+            if (results != null && !results.isEmpty()) {
+                LOG.log(Level.INFO,
+                        "Total courses {0} retrieved  for PEN: {1}",
+                        new Object[]{results.size(), pen});
+                LOG.log(Level.FINEST, "Retrieved student achievement course results:");
+                for (AssessmentResult result : results) {
+                    LOG.log(Level.FINEST, "{0} {1}",
+                            new Object[]{result.getAssessmentCode(), result.getAssessmentProficiencyScore()});
+                }
+            }
+        } catch (final EISException ex) {
+            String msg = "Failed to access TRAX achievement course data for student with PEN: ".concat(pen);
+            final DataException dex = new DataException(null, null, msg, ex);
+            LOG.throwing(CLASSNAME, m_, dex);
+            throw dex;
+        }
+
+        LOG.log(Level.FINE, "Completed call to TRAX.");
+        LOG.exiting(CLASSNAME, m_);
+        return results;
+    }
+
+    /**
      * Adapt the TRAX data from the data value object into a Student object.
      *
      * @param pen
@@ -583,6 +647,21 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         return achievement;
     }
 
+    private Assessment adapt(
+            final List<AssessmentResult> assessmentResults,
+            final Date issueDate) {
+        final String m_ = "adapt(GraduationProgramCode, List<AchievementCourse>, Date, boolean)";
+        LOG.entering(CLASSNAME, m_, assessmentResults);
+
+        final List<ca.bc.gov.educ.isd.exam.AssessmentResult> assessmentResultList = adapt(assessmentResults);
+
+        final AssessmentImpl assessment = new AssessmentImpl();
+        assessment.setResults(assessmentResultList);
+
+        LOG.exiting(CLASSNAME, m_);
+        return assessment;
+    }
+
     /**
      * Adapt the TRAX data from the collection of data value objects into a
      * Achievement object.
@@ -664,6 +743,17 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         return achievementResults;
     }
 
+    private List<ca.bc.gov.educ.isd.exam.AssessmentResult> adapt(
+            final List<AssessmentResult> traxAssessmentResults) {
+        final String m_ = "adapt(List<AssessmentResult>)";
+        LOG.entering(CLASSNAME, m_, traxAssessmentResults);
+
+        List<ca.bc.gov.educ.isd.exam.AssessmentResult> assessmentResults = Collections.emptyList();
+
+        LOG.exiting(CLASSNAME, m_);
+        return assessmentResults;
+    }
+
     /**
      * Convert non-graduation reasons from a TRAX map to an STs list.
      *
@@ -717,6 +807,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final School school,
             final String logo,
             final Achievement achievement,
+            final Assessment assessment,
             final GradProgram program,
             final List<NonGradReason> nonGradReasons,
             final String gradMessage,
@@ -739,6 +830,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         report.setSchool(school, logo);
         report.setGraduationProgram(program);
         report.setAchievement(achievement);
+        report.setAssessment(assessment);
         report.setGraduationStatus(nonGradReasons, gradMessage);
         report.setReportDate(updateDt);
         report.setFormat(reportFormat);
@@ -838,6 +930,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final String programCode = studentInfo.getGradProgram();
         final String logo = studentInfo.getLogo();
         final Achievement achievement = getAchievement(pen, interim);
+        final Assessment assessment = getAssessment(pen);
 
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
         final School school = adaptSchool(studentInfo);
@@ -856,6 +949,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 school,
                 logo,
                 achievement,
+                null,
                 program,
                 nonGradReasons,
                 gradMessage,

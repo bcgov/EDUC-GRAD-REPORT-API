@@ -117,6 +117,15 @@ public interface TRAXAdapter extends TRAXData {
             final AssessmentCourseCode code) throws EISException;
 
     /**
+     * Provides student information as defined by TRAX service.
+     *
+     * @param pen Student's Personal Education Number
+     * @return AssessmentResult Student assessment data
+     * @throws EISException Could not find any matching students.
+     */
+    AssessmentResult readStudent_Assessment(final String pen) throws EISException;
+
+    /**
      * Provides a list of exam results for courses a student has taken.
      *
      * @param pen Personal Education Number of the student
@@ -281,4 +290,6 @@ public interface TRAXAdapter extends TRAXData {
     List<AchievementCourse> readCourses_InterimAchievement(String pen) throws EISException;
 
     List<AchievementCourse> readCourses_Achievement(String pen) throws EISException;
+
+    List<AssessmentResult> readCourses_Assessment(String pen) throws EISException;
 }

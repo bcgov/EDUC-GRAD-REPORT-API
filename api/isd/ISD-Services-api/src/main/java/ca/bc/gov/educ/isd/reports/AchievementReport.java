@@ -16,6 +16,7 @@
 package ca.bc.gov.educ.isd.reports;
 
 import ca.bc.gov.educ.isd.achievement.Achievement;
+import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.grad.GradProgram;
 import ca.bc.gov.educ.isd.grad.NonGradReason;
 import ca.bc.gov.educ.isd.transcript.GraduationData;
@@ -30,12 +31,20 @@ import java.util.List;
 public interface AchievementReport extends StudentReport {
 
     /**
-     * Sets the container for transcript results. The transcript should also
+     * Sets the container for achievement results. The transcript should also
      * include an issue date.
      *
      * @param achievement The object that contains a list of transcript results.
      */
     void setAchievement(Achievement achievement);
+
+    /**
+     * Sets the container for assessment results. The transcript should also
+     * include an issue date.
+     *
+     * @param assessment The object that contains a list of transcript results.
+     */
+    void setAssessment(Assessment assessment);
 
     /**
      * Sets the list of reasons why the student's graduation status is
