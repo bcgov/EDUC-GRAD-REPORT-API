@@ -2,22 +2,22 @@
 apiVersion: v1
 kind: Template
 labels:
-  template: 'educ-report-api-template'
+  template: 'educ-grad-report-api-template'
 metadata:
-  name: 'educ-report-api-template'
+  name: 'educ-grad-report-api-template'
 objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
     labels:
-      build: educ-report-api-pipeline
-    name: educ-report-api-pipeline
+      build: educ-grad-report-api-pipeline
+    name: educ-grad-report-api-pipeline
     namespace: 77c02f-tools
   spec:
     source:
       git:
         ref: main
-        uri: 'https://github.com/bcgov/EDUC-REPORT-API'
+        uri: 'https://github.com/bcgov/EDUC-GRAD-REPORT-API.git'
       type: Git
     strategy:
       dockerStrategy:
