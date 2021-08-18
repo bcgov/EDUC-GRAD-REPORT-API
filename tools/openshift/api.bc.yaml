@@ -20,5 +20,10 @@ objects:
         uri: 'https://github.com/bcgov/EDUC-REPORT-API'
       type: Git
     strategy:
-      jenkinsPipelineStrategy:
-        jenkinsfilePath: tools/jenkins/Jenkinsfile-api
+      dockerStrategy:
+        pullSecret:
+          name: artifactory-creds
+        env:
+          - name: BUILD_LOGLEVEL
+            value: '2'
+        type: Docker
