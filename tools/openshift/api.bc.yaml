@@ -17,7 +17,7 @@ objects:
     source:
       git:
         ref: main
-        uri: 'https://github.com/bcgov/EDUC-GRAD-REPORT-API.git'
+        uri: 'https://github.com/bcgov/EDUC-GRAD-REPORT-API'
       type: Git
     strategy:
       dockerStrategy:
