@@ -15,9 +15,9 @@ spring:
       maximum-pool-size: ${MAXIMUM_POOL_SIZE}
       connection-timeout: ${CONNECTION_TIMEOUT}
       max-lifetime: ${MAX_LIFETIME}
-    url: ${JDBC_URL}
-    username: ${ORACLE_USERNAME}
-    password: ${ORACLE_PASSWORD}
+    url: ${CONNECTION_STRING}
+    username: ${USERNAME}
+    password: ${PASSWORD}
     driver-class: oracle.jdbc.driver.OracleDriver
   jpa:
     show-sql: true
@@ -33,9 +33,9 @@ spring:
     enabled: ${ENABLE_FLYWAY}
     baseline-on-migrate: false
     table: FLYWAY_SCHEMA_HISTORY
-    url: ${JDBC_URL}
-    user: ${ORACLE_USERNAME}
-    password: ${ORACLE_PASSWORD}
+    url: ${CONNECTION_STRING}
+    user: ${USERNAME}
+    password: ${PASSWORD}
     locations: classpath:db/migration
 #Logging properties
 logging:
