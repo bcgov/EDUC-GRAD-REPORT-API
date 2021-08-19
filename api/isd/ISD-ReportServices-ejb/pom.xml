@@ -215,7 +215,7 @@
 
     <build>
         <plugins>
-            <!--<plugin>
+            <plugin>
                 <groupId>com.alexnederlof</groupId>
                 <artifactId>jasperreports-plugin</artifactId>
                 <version>2.7</version>
@@ -228,7 +228,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!- These are the default configurations: ->
                     <compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
                     <sourceDirectory>src/main/resources/reports</sourceDirectory>
                     <outputDirectory>${project.build.directory}/classes/reports</outputDirectory>
@@ -239,7 +238,7 @@
                     <failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
                     <sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
