@@ -298,4 +298,10 @@ public class GradToIsdDataConvertBean {
 
         return result;
     }
+
+    public List<NumAssessmentResult> getAssessmentCourses(ReportData reportData) {
+        List<NumAssessmentResult> result = new ArrayList<>();
+        //TODO: populate the collection
+        return result;
+    }
 }

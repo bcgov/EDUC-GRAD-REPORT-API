@@ -233,6 +233,13 @@ public class ReportServiceImpl extends AbstractReportService
         return parameters;
     }
 
+    @Override
+    @RolesAllowed({USER_REPORTS_TRANSCRIPT, FULFILLMENT_SERVICES_USER})
+    public AchievementReport createAchievementReport() {
+        return new AchievementReportImpl();
+    }
+
+
     /**
      * Based on the type of report, this will return an internal representation
      * of the given report instance that can use JasperReports without exposing

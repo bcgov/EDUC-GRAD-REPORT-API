@@ -111,6 +111,12 @@ public final class Student extends BusinessEntity {
     private List<TranscriptResult> transcriptResults = new ArrayList<>();
 
     /**
+     * Used for the achievement of grades reports.
+     */
+    @XmlTransient
+    private List<AchievementResult> achievementResults = new ArrayList<>();
+
+    /**
      * Used for the GNA report.
      */
     @XmlTransient
@@ -404,6 +410,23 @@ public final class Student extends BusinessEntity {
     }
 
     /**
+     * Returns a list of achievement marks (courses and grades) used to populate
+     * the Transcript of Grades report.
+     *
+     * Lazily initialized.
+     *
+     * @return A list of courses and corresponding grades that the student
+     * achieved, never null (possibly empty).
+     */
+    public List<AchievementResult> getAchievementResults() {
+        if (this.achievementResults == null) {
+            this.achievementResults = createEmptyList();
+        }
+
+        return this.achievementResults;
+    }
+
+    /**
      * Returns a list of graduation numeracy assessments used to populate the
      * GNA report.
      *
@@ -608,6 +631,15 @@ public final class Student extends BusinessEntity {
     }
 
     /**
+     * Sets the list of achievement results that the student achieved.
+     *
+     * @param achievementResults Student grades.
+     */
+    public void setAchievementResults(final List<AchievementResult> achievementResults) {
+        this.achievementResults = achievementResults;
+    }
+
+    /**
      * Sets the list of academic sessions that contains student marks by
      * session.
      *
@@ -626,6 +658,17 @@ public final class Student extends BusinessEntity {
      */
     public void addTranscriptResult(final TranscriptResult transcriptResult) {
         getTranscriptResults().add(transcriptResult);
+    }
+
+    /**
+     * Helper method to add a transcript result to the student's list of
+     * transcript results.
+     *
+     * @param achievementResult The transcript result to add to the internal list
+     * of transcript results.
+     */
+    public void addAchievementResult(final AchievementResult achievementResult) {
+        getAchievementResults().add(achievementResult);
     }
 
     /**

@@ -17,13 +17,18 @@
  */
 package ca.bc.gov.educ.isd.traxadaptor.service.impl;
 
+import ca.bc.gov.educ.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
+import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.eis.EISException;
 import ca.bc.gov.educ.isd.eis.assessment.AssessmentCourseCode;
 import ca.bc.gov.educ.isd.eis.trax.db.LitAssessmentResult;
 import ca.bc.gov.educ.isd.eis.trax.db.NumAssessmentResult;
+import ca.bc.gov.educ.isd.traxadaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.traxadaptor.impl.LiteracyAssessmentResultImpl;
 import ca.bc.gov.educ.isd.traxadaptor.impl.NumeracyAssessmentResultImpl;
 import ca.bc.gov.educ.isd.traxadaptor.service.AssessmentData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.security.DeclareRoles;
@@ -107,6 +112,9 @@ public class AssessmentDataBean implements AssessmentData, Serializable {
             + "WHERE"
             + "  r.studentNumber = ?1 AND r.assessmentSession = ?2 AND r.assessmentCode = ?3";
 
+    @Autowired
+    GradToIsdDataConvertBean gradtoIsdDataConvertBean;
+
     @Override
     @RolesAllowed(TRAX_READ)
     public List<? extends NumAssessmentResult> findAssessments(
@@ -138,6 +146,31 @@ public class AssessmentDataBean implements AssessmentData, Serializable {
         String queryStr = AssessmentCourseCode.LITERACY_ENGLISH.equals(code) ? QUERY_FIND_LITERACY_ASSESSMENTS_BY_PEN : QUERY_FIND_LITERACY_ASSESSMENTS_FR_BY_PEN;
 
         List<LiteracyAssessmentResultImpl> resultsList = null;
+
+        if (resultsList == null) {
+            resultsList = new ArrayList<>();
+        }
+
+        LOG.exiting(CLASSNAME, methodName);
+        return resultsList;
+    }
+
+    @Override
+    public List<? extends NumAssessmentResult> findAssessments(String pen) throws EISException {
+        final String methodName = "findAssessments(String)";
+        LOG.entering(CLASSNAME, methodName);
+
+        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+
+        List<NumAssessmentResult> resultsList = gradtoIsdDataConvertBean.getAssessmentCourses(reportData);
 
         if (resultsList == null) {
             resultsList = new ArrayList<>();

@@ -1,6 +1,8 @@
 package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
+import ca.bc.gov.educ.isd.achievement.StudentAchievementReport;
+import ca.bc.gov.educ.isd.achievement.StudentAchievementService;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
 import ca.bc.gov.educ.isd.reports.bundle.service.BCMPBundleService;
@@ -29,6 +31,9 @@ public class ReportService {
 	StudentTranscriptService transcriptService;
 
 	@Autowired
+	StudentAchievementService achievementService;
+
+	@Autowired
 	GradCertificateService gradCertificateService;
 
 	@Autowired
@@ -45,7 +50,8 @@ public class ReportService {
 		ResponseEntity response = null;
 
 		try {
-			byte[] resultBinary = new byte[0];
+			StudentAchievementReport report = achievementService.buildOfficialAchievementReport();
+			byte[] resultBinary = report.getReportData();
 			if(resultBinary.length > 0) {
 				HttpHeaders headers = new HttpHeaders();
 				headers.add("Content-Disposition", "inline; filename=" + reportFile);

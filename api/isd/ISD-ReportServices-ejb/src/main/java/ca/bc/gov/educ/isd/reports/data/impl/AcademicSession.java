@@ -37,6 +37,9 @@ public class AcademicSession implements Serializable {
     @XmlElement(name = "course")
     private List<TranscriptResult> course = new ArrayList<>();
 
+    @XmlElement(name = "achievement")
+    private List<AchievementResult> achievement = new ArrayList<>();
+
     public AcademicSessionDetail getAcademicSessionDetail() {
         return academicSessionDetail;
     }
@@ -53,6 +56,14 @@ public class AcademicSession implements Serializable {
         this.course = course;
     }
 
+    public List<AchievementResult> getAchievement() {
+        return achievement;
+    }
+
+    public void setAchievement(final List<AchievementResult> achievement) {
+        this.achievement = achievement;
+    }
+
     /**
      * Helper method to add a transcript result to the student's list of
      * transcript results.
@@ -62,6 +73,10 @@ public class AcademicSession implements Serializable {
      */
     public void addTranscriptResult(final TranscriptResult transcriptResult) {
         getCourse().add(transcriptResult);
+    }
+
+    public void addAchievementResult(final AchievementResult achievementResult) {
+        getAchievement().add(achievementResult);
     }
 
     @Override
