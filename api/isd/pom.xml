@@ -378,9 +378,9 @@
 						<configuration>
 							<groupId>lowagie</groupId>
 							<artifactId>itext</artifactId>
-							<version>2.1.7.js8</version>
+							<version>2.1.7.js7</version>
 							<packaging>jar</packaging>
-							<file>lib/itext-2.1.7.js8.jar</file>
+							<file>lib/itext-2.1.7.js7.jar</file>
 						</configuration>
 					</execution>
 				</executions>
