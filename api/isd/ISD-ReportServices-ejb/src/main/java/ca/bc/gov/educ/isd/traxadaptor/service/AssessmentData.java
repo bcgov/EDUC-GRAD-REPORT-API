@@ -63,4 +63,5 @@ public interface AssessmentData extends TRAXData {
             String sessionDate,
             AssessmentCourseCode code) throws EISException;
 
+    List<? extends NumAssessmentResult> findAssessments(String pen) throws EISException;
 }

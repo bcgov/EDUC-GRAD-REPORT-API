@@ -11,6 +11,7 @@ public class ReportData {
     private String logo;
     private List<NonGradReason> nonGradReasons;
     private Transcript transcript;
+    private Assessment assessment;
     private GradProgram gradProgram;
     private GraduationData graduationData;
     private String gradMessage;
@@ -55,6 +56,14 @@ public class ReportData {
 
     public void setTranscript(Transcript value) {
         this.transcript = value;
+    }
+
+    public Assessment getAssessment() {
+        return assessment;
+    }
+
+    public void setAssessment(Assessment value) {
+        this.assessment = value;
     }
 
     public GradProgram getGradProgram() {

@@ -195,6 +195,53 @@ public class BusinessEntityAdapter {
     }
 
     /**
+     * Maps a transcript instance to a student's set of transcript result
+     * instances. The XML transcript requires that the courses are grouped by
+     * academic session.
+     *
+     * @param achievement The data to adapt for reports.
+     * @param student The student to populate.
+     */
+    public static void adapt(
+            final ca.bc.gov.educ.isd.achievement.Achievement achievement,
+            final Student student) {
+        validate(achievement, "transcript for student");
+
+        final Map<String, AcademicSession> aSMap = new HashMap<>();
+
+        final GraduationProgram gp = student.getGraduationProgram();
+        final GraduationProgramCode code = gp.getCode();
+
+        for (final ca.bc.gov.educ.isd.achievement.AchievementResult result : achievement.getResults(code)) {
+            // Transcipt results immeadiately added to student for report generation.
+            final AchievementResult tr = adapt(result);
+            student.addAchievementResult(tr);
+
+            // Building of Academic session data for results required for XML structure.
+            final String formatDate = formatSessionDate(tr.getSessionDate());
+
+            if (!aSMap.containsKey(formatDate)) {
+                // Build Academic session
+                final AcademicSession newSession = createAcademicSession(formatDate);
+                // Add course
+                newSession.addAchievementResult(tr);
+                // Put Academic session and date string to map
+                aSMap.put(formatDate, newSession);
+            } else {
+                // Get academic session
+                final AcademicSession fetchedSession = aSMap.get(formatDate);
+                // Add course to session
+                fetchedSession.addAchievementResult(tr);
+            }
+        }
+
+        // For each academic session in list add to the student.
+        for (final Map.Entry<String, AcademicSession> entry : aSMap.entrySet()) {
+            student.addAcademicSession(entry.getValue());
+        }
+    }
+
+    /**
      * Maps transcript results (marks and courses) to a flatter hierarchy for
      * reports. A transcript result in the reports contains all the information
      * needed to populate a single row of data in the report.
@@ -213,6 +260,43 @@ public class BusinessEntityAdapter {
                 = getOriginalCourseId(c.getRelatedCourse(), c.getRelatedLevel());
 
         return new TranscriptResult.Builder()
+                .withCourseCode(c.getCode())
+                .withCourseLevel(c.getLevel())
+                .withCourseName(c.getName())
+                .withCredits(c.getCredits())
+                .withSessionDate(c.getSessionDate())
+                .withReportCourseType(c.getType())
+                .withBestExamPercent(m.getExamPercent())
+                .withBestSchoolPercent(m.getSchoolPercent())
+                .withFinalGrade(createGrade(m.getFinalPercent(), m.getFinalLetterGrade()))
+                .withInterimGrade(createGrade(m.getInterimPercent(), m.getInterimLetterGrade()))
+                .withEquivalencyChallenge(tr.getEquivalencyChallenge())
+                .withRequirementMet(tr.getRequirementMet())
+                .withRequirementMetName(tr.getRequirementMetName())
+                .withUsedForGrad(tr.getUsedForGrad())
+                .withOriginalCourseId(originalCourseId)
+                .build();
+    }
+
+    /**
+     * Maps transcript results (marks and courses) to a flatter hierarchy for
+     * reports. A transcript result in the reports contains all the information
+     * needed to populate a single row of data in the report.
+     *
+     * @param tr The data to adapt for reports.
+     */
+    private static AchievementResult adapt(
+            final ca.bc.gov.educ.isd.achievement.AchievementResult tr) {
+        validate(tr, "transcript result");
+
+        final ca.bc.gov.educ.isd.transcript.Course c = tr.getCourse();
+        final ca.bc.gov.educ.isd.transcript.Mark m = tr.getMark();
+
+        // TODO: Add to builder?
+        final String originalCourseId
+                = getOriginalCourseId(c.getRelatedCourse(), c.getRelatedLevel());
+
+        return new AchievementResult.Builder()
                 .withCourseCode(c.getCode())
                 .withCourseLevel(c.getLevel())
                 .withCourseName(c.getName())
@@ -298,7 +382,7 @@ public class BusinessEntityAdapter {
     /**
      * Maps a scholarship instance to a report scholarship instance.
      *
-     * @param scholarships The data to adapt for reports.
+     * @param scholarship The data to adapt for reports.
      * @return A new Scholarship instance populated with data from the
      * parameter.
      */
