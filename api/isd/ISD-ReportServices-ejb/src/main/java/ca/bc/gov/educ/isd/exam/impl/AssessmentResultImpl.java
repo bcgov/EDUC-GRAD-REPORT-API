@@ -44,9 +44,13 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     final private static String DEFAULT_NAME = "";
 
     private String studentNumber;
+    private String assessmentName;
     private String assessmentCode;
     private int assessmentProficiencyScore;
     private String assessmentSession;
+    private String requirementMet;
+    private String specialCase;
+    private String exceededWrites;
 
     private int assessmentTotalSelectedResponse;
     private int studentAssessmentTotalSelectedResponse;
@@ -108,6 +112,38 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     @Override
     public int getStudentAssessmentTotalExtendedResponse() {
         return studentAssessmentTotalExtendedResponse;
+    }
+
+    public String getAssessmentName() {
+        return assessmentName;
+    }
+
+    public void setAssessmentName(String assessmentName) {
+        this.assessmentName = assessmentName;
+    }
+
+    public String getRequirementMet() {
+        return requirementMet;
+    }
+
+    public void setRequirementMet(String requirementMet) {
+        this.requirementMet = requirementMet;
+    }
+
+    public String getSpecialCase() {
+        return specialCase;
+    }
+
+    public void setSpecialCase(String specialCase) {
+        this.specialCase = specialCase;
+    }
+
+    public String getExceededWrites() {
+        return exceededWrites;
+    }
+
+    public void setExceededWrites(String exceededWrites) {
+        this.exceededWrites = exceededWrites;
     }
 
     /**

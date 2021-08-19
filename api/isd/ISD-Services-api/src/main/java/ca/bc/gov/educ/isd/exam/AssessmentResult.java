@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.exam;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
+
 import java.util.Date;
 import java.util.Iterator;
 
@@ -34,6 +35,22 @@ public interface AssessmentResult extends DomainEntity {
     public int getAssessmentProficiencyScore();
 
     public String getAssessmentSession();
+
+    public String getAssessmentName();
+
+    public void setAssessmentName(String assessmentName);
+
+    public String getRequirementMet();
+
+    public void setRequirementMet(String requirementMet);
+
+    public String getSpecialCase();
+
+    public void setSpecialCase(String specialCase);
+
+    public String getExceededWrites();
+
+    public void setExceededWrites(String exceededWrites);
     
     public Date getUpdateDate();
 

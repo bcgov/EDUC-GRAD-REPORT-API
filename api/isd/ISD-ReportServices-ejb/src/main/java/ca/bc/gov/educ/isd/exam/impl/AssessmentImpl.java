@@ -17,11 +17,16 @@
  */
 package ca.bc.gov.educ.isd.exam.impl;
 
+import ca.bc.gov.educ.grad.utils.AssessmentResultListDeserializer;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.exam.AssessmentResult;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +37,7 @@ public class AssessmentImpl extends AbstractDomainEntity implements Assessment, 
 
     private static final long serialVersionUID = 2L;
 
+    private Date issueDate;
     private List<AssessmentResult> assessmentResults;
 
     @Override
@@ -40,12 +46,23 @@ public class AssessmentImpl extends AbstractDomainEntity implements Assessment, 
     }
 
     @Override
+    @JsonProperty("results")
+    @JsonDeserialize(using = AssessmentResultListDeserializer.class)
     public List<AssessmentResult> getResults() {
         return this.assessmentResults;
     }
 
     public void setResults(final List<AssessmentResult> assessmentResults) {
         this.assessmentResults = assessmentResults;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    public Date getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(Date issueDate) {
+        this.issueDate = issueDate;
     }
 
     @Override
