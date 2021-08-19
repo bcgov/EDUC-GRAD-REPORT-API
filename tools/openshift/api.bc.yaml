@@ -21,9 +21,9 @@ objects:
       type: Git
     strategy:
       dockerStrategy:
-        type: Docker
         pullSecret:
           name: artifactory-creds
         env:
           - name: BUILD_LOGLEVEL
             value: '2'
+        type: Docker
