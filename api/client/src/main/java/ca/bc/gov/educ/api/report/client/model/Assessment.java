@@ -11,7 +11,7 @@ import java.util.List;
 public class Assessment {
 
     private Date issueDate;
-    private List<TranscriptResult> results;
+    private List<AssessmentResult> results;
 
     public String getInterim() {
         return interim;
@@ -31,11 +31,11 @@ public class Assessment {
     }
 
     @JsonProperty("result")
-    public List<TranscriptResult> getResults() {
+    public List<AssessmentResult> getResults() {
         return results;
     }
 
-    public void setResults(List<TranscriptResult> value) {
+    public void setResults(List<AssessmentResult> value) {
         this.results = value;
     }
 }

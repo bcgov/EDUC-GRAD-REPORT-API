@@ -43,6 +43,11 @@ public class LiteracyAssessmentResultImpl implements LitAssessmentResult {
     private String studentNumber;
     private String assessmentCode;
     private int assessmentProficiencyScore;
+    private String assessmentName;
+    private String assessementSession;
+    private String requirementMet;
+    private String specialCase;
+    private String exceededWrites;
     
     private final List<String> assessmentByTaskNames = new ArrayList<>();
     private final List<Integer> assessmentByTaskValues = new ArrayList<>();
@@ -266,7 +271,32 @@ public class LiteracyAssessmentResultImpl implements LitAssessmentResult {
     public String getAssessmentSession() {
         return this.assessmentSession;
     }
-    
+
+    @Override
+    public String getAssessmentName() {
+        return assessmentName;
+    }
+
+    @Override
+    public String getAssessementSession() {
+        return assessementSession;
+    }
+
+    @Override
+    public String getRequirementMet() {
+        return requirementMet;
+    }
+
+    @Override
+    public String getSpecialCase() {
+        return specialCase;
+    }
+
+    @Override
+    public String getExceededWrites() {
+        return exceededWrites;
+    }
+
     @Override
     public List<String> getAssessmentByTaskNames() {
         return assessmentByTaskNames;

@@ -46,9 +46,7 @@ public abstract class BaseController {
                 String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
                 String signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
                 AuditingUtils.setSignatureImageUrl(signatureImageUrl);
-                if (log.isInfoEnabled()) {
-                    log.info(username + ": " + method + " " + path);
-                }
+                log.info(username + ": " + method + "->" + signatureImageUrl);
             }
         }
     }
