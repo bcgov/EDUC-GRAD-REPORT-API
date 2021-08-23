@@ -41,9 +41,10 @@ public abstract class BaseController {
                     }
                 }
                 String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
+                System.out.println("Protocol: " + httpServletRequest.getProtocol());
                 String serverName = "localhost";
                 try {
-                    serverName = InetAddress.getLocalHost().getCanonicalHostName();
+                    serverName = InetAddress.getLocalHost().getHostAddress();
                 } catch (UnknownHostException e) {
                     log.error("Unable to determine hostname for the request", e);
                 }
