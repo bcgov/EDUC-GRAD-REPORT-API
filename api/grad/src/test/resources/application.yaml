@@ -67,3 +67,8 @@ springdoc:
     operationsSorter: alpha
 
 #Endpoint properties
+#Endpoint properties
+endpoint:
+  grad-report-api:
+    get-signature-by-code:
+      url:
