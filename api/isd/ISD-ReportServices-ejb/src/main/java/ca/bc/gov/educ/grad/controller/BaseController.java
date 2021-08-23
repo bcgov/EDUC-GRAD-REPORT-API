@@ -5,16 +5,22 @@ import ca.bc.gov.educ.grad.utils.EducGradSignatureImageApiConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Enumeration;
 
 public abstract class BaseController {
 
     private static final String CLASS_NAME = BaseController.class.getName();
     private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
+
+    @Value("${endpoint.grad-report-api.get-signature-by-code.url}")
+    String signatureImageUrlProperty;
 
     protected void logRequest() {
         HttpServletRequest httpServletRequest =
@@ -38,17 +44,28 @@ public abstract class BaseController {
                         accessToken = parameterValues[0];
                     }
                 }
-                String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
-                String serverName = httpServletRequest.getServerName();
-                int port = httpServletRequest.getServerPort();
-                String path = EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
-                String method = httpServletRequest.getMethod();
-                String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
-                String signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
-                AuditingUtils.setSignatureImageUrl(signatureImageUrl);
-                if (log.isInfoEnabled()) {
-                    log.info(username + ": " + method + " " + path);
+                String signatureImageUrl = "";
+                if(StringUtils.trimToNull(signatureImageUrlProperty) == null) {
+                    String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
+                    String serverName = "localhost";
+                    try {
+                        serverName = InetAddress.getLocalHost().getCanonicalHostName();
+                    } catch (UnknownHostException e) {
+                        log.error("Unable to determine hostname for the request", e);
+                    }
+                    int port = httpServletRequest.getServerPort();
+                    String path = EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
+                    String method = httpServletRequest.getMethod();
+                    String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
+                    signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
+                    System.out.println(username + ": " + method + "->" + signatureImageUrl);
+                } else {
+                    String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
+                    signatureImageUrl = String.format(signatureImageUrlProperty, "#signatureCode#") + accessTokenParam;
+                    System.out.println(signatureImageUrl);
                 }
+                AuditingUtils.setSignatureImageUrl(signatureImageUrl);
+
             }
         }
     }
