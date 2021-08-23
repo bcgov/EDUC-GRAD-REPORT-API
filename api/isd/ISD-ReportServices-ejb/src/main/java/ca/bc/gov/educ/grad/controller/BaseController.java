@@ -9,6 +9,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Enumeration;
 
 public abstract class BaseController {
@@ -39,14 +41,19 @@ public abstract class BaseController {
                     }
                 }
                 String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
-                String serverName = httpServletRequest.getServerName();
+                String serverName = "localhost";
+                try {
+                    serverName = InetAddress.getLocalHost().getCanonicalHostName();
+                } catch (UnknownHostException e) {
+                    log.error("Unable to determine hostname for the request", e);
+                }
                 int port = httpServletRequest.getServerPort();
                 String path = EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
                 String method = httpServletRequest.getMethod();
                 String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
                 String signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
                 AuditingUtils.setSignatureImageUrl(signatureImageUrl);
-                log.info(username + ": " + method + "->" + signatureImageUrl);
+                System.out.println(username + ": " + method + "->" + signatureImageUrl);
             }
         }
     }
