@@ -43,7 +43,7 @@ public class NumeracyAssessmentResultImpl implements NumAssessmentResult {
     private String assessmentCode;
     private int assessmentProficiencyScore;
     private String assessmentName;
-    private String assessmentSession;
+    private String assessementSession;
     private String requirementMet;
     private String specialCase;
     private String exceededWrites;
@@ -59,8 +59,6 @@ public class NumeracyAssessmentResultImpl implements NumAssessmentResult {
     private final List<String> assessmentExtendedResponseNames = new ArrayList<>();
     private final List<Integer> assessmentExtendedResponseValues = new ArrayList<>();
     private final List<Integer> assessmentExtendedResponseTotals = new ArrayList<>();
-
-    private String assessementSession;
 
     public NumeracyAssessmentResultImpl(
             final String studentNumber,
