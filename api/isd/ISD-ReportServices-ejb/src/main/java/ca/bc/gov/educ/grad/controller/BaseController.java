@@ -58,11 +58,11 @@ public abstract class BaseController {
                     String method = httpServletRequest.getMethod();
                     String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
                     signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
-                    System.out.println(username + ": " + method + "->" + signatureImageUrl);
+                    //System.out.println(username + ": " + method + "->" + signatureImageUrl);
                 } else {
                     String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
                     signatureImageUrl = signatureImageUrlProperty + "/#signatureCode#" + accessTokenParam;
-                    System.out.println(signatureImageUrl);
+                    //System.out.println(signatureImageUrl);
                 }
                 AuditingUtils.setSignatureImageUrl(signatureImageUrl);
 
