@@ -61,7 +61,7 @@ public abstract class BaseController {
                     System.out.println(username + ": " + method + "->" + signatureImageUrl);
                 } else {
                     String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
-                    signatureImageUrl = String.format(signatureImageUrlProperty, "#signatureCode#") + accessTokenParam;
+                    signatureImageUrl = signatureImageUrlProperty + "/#signatureCode#" + accessTokenParam;
                     System.out.println(signatureImageUrl);
                 }
                 AuditingUtils.setSignatureImageUrl(signatureImageUrl);
