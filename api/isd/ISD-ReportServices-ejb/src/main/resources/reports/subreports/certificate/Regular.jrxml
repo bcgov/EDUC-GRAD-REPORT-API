@@ -85,12 +85,12 @@
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="0" y="203" width="792" height="38" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107"/>
+				<reportElement style="Body" x="0" y="203" width="792" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107"/>
 				<textFieldExpression><![CDATA[$P{P_REPORT_SUBTYPE}.equalsIgnoreCase("FRANCOPHONE") ?
 $R{header.certify.suffix.francophone} : $R{header.certify.suffix.regular}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="Body" x="0" y="268" width="792" height="80" uuid="f08ef6b8-ba4c-4da5-baeb-d72dacb3ad79">
+				<reportElement style="Body" x="0" y="268" width="792" height="120" uuid="f08ef6b8-ba4c-4da5-baeb-d72dacb3ad79">
 					<printWhenExpression><![CDATA["FR".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
 				</reportElement>
 				<textFieldExpression><![CDATA["FRANCOPHONE".equalsIgnoreCase($P{P_REPORT_SUBTYPE}) ? $R{header.issuance.francophone} : $R{header.issuance}]]></textFieldExpression>
@@ -157,7 +157,7 @@ $R{signature.superintendent.school}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="Body" x="0" y="251" width="792" height="80" uuid="249c597b-5d68-409a-be37-3448abe5c3ed">
+				<reportElement style="Body" x="0" y="251" width="792" height="120" uuid="249c597b-5d68-409a-be37-3448abe5c3ed">
 					<printWhenExpression><![CDATA["EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
 				</reportElement>
 				<textFieldExpression><![CDATA[$R{header.issuance}]]></textFieldExpression>

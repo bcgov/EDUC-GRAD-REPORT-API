@@ -67,12 +67,12 @@
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<staticText>
-					<reportElement x="0" y="-10" width="20" height="50" uuid="294879e0-7103-4957-8df3-c5faae4590ef">
+					<reportElement x="0" y="-20" width="20" height="60" uuid="294879e0-7103-4957-8df3-c5faae4590ef">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					</reportElement>
 					<box topPadding="0"/>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font fontName="TexGyreSchola" size="30" isBold="true"/>
+						<font fontName="TexGyreSchola" size="28" isBold="true"/>
 					</textElement>
 					<text><![CDATA[S]]></text>
 				</staticText>
@@ -86,7 +86,7 @@
 					<text><![CDATA[CHOOL]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="-10" width="28" height="50" uuid="53232743-cc2c-445d-9068-15c93220e04e"/>
+					<reportElement x="120" y="-20" width="28" height="60" uuid="53232743-cc2c-445d-9068-15c93220e04e"/>
 					<textElement textAlignment="Right" verticalAlignment="Bottom">
 						<font fontName="TexGyreSchola" size="30" isBold="true"/>
 					</textElement>
@@ -102,7 +102,7 @@
 					<text><![CDATA[OMPLETION]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="315" y="-10" width="28" height="50" uuid="7ec71482-7c4e-4a82-ac47-fbda4c5474bf"/>
+					<reportElement x="315" y="-20" width="28" height="60" uuid="7ec71482-7c4e-4a82-ac47-fbda4c5474bf"/>
 					<textElement textAlignment="Right" verticalAlignment="Bottom">
 						<font fontName="TexGyreSchola" size="30" isBold="true"/>
 					</textElement>
@@ -127,21 +127,21 @@
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="77" y="299" width="639" height="40" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
+				<reportElement style="Body" x="77" y="299" width="639" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$R{header.certify.suffix.sccp}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement x="96" y="326" width="191" height="82" uuid="78987025-a306-40ff-b600-bdf0febe0081"/>
+				<reportElement x="95" y="379" width="194" height="82" uuid="78987025-a306-40ff-b600-bdf0febe0081"/>
 				<image onErrorType="Blank">
-					<reportElement x="-44" y="14" width="227" height="66" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0">
+					<reportElement x="0" y="14" width="194" height="66" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + ".png")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="0" y="65" width="191" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d">
+					<reportElement style="SignatoryTitle" x="0" y="66" width="194" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<textFieldExpression><![CDATA[$R{signature.minister.education}]]></textFieldExpression>
@@ -152,7 +152,7 @@
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<image onErrorType="Blank">
-					<reportElement x="2" y="0" width="192" height="52" uuid="4983e370-7138-44f4-920d-3e534f1782f5"/>
+					<reportElement x="0" y="0" width="194" height="52" uuid="4983e370-7138-44f4-920d-3e534f1782f5"/>
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + ".png")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
