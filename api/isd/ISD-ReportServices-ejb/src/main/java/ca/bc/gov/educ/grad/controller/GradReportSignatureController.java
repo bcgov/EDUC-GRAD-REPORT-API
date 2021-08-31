@@ -36,14 +36,25 @@ public class GradReportSignatureController extends BaseController {
     
     @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGE_BY_CODE)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
-    @Operation(summary = "Return Signature Image", description = "Retrieve Signature Image by signature code", tags = { "Signature Image" })
+    @Operation(summary = "Return Signature Image binary", description = "Retrieve Signature Image binary by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public byte[] getSignatureImageByCode(@PathVariable String signCode) {
-        String _m = String.format("getSignatureImageByCode(String %s)", signCode);
+    public byte[] extractSignatureImageByCode(@PathVariable String signCode) {
+        String _m = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug("<{}.{}", _m, CLASS_NAME);
     	logRequest();
         GragReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
         return signatureImage.getSignatureContent();
+    }
+
+    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGE)
+    @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
+    @Operation(summary = "Return Signature Image Object", description = "Retrieve Signature Object by signature code", tags = { "Signature Image" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public GragReportSignatureImage getSignatureImageByCode(@PathVariable String signCode) {
+        String _m = String.format("getSignatureImageByCode(String %s)", signCode);
+        logger.debug("<{}.{}", _m, CLASS_NAME);
+        logRequest();
+        return gradReportSignatureService.getSignatureImageByCode(signCode);
     }
 
     @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_IMAGE)

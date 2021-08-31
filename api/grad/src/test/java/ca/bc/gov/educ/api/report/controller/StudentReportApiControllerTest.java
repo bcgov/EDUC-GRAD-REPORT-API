@@ -74,6 +74,27 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
 
 
     @Test
+    public void extractSignatureImageTest() throws Exception {
+        LOG.debug("<{}.extractSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+        byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
+        assertNotNull(imageBinary);
+        assertNotEquals(0, imageBinary.length);
+        LOG.debug("Test image loaded {} bytes", imageBinary.length);
+
+        String signatureCode = "MOE.png";
+        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+        signatureImage.setGradReportSignatureCode(signatureCode);
+        signatureImage.setSignatureContent(imageBinary);
+        signatureImage.setSignatureId(UUID.randomUUID());
+
+        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode)).thenReturn(signatureImage);
+        reportSignatureController.extractSignatureImageByCode(signatureCode);
+        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
+
+        LOG.debug(">extractSignatureImageTest");
+    }
+
+    @Test
     public void getSignatureImageTest() throws Exception {
         LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
         byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
