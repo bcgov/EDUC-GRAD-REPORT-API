@@ -4,7 +4,7 @@ WORKDIR /workspace/app
 COPY api/pom.xml .
 COPY api/isd isd
 COPY api/grad grad
-RUN mvn package -DskipTests -q
+RUN mvn package -DskipTests
 RUN mkdir -p target/dependency && cd target/dependency && jar -xf ../../grad/*.jar
 
 FROM openjdk:11-jdk
