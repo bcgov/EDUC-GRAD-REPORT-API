@@ -4,8 +4,8 @@ WORKDIR /workspace/app
 COPY api/pom.xml .
 COPY api/isd isd
 COPY api/grad grad
-RUN mvn package -DskipTests -q
-RUN mkdir -p target/dependency && cd target/dependency && jar -xf ../../*.jar
+RUN mvn package -DskipTests
+RUN mkdir -p target/dependency && cd target/dependency && jar -xf ../../grad/*.jar
 
 FROM docker-remote.artifacts.developer.gov.bc.ca/openjdk:11-jdk
 RUN useradd -ms /bin/bash spring && mkdir -p /logs && chown -R spring:spring /logs && chmod 755 /logs
