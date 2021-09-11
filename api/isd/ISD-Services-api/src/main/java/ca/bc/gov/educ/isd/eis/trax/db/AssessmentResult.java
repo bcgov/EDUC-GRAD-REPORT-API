@@ -17,8 +17,6 @@
  */
 package ca.bc.gov.educ.isd.eis.trax.db;
 
-import java.util.List;
-
 /**
  * Container class for information pertaining to a student's assessment for a
  * particular session.
@@ -34,4 +32,14 @@ public interface AssessmentResult extends TRAXData {
     public int getAssessmentProficiencyScore();
 
     public String getAssessmentSession();
+
+    public String getAssessmentName();
+
+    public String getRequirementMet();
+
+    public String getSpecialCase();
+
+    public String getExceededWrites();
+
+    public String getAssessementSession();
 }

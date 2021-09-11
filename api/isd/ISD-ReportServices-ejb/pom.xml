@@ -228,7 +228,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- These are the default configurations: -->
                     <compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
                     <sourceDirectory>src/main/resources/reports</sourceDirectory>
                     <outputDirectory>${project.build.directory}/classes/reports</outputDirectory>

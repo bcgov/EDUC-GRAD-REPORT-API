@@ -42,6 +42,11 @@ public class NumeracyAssessmentResultImpl implements NumAssessmentResult {
     private String studentNumber;
     private String assessmentCode;
     private int assessmentProficiencyScore;
+    private String assessmentName;
+    private String assessementSession;
+    private String requirementMet;
+    private String specialCase;
+    private String exceededWrites;
 
     private int assessmentTotalSelectedResponse;
     private int studentAssessmentTotalSelectedResponse;
@@ -55,7 +60,24 @@ public class NumeracyAssessmentResultImpl implements NumAssessmentResult {
     private final List<Integer> assessmentExtendedResponseValues = new ArrayList<>();
     private final List<Integer> assessmentExtendedResponseTotals = new ArrayList<>();
 
-    private String assessementSession;
+    public NumeracyAssessmentResultImpl(
+            final String studentNumber,
+            final String assessmentName,
+            final String assessmentCode,
+            final String assessmentSession,
+            final String requirementMet,
+            final String specialCase,
+            final String exceededWrites,
+            final BigDecimal assessmentProficiencyScore) {
+        setAssessmentName(assessmentName);
+        setStudentNumber(studentNumber);
+        setAssessmentCode(assessmentCode);
+        setAssessmentSession(assessmentSession);
+        setRequirementMet(requirementMet);
+        setSpecialCase(specialCase);
+        setExceededWrites(exceededWrites);
+        setAssessmentProficiencyScore(assessmentProficiencyScore);
+    }
 
     public NumeracyAssessmentResultImpl(
             final String studentNumber,
@@ -141,6 +163,31 @@ public class NumeracyAssessmentResultImpl implements NumAssessmentResult {
     }
 
     @Override
+    public String getAssessmentName() {
+        return assessmentName;
+    }
+
+    @Override
+    public String getRequirementMet() {
+        return requirementMet;
+    }
+
+    @Override
+    public String getSpecialCase() {
+        return specialCase;
+    }
+
+    @Override
+    public String getExceededWrites() {
+        return exceededWrites;
+    }
+
+    @Override
+    public String getAssessementSession() {
+        return assessementSession;
+    }
+
+    @Override
     public int getAssessmentTotalSelectedResponse() {
         return assessmentTotalSelectedResponse;
     }
@@ -196,6 +243,22 @@ public class NumeracyAssessmentResultImpl implements NumAssessmentResult {
 
     private void setAssessmentCode(String assessmentCode) {
         this.assessmentCode = nullSafe(assessmentCode);
+    }
+
+    private void setAssessmentName(String assessmentName) {
+        this.assessmentName = assessmentName;
+    }
+
+    private void setRequirementMet(String requirementMet) {
+        this.requirementMet = requirementMet;
+    }
+
+    private void setSpecialCase(String specialCase) {
+        this.specialCase = specialCase;
+    }
+
+    private void setExceededWrites(String exceededWrites) {
+        this.exceededWrites = exceededWrites;
     }
 
     private void setAssessmentProficiencyScore(BigDecimal assessmentProficiencyScore) {

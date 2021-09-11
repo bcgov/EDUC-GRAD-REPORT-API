@@ -3,6 +3,8 @@ package ca.bc.gov.educ.grad.dao;
 import ca.bc.gov.educ.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.eis.trax.db.*;
+import ca.bc.gov.educ.isd.exam.Assessment;
+import ca.bc.gov.educ.isd.exam.AssessmentResult;
 import ca.bc.gov.educ.isd.grad.NonGradReason;
 import ca.bc.gov.educ.isd.school.School;
 import ca.bc.gov.educ.isd.student.Student;
@@ -13,11 +15,13 @@ import ca.bc.gov.educ.isd.traxadaptor.dao.impl.*;
 import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranDemogEntity;
 import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranNongradEntity;
 import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranNongradEntityPK;
+import ca.bc.gov.educ.isd.traxadaptor.impl.NumeracyAssessmentResultImpl;
 import ca.bc.gov.educ.isd.traxadaptor.impl.StudentDemographicImpl;
 import ca.bc.gov.educ.isd.traxadaptor.impl.StudentInfoImpl;
 import ca.bc.gov.educ.isd.traxadaptor.impl.TranscriptCourseImpl;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -300,8 +304,22 @@ public class GradToIsdDataConvertBean {
     }
 
     public List<NumAssessmentResult> getAssessmentCourses(ReportData reportData) {
+        StudentInfo studentInfo = getStudentInfo(reportData);
         List<NumAssessmentResult> result = new ArrayList<>();
-        //TODO: populate the collection
+        Assessment assessment = reportData.getAssessment();
+        for(AssessmentResult r: assessment.getResults()) {
+            NumAssessmentResult numAssessmentResult = new NumeracyAssessmentResultImpl(
+                    studentInfo.getPen(),
+                    r.getAssessmentName(),
+                    r.getAssessmentCode(),
+                    r.getAssessmentSession(),
+                    r.getRequirementMet(),
+                    r.getSpecialCase(),
+                    r.getExceededWrites(),
+                    BigDecimal.valueOf(r.getAssessmentProficiencyScore())
+            );
+            result.add(numAssessmentResult);
+        }
         return result;
     }
 }

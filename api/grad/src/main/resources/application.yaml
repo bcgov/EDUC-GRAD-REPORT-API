@@ -81,3 +81,7 @@ springdoc:
     operationsSorter: alpha
 
 #Endpoint properties
+endpoint:
+  grad-report-api:
+    get-signature-by-code:
+      url: https://educ-grad-report-api-main-77c02f-tools.apps.silver.devops.gov.bc.ca/api/v1/signatures

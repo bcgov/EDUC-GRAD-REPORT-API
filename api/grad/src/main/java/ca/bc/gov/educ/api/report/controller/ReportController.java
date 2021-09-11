@@ -36,7 +36,7 @@ public class ReportController extends BaseController {
     @Operation(summary = "Generate Student Achievement Report", description = "Generate Student Achievement Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity getStudentAchievementReport(@RequestBody GenerateReportRequest report) {
-        logger.debug("getStudentAchievementReportCDogs");
+        logger.debug("getStudentAchievementReport");
         logRequest();
         return reportService.getStudentAchievementReport(report);
     }
@@ -46,7 +46,7 @@ public class ReportController extends BaseController {
     @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity getStudentTranscriptReport(@RequestBody GenerateReportRequest report) {
-        logger.debug("getStudentTranscriptReportCDogs");
+        logger.debug("getStudentTranscriptReport");
         logRequest();
         return reportService.getStudentTranscriptReport(report);
     }

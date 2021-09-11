@@ -43,7 +43,7 @@ pipeline{
       JOB_NAME = 'main'
       TAG = 'dev'
 
-      APP_NAME = 'grad-report-api'
+      APP_NAME = 'GRAD-Report-api'
       APP_DOMAIN = 'apps.silver.devops.gov.bc.ca'
 
       SOURCE_REPO_RAW = 'https://github.com/${OWNER}/${REPO_NAME}/main'
@@ -87,7 +87,7 @@ pipeline{
       steps {
         script {
           openshift.withCluster() {
-            openshift.selector("bc", "${REPO_NAME}-${JOB_NAME}").startBuild("--from-file=./api/target/${APP_NAME}-${VERSION}.jar", "--wait")
+            openshift.selector("bc", "${REPO_NAME}-${JOB_NAME}").startBuild("--from-file=./api/grad/target/${APP_NAME}-${VERSION}.jar", "--wait")
           }
         }
       }
