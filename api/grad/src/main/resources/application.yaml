@@ -11,7 +11,7 @@ spring:
     enabled: false
   datasource:
     hikari:
-      pool-name: grad-report-api-cp
+      pool-name: educ-grad-report-api-cp
       maximum-pool-size: ${MAXIMUM_POOL_SIZE}
       connection-timeout: ${CONNECTION_TIMEOUT}
       max-lifetime: ${MAX_LIFETIME}
@@ -82,6 +82,6 @@ springdoc:
 
 #Endpoint properties
 endpoint:
-  grad-report-api:
+  educ-grad-report-api:
     get-signature-by-code:
       url: https://educ-grad-report-api-main-77c02f-tools.apps.silver.devops.gov.bc.ca/api/v1/signatures
