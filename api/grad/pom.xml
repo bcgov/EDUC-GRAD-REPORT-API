@@ -10,9 +10,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>GRAD-Report-api</artifactId>
+    <artifactId>educ-grad-report-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>GRAD-Report-api</name>
+    <name>educ-grad-report-api</name>
     <packaging>jar</packaging>
 
     <description>GRAD Report Services Module</description>

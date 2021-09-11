@@ -19,7 +19,7 @@ public abstract class BaseController {
     private static final String CLASS_NAME = BaseController.class.getName();
     private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
 
-    @Value("${endpoint.grad-report-api.get-signature-by-code.url}")
+    @Value("${endpoint.educ-grad-report-api.get-signature-by-code.url}")
     String signatureImageUrlProperty;
 
     protected void logRequest() {
