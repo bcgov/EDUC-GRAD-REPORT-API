@@ -1,0 +1,1 @@
+java -classpath "ojdbc8-12.2.0.1.jar;" BackupTransactDataUtils jdbc:oracle:thin:<SRC_SCHEMA_USER>/<SCHEMA_PASSWORD>@<HOSTNAME>:<PORT>/<SERVICE_NAME> jdbc:oracle:thin:<TRG_SCHEMA_USER>/<PASSWORD>@<HOSTNAME>:<PORT>/<SERVICE_NAME> <SOURCE_TABLES>
