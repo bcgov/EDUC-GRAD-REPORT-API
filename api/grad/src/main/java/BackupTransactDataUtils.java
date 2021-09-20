@@ -1,3 +1,9 @@
+import oracle.jdbc.OracleBlob;
+import oracle.jdbc.OracleClob;
+import oracle.jdbc.OraclePreparedStatement;
+
+import java.io.BufferedReader;
+import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +74,7 @@ public class BackupTransactDataUtils {
                 }
                 loadDataSql.deleteCharAt(loadDataSql.length() - 1);
                 loadDataSql.append(" from dual ");
-                PreparedStatement insertDataPstm = trgConn.prepareStatement(loadDataSql.toString());
+                OraclePreparedStatement insertDataPstm = (OraclePreparedStatement)trgConn.prepareStatement(loadDataSql.toString());
                 for(int i = 1; i <= loadDataMd.getColumnCount(); i ++) {
                     String columnType = loadDataMd.getColumnTypeName(i);
                     switch (columnType) {
@@ -79,7 +85,36 @@ public class BackupTransactDataUtils {
                             insertDataPstm.setBytes(i, loadDataRs.getBytes(i));
                             break;
                         case "CLOB":
-                            insertDataPstm.setClob(i, loadDataRs.getClob(i));
+                            OracleClob clob = (OracleClob)loadDataRs.getClob(i);
+                            String clobString;
+                            if(clob == null) {
+                                clobString = "";
+                            } else {
+                                StringBuilder sb = new StringBuilder();
+                                try {
+                                    Reader reader = clob.getCharacterStream();
+                                    BufferedReader br = new BufferedReader(reader);
+                                    String line;
+                                    while (null != (line = br.readLine())) {
+                                        sb.append(line);
+                                    }
+                                    br.close();
+                                } catch (Exception e) {
+                                    System.err.println(e.getMessage());
+                                }
+                                clobString = sb.toString();
+                            }
+                            insertDataPstm.setStringForClob(i, clobString);
+                            break;
+                        case "BLOB":
+                            OracleBlob blob = (OracleBlob)loadDataRs.getBlob(i);
+                            byte[] blobBytes;
+                            if(blob == null) {
+                                blobBytes = new byte[0];
+                            } else {
+                                blobBytes = blob.getBytes(0, (int)blob.length());
+                            }
+                            insertDataPstm.setBytes(i, blobBytes);
                             break;
                         case "DATE":
                             insertDataPstm.setDate(i, loadDataRs.getDate(i));
@@ -98,8 +133,12 @@ public class BackupTransactDataUtils {
                 insertDataPstm.close();
             }
             getDataPstm.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
+            try {
+                trgConn.rollback();
+            } catch (SQLException ex) {
+                //IGNORE
+            }
             System.err.println(e.getMessage());
         } finally {
             try {
@@ -117,7 +156,7 @@ public class BackupTransactDataUtils {
         String[] srcTables = { "STUDENT_CERTIFICATE" };
         if(args == null || args.length < 3) {
             System.out.println("Parameters required:");
-            System.out.println("java -classpath <path to oracle driver jar> BackupTransactDataUtils.class sourceUrl targetUrl sourceTables ...");
+            System.out.println("java -classpath <path to oracle driver jar> BackupTransactDataUtils sourceUrl targetUrl sourceTables ...");
             System.out.println("sourceUrl and targetUrl format: jdbc:oracle:thin:<USERNAME>/<PASSWORD>@<HOSTNAME>:<PORT>/<SERVICE_NAME>");
             return;
         } else {
@@ -136,7 +175,7 @@ public class BackupTransactDataUtils {
         }
 
         String sourceSchema = sourceUrl.substring("jdbc:oracle:thin:".length(), sourceUrl.indexOf("/", "jdbc:oracle:thin:".length()));
-        String targetSchema = targetUrl.substring("jdbc:oracle:thin:".length(), targetUrl.indexOf("/", "jdbc:oracle:thin:".length()));;
+        String targetSchema = targetUrl.substring("jdbc:oracle:thin:".length(), targetUrl.indexOf("/", "jdbc:oracle:thin:".length()));
 
         System.out.println("Migration with parameters:");
         System.out.println("sourceUrl = " + sourceUrl);

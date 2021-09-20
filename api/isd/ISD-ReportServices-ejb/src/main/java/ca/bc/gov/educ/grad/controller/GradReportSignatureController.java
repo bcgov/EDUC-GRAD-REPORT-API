@@ -18,6 +18,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping(EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)
@@ -55,6 +57,17 @@ public class GradReportSignatureController extends BaseController {
         logger.debug("<{}.{}", _m, CLASS_NAME);
         logRequest();
         return gradReportSignatureService.getSignatureImageByCode(signCode);
+    }
+
+    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGES)
+    @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
+    @Operation(summary = "Return Signature Images", description = "Retrieve Signature Objects", tags = { "Signature Images" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public List<GragReportSignatureImage> getSignatureImages() {
+        String _m = String.format("getSignatureImages()");
+        logger.debug("<{}.{}", _m, CLASS_NAME);
+        logRequest();
+        return gradReportSignatureService.getSignatureImages();
     }
 
     @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_IMAGE)
