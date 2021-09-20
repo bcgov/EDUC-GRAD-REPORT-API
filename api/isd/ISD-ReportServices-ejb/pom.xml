@@ -211,6 +211,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -238,28 +242,6 @@
                     <failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
                     <sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5</version>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>1</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>com.oracle.jdbc</groupId>
-                            <artifactId>ojdbc8</artifactId>
-                            <version>12.2.0.1</version>
-                            <packaging>jar</packaging>
-                            <file>src/main/resources/lib/ojdbc8-12.2.0.1.jar</file>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

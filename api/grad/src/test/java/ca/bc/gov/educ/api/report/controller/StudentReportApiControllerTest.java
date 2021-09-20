@@ -33,6 +33,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -92,6 +93,30 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
 
         LOG.debug(">extractSignatureImageTest");
+    }
+
+    @Test
+    public void getSignatureImagesTest() throws Exception {
+        LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+        byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
+        assertNotNull(imageBinary);
+        assertNotEquals(0, imageBinary.length);
+        LOG.debug("Test image loaded {} bytes", imageBinary.length);
+
+        String signatureCode = "MOE.png";
+        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+        signatureImage.setGradReportSignatureCode(signatureCode);
+        signatureImage.setSignatureContent(imageBinary);
+        signatureImage.setSignatureId(UUID.randomUUID());
+
+        List<GragReportSignatureImage> signatureImages = new ArrayList();
+        signatureImages.add(signatureImage);
+
+        Mockito.when(reportSignatureService.getSignatureImages()).thenReturn(signatureImages);
+        reportSignatureController.getSignatureImages();
+        Mockito.verify(reportSignatureService).getSignatureImages();
+
+        LOG.debug(">getSignatureImagesTest");
     }
 
     @Test
