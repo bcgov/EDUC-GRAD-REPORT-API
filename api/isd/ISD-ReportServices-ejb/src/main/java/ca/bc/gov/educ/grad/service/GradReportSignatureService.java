@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,6 +46,19 @@ public class GradReportSignatureService {
         GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
         log.debug(">{}.{}", _m, CLASS_NAME);
         return  signatureImage;
+    }
+
+    @Transactional
+    public List<GragReportSignatureImage> getSignatureImages() {
+        String _m = String.format("getSignatureImages()");
+        log.debug("<{}.{}", _m, CLASS_NAME);
+        List<GragReportSignatureImageEntity> entities = signatureImageRepository.findAll();
+        List<GragReportSignatureImage> result = new ArrayList();
+        for(GragReportSignatureImageEntity entity: entities) {
+            GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+            result.add(signatureImage);
+        }
+        return result;
     }
 
     @Transactional
