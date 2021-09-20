@@ -15,10 +15,10 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class StudentReportApiServiceTests extends GradReportBaseTest {
 
@@ -34,6 +34,29 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Before
 	public void init() throws Exception {
 
+	}
+
+	@Test
+	public void getSignatureImagesTest() throws Exception {
+		LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
+		assertNotNull(imageBinary);
+		assertNotEquals(0, imageBinary.length);
+		LOG.debug("Test image loaded {} bytes", imageBinary.length);
+
+		String signatureCode = "MOE.png";
+		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+		signatureImage.setGradReportSignatureCode(signatureCode);
+		signatureImage.setSignatureContent(imageBinary);
+		signatureImage.setSignatureId(UUID.randomUUID());
+
+		reportSignatureService.saveSignatureImage(signatureImage);
+
+		List<GragReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages();
+		assertNotNull(signatureImages);
+		assertTrue(signatureImages.size() > 0);
+
+		LOG.debug(">getSignatureImagesTest");
 	}
 
 	@Test
