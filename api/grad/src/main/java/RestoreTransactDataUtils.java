@@ -3,6 +3,8 @@ import oracle.jdbc.OracleBlob;
 import oracle.jdbc.OracleClob;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class RestoreTransactDataUtils {
 
         String deleteDataSql = "delete from " + table;
         String getDataSql = "select * from " + table;
-        String insertDataSql = "insert into " + table + " select ";
+        String insertDataSql = "insert into " + table;
 
         //delete data from target table
         try {
@@ -47,28 +49,56 @@ public class RestoreTransactDataUtils {
             ResultSet putDataRs = putDataPstm.executeQuery();
             ResultSetMetaData putDataMd = putDataRs.getMetaData();
 
+            ResultSetMetaData dataMd = null;
+
             while(getDataRs.next()) {
                 StringBuilder loadDataSql = new StringBuilder(insertDataSql);
+                loadDataSql.append(" ( ");
                 int getRowCount = getDataMd.getColumnCount();
                 int putRowCount = putDataMd.getColumnCount();
+                int rowCount = 0;
+                if(getRowCount <= putRowCount) {
+                    for(int i = 1; i <= getRowCount; i ++) {
+                        String colName = getDataMd.getColumnName(i);
+                        loadDataSql.append(colName).append(",");
+                    }
+                    rowCount = getRowCount;
+                    dataMd = getDataMd;
+                } else if(getRowCount > putRowCount) {
+                    for(int i = 1; i <= putRowCount; i ++) {
+                        String colName = putDataMd.getColumnName(i);
+                        loadDataSql.append(colName).append(",");
+                    }
+                    rowCount = putRowCount;
+                    dataMd = putDataMd;
+                }
+                loadDataSql.deleteCharAt(loadDataSql.length() - 1);
+                loadDataSql.append(" ) VALUES ( ");
                 if(getRowCount <= putRowCount) {
                     for(int i = 1; i <= getRowCount; i ++) {
                         String colName = getDataMd.getColumnName(i);
                         loadDataSql.append(":" + colName).append(",");
                     }
+                    rowCount = getRowCount;
+                    dataMd = getDataMd;
                 } else if(getRowCount > putRowCount) {
                     for(int i = 1; i <= putRowCount; i ++) {
                         String colName = putDataMd.getColumnName(i);
                         loadDataSql.append(":" + colName).append(",");
                     }
+                    rowCount = putRowCount;
+                    dataMd = putDataMd;
                 }
                 loadDataSql.deleteCharAt(loadDataSql.length() - 1);
-                loadDataSql.append(" from dual ");
+                loadDataSql.append(" ) ");
                 NamedParameterStatement insertDataPstm = new NamedParameterStatement(trgConn, loadDataSql.toString());
-                for(int i = 1; i <= putDataMd.getColumnCount(); i ++) {
-                    String columnType = putDataMd.getColumnTypeName(i);
-                    String columnName = putDataMd.getColumnName(i);
+                for(int i = 1; i <= rowCount; i ++) {
+                    String columnType = dataMd.getColumnTypeName(i);
+                    String columnName = dataMd.getColumnName(i);
                     switch (columnType) {
+                        case "CHAR":
+                            insertDataPstm.setString(columnName, getDataRs.getString(columnName));
+                            break;
                         case "VARCHAR2":
                             insertDataPstm.setString(columnName, getDataRs.getString(columnName));
                             break;
@@ -103,9 +133,10 @@ public class RestoreTransactDataUtils {
                             if(blob == null) {
                                 blobBytes = new byte[0];
                             } else {
-                                blobBytes = blob.getBytes(0, (int)blob.length());
+                                blobBytes = blob.getBytes(1, (int)blob.length());
                             }
-                            insertDataPstm.setBytes(columnName, blobBytes);
+                            InputStream is = new ByteArrayInputStream(blobBytes);
+                            insertDataPstm.setBlob(columnName, is);
                             break;
                         case "DATE":
                             insertDataPstm.setDate(columnName, getDataRs.getDate(columnName));
