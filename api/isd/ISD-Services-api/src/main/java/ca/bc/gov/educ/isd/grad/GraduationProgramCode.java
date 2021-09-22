@@ -76,6 +76,15 @@ public enum GraduationProgramCode implements Serializable {
     @XmlEnumValue("SCCP")
     @JsonProperty("SCCP")
     PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
+    @XmlEnumValue("2004-PF")
+    @JsonProperty("2004-PF")
+    PROGRAM_2004_PF("2004", "2004 Programme Francophone", 80),
+    @XmlEnumValue("2004-EN")
+    @JsonProperty("2004-EN")
+    PROGRAM_2004_EN("2004-EN", "Graduation Program 2004", 80),
+    @XmlEnumValue("NOPROG")
+    @JsonProperty("NOPROG")
+    PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
     @XmlEnumValue("2018-PF")
     @JsonProperty("2018-PF")
     PROGRAM_2018_PF("2018-PF", "2018 Programme Francophone", 80);

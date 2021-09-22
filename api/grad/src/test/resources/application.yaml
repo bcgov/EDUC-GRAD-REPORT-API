@@ -4,12 +4,12 @@ spring:
     enabled: false
   datasource:
     hikari:
-      pool-name: grad-report-api-cp
+      pool-name: educ-grad-report-api-cp
       maximum-pool-size: 5
       connection-timeout: 6000
       max-lifetime: 600000
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:grad-report-api-h2db;MODE=Oracle
+    url: jdbc:h2:mem:educ-grad-report-api-h2db;MODE=Oracle
     username: user
     password: password
   jpa:
@@ -70,6 +70,6 @@ springdoc:
 #Endpoint properties
 #Endpoint properties
 endpoint:
-  grad-report-api:
+  educ-grad-report-api:
     get-signature-by-code:
       url:
