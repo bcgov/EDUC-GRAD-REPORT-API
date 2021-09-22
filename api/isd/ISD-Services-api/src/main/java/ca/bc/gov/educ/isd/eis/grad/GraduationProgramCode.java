@@ -47,6 +47,7 @@ public enum GraduationProgramCode {
     PROGRAM_2018_PF("2018-PF", "2018 Programme Francophone", 80),
     PROGRAM_2004_EN("2004-EN", "Graduation Program 2004", 80),
     PROGRAM_2004_PF("2004-PF", "2004 Programme Francophone", 80),
+    PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
     PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0);
 
     private final String code;
