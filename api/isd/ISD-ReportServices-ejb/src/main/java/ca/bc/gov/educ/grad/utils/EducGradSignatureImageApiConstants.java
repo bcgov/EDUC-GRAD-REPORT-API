@@ -18,6 +18,7 @@ public class EducGradSignatureImageApiConstants {
     public static final String GET_SIGNATURE_IMAGE_BY_CODE = "/{signCode}";
     public static final String SAVE_SIGNATURE_IMAGE = "/save";
     public static final String GET_SIGNATURE_IMAGE = "/get" + GET_SIGNATURE_IMAGE_BY_CODE;
+    public static final String GET_SIGNATURE_IMAGES = "/get/all";
 
     //Default Date format constants
     public static final String DEFAULT_CREATED_BY = "GradSignatureImagesAPI";
