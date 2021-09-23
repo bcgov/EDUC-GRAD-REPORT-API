@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.dao;
 
 import oracle.jdbc.OraclePreparedStatement;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.*;
 
@@ -197,6 +198,12 @@ public class NamedParameterStatement {
         }
     }
 
+    public void setBlob(String columnName, InputStream is) throws SQLException {
+        int[] indexes = getIndexes(columnName);
+        for (int i = 0; i < indexes.length; i++) {
+            statement.setBinaryStream(indexes[i], is);
+        }
+    }
 
     /**
      * Sets a parameter.
@@ -343,5 +350,6 @@ public class NamedParameterStatement {
     public int[] executeBatch() throws SQLException {
         return statement.executeBatch();
     }
+
 }
 
