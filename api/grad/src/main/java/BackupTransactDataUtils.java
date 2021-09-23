@@ -3,6 +3,8 @@ import oracle.jdbc.OracleClob;
 import oracle.jdbc.OraclePreparedStatement;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class BackupTransactDataUtils {
                 "end;";
         String extractDdlSql = "SELECT dbms_metadata.get_ddl('TABLE',?) FROM dual";
         String getDataSql = "select * from " + table;
-        String insertDataSql = "insert into " + table + " select ";
+        String insertDataSql = "insert into " + table;
 
         //drop target table if exists
         try {
@@ -67,17 +69,28 @@ public class BackupTransactDataUtils {
             PreparedStatement getDataPstm = srcConn.prepareStatement(getDataSql);
             ResultSet loadDataRs = getDataPstm.executeQuery();
             ResultSetMetaData loadDataMd = loadDataRs.getMetaData();
+            int colsCount = loadDataMd.getColumnCount();
             while(loadDataRs.next()) {
                 StringBuilder loadDataSql = new StringBuilder(insertDataSql);
-                for(int i = 1; i <= loadDataMd.getColumnCount(); i ++) {
+                loadDataSql.append(" ( ");
+                for(int i = 1; i <= colsCount; i ++) {
+                    String colName = loadDataMd.getColumnName(i);
+                    loadDataSql.append(colName).append(",");
+                }
+                loadDataSql.deleteCharAt(loadDataSql.length() - 1);
+                loadDataSql.append(" ) VALUES ( ");
+                for(int i = 1; i <= colsCount; i ++) {
                     loadDataSql.append("?").append(",");
                 }
                 loadDataSql.deleteCharAt(loadDataSql.length() - 1);
-                loadDataSql.append(" from dual ");
+                loadDataSql.append(" ) ");
                 OraclePreparedStatement insertDataPstm = (OraclePreparedStatement)trgConn.prepareStatement(loadDataSql.toString());
                 for(int i = 1; i <= loadDataMd.getColumnCount(); i ++) {
                     String columnType = loadDataMd.getColumnTypeName(i);
                     switch (columnType) {
+                        case "CHAR":
+                            insertDataPstm.setString(i, loadDataRs.getString(i));
+                            break;
                         case "VARCHAR2":
                             insertDataPstm.setString(i, loadDataRs.getString(i));
                             break;
@@ -112,9 +125,10 @@ public class BackupTransactDataUtils {
                             if(blob == null) {
                                 blobBytes = new byte[0];
                             } else {
-                                blobBytes = blob.getBytes(0, (int)blob.length());
+                                blobBytes = blob.getBytes(1, (int)blob.length());
                             }
-                            insertDataPstm.setBytes(i, blobBytes);
+                            InputStream is = new ByteArrayInputStream(blobBytes);
+                            insertDataPstm.setBlob(i, is);
                             break;
                         case "DATE":
                             insertDataPstm.setDate(i, loadDataRs.getDate(i));
