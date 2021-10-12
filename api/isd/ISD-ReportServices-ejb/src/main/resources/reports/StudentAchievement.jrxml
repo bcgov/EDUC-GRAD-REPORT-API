@@ -125,7 +125,7 @@
 			</textField>
 			<textField>
 				<reportElement x="180" y="30" width="180" height="15" uuid="5d25e154-8d42-41cd-9b06-da976825305f"/>
-				<textFieldExpression><![CDATA["Gender : " + $F{student.gender}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Gender: " + $F{student.gender}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="360" y="30" width="180" height="15" uuid="ebe10b8f-3d26-41bf-a0cf-4edbf884f2d9"/>
