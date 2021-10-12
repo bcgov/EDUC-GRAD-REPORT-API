@@ -81,7 +81,7 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    private StudentDemographic  getSingleStudentDemog(ReportData reportData) {
+    public StudentDemographic  getSingleStudentDemog(ReportData reportData) {
         StudentMaster studentMaster = getStudentMaster(reportData);
         TabSchool tabSchool = getTabSchool(reportData);
 

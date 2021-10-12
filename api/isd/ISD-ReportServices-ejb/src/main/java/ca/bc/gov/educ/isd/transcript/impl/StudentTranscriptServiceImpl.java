@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.transcript.impl;
 
 import ca.bc.gov.educ.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.common.DataException;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
@@ -120,6 +121,9 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
 
     @Autowired
     private ReportService reportService;
+
+    @Autowired
+    GradToIsdDataConvertBean gradtoIsdDataConvertBean;
 
     /**
      * Creates the student's official transcript as a PDF (no other formats are
@@ -236,9 +240,21 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         LOG.entering(CLASSNAME, _m);
 
         Integer numberTranscriptCourses = 0;
+
+        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
         try {
-            numberTranscriptCourses = traxAdapter.countCourses_Transcript(pen);
-        } catch (EISException ex) {
+            final List<TranscriptCourse> courses = gradtoIsdDataConvertBean.getTranscriptCources(reportData);
+            numberTranscriptCourses = courses.size();
+        } catch (Exception ex) {
             String msg = "Failed to access TRAX transcript course data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
             LOG.throwing(CLASSNAME, _m, dex);
@@ -404,8 +420,18 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
 
         final StudentDemographic studentDemographic;
 
+        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
         try {
-            studentDemographic = traxAdapter.readStudent_Demographic(pen);
+            studentDemographic = gradtoIsdDataConvertBean.getSingleStudentDemog(reportData);
 
             LOG.log(Level.FINER,
                     "Retrieved student demographic from TRAX for PEN: {0}", pen);
@@ -421,7 +447,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                         new Object[]{studentDemographic.getPen(), studentDemographic.getFirstName(), studentDemographic.getLastName()});
             }
 
-        } catch (EISException ex) {
+        } catch (Exception ex) {
             String msg = "Failed to access TRAX transcript data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
             LOG.throwing(CLASSNAME, _m, dex);

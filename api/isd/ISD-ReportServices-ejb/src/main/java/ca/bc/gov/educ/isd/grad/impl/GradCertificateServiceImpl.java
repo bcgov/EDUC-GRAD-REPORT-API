@@ -21,12 +21,13 @@ import ca.bc.gov.educ.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.cert.Certificate;
-import ca.bc.gov.educ.isd.common.*;
+import ca.bc.gov.educ.isd.common.BusinessProcessException;
+import ca.bc.gov.educ.isd.common.BusinessReport;
+import ca.bc.gov.educ.isd.common.Constants;
+import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.common.party.Identifier;
 import ca.bc.gov.educ.isd.common.party.address.Address;
-import ca.bc.gov.educ.isd.eis.EISException;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
-import ca.bc.gov.educ.isd.eis.trax.db.TRAXAdapter;
 import ca.bc.gov.educ.isd.grad.GradCertificateReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
 import ca.bc.gov.educ.isd.reports.*;
@@ -75,9 +76,6 @@ public class GradCertificateServiceImpl
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     @Autowired
-    private TRAXAdapter traxAdapter;
-
-    @Autowired
     private ReportService reportService;
 
     @Autowired
@@ -110,7 +108,7 @@ public class GradCertificateServiceImpl
                 "Confirmed the user is a student and retrieved the PEN.");
 
         // access TRAX adaptor to obtain required data for PEN
-        final StudentDemographic studentData = readStudentDemog(penId); //validated
+        final StudentDemographic studentData = gradtoIsdDataConvertBean.getSingleStudentDemog(reportData); //validated
         if (studentData == null) {
             final String msg = "Failed to find student demographic information in TRAX for PEN: " + penId;
             final DomainServiceException dse = new DomainServiceException(msg);
@@ -174,41 +172,6 @@ public class GradCertificateServiceImpl
     @Override
     public List<String> listTrackingNo(String orderXRef) throws DomainServiceException {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     * Call TRAX adaptor to perform a read of the student demographics.
-     *
-     * @param pen
-     * @return TRAX StudentDemographic
-     * @throws DataException
-     */
-    private StudentDemographic readStudentDemog(final String pen) throws DataException {
-        final String methodName = "readStatic(String)";
-        LOG.entering(CLASSNAME, methodName, pen);
-
-        final StudentDemographic studentInfo;
-        try {
-            studentInfo = traxAdapter.readStudent_Demographic(pen);
-
-            LOG.log(Level.FINER, "Retrieved student demographic data from TRAX for PEN: {0}", pen);
-
-            if (studentInfo != null) {
-                LOG.log(Level.FINEST, "Retrieved student:");
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
-            }
-        } catch (final EISException ex) {
-            final String msg = "Failed to access TRAX student demographic data for student with PEN: ".concat(
-                    pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
-
-        LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, methodName);
-        return studentInfo;
     }
 
     /**

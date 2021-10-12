@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.achievement.impl;
 
 import ca.bc.gov.educ.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.achievement.Achievement;
 import ca.bc.gov.educ.isd.achievement.AchievementResult;
@@ -128,6 +129,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
     @Autowired
     private ReportService reportService;
+
+    @Autowired
+    GradToIsdDataConvertBean gradtoIsdDataConvertBean;
 
     /**
      * Creates the student's official achievement as a PDF (no other formats are
@@ -433,8 +437,18 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         final StudentDemographic studentDemographic;
 
+        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
         try {
-            studentDemographic = traxAdapter.readStudent_Demographic(pen);
+            studentDemographic = gradtoIsdDataConvertBean.getSingleStudentDemog(reportData);
 
             LOG.log(Level.FINER,
                     "Retrieved student demographic from TRAX for PEN: {0}", pen);
@@ -450,7 +464,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                         new Object[]{studentDemographic.getPen(), studentDemographic.getFirstName(), studentDemographic.getLastName()});
             }
 
-        } catch (EISException ex) {
+        } catch (Exception ex) {
             String msg = "Failed to access TRAX achievement data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
             LOG.throwing(CLASSNAME, _m, dex);
@@ -949,7 +963,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 school,
                 logo,
                 achievement,
-                null,
+                assessment,
                 program,
                 nonGradReasons,
                 gradMessage,

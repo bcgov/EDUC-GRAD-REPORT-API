@@ -63,6 +63,11 @@ public final class Student extends BusinessEntity {
     private String middleNames;
 
     /**
+     * Student''s gender
+     */
+    private String gender;
+
+    /**
      * Grade level of a student. Used in an XML but not paper transcript.
      */
     private String grade;
@@ -196,6 +201,14 @@ public final class Student extends BusinessEntity {
      */
     public String getMiddleNames() {
         return nullSafe(this.middleNames);
+    }
+
+    public String getGender() {
+        return nullSafe(this.gender);
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     /**
