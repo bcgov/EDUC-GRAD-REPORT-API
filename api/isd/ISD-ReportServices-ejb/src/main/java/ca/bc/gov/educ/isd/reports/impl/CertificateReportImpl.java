@@ -26,7 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.isd.reports.CertificateSubtype.DEFAULT;
-import static ca.bc.gov.educ.isd.reports.CertificateType.SCCP;
+import static ca.bc.gov.educ.isd.reports.CertificateType.SC;
 import static java.lang.Boolean.FALSE;
 import static java.util.Locale.CANADA_FRENCH;
 import static java.util.Locale.ENGLISH;
@@ -52,7 +52,7 @@ public final class CertificateReportImpl extends StudentReportImpl
      * Contains the student, school, issue date, and signature set.
      */
     private Certificate certificate;
-    private CertificateType certificateType = SCCP;
+    private CertificateType certificateType = SC;
     private CertificateSubtype certificateSubtype = DEFAULT;
 
     private Boolean independentSchool = FALSE;
@@ -252,7 +252,7 @@ public final class CertificateReportImpl extends StudentReportImpl
     }
 
     private boolean isSCCProgram() {
-        return isCertificateType(CertificateType.SCCP);
+        return isCertificateType(CertificateType.SC);
     }
 
     private boolean isFrenchProgram() {

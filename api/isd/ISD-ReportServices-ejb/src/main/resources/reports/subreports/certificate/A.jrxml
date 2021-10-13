@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
 <!-- 2016-08-24T11:15:07 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Adult" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="A" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\CertificateAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -39,7 +39,7 @@
 		<defaultValueExpression><![CDATA["independent"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_SUBTYPE_PREFIX" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBTYPE}.equalsIgnoreCase( "INDEPENDENT" ) ? $P{P_REPORT_SUBTYPE}.toUpperCase() + "_" : ""]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<field name="student.firstName" class="java.lang.String">
 		<fieldDescription><![CDATA[student.firstName]]></fieldDescription>
@@ -81,7 +81,7 @@
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "TITLE_Adult.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "TITLE_A.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</title>
@@ -108,7 +108,7 @@
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{certificate} ) )]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + $P{P_REPORT_SUBTYPE_PREFIX} + "HEADER_Adult.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "HEADER_A.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>

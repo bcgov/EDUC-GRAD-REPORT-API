@@ -17,10 +17,11 @@
  */
 package ca.bc.gov.educ.isd.ecommerce.catalogue;
 
-import static ca.bc.gov.educ.isd.common.Constants.CERTIFICATE_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.TRANSCRIPT_IDENTIFIER;
 import ca.bc.gov.educ.isd.reports.CertificateType;
 import ca.bc.gov.educ.isd.reports.TranscriptType;
+
+import static ca.bc.gov.educ.isd.common.Constants.CERTIFICATE_IDENTIFIER;
+import static ca.bc.gov.educ.isd.common.Constants.TRANSCRIPT_IDENTIFIER;
 
 /**
  * Represents item codes for catalog entities.
@@ -32,15 +33,15 @@ import ca.bc.gov.educ.isd.reports.TranscriptType;
  */
 public enum CatalogueItemCode {
 
-    CERTIFICATE_ADULT(CERTIFICATE_IDENTIFIER + "_" + CertificateType.ADULT.toString()),
-    CERTIFICATE_REGULAR(CERTIFICATE_IDENTIFIER + "_" + CertificateType.REGULAR.toString()),
-    CERTIFICATE_SCCP(CERTIFICATE_IDENTIFIER + "_" + CertificateType.SCCP.toString()),
+    CERTIFICATE_ADULT(CERTIFICATE_IDENTIFIER + "_" + CertificateType.A.toString()),
+    CERTIFICATE_REGULAR(CERTIFICATE_IDENTIFIER + "_" + CertificateType.E.toString()),
+    CERTIFICATE_SCCP(CERTIFICATE_IDENTIFIER + "_" + CertificateType.SC.toString()),
     TRANSCRIPT_ALL(TRANSCRIPT_IDENTIFIER + "_" + TranscriptType.ALL.toString()),
     /**
      * Indicates a regular certificate that is printed in French (not
      * necessarily a Francophone certificate).
      */
-    CERTIFICATE_REGULAR_FR(CERTIFICATE_IDENTIFIER + "_" + CertificateType.REGULAR.toString() + "_FR");
+    CERTIFICATE_REGULAR_FR(CERTIFICATE_IDENTIFIER + "_" + CertificateType.E.toString() + "_FR");
 
     private final String code;
     private boolean transcript;

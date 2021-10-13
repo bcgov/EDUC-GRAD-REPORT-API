@@ -32,9 +32,13 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public enum PaperType {
 
-    CERTIFICATE_SCCP("YED2"),
-    CERTIFICATE_ADULT("YEDB"),
-    CERTIFICATE_REGULAR("YEDR"),
+    CERTIFICATE_SC("YED2"),
+    CERTIFICATE_A("YEDB"),
+    CERTIFICATE_AI("YEDB"),
+    CERTIFICATE_EI("YEDR"),
+    CERTIFICATE_E("YEDR"),
+    CERTIFICATE_S("YEDR"),
+    CERTIFICATE_F("YEDR"),
     TRANSCRIPT("YED4");
 
     private final String code;

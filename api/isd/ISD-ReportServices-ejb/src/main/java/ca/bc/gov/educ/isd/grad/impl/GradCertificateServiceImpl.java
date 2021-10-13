@@ -56,7 +56,7 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.isd.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.isd.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.isd.grad.GraduationProgramCode.PROGRAM_SCCP;
-import static ca.bc.gov.educ.isd.reports.CertificateType.REGULAR;
+import static ca.bc.gov.educ.isd.reports.CertificateType.E;
 import static ca.bc.gov.educ.isd.reports.ReportFormat.PDF;
 import static ca.bc.gov.educ.isd.transcript.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static java.util.Locale.CANADA;
@@ -242,18 +242,18 @@ public class GradCertificateServiceImpl
             final String entityId,
             final Certificate certificate) throws DomainServiceException {
 
-        CertificateType rsRptType = CertificateType.REGULAR;
+        CertificateType rsRptType = CertificateType.E;
         final CertificateSubtype rsRptSubType;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
         if (certType.equals(Constants.SCCP_CERTIFICATE)) {
-            rsRptType = CertificateType.SCCP;
+            rsRptType = CertificateType.SC;
         }
 
         if (certType.equals(Constants.ENGLISH_DOGWOOD_ADULT)
                 || certType.equals(Constants.ENGLISH_DOGWOOD_ADULT_IND)) {
-            rsRptType = CertificateType.ADULT;
+            rsRptType = CertificateType.A;
         }
 
         if (certType.equals(Constants.ENGLISH_DOGWOOD_IND)
@@ -298,7 +298,7 @@ public class GradCertificateServiceImpl
 
         final GradCertificateReport gradCert = createReport(
                 student, school, entityId, certificate,
-                CANADA_FRENCH, REGULAR, rsRptSubType);
+                CANADA_FRENCH, E, rsRptSubType);
 
         return gradCert;
     }

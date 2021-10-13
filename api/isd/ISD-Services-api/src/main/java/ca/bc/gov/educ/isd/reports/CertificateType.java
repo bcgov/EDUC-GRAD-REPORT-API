@@ -30,9 +30,13 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public enum CertificateType {
 
-    ADULT("Adult", PaperType.CERTIFICATE_ADULT),
-    SCCP("SCCP", PaperType.CERTIFICATE_SCCP),
-    REGULAR("Regular", PaperType.CERTIFICATE_REGULAR);
+    A("A", PaperType.CERTIFICATE_A),
+    AI("AI", PaperType.CERTIFICATE_AI),
+    EI("EI", PaperType.CERTIFICATE_EI),
+    SC("SC", PaperType.CERTIFICATE_SC),
+    E("E", PaperType.CERTIFICATE_E),
+    S("S", PaperType.CERTIFICATE_S),
+    F("F", PaperType.CERTIFICATE_F);
 
     private String reportName;
     private PaperType paperType;

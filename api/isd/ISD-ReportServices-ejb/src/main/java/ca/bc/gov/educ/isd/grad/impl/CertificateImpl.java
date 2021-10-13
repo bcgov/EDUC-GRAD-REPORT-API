@@ -60,7 +60,7 @@ public class CertificateImpl implements Certificate, Serializable {
 
     @JsonDeserialize(as = CertificateOrderTypeImpl.class)
     public OrderType getOrderType() {
-        return orderType == null ? new CertificateOrderTypeImpl(CertificateType.REGULAR) : orderType;
+        return orderType == null ? new CertificateOrderTypeImpl(CertificateType.E) : orderType;
     }
 
     public void setOrderType(OrderType orderType) {

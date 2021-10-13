@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-24T11:15:07 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AI" pageWidth="792" pageHeight="612" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\CertificateAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<template><![CDATA[$P{P_REPORT_STYLES_PATH} + "CertificateAdult.jrtx"]]></template>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBREPORTS_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "subreports/certificate/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBTYPE" class="java.lang.String">
+		<parameterDescription><![CDATA["", "Independent", or "Francophone"]]></parameterDescription>
+		<defaultValueExpression><![CDATA["independent"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBTYPE_PREFIX" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<field name="student.firstName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.firstName]]></fieldDescription>
+	</field>
+	<field name="student.middleNames" class="java.lang.String">
+		<fieldDescription><![CDATA[student.middleNames]]></fieldDescription>
+	</field>
+	<field name="student.lastName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
+	</field>
+	<field name="certificate" class="ca.bc.gov.educ.isd.reports.data.impl.Certificate">
+		<fieldDescription><![CDATA[certificate]]></fieldDescription>
+	</field>
+	<variable name="V_ISSUE_DATE_FORMAT" class="java.text.DateFormat">
+		<variableExpression><![CDATA[new SimpleDateFormat("MMMMM yyyy", $P{REPORT_LOCALE})]]></variableExpression>
+		<initialValueExpression><![CDATA[new SimpleDateFormat("MMMMM yyyy", $P{REPORT_LOCALE})]]></initialValueExpression>
+	</variable>
+	<variable name="V_STUDENT_NAME" class="java.lang.String">
+		<variableExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="256">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<subreport>
+				<reportElement x="0" y="0" width="792" height="256" uuid="15504b1f-c942-4bc1-8191-8c1233826f97">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="P_REPORT_BASE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_STUDENT_NAME">
+					<subreportParameterExpression><![CDATA[$V{V_STUDENT_NAME}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "TITLE_AI.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="269">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<subreport>
+				<reportElement x="0" y="0" width="792" height="269" uuid="84e716fe-9bc4-4eb2-9b46-b800c720ee56">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<subreportParameter name="P_REPORT_BASE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_IMAGES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_IMAGES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_ISSUE_DATE_FORMAT">
+					<subreportParameterExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{certificate} ) )]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "HEADER_AI.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+</jasperReport>
