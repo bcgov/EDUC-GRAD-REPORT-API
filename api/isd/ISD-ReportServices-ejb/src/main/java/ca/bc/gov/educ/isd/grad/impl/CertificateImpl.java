@@ -39,7 +39,7 @@ public class CertificateImpl implements Certificate, Serializable {
     private static final long serialVersionUID = 2L;
 
     private Date issued;
-    private OrderType orderType;
+    private CertificateOrderTypeImpl orderType;
 
     public CertificateImpl() {
     }
@@ -64,7 +64,15 @@ public class CertificateImpl implements Certificate, Serializable {
     }
 
     public void setOrderType(OrderType orderType) {
-        this.orderType = orderType;
+        if(!(orderType instanceof CertificateOrderTypeImpl)) {
+            final RuntimeException dse = new RuntimeException("Order Type must be instance of CertificateOrderType");
+            throw dse;
+        }
+        this.orderType = (CertificateOrderTypeImpl)orderType;
+    }
+
+    public CertificateType getCertificateType() {
+        return orderType.getCertificateType();
     }
 
 }

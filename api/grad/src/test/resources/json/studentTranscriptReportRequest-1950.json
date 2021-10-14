@@ -270,9 +270,9 @@
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "1950",
+          "reportName": "A",
           "paperType": {
-            "code": "YED4"
+            "code": "YEDB"
           }
         }
       }

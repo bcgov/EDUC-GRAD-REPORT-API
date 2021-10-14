@@ -630,7 +630,7 @@
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "2018",
+          "reportName": "EI",
           "paperType": {
             "code": "YEDR"
           }

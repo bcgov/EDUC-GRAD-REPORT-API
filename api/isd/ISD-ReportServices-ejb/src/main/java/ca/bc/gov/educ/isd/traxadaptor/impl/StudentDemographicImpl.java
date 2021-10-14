@@ -502,7 +502,7 @@ public class StudentDemographicImpl implements StudentDemographic {
         switch (this.frenchCertificate) {
             case "S":
                 this.frCertType = Constants.CSF_FRENCH_DOGWOOD;
-                this.frCertMedia = Constants.CERTIFICATE_YEDB_MEDIA_TYPE;
+                this.frCertMedia = Constants.CERTIFICATE_YEDR_MEDIA_TYPE;
                 break;
             case "F":
                 this.frCertType = Constants.FRENCH_DOGWOOD;

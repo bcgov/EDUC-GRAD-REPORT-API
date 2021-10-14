@@ -23,7 +23,6 @@ import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.cert.Certificate;
 import ca.bc.gov.educ.isd.common.BusinessProcessException;
 import ca.bc.gov.educ.isd.common.BusinessReport;
-import ca.bc.gov.educ.isd.common.Constants;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.common.party.Identifier;
 import ca.bc.gov.educ.isd.common.party.address.Address;
@@ -55,8 +54,6 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.isd.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.isd.common.support.impl.Roles.USER;
-import static ca.bc.gov.educ.isd.grad.GraduationProgramCode.PROGRAM_SCCP;
-import static ca.bc.gov.educ.isd.reports.CertificateType.E;
 import static ca.bc.gov.educ.isd.reports.ReportFormat.PDF;
 import static ca.bc.gov.educ.isd.transcript.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static java.util.Locale.CANADA;
@@ -110,7 +107,15 @@ public class GradCertificateServiceImpl
         // access TRAX adaptor to obtain required data for PEN
         final StudentDemographic studentData = gradtoIsdDataConvertBean.getSingleStudentDemog(reportData); //validated
         if (studentData == null) {
-            final String msg = "Failed to find student demographic information in TRAX for PEN: " + penId;
+            final String msg = "Failed to find student demographic information for PEN: " + penId;
+            final DomainServiceException dse = new DomainServiceException(msg);
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
+        final CertificateImpl certificate = (CertificateImpl)reportData.getCertificate();
+        if (certificate == null) {
+            final String msg = "Failed to find student certificate for PEN: " + penId;
             final DomainServiceException dse = new DomainServiceException(msg);
             LOG.throwing(CLASSNAME, _m, dse);
             throw dse;
@@ -120,20 +125,16 @@ public class GradCertificateServiceImpl
         final Student student = transferStudentData(penObj, studentData); //validated
         final School school = transferSchoolData(studentData); //validated
         final String penEntityId = penObj.getEntityId();
-        final Certificate certificate = new CertificateImpl(
-                studentData.getCertificateDate());
 
         final List<BusinessReport> certificates = new ArrayList<>();
         final String englishCert = studentData.getEnglishCertificate().trim();
         final String frenchCert = studentData.getFrenchCertificate().trim();
-        final boolean sccp = PROGRAM_SCCP.isCode(studentData.getCertificateCategory());
 
         LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
-        LOG.log(Level.FINE, "SCCP flag: {0}", sccp);
         LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
 
-        if (!englishCert.isEmpty() || sccp) {
-            final String certType = studentData.getEnCertType();
+        if (!englishCert.isEmpty()) {
+            final String certType = certificate.getCertificateType().getReportName();
 
             final GradCertificateReport gradCert = englishCertificate(
                     certType, student, school, penEntityId, certificate);
@@ -142,7 +143,7 @@ public class GradCertificateServiceImpl
         }
 
         if (!frenchCert.isEmpty()) {
-            final String certType = studentData.getFrCertType();
+            final String certType = certificate.getCertificateType().getReportName();
 
             final GradCertificateReport gradCert = frenchCertificate(
                     certType, student, school, penEntityId, certificate);
@@ -242,25 +243,35 @@ public class GradCertificateServiceImpl
             final String entityId,
             final Certificate certificate) throws DomainServiceException {
 
-        CertificateType rsRptType = CertificateType.E;
-        final CertificateSubtype rsRptSubType;
+        final CertificateType rsRptType;
+        final CertificateSubtype rsRptSubType = CertificateSubtype.DEFAULT;;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
-        if (certType.equals(Constants.SCCP_CERTIFICATE)) {
-            rsRptType = CertificateType.SC;
-        }
-
-        if (certType.equals(Constants.ENGLISH_DOGWOOD_ADULT)
-                || certType.equals(Constants.ENGLISH_DOGWOOD_ADULT_IND)) {
-            rsRptType = CertificateType.A;
-        }
-
-        if (certType.equals(Constants.ENGLISH_DOGWOOD_IND)
-                || certType.equals(Constants.ENGLISH_DOGWOOD_ADULT_IND)) {
-            rsRptSubType = CertificateSubtype.INDEPENDENT;
-        } else {
-            rsRptSubType = CertificateSubtype.DEFAULT;
+        switch(certType) {
+            case "E":
+                rsRptType = CertificateType.E;
+                break;
+            case "A":
+                rsRptType = CertificateType.A;
+                break;
+            case "EI":
+                rsRptType = CertificateType.EI;
+                break;
+            case "AI":
+                rsRptType = CertificateType.AI;
+                break;
+            case "S":
+                rsRptType = CertificateType.S;
+                break;
+            case "SC":
+                rsRptType = CertificateType.SC;
+                break;
+            case "F":
+                rsRptType = CertificateType.F;
+                break;
+            default:
+                rsRptType = CertificateType.E;
         }
 
         LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
@@ -288,17 +299,44 @@ public class GradCertificateServiceImpl
             final School school,
             final String entityId,
             final Certificate certificate) throws DomainServiceException {
-        final CertificateSubtype rsRptSubType;
 
-        if (Constants.CSF_FRENCH_DOGWOOD.equals(certType)) {
-            rsRptSubType = CertificateSubtype.FRANCOPHONE;
-        } else {
-            rsRptSubType = CertificateSubtype.DEFAULT;
+        final CertificateType rsRptType;
+        final CertificateSubtype rsRptSubType = CertificateSubtype.DEFAULT;;
+
+        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+
+        switch(certType) {
+            case "E":
+                rsRptType = CertificateType.E;
+                break;
+            case "A":
+                rsRptType = CertificateType.A;
+                break;
+            case "EI":
+                rsRptType = CertificateType.EI;
+                break;
+            case "AI":
+                rsRptType = CertificateType.AI;
+                break;
+            case "S":
+                rsRptType = CertificateType.S;
+                break;
+            case "SC":
+                rsRptType = CertificateType.SC;
+                break;
+            case "F":
+                rsRptType = CertificateType.F;
+                break;
+            default:
+                rsRptType = CertificateType.E;
         }
+
+        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+                new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
         final GradCertificateReport gradCert = createReport(
                 student, school, entityId, certificate,
-                CANADA_FRENCH, E, rsRptSubType);
+                CANADA_FRENCH, rsRptType, rsRptSubType);
 
         return gradCert;
     }

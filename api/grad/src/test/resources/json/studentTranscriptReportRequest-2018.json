@@ -630,9 +630,9 @@
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "2018",
+          "reportName": "AI",
           "paperType": {
-            "code": "YEDR"
+            "code": "YEDB"
           }
         }
       }

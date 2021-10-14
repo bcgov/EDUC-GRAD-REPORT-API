@@ -32,7 +32,7 @@ public class GradToIsdDataConvertBean {
         Student student = getStudent(reportData);
         School school = getSchool(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        List<String> programCodes = gradData.getProgramCodes();
+        List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
         Transcript transcript = reportData.getTranscript();
         StudentInfoImpl result = new StudentInfoImpl(
             student.getPen().getValue(),// String studNo,
@@ -44,10 +44,10 @@ public class GradToIsdDataConvertBean {
             student.getGender(),// Character studGender,
             school.getMinistryCode(),// String mincode,
             student.getGrade(),// String studGrade,
-            gradData.getGraduationDate(),// Date gradDate,
+            gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
             reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : "",// String gradReqtYear,
             reportData.getGradMessage(),// String gradMessage,
-            reportData.getUpdateDate() == null ? transcript.getIssueDate() : reportData.getUpdateDate(),// String updateDt,
+            reportData.getUpdateDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getUpdateDate(),// String updateDt,
             reportData.getLogo(),// String logoType,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine1() : "",// String studentAddress1,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine2() : "",// String studentAddress2,
@@ -56,8 +56,8 @@ public class GradToIsdDataConvertBean {
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getPostalCode() : "",// String studentPostalCode,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCountryCode() : "",// String traxStudentCountry,
             student.getStudStatus(),// Character studStatus,
-            gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
-            gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag
+            gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
+            gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag
             programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,
             programCodes != null && programCodes.size() >= 2 ? programCodes.get(1) : null, //String prgmCode2,
             programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
@@ -207,7 +207,7 @@ public class GradToIsdDataConvertBean {
                 student.getGender(), //Character studGender,
                 school.getMinistryCode(), //String mincode,
                 student.getGrade(), //String studGrade,
-                gradData.getTruncatedGraduationDate(), //String gradDate,
+                gradData != null ? gradData.getTruncatedGraduationDate() : null, //String gradDate,
                 reportData.getGradProgram() != null ?  reportData.getGradProgram().getCode().getCode() : "", //String gradReqtYear,
                 reportData.getUpdateDate(), //Long updateDt,
                 reportData.getLogo(), //String logoType,
@@ -252,7 +252,7 @@ public class GradToIsdDataConvertBean {
         Student student = getStudent(reportData);
         StudentInfo studentInfo = getStudentInfo(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        List<String> programCodes = gradData.getProgramCodes();
+        List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
         StudentMasterEntity result = new StudentMasterEntity(
                 studentInfo.getPen(), //String studNo,
                 studentInfo.getFirstName(), //String studGiven,
@@ -268,9 +268,9 @@ public class GradToIsdDataConvertBean {
                 studentInfo.getGrade(), //String studGrade,
                 studentInfo.getGradDate(), //Long gradDate,
                 studentInfo.getGraduationProgramCode() != null ? studentInfo.getGraduationProgramCode().getCode() : "", //String gradReqtYear,
-                gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
-                gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag,
-                gradData.getGraduationDate(), //Long sccDate,
+                gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
+                gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlagcter dogwoodFlag,
+                gradData != null ? gradData.getGraduationDate() : null, //Long sccDate,
                 studentInfo.getMincode(), //String mincode,
                 student.getMincodeGrad(), //String mincodeGrad,
                 programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,

@@ -390,9 +390,9 @@
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "SCCP",
+          "reportName": "SC",
           "paperType": {
-            "code": "YED4"
+            "code": "YED2"
           }
         }
       }

@@ -31,8 +31,8 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_SUBTYPE" class="java.lang.String">
-		<parameterDescription><![CDATA["", "Independent", or "Francophone"]]></parameterDescription>
-		<defaultValueExpression><![CDATA["francophone"]]></defaultValueExpression>
+		<parameterDescription><![CDATA[""]]></parameterDescription>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<field name="issued" class="java.util.Date">
 		<fieldDescription><![CDATA[issued]]></fieldDescription>
