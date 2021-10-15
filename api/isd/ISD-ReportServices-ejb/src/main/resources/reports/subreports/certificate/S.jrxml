@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
 <!-- 2017-02-09T13:06:24 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="S" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\CertificateAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -70,7 +70,7 @@
 		<band height="557">
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="57" width="792" height="29" uuid="7d4b4b94-866e-4765-8eb0-52d5ca4bafde"/>
-				<textFieldExpression><![CDATA[$R{header.title.regular}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.title.S}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="86" width="792" height="30" uuid="bbac1e82-4607-4c52-957c-c865249188cf"/>
@@ -92,7 +92,7 @@
 				<reportElement style="Body" x="0" y="268" width="792" height="120" uuid="f08ef6b8-ba4c-4da5-baeb-d72dacb3ad79">
 					<printWhenExpression><![CDATA["FR".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
 				</reportElement>
-				<textFieldExpression><![CDATA[$R{header.issuance.S}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.issuance}]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="27" y="372" width="269" height="82" uuid="78987025-a306-40ff-b600-bdf0febe0081">
@@ -122,7 +122,7 @@
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
-					<textFieldExpression><![CDATA[$R{signature.independent.school.inspector}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$R{signature.superintendent.school}]]></textFieldExpression>
 				</textField>
 				<frame>
 					<reportElement x="10" y="54" width="245" height="2" uuid="e1bc4c56-f185-4c13-ba71-fc39f0141cfa"/>

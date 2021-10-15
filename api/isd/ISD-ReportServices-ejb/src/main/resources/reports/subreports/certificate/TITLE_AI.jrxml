@@ -31,7 +31,7 @@
 					<font size="10" isBold="false" isItalic="true"/>
 					<paragraph lineSpacing="Double"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$R{header.certify.suffix.adult}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.certify.suffix.AI}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Awardee" x="0" y="179" width="792" height="30" uuid="ad198e96-ad1b-46f0-9d81-f74fd02c4b95"/>
