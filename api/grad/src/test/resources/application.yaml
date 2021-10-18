@@ -72,4 +72,4 @@ springdoc:
 endpoint:
   educ-grad-report-api:
     get-signature-by-code:
-      url:
+      url: http://localhost:8080/api/v1/signatures

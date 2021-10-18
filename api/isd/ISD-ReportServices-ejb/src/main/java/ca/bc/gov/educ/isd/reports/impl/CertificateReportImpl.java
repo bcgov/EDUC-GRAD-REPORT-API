@@ -154,7 +154,6 @@ public final class CertificateReportImpl extends StudentReportImpl
     /**
      * Helper method.
      *
-     * @see validate( Object, String, String )
      * @param method The name of the method that cannot be called prior to
      * calling setCertificate.
      */

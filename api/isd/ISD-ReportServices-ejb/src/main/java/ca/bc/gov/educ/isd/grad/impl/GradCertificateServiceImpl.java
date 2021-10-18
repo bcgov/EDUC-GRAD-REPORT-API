@@ -194,6 +194,7 @@ public class GradCertificateServiceImpl
         student.setFirstName(traxStudent.getFirstName());
         student.setMiddleName(traxStudent.getMiddleName());
         student.setLastName(traxStudent.getLastName());
+        student.setBirthdate(traxStudent.getBirthDate());
 
         LOG.exiting(CLASSNAME, _m);
         return student;
@@ -217,8 +218,14 @@ public class GradCertificateServiceImpl
 
         final SchoolImpl school = new SchoolImpl();
 
-        school.setMincode(schoolId);
-        school.setName(traxStudent.getSchoolName());
+        if(traxStudent.getSchool() != null) {
+            school.setMincode(traxStudent.getSchool().getMincode());
+            school.setName(traxStudent.getSchool().getSchlName());
+        } else {
+            school.setMincode(schoolId);
+            school.setName(traxStudent.getSchoolName());
+        }
+
         school.setSignatureCode(traxStudent.getCertificateSignature());
         school.setTypeIndicator(traxStudent.getSchoolTypeIndicator());
 
