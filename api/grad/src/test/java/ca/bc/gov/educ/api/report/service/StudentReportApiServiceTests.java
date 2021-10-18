@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 import static org.junit.Assert.*;
 
+@WebAppConfiguration
 public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	private static final Logger LOG = LoggerFactory.getLogger(StudentReportApiServiceTests.class);
@@ -173,21 +175,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(bArrray);
 		}
 		LOG.debug(">createTranscriptReport_SCCP");
-	}
-
-	@Test
-	public void createCertificateReport() throws Exception {
-		LOG.debug("<{}.createCertificateReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
-		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Certificate REGULAR Report.pdf");
-		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
-		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
-		}
-		LOG.debug(">createCertificateReport");
 	}
 
 	@Test
