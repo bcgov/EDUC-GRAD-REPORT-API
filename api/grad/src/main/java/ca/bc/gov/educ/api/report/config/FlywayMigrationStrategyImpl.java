@@ -14,6 +14,7 @@ public class FlywayMigrationStrategyImpl implements FlywayMigrationStrategy {
     @Override
     public void migrate(Flyway flyway) {
         if (!flyway.validateWithResult().validationSuccessful) {
+            flyway.clean();
             flyway.repair();
         }
         logger.info("\n");
