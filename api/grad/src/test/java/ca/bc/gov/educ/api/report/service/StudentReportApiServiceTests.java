@@ -193,6 +193,21 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReport_EO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate EO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_EO");
+	}
+
+	@Test
 	public void createCertificateReport_A() throws Exception {
 		LOG.debug("<{}.createCertificateReport_A at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
@@ -220,6 +235,21 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(bArrray);
 		}
 		LOG.debug(">createCertificateReport_EI");
+	}
+
+	@Test
+	public void createCertificateReport_EIO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EIO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate EIO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_EIO");
 	}
 
 	@Test
@@ -283,8 +313,23 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReport_SO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate SO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SO");
+	}
+
+	@Test
 	public void createCertificateReport_F() throws Exception {
-		LOG.debug("<{}.createCertificateReport_S at {}", CLASS_NAME, dateFormat.format(new Date()));
+		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
 		assertNotNull(reportRequest);
 		reportRequest.getOptions().setReportFile("Certificate F Report.pdf");
@@ -295,5 +340,20 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(bArrray);
 		}
 		LOG.debug(">createCertificateReport_F");
+	}
+
+	@Test
+	public void createCertificateReport_FO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_FO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate FO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_FO");
 	}
 }

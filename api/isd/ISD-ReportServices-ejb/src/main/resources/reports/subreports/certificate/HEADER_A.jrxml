@@ -28,6 +28,10 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SUBTYPE" class="java.lang.String">
+		<parameterDescription><![CDATA[""]]></parameterDescription>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_ISSUE_DATE_FORMAT" class="java.text.DateFormat"/>
 	<parameter name="P_STUDENT_NAME" class="java.lang.String"/>
 	<field name="issued" class="java.util.Date">
