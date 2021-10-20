@@ -384,18 +384,6 @@
       "totalCreditsUsedForGrad": "0"
     },
     "gradMessage": "Upon completion of this student's School Completion Certificate Program, a certificate will be issued from the Ministry of Education for meeting their educational program goals other than graduation, as determined by the board of education.  If you have any questions about your results, please contact your school immediately.",
-    "updateDate": "2021-10-04",
-    "certificate": {
-      "issued": "2021-10-04",
-      "orderType": {
-        "name": "Certificate",
-        "certificateType": {
-          "reportName": "SC",
-          "paperType": {
-            "code": "YED2"
-          }
-        }
-      }
-    }
+    "updateDate": "2021-10-04"
   }
 }

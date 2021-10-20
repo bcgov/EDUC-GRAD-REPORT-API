@@ -15,6 +15,11 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.isd.reports;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+
 /**
  * Represents the various subtypes of certificates. Note that francophone does
  * not mean French, but is a variation on the French certificates. Use setLocale
@@ -22,20 +27,25 @@ package ca.bc.gov.educ.isd.reports;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public enum CertificateSubtype {
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+public enum CertificateSubType {
 
     DEFAULT(""),
-    INDEPENDENT("independent"),
-    FRANCOPHONE("francophone");
+    REPLACEMENT("R"),
+    ORIGINAL("O");
 
-    private final String subtype;
+    private String subtype;
+
+    CertificateSubType() {
+    }
 
     /**
      * Constructs an enumerated value with a given subtype name.
      *
      * @param subtype The report subtype.
      */
-    private CertificateSubtype(String subtype) {
+    private CertificateSubType(String subtype) {
         this.subtype = subtype;
     }
 
@@ -47,5 +57,15 @@ public enum CertificateSubtype {
     @Override
     public String toString() {
         return this.subtype;
+    }
+
+    @JsonCreator
+    public static CertificateSubType forValue(@JsonProperty("subtype") final String subtype) {
+        for (CertificateSubType certificateSubType : CertificateSubType.values()) {
+            if (certificateSubType.name().equals(subtype)) {
+                return certificateSubType;
+            }
+        }
+        return null;
     }
 }

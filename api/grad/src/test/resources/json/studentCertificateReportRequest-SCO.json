@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report A.pdf"
+    "reportFile": "Certificate Report EI.pdf"
   },
   "data": {
     "student": {
@@ -62,13 +62,13 @@
     "updateDate": "2001-06-01",
     "certificate": {
       "issued": "2001-06-01",
-      "isOrigin": false,
+      "isOrigin": true,
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "AI",
+          "reportName": "SC",
           "paperType": {
-            "code": "YEDB"
+            "code": "YED2"
           }
         }
       }

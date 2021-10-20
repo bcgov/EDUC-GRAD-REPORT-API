@@ -18,7 +18,6 @@
 package ca.bc.gov.educ.isd.reports.bundle.decorator;
 
 import ca.bc.gov.educ.isd.reports.CertificateType;
-import ca.bc.gov.educ.isd.reports.PaperType;
 import ca.bc.gov.educ.isd.reports.bundle.service.CertificateOrderType;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
@@ -69,10 +68,7 @@ public class CertificateOrderTypeImpl extends OrderTypeImpl
 
     public void setCertificateType(CertificateType certificateType) {
         this.certificateType = certificateType;
+        this.setPaperType(this.certificateType.getPaperType());
     }
 
-    @Override
-    public PaperType getPaperType() {
-        return this.certificateType.getPaperType();
-    }
 }

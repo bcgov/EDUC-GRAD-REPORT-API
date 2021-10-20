@@ -59,30 +59,10 @@
         "name": "PROGRAM_1950"
       }
     },
-    "graduationData": {
-      "graduationDate": "2001-06-01",
-      "honorsFlag": false,
-      "dogwoodFlag": false,
-      "programCodes": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      "programNames": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      "totalCreditsUsedForGrad": "0"
-    },
-    "gradMessage": "Based on the information provided by the school, this student has graduated in the Adult Graduation Program. Graduation date: June 2001.",
     "updateDate": "2001-06-01",
     "certificate": {
       "issued": "2001-06-01",
+      "isOrigin": false,
       "orderType": {
         "name": "Certificate",
         "certificateType": {

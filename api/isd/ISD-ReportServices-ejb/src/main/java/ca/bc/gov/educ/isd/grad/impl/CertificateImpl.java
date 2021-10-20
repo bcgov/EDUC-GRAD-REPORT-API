@@ -22,6 +22,7 @@ import ca.bc.gov.educ.isd.reports.CertificateType;
 import ca.bc.gov.educ.isd.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.isd.reports.bundle.service.OrderType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
@@ -39,6 +40,7 @@ public class CertificateImpl implements Certificate, Serializable {
     private static final long serialVersionUID = 2L;
 
     private Date issued;
+    private boolean isOrigin = false;
     private CertificateOrderTypeImpl orderType;
 
     public CertificateImpl() {
@@ -46,6 +48,15 @@ public class CertificateImpl implements Certificate, Serializable {
 
     public CertificateImpl(final Date issued) {
         this.issued = issued;
+    }
+
+    @JsonProperty("isOrigin")
+    public boolean getIsOrigin() {
+        return isOrigin;
+    }
+
+    public void setIsOrigin(boolean origin) {
+        isOrigin = origin;
     }
 
     @Override

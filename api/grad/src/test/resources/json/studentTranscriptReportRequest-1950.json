@@ -264,18 +264,6 @@
       "totalCreditsUsedForGrad": "0"
     },
     "gradMessage": "Based on the information provided by the school, this student has graduated in the Adult Graduation Program. Graduation date: June 2001.",
-    "updateDate": "2001-06-01",
-    "certificate": {
-      "issued": "2001-06-01",
-      "orderType": {
-        "name": "Certificate",
-        "certificateType": {
-          "reportName": "A",
-          "paperType": {
-            "code": "YEDB"
-          }
-        }
-      }
-    }
+    "updateDate": "2001-06-01"
   }
 }

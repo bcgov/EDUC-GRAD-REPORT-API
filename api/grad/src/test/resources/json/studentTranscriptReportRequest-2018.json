@@ -624,18 +624,6 @@
       "totalCreditsUsedForGrad": ""
     },
     "gradMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 2018. Graduation date: September 2020.",
-    "updateDate": "",
-    "certificate": {
-      "issued": "2021-04-26",
-      "orderType": {
-        "name": "Certificate",
-        "certificateType": {
-          "reportName": "AI",
-          "paperType": {
-            "code": "YEDB"
-          }
-        }
-      }
-    }
+    "updateDate": ""
   }
 }

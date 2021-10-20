@@ -251,7 +251,7 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType;
-        final CertificateSubtype rsRptSubType = CertificateSubtype.DEFAULT;;
+        final CertificateSubType rsRptSubType = certificate.getIsOrigin() ? CertificateSubType.ORIGINAL : CertificateSubType.DEFAULT;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
@@ -308,7 +308,7 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType;
-        final CertificateSubtype rsRptSubType = CertificateSubtype.DEFAULT;;
+        final CertificateSubType rsRptSubType = certificate.getIsOrigin() ? CertificateSubType.ORIGINAL : CertificateSubType.DEFAULT;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
@@ -366,7 +366,7 @@ public class GradCertificateServiceImpl
             final Certificate certificate,
             final Locale location,
             final CertificateType rsRptType,
-            final CertificateSubtype rsRptSubType) throws DomainServiceException {
+            final CertificateSubType rsRptSubType) throws DomainServiceException {
 
         final String methodName = "createReport(Student, School, String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
         LOG.entering(CLASSNAME, methodName);
@@ -419,7 +419,7 @@ public class GradCertificateServiceImpl
 
     private String createReportTypeName(
             final CertificateType type,
-            final CertificateSubtype subtype,
+            final CertificateSubType subtype,
             final Locale locale) {
         final String reportTypeName
                 = type.toString()

@@ -218,7 +218,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     public void getStudentCertificateTest() throws Exception {
         LOG.debug("<{}.getStudentCertificateTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
-        GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
+        GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
 
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());

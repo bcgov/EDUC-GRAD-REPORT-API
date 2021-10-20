@@ -80,7 +80,7 @@
 					<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{certificate} ) )]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + $P{P_REPORT_TYPE} + $P{P_REPORT_SUBTYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>
