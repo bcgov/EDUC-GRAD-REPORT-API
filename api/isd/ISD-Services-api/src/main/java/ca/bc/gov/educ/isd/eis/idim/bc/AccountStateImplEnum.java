@@ -5,12 +5,7 @@
  */
 package ca.bc.gov.educ.isd.eis.idim.bc;
 
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.EXPIRY_DATE_TIME;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.IS_LOCKED;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.IS_MANAGER_DISABLED;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.IS_SUSPENDED;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.PASSWORD_CHANGE_REQUIRED;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.PASSWORD_HINT_REQUIRED;
+import static ca.bc.gov.educ.isd.eis.idim.bc.AccountStateEnum.*;
 
 /**
  *

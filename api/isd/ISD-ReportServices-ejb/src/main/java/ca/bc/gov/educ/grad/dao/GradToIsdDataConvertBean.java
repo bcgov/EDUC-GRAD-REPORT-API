@@ -2,6 +2,14 @@ package ca.bc.gov.educ.grad.dao;
 
 import ca.bc.gov.educ.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.isd.adaptor.dao.impl.*;
+import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranDemogEntity;
+import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranNongradEntity;
+import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranNongradEntityPK;
+import ca.bc.gov.educ.isd.adaptor.impl.NumeracyAssessmentResultImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.StudentDemographicImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.TranscriptCourseImpl;
 import ca.bc.gov.educ.isd.eis.trax.db.*;
 import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.exam.AssessmentResult;
@@ -11,14 +19,6 @@ import ca.bc.gov.educ.isd.student.Student;
 import ca.bc.gov.educ.isd.transcript.GraduationData;
 import ca.bc.gov.educ.isd.transcript.Transcript;
 import ca.bc.gov.educ.isd.transcript.TranscriptResult;
-import ca.bc.gov.educ.isd.traxadaptor.dao.impl.*;
-import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranDemogEntity;
-import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranNongradEntity;
-import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranNongradEntityPK;
-import ca.bc.gov.educ.isd.traxadaptor.impl.NumeracyAssessmentResultImpl;
-import ca.bc.gov.educ.isd.traxadaptor.impl.StudentDemographicImpl;
-import ca.bc.gov.educ.isd.traxadaptor.impl.StudentInfoImpl;
-import ca.bc.gov.educ.isd.traxadaptor.impl.TranscriptCourseImpl;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -141,8 +141,8 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    public StsTranCourseEntity getStsTranCourse(ReportData reportData, TranscriptCourseImpl course) {
-        StsTranCourseEntity result = new StsTranCourseEntity();
+    public TranCourseEntity getTranCourse(ReportData reportData, TranscriptCourseImpl course) {
+        TranCourseEntity result = new TranCourseEntity();
         CourseId courseId = new CourseId(
                 getStudent(reportData).getPen().getValue(),
                 course.getCourseCode(),

@@ -17,6 +17,7 @@
 package ca.bc.gov.educ.isd.course;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
+
 import java.util.Date;
 
 /**

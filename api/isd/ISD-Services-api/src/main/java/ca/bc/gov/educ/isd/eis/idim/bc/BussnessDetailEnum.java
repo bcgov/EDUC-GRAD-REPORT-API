@@ -5,9 +5,7 @@
  */
 package ca.bc.gov.educ.isd.eis.idim.bc;
 
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountDetailEnum.DLUID;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountDetailEnum.GUID;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AccountDetailEnum.LUID;
+import static ca.bc.gov.educ.isd.eis.idim.bc.AccountDetailEnum.*;
 import static ca.bc.gov.educ.isd.eis.idim.bc.IdentityTypesEnum.BUSINESS;
 
 /**

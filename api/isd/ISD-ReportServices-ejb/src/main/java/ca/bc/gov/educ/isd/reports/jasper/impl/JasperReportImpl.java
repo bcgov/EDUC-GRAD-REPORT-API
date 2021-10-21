@@ -39,7 +39,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.isd.reports.ReportFormat.XML;
 import static net.sf.jasperreports.export.type.HtmlSizeUnitEnum.POINT;
 
 /**

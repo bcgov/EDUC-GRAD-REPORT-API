@@ -16,15 +16,7 @@
 package ca.bc.gov.educ.isd.reports.admin;
 
 import ca.bc.gov.educ.isd.reports.ReportExportService;
-import ca.bc.gov.educ.isd.reports.admin.data.AdminReportDAO;
-import ca.bc.gov.educ.isd.reports.admin.data.IdleTranscript;
-import ca.bc.gov.educ.isd.reports.admin.data.ManualInterventionOrder;
-import ca.bc.gov.educ.isd.reports.admin.data.NonPENUserOrder;
-import ca.bc.gov.educ.isd.reports.admin.data.PENUserOrder;
-import ca.bc.gov.educ.isd.reports.admin.data.PSIChoice;
-import ca.bc.gov.educ.isd.reports.admin.data.RegistrationIssue;
-import ca.bc.gov.educ.isd.reports.admin.data.SelfServeOrder;
-import ca.bc.gov.educ.isd.reports.admin.data.StudentProfile;
+import ca.bc.gov.educ.isd.reports.admin.data.*;
 
 /**
  * Responsible for creating various administrative reports.

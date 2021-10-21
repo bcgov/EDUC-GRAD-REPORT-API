@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.eis.beanstream;
 
 import ca.bc.gov.educ.isd.eis.EISException;
+
 import java.math.BigDecimal;
 import java.net.URL;
 

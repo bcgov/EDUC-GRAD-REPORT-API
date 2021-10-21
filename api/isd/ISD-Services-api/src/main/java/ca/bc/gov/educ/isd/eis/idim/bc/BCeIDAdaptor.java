@@ -17,6 +17,7 @@ package ca.bc.gov.educ.isd.eis.idim.bc;
 
 import ca.bc.gov.educ.isd.eis.EISException;
 import ca.bc.gov.educ.isd.eis.idim.IDIMAdaptor;
+
 import java.io.Serializable;
 import java.util.Map;
 

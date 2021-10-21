@@ -17,6 +17,7 @@ package ca.bc.gov.educ.isd.users;
 
 import ca.bc.gov.educ.isd.common.party.Identifier;
 import ca.bc.gov.educ.isd.common.party.Person;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;

@@ -18,6 +18,7 @@ package ca.bc.gov.educ.isd.users;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
 import ca.bc.gov.educ.isd.common.SearchResult;
+
 import java.util.List;
 
 /**

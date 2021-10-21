@@ -6,12 +6,7 @@
 package ca.bc.gov.educ.isd.eis.idim.bc;
 
 import static ca.bc.gov.educ.isd.eis.idim.bc.IdentityTypesEnum.INDIVIDUAL_IDENTITY;
-import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.FIRST_NAME;
-import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.INITIALS;
-import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.MIDDLE_NAME;
-import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.NAME;
-import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.OTHER_MIDDLE_NAME;
-import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.SURNAME;
+import static ca.bc.gov.educ.isd.eis.idim.bc.PersonalInfoEnum.*;
 
 /**
  *

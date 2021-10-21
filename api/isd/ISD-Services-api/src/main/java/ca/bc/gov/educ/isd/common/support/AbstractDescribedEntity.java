@@ -16,6 +16,7 @@
 package ca.bc.gov.educ.isd.common.support;
 
 import ca.bc.gov.educ.isd.common.DescribedEntity;
+
 import java.util.Objects;
 
 /**

@@ -19,14 +19,12 @@ package ca.bc.gov.educ.isd.reports.jasper.impl;
 
 import ca.bc.gov.educ.isd.assessment.AssessmentCode;
 import ca.bc.gov.educ.isd.assessment.RawScoreCategory;
-import ca.bc.gov.educ.isd.ecommerce.payment.receipt.*;
 import ca.bc.gov.educ.isd.reports.data.admin.impl.*;
 import ca.bc.gov.educ.isd.reports.data.assessment.impl.AssessmentScore;
 import ca.bc.gov.educ.isd.reports.data.assessment.impl.LiteracyAssessmentResult;
 import ca.bc.gov.educ.isd.reports.data.assessment.impl.NumeracyAssessmentResult;
 import ca.bc.gov.educ.isd.reports.data.assessment.impl.RawScore;
 import ca.bc.gov.educ.isd.reports.data.impl.*;
-import ca.bc.gov.educ.isd.reports.data.receipt.impl.*;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -733,22 +731,6 @@ public class JRDataSourceFactory {
     }
 
     /**
-     * For testing a receipt report.
-     *
-     * @return A collection of 1 to 25 receipts.
-     */
-    public static Collection<Receipt> createReceiptCollection() {
-        final int n = 1 + (randomPercent() % 25);
-        final List<Receipt> receipts = new ArrayList<>(n);
-
-        for (int i = 0; i < n; i++) {
-            receipts.add(createReceipt());
-        }
-
-        return receipts;
-    }
-
-    /**
      * For testing an admin report.
      *
      * @return A list of object instances required for the report.
@@ -1060,13 +1042,6 @@ public class JRDataSourceFactory {
                 .withOrderDate(randomDate())
                 .withOrderTypeName(PackingSlipDetails.CERTIFICATES)
                 .build();
-    }
-
-    public static Receipt createReceipt() {
-        final Payment payment = createPayment();
-        final List<PaymentLineItem> lineItems = createLineItems();
-
-        return new ReceiptImpl(payment, lineItems);
     }
 
     /**
@@ -1445,31 +1420,6 @@ public class JRDataSourceFactory {
         return (double) randomPercent();
     }
 
-    //</editor-fold>
-    private static Payment createPayment() {
-        final PaymentAdmin payment = new PaymentAdminImpl();
-
-        payment.setAmount(randomBigDecimal());
-        payment.setOrderNumber(randomLong());
-        payment.setPaymentMethod(createPaymentMethod());
-        payment.setPaymentStatus(createPaymentStatus());
-        payment.setPurchased(randomDate());
-        payment.setReferenceNumber(randomLong().toString());
-
-        return payment;
-    }
-
-    private static List<PaymentLineItem> createLineItems() {
-        final int n = 1 + (randomPercent() / 10);
-        final List<PaymentLineItem> lineItems = new ArrayList<>(n);
-
-        for (int i = 0; i < n; i++) {
-            lineItems.add(createPaymentLineItem());
-        }
-
-        return lineItems;
-    }
-
     /**
      * A payment method description selected randomly from a list of available
      * payment methods.
@@ -1484,27 +1434,6 @@ public class JRDataSourceFactory {
                 "Visa Debit",
                 "Cheque/Money Order"
         );
-    }
-
-    private static PaymentMethod createPaymentMethod() {
-        return new PaymentMethodImpl(random("VI", "MC", "AE", "CQ"));
-    }
-
-    private static PaymentStatus createPaymentStatus() {
-        return new PaymentStatusImpl(random("Accepted", "Declined", "Rejected"));
-    }
-
-    private static PaymentLineItem createPaymentLineItem() {
-        final PaymentLineItemAdmin lineItem = new PaymentLineItemAdminImpl();
-
-        lineItem.setExtPrice(randomBigDecimal());
-        lineItem.setQuantity(randomInteger() / 10);
-        lineItem.setRecipientName(randomFullName());
-        lineItem.setDescription(random(
-                "Graduation Certificate",
-                "French Graduation Certificate",
-                "Transcript"));
-        return lineItem;
     }
 
     private static String randomCredits() {

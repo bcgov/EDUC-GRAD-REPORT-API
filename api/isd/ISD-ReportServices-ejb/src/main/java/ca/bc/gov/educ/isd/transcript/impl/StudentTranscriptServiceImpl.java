@@ -20,12 +20,15 @@ package ca.bc.gov.educ.isd.transcript.impl;
 import ca.bc.gov.educ.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.isd.adaptor.dao.impl.TranCourseEntity;
+import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranNongradEntity;
+import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
+import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.TranscriptCourseImpl;
 import ca.bc.gov.educ.isd.common.DataException;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
-import ca.bc.gov.educ.isd.eis.EISException;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentInfo;
-import ca.bc.gov.educ.isd.eis.trax.db.TRAXAdapter;
 import ca.bc.gov.educ.isd.eis.trax.db.TranscriptCourse;
 import ca.bc.gov.educ.isd.grad.GradProgram;
 import ca.bc.gov.educ.isd.grad.GraduationProgramCode;
@@ -38,7 +41,6 @@ import ca.bc.gov.educ.isd.student.PersonalEducationNumber;
 import ca.bc.gov.educ.isd.student.Student;
 import ca.bc.gov.educ.isd.student.impl.*;
 import ca.bc.gov.educ.isd.transcript.*;
-import ca.bc.gov.educ.isd.traxadaptor.dao.utils.TRAXThreadDataUtility;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -57,6 +59,7 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.isd.common.Constants.PESC_HST_PREDICATE;
 import static ca.bc.gov.educ.isd.common.support.VerifyUtils.nullSafe;
+import static ca.bc.gov.educ.isd.common.support.VerifyUtils.trimSafe;
 import static ca.bc.gov.educ.isd.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.isd.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.isd.course.ReportCourseType.ASSESSMENT;
@@ -116,8 +119,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      */
     private static final String SORT_ASSESSMENT = "100";
 
-    @Autowired
-    private TRAXAdapter traxAdapter;
+    private final String FORMAT_COURSE_CODE = "%-5s";
+    private final String FORMAT_COURSE_LEVEL = "%-3s";
 
     @Autowired
     private ReportService reportService;
@@ -378,7 +381,27 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final StudentInfo studentInfo;
 
         try {
-            studentInfo = traxAdapter.readStudent_Transcript(pen);
+
+            ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+            if (reportData == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        null,
+                        "Report Data not exists for the current report generation");
+                LOG.throwing(CLASSNAME, _m, dse);
+                throw dse;
+            }
+
+            StudentInfoImpl student = (StudentInfoImpl) gradtoIsdDataConvertBean.getStudentInfo(reportData);
+            final List<TswTranNongradEntity> reasonList = gradtoIsdDataConvertBean.getTswTranNongradEntity(reportData);
+            final HashMap<String, String> reasons = new HashMap<>();
+            for (final TswTranNongradEntity reason : reasonList) {
+                final String code = reason.getNonGradCode().trim();
+                final String text = reason.getNonGradDesc().trim();
+                reasons.put(code, text);
+            }
+            student.setNonGradReasons(reasons);
+            studentInfo = student;
 
             LOG.log(Level.FINER,
                     "Retrieved student info from TRAX for PEN: {0}", pen);
@@ -394,7 +417,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                         new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
             }
 
-        } catch (EISException ex) {
+        } catch (Exception ex) {
             String msg = "Failed to access TRAX transcript data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
             LOG.throwing(CLASSNAME, _m, dex);
@@ -476,16 +499,26 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final List<TranscriptCourse> results;
 
         try {
-            if (interim) {
-                final List<TranscriptCourse> interimTranscript
-                        = traxAdapter.readCourses_InterimTranscript(pen);
-                results = filterCourses(interimTranscript);
-            } else {
-                results = traxAdapter.readCourses_Transcript(pen);
+
+            ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+            if (reportData == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        null,
+                        "Report Data not exists for the current report generation");
+                LOG.throwing(CLASSNAME, m_, dse);
+                throw dse;
             }
 
+            final List<TranscriptCourse> courses = gradtoIsdDataConvertBean.getTranscriptCources(reportData);
+            for (final TranscriptCourse course : courses) {
+                addExtendedCourseInfo((TranscriptCourseImpl)course);
+            }
+
+            results = courses;
+
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results from TRAX for PEN: {0} INTERIM: {1}",
+                    "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
                     new Object[]{pen, interim});
 
             if (results != null && !results.isEmpty()) {
@@ -498,8 +531,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                             new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
                 }
             }
-        } catch (final EISException ex) {
-            String msg = "Failed to access TRAX transcript course data for student with PEN: ".concat(pen);
+        } catch (final Exception ex) {
+            String msg = "Failed to access transcript course data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
             LOG.throwing(CLASSNAME, m_, dex);
             throw dex;
@@ -508,6 +541,149 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         LOG.log(Level.FINE, "Completed call to TRAX.");
         LOG.exiting(CLASSNAME, m_);
         return results;
+    }
+
+    /**
+     * Additional information is required to populate all the course fields,
+     * found in other entities. Using the provided course information get the
+     * entity search parameters, padded out to the correct length as the course
+     * attributes are all trimmed. Search for the additional information and
+     * populate the course record if that information exists.
+     *
+     * @param course
+     */
+    private void addExtendedCourseInfo(final TranscriptCourseImpl course) {
+        final String _m = "addExtendedCourseInfo(TranscriptCourseImpl)";
+        LOG.entering(CLASSNAME, _m);
+
+        final String pen = course.getPen();
+        final String courseCode = course.getCourseCode();
+        final String paddedCourseCode = String.format(FORMAT_COURSE_CODE, courseCode);
+        final String courseLevel = course.getCourseLevel();
+        final String paddedCourseLevel = String.format(FORMAT_COURSE_LEVEL, courseLevel);
+        final String sessionDate = course.getSessionDate();
+
+        final String usedForGrad;
+
+        if (course.isExaminable()) {
+            usedForGrad = getPEUsedForGrad(pen, paddedCourseCode, paddedCourseLevel, sessionDate, course);
+        } else {
+            usedForGrad = getSXRelatedUsedForGrad(pen, paddedCourseCode, paddedCourseLevel, sessionDate, course);
+        }
+
+        // Converts the character to a string, then trims to remove spaces.
+        course.setUsedForGrad(trimSafe(usedForGrad));
+
+        LOG.exiting(CLASSNAME, _m);
+    }
+
+    /**
+     * Search the <code>StsTranCourseEntity</code> looking for the matching
+     * student number, course code, course level and course session as the
+     * provided course. This information is used to determine if there is a
+     * <code>Used_For_Grad</code> value associated with this course.
+     *
+     * @param pen
+     * @param paddedCourseCode
+     * @param paddedCourseLevel
+     * @param session
+     * @return Used_For_Grad Character if one is found
+     */
+    private String getPEUsedForGrad(
+            final String pen,
+            final String paddedCourseCode,
+            final String paddedCourseLevel,
+            final String session,
+            final TranscriptCourseImpl course) {
+        final String _m = "getPEUsedForGrad(String, String, String, String)";
+        LOG.entering(CLASSNAME, _m);
+
+        String usedForGraduation = " ";
+
+        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
+        try {
+            final TranCourseEntity stsTransCourseEntity = (TranCourseEntity) gradtoIsdDataConvertBean.getTranCourse(reportData, course);
+            final String usedForGraduationVal = stsTransCourseEntity.getUsedForGrad();
+
+            usedForGraduation = (usedForGraduationVal == null ? " " : usedForGraduationVal);
+
+        } catch (final Exception ex) {
+            // Do nothing for a student without exam entities.
+        }
+
+        LOG.exiting(CLASSNAME, _m);
+        return usedForGraduation;
+    }
+
+    /**
+     * Search the <code>StSTranCourseEntity</code> looking for the matching
+     * student number, course code, course level and course session as the
+     * provided course.
+     *
+     * This information is used to determine if there is a
+     * <code>Used_For_Grad</code> value associated with this course. It is also
+     * used to set the related course code and related course level for this
+     * course if a matching record is found.
+     *
+     * @param pen The students Personal Education Number
+     * @param paddedCourseCode The course short code
+     * @param paddedCourseLevel The corse grade level
+     * @param session Course session the student attended
+     * @param course Transcript Course object to be populated with related
+     * course and level data.
+     * @return Used_For_Grad Character if one is found
+     */
+    private String getSXRelatedUsedForGrad(
+            final String pen,
+            final String paddedCourseCode,
+            final String paddedCourseLevel,
+            final String session,
+            final TranscriptCourseImpl course) {
+        final String _m = "getSXRelatedUsedForGrad(String, String, String, String, TranscriptCourseImpl)";
+        LOG.entering(CLASSNAME, _m);
+
+        String usedForGraduation = " ";
+
+        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
+        try {
+
+            final TranCourseEntity tranCourseEntity = (TranCourseEntity) gradtoIsdDataConvertBean.getTranCourse(reportData, course);
+
+            final String relatedCourse = tranCourseEntity.getRelatedCrse();
+            final String relatedCourseSanitized = trimSafe(relatedCourse);
+            course.setRelatedCourse(relatedCourseSanitized);
+
+            final String relatedLevel = tranCourseEntity.getRelatedLevel();
+            final String relatedLevelSanitized = trimSafe(relatedLevel);
+            course.setRelatedLevel(relatedLevelSanitized);
+
+            final String usedForGraduationValue = tranCourseEntity.getUsedForGrad();
+            usedForGraduation = (usedForGraduationValue == null ? " " : usedForGraduationValue);
+        } catch (final Exception ex) {
+            // this indicates a data issue.  Unable to determine correct record so leave TranscriptCourseImpl with default empty attributes.
+            LOG.log(Level.WARNING, "Found multiple StudXcrseEntities matching {0},{1},{2},{3}", new Object[]{pen, paddedCourseCode, paddedCourseLevel, session});
+        }
+
+        LOG.exiting(CLASSNAME, _m);
+        return usedForGraduation;
     }
 
     /**

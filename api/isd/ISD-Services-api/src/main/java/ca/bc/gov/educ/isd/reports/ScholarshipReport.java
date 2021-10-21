@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.reports;
 
 import ca.bc.gov.educ.isd.scholarship.Scholarship;
+
 import java.util.List;
 
 /**

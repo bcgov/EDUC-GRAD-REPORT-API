@@ -17,22 +17,7 @@
  */
 package ca.bc.gov.educ.isd.users;
 
-import static ca.bc.gov.educ.isd.common.Constants.BCEID;
-import static ca.bc.gov.educ.isd.common.Constants.BUSINESS_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.INDIVIDUAL_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.INTERNAL_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.BCSERVICE_CARD_NONPHOTO_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.BCSERVICE_CARD_NONPHOTO_VALUE;
-import static ca.bc.gov.educ.isd.common.Constants.BCSERVICE_CARD_PHOTO_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.BCSERVICE_CARD_PHOTO_VALUE;
-import static ca.bc.gov.educ.isd.common.Constants.BC_SERVICES;
-import static ca.bc.gov.educ.isd.common.Constants.BUSINESS_VALUE;
-import static ca.bc.gov.educ.isd.common.Constants.IDIR;
-import static ca.bc.gov.educ.isd.common.Constants.INDIVIDUAL_VALUE;
-import static ca.bc.gov.educ.isd.common.Constants.INTERNAL_VALUE;
-import static ca.bc.gov.educ.isd.common.Constants.PERSONAL_BCEID_IDENTIFIER;
-import static ca.bc.gov.educ.isd.common.Constants.PERSONAL_BCEID_VALUE;
-import static ca.bc.gov.educ.isd.common.Constants.VERIFIED_INDIVIDUAL_IDENTIFIER;
+import static ca.bc.gov.educ.isd.common.Constants.*;
 
 /**
  * BCeID account type identifiers.

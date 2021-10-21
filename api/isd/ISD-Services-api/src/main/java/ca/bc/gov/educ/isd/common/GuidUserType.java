@@ -17,10 +17,10 @@
  */
 package ca.bc.gov.educ.isd.common;
 
+import ca.bc.gov.educ.isd.users.UserAccountType;
+
 import java.io.Serializable;
 import java.util.Objects;
-
-import ca.bc.gov.educ.isd.users.UserAccountType;
 
 /**
  * This class will contain guid and usertype for the user.

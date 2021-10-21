@@ -19,23 +19,17 @@ package ca.bc.gov.educ.isd.reports.impl;
 
 import ca.bc.gov.educ.isd.assessment.LiteracyAssessmentReport;
 import ca.bc.gov.educ.isd.assessment.NumeracyAssessmentReport;
-import ca.bc.gov.educ.isd.ecommerce.payment.receipt.PaymentLineItem;
-import ca.bc.gov.educ.isd.ecommerce.payment.receipt.Receipt;
 import ca.bc.gov.educ.isd.reports.*;
 import ca.bc.gov.educ.isd.reports.admin.AdminReport;
 import ca.bc.gov.educ.isd.reports.common.impl.AbstractReportService;
 import ca.bc.gov.educ.isd.reports.jasper.impl.*;
 import ca.bc.gov.educ.isd.transcript.ParameterPredicate;
-import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.isd.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
@@ -92,15 +86,6 @@ public class ReportServiceImpl extends AbstractReportService
     }
 
     /**
-     * @inheritDoc
-     */
-    @Override
-    @RolesAllowed({USER_REPORTS_PEAR, FULFILLMENT_SERVICES_USER})
-    public ProvincialExaminationReport createProvincialExaminationReport() {
-        return new ProvincialExaminationReportImpl();
-    }
-
-    /**
      * Piggy-back GNA report security on PEAR.
      *
      * @return
@@ -149,49 +134,6 @@ public class ReportServiceImpl extends AbstractReportService
     @RolesAllowed({USER_REPORTS_CERTIFICATES, FULFILLMENT_SERVICES_USER})
     public CertificateReport createCertificateReport() {
         return new CertificateReportImpl();
-    }
-
-    /**
-     * TODO: The PermitAll is required so that the DocumentDownloadServlet,
-     * which exists outside of a locked-down URL. This should be reviewed and
-     * its ramifications fully understood.
-     *
-     * This method sorts the payment line items.
-     *
-     * @inheritDoc
-     */
-    @Override
-    @PermitAll
-    public ReceiptReport createReceiptReport(final List<Receipt> receipts) {
-        for (final Receipt receipt : receipts) {
-            final List<PaymentLineItem> lineItems = receipt.getLineItems();
-            sort(lineItems);
-        }
-
-        return new ReceiptReportImpl(receipts);
-    }
-
-    /**
-     * Sorts the line items first by description (request type) then by the
-     * recipient name.
-     *
-     * @param lineItems The collection of items to sort, can be null.
-     */
-    private void sort(final List<PaymentLineItem> lineItems) {
-        if (lineItems != null) {
-            Collections.sort(lineItems, new Comparator<PaymentLineItem>() {
-                @Override
-                public int compare(
-                        final PaymentLineItem o1,
-                        final PaymentLineItem o2) {
-                    final CompareToBuilder builder = new CompareToBuilder();
-                    builder.append(o1.getDescription(), o2.getDescription());
-                    builder.append(o1.getRecipientName(), o2.getRecipientName());
-
-                    return builder.toComparison();
-                }
-            });
-        }
     }
 
     /**

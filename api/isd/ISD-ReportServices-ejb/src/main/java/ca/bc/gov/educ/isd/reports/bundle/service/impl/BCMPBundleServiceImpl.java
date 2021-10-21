@@ -18,20 +18,17 @@
 package ca.bc.gov.educ.isd.reports.bundle.service.impl;
 
 import ca.bc.gov.educ.isd.common.BusinessReport;
-import ca.bc.gov.educ.isd.ecommerce.delivery.PostalDeliveryInfo;
 import ca.bc.gov.educ.isd.reports.CertificateType;
 import ca.bc.gov.educ.isd.reports.Report;
 import ca.bc.gov.educ.isd.reports.ReportDocument;
 import ca.bc.gov.educ.isd.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.isd.reports.bundle.decorator.TranscriptOrderTypeImpl;
 import ca.bc.gov.educ.isd.reports.bundle.model.DocumentBundleImpl;
-import ca.bc.gov.educ.isd.reports.bundle.model.PackingSlipDetailsImpl;
 import ca.bc.gov.educ.isd.reports.bundle.model.Roles;
 import ca.bc.gov.educ.isd.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.isd.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.isd.reports.bundle.service.OrderType;
 import ca.bc.gov.educ.isd.reports.jasper.impl.JasperReportImpl;
-import ca.bc.gov.educ.isd.reports.packingslip.PackingSlipDetails;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 
@@ -204,17 +201,6 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
     @RolesAllowed({Roles.USER_BCMP_CERTIFICATE_ORDER_TYPE, FULFILLMENT_SERVICES_USER})
     public OrderType createCertificateOrderType(final CertificateType certificateType) {
         return new CertificateOrderTypeImpl(certificateType);
-    }
-
-    /**
-     * Fill PackingSlip information with postal mail address information.
-     *
-     * @param info Delivery address information.
-     * @return Packing slip details with mailing address fields filled out.
-     */
-    @Override
-    public PackingSlipDetails createPackingSlipDetails(final PostalDeliveryInfo info) {
-        return new PackingSlipDetailsImpl(info);
     }
 
     /**

@@ -5,17 +5,8 @@
  */
 package ca.bc.gov.educ.isd.eis.idim.bc;
 
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.ADDRESS_LINE_ONE;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.ADDRESS_LINE_TWO;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.CITY;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.COUNTRY;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.POSTAL_CODE;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.PROVINCE;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.UNSTRUCTURED_ADDRESS;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressTypeEnum.PREFIX_ACCOUNT_CONTACT;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressTypeEnum.PREFIX_BUSINESS;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressTypeEnum.PREFIX_INDIVIDUAL_MAILING;
-import static ca.bc.gov.educ.isd.eis.idim.bc.AddressTypeEnum.PREFIX_INDIVIDUAL_RESIDENTIAL;
+import static ca.bc.gov.educ.isd.eis.idim.bc.AddressEnum.*;
+import static ca.bc.gov.educ.isd.eis.idim.bc.AddressTypeEnum.*;
 
 /**
  *
