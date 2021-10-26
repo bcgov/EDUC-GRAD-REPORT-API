@@ -9,6 +9,7 @@ import java.util.Date;
 public class Certificate {
     private Date issued;
     private OrderType orderType;
+    private boolean isOrigin;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getIssued() {
@@ -25,5 +26,13 @@ public class Certificate {
 
     public void setOrderType(OrderType value) {
         this.orderType = value;
+    }
+
+    public boolean getIsOrigin() {
+        return isOrigin;
+    }
+
+    public void setIsOrigin(boolean origin) {
+        isOrigin = origin;
     }
 }
