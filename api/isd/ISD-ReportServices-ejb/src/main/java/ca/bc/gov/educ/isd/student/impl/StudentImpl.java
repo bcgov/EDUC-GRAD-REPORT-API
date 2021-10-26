@@ -17,7 +17,6 @@
  */
 package ca.bc.gov.educ.isd.student.impl;
 
-import ca.bc.gov.educ.isd.common.party.Identifier;
 import ca.bc.gov.educ.isd.common.party.address.PostalAddress;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.isd.student.PersonalEducationNumber;
@@ -28,7 +27,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -54,7 +52,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private Character studStatus = ' ';
 
     @Override
-    @JsonDeserialize(as = PersonalEducationNumberSimple.class)
+    @JsonDeserialize(as = PersonalEducationNumberObject.class)
     public PersonalEducationNumber getPen() {
         return pen;
     }
@@ -187,8 +185,4 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public List<Identifier> getIdentifiers() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

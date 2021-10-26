@@ -390,7 +390,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             throw dse;
         }
 
-        PersonalEducationNumberSimple pen = new PersonalEducationNumberSimple();
+        PersonalEducationNumberObject pen = new PersonalEducationNumberObject();
         pen.setPen(reportData.getStudent().getPen().getValue());
 
         LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);

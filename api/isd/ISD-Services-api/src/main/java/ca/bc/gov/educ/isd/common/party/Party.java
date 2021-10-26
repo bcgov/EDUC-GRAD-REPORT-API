@@ -17,23 +17,11 @@ package ca.bc.gov.educ.isd.common.party;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
 
-import java.util.List;
-
 /**
  * Represents a Party comprised of a list of third-party identifiers.
  *
  * @author CGI Information Management Consultants Inc.
  */
-public abstract interface Party extends DomainEntity {
-
-    /**
-     * List of identifiers typically populated from external entities. For
-     * example, this list could include Care Card numbers for students. In the
-     * Party model, each domain entity can have an arbitrarily long list of
-     * identifiers that correspond to third-party entities.
-     *
-     * @return A list of identifiers, possibly empty, never null.
-     */
-    List<Identifier> getIdentifiers();
+public interface Party extends DomainEntity {
 
 }

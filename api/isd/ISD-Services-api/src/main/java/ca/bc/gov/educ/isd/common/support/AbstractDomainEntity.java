@@ -119,11 +119,6 @@ public abstract class AbstractDomainEntity implements DomainEntity {
     }
 
     @Override
-    public Integer getXactId() {
-        return xactId;
-    }
-
-    @Override
     public Date getCreatedOn() {
         if (createdOn == null) {
             createdOn = new Date();

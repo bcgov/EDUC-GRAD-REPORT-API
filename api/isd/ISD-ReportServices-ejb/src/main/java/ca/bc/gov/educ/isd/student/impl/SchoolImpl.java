@@ -17,15 +17,12 @@
  */
 package ca.bc.gov.educ.isd.student.impl;
 
-import ca.bc.gov.educ.isd.common.party.Identifier;
 import ca.bc.gov.educ.isd.common.party.address.PostalAddress;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.isd.school.School;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
-
-import java.util.List;
 
 /**
  * Represents information about a school that is used on a report.
@@ -164,19 +161,8 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
         this.phoneNumber = phoneNumber;
     }
 
-    /**
-     * Not used.
-     *
-     * @return
-     */
     @Override
     public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<Identifier> getIdentifiers() {
-        //TODO implement this attribute for future use!
-        return null;
     }
 }
