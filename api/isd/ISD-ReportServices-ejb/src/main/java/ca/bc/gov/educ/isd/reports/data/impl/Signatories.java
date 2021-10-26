@@ -43,15 +43,10 @@ public final class Signatories extends BusinessEntity {
     private final static String MINISTER_OF_ADV_EDUCATION = "MOAE";
 
     /**
-     * Filename to use if the signatory is for an independent school.
-     */
-    public final static String INDEPENDENT = "independent";
-
-    /**
      * Filename for the signature of the School Superintendent / Principal /
      * Inspector. By default, the "independent" signature is used.
      */
-    private String schoolSignatory = INDEPENDENT;
+    private String schoolSignatory;
 
     /**
      * Default (empty) constructor.

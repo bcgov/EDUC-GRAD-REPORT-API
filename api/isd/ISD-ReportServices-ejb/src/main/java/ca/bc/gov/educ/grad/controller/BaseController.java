@@ -46,6 +46,7 @@ public abstract class BaseController {
             }
             String signatureImageUrl = "";
             if (StringUtils.trimToNull(signatureImageUrlProperty) == null) {
+                System.out.println("Signature URL Property not found");
                 String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
                 String serverName = "localhost";
                 try {

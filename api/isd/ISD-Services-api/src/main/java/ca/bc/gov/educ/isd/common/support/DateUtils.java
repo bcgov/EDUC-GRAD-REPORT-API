@@ -17,11 +17,12 @@
  */
 package ca.bc.gov.educ.isd.common.support;
 
-import static ca.bc.gov.educ.isd.common.support.VerifyUtils.nullSafe;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static ca.bc.gov.educ.isd.common.support.VerifyUtils.nullSafe;
 
 /**
  *

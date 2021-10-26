@@ -38,7 +38,7 @@ public interface CertificateReport extends StudentReport {
      *
      * @param crs Will be INDEPENDENT, FRANCOPHONE, or not set (DEFAULT).
      */
-    void setReportSubtype(CertificateSubtype crs);
+    void setReportSubtype(CertificateSubType crs);
 
     /**
      * Sets the certificate information to present on the report.

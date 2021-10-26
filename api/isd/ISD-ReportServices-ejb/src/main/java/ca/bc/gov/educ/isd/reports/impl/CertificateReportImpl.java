@@ -16,7 +16,7 @@
 package ca.bc.gov.educ.isd.reports.impl;
 
 import ca.bc.gov.educ.isd.reports.CertificateReport;
-import ca.bc.gov.educ.isd.reports.CertificateSubtype;
+import ca.bc.gov.educ.isd.reports.CertificateSubType;
 import ca.bc.gov.educ.isd.reports.CertificateType;
 import ca.bc.gov.educ.isd.reports.data.adapter.BusinessEntityAdapter;
 import ca.bc.gov.educ.isd.reports.data.impl.Certificate;
@@ -25,8 +25,8 @@ import ca.bc.gov.educ.isd.reports.data.impl.Signatories;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.isd.reports.CertificateSubtype.DEFAULT;
-import static ca.bc.gov.educ.isd.reports.CertificateType.SCCP;
+import static ca.bc.gov.educ.isd.reports.CertificateSubType.DEFAULT;
+import static ca.bc.gov.educ.isd.reports.CertificateType.SC;
 import static java.lang.Boolean.FALSE;
 import static java.util.Locale.CANADA_FRENCH;
 import static java.util.Locale.ENGLISH;
@@ -52,8 +52,8 @@ public final class CertificateReportImpl extends StudentReportImpl
      * Contains the student, school, issue date, and signature set.
      */
     private Certificate certificate;
-    private CertificateType certificateType = SCCP;
-    private CertificateSubtype certificateSubtype = DEFAULT;
+    private CertificateType certificateType = SC;
+    private CertificateSubType certificateSubType = DEFAULT;
 
     private Boolean independentSchool = FALSE;
     private String schoolSignatureCode = "";
@@ -154,7 +154,6 @@ public final class CertificateReportImpl extends StudentReportImpl
     /**
      * Helper method.
      *
-     * @see validate( Object, String, String )
      * @param method The name of the method that cannot be called prior to
      * calling setCertificate.
      */
@@ -190,7 +189,7 @@ public final class CertificateReportImpl extends StudentReportImpl
      * empty.
      */
     private String getReportSubtype() {
-        return this.certificateSubtype.toString();
+        return this.certificateSubType.toString();
     }
 
     /**
@@ -201,8 +200,8 @@ public final class CertificateReportImpl extends StudentReportImpl
      */
     @Override
     public void setReportSubtype(
-            final CertificateSubtype certificateSubtype) {
-        this.certificateSubtype = certificateSubtype;
+            final CertificateSubType certificateSubtype) {
+        this.certificateSubType = certificateSubtype;
     }
 
     /**
@@ -252,29 +251,28 @@ public final class CertificateReportImpl extends StudentReportImpl
     }
 
     private boolean isSCCProgram() {
-        return isCertificateType(CertificateType.SCCP);
+        return isCertificateType(CertificateType.SC);
     }
 
     private boolean isFrenchProgram() {
         // Returns true for "S" or "F" certificate codes.
-        return getLocale() == CANADA_FRENCH
-                || isCertificateSubtype(CertificateSubtype.FRANCOPHONE);
+        return getLocale() == CANADA_FRENCH;
     }
 
     private boolean isCertificateType(final CertificateType ct) {
         return getCertificateType() == ct;
     }
 
-    private boolean isCertificateSubtype(final CertificateSubtype ct) {
-        return getCertificateSubtype() == ct;
+    private boolean isCertificateSubtype(final CertificateSubType ct) {
+        return getCertificateSubType() == ct;
     }
 
     private CertificateType getCertificateType() {
         return this.certificateType;
     }
 
-    private CertificateSubtype getCertificateSubtype() {
-        return this.certificateSubtype;
+    private CertificateSubType getCertificateSubType() {
+        return this.certificateSubType;
     }
 
     private Boolean isIndependentSchool() {
@@ -307,7 +305,7 @@ public final class CertificateReportImpl extends StudentReportImpl
         sb.append(">; certificate type: <");
         sb.append(getCertificateType());
         sb.append(">; certificate subtype: <");
-        sb.append(getCertificateSubtype());
+        sb.append(getCertificateSubType());
         sb.append(">");
 
         return sb.toString();

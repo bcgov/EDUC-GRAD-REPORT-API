@@ -16,6 +16,7 @@
 package ca.bc.gov.educ.isd.reports;
 
 import ca.bc.gov.educ.isd.common.Predicate;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;

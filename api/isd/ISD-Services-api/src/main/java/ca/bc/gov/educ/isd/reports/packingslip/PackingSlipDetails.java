@@ -17,6 +17,7 @@ package ca.bc.gov.educ.isd.reports.packingslip;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
 import ca.bc.gov.educ.isd.common.party.address.PostalAddress;
+
 import java.util.Date;
 
 /**

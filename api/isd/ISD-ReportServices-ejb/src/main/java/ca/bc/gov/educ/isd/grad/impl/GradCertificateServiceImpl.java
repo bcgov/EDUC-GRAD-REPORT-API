@@ -20,13 +20,14 @@ package ca.bc.gov.educ.isd.grad.impl;
 import ca.bc.gov.educ.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.cert.Certificate;
-import ca.bc.gov.educ.isd.common.*;
+import ca.bc.gov.educ.isd.common.BusinessProcessException;
+import ca.bc.gov.educ.isd.common.BusinessReport;
+import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.common.party.Identifier;
 import ca.bc.gov.educ.isd.common.party.address.Address;
-import ca.bc.gov.educ.isd.eis.EISException;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
-import ca.bc.gov.educ.isd.eis.trax.db.TRAXAdapter;
 import ca.bc.gov.educ.isd.grad.GradCertificateReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
 import ca.bc.gov.educ.isd.reports.*;
@@ -35,7 +36,6 @@ import ca.bc.gov.educ.isd.student.PersonalEducationNumber;
 import ca.bc.gov.educ.isd.student.Student;
 import ca.bc.gov.educ.isd.student.impl.SchoolImpl;
 import ca.bc.gov.educ.isd.student.impl.StudentImpl;
-import ca.bc.gov.educ.isd.traxadaptor.dao.utils.TRAXThreadDataUtility;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +54,6 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.isd.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.isd.common.support.impl.Roles.USER;
-import static ca.bc.gov.educ.isd.grad.GraduationProgramCode.PROGRAM_SCCP;
-import static ca.bc.gov.educ.isd.reports.CertificateType.REGULAR;
 import static ca.bc.gov.educ.isd.reports.ReportFormat.PDF;
 import static ca.bc.gov.educ.isd.transcript.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static java.util.Locale.CANADA;
@@ -73,9 +71,6 @@ public class GradCertificateServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = GradCertificateServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-
-    @Autowired
-    private TRAXAdapter traxAdapter;
 
     @Autowired
     private ReportService reportService;
@@ -110,9 +105,17 @@ public class GradCertificateServiceImpl
                 "Confirmed the user is a student and retrieved the PEN.");
 
         // access TRAX adaptor to obtain required data for PEN
-        final StudentDemographic studentData = readStudentDemog(penId); //validated
+        final StudentDemographic studentData = gradtoIsdDataConvertBean.getSingleStudentDemog(reportData); //validated
         if (studentData == null) {
-            final String msg = "Failed to find student demographic information in TRAX for PEN: " + penId;
+            final String msg = "Failed to find student demographic information for PEN: " + penId;
+            final DomainServiceException dse = new DomainServiceException(msg);
+            LOG.throwing(CLASSNAME, _m, dse);
+            throw dse;
+        }
+
+        final CertificateImpl certificate = (CertificateImpl)reportData.getCertificate();
+        if (certificate == null) {
+            final String msg = "Failed to find student certificate for PEN: " + penId;
             final DomainServiceException dse = new DomainServiceException(msg);
             LOG.throwing(CLASSNAME, _m, dse);
             throw dse;
@@ -122,20 +125,16 @@ public class GradCertificateServiceImpl
         final Student student = transferStudentData(penObj, studentData); //validated
         final School school = transferSchoolData(studentData); //validated
         final String penEntityId = penObj.getEntityId();
-        final Certificate certificate = new CertificateImpl(
-                studentData.getCertificateDate());
 
         final List<BusinessReport> certificates = new ArrayList<>();
         final String englishCert = studentData.getEnglishCertificate().trim();
         final String frenchCert = studentData.getFrenchCertificate().trim();
-        final boolean sccp = PROGRAM_SCCP.isCode(studentData.getCertificateCategory());
 
         LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
-        LOG.log(Level.FINE, "SCCP flag: {0}", sccp);
         LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
 
-        if (!englishCert.isEmpty() || sccp) {
-            final String certType = studentData.getEnCertType();
+        if (!englishCert.isEmpty()) {
+            final String certType = certificate.getCertificateType().getReportName();
 
             final GradCertificateReport gradCert = englishCertificate(
                     certType, student, school, penEntityId, certificate);
@@ -144,7 +143,7 @@ public class GradCertificateServiceImpl
         }
 
         if (!frenchCert.isEmpty()) {
-            final String certType = studentData.getFrCertType();
+            final String certType = certificate.getCertificateType().getReportName();
 
             final GradCertificateReport gradCert = frenchCertificate(
                     certType, student, school, penEntityId, certificate);
@@ -177,41 +176,6 @@ public class GradCertificateServiceImpl
     }
 
     /**
-     * Call TRAX adaptor to perform a read of the student demographics.
-     *
-     * @param pen
-     * @return TRAX StudentDemographic
-     * @throws DataException
-     */
-    private StudentDemographic readStudentDemog(final String pen) throws DataException {
-        final String methodName = "readStatic(String)";
-        LOG.entering(CLASSNAME, methodName, pen);
-
-        final StudentDemographic studentInfo;
-        try {
-            studentInfo = traxAdapter.readStudent_Demographic(pen);
-
-            LOG.log(Level.FINER, "Retrieved student demographic data from TRAX for PEN: {0}", pen);
-
-            if (studentInfo != null) {
-                LOG.log(Level.FINEST, "Retrieved student:");
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
-            }
-        } catch (final EISException ex) {
-            final String msg = "Failed to access TRAX student demographic data for student with PEN: ".concat(
-                    pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
-
-        LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, methodName);
-        return studentInfo;
-    }
-
-    /**
      * Transfer the TRAX data from the data value object into a Student object.
      *
      * @param penObj
@@ -230,6 +194,7 @@ public class GradCertificateServiceImpl
         student.setFirstName(traxStudent.getFirstName());
         student.setMiddleName(traxStudent.getMiddleName());
         student.setLastName(traxStudent.getLastName());
+        student.setBirthdate(traxStudent.getBirthDate());
 
         LOG.exiting(CLASSNAME, _m);
         return student;
@@ -253,8 +218,14 @@ public class GradCertificateServiceImpl
 
         final SchoolImpl school = new SchoolImpl();
 
-        school.setMincode(schoolId);
-        school.setName(traxStudent.getSchoolName());
+        if(traxStudent.getSchool() != null) {
+            school.setMincode(traxStudent.getSchool().getMincode());
+            school.setName(traxStudent.getSchool().getSchlName());
+        } else {
+            school.setMincode(schoolId);
+            school.setName(traxStudent.getSchoolName());
+        }
+
         school.setSignatureCode(traxStudent.getCertificateSignature());
         school.setTypeIndicator(traxStudent.getSchoolTypeIndicator());
 
@@ -279,25 +250,35 @@ public class GradCertificateServiceImpl
             final String entityId,
             final Certificate certificate) throws DomainServiceException {
 
-        CertificateType rsRptType = CertificateType.REGULAR;
-        final CertificateSubtype rsRptSubType;
+        final CertificateType rsRptType;
+        final CertificateSubType rsRptSubType = certificate.getIsOrigin() ? CertificateSubType.ORIGINAL : CertificateSubType.DEFAULT;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
-        if (certType.equals(Constants.SCCP_CERTIFICATE)) {
-            rsRptType = CertificateType.SCCP;
-        }
-
-        if (certType.equals(Constants.ENGLISH_DOGWOOD_ADULT)
-                || certType.equals(Constants.ENGLISH_DOGWOOD_ADULT_IND)) {
-            rsRptType = CertificateType.ADULT;
-        }
-
-        if (certType.equals(Constants.ENGLISH_DOGWOOD_IND)
-                || certType.equals(Constants.ENGLISH_DOGWOOD_ADULT_IND)) {
-            rsRptSubType = CertificateSubtype.INDEPENDENT;
-        } else {
-            rsRptSubType = CertificateSubtype.DEFAULT;
+        switch(certType) {
+            case "E":
+                rsRptType = CertificateType.E;
+                break;
+            case "A":
+                rsRptType = CertificateType.A;
+                break;
+            case "EI":
+                rsRptType = CertificateType.EI;
+                break;
+            case "AI":
+                rsRptType = CertificateType.AI;
+                break;
+            case "S":
+                rsRptType = CertificateType.S;
+                break;
+            case "SC":
+                rsRptType = CertificateType.SC;
+                break;
+            case "F":
+                rsRptType = CertificateType.F;
+                break;
+            default:
+                rsRptType = CertificateType.E;
         }
 
         LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
@@ -325,17 +306,44 @@ public class GradCertificateServiceImpl
             final School school,
             final String entityId,
             final Certificate certificate) throws DomainServiceException {
-        final CertificateSubtype rsRptSubType;
 
-        if (Constants.CSF_FRENCH_DOGWOOD.equals(certType)) {
-            rsRptSubType = CertificateSubtype.FRANCOPHONE;
-        } else {
-            rsRptSubType = CertificateSubtype.DEFAULT;
+        final CertificateType rsRptType;
+        final CertificateSubType rsRptSubType = certificate.getIsOrigin() ? CertificateSubType.ORIGINAL : CertificateSubType.DEFAULT;
+
+        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+
+        switch(certType) {
+            case "E":
+                rsRptType = CertificateType.E;
+                break;
+            case "A":
+                rsRptType = CertificateType.A;
+                break;
+            case "EI":
+                rsRptType = CertificateType.EI;
+                break;
+            case "AI":
+                rsRptType = CertificateType.AI;
+                break;
+            case "S":
+                rsRptType = CertificateType.S;
+                break;
+            case "SC":
+                rsRptType = CertificateType.SC;
+                break;
+            case "F":
+                rsRptType = CertificateType.F;
+                break;
+            default:
+                rsRptType = CertificateType.E;
         }
+
+        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+                new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
         final GradCertificateReport gradCert = createReport(
                 student, school, entityId, certificate,
-                CANADA_FRENCH, REGULAR, rsRptSubType);
+                CANADA_FRENCH, rsRptType, rsRptSubType);
 
         return gradCert;
     }
@@ -358,7 +366,7 @@ public class GradCertificateServiceImpl
             final Certificate certificate,
             final Locale location,
             final CertificateType rsRptType,
-            final CertificateSubtype rsRptSubType) throws DomainServiceException {
+            final CertificateSubType rsRptSubType) throws DomainServiceException {
 
         final String methodName = "createReport(Student, School, String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
         LOG.entering(CLASSNAME, methodName);
@@ -411,7 +419,7 @@ public class GradCertificateServiceImpl
 
     private String createReportTypeName(
             final CertificateType type,
-            final CertificateSubtype subtype,
+            final CertificateSubType subtype,
             final Locale locale) {
         final String reportTypeName
                 = type.toString()

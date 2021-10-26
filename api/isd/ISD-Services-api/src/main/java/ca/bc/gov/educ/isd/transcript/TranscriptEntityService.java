@@ -19,9 +19,10 @@ package ca.bc.gov.educ.isd.transcript;
 
 import ca.bc.gov.educ.isd.common.CommonEntityService;
 import ca.bc.gov.educ.isd.common.SearchResult;
+
+import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.Map;
-import javax.xml.bind.JAXBException;
 
 /**
  *

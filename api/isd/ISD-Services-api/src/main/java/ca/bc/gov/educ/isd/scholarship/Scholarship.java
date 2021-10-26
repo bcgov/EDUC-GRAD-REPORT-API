@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.scholarship;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
+
 import java.util.Date;
 
 /**

@@ -4,23 +4,36 @@ import lombok.Data;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
 @Immutable
 @Entity
-@Table(name = "GRAD_REPORT_SIGNATURE")
+@Table(name = "DIGIT_SIGNATURE")
 public class GragReportSignatureImageEntity extends BaseEntity {
 
     @Id
-    @Column(name = "GRAD_REPORT_SIGNATURE_ID", nullable = false)
+    @Column(name = "DIGIT_SIGNATURE_ID", nullable = false)
     private UUID signatureId;
 
     @Lob
-    @Column(name = "GRAD_REPORT_SIGNATURE", columnDefinition="BLOB", nullable = false)
+    @Column(name = "DIGIT_SIGNATURE_BLOB", columnDefinition="BLOB", nullable = false)
     private byte[] signatureContent;
 
-    @Column(name = "GRAD_REPORT_SIGNATURE_CODE", nullable = false)
+    @Column(name = "DIGIT_SIGNATURE_CODE", nullable = false)
     private String gradReportSignatureCode;
+
+    @Column(name = "DIGIT_SIGNATURE_TITLE")
+    private String gradReportSignatureTitle;
+
+    @Column(name = "DIGIT_SIGNATURE_NAME")
+    private String gradReportSignatureName;
+
+    @Column(name = "EFFECTIVE_DATE")
+    private Date effectiveTimestamp;
+
+    @Column(name = "EXPIRY_DATE")
+    private Date expiryTimestamp;
 
 }
