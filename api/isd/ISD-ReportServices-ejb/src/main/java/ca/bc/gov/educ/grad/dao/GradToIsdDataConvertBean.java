@@ -3,9 +3,6 @@ package ca.bc.gov.educ.grad.dao;
 import ca.bc.gov.educ.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.adaptor.dao.impl.*;
-import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranDemogEntity;
-import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranNongradEntity;
-import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranNongradEntityPK;
 import ca.bc.gov.educ.isd.adaptor.impl.NumeracyAssessmentResultImpl;
 import ca.bc.gov.educ.isd.adaptor.impl.StudentDemographicImpl;
 import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
@@ -170,15 +167,15 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    public List<TswTranNongradEntity> getTswTranNongradEntity(ReportData reportData) {
-        List<TswTranNongradEntity> result = new ArrayList<>();
+    public List<TranNongradEntity> getTswTranNongradEntity(ReportData reportData) {
+        List<TranNongradEntity> result = new ArrayList<>();
         if(reportData.getNonGradReasons() != null) {
             for (NonGradReason reason : reportData.getNonGradReasons()) {
-                TswTranNongradEntityPK pk = new TswTranNongradEntityPK(
+                TranNongradEntityPK pk = new TranNongradEntityPK(
                         reportData.getStudent().getPen().getValue(),
                         reason.getCode()
                 );
-                TswTranNongradEntity entity = new TswTranNongradEntity(
+                TranNongradEntity entity = new TranNongradEntity(
                         pk,
                         reason.getDescription(),
                         reportData.getUpdateDate() != null ? reportData.getUpdateDate().getTime() : 0L
@@ -193,11 +190,11 @@ public class GradToIsdDataConvertBean {
         return 'Y';
     }
 
-    public TswTranDemogEntity getTswTranDemog(ReportData reportData) {
+    public TranDemogEntity getTswTranDemog(ReportData reportData) {
         Student student = getStudent(reportData);
         School school = getSchool(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        TswTranDemogEntity result = new TswTranDemogEntity(
+        TranDemogEntity result = new TranDemogEntity(
                 student.getPen().getValue(), //String studNo,
                 student.getFirstName(), //String firstName,
                 student.getMiddleName(), //String middleName,

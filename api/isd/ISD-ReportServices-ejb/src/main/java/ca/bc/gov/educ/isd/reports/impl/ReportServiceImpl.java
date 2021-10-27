@@ -17,8 +17,6 @@
  */
 package ca.bc.gov.educ.isd.reports.impl;
 
-import ca.bc.gov.educ.isd.assessment.LiteracyAssessmentReport;
-import ca.bc.gov.educ.isd.assessment.NumeracyAssessmentReport;
 import ca.bc.gov.educ.isd.reports.*;
 import ca.bc.gov.educ.isd.reports.admin.AdminReport;
 import ca.bc.gov.educ.isd.reports.common.impl.AbstractReportService;
@@ -83,48 +81,6 @@ public class ReportServiceImpl extends AbstractReportService
     @RolesAllowed({USER_REPORTS_TRANSCRIPT, FULFILLMENT_SERVICES_USER})
     public TranscriptReport createTranscriptReport() {
         return new TranscriptReportImpl();
-    }
-
-    /**
-     * Piggy-back GNA report security on PEAR.
-     *
-     * @return
-     * @inheritDoc
-     */
-    @Override
-    @RolesAllowed({USER_REPORTS_PEAR, FULFILLMENT_SERVICES_USER})
-    public NumeracyAssessmentReport createNumeracyAssessmentReport() {
-        return new NumeracyAssessmentReportImpl();
-    }
-    
-    /**
-     * Piggy-back GLA report security on PEAR.
-     *
-     * @return
-     * @inheritDoc
-     */
-    @Override
-    @RolesAllowed({USER_REPORTS_PEAR, FULFILLMENT_SERVICES_USER})
-    public LiteracyAssessmentReport createLiteracyAssessmentReport() {
-        return new LiteracyAssessmentReportImpl();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    @RolesAllowed({USER_REPORTS_SCHOLARSHIPS, FULFILLMENT_SERVICES_USER})
-    public ScholarshipReport createScholarshipReport() {
-        return new ScholarshipReportImpl();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    @RolesAllowed({USER_REPORTS_PACKINGSLIP, FULFILLMENT_SERVICES_USER})
-    public PackingSlipReport createPackingSlipReport() {
-        return new PackingSlipReportImpl();
     }
 
     /**

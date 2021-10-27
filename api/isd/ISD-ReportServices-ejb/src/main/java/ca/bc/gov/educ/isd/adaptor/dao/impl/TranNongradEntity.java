@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.isd.adaptor.dao.tsw.impl;
+package ca.bc.gov.educ.isd.adaptor.dao.impl;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -31,25 +31,25 @@ import java.io.Serializable;
  */
 
 @XmlRootElement
-public class TswTranNongradEntity implements Serializable {
+public class TranNongradEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private TswTranNongradEntityPK id;
+    private TranNongradEntityPK id;
 
     private String nonGradDesc;
     private Long updateDt;
 
-    public TswTranNongradEntity() {
+    public TranNongradEntity() {
     }
 
-    public TswTranNongradEntity(TswTranNongradEntityPK id, String nonGradDesc, Long updateDt) {
+    public TranNongradEntity(TranNongradEntityPK id, String nonGradDesc, Long updateDt) {
         this.id = id;
         this.nonGradDesc = nonGradDesc;
         this.updateDt = updateDt;
     }
 
-    public TswTranNongradEntityPK getId() {
+    public TranNongradEntityPK getId() {
         return this.id;
     }
 

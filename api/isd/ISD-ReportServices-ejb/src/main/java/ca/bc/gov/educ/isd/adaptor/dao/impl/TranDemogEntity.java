@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.isd.adaptor.dao.tsw.impl;
+package ca.bc.gov.educ.isd.adaptor.dao.impl;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -29,7 +29,7 @@ import java.util.Date;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class TswTranDemogEntity implements Serializable {
+public class TranDemogEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,10 +65,10 @@ public class TswTranDemogEntity implements Serializable {
 
     private Character currentFormerFlag;
 
-    public TswTranDemogEntity() {
+    public TranDemogEntity() {
     }
 
-    public TswTranDemogEntity(
+    public TranDemogEntity(
             String studNo,
             String firstName,
             String middleName,

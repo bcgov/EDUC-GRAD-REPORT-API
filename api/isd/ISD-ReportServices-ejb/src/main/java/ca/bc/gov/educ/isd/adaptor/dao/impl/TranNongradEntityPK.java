@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.isd.adaptor.dao.tsw.impl;
+package ca.bc.gov.educ.isd.adaptor.dao.impl;
 
 import java.io.Serializable;
 
@@ -24,7 +24,7 @@ import java.io.Serializable;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class TswTranNongradEntityPK implements Serializable {
+public class TranNongradEntityPK implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,10 +32,10 @@ public class TswTranNongradEntityPK implements Serializable {
 
     private String nonGradCode;
 
-    public TswTranNongradEntityPK() {
+    public TranNongradEntityPK() {
     }
 
-    public TswTranNongradEntityPK(String studNo, String nonGradCode) {
+    public TranNongradEntityPK(String studNo, String nonGradCode) {
         this.studNo = studNo;
         this.nonGradCode = nonGradCode;
     }

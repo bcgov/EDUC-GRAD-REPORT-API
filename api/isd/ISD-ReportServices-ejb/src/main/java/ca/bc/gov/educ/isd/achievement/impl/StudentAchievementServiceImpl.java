@@ -25,7 +25,7 @@ import ca.bc.gov.educ.isd.achievement.AchievementResult;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementService;
 import ca.bc.gov.educ.isd.adaptor.dao.impl.TranCourseEntity;
-import ca.bc.gov.educ.isd.adaptor.dao.tsw.impl.TswTranNongradEntity;
+import ca.bc.gov.educ.isd.adaptor.dao.impl.TranNongradEntity;
 import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.adaptor.impl.AchievementCourseImpl;
 import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
@@ -424,9 +424,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             }
 
             StudentInfoImpl student = (StudentInfoImpl) gradtoIsdDataConvertBean.getStudentInfo(reportData);
-            final List<TswTranNongradEntity> reasonList = gradtoIsdDataConvertBean.getTswTranNongradEntity(reportData);
+            final List<TranNongradEntity> reasonList = gradtoIsdDataConvertBean.getTswTranNongradEntity(reportData);
             final HashMap<String, String> reasons = new HashMap<>();
-            for (final TswTranNongradEntity reason : reasonList) {
+            for (final TranNongradEntity reason : reasonList) {
                 final String code = reason.getNonGradCode().trim();
                 final String text = reason.getNonGradDesc().trim();
                 reasons.put(code, text);

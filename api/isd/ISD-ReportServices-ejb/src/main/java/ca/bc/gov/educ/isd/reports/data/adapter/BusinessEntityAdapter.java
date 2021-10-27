@@ -361,46 +361,6 @@ public class BusinessEntityAdapter {
     }
 
     /**
-     * Maps scholarship instances to a student's list of scholarships.
-     *
-     * @param scholarships The data to adapt for reports.
-     * @param student The student to populate with scholarships.
-     */
-    public static void adapt(
-            final List<ca.bc.gov.educ.isd.scholarship.Scholarship> scholarships,
-            final Student student) {
-        validate(scholarships, "scholarships");
-        validate(student, "student");
-
-        for (ca.bc.gov.educ.isd.scholarship.Scholarship scholarship
-                : scholarships) {
-            final Scholarship s = adapt(scholarship);
-            student.addScholarship(s);
-        }
-    }
-
-    /**
-     * Maps a scholarship instance to a report scholarship instance.
-     *
-     * @param scholarship The data to adapt for reports.
-     * @return A new Scholarship instance populated with data from the
-     * parameter.
-     */
-    private static Scholarship adapt(
-            final ca.bc.gov.educ.isd.scholarship.Scholarship scholarship) {
-        validate(scholarship, "scholarship");
-
-        return new Scholarship.Builder()
-                .withName(scholarship.getName())
-                .withExpiry(scholarship.getExpiry())
-                .withAmount(scholarship.getAmount())
-                .withRedeemed(scholarship.getRedeemed())
-                .withCode(scholarship.getCode())
-                .withYearAwarded(scholarship.getYearAwarded())
-                .build();
-    }
-
-    /**
      * Associates a numeracy assessment result to a student's assessment
      * results.
      *
