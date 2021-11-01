@@ -24,9 +24,9 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
   flyway:
-    enabled: false
+    enabled: true
     #baseline-on-migrate: true
-    outOfOrder: true
+    #outOfOrder: true
     table: FLYWAY_SCHEMA_HISTORY
     url: jdbc:oracle:thin:@//localhost:1522/XEPDB1
     schemas: GRAD_REPORT_API

@@ -22,4 +22,7 @@ public class GragReportSignatureImageLightEntity extends BaseEntity {
     @Column(name = "DIGIT_SIGNATURE_CODE", nullable = false)
     private String gradReportSignatureCode;
 
+    @Column(name = "DIGIT_SIGNATURE_NAME")
+    private String gradReportSignatureName;
+
 }
