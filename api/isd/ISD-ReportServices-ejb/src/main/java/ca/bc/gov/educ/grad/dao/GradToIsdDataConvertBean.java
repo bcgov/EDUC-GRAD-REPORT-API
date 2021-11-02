@@ -236,7 +236,7 @@ public class GradToIsdDataConvertBean {
                 school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "", //String city,
                 school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "", //String provCode,
                 school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "", //String postal,
-                null, //String signatureDistno,
+                school.getSignatureCode(), //String signatureDistno,
                 null, //Character xcriptElig,
                 school.getPhoneNumber(), //String phone,
                 "Y".equalsIgnoreCase(school.getTypeIndicator()) ? 'Y' : 'N', //Character schlIndType
@@ -275,8 +275,8 @@ public class GradToIsdDataConvertBean {
                 programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
                 programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
                 programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
-                student.getEnglishCert(), //String englishCert,
-                student.getFrenchCert(), //String frenchCert,
+                student.getEnglishCert() == null && student.getFrenchCert() == null ? "E" : student.getEnglishCert(), //String englishCert,
+                student.getFrenchCert() == null ? null : student.getFrenchCert(), //String frenchCert,
                 null, //String traxCountryCode,
                 null, //String stud_true_no,
                 null  //String isoCountryCode

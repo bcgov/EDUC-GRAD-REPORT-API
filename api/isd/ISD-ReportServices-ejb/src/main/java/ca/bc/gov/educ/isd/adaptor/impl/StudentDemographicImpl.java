@@ -586,7 +586,7 @@ public class StudentDemographicImpl implements StudentDemographic {
                 signature = schoolDistrictNumber;
             }
             if(!"".equals(signature))
-                this.certificateSignature = signature.substring(1, 3);
+                this.certificateSignature = signature.substring(0, 3);
         } catch (final IndexOutOfBoundsException e) {
             LOG.log(Level.WARNING, "Could not determine certificate signature.", e);
         }
