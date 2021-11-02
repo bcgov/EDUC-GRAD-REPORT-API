@@ -22,11 +22,8 @@ import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.cert.Certificate;
-import ca.bc.gov.educ.isd.common.BusinessProcessException;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
-import ca.bc.gov.educ.isd.common.party.Identifier;
-import ca.bc.gov.educ.isd.common.party.address.Address;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
 import ca.bc.gov.educ.isd.grad.GradCertificateReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
@@ -153,26 +150,6 @@ public class GradCertificateServiceImpl
 
         LOG.exiting(CLASSNAME, _m);
         return certificates;
-    }
-
-    @Override
-    public Boolean checkGrad(PersonalEducationNumber pen) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String sendReport(String orderXRef, Identifier partyId, Address addr) throws BusinessProcessException, DomainServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String checkDelivery(String refNo) throws DomainServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public List<String> listTrackingNo(String orderXRef) throws DomainServiceException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**

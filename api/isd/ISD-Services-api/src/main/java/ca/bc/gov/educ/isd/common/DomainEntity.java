@@ -45,17 +45,6 @@ public interface DomainEntity extends Serializable {
     String getEntityId();
 
     /**
-     * Retrieve the stateless transaction number for this entity.
-     *
-     * This value may be different for the same entity in duplicate data stores
-     * and hence should be considered informational only.
-     *
-     * @return Stateless transaction number of the currently persisted entity
-     * instance.
-     */
-    Integer getXactId();
-
-    /**
      * Retrieve the timestamp on which this entity was first created.
      *
      * @return Timestamp of when the entity was created.
