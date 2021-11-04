@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report EI.pdf"
+    "reportFile": "Certificate Report F.pdf"
   },
   "data": {
     "student": {
@@ -53,10 +53,10 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "FI",
+        "code": "2004-PF",
         "description": "",
         "credits": "",
-        "name": "FI"
+        "name": "PROGRAM_2004_PF"
       }
     },
     "updateDate": "2001-06-01",

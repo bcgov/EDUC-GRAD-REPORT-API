@@ -106,7 +106,7 @@ public class ReportService {
 	}
 	
 	public ResponseEntity getStudentCertificateReport(GenerateReportRequest reportRequest) {
-		String _m = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
+		String _m = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
 		log.debug("<{}.{}", _m, CLASS_NAME);
 
 		TRAXThreadDataUtility.setGenerateReportData(reportRequest.getData());

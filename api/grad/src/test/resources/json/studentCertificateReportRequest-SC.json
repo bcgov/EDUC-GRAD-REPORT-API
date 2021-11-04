@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report EI.pdf"
+    "reportFile": "Certificate Report SC.pdf"
   },
   "data": {
     "student": {
@@ -56,7 +56,7 @@
         "code": "SCCP",
         "description": "",
         "credits": "",
-        "name": "SCCP"
+        "name": "PROGRAM_SCCP"
       }
     },
     "updateDate": "2001-06-01",

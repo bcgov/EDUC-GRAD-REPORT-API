@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report EI.pdf"
+    "reportFile": "Certificate Report EIO.pdf"
   },
   "data": {
     "student": {
@@ -53,10 +53,10 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "1986-EN",
+        "code": "2018-EN",
         "description": "",
         "credits": "",
-        "name": "1986-EN"
+        "name": "PROGRAM_2018_EN"
       }
     },
     "updateDate": "2001-06-01",

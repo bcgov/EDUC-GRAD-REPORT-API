@@ -58,12 +58,18 @@ public enum GraduationProgramCode implements Serializable {
     @XmlEnumValue("1986")
     @JsonProperty("1986")
     PROGRAM_1986("1986", "Course-Based Graduation Program", 52),
+    @XmlEnumValue("1986-EN")
+    @JsonProperty("1986-EN")
+    PROGRAM_1986_EN("1986-EN", "Course-Based Graduation Program", 52),
     @XmlEnumValue("1995")
     @JsonProperty("1995")
     PROGRAM_1995("1995", "Graduation Program 1995", 52),
     @XmlEnumValue("1996")
     @JsonProperty("1996")
     PROGRAM_1996("1996", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
+    @XmlEnumValue("1996-PF")
+    @JsonProperty("1996-PF")
+    PROGRAM_1996_PF("1996-PF", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
     @XmlEnumValue("2004")
     @JsonProperty("2004")
     PROGRAM_2004("2004", "Graduation Program 2004", 80),
@@ -78,7 +84,7 @@ public enum GraduationProgramCode implements Serializable {
     PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
     @XmlEnumValue("2004-PF")
     @JsonProperty("2004-PF")
-    PROGRAM_2004_PF("2004", "2004 Programme Francophone", 80),
+    PROGRAM_2004_PF("2004-PF", "2004 Programme Francophone", 80),
     @XmlEnumValue("2004-EN")
     @JsonProperty("2004-EN")
     PROGRAM_2004_EN("2004-EN", "Graduation Program 2004", 80),
