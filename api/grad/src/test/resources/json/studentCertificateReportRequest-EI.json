@@ -40,7 +40,7 @@
       "signatureCode": "036",
       "distno": "036",
       "schlno": "03699064",
-      "schoolCategoryCode": "",
+      "schoolCategoryCode": "02",
       "address": {
         "streetLine1": "300-10183 152A ST",
         "streetLine2": "",
@@ -53,10 +53,10 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "1950",
+        "code": "2018-EN",
         "description": "",
         "credits": "",
-        "name": "PROGRAM_1950"
+        "name": "2018-EN"
       }
     },
     "updateDate": "2001-06-01",
