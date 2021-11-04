@@ -105,11 +105,7 @@ public final class CertificateReportImpl extends StudentReportImpl
      */
     private void processSignatories() {
         final Signatories signatories = new Signatories();
-
-        if (applySchoolSignatory()) {
-            signatories.setSchoolSignatory(getSchoolSignatureCode());
-        }
-
+        signatories.setSchoolSignatory(getSchoolSignatureCode());
         LOG.log(Level.FINE, "School signatory code is <{0}>.",
                 signatories.getSchoolSignatory());
 
@@ -229,25 +225,6 @@ public final class CertificateReportImpl extends StudentReportImpl
         subtype = "-" + (subtype.isEmpty() ? "default" : subtype);
 
         return language + type + subtype;
-    }
-
-    /**
-     * Use the district signature code based on whether an independent school is
-     * involved, or whether the program is SCCP, or whether the student has
-     * entered a French program.
-     *
-     * @return true Use a dynamic signature code, not the static "independent"
-     * signature code.
-     */
-    private boolean applySchoolSignatory() {
-        boolean result = false;
-
-        if (!isIndependentSchool() || isSCCProgram() || isFrenchProgram()) {
-            result = true;
-        }
-
-        return result;
-
     }
 
     private boolean isSCCProgram() {
