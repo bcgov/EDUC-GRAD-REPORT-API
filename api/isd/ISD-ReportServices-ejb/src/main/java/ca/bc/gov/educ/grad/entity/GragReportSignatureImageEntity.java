@@ -13,7 +13,7 @@ import java.util.UUID;
 public class GragReportSignatureImageEntity extends BaseEntity {
 
     @Id
-    @Column(name = "DIGIT_SIGNATURE_ID", nullable = false)
+    @Column(name = "DIGIT_SIGNATURE_KEY", nullable = false)
     private UUID signatureId;
 
     @Lob

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "SIGNATURE_BLOCK_TYPE")
-public class SignatureBlockTypeEntity extends BaseEntity {
+public class SignatureBlockTypeCodeEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

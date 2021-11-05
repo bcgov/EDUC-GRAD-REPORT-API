@@ -38,6 +38,7 @@ public enum PaperType {
     CERTIFICATE_EI("YEDR"),
     CERTIFICATE_E("YEDR"),
     CERTIFICATE_S("YEDR"),
+    CERTIFICATE_SCF("YED2"),
     CERTIFICATE_F("YEDR"),
     TRANSCRIPT("YED4");
 

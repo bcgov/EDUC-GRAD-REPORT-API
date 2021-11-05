@@ -251,6 +251,9 @@ public class GradCertificateServiceImpl
             case "SC":
                 rsRptType = CertificateType.SC;
                 break;
+            case "SCF":
+                rsRptType = CertificateType.SCF;
+                break;
             case "F":
                 rsRptType = CertificateType.F;
                 break;
@@ -307,6 +310,9 @@ public class GradCertificateServiceImpl
                 break;
             case "SC":
                 rsRptType = CertificateType.SC;
+                break;
+            case "SCF":
+                rsRptType = CertificateType.SCF;
                 break;
             case "F":
                 rsRptType = CertificateType.F;
