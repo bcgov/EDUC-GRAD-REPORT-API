@@ -85,7 +85,7 @@
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="0" y="203" width="639" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107"/>
+				<reportElement style="Body" x="0" y="203" width="792" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107"/>
 				<textFieldExpression><![CDATA[$R{header.certify.suffix.SCF}]]></textFieldExpression>
 			</textField>
 			<textField>
