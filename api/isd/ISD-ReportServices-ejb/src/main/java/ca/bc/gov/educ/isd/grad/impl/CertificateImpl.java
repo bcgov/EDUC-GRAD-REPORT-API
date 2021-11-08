@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.grad.impl;
 
 import ca.bc.gov.educ.isd.cert.Certificate;
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.reports.CertificateType;
 import ca.bc.gov.educ.isd.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.isd.reports.bundle.service.OrderType;
@@ -28,6 +29,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Mock certificate used for testing.
@@ -42,6 +44,7 @@ public class CertificateImpl implements Certificate, Serializable {
     private Date issued;
     private boolean isOrigin = false;
     private CertificateOrderTypeImpl orderType;
+    private Map<String, SignatureBlockType> signatureBlockTypes;
 
     public CertificateImpl() {
     }
@@ -72,6 +75,15 @@ public class CertificateImpl implements Certificate, Serializable {
     @JsonDeserialize(as = CertificateOrderTypeImpl.class)
     public OrderType getOrderType() {
         return orderType == null ? new CertificateOrderTypeImpl(CertificateType.E) : orderType;
+    }
+
+    @Override
+    public Map<String, SignatureBlockType> getSignatureBlockTypes() {
+        return this.signatureBlockTypes;
+    }
+
+    public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
+        this.signatureBlockTypes = signatureBlockTypes;
     }
 
     public void setOrderType(OrderType orderType) {

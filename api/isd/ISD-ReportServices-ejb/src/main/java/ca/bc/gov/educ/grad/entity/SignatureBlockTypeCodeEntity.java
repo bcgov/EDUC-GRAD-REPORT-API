@@ -19,9 +19,9 @@ public class SignatureBlockTypeCodeEntity extends BaseEntity {
     private String signatureBlockType;
 
     @Column(name = "LABEL", nullable = false)
-    private String LABEL;
+    private String label;
 
     @Column(name = "DESCRIPTION", nullable = false)
-    private String DESCRIPTION;
+    private String description;
 
 }
