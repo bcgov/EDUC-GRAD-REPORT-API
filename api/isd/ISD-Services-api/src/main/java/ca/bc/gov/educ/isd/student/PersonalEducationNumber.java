@@ -17,11 +17,17 @@
  */
 package ca.bc.gov.educ.isd.student;
 
-import ca.bc.gov.educ.isd.common.party.Identifier;
-
 /**
  * @author CGI Information Management Consultants Inc.
  */
 
-public interface PersonalEducationNumber extends Identifier {
+public interface PersonalEducationNumber {
+
+    String getValue();
+
+    String getEntityId();
+    void setEntityId(String entityId);
+
+    public String getPen();
+    public void setPen(String pen);
 }

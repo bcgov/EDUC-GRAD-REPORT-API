@@ -38,13 +38,13 @@ public class Constants {
     public static final String DATE_TRAX_YM = "yyyyMM";
     public static final String DATE_TRAX_YM_UPPER = DATE_TRAX_YM.toUpperCase();
 
-    public static final String CSF_FRENCH_DOGWOOD = "CSF French Dogwood";
-    public static final String FRENCH_DOGWOOD = "French Dogwood";
-    public static final String ENGLISH_DOGWOOD = "English Dogwood";
+    public static final String CSF_FRENCH_DOGWOOD = "CSF Program francophone Dogwood";
+    public static final String FRENCH_DOGWOOD = "French Immersion Certificate";
+    public static final String ENGLISH_DOGWOOD = "English Dogwood Public";
     public static final String ENGLISH_DOGWOOD_IND = "English Dogwood Independent School";
-    public static final String ENGLISH_DOGWOOD_ADULT = "English Dogwood Adult Program";
-    public static final String ENGLISH_DOGWOOD_ADULT_IND = "English Dogwood Adult Program Independent School";
-    public static final String SCCP_CERTIFICATE = "SCCP Certificate";
+    public static final String ENGLISH_DOGWOOD_ADULT = "English Dogwood Adult Public";
+    public static final String ENGLISH_DOGWOOD_ADULT_IND = "English Dogwood Adult Independent School";
+    public static final String SCCP_CERTIFICATE = "School Completion Certificate English";
     /**
      * @deprecated Use PaperType.CERTIFICATE_REGULAR
      */
@@ -57,14 +57,6 @@ public class Constants {
      * @deprecated Use PaperType.CERTIFICATE_SCCP
      */
     public static final String CERTIFICATE_SCCP_MEDIA_TYPE = "YED2";
-
-    public static final String JMS_TEMPORALCHANGE_TOPIC_LOOKUP = "topic/ISD-EventServices-ejb/TemporalEvent";
-    public static final String JMS_MESSAGE_YEAR_KEY = "YEAR_KEY";
-    public static final String JMS_MESSAGE_MONTH_KEY = "MONTH_KEY";
-    public static final String JMS_MESSAGE_DAY_KEY = "DAY_KEY";
-    public static final String JMS_MESSAGE_HOUR_KEY = "HOUR_KEY";
-    public static final String JMS_MESSAGE_MINUTE_KEY = "MINUTE_KEY";
-    public static final String JMS_MESSAGE_SECOND_KEY = "SECOND_KEY";
 
     /**
      * Delimiter used in XML doc creation

@@ -17,11 +17,11 @@
  */
 package ca.bc.gov.educ.isd.common.support;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

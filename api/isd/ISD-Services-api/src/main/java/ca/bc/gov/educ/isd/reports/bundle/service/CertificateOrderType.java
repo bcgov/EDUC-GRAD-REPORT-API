@@ -17,6 +17,8 @@
  */
 package ca.bc.gov.educ.isd.reports.bundle.service;
 
+import ca.bc.gov.educ.isd.reports.CertificateType;
+
 /**
  * Represents a certificate order type, to differentiate transcript and
  * certificate orders, as well as encapsulate paper type selection behaviour.
@@ -24,4 +26,5 @@ package ca.bc.gov.educ.isd.reports.bundle.service;
  * @author CGI Information Management Consultants Inc.
  */
 public interface CertificateOrderType extends OrderType {
+    CertificateType getCertificateType();
 }

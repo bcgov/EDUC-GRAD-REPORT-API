@@ -35,6 +35,13 @@ public interface Certificate {
     Date getIssued();
 
     /**
+     * Returns the flag if the certificate is origin or replacement
+     *
+     * @return A non-null Date instance.
+     */
+    boolean getIsOrigin();
+
+    /**
      * Gets certificate type.
      *
      * @return the certificate type

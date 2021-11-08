@@ -25,7 +25,6 @@ package ca.bc.gov.educ.isd.common.support.collections;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;

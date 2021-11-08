@@ -137,7 +137,6 @@ public interface AchievementCourse extends TRAXData {
     /**
      * Returns true if the course type is 1.
      *
-     * @see getCourseType
      * @return true The course type is 1.
      */
     Boolean isExaminable();

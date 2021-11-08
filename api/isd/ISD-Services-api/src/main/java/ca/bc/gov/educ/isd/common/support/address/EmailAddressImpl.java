@@ -19,10 +19,11 @@ package ca.bc.gov.educ.isd.common.support.address;
 
 import ca.bc.gov.educ.isd.common.party.address.EmailAddress;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author CGI Information Management Consultants Inc.

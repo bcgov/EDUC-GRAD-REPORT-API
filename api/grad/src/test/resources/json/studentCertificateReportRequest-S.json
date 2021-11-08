@@ -1,0 +1,77 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "Certificate",
+    "reportFile": "Certificate Report S.pdf"
+  },
+  "data": {
+    "student": {
+      "pen": {
+        "pen": "11111111",
+        "entityId": null
+      },
+      "firstName": "JOHN",
+      "middelName": "PIRATE",
+      "lastName": "SILVER",
+      "gender": "M",
+      "birthdate": "2002-08-05",
+      "address": {
+        "streetLine1": "HISPANIOLA",
+        "streetLine2": "",
+        "city": "SHOONER",
+        "region": "BOAT",
+        "country": "VESSEL",
+        "code": "PAC SEA"
+      },
+      "grade": "AD",
+      "studStatus": "A",
+      "sccDate": "",
+      "mincodeGrad": "03699064",
+      "englishCert": "E",
+      "frenchCert": "F"
+    },
+    "school": {
+      "mincode": "03699064",
+      "name": "GUILDFORD LEARNING CENTRE",
+      "typeIndicator": "",
+      "typeBanner": "",
+      "signatureCode": "036",
+      "distno": "036",
+      "schlno": "03699064",
+      "schoolCategoryCode": "01",
+      "address": {
+        "streetLine1": "300-10183 152A ST",
+        "streetLine2": "",
+        "city": "SURREY",
+        "region": "BC",
+        "country": "",
+        "code": "VER4H6"
+      }
+    },
+    "logo": "BC",
+    "gradProgram": {
+      "code": {
+        "code": "2004-PF",
+        "description": "",
+        "credits": "",
+        "name": "2004-PF"
+      }
+    },
+    "updateDate": "2001-06-01",
+    "certificate": {
+      "issued": "2001-06-01",
+      "isOrigin": false,
+      "orderType": {
+        "name": "Certificate",
+        "certificateType": {
+          "reportName": "S",
+          "paperType": {
+            "code": "YEDR"
+          }
+        }
+      }
+    }
+  }
+}

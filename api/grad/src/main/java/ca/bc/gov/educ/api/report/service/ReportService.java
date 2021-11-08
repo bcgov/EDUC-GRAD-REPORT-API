@@ -3,13 +3,13 @@ package ca.bc.gov.educ.api.report.service;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementService;
+import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
 import ca.bc.gov.educ.isd.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.isd.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.isd.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.isd.transcript.StudentTranscriptService;
-import ca.bc.gov.educ.isd.traxadaptor.dao.utils.TRAXThreadDataUtility;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +106,7 @@ public class ReportService {
 	}
 	
 	public ResponseEntity getStudentCertificateReport(GenerateReportRequest reportRequest) {
-		String _m = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
+		String _m = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
 		log.debug("<{}.{}", _m, CLASS_NAME);
 
 		TRAXThreadDataUtility.setGenerateReportData(reportRequest.getData());

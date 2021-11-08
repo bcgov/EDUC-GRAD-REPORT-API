@@ -17,8 +17,9 @@
  */
 package ca.bc.gov.educ.isd.reports;
 
-import ca.bc.gov.educ.isd.student.Student;
 import ca.bc.gov.educ.isd.school.School;
+import ca.bc.gov.educ.isd.student.Student;
+
 import java.util.Date;
 
 /**
