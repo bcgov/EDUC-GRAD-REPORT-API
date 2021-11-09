@@ -95,6 +95,26 @@ public class GradReportSignatureService {
         return gradReportSignatureTransformer.transformToDTO(signatureImageRepository.save(toBeSaved));
     }
 
+    @Transactional
+    public GragReportSignatureImage getSignatureImageMetadataByCode(String code) {
+        String _m = String.format("getSignatureImageByCode(String %s)", code);
+        log.debug("<{}.{}", _m, CLASS_NAME);
+        GragReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
+        if(entity ==  null) {
+            try {
+                entity = new GragReportSignatureImageEntity();
+                byte[] imageBinary = loadBlankImage("reports/resources/images/signatures/BLANK.png");
+                entity.setGradReportSignatureCode("BLANK.png");
+                entity.setSignatureContent(imageBinary);
+            } catch (Exception e) {
+                log.error("Unable to load BLANK image from resources", e);
+            }
+        }
+        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+        log.debug(">{}.{}", _m, CLASS_NAME);
+        return  signatureImage;
+    }
+
     private byte[] loadBlankImage(String path) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(path);

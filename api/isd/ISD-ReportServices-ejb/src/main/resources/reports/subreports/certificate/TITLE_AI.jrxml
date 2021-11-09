@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-24T12:30:50 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TITLE_AI" pageWidth="792" pageHeight="300" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="080ab795-f2be-42c4-a4c8-6ae8a1be3fa5">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<template><![CDATA[$P{P_REPORT_STYLES_PATH} + "CertificateAdult.jrtx"]]></template>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_STUDENT_NAME" class="java.lang.String"/>
+	<title>
+		<band height="258">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Body" x="0" y="228" width="792" height="30" uuid="895e224f-ad57-457b-8303-2d3154b95226"/>
+				<textElement>
+					<font size="10" isBold="false" isItalic="true"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{header.certify.suffix.AI}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Awardee" x="0" y="179" width="792" height="30" uuid="ad198e96-ad1b-46f0-9d81-f74fd02c4b95"/>
+				<textFieldExpression><![CDATA[$P{P_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Body" x="0" y="133" width="792" height="22" uuid="eb89e71f-e134-4c37-b355-197ba63f9062"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{header.certify.prefix.AI}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Issuer" x="0" y="70" width="792" height="30" uuid="c39ec6ea-d8bf-46c2-b903-9e66d9c44dd1"/>
+				<textFieldExpression><![CDATA[$R{header.title.issuer.AI}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement style="Title" x="0" y="100" width="792" height="29" uuid="80214b45-8cde-40f7-b5a2-bf602fa153b5"/>
+				<textFieldExpression><![CDATA[$R{header.title.AI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

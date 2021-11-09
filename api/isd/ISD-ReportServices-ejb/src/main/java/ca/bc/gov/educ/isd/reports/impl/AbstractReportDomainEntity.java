@@ -57,16 +57,6 @@ public abstract class AbstractReportDomainEntity implements DomainEntity {
      * @return Unused.
      */
     @Override
-    public Integer getXactId() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     * Not implemented.
-     *
-     * @return Unused.
-     */
-    @Override
     public Date getCreatedOn() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

@@ -26,7 +26,7 @@ spring:
   flyway:
     enabled: true
     #baseline-on-migrate: true
-    outOfOrder: true
+    #outOfOrder: true
     table: FLYWAY_SCHEMA_HISTORY
     url: jdbc:oracle:thin:@//localhost:1522/XEPDB1
     schemas: GRAD_REPORT_API
@@ -72,4 +72,4 @@ springdoc:
 endpoint:
   educ-grad-report-api:
     get-signature-by-code:
-      url:
+      url: http://localhost:8080/api/v1/signatures

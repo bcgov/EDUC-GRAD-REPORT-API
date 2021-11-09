@@ -15,13 +15,9 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.isd.grad;
 
-import ca.bc.gov.educ.isd.common.BusinessProcessException;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.common.BusinessService;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
-import ca.bc.gov.educ.isd.common.party.Identifier;
-import ca.bc.gov.educ.isd.common.party.address.Address;
-import ca.bc.gov.educ.isd.student.PersonalEducationNumber;
 
 import java.util.List;
 
@@ -36,14 +32,6 @@ import java.util.List;
 public interface GradCertificateService extends BusinessService {
 
     /**
-     * Indicates if the user has graduated (in BC).
-     *
-     * @param pen The personal education number for the student.
-     * @return true if the user has a graduation date in the
-     */
-    Boolean checkGrad(PersonalEducationNumber pen);
-
-    /**
      * Generate the student grad certificate report. Grad Certificates are
      * generated as PDF for the current user when certificates are ordered. If
      * the current user is not a student, then a DomainServiceException is
@@ -56,12 +44,5 @@ public interface GradCertificateService extends BusinessService {
      * @throws DomainServiceException
      */
     List<BusinessReport> buildReport() throws DomainServiceException;
-
-    String sendReport(String orderXRef, Identifier partyId, Address addr)
-            throws BusinessProcessException, DomainServiceException;
-
-    String checkDelivery(String refNo) throws DomainServiceException;
-
-    List<String> listTrackingNo(String orderXRef) throws DomainServiceException;
 
 }

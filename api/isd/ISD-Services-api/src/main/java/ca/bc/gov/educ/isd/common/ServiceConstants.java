@@ -17,21 +17,7 @@
  */
 package ca.bc.gov.educ.isd.common;
 
-import static ca.bc.gov.educ.isd.common.Constants.BCEID_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.BCMP_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.CODESET_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.EVENT_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.PAYMENT_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.PSI_REGISTRY_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.REPORT_SERVICES_APP_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.REPORT_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.STUDENT_DEMOG_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.TASK_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.TRANSCRIPT_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.TRAX_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.USERCOMM_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.USERPROCESS_SERVICES_MODULE_NAME;
-import static ca.bc.gov.educ.isd.common.Constants.USERPROFILE_SERVICES_MODULE_NAME;
+import static ca.bc.gov.educ.isd.common.Constants.*;
 
 /**
  * Defines global JNDI lookup strings used to inject EJB services via the EJB

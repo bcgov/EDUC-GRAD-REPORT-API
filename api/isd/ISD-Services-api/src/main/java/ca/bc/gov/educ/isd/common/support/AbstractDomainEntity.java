@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.common.support;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -115,11 +116,6 @@ public abstract class AbstractDomainEntity implements DomainEntity {
     @Override
     public String getEntityId() {
         return this.entityId;
-    }
-
-    @Override
-    public Integer getXactId() {
-        return xactId;
     }
 
     @Override

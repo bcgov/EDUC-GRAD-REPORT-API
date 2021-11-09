@@ -17,11 +17,12 @@
  */
 package ca.bc.gov.educ.isd.codes;
 
-import static ca.bc.gov.educ.isd.common.Constants.DATE_UNAMBIGUOUS_YMD;
-import static java.lang.Boolean.TRUE;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static ca.bc.gov.educ.isd.common.Constants.DATE_UNAMBIGUOUS_YMD;
+import static java.lang.Boolean.TRUE;
 
 /**
  * @author CGI Information Management Consultants Inc.

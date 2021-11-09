@@ -12,14 +12,17 @@ import java.util.UUID;
 @Data
 @Immutable
 @Entity
-@Table(name = "GRAD_REPORT_SIGNATURE")
+@Table(name = "DIGIT_SIGNATURE")
 public class GragReportSignatureImageLightEntity extends BaseEntity {
 
     @Id
-    @Column(name = "GRAD_REPORT_SIGNATURE_ID", nullable = false)
+    @Column(name = "DIGIT_SIGNATURE_KEY", nullable = false)
     private UUID signatureId;
 
-    @Column(name = "GRAD_REPORT_SIGNATURE_CODE", nullable = false)
+    @Column(name = "DIGIT_SIGNATURE_CODE", nullable = false)
     private String gradReportSignatureCode;
+
+    @Column(name = "DIGIT_SIGNATURE_NAME")
+    private String gradReportSignatureName;
 
 }
