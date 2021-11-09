@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
 <!-- 2017-02-09T13:06:24 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="E" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\CertificateAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -34,9 +34,6 @@
 		<parameterDescription><![CDATA[""]]></parameterDescription>
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<field name="F_LABEL_MAP" class="java.util.HashMap">
-		<fieldDescription><![CDATA[certificate.signatureBlockTypes]]></fieldDescription>
-	</field>
 	<field name="issued" class="java.util.Date">
 		<fieldDescription><![CDATA[issued]]></fieldDescription>
 	</field>
@@ -73,15 +70,15 @@
 		<band height="557">
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="57" width="792" height="29" uuid="7d4b4b94-866e-4765-8eb0-52d5ca4bafde"/>
-				<textFieldExpression><![CDATA[$R{header.title.E}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.title.SCF}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="86" width="792" height="30" uuid="bbac1e82-4607-4c52-957c-c865249188cf"/>
-				<textFieldExpression><![CDATA[$R{header.title.issuer.E}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.title.issuer.SCF}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" x="0" y="117" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
-				<textFieldExpression><![CDATA[$R{header.certify.prefix}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.certify.prefix.SCF}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Awardee" x="0" y="150" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
@@ -89,7 +86,7 @@
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" x="0" y="203" width="792" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107"/>
-				<textFieldExpression><![CDATA[$R{header.certify.suffix.E}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.certify.suffix.SCF}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement style="Body" x="0" y="268" width="792" height="120" uuid="f08ef6b8-ba4c-4da5-baeb-d72dacb3ad79">
@@ -107,7 +104,7 @@
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="9" y="67" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$R{signature.minister.education}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -125,7 +122,7 @@
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$R{signature.superintendent.school}]]></textFieldExpression>
 				</textField>
 				<frame>
 					<reportElement x="10" y="54" width="245" height="2" uuid="e1bc4c56-f185-4c13-ba71-fc39f0141cfa"/>

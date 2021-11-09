@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report EI.pdf"
+    "reportFile": "Certificate Report SC.pdf"
   },
   "data": {
     "student": {
@@ -53,10 +53,10 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "1950",
+        "code": "SCCP",
         "description": "",
         "credits": "",
-        "name": "PROGRAM_1950"
+        "name": "PROGRAM_SCCP"
       }
     },
     "updateDate": "2001-06-01",

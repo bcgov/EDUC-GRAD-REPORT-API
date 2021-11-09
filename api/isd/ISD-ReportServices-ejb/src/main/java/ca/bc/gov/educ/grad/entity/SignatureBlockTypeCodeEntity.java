@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "SIGNATURE_BLOCK_TYPE")
-public class SignatureBlockTypeEntity extends BaseEntity {
+public class SignatureBlockTypeCodeEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,9 +19,9 @@ public class SignatureBlockTypeEntity extends BaseEntity {
     private String signatureBlockType;
 
     @Column(name = "LABEL", nullable = false)
-    private String LABEL;
+    private String label;
 
     @Column(name = "DESCRIPTION", nullable = false)
-    private String DESCRIPTION;
+    private String description;
 
 }

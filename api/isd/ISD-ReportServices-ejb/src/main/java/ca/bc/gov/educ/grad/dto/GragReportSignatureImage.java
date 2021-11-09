@@ -22,7 +22,6 @@ public class GragReportSignatureImage extends BaseModel {
     @JsonDeserialize(using = Base64Deserializer.class)
     private byte[] signatureContent;
     private String gradReportSignatureCode;
-    private String gradReportSignatureTitle;
     private String gradReportSignatureName;
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date effectiveDate;

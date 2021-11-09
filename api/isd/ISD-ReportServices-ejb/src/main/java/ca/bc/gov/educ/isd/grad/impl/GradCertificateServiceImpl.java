@@ -20,8 +20,11 @@ package ca.bc.gov.educ.isd.grad.impl;
 import ca.bc.gov.educ.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
+import ca.bc.gov.educ.grad.service.GradReportCodeService;
 import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.cert.Certificate;
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
@@ -42,10 +45,7 @@ import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,6 +71,9 @@ public class GradCertificateServiceImpl
 
     @Autowired
     private ReportService reportService;
+
+    @Autowired
+    private GradReportCodeService codeService;
 
     @Autowired
     GradToIsdDataConvertBean gradtoIsdDataConvertBean;
@@ -117,6 +120,11 @@ public class GradCertificateServiceImpl
             LOG.throwing(CLASSNAME, _m, dse);
             throw dse;
         }
+
+        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
+        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        certificate.setSignatureBlockTypes(signatureBlockTypes);
 
         // transfer TRAX data to other objects for reporting
         final Student student = transferStudentData(penObj, studentData); //validated
@@ -251,6 +259,9 @@ public class GradCertificateServiceImpl
             case "SC":
                 rsRptType = CertificateType.SC;
                 break;
+            case "SCF":
+                rsRptType = CertificateType.SCF;
+                break;
             case "F":
                 rsRptType = CertificateType.F;
                 break;
@@ -307,6 +318,9 @@ public class GradCertificateServiceImpl
                 break;
             case "SC":
                 rsRptType = CertificateType.SC;
+                break;
+            case "SCF":
+                rsRptType = CertificateType.SCF;
                 break;
             case "F":
                 rsRptType = CertificateType.F;

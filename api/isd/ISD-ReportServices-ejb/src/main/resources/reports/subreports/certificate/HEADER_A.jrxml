@@ -34,6 +34,9 @@
 	</parameter>
 	<parameter name="P_ISSUE_DATE_FORMAT" class="java.text.DateFormat"/>
 	<parameter name="P_STUDENT_NAME" class="java.lang.String"/>
+	<field name="F_LABEL_MAP" class="java.util.HashMap">
+		<fieldDescription><![CDATA[certificate.signatureBlockTypes]]></fieldDescription>
+	</field>
 	<field name="issued" class="java.util.Date">
 		<fieldDescription><![CDATA[issued]]></fieldDescription>
 	</field>
@@ -60,7 +63,7 @@
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="51" y="67" width="169" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
-					<textFieldExpression><![CDATA[$R{signature.minister.education}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -76,7 +79,7 @@
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="50" y="60" width="190" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
-					<textFieldExpression><![CDATA[$R{signature.superintendent.A}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
@@ -123,7 +126,7 @@
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA[$R{signature.minister.advanced.education}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOAE" : "MOAEF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

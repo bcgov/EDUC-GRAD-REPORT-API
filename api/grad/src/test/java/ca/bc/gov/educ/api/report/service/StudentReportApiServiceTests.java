@@ -356,4 +356,20 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		}
 		LOG.debug(">createCertificateReport_FO");
 	}
+
+	@Test
+	public void createCertificateReport_SCF() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate SCF Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SCF");
+	}
+
 }

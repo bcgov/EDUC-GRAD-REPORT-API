@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report EO.pdf"
+    "reportFile": "Certificate Report SCF.pdf"
   },
   "data": {
     "student": {
@@ -29,7 +29,6 @@
       "studStatus": "A",
       "sccDate": "",
       "mincodeGrad": "03699064",
-      "englishCert": "E",
       "frenchCert": "F"
     },
     "school": {
@@ -40,7 +39,7 @@
       "signatureCode": "036",
       "distno": "036",
       "schlno": "03699064",
-      "schoolCategoryCode": "02",
+      "schoolCategoryCode": "01",
       "address": {
         "streetLine1": "300-10183 152A ST",
         "streetLine2": "",
@@ -53,20 +52,20 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "2018-EN",
+        "code": "SCCP",
         "description": "",
         "credits": "",
-        "name": "PROGRAM_2018_EN"
+        "name": "PROGRAM_SCCP"
       }
     },
     "updateDate": "2001-06-01",
     "certificate": {
       "issued": "2001-06-01",
-      "isOrigin": true,
+      "isOrigin": false,
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "E",
+          "reportName": "SCF",
           "paperType": {
             "code": "YEDR"
           }
