@@ -2,6 +2,11 @@ package ca.bc.gov.educ.grad.dao;
 
 import ca.bc.gov.educ.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.isd.adaptor.dao.impl.*;
+import ca.bc.gov.educ.isd.adaptor.impl.NumeracyAssessmentResultImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.StudentDemographicImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.TranscriptCourseImpl;
 import ca.bc.gov.educ.isd.eis.trax.db.*;
 import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.exam.AssessmentResult;
@@ -11,14 +16,6 @@ import ca.bc.gov.educ.isd.student.Student;
 import ca.bc.gov.educ.isd.transcript.GraduationData;
 import ca.bc.gov.educ.isd.transcript.Transcript;
 import ca.bc.gov.educ.isd.transcript.TranscriptResult;
-import ca.bc.gov.educ.isd.traxadaptor.dao.impl.*;
-import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranDemogEntity;
-import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranNongradEntity;
-import ca.bc.gov.educ.isd.traxadaptor.dao.tsw.impl.TswTranNongradEntityPK;
-import ca.bc.gov.educ.isd.traxadaptor.impl.NumeracyAssessmentResultImpl;
-import ca.bc.gov.educ.isd.traxadaptor.impl.StudentDemographicImpl;
-import ca.bc.gov.educ.isd.traxadaptor.impl.StudentInfoImpl;
-import ca.bc.gov.educ.isd.traxadaptor.impl.TranscriptCourseImpl;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -32,7 +29,7 @@ public class GradToIsdDataConvertBean {
         Student student = getStudent(reportData);
         School school = getSchool(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        List<String> programCodes = gradData.getProgramCodes();
+        List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
         Transcript transcript = reportData.getTranscript();
         StudentInfoImpl result = new StudentInfoImpl(
             student.getPen().getValue(),// String studNo,
@@ -44,10 +41,10 @@ public class GradToIsdDataConvertBean {
             student.getGender(),// Character studGender,
             school.getMinistryCode(),// String mincode,
             student.getGrade(),// String studGrade,
-            gradData.getGraduationDate(),// Date gradDate,
+            gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
             reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : "",// String gradReqtYear,
             reportData.getGradMessage(),// String gradMessage,
-            reportData.getUpdateDate() == null ? transcript.getIssueDate() : reportData.getUpdateDate(),// String updateDt,
+            reportData.getUpdateDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getUpdateDate(),// String updateDt,
             reportData.getLogo(),// String logoType,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine1() : "",// String studentAddress1,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine2() : "",// String studentAddress2,
@@ -56,8 +53,8 @@ public class GradToIsdDataConvertBean {
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getPostalCode() : "",// String studentPostalCode,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCountryCode() : "",// String traxStudentCountry,
             student.getStudStatus(),// Character studStatus,
-            gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
-            gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag
+            gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
+            gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag
             programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,
             programCodes != null && programCodes.size() >= 2 ? programCodes.get(1) : null, //String prgmCode2,
             programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
@@ -81,7 +78,7 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    private StudentDemographic  getSingleStudentDemog(ReportData reportData) {
+    public StudentDemographic  getSingleStudentDemog(ReportData reportData) {
         StudentMaster studentMaster = getStudentMaster(reportData);
         TabSchool tabSchool = getTabSchool(reportData);
 
@@ -141,8 +138,8 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    public StsTranCourseEntity getStsTranCourse(ReportData reportData, TranscriptCourseImpl course) {
-        StsTranCourseEntity result = new StsTranCourseEntity();
+    public TranCourseEntity getTranCourse(ReportData reportData, TranscriptCourseImpl course) {
+        TranCourseEntity result = new TranCourseEntity();
         CourseId courseId = new CourseId(
                 getStudent(reportData).getPen().getValue(),
                 course.getCourseCode(),
@@ -170,15 +167,15 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    public List<TswTranNongradEntity> getTswTranNongradEntity(ReportData reportData) {
-        List<TswTranNongradEntity> result = new ArrayList<>();
+    public List<TranNongradEntity> getTswTranNongradEntity(ReportData reportData) {
+        List<TranNongradEntity> result = new ArrayList<>();
         if(reportData.getNonGradReasons() != null) {
             for (NonGradReason reason : reportData.getNonGradReasons()) {
-                TswTranNongradEntityPK pk = new TswTranNongradEntityPK(
+                TranNongradEntityPK pk = new TranNongradEntityPK(
                         reportData.getStudent().getPen().getValue(),
                         reason.getCode()
                 );
-                TswTranNongradEntity entity = new TswTranNongradEntity(
+                TranNongradEntity entity = new TranNongradEntity(
                         pk,
                         reason.getDescription(),
                         reportData.getUpdateDate() != null ? reportData.getUpdateDate().getTime() : 0L
@@ -193,11 +190,11 @@ public class GradToIsdDataConvertBean {
         return 'Y';
     }
 
-    public TswTranDemogEntity getTswTranDemog(ReportData reportData) {
+    public TranDemogEntity getTswTranDemog(ReportData reportData) {
         Student student = getStudent(reportData);
         School school = getSchool(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        TswTranDemogEntity result = new TswTranDemogEntity(
+        TranDemogEntity result = new TranDemogEntity(
                 student.getPen().getValue(), //String studNo,
                 student.getFirstName(), //String firstName,
                 student.getMiddleName(), //String middleName,
@@ -207,7 +204,7 @@ public class GradToIsdDataConvertBean {
                 student.getGender(), //Character studGender,
                 school.getMinistryCode(), //String mincode,
                 student.getGrade(), //String studGrade,
-                gradData.getTruncatedGraduationDate(), //String gradDate,
+                gradData != null ? gradData.getTruncatedGraduationDate() : null, //String gradDate,
                 reportData.getGradProgram() != null ?  reportData.getGradProgram().getCode().getCode() : "", //String gradReqtYear,
                 reportData.getUpdateDate(), //Long updateDt,
                 reportData.getLogo(), //String logoType,
@@ -239,7 +236,7 @@ public class GradToIsdDataConvertBean {
                 school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "", //String city,
                 school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "", //String provCode,
                 school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "", //String postal,
-                null, //String signatureDistno,
+                school.getSignatureCode(), //String signatureDistno,
                 null, //Character xcriptElig,
                 school.getPhoneNumber(), //String phone,
                 "Y".equalsIgnoreCase(school.getTypeIndicator()) ? 'Y' : 'N', //Character schlIndType
@@ -252,7 +249,7 @@ public class GradToIsdDataConvertBean {
         Student student = getStudent(reportData);
         StudentInfo studentInfo = getStudentInfo(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        List<String> programCodes = gradData.getProgramCodes();
+        List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
         StudentMasterEntity result = new StudentMasterEntity(
                 studentInfo.getPen(), //String studNo,
                 studentInfo.getFirstName(), //String studGiven,
@@ -268,9 +265,9 @@ public class GradToIsdDataConvertBean {
                 studentInfo.getGrade(), //String studGrade,
                 studentInfo.getGradDate(), //Long gradDate,
                 studentInfo.getGraduationProgramCode() != null ? studentInfo.getGraduationProgramCode().getCode() : "", //String gradReqtYear,
-                gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
-                gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag,
-                gradData.getGraduationDate(), //Long sccDate,
+                gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
+                gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlagcter dogwoodFlag,
+                gradData != null ? gradData.getGraduationDate() : null, //Long sccDate,
                 studentInfo.getMincode(), //String mincode,
                 student.getMincodeGrad(), //String mincodeGrad,
                 programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,
@@ -278,8 +275,8 @@ public class GradToIsdDataConvertBean {
                 programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
                 programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
                 programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
-                student.getEnglishCert(), //String englishCert,
-                student.getFrenchCert(), //String frenchCert,
+                student.getEnglishCert() == null && student.getFrenchCert() == null ? "E" : student.getEnglishCert(), //String englishCert,
+                student.getFrenchCert() == null ? null : student.getFrenchCert(), //String frenchCert,
                 null, //String traxCountryCode,
                 null, //String stud_true_no,
                 null  //String isoCountryCode

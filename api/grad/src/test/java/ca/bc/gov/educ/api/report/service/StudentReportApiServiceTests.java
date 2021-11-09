@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 import static org.junit.Assert.*;
 
+@WebAppConfiguration
 public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	private static final Logger LOG = LoggerFactory.getLogger(StudentReportApiServiceTests.class);
@@ -105,13 +107,13 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
 		assertNotNull(reportRequest);
-//		reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
-//		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
-//		assertNotNull(response.getBody());
-//		byte[] bArrray = (byte[]) response.getBody();
-//		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-//			out.write(bArrray);
-//		}
+		reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
+		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
 		LOG.debug(">createStudentAchievementReport");
 	}
 
@@ -176,62 +178,198 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void createCertificateReport() throws Exception {
-		LOG.debug("<{}.createCertificateReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
+	public void createCertificateReport_E() throws Exception {
+		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
 		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Certificate REGULAR Report.pdf");
+		reportRequest.getOptions().setReportFile("Certificate E Report.pdf");
 		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createCertificateReport");
+		LOG.debug(">createCertificateReport_E");
 	}
 
 	@Test
-	public void createCertificateReport_1950() throws Exception {
-		LOG.debug("<{}.createCertificateReport_1950 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-1950.json");
+	public void createCertificateReport_EO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
 		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Certificate 1950 Report.pdf");
+		reportRequest.getOptions().setReportFile("Certificate EO Report.pdf");
 		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createCertificateReport_1950");
+		LOG.debug(">createCertificateReport_EO");
 	}
 
 	@Test
-	public void createCertificateReport_2018() throws Exception {
-		LOG.debug("<{}.createCertificateReport_2018 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2018.json");
+	public void createCertificateReport_A() throws Exception {
+		LOG.debug("<{}.createCertificateReport_A at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
 		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Certificate 2018 Report.pdf");
+		reportRequest.getOptions().setReportFile("Certificate A Report.pdf");
 		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createCertificateReport_2018");
+		LOG.debug(">createCertificateReport_A");
 	}
 
 	@Test
-	public void createCertificateReport_SCCP() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCCP at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP.json");
+	public void createCertificateReport_EI() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EI at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EI.json");
 		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Certificate SCCP Report.pdf");
+		reportRequest.getOptions().setReportFile("Certificate EI Report.pdf");
 		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createCertificateReport_SCCP");
+		LOG.debug(">createCertificateReport_EI");
 	}
+
+	@Test
+	public void createCertificateReport_EIO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EIO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate EIO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_EIO");
+	}
+
+	@Test
+	public void createCertificateReport_AI() throws Exception {
+		LOG.debug("<{}.createCertificateReport_AI at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AI.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate AI Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_AI");
+	}
+
+	@Test
+	public void createCertificateReport_SC() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SC at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SC.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate SC Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SC");
+	}
+
+	@Test
+	public void createCertificateReport_SCO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate SCO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SCO");
+	}
+
+	@Test
+	public void createCertificateReport_S() throws Exception {
+		LOG.debug("<{}.createCertificateReport_S at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-S.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate S Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_S");
+	}
+
+	@Test
+	public void createCertificateReport_SO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate SO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SO");
+	}
+
+	@Test
+	public void createCertificateReport_F() throws Exception {
+		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate F Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_F");
+	}
+
+	@Test
+	public void createCertificateReport_FO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_FO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate FO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_FO");
+	}
+
+	@Test
+	public void createCertificateReport_SCF() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate SCF Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SCF");
+	}
+
 }

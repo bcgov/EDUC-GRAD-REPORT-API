@@ -21,6 +21,7 @@ import ca.bc.gov.educ.isd.common.party.address.Address;
 import ca.bc.gov.educ.isd.common.party.address.MailingAddress;
 import ca.bc.gov.educ.isd.common.party.address.PostalAddress;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
+
 import static ca.bc.gov.educ.isd.common.support.VerifyUtils.nullSafe;
 
 /**

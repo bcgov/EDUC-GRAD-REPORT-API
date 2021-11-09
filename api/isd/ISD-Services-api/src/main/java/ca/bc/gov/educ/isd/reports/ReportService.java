@@ -15,12 +15,7 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.isd.reports;
 
-import ca.bc.gov.educ.isd.assessment.LiteracyAssessmentReport;
-import ca.bc.gov.educ.isd.assessment.NumeracyAssessmentReport;
-import ca.bc.gov.educ.isd.ecommerce.payment.receipt.Receipt;
 import ca.bc.gov.educ.isd.transcript.ParameterPredicate;
-
-import java.util.List;
 
 /**
  * Responsible for providing a mechanism to obtain reports.
@@ -39,52 +34,6 @@ public interface ReportService extends ReportExportService {
     TranscriptReport createTranscriptReport();
 
     /**
-     * Creates a provincial examination report instance that can be exported
-     * into a final report document. The calling class is responsible for
-     * setting the required fields on the report instance returned from this
-     * method.
-     *
-     * @return A non-null report instance that must be populated with data.
-     */
-    ProvincialExaminationReport createProvincialExaminationReport();
-
-    /**
-     * Creates a numeracy assessment report instance that can be exported into a
-     * final report document. The calling class is responsible for setting the
-     * required fields on the report instance returned from this method.
-     *
-     * @return A non-null report instance that must be populated with data.
-     */
-    NumeracyAssessmentReport createNumeracyAssessmentReport();
-
-    /**
-     * Creates a literacy assessment report instance that can be exported into a
-     * final report document. The calling class is responsible for setting the
-     * required fields on the report instance returned from this method.
-     *
-     * @return A non-null report instance that must be populated with data.
-     */
-    LiteracyAssessmentReport createLiteracyAssessmentReport();
-
-    /**
-     * Creates a scholarship report instance that can be exported into a final
-     * report document. The calling class is responsible for setting the
-     * required fields on the report instance returned from this method.
-     *
-     * @return A non-null report instance that must be populated with data.
-     */
-    ScholarshipReport createScholarshipReport();
-
-    /**
-     * Creates a packing slip report instance that can be exported into a final
-     * report document. The calling class is responsible for setting the
-     * required fields on the report instance returned from this method.
-     *
-     * @return A non-null report instance that must be populated with data.
-     */
-    PackingSlipReport createPackingSlipReport();
-
-    /**
      * Creates a certificate report instance that can be exported into a final
      * report document. The calling class is responsible for setting the
      * required fields on the report instance returned from this method.
@@ -92,17 +41,6 @@ public interface ReportService extends ReportExportService {
      * @return A non-null report instance that must be populated with data.
      */
     CertificateReport createCertificateReport();
-
-    /**
-     * Creates a receipt report instance that can be exported into a final
-     * report document. The calling class must set the required fields on the
-     * report instance returned from this method.
-     *
-     * @param receipts The non-null, but possibly empty, list of receipts to
-     * include in the report.
-     * @return A non-null report instance that must be populated with data.
-     */
-    ReceiptReport createReceiptReport(List<Receipt> receipts);
 
     /**
      * Creates a ReportDocument initialized with the contents of the passed byte

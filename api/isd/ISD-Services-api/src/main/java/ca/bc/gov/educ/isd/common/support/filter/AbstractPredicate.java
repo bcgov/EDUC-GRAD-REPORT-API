@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.common.support.filter;
 
 import ca.bc.gov.educ.isd.common.Predicate;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;

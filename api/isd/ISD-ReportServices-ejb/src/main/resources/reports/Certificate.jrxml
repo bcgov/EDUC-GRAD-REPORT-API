@@ -32,12 +32,12 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String">
-		<parameterDescription><![CDATA["Regular", "Adult", or "SCCP"]]></parameterDescription>
-		<defaultValueExpression><![CDATA["SCCP"]]></defaultValueExpression>
+		<parameterDescription><![CDATA[""]]></parameterDescription>
+		<defaultValueExpression><![CDATA["SC"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_SUBTYPE" class="java.lang.String">
-		<parameterDescription><![CDATA["", "independent", or "francophone"]]></parameterDescription>
-		<defaultValueExpression><![CDATA["independent"]]></defaultValueExpression>
+		<parameterDescription><![CDATA[""]]></parameterDescription>
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<field name="certificate" class="ca.bc.gov.educ.isd.reports.data.impl.Certificate">
 		<fieldDescription><![CDATA[certificate]]></fieldDescription>
@@ -80,7 +80,7 @@
 					<subreportParameterExpression><![CDATA[$P{REPORT_LOCALE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{certificate} ) )]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + $P{P_REPORT_TYPE} + $P{P_REPORT_SUBTYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>

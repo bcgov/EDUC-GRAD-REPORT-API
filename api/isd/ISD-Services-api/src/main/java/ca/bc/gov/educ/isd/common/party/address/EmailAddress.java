@@ -16,9 +16,10 @@
 package ca.bc.gov.educ.isd.common.party.address;
 
 import ca.bc.gov.educ.isd.common.DomainEntity;
-import java.io.Serializable;
+
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.io.Serializable;
 
 /**
  * Represents an email address.

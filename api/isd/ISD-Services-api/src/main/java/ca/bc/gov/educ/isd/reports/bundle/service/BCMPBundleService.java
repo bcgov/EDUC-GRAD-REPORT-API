@@ -18,11 +18,9 @@
 package ca.bc.gov.educ.isd.reports.bundle.service;
 
 import ca.bc.gov.educ.isd.common.BusinessReport;
-import ca.bc.gov.educ.isd.ecommerce.delivery.PostalDeliveryInfo;
 import ca.bc.gov.educ.isd.reports.CertificateType;
 import ca.bc.gov.educ.isd.reports.ReportDocument;
 import ca.bc.gov.educ.isd.reports.ReportExportService;
-import ca.bc.gov.educ.isd.reports.packingslip.PackingSlipDetails;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -131,14 +129,6 @@ public interface BCMPBundleService extends ReportExportService, Serializable {
      */
     DocumentBundle xpif(DocumentBundle bundle)
             throws IOException;
-
-    /**
-     * Fill PackingSlip information from Delivery Info object
-     *
-     * @param info
-     * @return PackingSlipDetails
-     */
-    PackingSlipDetails createPackingSlipDetails(PostalDeliveryInfo info);
     
     /**
      * Decorate a bundle for BCMP.

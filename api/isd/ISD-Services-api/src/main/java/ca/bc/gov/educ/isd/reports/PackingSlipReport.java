@@ -15,8 +15,8 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.isd.reports;
 
-import ca.bc.gov.educ.isd.reports.packingslip.DestinationType;
 import ca.bc.gov.educ.isd.reports.bundle.service.OrderType;
+import ca.bc.gov.educ.isd.reports.packingslip.DestinationType;
 import ca.bc.gov.educ.isd.reports.packingslip.PackingSlipDetails;
 
 /**

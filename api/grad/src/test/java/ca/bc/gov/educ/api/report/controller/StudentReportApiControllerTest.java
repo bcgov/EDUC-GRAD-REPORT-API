@@ -6,13 +6,13 @@ import ca.bc.gov.educ.grad.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
 import ca.bc.gov.educ.grad.service.GradReportSignatureService;
+import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.common.BusinessReport;
 import ca.bc.gov.educ.isd.grad.GradCertificateService;
 import ca.bc.gov.educ.isd.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.isd.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.isd.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.isd.transcript.StudentTranscriptService;
-import ca.bc.gov.educ.isd.traxadaptor.dao.utils.TRAXThreadDataUtility;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -218,7 +218,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     public void getStudentCertificateTest() throws Exception {
         LOG.debug("<{}.getStudentCertificateTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
-        GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
+        GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
 
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());

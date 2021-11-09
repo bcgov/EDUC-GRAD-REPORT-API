@@ -17,21 +17,10 @@
  */
 package ca.bc.gov.educ.isd.common.support.xml;
 
-import static ca.bc.gov.educ.isd.common.Constants.DATE_ISO_8601_YMD;
-import static ca.bc.gov.educ.isd.common.Constants.XML_DELIM;
 import ca.bc.gov.educ.isd.common.Predicate;
-import java.io.StringWriter;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,8 +30,14 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static ca.bc.gov.educ.isd.common.Constants.DATE_ISO_8601_YMD;
+import static ca.bc.gov.educ.isd.common.Constants.XML_DELIM;
 
 /**
  * This class is a utility class used in the creation of XML. The methods take
