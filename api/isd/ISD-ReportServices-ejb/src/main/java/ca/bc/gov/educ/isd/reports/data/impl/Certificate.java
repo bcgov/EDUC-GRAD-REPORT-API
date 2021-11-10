@@ -17,9 +17,11 @@
  */
 package ca.bc.gov.educ.isd.reports.data.impl;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.reports.data.BusinessEntity;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Represents information that is placed on a certificate report.
@@ -45,6 +47,8 @@ public final class Certificate extends BusinessEntity {
      * Signatures added to a certificate.
      */
     private Signatories signatories;
+
+    private Map<String, SignatureBlockType> signatureBlockTypes;
 
     /**
      * Default (empty) constructor.
@@ -72,6 +76,14 @@ public final class Certificate extends BusinessEntity {
         if (student != null) {
             this.student = student;
         }
+    }
+
+    public Map<String, SignatureBlockType> getSignatureBlockTypes() {
+        return signatureBlockTypes;
+    }
+
+    public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
+        this.signatureBlockTypes = signatureBlockTypes;
     }
 
     /**
@@ -155,6 +167,11 @@ public final class Certificate extends BusinessEntity {
          */
         public Builder withIssueDate(final Date issued) {
             getObject().setIssued(issued);
+            return thisBuilder();
+        }
+
+        public Builder withSignatureBlockTypes(final Map<String, SignatureBlockType> signatureBlockTypes) {
+            getObject().setSignatureBlockTypes(signatureBlockTypes);
             return thisBuilder();
         }
 

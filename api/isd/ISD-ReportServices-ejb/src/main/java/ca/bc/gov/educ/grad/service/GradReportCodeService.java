@@ -2,18 +2,19 @@ package ca.bc.gov.educ.grad.service;
 
 import ca.bc.gov.educ.exception.ServiceException;
 import ca.bc.gov.educ.grad.dao.*;
-import ca.bc.gov.educ.grad.dto.CertificateTypeCode;
-import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
-import ca.bc.gov.educ.grad.entity.CertificateTypeCodeEntity;
-import ca.bc.gov.educ.grad.entity.SignatureBlockTypeCodeEntity;
-import ca.bc.gov.educ.grad.transformer.GradReportCodeTransformer;
-import ca.bc.gov.educ.grad.transformer.GradReportSignatureBlockTypeCodeTransformer;
+import ca.bc.gov.educ.grad.dto.*;
+import ca.bc.gov.educ.grad.entity.*;
+import ca.bc.gov.educ.grad.transformer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class GradReportCodeService {
@@ -33,9 +34,15 @@ public class GradReportCodeService {
     TranscriptTypeCodeRepository transcriptTypeCodeRepository;
 
     @Autowired
-    GradReportCodeTransformer gradReportCodeTransformer;
+    GradReportCertificateTypeCodeTransformer gradReportCertificateTypeCodeTransformer;
     @Autowired
     GradReportSignatureBlockTypeCodeTransformer gradReportSignatureBlockTypeCodeTransformer;
+    @Autowired
+    GradReportDocumentStatusCodeTransformer gradReportDocumentStatusCodeTransformer;
+    @Autowired
+    GradReportTranscriptTypeCodeTransformer gradReportTranscriptTypeCodeTransformer;
+    @Autowired
+    GradReportReportTypeCodeTransformer gradReportReportTypeCodeTransformer;
 
     public List<CertificateTypeCode> getCertificateTypeCodes() {
         String _m = String.format("getCertificateTypeCodes()");
@@ -46,7 +53,7 @@ public class GradReportCodeService {
         try {
 
             List<CertificateTypeCodeEntity> dtos = certificateTypeCodeRepository.findAll();
-            _result = gradReportCodeTransformer.transformToDTO(dtos);
+            _result = gradReportCertificateTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "List<CertificateTypeCode>"));
@@ -65,10 +72,48 @@ public class GradReportCodeService {
         try {
 
             CertificateTypeCodeEntity dto = certificateTypeCodeRepository.findByCertificateCode(code);
-            _result = gradReportCodeTransformer.transformToDTO(dto);
+            _result = gradReportCertificateTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "CertificateTypeCode"));
+        }
+
+        return _result;
+
+    }
+
+    public List<TranscriptTypeCode> getTranscriptTypeCodes() {
+        String _m = String.format("getTranscriptTypeCodes()");
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        List<TranscriptTypeCode> _result;
+
+        try {
+
+            List<TranscriptTypeCodeEntity> dtos = transcriptTypeCodeRepository.findAll();
+            _result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dtos);
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "List<TranscriptTypeCode>"));
+        }
+
+        return _result;
+
+    }
+
+    public TranscriptTypeCode getTranscriptTypeCode(String code) {
+        String _m = String.format("getTranscriptTypeCode(%s)", code);
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        TranscriptTypeCode _result;
+
+        try {
+
+            TranscriptTypeCodeEntity dto = transcriptTypeCodeRepository.findByTranscriptCode(code);
+            _result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dto);
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "TranscriptTypeCode"));
         }
 
         return _result;
@@ -94,6 +139,27 @@ public class GradReportCodeService {
 
     }
 
+    public Map<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
+        String _m = String.format("getSignatureBlockTypeCodesMap()");
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        Map<String, SignatureBlockTypeCode> _result = new HashMap<>();
+
+        try {
+
+            List<SignatureBlockTypeCode> dtos = getSignatureBlockTypeCodes();
+            for(SignatureBlockTypeCode code: dtos) {
+                _result.put(code.getSignatureBlockTypeCode(), code);
+            }
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "Map<String, SignatureBlockTypeCode>"));
+        }
+
+        return _result;
+
+    }
+
     public SignatureBlockTypeCode getSignatureBlockTypeCode(String code) {
         String _m = String.format("getSignatureBlockTypeCode(%s)", code);
         log.debug("<{}.{}", _m, CLASS_NAME);
@@ -113,5 +179,94 @@ public class GradReportCodeService {
 
     }
 
+    @Transactional
+    public SignatureBlockTypeCode saveSignatureBlockTypeCode(SignatureBlockTypeCode code) {
+        SignatureBlockTypeCodeEntity toBeSaved = gradReportSignatureBlockTypeCodeTransformer.transformToEntity(code);
+        if(toBeSaved.getSignatureBlockType() != null) {
+            Optional<SignatureBlockTypeCodeEntity> existingEnity = signatureBlockTypeRepository.findById(toBeSaved.getSignatureBlockType());
+            if(existingEnity.isPresent()) {
+                SignatureBlockTypeCodeEntity signEntity = existingEnity.get();
+                signEntity.setLabel(code.getLabel());
+                signEntity.setDescription(code.getDescription());
+                return gradReportSignatureBlockTypeCodeTransformer.transformToDTO(signatureBlockTypeRepository.save(signEntity));
+            }
+        }
+        return gradReportSignatureBlockTypeCodeTransformer.transformToDTO(signatureBlockTypeRepository.save(toBeSaved));
+    }
 
+    public List<DocumentStatusCode> getDocumentStatusCodes() {
+        String _m = String.format("getDocumentStatusCodes()");
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        List<DocumentStatusCode> _result;
+
+        try {
+
+            List<DocumentStatusCodeEntity> dtos = documentStatusCodeRepository.findAll();
+            _result = gradReportDocumentStatusCodeTransformer.transformToDTO(dtos);
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "List<DocumentStatusCode>"));
+        }
+
+        return _result;
+
+    }
+
+    public DocumentStatusCode getDocumentStatusCode(String code) {
+        String _m = String.format("getDocumentStatusCode(%s)", code);
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        DocumentStatusCode _result;
+
+        try {
+
+            DocumentStatusCodeEntity dto = documentStatusCodeRepository.findByDocumentStatusCode(code);
+            _result = gradReportDocumentStatusCodeTransformer.transformToDTO(dto);
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "DocumentStatusCode"));
+        }
+
+        return _result;
+
+    }
+
+    public List<ReportTypeCode> getReportTypeCodes() {
+        String _m = String.format("getReportTypeCodes()");
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        List<ReportTypeCode> _result;
+
+        try {
+
+            List<ReportTypeCodeEntity> dtos = reportTypeCodeRepository.findAll();
+            _result = gradReportReportTypeCodeTransformer.transformToDTO(dtos);
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "List<ReportTypeCode>"));
+        }
+
+        return _result;
+
+    }
+
+    public ReportTypeCode getReportTypeCode(String code) {
+        String _m = String.format("getReportTypeCode(%s)", code);
+        log.debug("<{}.{}", _m, CLASS_NAME);
+
+        ReportTypeCode _result;
+
+        try {
+
+            ReportTypeCodeEntity dto = reportTypeCodeRepository.findByReportTypeCode(code);
+            _result = gradReportReportTypeCodeTransformer.transformToDTO(dto);
+
+        } catch (Exception e) {
+            throw new ServiceException(String.format("Unable to retrieve %s", "ReportTypeCode"));
+        }
+
+        return _result;
+
+    }
 }

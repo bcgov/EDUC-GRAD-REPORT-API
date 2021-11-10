@@ -177,7 +177,7 @@ public class StudentDemographicImpl implements StudentDemographic {
             final String middle,
             final String surname,
             final Date birthdate,
-            final Character status,
+            final String status,
             final String grade,
             final String gradProgram,
             final String mincodeGrad,
@@ -676,6 +676,16 @@ public class StudentDemographicImpl implements StudentDemographic {
      */
     private String nullSafe(final Character c) {
         return c == null ? " " : c.toString();
+    }
+
+    /**
+     * Returns c or an empty space if c is null.
+     *
+     * @param c The character to ensure is not null.
+     * @return A space or the given character, never null.
+     */
+    private String nullSafe(final String c) {
+        return c == null ? "" : c.toString();
     }
 
     private Long nullSafe(final Long l) {

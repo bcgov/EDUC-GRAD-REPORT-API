@@ -62,6 +62,7 @@ public class BusinessEntityAdapter {
             final ca.bc.gov.educ.isd.cert.Certificate certificate) {
         return new Certificate.Builder()
                 .withIssueDate(certificate.getIssued())
+                .withSignatureBlockTypes(certificate.getSignatureBlockTypes())
                 .build();
     }
 
