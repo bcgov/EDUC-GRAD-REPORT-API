@@ -49,7 +49,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String mincodeGrad;
     private String englishCert;
     private String frenchCert;
-    private Character studStatus = ' ';
+    private String studStatus = "";
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -161,11 +161,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    public Character getStudStatus() {
+    public String getStudStatus() {
         return studStatus;
     }
 
-    public void setStudStatus(Character studStatus) {
+    public void setStudStatus(String studStatus) {
         this.studStatus = studStatus;
     }
 

@@ -15,9 +15,11 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.isd.cert;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.reports.bundle.service.OrderType;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Represents information required to for certificates.
@@ -47,4 +49,12 @@ public interface Certificate {
      * @return the certificate type
      */
     OrderType getOrderType();
+
+    /**
+     * Gets signature block types.
+     *
+     * @return the Map of SignatureBlockType types
+     */
+
+    Map<String, SignatureBlockType> getSignatureBlockTypes();
 }

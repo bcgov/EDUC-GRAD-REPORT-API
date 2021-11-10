@@ -28,4 +28,9 @@ public class GradReportSignatureBlockTypeCodeTransformer {
         SignatureBlockTypeCode code = modelMapper.map(entity, SignatureBlockTypeCode.class);
         return code;
     }
+
+    public SignatureBlockTypeCodeEntity transformToEntity(SignatureBlockTypeCode code) {
+        SignatureBlockTypeCodeEntity GragReportSignatureImageEntity = modelMapper.map(code, SignatureBlockTypeCodeEntity.class);
+        return GragReportSignatureImageEntity;
+    }
 }
