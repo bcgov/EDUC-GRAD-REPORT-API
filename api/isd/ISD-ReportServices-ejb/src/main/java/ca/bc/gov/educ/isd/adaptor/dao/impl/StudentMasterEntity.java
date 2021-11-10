@@ -47,7 +47,7 @@ public class StudentMasterEntity implements StudentMaster, Serializable {
     private String city;
     private String provCode;
     private String postal;
-    private Character studStatus;
+    private String studStatus;
     private String studGrade;
     private Date gradDate;
     private String gradReqtYear;
@@ -82,7 +82,7 @@ public class StudentMasterEntity implements StudentMaster, Serializable {
             String city,
             String provCode,
             String postal,
-            Character studStatus,
+            String studStatus,
             String studGrade,
             Date gradDate,
             String gradReqtYear,
@@ -196,7 +196,7 @@ public class StudentMasterEntity implements StudentMaster, Serializable {
     }
 
     @Override
-    public Character getStudStatus() {
+    public String getStudStatus() {
         return studStatus;
     }
 

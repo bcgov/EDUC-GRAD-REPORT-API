@@ -95,6 +95,6 @@ public interface Student extends Person {
      *
      * @return the stud status
      */
-    Character getStudStatus();
+    String getStudStatus();
 
 }
