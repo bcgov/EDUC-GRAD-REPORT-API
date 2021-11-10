@@ -10,9 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class GradReportCodeService {
@@ -175,6 +177,21 @@ public class GradReportCodeService {
 
         return _result;
 
+    }
+
+    @Transactional
+    public SignatureBlockTypeCode saveSignatureBlockTypeCode(SignatureBlockTypeCode code) {
+        SignatureBlockTypeCodeEntity toBeSaved = gradReportSignatureBlockTypeCodeTransformer.transformToEntity(code);
+        if(toBeSaved.getSignatureBlockType() != null) {
+            Optional<SignatureBlockTypeCodeEntity> existingEnity = signatureBlockTypeRepository.findById(toBeSaved.getSignatureBlockType());
+            if(existingEnity.isPresent()) {
+                SignatureBlockTypeCodeEntity signEntity = existingEnity.get();
+                signEntity.setLabel(code.getLabel());
+                signEntity.setDescription(code.getDescription());
+                return gradReportSignatureBlockTypeCodeTransformer.transformToDTO(signatureBlockTypeRepository.save(signEntity));
+            }
+        }
+        return gradReportSignatureBlockTypeCodeTransformer.transformToDTO(signatureBlockTypeRepository.save(toBeSaved));
     }
 
     public List<DocumentStatusCode> getDocumentStatusCodes() {

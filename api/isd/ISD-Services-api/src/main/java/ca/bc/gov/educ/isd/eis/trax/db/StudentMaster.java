@@ -65,7 +65,7 @@ public interface StudentMaster extends TRAXCountry {
 
     public String getPostal();
 
-    public Character getStudStatus();
+    public String getStudStatus();
 
     public String getStudGrade();
 
