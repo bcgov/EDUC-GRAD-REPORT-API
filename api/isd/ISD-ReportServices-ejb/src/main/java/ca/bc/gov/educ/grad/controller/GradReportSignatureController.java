@@ -1,6 +1,8 @@
 package ca.bc.gov.educ.grad.controller;
 
 import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
+import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
+import ca.bc.gov.educ.grad.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.service.GradReportSignatureService;
 import ca.bc.gov.educ.grad.utils.EducGradSignatureImageApiConstants;
 import ca.bc.gov.educ.grad.utils.GradValidation;
@@ -32,6 +34,8 @@ public class GradReportSignatureController extends BaseController {
 
     @Autowired
     GradReportSignatureService gradReportSignatureService;
+    @Autowired
+    GradReportCodeService gradReportCodeService;
     
     @Autowired
     GradValidation validation;
@@ -82,4 +86,31 @@ public class GradReportSignatureController extends BaseController {
         validation.requiredField(signatureImage.getSignatureContent(), "Signature Content");
         return gradReportSignatureService.saveSignatureImage(signatureImage);
     }
+
+    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODES)
+    @PreAuthorize(PermissionsContants.READ_SIGNATURE_BLOCK_TYPE_CODE)
+    @Operation(summary = "Return Signature Block Types", description = "Retrieve Signature Block Types", tags = { "Signature Block Types" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
+        String _m = String.format("getSignatureBlockTypeCodes()");
+        logger.debug("<{}.{}", _m, CLASS_NAME);
+        logRequest();
+        return gradReportCodeService.getSignatureBlockTypeCodes();
+    }
+
+    @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_BLOCK_TYPE_CODE)
+    @PreAuthorize(PermissionsContants.CREATE_OR_UPDATE_SIGNATURE_BLOCK_TYPE_CODE)
+    @Operation(summary = "Save Signature Block Type Code", description = "Save Signature Block Type Code", tags = { "Signature Block Type" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public SignatureBlockTypeCode saveSignatureBlockTypeCode(@RequestBody SignatureBlockTypeCode code) {
+        String _m = String.format("saveSignatureBlockTypeCode(String %s)", code.getSignatureBlockTypeCode());
+        logger.debug("<{}.{}", _m, CLASS_NAME);
+        logRequest();
+        validation.requiredField(code.getSignatureBlockTypeCode(), "Signature Block Type Code");
+        validation.requiredField(code.getCode(), "Signature Block Type Code Code");
+        validation.requiredField(code.getLabel(), "Signature Block Type Code Label");
+        validation.requiredField(code.getDescription(), "Signature Block Type Code Description");
+        return gradReportCodeService.saveSignatureBlockTypeCode(code);
+    }
+
 }
