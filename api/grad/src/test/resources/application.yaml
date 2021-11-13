@@ -25,7 +25,7 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
   flyway:
-    enabled: true
+    enabled: false
     #baseline-on-migrate: true
     outOfOrder: true
     table: FLYWAY_SCHEMA_HISTORY

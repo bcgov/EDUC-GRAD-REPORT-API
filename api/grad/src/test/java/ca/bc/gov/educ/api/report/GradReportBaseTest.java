@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.api.report;
 
 
+import ca.bc.gov.educ.api.report.model.dto.GenerateReportData;
 import ca.bc.gov.educ.api.report.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import org.junit.After;
@@ -60,6 +61,13 @@ public abstract class GradReportBaseTest {
         InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
         String transcriptJson = readInputStream(inputStream);
         return (GenerateReportRequest)jsonTransformer.unmarshall(transcriptJson, GenerateReportRequest.class);
+    }
+
+    protected GenerateReportData createReportRequestObj(String jsonPath) throws Exception {
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
+        String transcriptJson = readInputStream(inputStream);
+        return (GenerateReportData)jsonTransformer.unmarshall(transcriptJson, GenerateReportData.class);
     }
 
     private String readInputStream(InputStream is) throws Exception {
