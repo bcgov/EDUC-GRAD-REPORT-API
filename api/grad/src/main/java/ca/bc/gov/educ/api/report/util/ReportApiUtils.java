@@ -3,6 +3,10 @@ package ca.bc.gov.educ.api.report.util;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +31,17 @@ public class ReportApiUtils {
 	public static String formatDate (Date date, String dateFormat) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
         return simpleDateFormat.format(date);
+    }
+
+    public static Date parseDate(String dateString, String dateFormat) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+        Date date = new Date();
+
+        try {
+            date = simpleDateFormat.parse(dateString);
+        } catch (ParseException e) {}
+
+        return date;
     }
 
 }
