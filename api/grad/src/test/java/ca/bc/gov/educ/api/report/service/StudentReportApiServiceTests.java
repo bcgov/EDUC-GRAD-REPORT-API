@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.api.report.GradReportBaseTest;
+import ca.bc.gov.educ.api.report.model.dto.GenerateReportData;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
 import ca.bc.gov.educ.grad.service.GradReportSignatureService;
@@ -107,11 +108,27 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
 		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
+		reportRequest.getOptions().setReportFile("Student Achievement Report 1.pdf");
 		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test
+	public void createStudentAchvReport() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportData reportData = createReportRequestObj("json/studentAchvReportRequest.json");
+		assertNotNull(reportData);
+		reportData.getOptions().setReportFile("Student Achievement Report.pdf");
+
+		ResponseEntity response = reportService.getStudentAchvReport(reportData);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportData.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
 		LOG.debug(">createStudentAchievementReport");
