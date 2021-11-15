@@ -62,9 +62,7 @@ public final class Certificate extends BusinessEntity {
      * @param issued When the certificate was issued.
      */
     public void setIssued(final Date issued) {
-        if (issued != null) {
-            this.issued = new Date(issued.getTime());
-        }
+        this.issued = issued;
     }
 
     /**
@@ -103,7 +101,7 @@ public final class Certificate extends BusinessEntity {
      * @return A valid date, possibly today's date, never null.
      */
     public Date getIssued() {
-        return this.issued == null ? null : new Date(this.issued.getTime());
+        return this.issued == null ? new Date() : this.issued;
     }
 
     /**

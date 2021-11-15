@@ -87,9 +87,20 @@ public class GradReportSignatureController extends BaseController {
         return gradReportSignatureService.saveSignatureImage(signatureImage);
     }
 
-    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODES)
+    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODE)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_BLOCK_TYPE_CODE)
     @Operation(summary = "Return Signature Block Types", description = "Retrieve Signature Block Types", tags = { "Signature Block Types" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public SignatureBlockTypeCode getSignatureBlockTypeCode(@PathVariable String signBlockTypeCode) {
+        String _m = String.format("getSignatureBlockTypeCode(%s)", signBlockTypeCode);
+        logger.debug("<{}.{}", _m, CLASS_NAME);
+        logRequest();
+        return gradReportCodeService.getSignatureBlockTypeCode(signBlockTypeCode);
+    }
+
+    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODES)
+    @PreAuthorize(PermissionsContants.READ_SIGNATURE_BLOCK_TYPE_CODE)
+    @Operation(summary = "Return Signature Block Type", description = "Retrieve Signature Block Type", tags = { "Signature Block Type" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
         String _m = String.format("getSignatureBlockTypeCodes()");
