@@ -4,7 +4,6 @@ import ca.bc.gov.educ.api.report.GradReportBaseTest;
 import ca.bc.gov.educ.api.report.service.ReportService;
 import ca.bc.gov.educ.grad.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
-import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
 import ca.bc.gov.educ.grad.service.GradReportSignatureService;
 import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.common.BusinessReport;
@@ -33,12 +32,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
@@ -72,73 +68,6 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
 
     @InjectMocks
     private GradReportSignatureController reportSignatureController;
-
-
-    @Test
-    public void extractSignatureImageTest() throws Exception {
-        LOG.debug("<{}.extractSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-        byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
-        assertNotNull(imageBinary);
-        assertNotEquals(0, imageBinary.length);
-        LOG.debug("Test image loaded {} bytes", imageBinary.length);
-
-        String signatureCode = "MOE.png";
-        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
-        signatureImage.setGradReportSignatureCode(signatureCode);
-        signatureImage.setSignatureContent(imageBinary);
-        signatureImage.setSignatureId(UUID.randomUUID());
-
-        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode)).thenReturn(signatureImage);
-        reportSignatureController.extractSignatureImageByCode(signatureCode);
-        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
-
-        LOG.debug(">extractSignatureImageTest");
-    }
-
-    @Test
-    public void getSignatureImagesTest() throws Exception {
-        LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-        byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
-        assertNotNull(imageBinary);
-        assertNotEquals(0, imageBinary.length);
-        LOG.debug("Test image loaded {} bytes", imageBinary.length);
-
-        String signatureCode = "MOE.png";
-        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
-        signatureImage.setGradReportSignatureCode(signatureCode);
-        signatureImage.setSignatureContent(imageBinary);
-        signatureImage.setSignatureId(UUID.randomUUID());
-
-        List<GragReportSignatureImage> signatureImages = new ArrayList();
-        signatureImages.add(signatureImage);
-
-        Mockito.when(reportSignatureService.getSignatureImages()).thenReturn(signatureImages);
-        reportSignatureController.getSignatureImages();
-        Mockito.verify(reportSignatureService).getSignatureImages();
-
-        LOG.debug(">getSignatureImagesTest");
-    }
-
-    @Test
-    public void getSignatureImageTest() throws Exception {
-        LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-        byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
-        assertNotNull(imageBinary);
-        assertNotEquals(0, imageBinary.length);
-        LOG.debug("Test image loaded {} bytes", imageBinary.length);
-
-        String signatureCode = "MOE.png";
-        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
-        signatureImage.setGradReportSignatureCode(signatureCode);
-        signatureImage.setSignatureContent(imageBinary);
-        signatureImage.setSignatureId(UUID.randomUUID());
-
-        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode)).thenReturn(signatureImage);
-        reportSignatureController.getSignatureImageByCode(signatureCode);
-        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
-
-        LOG.debug(">getSignatureImageTest");
-    }
 
     @Test
     public void getStudentAchievementReportTest() throws Exception {
