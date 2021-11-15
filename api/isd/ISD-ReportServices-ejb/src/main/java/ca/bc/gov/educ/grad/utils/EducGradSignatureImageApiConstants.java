@@ -21,6 +21,7 @@ public class EducGradSignatureImageApiConstants {
     public static final String GET_SIGNATURE_IMAGE = "/get" + GET_SIGNATURE_IMAGE_BY_CODE;
     public static final String GET_SIGNATURE_IMAGES = "/get/all";
     public static final String GET_SIGNATURE_BLOCK_TYPE_CODES = "/getSignatureBlockTypeCodes";
+    public static final String GET_SIGNATURE_BLOCK_TYPE_CODE = "/getSignatureBlockTypeCode";
 
     //Default Date format constants
     public static final String DEFAULT_CREATED_BY = "GradSignatureImagesAPI";
