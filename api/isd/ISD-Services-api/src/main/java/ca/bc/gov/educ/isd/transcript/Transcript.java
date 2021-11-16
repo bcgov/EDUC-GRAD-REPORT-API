@@ -17,11 +17,13 @@
  */
 package ca.bc.gov.educ.isd.transcript;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.DomainEntity;
 import ca.bc.gov.educ.isd.grad.GraduationProgramCode;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A transcript is comprised of a number of transcript results.
@@ -63,4 +65,12 @@ public interface Transcript extends DomainEntity {
      * @return true iff getResults().isEmpty() == true.
      */
     boolean isEmpty();
+
+    /**
+     * Gets signature block types.
+     *
+     * @return the Map of SignatureBlockType types
+     */
+
+    Map<String, SignatureBlockType> getSignatureBlockTypes();
 }

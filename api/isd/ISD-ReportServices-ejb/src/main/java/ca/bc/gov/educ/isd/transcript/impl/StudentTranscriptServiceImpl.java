@@ -20,11 +20,14 @@ package ca.bc.gov.educ.isd.transcript.impl;
 import ca.bc.gov.educ.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
+import ca.bc.gov.educ.grad.service.GradReportCodeService;
 import ca.bc.gov.educ.isd.adaptor.dao.impl.TranCourseEntity;
 import ca.bc.gov.educ.isd.adaptor.dao.impl.TranNongradEntity;
 import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
 import ca.bc.gov.educ.isd.adaptor.impl.TranscriptCourseImpl;
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.DataException;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.eis.trax.db.StudentDemographic;
@@ -124,6 +127,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
 
     @Autowired
     private ReportService reportService;
+    @Autowired
+    private GradReportCodeService codeService;
 
     @Autowired
     GradToIsdDataConvertBean gradtoIsdDataConvertBean;
@@ -268,7 +273,12 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final Date issueDate = studentInfo.getReportDate();
 
         boolean isEmpty = (numberTranscriptCourses == 0);
-        final Transcript transcript = new TranscriptInformationImpl(issueDate, isEmpty);
+        final TranscriptInformationImpl transcript = new TranscriptInformationImpl(issueDate, isEmpty);
+
+        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
+        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        transcript.setSignatureBlockTypes(signatureBlockTypes);
 
         LOG.exiting(CLASSNAME, _m);
         return transcript;
@@ -771,6 +781,11 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         transcript.setIssueDate(issueDate);
         transcript.setResults(transcriptResults);
         transcript.setInterim(interim);
+
+        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
+        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        transcript.setSignatureBlockTypes(signatureBlockTypes);
 
         LOG.exiting(CLASSNAME, m_);
         return transcript;

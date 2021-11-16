@@ -17,15 +17,13 @@
  */
 package ca.bc.gov.educ.isd.reports.data.impl;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.reports.data.BusinessEntity;
 import ca.bc.gov.educ.isd.reports.data.assessment.impl.LiteracyAssessmentResult;
 import ca.bc.gov.educ.isd.reports.data.assessment.impl.NumeracyAssessmentResult;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static ca.bc.gov.educ.isd.reports.data.impl.TranscriptResult.*;
 
@@ -155,6 +153,8 @@ public final class Student extends BusinessEntity {
      * Used for the transcript of grades XML reports.
      */
     private AcademicAward academicAward;
+
+    private Map<String, SignatureBlockType> signatureBlockTypes;
 
     /**
      * Default (empty) constructor.
@@ -891,6 +891,14 @@ public final class Student extends BusinessEntity {
      */
     public boolean isRequirementYear(final String code) {
         return getGraduationProgram().isCode(code);
+    }
+
+    public Map<String, SignatureBlockType> getSignatureBlockTypes() {
+        return signatureBlockTypes;
+    }
+
+    public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
+        this.signatureBlockTypes = signatureBlockTypes;
     }
 
     /**
