@@ -55,6 +55,9 @@
 	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String">
 		<parameterDescription><![CDATA[Graduation program code]]></parameterDescription>
 		<defaultValueExpression><![CDATA["1950"]]></defaultValueExpression>
@@ -206,6 +209,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_CONCRETE_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="P_GRADUATION_MESSAGE">
 					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -228,6 +234,9 @@ $V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
 				<subreportParameter name="P_REPORT_CONCRETE_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="P_GRADUATION_MESSAGE">
 					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -249,6 +258,9 @@ $V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_CONCRETE_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_GRADUATION_MESSAGE">
 					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
@@ -317,6 +329,9 @@ $V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
 				</subreportParameter>
 				<subreportParameter name="P_SCHOOL_ADDRESS_STREET">
 					<subreportParameterExpression><![CDATA[$V{V_SCHOOL_ADDRESS_STREET}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_SCHOOL_ADDRESS_POSTAL_CODE">
 					<subreportParameterExpression><![CDATA[$V{V_SCHOOL_ADDRESS_POSTAL_CODE}]]></subreportParameterExpression>

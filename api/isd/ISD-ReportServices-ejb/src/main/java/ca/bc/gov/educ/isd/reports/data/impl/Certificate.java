@@ -20,6 +20,7 @@ package ca.bc.gov.educ.isd.reports.data.impl;
 import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.reports.data.BusinessEntity;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -62,7 +63,10 @@ public final class Certificate extends BusinessEntity {
      * @param issued When the certificate was issued.
      */
     public void setIssued(final Date issued) {
-        this.issued = issued;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(issued);
+        cal.add(Calendar.DAY_OF_MONTH, 1);
+        this.issued = cal.getTime();
     }
 
     /**
