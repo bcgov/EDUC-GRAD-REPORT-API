@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.isd.transcript.impl;
 
 import ca.bc.gov.educ.grad.utils.TranscriptResultListDeserializer;
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.isd.grad.GraduationProgramCode;
 import ca.bc.gov.educ.isd.transcript.Transcript;
@@ -31,6 +32,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A container for a list of transcript courses associated with a student.
@@ -46,6 +48,7 @@ public class TranscriptImpl extends AbstractDomainEntity
     private List<TranscriptResult> results = new ArrayList<>();
     private Date issueDate;
     private boolean interim;
+    private Map<String, SignatureBlockType> signatureBlockTypes;
 
     @Override
     @JsonDeserialize(using = TranscriptResultListDeserializer.class)
@@ -120,5 +123,14 @@ public class TranscriptImpl extends AbstractDomainEntity
 
     public boolean getInterim() {
         return this.interim;
+    }
+
+    @Override
+    public Map<String, SignatureBlockType> getSignatureBlockTypes() {
+        return this.signatureBlockTypes;
+    }
+
+    public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
+        this.signatureBlockTypes = signatureBlockTypes;
     }
 }

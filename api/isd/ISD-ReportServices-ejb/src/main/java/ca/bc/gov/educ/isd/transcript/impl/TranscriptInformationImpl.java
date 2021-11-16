@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.isd.transcript.impl;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.isd.grad.GraduationProgramCode;
 import ca.bc.gov.educ.isd.transcript.Transcript;
@@ -25,6 +26,7 @@ import ca.bc.gov.educ.isd.transcript.TranscriptResult;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Basic Transcript information without any courses - use isEmpty to determine
@@ -39,6 +41,7 @@ public class TranscriptInformationImpl extends AbstractDomainEntity
 
     private Date issueDate;
     private boolean isEmpty;
+    private Map<String, SignatureBlockType> signatureBlockTypes;
 
     public TranscriptInformationImpl() {
     }
@@ -83,5 +86,14 @@ public class TranscriptInformationImpl extends AbstractDomainEntity
     @Override
     public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Map<String, SignatureBlockType> getSignatureBlockTypes() {
+        return this.signatureBlockTypes;
+    }
+
+    public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
+        this.signatureBlockTypes = signatureBlockTypes;
     }
 }
