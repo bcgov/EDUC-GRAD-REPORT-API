@@ -78,7 +78,7 @@ public class BusinessEntityAdapter {
 
         final PostalAddress address = adapt(student.getCurrentMailingAddress());
 
-        return new Student.Builder()
+        ca.bc.gov.educ.isd.reports.data.impl.Student std = new Student.Builder()
                 .withCreatedOn(student.getCreatedOn())
                 .withPEN(student.getPen().getValue())
                 .withBirthdate(student.getBirthdate())
@@ -87,7 +87,10 @@ public class BusinessEntityAdapter {
                 .withMiddleNames(student.getMiddleName())
                 .withGrade(student.getGrade())
                 .withAddress(address)
+                .withSignatureBlockTypes(student.getSignatureBlockTypes())
                 .build();
+
+        return std;
     }
 
     /**

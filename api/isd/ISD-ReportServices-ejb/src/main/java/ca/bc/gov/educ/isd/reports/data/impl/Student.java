@@ -1141,6 +1141,11 @@ public final class Student extends BusinessEntity {
             getObject().setCertificates(certificates);
             return thisBuilder();
         }
+
+        public Builder withSignatureBlockTypes(final Map<String, SignatureBlockType> signatureBlockTypes) {
+            getObject().setSignatureBlockTypes(signatureBlockTypes);
+            return thisBuilder();
+        }
     }
 
     @Override
