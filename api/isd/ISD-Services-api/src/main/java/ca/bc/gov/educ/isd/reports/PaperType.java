@@ -40,6 +40,7 @@ public enum PaperType {
     CERTIFICATE_S("YEDR"),
     CERTIFICATE_SCF("YED2"),
     CERTIFICATE_F("YEDR"),
+    CERTIFICATE_O("YEDR"),
     TRANSCRIPT("YED4");
 
     private final String code;
