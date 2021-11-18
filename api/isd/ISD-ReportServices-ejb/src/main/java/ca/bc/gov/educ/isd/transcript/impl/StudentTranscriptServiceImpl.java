@@ -275,11 +275,6 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         boolean isEmpty = (numberTranscriptCourses == 0);
         final TranscriptInformationImpl transcript = new TranscriptInformationImpl(issueDate, isEmpty);
 
-        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
-        transcript.setSignatureBlockTypes(signatureBlockTypes);
-
         LOG.exiting(CLASSNAME, _m);
         return transcript;
     }
@@ -727,6 +722,11 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         address.setCountry(traxStudentInfo.getCountryCode());
         student.setCurrentMailingAddress(address);
 
+        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
+        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        student.setSignatureBlockTypes(signatureBlockTypes);
+
         LOG.exiting(CLASSNAME, _m);
         return student;
     }
@@ -781,11 +781,6 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         transcript.setIssueDate(issueDate);
         transcript.setResults(transcriptResults);
         transcript.setInterim(interim);
-
-        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
-        transcript.setSignatureBlockTypes(signatureBlockTypes);
 
         LOG.exiting(CLASSNAME, m_);
         return transcript;
@@ -986,6 +981,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             System.out.println("student.assessments = " + stu.getAssessments().size());
             System.out.println("student.provinciallyExaminableCourses = " + stu.getProvinciallyExaminableCourses().size());
             System.out.println("student.nonProvinciallyExaminableCourses = " + stu.getNonProvinciallyExaminableCourses().size());
+            System.out.println("student.signatureBlockTypes = " + stu.getSignatureBlockTypes().size());
             System.out.println("student.status.graduationMessage = " + stu.getStatus().getGraduationMessage());
             System.out.println("student.status.graduated = " + stu.getStatus().getGraduated());
 
