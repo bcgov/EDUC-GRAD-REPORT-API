@@ -55,7 +55,7 @@
 					<box>
 						<topPen lineWidth="0.75" lineStyle="Dashed"/>
 					</box>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("MOE_ADM").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP} != null ? $F{F_LABEL_MAP}.get("MOE_ADM").toString() : "Assistant Deputy Minister"]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

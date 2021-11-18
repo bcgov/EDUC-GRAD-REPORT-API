@@ -981,6 +981,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             System.out.println("student.assessments = " + stu.getAssessments().size());
             System.out.println("student.provinciallyExaminableCourses = " + stu.getProvinciallyExaminableCourses().size());
             System.out.println("student.nonProvinciallyExaminableCourses = " + stu.getNonProvinciallyExaminableCourses().size());
+            System.out.println("student.signatureBlockTypes = " + stu.getSignatureBlockTypes().size());
             System.out.println("student.status.graduationMessage = " + stu.getStatus().getGraduationMessage());
             System.out.println("student.status.graduated = " + stu.getStatus().getGraduated());
 
