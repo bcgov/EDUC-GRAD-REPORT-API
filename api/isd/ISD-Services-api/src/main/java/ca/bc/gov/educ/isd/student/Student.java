@@ -17,10 +17,12 @@
  */
 package ca.bc.gov.educ.isd.student;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.party.Person;
 import ca.bc.gov.educ.isd.common.party.address.PostalAddress;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Represents a student business entity.
@@ -96,5 +98,13 @@ public interface Student extends Person {
      * @return the stud status
      */
     String getStudStatus();
+
+    /**
+     * Gets signature block types.
+     *
+     * @return the Map of SignatureBlockType types
+     */
+
+    Map<String, SignatureBlockType> getSignatureBlockTypes();
 
 }

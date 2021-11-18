@@ -47,6 +47,9 @@ logging:
       bc:
         gov:
           educ: DEBUG
+    net:
+      sf:
+        jasperreports: INFO
     org:
       springframework:
         web: INFO
