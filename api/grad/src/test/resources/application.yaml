@@ -49,7 +49,7 @@ logging:
           educ: DEBUG
     net:
       sf:
-        jasperreports: DEBUG
+        jasperreports: INFO
     org:
       springframework:
         web: INFO
