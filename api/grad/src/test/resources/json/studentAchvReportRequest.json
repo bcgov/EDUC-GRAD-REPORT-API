@@ -17,21 +17,22 @@
       "birthdate": "1989/11/22",
       "grade": "12",
       "gender": "Male",
-      "localId": "2211231"
+      "localId": "2211231",
+      "otherProgramParticipation": [
+        {
+          "programCode": "FI",
+          "programName": "French Immersion"
+        },
+        {
+          "programCode": "AD",
+          "programName": "Advanced Placement"
+        }
+      ],
+      "hasOtherProgram": "Other Program Participation"
     },
     "orgCode": "BC",
     "graduationStatus": {
-      "programName": "Graduation Program 2018",
-      "programCompletionDate": "2020/06",
-      "honours": "Y",
-      "gpa": "2.7546",
-      "studentGrade": "12",
-      "studentStatus": "A",
-      "studentStatusName": "Active",
-      "schoolAtGrad": "312312311",
-      "schoolOfRecord": "223422222",
-      "certificates": "English Dogwood,French Dogwood",
-      "graduationMessage": "Based on the information provided by the school, this student has graduated in the 2018 graduation program with honours.  Graduation date: 201906."
+      "graduationMessage": "Based on the information provided by the school, this student is projected to not graduate in the Graduation Program 2018. Students with questions should contact their schools immediately."
     },
     "nonGradReasons": [
       {
