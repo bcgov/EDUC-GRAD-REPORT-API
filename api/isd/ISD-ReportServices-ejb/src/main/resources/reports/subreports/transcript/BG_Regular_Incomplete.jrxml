@@ -19,6 +19,7 @@
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="P_COMPLETION_NOTICE" class="java.lang.Boolean" isForPrompting="false"/>
 	<field name="student" class="ca.bc.gov.educ.isd.reports.data.impl.Student">
@@ -94,6 +95,9 @@
 					<reportElement positionType="Float" isPrintRepeatedValues="false" mode="Transparent" x="10" y="56" width="547" height="90" uuid="037e0ef2-d24e-4b0c-a242-50a8f1d2b7fc"/>
 					<subreportParameter name="P_REPORT_STYLE_FILE">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+						<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 					</subreportParameter>
 					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
 // transcript can hold. To do so would cause the list to overflow onto
