@@ -84,4 +84,5 @@ public class TranscriptInformationImpl extends AbstractDomainEntity
     public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }

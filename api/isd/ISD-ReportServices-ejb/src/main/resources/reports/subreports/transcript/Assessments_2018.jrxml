@@ -26,6 +26,7 @@
 	<parameter name="P_REPORT_COMMON_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "common/"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<summary>
 		<band height="108">
 			<staticText>

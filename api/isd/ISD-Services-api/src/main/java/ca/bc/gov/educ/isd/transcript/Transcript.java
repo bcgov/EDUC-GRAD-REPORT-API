@@ -63,4 +63,5 @@ public interface Transcript extends DomainEntity {
      * @return true iff getResults().isEmpty() == true.
      */
     boolean isEmpty();
+
 }

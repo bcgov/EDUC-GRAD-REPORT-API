@@ -1,8 +1,8 @@
 package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.api.report.GradReportBaseTest;
+import ca.bc.gov.educ.api.report.model.dto.GenerateReportData;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
-import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
 import ca.bc.gov.educ.grad.service.GradReportSignatureService;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,10 +16,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
 public class StudentReportApiServiceTests extends GradReportBaseTest {
@@ -38,80 +36,32 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	}
 
-	@Test
-	public void getSignatureImagesTest() throws Exception {
-		LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
-		assertNotNull(imageBinary);
-		assertNotEquals(0, imageBinary.length);
-		LOG.debug("Test image loaded {} bytes", imageBinary.length);
-
-		String signatureCode = "MOE.png";
-		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
-		signatureImage.setGradReportSignatureCode(signatureCode);
-		signatureImage.setSignatureContent(imageBinary);
-		signatureImage.setSignatureId(UUID.randomUUID());
-
-		reportSignatureService.saveSignatureImage(signatureImage);
-
-		List<GragReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages();
-		assertNotNull(signatureImages);
-		assertTrue(signatureImages.size() > 0);
-
-		LOG.debug(">getSignatureImagesTest");
-	}
-
-	@Test
-	public void getSignatureImageTest() throws Exception {
-		LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
-		assertNotNull(imageBinary);
-		assertNotEquals(0, imageBinary.length);
-		LOG.debug("Test image loaded {} bytes", imageBinary.length);
-
-		String signatureCode = "MOE.png";
-		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
-		signatureImage.setGradReportSignatureCode(signatureCode);
-		signatureImage.setSignatureContent(imageBinary);
-		signatureImage.setSignatureId(UUID.randomUUID());
-
-		reportSignatureService.saveSignatureImage(signatureImage);
-		signatureImage = reportSignatureService.getSignatureImageByCode(signatureCode);
-		assertNotNull(signatureImage);
-
-		LOG.debug(">getSignatureImageTest");
-	}
-
-	@Test
-	public void saveSignatureImageTest() throws Exception {
-		LOG.debug("<{}.saveSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
-		assertNotNull(imageBinary);
-		assertNotEquals(0, imageBinary.length);
-		LOG.debug("Test image loaded {} bytes", imageBinary.length);
-
-		String signatureCode = "TEST.png";
-		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
-		signatureImage.setGradReportSignatureCode(signatureCode);
-		signatureImage.setSignatureContent(imageBinary);
-		signatureImage.setSignatureId(UUID.randomUUID());
-
-		signatureImage = reportSignatureService.saveSignatureImage(signatureImage);
-		assertNotNull(signatureImage);
-
-		LOG.debug(">saveSignatureImageTest");
-	}
-
-	@Test
+	//@Test
 	public void createStudentAchievementReport() throws Exception {
 		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
 		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
+		reportRequest.getOptions().setReportFile("Student Achievement Report (Legacy).pdf");
 		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test
+	public void createStudentAchvReport() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportData reportData = createReportRequestObj("json/studentAchvReportRequest.json");
+		assertNotNull(reportData);
+		reportData.getOptions().setReportFile("Student Achievement Report.pdf");
+
+		ResponseEntity response = reportService.getStudentAchvReport(reportData);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportData.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
 		LOG.debug(">createStudentAchievementReport");
@@ -372,4 +322,33 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SCF");
 	}
 
+	@Test
+	public void createCertificateReport_O() throws Exception {
+		LOG.debug("<{}.createCertificateReport_O at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-O.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate O Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_O");
+	}
+
+	@Test
+	public void createCertificateReport_OO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_OO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OO.json");
+		assertNotNull(reportRequest);
+		reportRequest.getOptions().setReportFile("Certificate OO Report.pdf");
+		ResponseEntity response = reportService.getStudentCertificateReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_OO");
+	}
 }

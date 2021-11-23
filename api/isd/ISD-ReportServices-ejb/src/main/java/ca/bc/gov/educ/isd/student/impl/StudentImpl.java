@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.isd.student.impl;
 
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.party.address.PostalAddress;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.isd.student.PersonalEducationNumber;
@@ -27,6 +28,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  *
@@ -49,7 +51,8 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String mincodeGrad;
     private String englishCert;
     private String frenchCert;
-    private Character studStatus = ' ';
+    private String studStatus = "";
+    private Map<String, SignatureBlockType> signatureBlockTypes;
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -161,11 +164,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    public Character getStudStatus() {
+    public String getStudStatus() {
         return studStatus;
     }
 
-    public void setStudStatus(Character studStatus) {
+    public void setStudStatus(String studStatus) {
         this.studStatus = studStatus;
     }
 
@@ -185,4 +188,12 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public Map<String, SignatureBlockType> getSignatureBlockTypes() {
+        return signatureBlockTypes;
+    }
+
+    public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
+        this.signatureBlockTypes = signatureBlockTypes;
+    }
 }

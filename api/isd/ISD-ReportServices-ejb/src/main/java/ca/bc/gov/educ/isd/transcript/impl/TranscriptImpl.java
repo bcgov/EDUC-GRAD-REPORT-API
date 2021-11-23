@@ -121,4 +121,5 @@ public class TranscriptImpl extends AbstractDomainEntity
     public boolean getInterim() {
         return this.interim;
     }
+
 }

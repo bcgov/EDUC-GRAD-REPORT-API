@@ -57,7 +57,7 @@ public class StudentInfoImpl implements StudentInfo {
     private Date lastUpdateDate = new Date(0L);
     private String logo = "";
     private Character gender = ' ';
-    private Character status = ' ';
+    private String status = "";
     private Boolean honourFlag = Boolean.FALSE;
     private Boolean dogwoodFlag = Boolean.FALSE;
     private String grade = "";
@@ -151,7 +151,7 @@ public class StudentInfoImpl implements StudentInfo {
             final String studentProv,
             final String studentPostalCode,
             final String traxStudentCountry,
-            final Character studStatus,
+            final String studStatus,
             final Character honourFlag,
             final Character dogwoodFlag,
             final String prgmCode,
@@ -262,7 +262,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    public Character getStudentStatus() {
+    public String getStudentStatus() {
         return this.status;
     }
 

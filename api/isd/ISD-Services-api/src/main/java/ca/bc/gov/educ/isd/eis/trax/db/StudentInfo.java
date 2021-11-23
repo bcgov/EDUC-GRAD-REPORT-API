@@ -99,7 +99,7 @@ public interface StudentInfo extends TRAXData, TRAXCountry {
      *
      * @return status
      */
-    Character getStudentStatus();
+    String getStudentStatus();
 
     /**
      * get the student gender.
