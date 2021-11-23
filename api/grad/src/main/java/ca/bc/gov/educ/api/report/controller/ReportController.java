@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.api.report.controller;
 
+import ca.bc.gov.educ.api.report.model.dto.GenerateReportData;
 import ca.bc.gov.educ.api.report.service.ReportService;
 import ca.bc.gov.educ.api.report.util.PermissionsContants;
 import ca.bc.gov.educ.api.report.util.ReportApiConstants;
@@ -39,6 +40,16 @@ public class ReportController extends BaseController {
         logger.debug("getStudentAchievementReport");
         logRequest();
         return reportService.getStudentAchievementReport(report);
+    }
+
+    @PostMapping (ReportApiConstants.STUDENT_ACHV_REPORT)
+    @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
+    @Operation(summary = "Generate Student Achievement Report", description = "Generate Student Achievement Report", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity getStudentAchvReport(@RequestBody GenerateReportData reportData) {
+        logger.debug("getStudentAchievementReport");
+        logRequest();
+        return reportService.getStudentAchvReport(reportData);
     }
     
     @PostMapping (ReportApiConstants.STUDENT_TRANSCRIPT_REPORT)

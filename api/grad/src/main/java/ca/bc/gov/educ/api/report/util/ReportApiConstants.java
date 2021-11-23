@@ -8,6 +8,7 @@ public class ReportApiConstants {
     public static final String API_VERSION = "v1";
     public static final String REPORT_API_ROOT_MAPPING = "/api/" + API_VERSION + "/reports";
     public static final String STUDENT_ACHIEVEMENT_REPORT = "/achievementreport";
+    public static final String STUDENT_ACHV_REPORT = "/achvreport";
     public static final String STUDENT_TRANSCRIPT_REPORT = "/transcriptreport";
     public static final String STUDENT_CERTIFICATE = "/certificate";
 

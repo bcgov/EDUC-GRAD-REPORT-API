@@ -2,9 +2,11 @@ package ca.bc.gov.educ.api.report.model.dto;
 
 import ca.bc.gov.educ.api.report.util.ReportApiUtils;
 import lombok.Data;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Student {
@@ -17,6 +19,7 @@ public class Student {
     private Date birthdate;
     private String localId;
     private String program;
+    private List<OtherProgram> otherProgramParticipation;
 
     private void setBirthdate(String birthdate) {
         try {
@@ -24,5 +27,12 @@ public class Student {
         }catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    private String hasOtherProgram;
+    private JRBeanCollectionDataSource otherProgramParticipationdataSource;
+
+    public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
+        return new JRBeanCollectionDataSource(otherProgramParticipation, false);
     }
 }
