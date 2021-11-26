@@ -82,19 +82,19 @@
 		<field name="sessionDate" class="java.lang.String">
 			<fieldDescription><![CDATA[sessionDate]]></fieldDescription>
 		</field>
-		<field name="bestSchoolPercent" class="java.lang.Double">
+		<field name="bestSchoolPercent" class="java.lang.String">
 			<fieldDescription><![CDATA[bestSchoolPercent]]></fieldDescription>
 		</field>
-		<field name="bestExamPercent" class="java.lang.Double">
+		<field name="bestExamPercent" class="java.lang.String">
 			<fieldDescription><![CDATA[bestExamPercent]]></fieldDescription>
 		</field>
-		<field name="completedCoursePercentage" class="java.lang.Double">
+		<field name="completedCoursePercentage" class="java.lang.String">
 			<fieldDescription><![CDATA[completedCoursePercentage]]></fieldDescription>
 		</field>
 		<field name="completedCourseLetterGrade" class="java.lang.String">
 			<fieldDescription><![CDATA[completedCourseLetterGrade]]></fieldDescription>
 		</field>
-		<field name="credits" class="java.lang.Integer">
+		<field name="credits" class="java.lang.String">
 			<fieldDescription><![CDATA[credits]]></fieldDescription>
 		</field>
 		<field name="creditsUsedForGrad" class="java.lang.Integer">
@@ -126,16 +126,16 @@
 		<field name="sessionDate" class="java.lang.String">
 			<fieldDescription><![CDATA[sessionDate]]></fieldDescription>
 		</field>
-		<field name="interimPercent" class="java.lang.Double">
+		<field name="interimPercent" class="java.lang.String">
 			<fieldDescription><![CDATA[interimPercent]]></fieldDescription>
 		</field>
-		<field name="completedCoursePercentage" class="java.lang.Double">
+		<field name="completedCoursePercentage" class="java.lang.String">
 			<fieldDescription><![CDATA[completedCoursePercentage]]></fieldDescription>
 		</field>
 		<field name="completedCourseLetterGrade" class="java.lang.String">
 			<fieldDescription><![CDATA[completedCourseLetterGrade]]></fieldDescription>
 		</field>
-		<field name="credits" class="java.lang.Integer">
+		<field name="credits" class="java.lang.String">
 			<fieldDescription><![CDATA[credits]]></fieldDescription>
 		</field>
 		<field name="creditsUsedForGrad" class="java.lang.Integer">
@@ -363,7 +363,7 @@
 				<text><![CDATA[REVIEWED BY :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="GeneratedText" x="380" y="12" width="50" height="15" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
+				<reportElement style="GeneratedText" x="186" y="43" width="50" height="15" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
@@ -394,11 +394,15 @@
 				<text><![CDATA[Name :]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="244" y="11" width="120" height="30" uuid="35d7da73-7ca1-4a07-b05e-482327809e3b"/>
+				<reportElement style="GeneratedText" x="260" y="4" width="120" height="30" uuid="35d7da73-7ca1-4a07-b05e-482327809e3b">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
 				<textFieldExpression><![CDATA[$P{studentObj}.getLastName()+","+$P{studentObj}.getMiddleName()+" "+$P{studentObj}.getFirstName()]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="450" y="12" width="122" height="15" uuid="6b02265f-b055-4dcf-9052-dee6d0fb3c3e"/>
+				<reportElement style="GeneratedText" x="260" y="43" width="122" height="15" uuid="6b02265f-b055-4dcf-9052-dee6d0fb3c3e">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
 				<textFieldExpression><![CDATA[$P{studentObj}.getProgram()]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -428,7 +432,7 @@
 				<textFieldExpression><![CDATA[$P{studentObj}.getGrade()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="GeneratedText" x="186" y="65" width="50" height="15" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
+				<reportElement style="GeneratedText" x="388" y="10" width="50" height="15" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
@@ -437,7 +441,7 @@
 				<text><![CDATA[Gender :]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="244" y="65" width="110" height="15" uuid="4dab781f-fd3c-478c-9bdc-d416d380f047"/>
+				<reportElement style="GeneratedText" x="440" y="10" width="110" height="15" uuid="4dab781f-fd3c-478c-9bdc-d416d380f047"/>
 				<textFieldExpression><![CDATA[$P{studentObj}.getGender()]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -454,7 +458,7 @@
 				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthdate())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="GeneratedText" x="186" y="95" width="50" height="15" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
+				<reportElement style="GeneratedText" x="388" y="43" width="50" height="15" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
@@ -463,20 +467,22 @@
 				<text><![CDATA[Local Id:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="244" y="95" width="110" height="15" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
+				<reportElement style="GeneratedText" x="445" y="43" width="110" height="15" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
 				<textFieldExpression><![CDATA[$P{studentObj}.getLocalId()]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement x="450" y="46" width="113" height="12" uuid="cba32c3c-e18f-44e8-9675-5b4f22bfc073">
+				<reportElement x="260" y="71" width="230" height="15" uuid="cba32c3c-e18f-44e8-9675-5b4f22bfc073">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="otherProgramParticipationDataset" uuid="377401b4-2a8e-4f71-a8e3-974a1e999e16">
 						<dataSourceExpression><![CDATA[$P{studentObj}.getOtherProgramParticipationdataSource()]]></dataSourceExpression>
 					</datasetRun>
-					<jr:listContents height="12" width="113">
+					<jr:listContents height="15" width="230">
 						<textField>
-							<reportElement style="GeneratedText" x="0" y="0" width="110" height="12" uuid="dca6b97e-35bc-491f-8982-4ed7122d8228">
+							<reportElement style="GeneratedText" x="0" y="0" width="230" height="15" uuid="dca6b97e-35bc-491f-8982-4ed7122d8228">
 								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
@@ -486,7 +492,7 @@
 				</jr:list>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="381" y="45" width="64" height="51" uuid="fac13d46-b91f-4213-ac3d-79aae4c59e6f">
+				<reportElement style="GeneratedText" positionType="Float" x="186" y="65" width="64" height="51" uuid="fac13d46-b91f-4213-ac3d-79aae4c59e6f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -839,9 +845,9 @@
 				<text><![CDATA[GRADUATION STATUS]]></text>
 			</staticText>
 		</band>
-		<band height="381">
+		<band height="186">
 			<componentElement>
-				<reportElement positionType="Float" x="5" y="160" width="550" height="60" isRemoveLineWhenBlank="true" uuid="cc00a62c-c948-40c8-9ef7-9e2080661cb1">
+				<reportElement positionType="Float" x="5" y="120" width="550" height="60" isRemoveLineWhenBlank="true" uuid="cc00a62c-c948-40c8-9ef7-9e2080661cb1">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -999,14 +1005,14 @@
 				</jr:table>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="130" width="200" height="15" uuid="b2252645-3304-4bf7-934b-d87232f89fd3"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="100" width="200" height="15" uuid="b2252645-3304-4bf7-934b-d87232f89fd3"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{hasStudentAssessment} == "true"? "PROVINCIAL GRADUATION ASSESSMENTS":""]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement positionType="Float" x="5" y="51" width="550" height="60" isRemoveLineWhenBlank="true" uuid="bbacd646-210c-4b78-b90c-c234778c431c">
+				<reportElement positionType="Float" x="5" y="30" width="550" height="60" isRemoveLineWhenBlank="true" uuid="bbacd646-210c-4b78-b90c-c234778c431c">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -1229,21 +1235,23 @@
 				</jr:table>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="21" width="200" height="15" uuid="5640ee57-c988-4013-91db-1a71b9000780"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="10" width="200" height="15" uuid="5640ee57-c988-4013-91db-1a71b9000780"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{hasStudentCourse} == "true"? "COURSES":""]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="153">
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="239" width="200" height="15" uuid="c7415456-ba1e-493d-b0a0-1ef19b939861"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="10" width="200" height="15" uuid="c7415456-ba1e-493d-b0a0-1ef19b939861"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{hasOptionalPrograms} == "true"? "OTHER (OPTIONAL) PROGRAM(S) PARTICIPATION DETAILS":""]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement positionType="Float" x="5" y="260" width="550" height="110" isRemoveLineWhenBlank="true" uuid="5c7f9591-09e2-4301-be11-34f1e42a9cf2">
+				<reportElement positionType="Float" x="5" y="35" width="550" height="110" isRemoveLineWhenBlank="true" uuid="5c7f9591-09e2-4301-be11-34f1e42a9cf2">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -1262,11 +1270,11 @@
 								<textElement verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<text><![CDATA[Opt Program Code]]></text>
+								<text><![CDATA[ Opt Program Code]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="85">
-							<textField>
+							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="70" height="85" uuid="c47fe19f-39a8-44d8-bcd3-2a20266b6cc2"/>
 								<textElement verticalAlignment="Top"/>
 								<textFieldExpression><![CDATA["  "+$F{optionalProgramCode}]]></textFieldExpression>
@@ -1285,10 +1293,10 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="85">
-							<textField>
+							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="100" height="85" uuid="5ddf928c-e432-4d8d-842d-c4a846a10db0"/>
-								<textElement verticalAlignment="Top"/>
-								<textFieldExpression><![CDATA["  "+$F{optionalProgramName}]]></textFieldExpression>
+								<textElement textAlignment="Center" verticalAlignment="Top"/>
+								<textFieldExpression><![CDATA[$F{optionalProgramName}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1304,10 +1312,10 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="85">
-							<textField>
+							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="70" height="85" uuid="e3ca4a89-ec3d-49c8-8ac3-1079b232df68"/>
 								<textElement verticalAlignment="Top"/>
-								<textFieldExpression><![CDATA["  "+$F{programCompletionDate}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{programCompletionDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1343,7 +1351,7 @@
 											<textFieldExpression><![CDATA[" * "+$F{rule}+" "+$F{description}]]></textFieldExpression>
 										</textField>
 										<componentElement>
-											<reportElement x="20" y="23" width="110" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
+											<reportElement x="20" y="25" width="110" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
 											<jr:list printOrder="Vertical">
 												<datasetRun subDataset="courseDetailsDataset" uuid="38689648-70ad-4cfd-9ec7-a74b6785f9af">
 													<dataSourceExpression><![CDATA[$F{courseDetailsdataSource}]]></dataSourceExpression>
