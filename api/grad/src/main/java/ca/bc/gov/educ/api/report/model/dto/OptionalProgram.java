@@ -22,14 +22,6 @@ public class OptionalProgram {
     private JRBeanCollectionDataSource requirementMetdataSource;
     private List<GradRequirement> nonGradReasons;
     private JRBeanCollectionDataSource nonGradReasonsdataSource;
-
-
-    public void setHasRequirementMet(String hasRequirementMet) {
-        if (this.requirementMet.isEmpty()) {
-            this.hasRequirementMet = "false";
-        }
-    }
-
     public JRBeanCollectionDataSource getRequirementMetdataSource() {
         return new JRBeanCollectionDataSource(requirementMet, false);
     }
