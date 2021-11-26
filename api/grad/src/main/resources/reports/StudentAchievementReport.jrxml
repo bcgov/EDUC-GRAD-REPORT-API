@@ -768,14 +768,14 @@
 				</jr:table>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="170" width="200" height="15" uuid="00b806c5-37ee-4858-86a3-498807e2d263"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="170" width="200" height="15" isRemoveLineWhenBlank="true" uuid="00b806c5-37ee-4858-86a3-498807e2d263"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{hasStudentExam} == "true"? "COURSES WITH PROVINCIAL EXAMS":""]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement positionType="Float" x="5" y="93" width="550" height="70" uuid="62979d49-6e8a-4115-b35a-4ff1f68ed266">
+				<reportElement positionType="Float" x="5" y="93" width="550" height="70" isRemoveLineWhenBlank="true" uuid="62979d49-6e8a-4115-b35a-4ff1f68ed266">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
@@ -827,7 +827,7 @@
 				</jr:table>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="70" width="200" height="15" uuid="e43b6d36-5992-4139-a9ce-2c4ee96d341a"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="70" width="200" height="15" isRemoveLineWhenBlank="true" uuid="e43b6d36-5992-4139-a9ce-2c4ee96d341a"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -1005,7 +1005,7 @@
 				</jr:table>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="100" width="200" height="15" uuid="b2252645-3304-4bf7-934b-d87232f89fd3"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="100" width="200" height="15" isRemoveLineWhenBlank="true" uuid="b2252645-3304-4bf7-934b-d87232f89fd3"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -1235,7 +1235,7 @@
 				</jr:table>
 			</componentElement>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="10" width="200" height="15" uuid="5640ee57-c988-4013-91db-1a71b9000780"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="10" width="200" height="15" isRemoveLineWhenBlank="true" uuid="5640ee57-c988-4013-91db-1a71b9000780"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -1244,7 +1244,7 @@
 		</band>
 		<band height="153">
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="10" width="200" height="15" uuid="c7415456-ba1e-493d-b0a0-1ef19b939861"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="10" width="200" height="15" isRemoveLineWhenBlank="true" uuid="c7415456-ba1e-493d-b0a0-1ef19b939861"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>

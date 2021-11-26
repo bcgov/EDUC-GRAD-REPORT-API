@@ -4,7 +4,21 @@
     "reportFile": "Student Achievement Report.pdf"
   },
   "data": {
-    "studentExams": [],
+    "studentExams": [
+      {
+        "courseCode": "AC",
+        "courseName": "ACCOUNTING 11",
+        "courseLevel": "11",
+        "sessionDate": "2020/01",
+        "gradReqMet": "111",
+        "completedCoursePercentage": "94",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      }
+    ],
     "studentCourses": [
       {
         "courseCode": "AC",
@@ -270,32 +284,7 @@
         "proficiencyScore": null
       }
     ],
-    "nonGradReasons": [
-      {
-        "rule": "100",
-        "description": "Fewer than 16 Gr 12 credits"
-      },
-      {
-        "rule": "105",
-        "description": "No Social Studies 11 or 12"
-      },
-      {
-        "rule": "109",
-        "description": "No Science 11 or 12"
-      },
-      {
-        "rule": "113",
-        "description": "No Career Life Connections"
-      },
-      {
-        "rule": "117",
-        "description": "Fewer than 28 Elective credits"
-      },
-      {
-        "rule": "118",
-        "description": "No Literacy 12 Assessment"
-      }
-    ],
+    "nonGradReasons": [],
     "optionalPrograms": [
       {
         "optionalProgramCode": "FI",
