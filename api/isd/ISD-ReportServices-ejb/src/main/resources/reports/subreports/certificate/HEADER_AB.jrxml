@@ -75,7 +75,7 @@
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + "")]]></imageExpression>
+					<imageExpression><![CDATA[""]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="50" y="60" width="190" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
