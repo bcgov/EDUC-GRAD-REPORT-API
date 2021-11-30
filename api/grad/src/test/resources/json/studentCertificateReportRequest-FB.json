@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report O.pdf"
+    "reportFile": "Certificate Report F.pdf"
   },
   "data": {
     "student": {
@@ -40,7 +40,7 @@
       "signatureCode": "036",
       "distno": "036",
       "schlno": "03699064",
-      "schoolCategoryCode": "01",
+      "schoolCategoryCode": "",
       "address": {
         "streetLine1": "300-10183 152A ST",
         "streetLine2": "",
@@ -56,17 +56,17 @@
         "code": "2004-PF",
         "description": "",
         "credits": "",
-        "name": "2004-PF"
+        "name": "PROGRAM_2004_PF"
       }
     },
     "updateDate": "2001-06-01",
     "certificate": {
       "issued": "2020-04-01",
-      "certStyle": "Original",
+      "certStyle": "Blank",
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "O",
+          "reportName": "F",
           "paperType": {
             "code": "YEDR"
           }

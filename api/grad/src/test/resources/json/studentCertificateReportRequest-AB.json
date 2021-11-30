@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report O.pdf"
+    "reportFile": "Certificate Report A.pdf"
   },
   "data": {
     "student": {
@@ -53,22 +53,22 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "2004-PF",
+        "code": "1950",
         "description": "",
         "credits": "",
-        "name": "2004-PF"
+        "name": "PROGRAM_1950"
       }
     },
     "updateDate": "2001-06-01",
     "certificate": {
       "issued": "2020-04-01",
-      "certStyle": "Original",
+      "certStyle": "Blank",
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "O",
+          "reportName": "A",
           "paperType": {
-            "code": "YEDR"
+            "code": "YEDB"
           }
         }
       }

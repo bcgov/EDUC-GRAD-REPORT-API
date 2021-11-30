@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report O.pdf"
+    "reportFile": "Certificate Report S.pdf"
   },
   "data": {
     "student": {
@@ -62,11 +62,11 @@
     "updateDate": "2001-06-01",
     "certificate": {
       "issued": "2020-04-01",
-      "certStyle": "Original",
+      "certStyle": "Blank",
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "O",
+          "reportName": "S",
           "paperType": {
             "code": "YEDR"
           }

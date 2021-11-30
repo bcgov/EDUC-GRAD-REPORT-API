@@ -42,7 +42,7 @@ public class CertificateImpl implements Certificate, Serializable {
     private static final long serialVersionUID = 2L;
 
     private Date issued;
-    private boolean isOrigin = false;
+    private String certStyle;
     private CertificateOrderTypeImpl orderType;
     private Map<String, SignatureBlockType> signatureBlockTypes;
 
@@ -53,13 +53,13 @@ public class CertificateImpl implements Certificate, Serializable {
         this.issued = issued;
     }
 
-    @JsonProperty("isOrigin")
-    public boolean getIsOrigin() {
-        return isOrigin;
+    @JsonProperty("certStyle")
+    public String getCertStyle() {
+        return certStyle;
     }
 
-    public void setIsOrigin(boolean origin) {
-        isOrigin = origin;
+    public void setCertStyle(String certStyle) {
+        this.certStyle = certStyle;
     }
 
     @Override

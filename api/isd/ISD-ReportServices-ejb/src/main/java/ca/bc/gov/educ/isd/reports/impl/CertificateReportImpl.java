@@ -25,7 +25,7 @@ import ca.bc.gov.educ.isd.reports.data.impl.Signatories;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.isd.reports.CertificateSubType.DEFAULT;
+import static ca.bc.gov.educ.isd.reports.CertificateSubType.REPRINT;
 import static ca.bc.gov.educ.isd.reports.CertificateType.SC;
 import static java.lang.Boolean.FALSE;
 import static java.util.Locale.CANADA_FRENCH;
@@ -53,7 +53,7 @@ public final class CertificateReportImpl extends StudentReportImpl
      */
     private Certificate certificate;
     private CertificateType certificateType = SC;
-    private CertificateSubType certificateSubType = DEFAULT;
+    private CertificateSubType certificateSubType = REPRINT;
 
     private Boolean independentSchool = FALSE;
     private String schoolSignatureCode = "";

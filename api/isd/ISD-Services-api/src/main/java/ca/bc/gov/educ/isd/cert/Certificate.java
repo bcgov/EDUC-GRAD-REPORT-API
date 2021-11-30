@@ -28,6 +28,10 @@ import java.util.Map;
  */
 public interface Certificate {
 
+    public static final String CERT_STYLE_ORIGINAL = "Original";
+    public static final String CERT_STYLE_REPRINT = "Reprint";
+    public static final String CERT_STYLE_BLANK = "Blank";
+
     /**
      * Returns the date (year and month) when the certificate was issued to the
      * student.
@@ -41,7 +45,7 @@ public interface Certificate {
      *
      * @return A non-null Date instance.
      */
-    boolean getIsOrigin();
+    String getCertStyle();
 
     /**
      * Gets certificate type.

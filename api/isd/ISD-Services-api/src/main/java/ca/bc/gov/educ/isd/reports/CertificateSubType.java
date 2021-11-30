@@ -31,8 +31,8 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public enum CertificateSubType {
 
-    DEFAULT(""),
-    REPLACEMENT("R"),
+    REPRINT(""),
+    BLANK("B"),
     ORIGINAL("O");
 
     private String subtype;

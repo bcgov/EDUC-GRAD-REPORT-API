@@ -236,7 +236,7 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType;
-        final CertificateSubType rsRptSubType = certificate.getIsOrigin() ? CertificateSubType.ORIGINAL : CertificateSubType.DEFAULT;
+        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
@@ -299,7 +299,7 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType;
-        final CertificateSubType rsRptSubType = certificate.getIsOrigin() ? CertificateSubType.ORIGINAL : CertificateSubType.DEFAULT;
+        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
