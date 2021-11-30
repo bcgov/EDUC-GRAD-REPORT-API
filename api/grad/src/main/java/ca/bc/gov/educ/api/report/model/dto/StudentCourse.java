@@ -18,11 +18,11 @@ public class StudentCourse {
     private String courseLevel;
     private String sessionDate;
     private String gradReqMet;
-    private Double completedCoursePercentage;
+    private String completedCoursePercentage;
     private String completedCourseLetterGrade;
-    private Double interimPercent;
+    private String interimPercent;
     private String equivOrChallenge;
-    private Integer credits;
+    private String credits;
     private Integer creditsUsedForGrad;
 
     public Integer getCreditsUsedForGrad() {

@@ -1,0 +1,423 @@
+{
+  "options": {
+    "reportName": "achievement",
+    "reportFile": "Student Achievement Report.pdf"
+  },
+  "data": {
+    "studentExams": [
+      {
+        "courseCode": "AC",
+        "courseName": "ACCOUNTING 11",
+        "courseLevel": "11",
+        "sessionDate": "2020/01",
+        "gradReqMet": "111",
+        "completedCoursePercentage": "94",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      }
+    ],
+    "studentCourses": [
+      {
+        "courseCode": "AC",
+        "courseName": "ACCOUNTING 11",
+        "courseLevel": "11",
+        "sessionDate": "2020/01",
+        "gradReqMet": "111",
+        "completedCoursePercentage": "94",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "FMP",
+        "courseName": "FOUNDATIONS OF MATH AND PRE-CALCULUS 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/01",
+        "gradReqMet": "106",
+        "completedCoursePercentage": "94",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "CLE",
+        "courseName": "CAREER-LIFE EDUCATION",
+        "courseLevel": "",
+        "sessionDate": "2020/01",
+        "gradReqMet": "112",
+        "completedCoursePercentage": "94",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "SC",
+        "courseName": "SCIENCE 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/06",
+        "gradReqMet": "108",
+        "completedCoursePercentage": "92",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "PHED",
+        "courseName": "PHYSICAL AND HEALTH EDUCATION 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/06",
+        "gradReqMet": "110",
+        "completedCoursePercentage": "89",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "LTST",
+        "courseName": "LITERARY STUDIES 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/06",
+        "gradReqMet": "101",
+        "completedCoursePercentage": "87",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "2",
+        "creditsUsedForGrad": 2
+      },
+      {
+        "courseCode": "SPLG",
+        "courseName": "SPOKEN LANGUAGE 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/06",
+        "gradReqMet": "101",
+        "completedCoursePercentage": "87",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "2",
+        "creditsUsedForGrad": 2
+      },
+      {
+        "courseCode": "PREC",
+        "courseName": "PRE-CALCULUS 11",
+        "courseLevel": "11",
+        "sessionDate": "2020/11",
+        "gradReqMet": "107",
+        "completedCoursePercentage": "86",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "SPLG",
+        "courseName": "SPOKEN LANGUAGE 11",
+        "courseLevel": "11",
+        "sessionDate": "2020/11",
+        "gradReqMet": "102",
+        "completedCoursePercentage": "84",
+        "completedCourseLetterGrade": "B",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "ENST",
+        "courseName": "ENGLISH STUDIES 12",
+        "courseLevel": "12",
+        "sessionDate": "2021/01",
+        "gradReqMet": "100, 103",
+        "completedCoursePercentage": "77",
+        "completedCourseLetterGrade": "B",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "FRAL",
+        "courseName": "FRANCAIS LANGUE SECONDE-IMMERSION 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/01",
+        "gradReqMet": "117",
+        "completedCoursePercentage": "74",
+        "completedCourseLetterGrade": "B",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "SS",
+        "courseName": "SOCIAL STUDIES 10",
+        "courseLevel": "10",
+        "sessionDate": "2020/06",
+        "gradReqMet": "104",
+        "completedCoursePercentage": "67",
+        "completedCourseLetterGrade": "C+",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 4
+      },
+      {
+        "courseCode": "CLCA",
+        "courseName": "CAREER-LIFE CONNECTIONS A",
+        "courseLevel": "",
+        "sessionDate": "2021/06",
+        "gradReqMet": "",
+        "completedCoursePercentage": "",
+        "completedCourseLetterGrade": "",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "2",
+        "creditsUsedForGrad": 0
+      },
+      {
+        "courseCode": "LST",
+        "courseName": "LAW STUDIES 12",
+        "courseLevel": "12",
+        "sessionDate": "2021/01",
+        "gradReqMet": "",
+        "completedCoursePercentage": "",
+        "completedCourseLetterGrade": "",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 0
+      },
+      {
+        "courseCode": "ACLV",
+        "courseName": "ACTIVE LIVING 11",
+        "courseLevel": "11",
+        "sessionDate": "2021/04",
+        "gradReqMet": "",
+        "completedCoursePercentage": "",
+        "completedCourseLetterGrade": "",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 0
+      },
+      {
+        "courseCode": "CH",
+        "courseName": "CHEMISTRY 11",
+        "courseLevel": "11",
+        "sessionDate": "2021/04",
+        "gradReqMet": "",
+        "completedCoursePercentage": "",
+        "completedCourseLetterGrade": "",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 0
+      },
+      {
+        "courseCode": "LFSC",
+        "courseName": "LIFE SCIENCES 11",
+        "courseLevel": "11",
+        "sessionDate": "2021/06",
+        "gradReqMet": "",
+        "completedCoursePercentage": "",
+        "completedCourseLetterGrade": "",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 0
+      },
+      {
+        "courseCode": "PH",
+        "courseName": "PHYSICS 11",
+        "courseLevel": "11",
+        "sessionDate": "2021/06",
+        "gradReqMet": "",
+        "completedCoursePercentage": "",
+        "completedCourseLetterGrade": "",
+        "interimPercent": null,
+        "equivOrChallenge": "",
+        "credits": "4",
+        "creditsUsedForGrad": 0
+      }
+    ],
+    "studentAssessments": [
+      {
+        "assessmentCode": "LTE10",
+        "assessmentName": "Literacy 10 Assessment",
+        "sessionDate": "2020/11",
+        "gradReqMet": "115",
+        "specialCase": " ",
+        "exceededWriteFlag": " ",
+        "proficiencyScore": 3.0
+      },
+      {
+        "assessmentCode": "NME10",
+        "assessmentName": "Numeracy 10 Assessment",
+        "sessionDate": "2020/01",
+        "gradReqMet": "116",
+        "specialCase": " ",
+        "exceededWriteFlag": " ",
+        "proficiencyScore": 3.0
+      },
+      {
+        "assessmentCode": "LTE10",
+        "assessmentName": "Literacy 10 Assessment",
+        "sessionDate": "2020/04",
+        "gradReqMet": "",
+        "specialCase": " ",
+        "exceededWriteFlag": " ",
+        "proficiencyScore": null
+      }
+    ],
+    "nonGradReasons": [],
+    "optionalPrograms": [
+      {
+        "optionalProgramCode": "FI",
+        "optionalProgramName": "2018 Graduation Program French Immersion",
+        "programCompletionDate": null,
+        "hasRequirementMet": "true",
+        "requirementMet": [
+          {
+            "rule": "202",
+            "description": "Français langue seconde-immersion 10 - French Immersion ",
+            "courseDetails": [
+              {
+                "courseCode": "ENST",
+                "courseLevel": "12",
+                "sessionDate": "2021/01"
+              },
+              {
+                "courseCode": "AC",
+                "courseLevel": "11",
+                "sessionDate": "2020/01"
+              },
+              {
+                "courseCode": "PREC",
+                "courseLevel": "11",
+                "sessionDate": "2020/11"
+              },
+              {
+                "courseCode": "SPLG",
+                "courseLevel": "11",
+                "sessionDate": "2020/11"
+              },
+              {
+                "courseCode": "FMP",
+                "courseLevel": "10",
+                "sessionDate": "2020/01"
+              },
+              {
+                "courseCode": "SC",
+                "courseLevel": "10",
+                "sessionDate": "2020/06"
+              },
+              {
+                "courseCode": "PHED",
+                "courseLevel": "10",
+                "sessionDate": "2020/06"
+              },
+              {
+                "courseCode": "LTST",
+                "courseLevel": "10",
+                "sessionDate": "2020/06"
+              },
+              {
+                "courseCode": "SPLG",
+                "courseLevel": "10",
+                "sessionDate": "2020/06"
+              },
+              {
+                "courseCode": "SS",
+                "courseLevel": "10",
+                "sessionDate": "2020/06"
+              },
+              {
+                "courseCode": "CLE",
+                "courseLevel": "",
+                "sessionDate": "2020/01"
+              },
+              {
+                "courseCode": "FRAL",
+                "courseLevel": "10",
+                "sessionDate": "2020/01"
+              }
+            ]
+          }
+        ],
+        "nonGradReasons": [
+          {
+            "rule": "200",
+            "description": "No Français langue seconde-immersion 12 "
+          },
+          {
+            "rule": "201",
+            "description": "No Français langue seconde-immersion 11 "
+          },
+          {
+            "rule": "203",
+            "description": "No Evaluation de Litteratie 12 - Immersion "
+          },
+          {
+            "rule": "204",
+            "description": "Fewer than 12 Other French credits"
+          },
+          {
+            "rule": "205",
+            "description": "Fewer than 4 Gr 11 or 12 French Other credits"
+          }
+        ]
+      }
+    ],
+    "school": {
+      "schoolName": "MOUNT BAKER SECONDARY",
+      "mincode": "00502001"
+    },
+    "student": {
+      "pen": "129382610",
+      "firstName": "CAYMAN",
+      "middleName": null,
+      "lastName": "HILL",
+      "grade": "11",
+      "gender": "M",
+      "birthdate": 1092726000000,
+      "localId": null,
+      "program": "2018-EN",
+      "otherProgramParticipation": [
+        {
+          "programCode": "FI",
+          "programName": "2018 Graduation Program French Immersion"
+        }
+      ],
+      "hasOtherProgram": "Other Program Participation"
+    },
+    "graduationStatus": {
+      "programCompletionDate": null,
+      "honours": null,
+      "gpa": null,
+      "studentGrade": null,
+      "studentStatus": null,
+      "studentStatusName": null,
+      "schoolAtGrad": null,
+      "schoolOfRecord": null,
+      "certificates": null,
+      "graduationMessage": "Based on the information provided by the school, this student is projected to not graduate in the Graduation Program 2018. Students with questions should contact their schools immediately.",
+      "programName": null
+    },
+    "orgCode": "BC"
+  }
+}

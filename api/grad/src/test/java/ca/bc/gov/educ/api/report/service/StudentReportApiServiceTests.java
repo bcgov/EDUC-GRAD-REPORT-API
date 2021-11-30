@@ -68,6 +68,22 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createStudentAchvReport2() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		GenerateReportData reportData = createReportRequestObj("json/studentAchvReportRequest2.json");
+		assertNotNull(reportData);
+		reportData.getOptions().setReportFile("Student Achievement Report 3.pdf");
+
+		ResponseEntity response = reportService.getStudentAchvReport(reportData);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportData.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test
 	public void createTranscriptReport_2004() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2004 at {}", CLASS_NAME, dateFormat.format(new Date()));
 		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");

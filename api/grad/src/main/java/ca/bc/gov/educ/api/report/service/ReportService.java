@@ -213,7 +213,7 @@ public class ReportService {
 
 			List<OptionalProgram> optionalProgramList = generateReportData.getData().getOptionalPrograms();
 			parameters.put("hasOptionalPrograms","false");
-			if(!nongradList.isEmpty()) {
+			if(!optionalProgramList.isEmpty()) {
 				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);
 				parameters.put("optionalProgram", jrBeanCollectionDataSource);
 				parameters.put("hasOptionalPrograms","true");

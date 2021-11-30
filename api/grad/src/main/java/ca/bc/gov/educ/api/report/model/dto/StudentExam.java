@@ -11,18 +11,17 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class StudentExam {
 
-    private String pen;
     private String courseCode;
     private String courseName;
     private String courseLevel;
     private String sessionDate;
     private String gradReqMet;
-    private Double completedCoursePercentage;
+    private String completedCoursePercentage;
     private String completedCourseLetterGrade;
-    private Double bestSchoolPercent;
-    private Double bestExamPercent;
+    private String bestSchoolPercent;
+    private String bestExamPercent;
     private String equivOrChallenge;
     private String metLitNumRequirement;
-    private Integer credits;
+    private String credits;
     private Integer creditsUsedForGrad;
 }

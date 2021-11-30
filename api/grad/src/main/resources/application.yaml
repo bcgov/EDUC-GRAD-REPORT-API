@@ -51,9 +51,6 @@ logging:
           educ:
             api:
               reportapi: ${APP_LOG_LEVEL}
-    net:
-      sf:
-        jasperreports: ${JASPER_LOG_LEVEL}
     org:
       springframework:
         web: ${SPRING_WEB_LOG_LEVEL}
@@ -87,5 +84,4 @@ springdoc:
 endpoint:
   educ-grad-report-api:
     get-signature-by-code:
-      #url: https://educ-grad-report-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/signatures
-      url: http://localhost:8080/api/v1/signatures
+      url: ${GRAD_REPORT_API}api/v1/signatures
