@@ -1,6 +1,8 @@
 package ca.bc.gov.educ.grad.dto;
 
 import ca.bc.gov.educ.grad.utils.NonGradReasonListDeserializer;
+import ca.bc.gov.educ.isd.achievement.Achievement;
+import ca.bc.gov.educ.isd.achievement.impl.AchievementImpl;
 import ca.bc.gov.educ.isd.cert.Certificate;
 import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.exam.impl.AssessmentImpl;
@@ -57,6 +59,8 @@ public class ReportData implements Serializable {
 	private String logo;
 	@JsonDeserialize(as = TranscriptImpl.class)
 	private Transcript transcript;
+	@JsonDeserialize(as = AchievementImpl.class)
+	private Achievement achievement;
 	@JsonDeserialize(as = AssessmentImpl.class)
 	private Assessment assessment;
 	@JsonDeserialize(as = GradProgramImpl.class)

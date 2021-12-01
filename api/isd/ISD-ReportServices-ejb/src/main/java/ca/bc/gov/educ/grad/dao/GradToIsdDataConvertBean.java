@@ -2,11 +2,10 @@ package ca.bc.gov.educ.grad.dao;
 
 import ca.bc.gov.educ.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.isd.achievement.Achievement;
+import ca.bc.gov.educ.isd.achievement.AchievementResult;
 import ca.bc.gov.educ.isd.adaptor.dao.impl.*;
-import ca.bc.gov.educ.isd.adaptor.impl.NumeracyAssessmentResultImpl;
-import ca.bc.gov.educ.isd.adaptor.impl.StudentDemographicImpl;
-import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
-import ca.bc.gov.educ.isd.adaptor.impl.TranscriptCourseImpl;
+import ca.bc.gov.educ.isd.adaptor.impl.*;
 import ca.bc.gov.educ.isd.eis.trax.db.*;
 import ca.bc.gov.educ.isd.exam.Assessment;
 import ca.bc.gov.educ.isd.exam.AssessmentResult;
@@ -94,6 +93,10 @@ public class GradToIsdDataConvertBean {
         return reportData.getTranscript();
     }
 
+    public Achievement getAchievement(ReportData reportData) {
+        return reportData.getAchievement();
+    }
+
     public Student getStudent(ReportData reportData) {
         if(reportData.getStudent() == null || reportData.getStudent().getPen() == null) {
             throw new InvalidParameterException("Student and PEN can't be NULL");
@@ -138,7 +141,66 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
+    public List<AchievementCourse> getAchievementCources(ReportData reportData) {
+        Student student = getStudent(reportData);
+        List<AchievementCourse> result = new ArrayList<>();
+        if(reportData.getAchievement() != null) {
+            for(AchievementResult r: reportData.getAchievement().getResults()) {
+                if(r.getCourse() == null || r.getMark() == null) {
+                    throw new InvalidParameterException("Transcript Result Course and Mark can't be NULL");
+                }
+                AchievementCourseImpl course = new AchievementCourseImpl(
+                        student.getPen().getValue(), //String pen,
+                        r.getCourse().getName(), //String courseName,
+                        r.getCourse().getCode(), //String crseCode,
+                        r.getCourse().getLevel(), //String crseLevel,
+                        r.getCourse().getSessionDate(), //String sessionDate,
+                        r.getCourse().getCredits(), //String credits,
+                        r.getMark().getExamPercent(), //String examPercent,
+                        r.getMark().getSchoolPercent(), //String schoolPercent,
+                        r.getMark().getFinalPercent(), //String finalPercent,
+                        r.getMark().getFinalLetterGrade(), //String finalLetterGrade,
+                        r.getMark().getInterimPercent(), //String interimMark,
+                        r.getRequirementMet(), //String requirement,
+                        null, //String specialCase,
+                        r.getCourse().getType() //Character courseType
+                );
+                result.add(course);
+            }
+        }
+        return result;
+    }
+
     public TranCourseEntity getTranCourse(ReportData reportData, TranscriptCourseImpl course) {
+        TranCourseEntity result = new TranCourseEntity();
+        CourseId courseId = new CourseId(
+                getStudent(reportData).getPen().getValue(),
+                course.getCourseCode(),
+                course.getCourseLevel(),
+                course.getSessionDate()
+        );
+        result.setPrimaryKey(courseId);
+        result.setCourseName(course.getCourseName());
+        result.setNumCredits(course.getCredits());
+        result.setExamPct(course.getExamPercent());
+        result.setSchoolPct(course.getSchoolPercent());
+        result.setFinalPct(course.getFinalPercent());
+        result.setFinalLg(course.getFinalLetterGrade());
+        result.setInterimMark(course.getInterimMark());
+        result.setInterimLetterGrade(course.getInterimLetterGrade());
+        result.setFoundationReq(null);
+        result.setSpecialCase(null);
+        result.setUpdateDt(null);
+        result.setRptCrsType(null);
+        result.setCrsType(course.getCourseType());
+        result.setRelatedCrse(course.getRelatedCourse());
+        result.setRelatedLevel(course.getRelatedLevel());
+        result.setUsedForGrad(course.getUsedForGrad());
+
+        return result;
+    }
+
+    public TranCourseEntity getTranCourse(ReportData reportData, AchievementCourseImpl course) {
         TranCourseEntity result = new TranCourseEntity();
         CourseId courseId = new CourseId(
                 getStudent(reportData).getPen().getValue(),

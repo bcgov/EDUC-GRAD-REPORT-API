@@ -3,8 +3,8 @@
     "cacheReport": false,
     "convertTo": "pdf",
     "overwrite": false,
-    "reportName": "transcript",
-    "reportFile": "Transcript Report.pdf"
+    "reportName": "achievement",
+    "reportFile": "Student Achievement Report (Legacy).pdf"
   },
   "data": {
     "student": {
@@ -61,7 +61,7 @@
         "description" : "No Mathematics 11 or 12"
       }
     ],
-    "transcript": {
+    "achievement": {
       "interim": "",
       "issueDate": "2021-04-26",
       "results": [

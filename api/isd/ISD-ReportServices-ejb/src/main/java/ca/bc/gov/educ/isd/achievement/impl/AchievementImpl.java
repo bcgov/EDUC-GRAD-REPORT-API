@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.isd.achievement.impl;
 
-import ca.bc.gov.educ.grad.utils.TranscriptResultListDeserializer;
+import ca.bc.gov.educ.grad.utils.AchievementResultListDeserializer;
 import ca.bc.gov.educ.isd.achievement.Achievement;
 import ca.bc.gov.educ.isd.achievement.AchievementResult;
 import ca.bc.gov.educ.isd.common.support.AbstractDomainEntity;
@@ -31,7 +31,7 @@ public class AchievementImpl extends AbstractDomainEntity
     private boolean interim;
 
     @Override
-    @JsonDeserialize(using = TranscriptResultListDeserializer.class)
+    @JsonDeserialize(using = AchievementResultListDeserializer.class)
     public List<AchievementResult> getResults() {
         return this.results;
     }

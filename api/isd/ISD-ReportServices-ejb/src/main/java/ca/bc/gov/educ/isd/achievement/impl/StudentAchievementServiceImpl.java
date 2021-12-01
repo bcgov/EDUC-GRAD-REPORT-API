@@ -20,6 +20,8 @@ package ca.bc.gov.educ.isd.achievement.impl;
 import ca.bc.gov.educ.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
+import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
+import ca.bc.gov.educ.grad.service.GradReportCodeService;
 import ca.bc.gov.educ.isd.achievement.Achievement;
 import ca.bc.gov.educ.isd.achievement.AchievementResult;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementReport;
@@ -29,7 +31,7 @@ import ca.bc.gov.educ.isd.adaptor.dao.impl.TranNongradEntity;
 import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
 import ca.bc.gov.educ.isd.adaptor.impl.AchievementCourseImpl;
 import ca.bc.gov.educ.isd.adaptor.impl.StudentInfoImpl;
-import ca.bc.gov.educ.isd.adaptor.impl.TranscriptCourseImpl;
+import ca.bc.gov.educ.isd.codes.SignatureBlockType;
 import ca.bc.gov.educ.isd.common.DataException;
 import ca.bc.gov.educ.isd.common.DomainServiceException;
 import ca.bc.gov.educ.isd.eis.trax.db.*;
@@ -52,7 +54,6 @@ import ca.bc.gov.educ.isd.transcript.impl.CourseImpl;
 import ca.bc.gov.educ.isd.transcript.impl.GraduationDataImpl;
 import ca.bc.gov.educ.isd.transcript.impl.MarkImpl;
 import org.apache.commons.lang3.builder.CompareToBuilder;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -135,6 +136,8 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
     @Autowired
     private ReportService reportService;
+    @Autowired
+    private GradReportCodeService codeService;
 
     @Autowired
     GradToIsdDataConvertBean gradtoIsdDataConvertBean;
@@ -230,11 +233,12 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final String _m = "getAchievement(String)";
         LOG.entering(CLASSNAME, _m);
 
+        final Achievement achievementInfo = getAchievementInformation(pen);
         final List<AchievementCourse> achievementCourses = getAchievementCourseList(pen, interim);
         final StudentInfo studentInfo = getStudentInfo(pen);
         final String programCode = studentInfo.getGradProgram();
         final GradProgram program = createGradProgram(programCode);
-        final Date reportDate = studentInfo.getReportDate();
+        final Date reportDate = achievementInfo.getIssueDate();
 
         final Achievement achievement = adapt(
                 program.getCode(),
@@ -253,11 +257,12 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final String _m = "getAssessment(String)";
         LOG.entering(CLASSNAME, _m);
 
+        final Achievement achievementInfo = getAchievementInformation(pen);
         final List<AssessmentResult> assessmentResults = getAssessmentResultList(pen);
         final StudentInfo studentInfo = getStudentInfo(pen);
         final String programCode = studentInfo.getGradProgram();
         final GradProgram program = createGradProgram(programCode);
-        final Date reportDate = studentInfo.getReportDate();
+        final Date reportDate = achievementInfo.getIssueDate();
 
         final Assessment assessment = adapt(
                 assessmentResults,
@@ -275,6 +280,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         LOG.entering(CLASSNAME, _m);
 
         Integer numberAchievementCourses = 0;
+
+        final Achievement achievement;
+
         try {
             ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
 
@@ -286,7 +294,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 throw dse;
             }
 
-            final List<TranscriptCourse> courses = gradtoIsdDataConvertBean.getTranscriptCources(reportData);
+            achievement = gradtoIsdDataConvertBean.getAchievement(reportData);
+
+            final List<AchievementCourse> courses = gradtoIsdDataConvertBean.getAchievementCources(reportData);
             numberAchievementCourses = courses.size();
 
         } catch (Exception ex) {
@@ -296,14 +306,13 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             throw dex;
         }
 
-        final StudentInfo studentInfo = getStudentInfo(pen);
-        final Date issueDate = studentInfo.getReportDate();
+        final Date issueDate = achievement.getIssueDate();
 
         boolean isEmpty = (numberAchievementCourses == 0);
-        final Achievement achievement = new AchievementInformationImpl(issueDate, isEmpty);
+        final Achievement achievementInfo = new AchievementInformationImpl(issueDate, isEmpty);
 
         LOG.exiting(CLASSNAME, _m);
-        return achievement;
+        return achievementInfo;
     }
 
     private GradProgram createGradProgram(String code) {
@@ -413,6 +422,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final StudentInfo studentInfo;
 
         try {
+
             ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
 
             if (reportData == null) {
@@ -530,6 +540,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final List<AchievementCourse> results;
 
         try {
+
             ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
 
             if (reportData == null) {
@@ -539,16 +550,13 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;
             }
-            ArrayList retList = new ArrayList<>();
-            final List<TranscriptCourse> courses = gradtoIsdDataConvertBean.getTranscriptCources(reportData);
-            for (final TranscriptCourse course : courses) {
-                AchievementCourseImpl c = new AchievementCourseImpl();
-                BeanUtils.copyProperties(course, c);
-                retList.add(c);
-                addExtendedCourseInfo((TranscriptCourseImpl)course);
+
+            final List<AchievementCourse> courses = gradtoIsdDataConvertBean.getAchievementCources(reportData);
+            for (final AchievementCourse course : courses) {
+                addExtendedCourseInfo((AchievementCourseImpl)course);
             }
 
-            results = retList;
+            results = courses;
 
             LOG.log(Level.INFO,
                     "Retrieved the collection of exam results from TRAX for PEN: {0} INTERIM: {1}",
@@ -585,7 +593,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
      *
      * @param course
      */
-    private void addExtendedCourseInfo(final TranscriptCourseImpl course) {
+    private void addExtendedCourseInfo(final AchievementCourseImpl course) {
         final String _m = "addExtendedCourseInfo(TranscriptCourseImpl)";
         LOG.entering(CLASSNAME, _m);
 
@@ -627,7 +635,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final String paddedCourseCode,
             final String paddedCourseLevel,
             final String session,
-            final TranscriptCourseImpl course) {
+            final AchievementCourseImpl course) {
         final String _m = "getPEUsedForGrad(String, String, String, String)";
         LOG.entering(CLASSNAME, _m);
 
@@ -680,7 +688,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final String paddedCourseCode,
             final String paddedCourseLevel,
             final String session,
-            final TranscriptCourseImpl course) {
+            final AchievementCourseImpl course) {
         final String _m = "getSXRelatedUsedForGrad(String, String, String, String, TranscriptCourseImpl)";
         LOG.entering(CLASSNAME, _m);
 
@@ -808,6 +816,11 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         address.setRegion(traxStudentInfo.getStudentProv());
         address.setCountry(traxStudentInfo.getCountryCode());
         student.setCurrentMailingAddress(address);
+
+        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
+        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        student.setSignatureBlockTypes(signatureBlockTypes);
 
         LOG.exiting(CLASSNAME, _m);
         return student;
@@ -1091,6 +1104,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             System.out.println("student.assessments = " + stu.getAssessments().size());
             System.out.println("student.provinciallyExaminableCourses = " + stu.getProvinciallyExaminableCourses().size());
             System.out.println("student.nonProvinciallyExaminableCourses = " + stu.getNonProvinciallyExaminableCourses().size());
+            System.out.println("student.signatureBlockTypes = " + stu.getSignatureBlockTypes().size());
             System.out.println("student.status.graduationMessage = " + stu.getStatus().getGraduationMessage());
             System.out.println("student.status.graduated = " + stu.getStatus().getGraduated());
 

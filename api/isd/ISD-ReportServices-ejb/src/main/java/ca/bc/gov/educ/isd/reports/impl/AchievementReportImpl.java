@@ -171,7 +171,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      */
     @Override
     public void setAchievement(final ca.bc.gov.educ.isd.achievement.Achievement achievement) {
-        ensureValidStudent("setTranscript");
+        ensureValidStudent("setAchievement");
         BusinessEntityAdapter.adapt(achievement, getStudent());
         setReportDate(achievement.getIssueDate());
     }

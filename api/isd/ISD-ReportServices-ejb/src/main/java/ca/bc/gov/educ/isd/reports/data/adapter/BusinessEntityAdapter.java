@@ -209,7 +209,7 @@ public class BusinessEntityAdapter {
     public static void adapt(
             final ca.bc.gov.educ.isd.achievement.Achievement achievement,
             final Student student) {
-        validate(achievement, "transcript for student");
+        validate(achievement, "achievement for student");
 
         final Map<String, AcademicSession> aSMap = new HashMap<>();
 
