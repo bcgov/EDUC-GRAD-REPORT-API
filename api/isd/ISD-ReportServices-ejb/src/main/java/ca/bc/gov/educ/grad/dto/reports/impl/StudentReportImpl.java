@@ -17,12 +17,12 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.StudentReport;
 import ca.bc.gov.educ.grad.dto.reports.data.adapter.BusinessEntityAdapter;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.DistrictOrganisation;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.School;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.Student;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.ReportImpl;
+import ca.bc.gov.educ.grad.model.reports.StudentReport;
 
 import java.util.Date;
 import java.util.logging.Logger;

@@ -17,12 +17,12 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.*;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.JasperReportImpl;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.ParameterPredicateImpl;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.ReportDocumentImpl;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.TranscriptJasperReportImpl;
 import ca.bc.gov.educ.grad.dto.reports.service.AbstractReportService;
+import ca.bc.gov.educ.grad.model.reports.*;
 import ca.bc.gov.educ.grad.model.transcript.ParameterPredicate;
 import org.springframework.stereotype.Service;
 

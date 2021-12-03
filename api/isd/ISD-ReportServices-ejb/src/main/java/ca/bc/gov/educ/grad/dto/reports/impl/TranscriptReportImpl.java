@@ -17,7 +17,6 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.TranscriptReport;
 import ca.bc.gov.educ.grad.dto.reports.data.adapter.BusinessEntityAdapter;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.GraduationProgram;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.Status;
@@ -26,14 +25,15 @@ import ca.bc.gov.educ.grad.dto.reports.data.impl.TranscriptResult;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.model.reports.TranscriptReport;
 import ca.bc.gov.educ.grad.model.transcript.GraduationData;
 
 import java.util.List;
 
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.HTML;
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.XML;
 import static ca.bc.gov.educ.grad.dto.reports.data.adapter.BusinessEntityAdapter.adapt;
 import static ca.bc.gov.educ.grad.dto.reports.util.InheritableResourceBundle.BASE_NAME_SEPARATOR;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.HTML;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.XML;
 import static java.lang.String.format;
 
 /**

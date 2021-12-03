@@ -15,12 +15,12 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.dto.reports.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.CertificateReport;
 import ca.bc.gov.educ.grad.dto.reports.data.adapter.BusinessEntityAdapter;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.Certificate;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.Signatories;
 import ca.bc.gov.educ.grad.model.cert.CertificateSubType;
 import ca.bc.gov.educ.grad.model.cert.CertificateType;
+import ca.bc.gov.educ.grad.model.reports.CertificateReport;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

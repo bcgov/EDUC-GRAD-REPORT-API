@@ -17,11 +17,10 @@
  */
 package ca.bc.gov.educ.grad.dto.impl;
 
+import ca.bc.gov.educ.grad.dao.GradRequestDataAdaptor;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.GradRequestDataAdaptor;
-import ca.bc.gov.educ.grad.dto.reports.*;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.achievement.*;
 import ca.bc.gov.educ.grad.model.assessment.AssessmentResult;
@@ -33,6 +32,7 @@ import ca.bc.gov.educ.grad.model.exam.Assessment;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.model.reports.*;
 import ca.bc.gov.educ.grad.model.school.School;
 import ca.bc.gov.educ.grad.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.model.student.Student;
@@ -60,8 +60,6 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.dto.impl.RequirementNames.getName;
 import static ca.bc.gov.educ.grad.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.PDF;
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.XML;
 import static ca.bc.gov.educ.grad.model.common.Constants.PESC_HST_PREDICATE;
 import static ca.bc.gov.educ.grad.model.common.support.VerifyUtils.nullSafe;
 import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
@@ -69,6 +67,8 @@ import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
 import static ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode.PROGRAM_SCCP;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.XML;
 import static java.lang.Integer.parseInt;
 import static java.text.NumberFormat.getIntegerInstance;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;

@@ -17,13 +17,10 @@
  */
 package ca.bc.gov.educ.grad.dto.impl;
 
+import ca.bc.gov.educ.grad.dao.GradRequestDataAdaptor;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.GradRequestDataAdaptor;
-import ca.bc.gov.educ.grad.dto.reports.CertificateReport;
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
-import ca.bc.gov.educ.grad.dto.reports.ReportService;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.cert.Certificate;
 import ca.bc.gov.educ.grad.model.cert.CertificateSubType;
@@ -33,6 +30,9 @@ import ca.bc.gov.educ.grad.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.model.graduation.GradCertificateReport;
 import ca.bc.gov.educ.grad.model.graduation.GradCertificateService;
+import ca.bc.gov.educ.grad.model.reports.CertificateReport;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.model.reports.ReportService;
 import ca.bc.gov.educ.grad.model.school.School;
 import ca.bc.gov.educ.grad.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.model.student.Student;
@@ -52,9 +52,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.PDF;
 import static ca.bc.gov.educ.grad.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 import static java.util.Locale.CANADA;
 import static java.util.Locale.CANADA_FRENCH;
 

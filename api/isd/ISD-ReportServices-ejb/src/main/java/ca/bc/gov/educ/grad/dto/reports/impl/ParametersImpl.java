@@ -17,7 +17,7 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.Parameters;
+import ca.bc.gov.educ.grad.model.reports.Parameters;
 
 import java.util.concurrent.ConcurrentHashMap;
 

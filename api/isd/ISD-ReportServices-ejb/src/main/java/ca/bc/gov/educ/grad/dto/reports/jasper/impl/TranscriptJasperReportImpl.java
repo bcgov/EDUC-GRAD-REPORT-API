@@ -17,8 +17,8 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.jasper.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.Report;
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
+import ca.bc.gov.educ.grad.model.reports.Report;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfCopy;
@@ -28,7 +28,7 @@ import com.lowagie.text.pdf.PdfSmartCopy;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 
 /**
  * Responsible for interleaving report summary pages for the student transcript

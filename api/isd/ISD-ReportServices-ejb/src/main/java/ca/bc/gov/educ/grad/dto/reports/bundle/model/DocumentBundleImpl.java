@@ -17,7 +17,6 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.bundle.model;
 
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.CertificateReportDecorator;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.DocumentBundleDecorator;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.TranscriptReportDecorator;
@@ -25,6 +24,7 @@ import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.model.cert.CertificateOrderType;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.model.order.OrderType;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.model.transcript.TranscriptOrderType;
 
 import javax.naming.NamingException;
@@ -37,9 +37,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.PDF;
 import static ca.bc.gov.educ.grad.model.common.Constants.BCMP_SERVICES_MODULE_NAME;
 import static ca.bc.gov.educ.grad.model.common.Constants.DATE_SAFE_FILENAME;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 
 /**
  * Defines common attributes and behavior of all types of Bundled Documents

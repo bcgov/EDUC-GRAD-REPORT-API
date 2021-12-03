@@ -17,11 +17,10 @@
  */
 package ca.bc.gov.educ.grad.dto.impl;
 
+import ca.bc.gov.educ.grad.dao.GradRequestDataAdaptor;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.GradRequestDataAdaptor;
-import ca.bc.gov.educ.grad.dto.reports.*;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.codes.SignatureBlockType;
 import ca.bc.gov.educ.grad.model.common.DataException;
@@ -29,6 +28,7 @@ import ca.bc.gov.educ.grad.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.model.reports.*;
 import ca.bc.gov.educ.grad.model.school.School;
 import ca.bc.gov.educ.grad.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.model.student.Student;
@@ -54,8 +54,6 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.dto.impl.RequirementNames.getName;
 import static ca.bc.gov.educ.grad.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.PDF;
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.XML;
 import static ca.bc.gov.educ.grad.model.common.Constants.PESC_HST_PREDICATE;
 import static ca.bc.gov.educ.grad.model.common.support.VerifyUtils.nullSafe;
 import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
@@ -63,6 +61,8 @@ import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
 import static ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode.PROGRAM_SCCP;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.XML;
 import static java.lang.Integer.parseInt;
 import static java.text.NumberFormat.getIntegerInstance;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
@@ -532,31 +532,31 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      * Adapt the TRAX data from the data value object into a Student object.
      *
      * @param pen
-     * @param traxStudentInfo
+     * @param studentInfo
      */
     private Student adaptStudent(
             final PersonalEducationNumber pen,
-            final StudentInfo traxStudentInfo) {
+            final StudentInfo studentInfo) {
 
         final String _m = "adaptStudent(PersonalEducationNumber, StudentInfo)";
-        final Object[] params = {pen, traxStudentInfo};
+        final Object[] params = {pen, studentInfo};
         LOG.entering(CLASSNAME, _m, params);
 
         final StudentImpl student = new StudentImpl();
         student.setPen(pen);
-        student.setFirstName(traxStudentInfo.getFirstName());
-        student.setMiddleName(traxStudentInfo.getMiddleName());
-        student.setLastName(traxStudentInfo.getLastName());
-        student.setBirthdate(traxStudentInfo.getBirthDate());
-        student.setGrade(traxStudentInfo.getGrade());
+        student.setFirstName(studentInfo.getFirstName());
+        student.setMiddleName(studentInfo.getMiddleName());
+        student.setLastName(studentInfo.getLastName());
+        student.setBirthdate(studentInfo.getBirthDate());
+        student.setGrade(studentInfo.getGrade());
 
         final PostalAddressImpl address = new PostalAddressImpl();
-        address.setStreetLine1(traxStudentInfo.getStudentAddress1());
-        address.setStreetLine2(traxStudentInfo.getStudentAddress2());
-        address.setCity(traxStudentInfo.getStudentCity());
-        address.setCode(traxStudentInfo.getStudentPostalCode());
-        address.setRegion(traxStudentInfo.getStudentProv());
-        address.setCountry(traxStudentInfo.getCountryCode());
+        address.setStreetLine1(studentInfo.getStudentAddress1());
+        address.setStreetLine2(studentInfo.getStudentAddress2());
+        address.setCity(studentInfo.getStudentCity());
+        address.setCode(studentInfo.getStudentPostalCode());
+        address.setRegion(studentInfo.getStudentProv());
+        address.setCountry(studentInfo.getCountryCode());
         student.setCurrentMailingAddress(address);
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();

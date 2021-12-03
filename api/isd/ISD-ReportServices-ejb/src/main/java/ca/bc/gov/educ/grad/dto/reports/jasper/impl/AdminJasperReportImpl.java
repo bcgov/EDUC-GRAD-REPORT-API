@@ -17,8 +17,8 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.jasper.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.Report;
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
+import ca.bc.gov.educ.grad.model.reports.Report;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 
 import java.io.IOException;
 

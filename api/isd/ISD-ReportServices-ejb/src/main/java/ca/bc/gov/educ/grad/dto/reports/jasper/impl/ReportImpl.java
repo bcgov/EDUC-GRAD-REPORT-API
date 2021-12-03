@@ -17,11 +17,11 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.jasper.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.Parameters;
-import ca.bc.gov.educ.grad.dto.reports.Report;
-import ca.bc.gov.educ.grad.dto.reports.ReportFormat;
 import ca.bc.gov.educ.grad.dto.reports.impl.ParametersImpl;
 import ca.bc.gov.educ.grad.model.common.Predicate;
+import ca.bc.gov.educ.grad.model.reports.Parameters;
+import ca.bc.gov.educ.grad.model.reports.Report;
+import ca.bc.gov.educ.grad.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.utils.AuditingUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -36,9 +36,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.PDF;
 import static ca.bc.gov.educ.grad.dto.reports.util.InheritableResourceBundle.getBundle;
 import static ca.bc.gov.educ.grad.model.common.support.VerifyUtils.nullSafe;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 import static java.util.Locale.CANADA;
 import static net.sf.jasperreports.engine.JRParameter.IS_IGNORE_PAGINATION;
 

@@ -17,9 +17,9 @@
  */
 package ca.bc.gov.educ.grad.dto.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.ReportFormat;
 import ca.bc.gov.educ.grad.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.model.common.support.report.BusinessReportEntity;
+import ca.bc.gov.educ.grad.model.reports.ReportFormat;
 
 /**
  * The underlying implementation for the GUI. This is an intermediary between

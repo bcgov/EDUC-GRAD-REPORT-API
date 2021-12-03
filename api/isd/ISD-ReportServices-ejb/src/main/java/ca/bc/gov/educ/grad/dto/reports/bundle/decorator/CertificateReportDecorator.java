@@ -17,9 +17,9 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.bundle.decorator;
 
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.ReportDocumentImpl;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfDictionary;
 import com.lowagie.text.pdf.PdfNumber;

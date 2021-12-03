@@ -17,14 +17,14 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.service;
 
-import ca.bc.gov.educ.grad.dto.reports.Report;
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.JasperReportImpl;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.ReportDocumentImpl;
+import ca.bc.gov.educ.grad.model.reports.Report;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 
 import java.io.IOException;
 
-import static ca.bc.gov.educ.grad.dto.reports.ReportFormat.HTML;
+import static ca.bc.gov.educ.grad.model.reports.ReportFormat.HTML;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**

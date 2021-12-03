@@ -17,8 +17,6 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.bundle.service.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.Report;
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
 import ca.bc.gov.educ.grad.dto.reports.bundle.model.DocumentBundleImpl;
@@ -29,6 +27,8 @@ import ca.bc.gov.educ.grad.dto.reports.jasper.impl.JasperReportImpl;
 import ca.bc.gov.educ.grad.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.model.order.OrderType;
+import ca.bc.gov.educ.grad.model.reports.Report;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 

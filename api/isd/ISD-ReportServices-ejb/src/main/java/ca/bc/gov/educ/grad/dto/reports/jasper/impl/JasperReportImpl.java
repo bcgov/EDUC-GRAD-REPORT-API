@@ -17,12 +17,12 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.jasper.impl;
 
-import ca.bc.gov.educ.grad.dto.reports.Parameters;
-import ca.bc.gov.educ.grad.dto.reports.Report;
-import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
-import ca.bc.gov.educ.grad.dto.reports.ReportFormat;
 import ca.bc.gov.educ.grad.dto.reports.jasper.ReportFormatFactory;
 import ca.bc.gov.educ.grad.model.common.Predicate;
+import ca.bc.gov.educ.grad.model.reports.Parameters;
+import ca.bc.gov.educ.grad.model.reports.Report;
+import ca.bc.gov.educ.grad.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.model.reports.ReportFormat;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;

@@ -24,7 +24,6 @@
 	</properties>
 
 	<modules>
-		<module>ISD-Services-api</module>
 		<module>ISD-ReportServices-ejb</module>
 	</modules>
 

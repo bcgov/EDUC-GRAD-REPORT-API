@@ -19,7 +19,7 @@ package ca.bc.gov.educ.grad.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.model.transcript.TranscriptOrderType;
 
-import static ca.bc.gov.educ.grad.dto.reports.PaperType.TRANSCRIPT;
+import static ca.bc.gov.educ.grad.model.reports.PaperType.TRANSCRIPT;
 
 /**
  * Responsible for creating order types that can print transcripts on the
