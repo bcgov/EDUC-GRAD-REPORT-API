@@ -2,7 +2,7 @@ package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.api.report.model.dto.*;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.TRAXThreadDataUtility;
+import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.GradRequestDataAdaptor;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.model.achievement.StudentAchievementReport;
@@ -55,7 +55,7 @@ public class ReportService {
     	String _m = "getStudentAchievementReport(GenerateReportRequest reportRequest)";
 		log.debug("<{}.{}", _m, CLASS_NAME);
 
-		TRAXThreadDataUtility.setGenerateReportData(reportRequest.getData());
+		GradRequestDataAdaptor.setGenerateReportData(reportRequest.getData());
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
@@ -88,7 +88,7 @@ public class ReportService {
 		String _m = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
 		log.debug("<{}.{}", _m, CLASS_NAME);
 
-		TRAXThreadDataUtility.setGenerateReportData(reportRequest.getData());
+		GradRequestDataAdaptor.setGenerateReportData(reportRequest.getData());
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
@@ -121,7 +121,7 @@ public class ReportService {
 		String _m = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
 		log.debug("<{}.{}", _m, CLASS_NAME);
 
-		TRAXThreadDataUtility.setGenerateReportData(reportRequest.getData());
+		GradRequestDataAdaptor.setGenerateReportData(reportRequest.getData());
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 

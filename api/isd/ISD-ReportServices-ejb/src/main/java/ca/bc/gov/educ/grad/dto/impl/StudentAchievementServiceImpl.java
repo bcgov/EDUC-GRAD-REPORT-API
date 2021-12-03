@@ -20,7 +20,7 @@ package ca.bc.gov.educ.grad.dto.impl;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.TRAXThreadDataUtility;
+import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.GradRequestDataAdaptor;
 import ca.bc.gov.educ.grad.dto.reports.*;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.achievement.*;
@@ -272,7 +272,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final Achievement achievement;
 
         try {
-            ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+            ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
@@ -377,7 +377,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final String _m = "getStudentPEN()";
         LOG.entering(CLASSNAME, _m);
 
-        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+        ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -411,7 +411,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         try {
 
-            ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+            ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
@@ -466,7 +466,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         final StudentDemographic studentDemographic;
 
-        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+        ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -523,7 +523,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         try {
 
-            ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+            ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
@@ -582,7 +582,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                     "Retrieved the collection of exam results from TRAX for PEN: {0}",
                     new Object[]{pen});
 
-            ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+            ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(

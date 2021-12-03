@@ -18,10 +18,10 @@
 package ca.bc.gov.educ.grad.dto.impl;
 
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
 import ca.bc.gov.educ.grad.model.cert.Certificate;
 import ca.bc.gov.educ.grad.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.model.codes.SignatureBlockType;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

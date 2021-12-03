@@ -17,7 +17,7 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.bundle.decorator;
 
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.CertificateOrderType;
+import ca.bc.gov.educ.grad.model.cert.CertificateOrderType;
 import ca.bc.gov.educ.grad.model.cert.CertificateType;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 

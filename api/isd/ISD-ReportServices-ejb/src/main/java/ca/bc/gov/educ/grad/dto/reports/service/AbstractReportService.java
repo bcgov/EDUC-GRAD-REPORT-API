@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.grad.dto.reports.common.impl;
+package ca.bc.gov.educ.grad.dto.reports.service;
 
 import ca.bc.gov.educ.grad.dto.reports.Report;
 import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
@@ -61,9 +61,6 @@ public abstract class AbstractReportService {
      * Provides subclasses the opportunity to change the HTML before it is
      * presented to the end user. By default this replaces the fixed-width
      * inline style for the jrPage table element with a 100% width.
-     *
-     * @see
-     * https://github.com/TIBCOSoftware/jasperreports/blob/master/jasperreports/src/net/sf/jasperreports/engine/export/HtmlExporter.java#L532
      *
      * @param report The HTML report document to process.
      * @return The HTML report document after processing.

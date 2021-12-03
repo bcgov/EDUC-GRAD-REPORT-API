@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.dto.reports.bundle.service;
 
 import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 
 import java.io.IOException;
 import java.util.List;

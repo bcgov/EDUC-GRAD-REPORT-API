@@ -17,7 +17,7 @@
  */
 package ca.bc.gov.educ.grad.model.transcript;
 
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 
 /**
  * Represents a transcript order type, to differentiate transcript and

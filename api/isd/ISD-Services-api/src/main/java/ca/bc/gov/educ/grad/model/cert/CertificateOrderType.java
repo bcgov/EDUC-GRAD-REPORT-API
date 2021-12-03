@@ -15,9 +15,9 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.grad.dto.reports.bundle.service;
+package ca.bc.gov.educ.grad.model.cert;
 
-import ca.bc.gov.educ.grad.model.cert.CertificateType;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 
 /**
  * Represents a certificate order type, to differentiate transcript and

@@ -18,7 +18,7 @@
 package ca.bc.gov.educ.grad.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.dto.reports.PaperType;
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 
 /**
  * Responsible for determining the paper type to use for XPIF print instructions

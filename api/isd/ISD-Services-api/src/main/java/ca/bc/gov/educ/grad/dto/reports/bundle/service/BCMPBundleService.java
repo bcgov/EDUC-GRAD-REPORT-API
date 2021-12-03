@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.ReportExportService;
 import ca.bc.gov.educ.grad.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 
 import java.io.IOException;
 import java.io.Serializable;

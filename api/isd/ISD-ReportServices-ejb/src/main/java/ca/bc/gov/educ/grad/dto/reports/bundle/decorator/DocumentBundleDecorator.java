@@ -19,8 +19,8 @@ package ca.bc.gov.educ.grad.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.*;

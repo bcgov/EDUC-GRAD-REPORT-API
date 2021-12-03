@@ -15,8 +15,8 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.model.cert;
 
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
 import ca.bc.gov.educ.grad.model.codes.SignatureBlockType;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 
 import java.util.Date;
 import java.util.Map;

@@ -25,10 +25,10 @@ import ca.bc.gov.educ.grad.dto.reports.bundle.model.DocumentBundleImpl;
 import ca.bc.gov.educ.grad.dto.reports.bundle.model.Roles;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
 import ca.bc.gov.educ.grad.dto.reports.jasper.impl.JasperReportImpl;
 import ca.bc.gov.educ.grad.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 

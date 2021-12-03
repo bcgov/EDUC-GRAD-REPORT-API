@@ -20,7 +20,7 @@ package ca.bc.gov.educ.grad.dto.impl;
 import ca.bc.gov.educ.grad.dao.GradToIsdDataConvertBean;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.TRAXThreadDataUtility;
+import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.GradRequestDataAdaptor;
 import ca.bc.gov.educ.grad.dto.reports.CertificateReport;
 import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.ReportService;
@@ -90,7 +90,7 @@ public class GradCertificateServiceImpl
         PersonalEducationNumber penObj = null;
         String penId = null;
 
-        ReportData reportData = TRAXThreadDataUtility.getGenerateReportData();
+        ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(

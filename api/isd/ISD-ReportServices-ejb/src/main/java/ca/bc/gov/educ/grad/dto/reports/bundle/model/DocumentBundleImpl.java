@@ -21,10 +21,10 @@ import ca.bc.gov.educ.grad.dto.reports.ReportDocument;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.CertificateReportDecorator;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.DocumentBundleDecorator;
 import ca.bc.gov.educ.grad.dto.reports.bundle.decorator.TranscriptReportDecorator;
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.CertificateOrderType;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.grad.dto.reports.bundle.service.OrderType;
+import ca.bc.gov.educ.grad.model.cert.CertificateOrderType;
 import ca.bc.gov.educ.grad.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.model.order.OrderType;
 import ca.bc.gov.educ.grad.model.transcript.TranscriptOrderType;
 
 import javax.naming.NamingException;
