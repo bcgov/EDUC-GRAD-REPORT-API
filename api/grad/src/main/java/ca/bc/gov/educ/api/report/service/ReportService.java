@@ -1,17 +1,16 @@
 package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.api.report.model.dto.*;
-import ca.bc.gov.educ.api.report.util.ReportApiUtils;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
-import ca.bc.gov.educ.isd.achievement.StudentAchievementReport;
-import ca.bc.gov.educ.isd.achievement.StudentAchievementService;
-import ca.bc.gov.educ.isd.adaptor.dao.utils.TRAXThreadDataUtility;
-import ca.bc.gov.educ.isd.common.BusinessReport;
-import ca.bc.gov.educ.isd.grad.GradCertificateService;
-import ca.bc.gov.educ.isd.reports.bundle.service.BCMPBundleService;
-import ca.bc.gov.educ.isd.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.isd.transcript.StudentTranscriptReport;
-import ca.bc.gov.educ.isd.transcript.StudentTranscriptService;
+import ca.bc.gov.educ.grad.dto.adaptor.dao.utils.TRAXThreadDataUtility;
+import ca.bc.gov.educ.grad.dto.reports.bundle.service.BCMPBundleService;
+import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.model.achievement.StudentAchievementReport;
+import ca.bc.gov.educ.grad.model.achievement.StudentAchievementService;
+import ca.bc.gov.educ.grad.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.model.graduation.GradCertificateService;
+import ca.bc.gov.educ.grad.model.transcript.StudentTranscriptReport;
+import ca.bc.gov.educ.grad.model.transcript.StudentTranscriptService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
@@ -27,9 +26,10 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @Service
 public class ReportService {

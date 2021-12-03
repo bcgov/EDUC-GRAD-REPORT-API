@@ -50,7 +50,7 @@
 	<field name="student.lastName" class="java.lang.String">
 		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
 	</field>
-	<field name="certificate" class="ca.bc.gov.educ.isd.reports.data.impl.Certificate">
+	<field name="certificate" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Certificate">
 		<fieldDescription><![CDATA[certificate]]></fieldDescription>
 	</field>
 	<variable name="V_ISSUE_DATE_FORMAT" class="java.text.DateFormat">

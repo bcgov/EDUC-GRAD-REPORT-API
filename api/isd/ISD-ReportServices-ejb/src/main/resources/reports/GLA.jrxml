@@ -76,7 +76,7 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
 	</parameter>
-	<field name="student.literacyAssessmentResult" class="ca.bc.gov.educ.isd.reports.data.assessment.impl.LiteracyAssessmentResult">
+	<field name="student.literacyAssessmentResult" class="ca.bc.gov.educ.grad.dto.reports.data.assessment.impl.LiteracyAssessmentResult">
 		<fieldDescription><![CDATA[student.literacyAssessmentResult]]></fieldDescription>
 	</field>
 	<field name="student.literacyAssessmentResult.sessionDate" class="java.lang.String">
@@ -97,7 +97,7 @@
 	<field name="student.school.districtOrganisation.logoCode" class="java.lang.String">
 		<fieldDescription><![CDATA[student.school.districtOrganisation.logoCode]]></fieldDescription>
 	</field>
-	<field name="student" class="ca.bc.gov.educ.isd.reports.data.impl.Student">
+	<field name="student" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
 	<variable name="V_CURRENT_PAGE_NUMBER" class="java.lang.Integer" resetType="Page">

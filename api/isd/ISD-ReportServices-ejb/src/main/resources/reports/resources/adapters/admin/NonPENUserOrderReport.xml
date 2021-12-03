@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<beanDataAdapter class="net.sf.jasperreports.data.bean.BeanDataAdapterImpl"><name>Non-PEN User Order Adapter</name><factoryClass>ca.bc.gov.educ.isd.reports.jasper.impl.JRDataSourceFactory</factoryClass><methodName>createNonPENUserOrderCollection</methodName><useFieldDescription>false</useFieldDescription></beanDataAdapter>
+<beanDataAdapter class="net.sf.jasperreports.data.bean.BeanDataAdapterImpl"><name>Non-PEN User Order Adapter</name><factoryClass>ca.bc.gov.educ.grad.dto.reports.jasper.impl.JRDataSourceFactory</factoryClass><methodName>createNonPENUserOrderCollection</methodName><useFieldDescription>false</useFieldDescription></beanDataAdapter>

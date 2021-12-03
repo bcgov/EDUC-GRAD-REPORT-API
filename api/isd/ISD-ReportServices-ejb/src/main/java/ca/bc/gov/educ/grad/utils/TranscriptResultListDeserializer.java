@@ -1,9 +1,9 @@
 package ca.bc.gov.educ.grad.utils;
 
-import ca.bc.gov.educ.isd.transcript.TranscriptResult;
-import ca.bc.gov.educ.isd.transcript.impl.CourseImpl;
-import ca.bc.gov.educ.isd.transcript.impl.MarkImpl;
-import ca.bc.gov.educ.isd.transcript.impl.TranscriptResultImpl;
+import ca.bc.gov.educ.grad.dto.impl.CourseImpl;
+import ca.bc.gov.educ.grad.dto.impl.MarkImpl;
+import ca.bc.gov.educ.grad.dto.impl.TranscriptResultImpl;
+import ca.bc.gov.educ.grad.model.transcript.TranscriptResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;

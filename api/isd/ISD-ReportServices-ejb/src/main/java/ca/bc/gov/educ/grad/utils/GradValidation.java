@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.grad.utils;
 
-import ca.bc.gov.educ.exception.GradBusinessRuleException;
+import ca.bc.gov.educ.grad.exception.GradBusinessRuleException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

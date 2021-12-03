@@ -100,7 +100,7 @@
 	<field name="student.status.incompletionReasons" class="java.util.List">
 		<fieldDescription><![CDATA[student.status.incompletionReasons]]></fieldDescription>
 	</field>
-	<field name="student" class="ca.bc.gov.educ.isd.reports.data.impl.Student">
+	<field name="student" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
 	<variable name="V_CURRENT_PAGE_NUMBER" class="java.lang.Integer" resetType="Page">

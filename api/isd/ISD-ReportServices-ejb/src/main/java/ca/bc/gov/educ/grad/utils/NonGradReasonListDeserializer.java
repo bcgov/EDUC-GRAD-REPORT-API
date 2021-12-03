@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.grad.utils;
 
-import ca.bc.gov.educ.isd.grad.NonGradReason;
-import ca.bc.gov.educ.isd.grad.impl.NonGradReasonImpl;
+import ca.bc.gov.educ.grad.dto.impl.NonGradReasonImpl;
+import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;

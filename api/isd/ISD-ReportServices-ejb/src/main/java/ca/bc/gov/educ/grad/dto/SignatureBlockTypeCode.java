@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Component
-public class SignatureBlockTypeCode extends BaseEntity implements ca.bc.gov.educ.isd.codes.SignatureBlockType {
+public class SignatureBlockTypeCode extends BaseEntity implements ca.bc.gov.educ.grad.model.codes.SignatureBlockType {
 
     private static final long serialVersionUID = 1L;
 

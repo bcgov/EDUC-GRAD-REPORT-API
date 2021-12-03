@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Admin" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="ca.bc.gov.educ.isd.reports.jasper.impl.TupleSumScriplet" resourceBundle="Admin" whenResourceMissingType="Error" uuid="7c15843b-30d0-46c0-b1a8-aeb5468623a8">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Admin" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" scriptletClass="ca.bc.gov.educ.grad.dto.reports.jasper.impl.TupleSumScriplet" resourceBundle="Admin" whenResourceMissingType="Error" uuid="7c15843b-30d0-46c0-b1a8-aeb5468623a8">
 	<property name="net.sf.jasperreports.export.csv.exclude.origin.band.1" value="pageFooter"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\admin\StudentProfileReportAdapter.xml"/>
 	<property name="net.sf.jasperreports.export.html.exclude.origin.band.1" value="pageFooter"/>
@@ -10,7 +10,7 @@
 	<property name="net.sf.jasperreports.export.html.size.unit" value="pt"/>
 	<property name="net.sf.jasperreports.export.html.exclude.key.IMAGE_LOGO_SVG"/>
 	<property name="net.sf.jasperreports.export.pdf.exclude.key.IMAGE_LOGO_PNG"/>
-	<import value="ca.bc.gov.educ.isd.reports.jasper.EmbeddedImageTranscoder"/>
+	<import value="ca.bc.gov.educ.grad.dto.reports.jasper.EmbeddedImageTranscoder"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource" isForPrompting="false">

@@ -1,24 +1,32 @@
 package ca.bc.gov.educ.grad.dao;
 
-import ca.bc.gov.educ.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.dto.ReportData;
-import ca.bc.gov.educ.isd.achievement.Achievement;
-import ca.bc.gov.educ.isd.achievement.AchievementResult;
-import ca.bc.gov.educ.isd.adaptor.dao.impl.*;
-import ca.bc.gov.educ.isd.adaptor.impl.*;
-import ca.bc.gov.educ.isd.eis.trax.db.*;
-import ca.bc.gov.educ.isd.exam.Assessment;
-import ca.bc.gov.educ.isd.exam.AssessmentResult;
-import ca.bc.gov.educ.isd.grad.NonGradReason;
-import ca.bc.gov.educ.isd.school.School;
-import ca.bc.gov.educ.isd.student.Student;
-import ca.bc.gov.educ.isd.transcript.GraduationData;
-import ca.bc.gov.educ.isd.transcript.Transcript;
-import ca.bc.gov.educ.isd.transcript.TranscriptResult;
+import ca.bc.gov.educ.grad.dto.adaptor.dao.impl.StudentMasterEntity;
+import ca.bc.gov.educ.grad.dto.adaptor.dao.impl.TabSchoolEntity;
+import ca.bc.gov.educ.grad.dto.impl.*;
+import ca.bc.gov.educ.grad.exception.InvalidParameterException;
+import ca.bc.gov.educ.grad.model.achievement.Achievement;
+import ca.bc.gov.educ.grad.model.achievement.AchievementCourse;
+import ca.bc.gov.educ.grad.model.achievement.AchievementResult;
+import ca.bc.gov.educ.grad.model.assessment.NumAssessmentResult;
+import ca.bc.gov.educ.grad.model.exam.Assessment;
+import ca.bc.gov.educ.grad.model.exam.AssessmentResult;
+import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.model.school.School;
+import ca.bc.gov.educ.grad.model.school.TabSchool;
+import ca.bc.gov.educ.grad.model.student.Student;
+import ca.bc.gov.educ.grad.model.student.StudentDemographic;
+import ca.bc.gov.educ.grad.model.student.StudentInfo;
+import ca.bc.gov.educ.grad.model.student.StudentMaster;
+import ca.bc.gov.educ.grad.model.transcript.GraduationData;
+import ca.bc.gov.educ.grad.model.transcript.Transcript;
+import ca.bc.gov.educ.grad.model.transcript.TranscriptCourse;
+import ca.bc.gov.educ.grad.model.transcript.TranscriptResult;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Component
@@ -71,13 +79,7 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    public List<StudentDemographic>  getStudentDemog(ReportData reportData) {
-        List<StudentDemographic> result = new ArrayList<>();
-        result.add(getSingleStudentDemog(reportData));
-        return result;
-    }
-
-    public StudentDemographic  getSingleStudentDemog(ReportData reportData) {
+    public StudentDemographic getSingleStudentDemog(ReportData reportData) {
         StudentMaster studentMaster = getStudentMaster(reportData);
         TabSchool tabSchool = getTabSchool(reportData);
 
@@ -171,121 +173,14 @@ public class GradToIsdDataConvertBean {
         return result;
     }
 
-    public TranCourseEntity getTranCourse(ReportData reportData, TranscriptCourseImpl course) {
-        TranCourseEntity result = new TranCourseEntity();
-        CourseId courseId = new CourseId(
-                getStudent(reportData).getPen().getValue(),
-                course.getCourseCode(),
-                course.getCourseLevel(),
-                course.getSessionDate()
-        );
-        result.setPrimaryKey(courseId);
-        result.setCourseName(course.getCourseName());
-        result.setNumCredits(course.getCredits());
-        result.setExamPct(course.getExamPercent());
-        result.setSchoolPct(course.getSchoolPercent());
-        result.setFinalPct(course.getFinalPercent());
-        result.setFinalLg(course.getFinalLetterGrade());
-        result.setInterimMark(course.getInterimMark());
-        result.setInterimLetterGrade(course.getInterimLetterGrade());
-        result.setFoundationReq(null);
-        result.setSpecialCase(null);
-        result.setUpdateDt(null);
-        result.setRptCrsType(null);
-        result.setCrsType(course.getCourseType());
-        result.setRelatedCrse(course.getRelatedCourse());
-        result.setRelatedLevel(course.getRelatedLevel());
-        result.setUsedForGrad(course.getUsedForGrad());
-
-        return result;
-    }
-
-    public TranCourseEntity getTranCourse(ReportData reportData, AchievementCourseImpl course) {
-        TranCourseEntity result = new TranCourseEntity();
-        CourseId courseId = new CourseId(
-                getStudent(reportData).getPen().getValue(),
-                course.getCourseCode(),
-                course.getCourseLevel(),
-                course.getSessionDate()
-        );
-        result.setPrimaryKey(courseId);
-        result.setCourseName(course.getCourseName());
-        result.setNumCredits(course.getCredits());
-        result.setExamPct(course.getExamPercent());
-        result.setSchoolPct(course.getSchoolPercent());
-        result.setFinalPct(course.getFinalPercent());
-        result.setFinalLg(course.getFinalLetterGrade());
-        result.setInterimMark(course.getInterimMark());
-        result.setInterimLetterGrade(course.getInterimLetterGrade());
-        result.setFoundationReq(null);
-        result.setSpecialCase(null);
-        result.setUpdateDt(null);
-        result.setRptCrsType(null);
-        result.setCrsType(course.getCourseType());
-        result.setRelatedCrse(course.getRelatedCourse());
-        result.setRelatedLevel(course.getRelatedLevel());
-        result.setUsedForGrad(course.getUsedForGrad());
-
-        return result;
-    }
-
-    public List<TranNongradEntity> getTswTranNongradEntity(ReportData reportData) {
-        List<TranNongradEntity> result = new ArrayList<>();
+    public HashMap<String, String> getNongradReasons(ReportData reportData) {
+        final HashMap<String, String> reasons = new HashMap<>();
         if(reportData.getNonGradReasons() != null) {
             for (NonGradReason reason : reportData.getNonGradReasons()) {
-                TranNongradEntityPK pk = new TranNongradEntityPK(
-                        reportData.getStudent().getPen().getValue(),
-                        reason.getCode()
-                );
-                TranNongradEntity entity = new TranNongradEntity(
-                        pk,
-                        reason.getDescription(),
-                        reportData.getUpdateDate() != null ? reportData.getUpdateDate().getTime() : 0L
-                );
-                result.add(entity);
+                reasons.put(reason.getCode(), reason.getDescription());
             }
         }
-        return result;
-    }
-
-    public Character getSchoolEligibility(ReportData reportData) {
-        return 'Y';
-    }
-
-    public TranDemogEntity getTswTranDemog(ReportData reportData) {
-        Student student = getStudent(reportData);
-        School school = getSchool(reportData);
-        GraduationData gradData = reportData.getGraduationData();
-        TranDemogEntity result = new TranDemogEntity(
-                student.getPen().getValue(), //String studNo,
-                student.getFirstName(), //String firstName,
-                student.getMiddleName(), //String middleName,
-                student.getLastName(), //String lastName,
-                student.getBirthdate(), //Long birthdate,
-                student.getEntityId(), //String localId,
-                student.getGender(), //Character studGender,
-                school.getMinistryCode(), //String mincode,
-                student.getGrade(), //String studGrade,
-                gradData != null ? gradData.getTruncatedGraduationDate() : null, //String gradDate,
-                reportData.getGradProgram() != null ?  reportData.getGradProgram().getCode().getCode() : "", //String gradReqtYear,
-                reportData.getUpdateDate(), //Long updateDt,
-                reportData.getLogo(), //String logoType,
-                reportData.getGradMessage(), //String gradMsgTxt,
-                null, //Character gradFlag,
-                null  //Character currentFormerFlag
-        );
-        return result;
-    }
-
-    public SchoolMasterEntity getSchoolMaster(ReportData reportData) {
-        School school = getSchool(reportData);
-        SchoolMasterEntity result = new SchoolMasterEntity(
-                school.getMinistryCode(), //String mincode,
-                school.getDistno(), //String distno,
-                school.getSchlno(), //String schlno,
-                school.getSchoolCategoryCode()  //String schoolCategoryCode
-        );
-        return result;
+        return reasons;
     }
 
     public TabSchoolEntity getTabSchool(ReportData reportData) {
@@ -343,22 +238,6 @@ public class GradToIsdDataConvertBean {
                 null, //String stud_true_no,
                 null  //String isoCountryCode
         );
-        return result;
-    }
-
-    public List<StudentProfileMasterLite> getStudentProfileMaster(ReportData reportData) {
-        Student student = getStudent(reportData);
-        List<StudentProfileMasterLite> result = new ArrayList<>();
-
-        StudentProfileMasterLiteEntity entity = new StudentProfileMasterLiteEntity();
-        entity.setBirthdate(student.getBirthdate().toString());
-        entity.setFirstName(student.getFirstName());
-        entity.setMiddleName(student.getMiddleName());
-        entity.setLastName(student.getLastName());
-        entity.setPen(student.getPen().getValue());
-
-        result.add(entity);
-
         return result;
     }
 

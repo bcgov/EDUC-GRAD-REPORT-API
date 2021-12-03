@@ -13,7 +13,7 @@
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
-	<field name="student" class="ca.bc.gov.educ.isd.reports.data.impl.Student">
+	<field name="student" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
 	<field name="student.status.incompletionReasons" class="java.util.List">

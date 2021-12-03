@@ -43,7 +43,7 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<field name="rawScoreCategory" class="ca.bc.gov.educ.isd.assessment.RawScoreCategory">
+	<field name="rawScoreCategory" class="ca.bc.gov.educ.grad.model.assessment.RawScoreCategory">
 		<fieldDescription><![CDATA[rawScoreCategory]]></fieldDescription>
 	</field>
 	<field name="rawScoreCategory.title" class="java.lang.String">

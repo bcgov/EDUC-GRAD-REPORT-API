@@ -39,7 +39,7 @@
 		<parameterDescription><![CDATA[""]]></parameterDescription>
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<field name="certificate" class="ca.bc.gov.educ.isd.reports.data.impl.Certificate">
+	<field name="certificate" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Certificate">
 		<fieldDescription><![CDATA[certificate]]></fieldDescription>
 	</field>
 	<pageHeader>

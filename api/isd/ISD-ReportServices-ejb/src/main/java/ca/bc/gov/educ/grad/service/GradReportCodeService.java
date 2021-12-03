@@ -1,9 +1,9 @@
 package ca.bc.gov.educ.grad.service;
 
-import ca.bc.gov.educ.exception.ServiceException;
 import ca.bc.gov.educ.grad.dao.*;
 import ca.bc.gov.educ.grad.dto.*;
 import ca.bc.gov.educ.grad.entity.*;
+import ca.bc.gov.educ.grad.exception.ServiceException;
 import ca.bc.gov.educ.grad.transformer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

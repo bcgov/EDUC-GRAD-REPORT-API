@@ -15,7 +15,7 @@
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></defaultValueExpression>
 	</parameter>
-	<field name="assessmentCode" class="ca.bc.gov.educ.isd.assessment.AssessmentCode">
+	<field name="assessmentCode" class="ca.bc.gov.educ.grad.model.assessment.AssessmentCode">
 		<fieldDescription><![CDATA[assessmentCode]]></fieldDescription>
 	</field>
 	<field name="assessmentCode.label" class="java.lang.String">

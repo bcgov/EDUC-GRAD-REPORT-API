@@ -8,7 +8,7 @@
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
-	<field name="student" class="ca.bc.gov.educ.isd.reports.data.impl.Student">
+	<field name="student" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
 	<field name="student.provinciallyExaminableCourses" class="java.util.List">
