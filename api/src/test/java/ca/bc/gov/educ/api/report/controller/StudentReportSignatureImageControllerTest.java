@@ -2,7 +2,6 @@ package ca.bc.gov.educ.api.report.controller;
 
 import ca.bc.gov.educ.api.report.GradReportBaseTest;
 import ca.bc.gov.educ.api.report.service.ReportService;
-import ca.bc.gov.educ.grad.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.model.graduation.GradCertificateService;

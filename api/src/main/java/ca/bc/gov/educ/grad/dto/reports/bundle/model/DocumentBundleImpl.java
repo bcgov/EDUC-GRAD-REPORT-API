@@ -37,7 +37,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.grad.model.common.Constants.BCMP_SERVICES_MODULE_NAME;
 import static ca.bc.gov.educ.grad.model.common.Constants.DATE_SAFE_FILENAME;
 import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 
@@ -52,10 +51,6 @@ public class DocumentBundleImpl implements DocumentBundle {
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     private final static long serialVersionUID = 8L;
-
-    private final static String JNDI_ENV_PREFIX = "java:/" + BCMP_SERVICES_MODULE_NAME;
-    private final static String JNDI_ENV_JOB_RECIPIENT = JNDI_ENV_PREFIX + "/jobRecipientName";
-    private final static String DEFAULT_JOB_RECIPIENT_NAME = "BCMAIL PLANNERS TEST";
 
     /**
      * PDF data (with or without the XPIF header).
@@ -84,7 +79,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      * name.
      */
     public DocumentBundleImpl(final OrderType orderType, final String suffix) {
-        setJobRecipientName((JNDI_ENV_JOB_RECIPIENT));
+        setJobRecipientName(("BCMP-Service"));
         setOrderType(orderType);
         setEntityId(suffix);
         initFilename();
@@ -215,7 +210,7 @@ public class DocumentBundleImpl implements DocumentBundle {
     @Override
     public synchronized String getJobRecipientName() {
         if (this.jobRecipientName == null) {
-            this.jobRecipientName = DEFAULT_JOB_RECIPIENT_NAME;
+            this.jobRecipientName = "BCMP-Service";
         }
 
         return this.jobRecipientName;

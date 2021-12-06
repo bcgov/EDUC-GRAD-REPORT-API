@@ -2,7 +2,7 @@ package ca.bc.gov.educ.grad.dao;
 
 import ca.bc.gov.educ.grad.dto.ReportData;
 
-public class GradRequestDataAdaptor {
+public class ReportRequestDataThreadLocal {
 
     private static final InheritableThreadLocal<ReportData> thread = new InheritableThreadLocal<ReportData>();
 

@@ -2,8 +2,7 @@ package ca.bc.gov.educ.api.report.controller;
 
 import ca.bc.gov.educ.api.report.GradReportBaseTest;
 import ca.bc.gov.educ.api.report.service.ReportService;
-import ca.bc.gov.educ.grad.controller.GradReportSignatureController;
-import ca.bc.gov.educ.grad.dao.GradRequestDataAdaptor;
+import ca.bc.gov.educ.grad.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.dto.reports.bundle.service.DocumentBundle;
@@ -78,7 +77,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        GradRequestDataAdaptor.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
         reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
 
@@ -115,7 +114,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        GradRequestDataAdaptor.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
         reportRequest.getOptions().setReportFile("Transcript 2004 Report.pdf");
         StudentTranscriptReport report = transcriptService.buildOfficialTranscriptReport();
@@ -152,7 +151,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        GradRequestDataAdaptor.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
         reportRequest.getOptions().setReportFile("Certificate 1950 Report.pdf");
         List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();

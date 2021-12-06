@@ -4,7 +4,6 @@ import ca.bc.gov.educ.api.report.model.dto.GenerateReportData;
 import ca.bc.gov.educ.api.report.service.ReportService;
 import ca.bc.gov.educ.api.report.util.PermissionsContants;
 import ca.bc.gov.educ.api.report.util.ReportApiConstants;
-import ca.bc.gov.educ.grad.controller.BaseController;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;

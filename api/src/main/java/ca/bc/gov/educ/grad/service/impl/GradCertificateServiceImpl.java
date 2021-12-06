@@ -15,12 +15,16 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.grad.dto.impl;
+package ca.bc.gov.educ.grad.service.impl;
 
 import ca.bc.gov.educ.grad.dao.GradDataConvertionBean;
-import ca.bc.gov.educ.grad.dao.GradRequestDataAdaptor;
+import ca.bc.gov.educ.grad.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
+import ca.bc.gov.educ.grad.dto.impl.CertificateImpl;
+import ca.bc.gov.educ.grad.dto.impl.GradCertificateReportImpl;
+import ca.bc.gov.educ.grad.dto.impl.SchoolImpl;
+import ca.bc.gov.educ.grad.dto.impl.StudentImpl;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.cert.Certificate;
 import ca.bc.gov.educ.grad.model.cert.CertificateSubType;
@@ -78,7 +82,7 @@ public class GradCertificateServiceImpl
     private GradReportCodeService codeService;
 
     @Autowired
-    GradDataConvertionBean gradtoIsdDataConvertionBean;
+    GradDataConvertionBean gradDataConvertionBean;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
@@ -90,7 +94,7 @@ public class GradCertificateServiceImpl
         PersonalEducationNumber penObj = null;
         String penId = null;
 
-        ReportData reportData = GradRequestDataAdaptor.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -107,7 +111,7 @@ public class GradCertificateServiceImpl
                 "Confirmed the user is a student and retrieved the PEN.");
 
         // access TRAX adaptor to obtain required data for PEN
-        final StudentDemographic studentData = gradtoIsdDataConvertionBean.getSingleStudentDemog(reportData); //validated
+        final StudentDemographic studentData = gradDataConvertionBean.getStudentDemog(reportData); //validated
         if (studentData == null) {
             final String msg = "Failed to find student demographic information for PEN: " + penId;
             final DomainServiceException dse = new DomainServiceException(msg);

@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.grad.controller;
+package ca.bc.gov.educ.api.report.controller;
 
 import ca.bc.gov.educ.grad.utils.AuditingUtils;
 import ca.bc.gov.educ.grad.utils.EducGradSignatureImageApiConstants;

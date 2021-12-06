@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.grad.dto.adaptor.dao.impl;
+package ca.bc.gov.educ.grad.entity;
 
 import ca.bc.gov.educ.grad.model.school.SchoolMaster;
 
@@ -31,7 +31,7 @@ import static ca.bc.gov.educ.grad.model.common.support.VerifyUtils.trimSafe;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class SchoolMasterEntity implements SchoolMaster {
+public class SchoolEntity implements SchoolMaster {
 
     private static final long serialVersionUID = 2L;
 
@@ -48,10 +48,10 @@ public class SchoolMasterEntity implements SchoolMaster {
     private Character schlIndType;
     private Character dogwoodElig;
 
-    public SchoolMasterEntity() {
+    public SchoolEntity() {
     }
 
-    public SchoolMasterEntity(
+    public SchoolEntity(
             String mincode,
             String schlName,
             String address1,

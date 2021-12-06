@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.grad.controller;
+package ca.bc.gov.educ.api.report.controller;
 
 import ca.bc.gov.educ.grad.dto.GragReportSignatureImage;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;

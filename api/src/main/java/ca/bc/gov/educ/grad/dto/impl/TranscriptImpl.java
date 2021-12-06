@@ -114,7 +114,7 @@ public class TranscriptImpl extends AbstractDomainEntity
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    void setInterim(boolean interim) {
+    public void setInterim(boolean interim) {
         this.interim = interim;
     }
 

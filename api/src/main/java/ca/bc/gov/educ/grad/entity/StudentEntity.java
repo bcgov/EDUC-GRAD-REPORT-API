@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.grad.dto.adaptor.dao.impl;
+package ca.bc.gov.educ.grad.entity;
 
 import ca.bc.gov.educ.grad.model.student.StudentMaster;
 
@@ -32,7 +32,7 @@ import java.util.Date;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class StudentMasterEntity implements StudentMaster, Serializable {
+public class StudentEntity implements StudentMaster, Serializable {
 
     private static final long serialVersionUID = 2L;
 
@@ -62,15 +62,13 @@ public class StudentMasterEntity implements StudentMaster, Serializable {
     private String prgmCode5;
     private String englishCert;
     private String frenchCert;
-    private String traxCountryCode;
-    private String stud_true_no;
 
     private transient String isoCountryCode;
 
-    public StudentMasterEntity() {
+    public StudentEntity() {
     }
 
-    public StudentMasterEntity(
+    public StudentEntity(
             String studNo,
             String studGiven,
             String studMiddle,
@@ -97,8 +95,6 @@ public class StudentMasterEntity implements StudentMaster, Serializable {
             String prgmCode5,
             String englishCert,
             String frenchCert,
-            String traxCountryCode,
-            String stud_true_no,
             String isoCountryCode
     ) {
         this.studNo = studNo;
@@ -127,8 +123,6 @@ public class StudentMasterEntity implements StudentMaster, Serializable {
         this.prgmCode5 = prgmCode5;
         this.englishCert = englishCert;
         this.frenchCert = frenchCert;
-        this.traxCountryCode = traxCountryCode;
-        this.stud_true_no = stud_true_no;
         this.isoCountryCode = isoCountryCode;
     }
 

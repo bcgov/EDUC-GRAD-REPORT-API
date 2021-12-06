@@ -27,15 +27,7 @@ import java.util.List;
  */
 public final class Roles {
 
-    public static final String SXR_SERVICE = "STUDENT_X_REF";
-    public static final String SXR_CREATE = SXR_SERVICE + "_create";
-    public static final String SXR_REMOVE = SXR_SERVICE + "_remove";
-    public static final String SXR_READ = SXR_SERVICE + "_read";
-    public static final String SXR_WRITE = SXR_SERVICE + "_write";
-    public static final String SXR_SEARCH = SXR_SERVICE + "_search";
-
-    public static final String STUDENT_EXAM_REPORT = "STUDENT_EXAM_REPORT";
-    public static final String STUDENT_SCHOLARSHIP_REPORT = "STUDENT_SCHOLARSHIP_REPORT";
+    public static final String STUDENT_ACHIEVEMENT_REPORT = "STUDENT_ACHIEVEMENT_REPORT";
     public static final String STUDENT_TRANSCRIPT_REPORT = "STUDENT_TRANSCRIPT_REPORT";
     public static final String STUDENT_CERTIFICATE_REPORT = "STUDENT_CERTIFICATE_REPORT";
 

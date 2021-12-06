@@ -1,9 +1,9 @@
 package ca.bc.gov.educ.grad.dao;
 
 import ca.bc.gov.educ.grad.dto.ReportData;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.impl.SchoolMasterEntity;
-import ca.bc.gov.educ.grad.dto.adaptor.dao.impl.StudentMasterEntity;
 import ca.bc.gov.educ.grad.dto.impl.*;
+import ca.bc.gov.educ.grad.entity.SchoolEntity;
+import ca.bc.gov.educ.grad.entity.StudentEntity;
 import ca.bc.gov.educ.grad.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.model.achievement.Achievement;
 import ca.bc.gov.educ.grad.model.achievement.AchievementCourse;
@@ -79,7 +79,7 @@ public class GradDataConvertionBean {
         return result;
     }
 
-    public StudentDemographic getSingleStudentDemog(ReportData reportData) {
+    public StudentDemographic getStudentDemog(ReportData reportData) {
         StudentMaster studentMaster = getStudentMaster(reportData);
         SchoolMaster schoolMaster = getSchoolMaster(reportData);
 
@@ -113,7 +113,7 @@ public class GradDataConvertionBean {
         return reportData.getSchool();
     }
 
-    public List<TranscriptCourse> getTranscriptCources(ReportData reportData) {
+    public List<TranscriptCourse> getTranscriptCourses(ReportData reportData) {
         Student student = getStudent(reportData);
         List<TranscriptCourse> result = new ArrayList<>();
         if(reportData.getTranscript() != null) {
@@ -143,7 +143,7 @@ public class GradDataConvertionBean {
         return result;
     }
 
-    public List<AchievementCourse> getAchievementCources(ReportData reportData) {
+    public List<AchievementCourse> getAchievementCourses(ReportData reportData) {
         Student student = getStudent(reportData);
         List<AchievementCourse> result = new ArrayList<>();
         if(reportData.getAchievement() != null) {
@@ -185,7 +185,7 @@ public class GradDataConvertionBean {
 
     private SchoolMaster getSchoolMaster(ReportData reportData) {
         School school = getSchool(reportData);
-        SchoolMaster result = new SchoolMasterEntity(
+        SchoolMaster result = new SchoolEntity(
                 school.getMinistryCode(), //String mincode,
                 school.getName(), //String schlName,
                 school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine1() : "", //String address1,
@@ -207,7 +207,7 @@ public class GradDataConvertionBean {
         StudentInfo studentInfo = getStudentInfo(reportData);
         GraduationData gradData = reportData.getGraduationData();
         List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
-        StudentMasterEntity result = new StudentMasterEntity(
+        StudentEntity result = new StudentEntity(
                 studentInfo.getPen(), //String studNo,
                 studentInfo.getFirstName(), //String studGiven,
                 studentInfo.getMiddleName(), //String studMiddle,
@@ -234,8 +234,6 @@ public class GradDataConvertionBean {
                 programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
                 student.getEnglishCert() == null && student.getFrenchCert() == null ? "E" : student.getEnglishCert(), //String englishCert,
                 student.getFrenchCert() == null ? null : student.getFrenchCert(), //String frenchCert,
-                null, //String traxCountryCode,
-                null, //String stud_true_no,
                 null  //String isoCountryCode
         );
         return result;

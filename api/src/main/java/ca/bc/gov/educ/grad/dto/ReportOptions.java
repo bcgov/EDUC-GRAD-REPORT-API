@@ -24,13 +24,13 @@ public class ReportOptions implements Serializable {
 				this.cacheReport = false;
 				this.convertTo = "pdf";
 				this.overwrite = true;
-				this.reportFile = "studentAchievementreport.pdf";
+				this.reportFile = "studentAchievementReport.pdf";
 				break;
 			case "transcript":
 				this.cacheReport = false;
 				this.convertTo = "pdf";
 				this.overwrite = true;
-				this.reportFile = "studentTranscriptreport.pdf";
+				this.reportFile = "studentTranscriptReport.pdf";
 				break;
 			case "certificate":
 				this.cacheReport = false;
