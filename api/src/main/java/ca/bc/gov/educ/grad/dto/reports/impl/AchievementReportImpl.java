@@ -22,7 +22,7 @@ import ca.bc.gov.educ.grad.dto.reports.data.impl.GraduationProgram;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.Status;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.Student;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.TranscriptResult;
-import ca.bc.gov.educ.grad.model.exam.Assessment;
+import ca.bc.gov.educ.grad.model.assessment.Assessment;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;

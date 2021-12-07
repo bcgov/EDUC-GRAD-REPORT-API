@@ -6,9 +6,8 @@ import ca.bc.gov.educ.grad.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.model.achievement.Achievement;
 import ca.bc.gov.educ.grad.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.model.achievement.AchievementResult;
-import ca.bc.gov.educ.grad.model.assessment.NumAssessmentResult;
-import ca.bc.gov.educ.grad.model.exam.Assessment;
-import ca.bc.gov.educ.grad.model.exam.AssessmentResult;
+import ca.bc.gov.educ.grad.model.assessment.Assessment;
+import ca.bc.gov.educ.grad.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.model.school.School;
 import ca.bc.gov.educ.grad.model.student.Student;
@@ -20,7 +19,6 @@ import ca.bc.gov.educ.grad.model.transcript.TranscriptResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -174,22 +172,21 @@ public class GradDataConvertionBean {
         return reasons;
     }
 
-    public List<NumAssessmentResult> getAssessmentCourses(ReportData reportData) {
+    public List<AssessmentResult> getAssessmentCourses(ReportData reportData) {
         StudentInfo studentInfo = getStudentInfo(reportData);
-        List<NumAssessmentResult> result = new ArrayList<>();
+        List<AssessmentResult> result = new ArrayList<>();
         Assessment assessment = reportData.getAssessment();
         for(AssessmentResult r: assessment.getResults()) {
-            NumAssessmentResult numAssessmentResult = new NumeracyAssessmentResultImpl(
-                    studentInfo.getPen(),
-                    r.getAssessmentName(),
-                    r.getAssessmentCode(),
-                    r.getAssessmentSession(),
-                    r.getRequirementMet(),
-                    r.getSpecialCase(),
-                    r.getExceededWrites(),
-                    BigDecimal.valueOf(r.getAssessmentProficiencyScore())
-            );
-            result.add(numAssessmentResult);
+            AssessmentResultImpl assessmentResult = new AssessmentResultImpl();
+            assessmentResult.setStudentNumber(studentInfo.getPen());
+            assessmentResult.setAssessmentName(r.getAssessmentName());
+            assessmentResult.setAssessmentCode(r.getAssessmentCode());
+            assessmentResult.setAssessmentSession(r.getAssessmentSession());
+            assessmentResult.setRequirementMet(r.getRequirementMet());
+            assessmentResult.setSpecialCase(r.getSpecialCase());
+            assessmentResult.setExceededWrites(r.getExceededWrites());
+            assessmentResult.setAssessmentProficiencyScore(r.getAssessmentProficiencyScore());
+            result.add(assessmentResult);
         }
         return result;
     }

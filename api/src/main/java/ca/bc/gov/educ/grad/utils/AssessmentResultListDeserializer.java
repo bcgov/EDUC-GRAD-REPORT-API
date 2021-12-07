@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.grad.utils;
 
 import ca.bc.gov.educ.grad.dto.impl.AssessmentResultImpl;
-import ca.bc.gov.educ.grad.model.exam.AssessmentResult;
+import ca.bc.gov.educ.grad.model.assessment.AssessmentResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;

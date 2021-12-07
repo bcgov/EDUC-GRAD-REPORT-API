@@ -17,9 +17,9 @@
  */
 package ca.bc.gov.educ.grad.dto.impl;
 
+import ca.bc.gov.educ.grad.model.assessment.Assessment;
+import ca.bc.gov.educ.grad.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.model.common.support.AbstractDomainEntity;
-import ca.bc.gov.educ.grad.model.exam.Assessment;
-import ca.bc.gov.educ.grad.model.exam.AssessmentResult;
 import ca.bc.gov.educ.grad.utils.AssessmentResultListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -128,10 +128,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_SUMMARY" class="java.lang.String">
-		<variableExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ?
-  "1950" : $P{P_REPORT_TYPE}]]></variableExpression>
-		<initialValueExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ?
-  "1950" : $P{P_REPORT_TYPE}]]></initialValueExpression>
+		<variableExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ? "1950" : $P{P_REPORT_TYPE}]]></variableExpression>
+		<initialValueExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ? "1950" : $P{P_REPORT_TYPE}]]></initialValueExpression>
 	</variable>
 	<variable name="V_TOTAL_PAGE_COUNT" class="java.lang.Integer">
 		<variableExpression><![CDATA[$V{V_TOTAL_PAGE_COUNT}]]></variableExpression>
@@ -190,10 +188,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_TYPE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
 				</subreportParameter>
-				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource("1950_1986".equals( $P{P_TRANSCRIPT_TYPE} )
-? java.util.Arrays.asList( $F{student} )
-: $F{student.transcriptResults}
-)]]></dataSourceExpression>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource("1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) ? java.util.Arrays.asList( $F{student} ) : $F{student.transcriptResults} )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_" + $P{P_TRANSCRIPT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 		</band>

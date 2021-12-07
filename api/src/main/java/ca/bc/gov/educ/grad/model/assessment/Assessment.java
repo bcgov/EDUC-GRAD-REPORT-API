@@ -13,7 +13,7 @@
  *  Last Commit by:      $Author::
  *
  * ********************************************************************** */
-package ca.bc.gov.educ.grad.model.exam;
+package ca.bc.gov.educ.grad.model.assessment;
 
 import ca.bc.gov.educ.grad.model.common.DomainEntity;
 

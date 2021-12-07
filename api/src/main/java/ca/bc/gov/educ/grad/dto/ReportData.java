@@ -2,8 +2,8 @@ package ca.bc.gov.educ.grad.dto;
 
 import ca.bc.gov.educ.grad.dto.impl.*;
 import ca.bc.gov.educ.grad.model.achievement.Achievement;
+import ca.bc.gov.educ.grad.model.assessment.Assessment;
 import ca.bc.gov.educ.grad.model.cert.Certificate;
-import ca.bc.gov.educ.grad.model.exam.Assessment;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.model.school.School;

@@ -24,12 +24,11 @@ import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.dto.impl.*;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.achievement.*;
+import ca.bc.gov.educ.grad.model.assessment.Assessment;
 import ca.bc.gov.educ.grad.model.assessment.AssessmentResult;
-import ca.bc.gov.educ.grad.model.assessment.NumAssessmentResult;
 import ca.bc.gov.educ.grad.model.codes.SignatureBlockType;
 import ca.bc.gov.educ.grad.model.common.DataException;
 import ca.bc.gov.educ.grad.model.common.DomainServiceException;
-import ca.bc.gov.educ.grad.model.exam.Assessment;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
@@ -525,7 +524,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 throw dse;
             }
 
-            List<NumAssessmentResult> resultsList = gradDataConvertionBean.getAssessmentCourses(reportData);
+            List<AssessmentResult> resultsList = gradDataConvertionBean.getAssessmentCourses(reportData);
             results = new ArrayList<>();
             for(AssessmentResult course: resultsList) {
                 results.add(course);
@@ -654,11 +653,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final String m_ = "adapt(GraduationProgramCode, List<AchievementCourse>, Date, boolean)";
         LOG.entering(CLASSNAME, m_, assessmentResults);
 
-        final List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> assessmentResultList = adapt(assessmentResults);
-
         final AssessmentImpl assessment = new AssessmentImpl();
         assessment.setIssueDate(issueDate);
-        assessment.setResults(assessmentResultList);
+        assessment.setResults(assessmentResults);
 
         LOG.exiting(CLASSNAME, m_);
         return assessment;
@@ -743,29 +740,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         LOG.exiting(CLASSNAME, m_);
         return achievementResults;
-    }
-
-    private List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> adapt(
-            final List<AssessmentResult> assessmentResults) {
-        final String m_ = "adapt(List<AssessmentResult>)";
-        LOG.entering(CLASSNAME, m_, assessmentResults);
-
-        List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> results = new ArrayList<>();
-
-        for(AssessmentResult assessmentResult: assessmentResults) {
-            AssessmentResultImpl res = new AssessmentResultImpl();
-            res.setStudentNumber(assessmentResult.getStudentNumber());
-            res.setAssessmentCode(assessmentResult.getAssessmentCode());
-            res.setAssessmentName(assessmentResult.getAssessmentName());
-            res.setAssessmentSession(assessmentResult.getAssessmentSession());
-            res.setRequirementMet(assessmentResult.getRequirementMet());
-            res.setAssessmentProficiencyScore(assessmentResult.getAssessmentProficiencyScore());
-            res.setSpecialCase(assessmentResult.getSpecialCase());
-            results.add(res);
-        }
-
-        LOG.exiting(CLASSNAME, m_);
-        return results;
     }
 
     /**

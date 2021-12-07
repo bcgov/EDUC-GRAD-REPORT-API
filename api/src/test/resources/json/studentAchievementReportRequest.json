@@ -87,7 +87,7 @@
           "requirement": "1",
           "requirementName": "",
           "equivalency": "",
-          "usedForGrad": ""
+          "usedForGrad": "4"
         },
         {
           "course": {
@@ -615,8 +615,26 @@
 		  "sessionDate": "201806",
 		  "exceededWrites": "N",
 		  "proficiencyScore": "0"
-		}       
-	  ]
+		},
+        {
+          "name": "Literacy 12 Assessment",
+          "code": "LTE12",
+          "requirementMet": "116",
+          "specialCase": "E",
+          "sessionDate": "201806",
+          "exceededWrites": "N",
+          "proficiencyScore": "0"
+        },
+        {
+          "name": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
+          "code": "LTP10",
+          "requirementMet": "303",
+          "specialCase": "E",
+          "sessionDate": "201805",
+          "exceededWrites": "N",
+          "proficiencyScore": "0"
+        }
+      ]
 	},
     "gradProgram": {
       "code": {
@@ -627,7 +645,7 @@
       }
     },
     "graduationData": {
-      "graduationDate": "",
+      "graduationDate": "2018-06-30",
       "honorsFlag": false,
       "dogwoodFlag": false,
       "programCodes": [

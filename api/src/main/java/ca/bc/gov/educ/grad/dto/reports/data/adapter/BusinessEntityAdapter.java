@@ -17,10 +17,6 @@
  */
 package ca.bc.gov.educ.grad.dto.reports.data.adapter;
 
-import ca.bc.gov.educ.grad.dto.reports.data.assessment.impl.AssessmentScore;
-import ca.bc.gov.educ.grad.dto.reports.data.assessment.impl.LiteracyAssessmentResult;
-import ca.bc.gov.educ.grad.dto.reports.data.assessment.impl.NumeracyAssessmentResult;
-import ca.bc.gov.educ.grad.dto.reports.data.assessment.impl.RawScore;
 import ca.bc.gov.educ.grad.dto.reports.data.impl.*;
 import ca.bc.gov.educ.grad.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode;
@@ -362,123 +358,6 @@ public class BusinessEntityAdapter {
                 .withCourseName(er.getTitle())
                 .withCourseCode(er.getCourseCode())
                 .build();
-    }
-
-    /**
-     * Associates a numeracy assessment result to a student's assessment
-     * results.
-     *
-     * @param nar The data to adapt for reports.
-     * @param student The student to populate with assessment data. parameter.
-     */
-    public static void adapt(
-            final ca.bc.gov.educ.grad.model.assessment.NumeracyAssessmentResult nar,
-            final Student student) {
-        validate(nar, "numeracy assessment result");
-        validate(student, "student");
-
-        final NumeracyAssessmentResult result = adapt(nar);
-
-        student.setNumeracyAssessmentResult(result);
-    }
-
-    /**
-     * Maps a numeracy assessment result to a report-centric numeracy assessment
-     * result.
-     *
-     * @param nar The data to adapt for reports.
-     */
-    private static NumeracyAssessmentResult adapt(
-            final ca.bc.gov.educ.grad.model.assessment.NumeracyAssessmentResult nar) {
-        final List<ca.bc.gov.educ.grad.model.assessment.RawScore> scores = nar.getRawScores();
-        final int size = scores.size();
-        final List<RawScore> rawScores = new ArrayList<>(size);
-
-        for (final ca.bc.gov.educ.grad.model.assessment.RawScore rawScore : scores) {
-            final RawScore adaptedScore = adapt(rawScore);
-            rawScores.add(adaptedScore);
-        }
-
-        return new NumeracyAssessmentResult.Builder()
-                .withProficiencyScore(nar.getProficiencyScore())
-                .withSessionDate(nar.getSessionDate())
-                .withRawScores(rawScores)
-                .build();
-    }
-    
-    /**
-     * Associates a literacy assessment result to a student's assessment
-     * results.
-     *
-     * @param nar The data to adapt for reports.
-     * @param student The student to populate with assessment data. parameter.
-     */
-    public static void adapt(
-            final ca.bc.gov.educ.grad.model.assessment.LiteracyAssessmentResult nar,
-            final Student student) {
-        validate(nar, "literacy assessment result");
-        validate(student, "student");
-
-        final LiteracyAssessmentResult result = adapt(nar);
-
-        student.setLiteracyAssessmentResult(result);
-    }
-
-    /**
-     * Maps a literacy assessment result to a report-centric literacy assessment
-     * result.
-     *
-     * @param nar The data to adapt for reports.
-     */
-    private static LiteracyAssessmentResult adapt(
-            final ca.bc.gov.educ.grad.model.assessment.LiteracyAssessmentResult nar) {
-        final List<ca.bc.gov.educ.grad.model.assessment.RawScore> scores = nar.getRawScores();
-        final int size = scores.size();
-        final List<RawScore> rawScores = new ArrayList<>(size);
-
-        for (final ca.bc.gov.educ.grad.model.assessment.RawScore rawScore : scores) {
-            final RawScore adaptedScore = adapt(rawScore);
-            rawScores.add(adaptedScore);
-        }
-
-        return new LiteracyAssessmentResult.Builder()
-                .withProficiencyScore(nar.getProficiencyScore())
-                .withSessionDate(nar.getSessionDate())
-                .withRawScores(rawScores)
-                .build();
-    }
-
-    private static RawScore adapt(
-            final ca.bc.gov.educ.grad.model.assessment.RawScore rawScore) {
-        final List<ca.bc.gov.educ.grad.model.assessment.AssessmentScore> scores
-                = rawScore.getAssessmentScores();
-        final int size = scores.size();
-
-        final List<AssessmentScore> adaptedScores = new ArrayList<>(size);
-
-        for (final ca.bc.gov.educ.grad.model.assessment.AssessmentScore score : scores) {
-            final AssessmentScore adaptedScore = adapt(score);
-            adaptedScores.add(adaptedScore);
-        }
-        
-        final RawScore result = new RawScore.Builder()
-                .withAssessmentScores(adaptedScores)
-                .withRawScoreCategory(rawScore.getRawScoreCategory())
-                .withTotalScore(rawScore.getTotalScore())
-                .withTotalStudentScore(rawScore.getTotalStudentScore())
-                .build();
-
-        return result;
-    }
-
-    private static AssessmentScore adapt(ca.bc.gov.educ.grad.model.assessment.AssessmentScore score) {
-        final AssessmentScore result = new AssessmentScore.Builder()
-                .withAssessmentCode(score.getAssessmentCode())
-                .withMaximumScore(score.getMaximumScore())
-                .withStudentScore(score.getStudentScore())
-                .build();
-
-        return result;
     }
 
     /**

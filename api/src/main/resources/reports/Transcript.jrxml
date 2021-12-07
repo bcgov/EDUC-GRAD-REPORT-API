@@ -63,8 +63,7 @@
 		<defaultValueExpression><![CDATA["1950"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_TRANSCRIPT_TYPE" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[($P{P_REPORT_TYPE}.equals("1950") || $P{P_REPORT_TYPE}.equals("1986")) ?
-  "1950_1986" : "Regular"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[($P{P_REPORT_TYPE}.equals("1950") || $P{P_REPORT_TYPE}.equals("1986")) ? "1950_1986" : "Regular"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
 		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
@@ -164,10 +163,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_SUMMARY" class="java.lang.String">
-		<variableExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ?
-  "1950" : $P{P_REPORT_TYPE}]]></variableExpression>
-		<initialValueExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ?
-  "1950" : $P{P_REPORT_TYPE}]]></initialValueExpression>
+		<variableExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ? "1950" : $P{P_REPORT_TYPE}]]></variableExpression>
+		<initialValueExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ? "1950" : $P{P_REPORT_TYPE}]]></initialValueExpression>
 	</variable>
 	<variable name="V_TOTAL_ROWS" class="java.lang.Integer">
 		<variableExpression><![CDATA[$F{student.transcriptResults}.size()]]></variableExpression>
@@ -197,8 +194,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<band height="761">
 			<subreport>
 				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="736c2390-ffd6-447d-8349-b3ef91d3ca91">
-					<printWhenExpression><![CDATA[!"1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) &&
-!($V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES}))]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!"1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) && !($V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES}))]]></printWhenExpression>
 				</reportElement>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
@@ -222,8 +218,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 			</subreport>
 			<subreport>
 				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="e2bca6ce-a978-4a55-893d-fda3e775e165">
-					<printWhenExpression><![CDATA[!"1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) &&
-$V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!"1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) && $V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
 				</reportElement>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
