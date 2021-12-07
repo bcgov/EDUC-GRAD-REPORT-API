@@ -2,8 +2,6 @@ package ca.bc.gov.educ.grad.dao;
 
 import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.impl.*;
-import ca.bc.gov.educ.grad.entity.SchoolEntity;
-import ca.bc.gov.educ.grad.entity.StudentEntity;
 import ca.bc.gov.educ.grad.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.model.achievement.Achievement;
 import ca.bc.gov.educ.grad.model.achievement.AchievementCourse;
@@ -13,15 +11,13 @@ import ca.bc.gov.educ.grad.model.exam.Assessment;
 import ca.bc.gov.educ.grad.model.exam.AssessmentResult;
 import ca.bc.gov.educ.grad.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.model.school.School;
-import ca.bc.gov.educ.grad.model.school.SchoolMaster;
 import ca.bc.gov.educ.grad.model.student.Student;
-import ca.bc.gov.educ.grad.model.student.StudentDemographic;
 import ca.bc.gov.educ.grad.model.student.StudentInfo;
-import ca.bc.gov.educ.grad.model.student.StudentMaster;
 import ca.bc.gov.educ.grad.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.model.transcript.TranscriptResult;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -79,18 +75,6 @@ public class GradDataConvertionBean {
         return result;
     }
 
-    public StudentDemographic getStudentDemog(ReportData reportData) {
-        StudentMaster studentMaster = getStudentMaster(reportData);
-        SchoolMaster schoolMaster = getSchoolMaster(reportData);
-
-        StudentDemographicImpl studentDemographic = new StudentDemographicImpl(
-                studentMaster,
-                schoolMaster
-        );
-
-        return studentDemographic;
-    }
-
     public Transcript getTranscript(ReportData reportData) {
         return reportData.getTranscript();
     }
@@ -103,7 +87,14 @@ public class GradDataConvertionBean {
         if(reportData.getStudent() == null || reportData.getStudent().getPen() == null) {
             throw new InvalidParameterException("Student and PEN can't be NULL");
         }
-        return reportData.getStudent();
+        StudentImpl student = (StudentImpl)reportData.getStudent();
+        if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
+            student.setEnglishCert("Y");
+        }
+        if(StringUtils.trimToNull(student.getFrenchCert()) == null) {
+            student.setFrenchCert("");
+        }
+        return student;
     }
 
     public School getSchool(ReportData reportData) {
@@ -181,62 +172,6 @@ public class GradDataConvertionBean {
             }
         }
         return reasons;
-    }
-
-    private SchoolMaster getSchoolMaster(ReportData reportData) {
-        School school = getSchool(reportData);
-        SchoolMaster result = new SchoolEntity(
-                school.getMinistryCode(), //String mincode,
-                school.getName(), //String schlName,
-                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine1() : "", //String address1,
-                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine2() : "", //String address2,
-                school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "", //String city,
-                school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "", //String provCode,
-                school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "", //String postal,
-                school.getSignatureCode(), //String signatureDistno,
-                null, //Character xcriptElig,
-                school.getPhoneNumber(), //String phone,
-                "Y".equalsIgnoreCase(school.getTypeIndicator()) ? 'Y' : 'N', //Character schlIndType
-                "Y".equalsIgnoreCase(school.getDogwoodElig()) ? 'Y' : 'N' //Character dogwoodElig
-        );
-        return result;
-    }
-
-    public StudentMaster getStudentMaster(ReportData reportData) {
-        Student student = getStudent(reportData);
-        StudentInfo studentInfo = getStudentInfo(reportData);
-        GraduationData gradData = reportData.getGraduationData();
-        List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
-        StudentEntity result = new StudentEntity(
-                studentInfo.getPen(), //String studNo,
-                studentInfo.getFirstName(), //String studGiven,
-                studentInfo.getMiddleName(), //String studMiddle,
-                studentInfo.getLastName(), //String studSurname,
-                studentInfo.getBirthDate(), //String studBirth,
-                studentInfo.getStudentAddress1(), //String address1,
-                studentInfo.getStudentAddress2(), //String address2,
-                studentInfo.getStudentCity(), //String city,
-                studentInfo.getStudentProv(), //String provCode,
-                studentInfo.getStudentPostalCode(), //String postal,
-                studentInfo.getStudentStatus(), //Character studStatus,
-                studentInfo.getGrade(), //String studGrade,
-                studentInfo.getGradDate(), //Long gradDate,
-                studentInfo.getGraduationProgramCode() != null ? studentInfo.getGraduationProgramCode().getCode() : "", //String gradReqtYear,
-                gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
-                gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlagcter dogwoodFlag,
-                gradData != null ? gradData.getGraduationDate() : null, //Long sccDate,
-                studentInfo.getMincode(), //String mincode,
-                student.getMincodeGrad(), //String mincodeGrad,
-                programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,
-                programCodes != null && programCodes.size() >= 2 ? programCodes.get(1) : null, //String prgmCode2,
-                programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
-                programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
-                programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
-                student.getEnglishCert() == null && student.getFrenchCert() == null ? "E" : student.getEnglishCert(), //String englishCert,
-                student.getFrenchCert() == null ? null : student.getFrenchCert(), //String frenchCert,
-                null  //String isoCountryCode
-        );
-        return result;
     }
 
     public List<NumAssessmentResult> getAssessmentCourses(ReportData reportData) {

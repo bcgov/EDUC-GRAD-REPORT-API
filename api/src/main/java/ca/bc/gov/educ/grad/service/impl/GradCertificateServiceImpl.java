@@ -23,8 +23,6 @@ import ca.bc.gov.educ.grad.dto.ReportData;
 import ca.bc.gov.educ.grad.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.dto.impl.CertificateImpl;
 import ca.bc.gov.educ.grad.dto.impl.GradCertificateReportImpl;
-import ca.bc.gov.educ.grad.dto.impl.SchoolImpl;
-import ca.bc.gov.educ.grad.dto.impl.StudentImpl;
 import ca.bc.gov.educ.grad.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.model.cert.Certificate;
 import ca.bc.gov.educ.grad.model.cert.CertificateSubType;
@@ -38,9 +36,7 @@ import ca.bc.gov.educ.grad.model.reports.CertificateReport;
 import ca.bc.gov.educ.grad.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.model.reports.ReportService;
 import ca.bc.gov.educ.grad.model.school.School;
-import ca.bc.gov.educ.grad.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.model.student.Student;
-import ca.bc.gov.educ.grad.model.student.StudentDemographic;
 import ca.bc.gov.educ.grad.service.GradReportCodeService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,9 +86,6 @@ public class GradCertificateServiceImpl
         final String _m = "buildReport()";
         LOG.entering(CLASSNAME, _m);
 
-        // access student demographics to obtain PEN
-        PersonalEducationNumber penObj = null;
-        String penId = null;
 
         ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
@@ -104,24 +97,16 @@ public class GradCertificateServiceImpl
             throw dse;
         }
 
-        penObj = reportData.getStudent().getPen();
-        penId = penObj.getValue();
-
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
-        // access TRAX adaptor to obtain required data for PEN
-        final StudentDemographic studentData = gradDataConvertionBean.getStudentDemog(reportData); //validated
-        if (studentData == null) {
-            final String msg = "Failed to find student demographic information for PEN: " + penId;
-            final DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, _m, dse);
-            throw dse;
-        }
+        // validate incoming data for reporting
+        final Student student = gradDataConvertionBean.getStudent(reportData); //validated
+        final School school = gradDataConvertionBean.getSchool(reportData); //validated
 
         final CertificateImpl certificate = (CertificateImpl)reportData.getCertificate();
         if (certificate == null) {
-            final String msg = "Failed to find student certificate for PEN: " + penId;
+            final String msg = "Failed to find student certificate";
             final DomainServiceException dse = new DomainServiceException(msg);
             LOG.throwing(CLASSNAME, _m, dse);
             throw dse;
@@ -132,14 +117,9 @@ public class GradCertificateServiceImpl
         signatureBlockTypes.putAll(signatureBlockTypeCodes);
         certificate.setSignatureBlockTypes(signatureBlockTypes);
 
-        // transfer TRAX data to other objects for reporting
-        final Student student = transferStudentData(penObj, studentData); //validated
-        final School school = transferSchoolData(studentData); //validated
-        final String penEntityId = penObj.getEntityId();
-
         final List<BusinessReport> certificates = new ArrayList<>();
-        final String englishCert = studentData.getEnglishCertificate().trim();
-        final String frenchCert = studentData.getFrenchCertificate().trim();
+        final String englishCert = student.getEnglishCert().trim();
+        final String frenchCert = student.getFrenchCert().trim();
 
         LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
         LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
@@ -148,7 +128,7 @@ public class GradCertificateServiceImpl
             final String certType = certificate.getCertificateType().getReportName();
 
             final GradCertificateReport gradCert = englishCertificate(
-                    certType, student, school, penEntityId, certificate);
+                    certType, student, school, certificate);
 
             certificates.add(gradCert);
         }
@@ -157,7 +137,7 @@ public class GradCertificateServiceImpl
             final String certType = certificate.getCertificateType().getReportName();
 
             final GradCertificateReport gradCert = frenchCertificate(
-                    certType, student, school, penEntityId, certificate);
+                    certType, student, school, null, certificate);
 
             certificates.add(gradCert);
         }
@@ -167,68 +147,9 @@ public class GradCertificateServiceImpl
     }
 
     /**
-     * Transfer the TRAX data from the data value object into a Student object.
-     *
-     * @param penObj
-     * @param traxStudent
-     * @return Student
-     */
-    private Student transferStudentData(
-            final PersonalEducationNumber penObj,
-            final StudentDemographic traxStudent) {
-        final String _m = "transferStudentData(PersonalEducationNumber, StudentDemographic)";
-        final Object[] params = {penObj, traxStudent};
-        LOG.entering(CLASSNAME, _m, params);
-
-        final StudentImpl student = new StudentImpl();
-        student.setPen(penObj);
-        student.setFirstName(traxStudent.getFirstName());
-        student.setMiddleName(traxStudent.getMiddleName());
-        student.setLastName(traxStudent.getLastName());
-        student.setBirthdate(traxStudent.getBirthDate());
-
-        LOG.exiting(CLASSNAME, _m);
-        return student;
-    }
-
-    /**
-     * Transfer the TRAX data from the data value object into a School object.
-     *
-     * @param traxStudent
-     * @return School
-     */
-    private School transferSchoolData(final StudentDemographic traxStudent) {
-        final String _m = "transferSchoolData(StudentDemographic)";
-        LOG.entering(CLASSNAME, _m, traxStudent);
-
-        String schoolId = traxStudent.getGradMincode();
-
-        if (schoolId.isEmpty()) {
-            schoolId = traxStudent.getMincode();
-        }
-
-        final SchoolImpl school = new SchoolImpl();
-
-        if(traxStudent.getSchool() != null) {
-            school.setMincode(traxStudent.getSchool().getMincode());
-            school.setName(traxStudent.getSchool().getSchlName());
-        } else {
-            school.setMincode(schoolId);
-            school.setName(traxStudent.getSchoolName());
-        }
-
-        school.setSignatureCode(traxStudent.getCertificateSignature());
-        school.setTypeIndicator(traxStudent.getSchoolTypeIndicator());
-
-        LOG.exiting(CLASSNAME, _m);
-        return school;
-    }
-
-    /**
      * @param certType
      * @param student
      * @param school
-     * @param entityId
      * @param certificate
      *
      * @return GradCertificateReport
@@ -238,7 +159,6 @@ public class GradCertificateServiceImpl
             final String certType,
             final Student student,
             final School school,
-            final String entityId,
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType;
@@ -282,7 +202,7 @@ public class GradCertificateServiceImpl
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
         final GradCertificateReport gradCert = createReport(
-                student, school, entityId, certificate,
+                student, school, certificate,
                 CANADA, rsRptType, rsRptSubType);
 
         return gradCert;
@@ -345,7 +265,7 @@ public class GradCertificateServiceImpl
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
         final GradCertificateReport gradCert = createReport(
-                student, school, entityId, certificate,
+                student, school, certificate,
                 CANADA_FRENCH, rsRptType, rsRptSubType);
 
         return gradCert;
@@ -354,7 +274,6 @@ public class GradCertificateServiceImpl
     /**
      * @param student
      * @param school
-     * @param entityId
      * @param certificate
      * @param location
      * @param rsRptType
@@ -365,7 +284,6 @@ public class GradCertificateServiceImpl
     private GradCertificateReport createReport(
             final Student student,
             final School school,
-            final String entityId,
             final Certificate certificate,
             final Locale location,
             final CertificateType rsRptType,
@@ -390,8 +308,6 @@ public class GradCertificateServiceImpl
 
             StringBuilder sb = new StringBuilder("certificate_");
             sb.append(location.toLanguageTag());
-            sb.append("_");
-            sb.append(entityId);
             sb.append("_");
             sb.append(timestamp);
             sb.append(".");

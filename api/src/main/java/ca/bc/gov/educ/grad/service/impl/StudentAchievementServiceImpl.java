@@ -37,7 +37,6 @@ import ca.bc.gov.educ.grad.model.reports.*;
 import ca.bc.gov.educ.grad.model.school.School;
 import ca.bc.gov.educ.grad.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.model.student.Student;
-import ca.bc.gov.educ.grad.model.student.StudentDemographic;
 import ca.bc.gov.educ.grad.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.model.transcript.Course;
 import ca.bc.gov.educ.grad.model.transcript.GraduationData;
@@ -65,7 +64,6 @@ import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.FULFILLMENT_SE
 import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
-import static ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode.PROGRAM_SCCP;
 import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 import static java.lang.Integer.parseInt;
 import static java.text.NumberFormat.getIntegerInstance;
@@ -441,59 +439,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     }
 
     /**
-     * Read the static student data (demographics) from TRAX which is needed for
-     * the achievement service.
-     *
-     * @param pen
-     *
-     * @return
-     */
-    private StudentDemographic getStudentDemog(final String pen) throws DataException, DomainServiceException {
-        final String _m = "getStudentDemog(String)";
-        LOG.entering(CLASSNAME, _m);
-
-        final StudentDemographic studentDemographic;
-
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, _m, dse);
-            throw dse;
-        }
-
-        try {
-            studentDemographic = gradDataConvertionBean.getStudentDemog(reportData);
-
-            LOG.log(Level.FINER,
-                    "Retrieved student demographic from TRAX for PEN: {0}", pen);
-
-            if (studentDemographic == null) {
-                final String msg = "Failed to find demographic data in TRAX for PEN: ".concat(pen);
-                final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, _m, dse);
-                throw dse;
-            } else {
-                LOG.log(Level.FINEST, "Retrieved student demographic data:");
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentDemographic.getPen(), studentDemographic.getFirstName(), studentDemographic.getLastName()});
-            }
-
-        } catch (Exception ex) {
-            String msg = "Failed to access TRAX achievement data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
-            throw dex;
-        }
-
-        LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, _m);
-        return studentDemographic;
-    }
-
-    /**
      * Read the collection of achievement courses from the TRAX Adaptor which is
      * required for the achievement service.
      *
@@ -612,31 +557,31 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
      * Adapt the TRAX data from the data value object into a Student object.
      *
      * @param pen
-     * @param traxStudentInfo
+     * @param studentInfo
      */
     private Student adaptStudent(
             final PersonalEducationNumber pen,
-            final StudentInfo traxStudentInfo) {
+            final StudentInfo studentInfo) {
 
         final String _m = "adaptStudent(PersonalEducationNumber, StudentInfo)";
-        final Object[] params = {pen, traxStudentInfo};
+        final Object[] params = {pen, studentInfo};
         LOG.entering(CLASSNAME, _m, params);
 
         final StudentImpl student = new StudentImpl();
         student.setPen(pen);
-        student.setFirstName(traxStudentInfo.getFirstName());
-        student.setMiddleName(traxStudentInfo.getMiddleName());
-        student.setLastName(traxStudentInfo.getLastName());
-        student.setBirthdate(traxStudentInfo.getBirthDate());
-        student.setGrade(traxStudentInfo.getGrade());
+        student.setFirstName(studentInfo.getFirstName());
+        student.setMiddleName(studentInfo.getMiddleName());
+        student.setLastName(studentInfo.getLastName());
+        student.setBirthdate(studentInfo.getBirthDate());
+        student.setGrade(studentInfo.getGrade());
 
         final PostalAddressImpl address = new PostalAddressImpl();
-        address.setStreetLine1(traxStudentInfo.getStudentAddress1());
-        address.setStreetLine2(traxStudentInfo.getStudentAddress2());
-        address.setCity(traxStudentInfo.getStudentCity());
-        address.setCode(traxStudentInfo.getStudentPostalCode());
-        address.setRegion(traxStudentInfo.getStudentProv());
-        address.setCountry(traxStudentInfo.getCountryCode());
+        address.setStreetLine1(studentInfo.getStudentAddress1());
+        address.setStreetLine2(studentInfo.getStudentAddress2());
+        address.setCity(studentInfo.getStudentCity());
+        address.setCode(studentInfo.getStudentPostalCode());
+        address.setRegion(studentInfo.getStudentProv());
+        address.setCountry(studentInfo.getCountryCode());
         student.setCurrentMailingAddress(address);
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
@@ -651,24 +596,24 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     /**
      * Adapt the TRAX data from the data value object into a School object.
      *
-     * @param traxStudent
+     * @param studentInfo
      */
-    private School adaptSchool(final StudentInfo traxStudent) {
+    private School adaptSchool(final StudentInfo studentInfo) {
         final String m_ = "adaptSchool(StudentInfo)";
-        LOG.entering(CLASSNAME, m_, traxStudent);
+        LOG.entering(CLASSNAME, m_, studentInfo);
 
         final SchoolImpl school = new SchoolImpl();
-        school.setMincode(traxStudent.getMincode());
-        school.setName(traxStudent.getSchoolName());
-        school.setTypeIndicator(traxStudent.getSchoolTypeIndicator());
-        school.setTypeBanner(traxStudent.getSchoolTypeBanner());
+        school.setMincode(studentInfo.getMincode());
+        school.setName(studentInfo.getSchoolName());
+        school.setTypeIndicator(studentInfo.getSchoolTypeIndicator());
+        school.setTypeBanner(studentInfo.getSchoolTypeBanner());
 
         final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
-        address.setStreet1(traxStudent.getSchoolStreet());
-        address.setStreet2(traxStudent.getSchoolStreet2());
-        address.setCity(traxStudent.getSchoolCity());
-        address.setPostalCode(traxStudent.getSchoolPostalCode());
-        address.setProvince(traxStudent.getSchoolProv());
+        address.setStreet1(studentInfo.getSchoolStreet());
+        address.setStreet2(studentInfo.getSchoolStreet2());
+        address.setCity(studentInfo.getSchoolCity());
+        address.setPostalCode(studentInfo.getSchoolPostalCode());
+        address.setProvince(studentInfo.getSchoolProv());
         school.setAddress(address);
 
         LOG.exiting(CLASSNAME, m_);
@@ -680,19 +625,19 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
      * Achievement object.
      *
      * @param code The graduation program code that influences sort order.
-     * @param traxAchievementCourses
+     * @param achievementCourses
      * @param issueDate
      */
     private Achievement adapt(
             final GraduationProgramCode code,
-            final List<AchievementCourse> traxAchievementCourses,
+            final List<AchievementCourse> achievementCourses,
             final Date issueDate,
             final boolean interim) {
         final String m_ = "adapt(GraduationProgramCode, List<AchievementCourse>, Date, boolean)";
-        LOG.entering(CLASSNAME, m_, traxAchievementCourses);
+        LOG.entering(CLASSNAME, m_, achievementCourses);
 
         final List<AchievementResult> achievementResults = adapt(
-                code, traxAchievementCourses);
+                code, achievementCourses);
 
         final AchievementImpl achievement = new AchievementImpl();
         achievement.setIssueDate(issueDate);
@@ -712,6 +657,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> assessmentResultList = adapt(assessmentResults);
 
         final AssessmentImpl assessment = new AssessmentImpl();
+        assessment.setIssueDate(issueDate);
         assessment.setResults(assessmentResultList);
 
         LOG.exiting(CLASSNAME, m_);
@@ -724,38 +670,38 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
      *
      * @param programCode The graduation program code that influences sort
      * order.
-     * @param traxAchievementCourses
+     * @param achievementCourses
      */
     private List<AchievementResult> adapt(
             final GraduationProgramCode programCode,
-            final List<AchievementCourse> traxAchievementCourses) {
+            final List<AchievementCourse> achievementCourses) {
         final String m_ = "adapt(GraduationProgramCode, List<AchievementCourse>)";
-        LOG.entering(CLASSNAME, m_, traxAchievementCourses);
+        LOG.entering(CLASSNAME, m_, achievementCourses);
 
         List<AchievementResult> achievementResults = Collections.emptyList();
 
-        if (traxAchievementCourses != null) {
-            final int size = traxAchievementCourses.size();
+        if (achievementCourses != null) {
+            final int size = achievementCourses.size();
             achievementResults = new ArrayList<>(size);
 
-            for (final AchievementCourse traxCourse : traxAchievementCourses) {
-                final String courseType = traxCourse.getCourseType();
+            for (final AchievementCourse achievementCourse : achievementCourses) {
+                final String courseType = achievementCourse.getCourseType();
 
-                final String eq = traxCourse.getEquivalency();
-                final String req = traxCourse.getRequirement();
-                final String ufg = traxCourse.getUsedForGrad();
+                final String eq = achievementCourse.getEquivalency();
+                final String req = achievementCourse.getRequirement();
+                final String ufg = achievementCourse.getUsedForGrad();
                 final String reqName = getName(req, programCode.toString());
                 final AchievementResultImpl tResult = new AchievementResultImpl(
                         req, eq, ufg, reqName);
 
-                final String courseName = traxCourse.getCourseName();
-                final String courseCode = traxCourse.getCourseCode();
-                final String courseLevel = traxCourse.getCourseLevel();
-                final String traxCredits = traxCourse.getCredits();
-                final String relatedCourse = traxCourse.getRelatedCourse();
-                final String relatedLevel = traxCourse.getRelatedLevel();
+                final String courseName = achievementCourse.getCourseName();
+                final String courseCode = achievementCourse.getCourseCode();
+                final String courseLevel = achievementCourse.getCourseLevel();
+                final String traxCredits = achievementCourse.getCredits();
+                final String relatedCourse = achievementCourse.getRelatedCourse();
+                final String relatedLevel = achievementCourse.getRelatedLevel();
 
-                final String sessionDate = traxCourse.getSessionDate();
+                final String sessionDate = achievementCourse.getSessionDate();
                 final CourseImpl course = new CourseImpl(
                         courseName, courseCode,
                         courseLevel, traxCredits,
@@ -764,12 +710,12 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
                 tResult.setCourse(course);
 
-                final String schoolPct = traxCourse.getSchoolPercent();
-                final String examPct = traxCourse.getExamPercent();
-                String finalPct = traxCourse.getFinalPercent();
-                final String finalLetterGrade = traxCourse.getFinalLetterGrade();
-                final String interimPct = traxCourse.getInterimMark();
-                final String interimLetterGrade = traxCourse.getInterimLetterGrade();
+                final String schoolPct = achievementCourse.getSchoolPercent();
+                final String examPct = achievementCourse.getExamPercent();
+                String finalPct = achievementCourse.getFinalPercent();
+                final String finalLetterGrade = achievementCourse.getFinalLetterGrade();
+                final String interimPct = achievementCourse.getInterimMark();
+                final String interimLetterGrade = achievementCourse.getInterimLetterGrade();
 
                 final MarkImpl mark = new MarkImpl();
                 mark.setSchoolPercent(schoolPct);
@@ -800,14 +746,26 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     }
 
     private List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> adapt(
-            final List<AssessmentResult> traxAssessmentResults) {
+            final List<AssessmentResult> assessmentResults) {
         final String m_ = "adapt(List<AssessmentResult>)";
-        LOG.entering(CLASSNAME, m_, traxAssessmentResults);
+        LOG.entering(CLASSNAME, m_, assessmentResults);
 
-        List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> assessmentResults = Collections.emptyList();
+        List<ca.bc.gov.educ.grad.model.exam.AssessmentResult> results = new ArrayList<>();
+
+        for(AssessmentResult assessmentResult: assessmentResults) {
+            AssessmentResultImpl res = new AssessmentResultImpl();
+            res.setStudentNumber(assessmentResult.getStudentNumber());
+            res.setAssessmentCode(assessmentResult.getAssessmentCode());
+            res.setAssessmentName(assessmentResult.getAssessmentName());
+            res.setAssessmentSession(assessmentResult.getAssessmentSession());
+            res.setRequirementMet(assessmentResult.getRequirementMet());
+            res.setAssessmentProficiencyScore(assessmentResult.getAssessmentProficiencyScore());
+            res.setSpecialCase(assessmentResult.getSpecialCase());
+            results.add(res);
+        }
 
         LOG.exiting(CLASSNAME, m_);
-        return assessmentResults;
+        return results;
     }
 
     /**
@@ -975,7 +933,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         LOG.entering(CLASSNAME, _m);
         final String pen = personalEducationNumber.getValue();
         final StudentInfo studentInfo = getStudentInfo(pen);
-        final StudentDemographic studentDemog = getStudentDemog(pen);
 
         // Adapt TRAX data to other objects for reporting.
         final String programCode = studentInfo.getGradProgram();
@@ -988,7 +945,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         // FIXME: Replace with GraduationProgramCode enum.
         final GradProgram program = createGradProgram(programCode);
-        final GraduationData graduationData = adaptGraduationData(studentInfo, studentDemog, achievement, programCode);
+        final GraduationData graduationData = adaptGraduationData(studentInfo, achievement);
 
         final String gradMessage = studentInfo.getGradMessage();
         final List<NonGradReason> nonGradReasons = adaptReasons(studentInfo);
@@ -1028,23 +985,14 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     // FIXME: Pass in GraduationProgramCode enum
     private GraduationData adaptGraduationData(
             final StudentInfo studentInfo,
-            final StudentDemographic studentDemog,
-            final Achievement achievement,
-            final String programCode) {
-        final String _m = "adaptGraduationData(StudentInfo, StudentDemographic, Achievement, String)";
-        final Object[] params = {studentInfo, studentDemog, achievement};
+            final Achievement achievement) {
+        final String _m = "adaptGraduationData(StudentInfo, Achievement, String)";
+        final Object[] params = {studentInfo, achievement};
         LOG.entering(CLASSNAME, _m, params);
 
         final GraduationData graduationData = new GraduationDataImpl();
-        final GraduationProgramCode program = GraduationProgramCode.valueFrom(programCode);
 
-        Date gradDate = null;
-
-        if (PROGRAM_SCCP.equals(program)) {
-            gradDate = studentDemog.getSccDate();
-        } else {
-            gradDate = studentDemog.getCertificateDate();
-        }
+        Date gradDate = studentInfo.getGradDate();
 
         ((GraduationDataImpl) graduationData).setGraduationDate(gradDate);
         ((GraduationDataImpl) graduationData).setHonorsFlag(studentInfo.isHonourFlag());

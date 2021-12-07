@@ -33,7 +33,6 @@ import ca.bc.gov.educ.grad.model.reports.*;
 import ca.bc.gov.educ.grad.model.school.School;
 import ca.bc.gov.educ.grad.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.model.student.Student;
-import ca.bc.gov.educ.grad.model.student.StudentDemographic;
 import ca.bc.gov.educ.grad.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.model.transcript.*;
 import ca.bc.gov.educ.grad.service.GradReportCodeService;
@@ -60,7 +59,6 @@ import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.FULFILLMENT_SE
 import static ca.bc.gov.educ.grad.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
-import static ca.bc.gov.educ.grad.model.graduation.GraduationProgramCode.PROGRAM_SCCP;
 import static ca.bc.gov.educ.grad.model.reports.ReportFormat.PDF;
 import static java.lang.Integer.parseInt;
 import static java.text.NumberFormat.getIntegerInstance;
@@ -414,59 +412,6 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
     }
 
     /**
-     * Read the static student data (demographics) from TRAX which is needed for
-     * the transcript service.
-     *
-     * @param pen
-     *
-     * @return
-     */
-    private StudentDemographic getStudentDemog(final String pen) throws DataException, DomainServiceException {
-        final String _m = "getStudentDemog(String)";
-        LOG.entering(CLASSNAME, _m);
-
-        final StudentDemographic studentDemographic;
-
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, _m, dse);
-            throw dse;
-        }
-
-        try {
-            studentDemographic = gradDataConvertionBean.getStudentDemog(reportData);
-
-            LOG.log(Level.FINER,
-                    "Retrieved student demographic from TRAX for PEN: {0}", pen);
-
-            if (studentDemographic == null) {
-                final String msg = "Failed to find demographic data in TRAX for PEN: ".concat(pen);
-                final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, _m, dse);
-                throw dse;
-            } else {
-                LOG.log(Level.FINEST, "Retrieved student demographic data:");
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentDemographic.getPen(), studentDemographic.getFirstName(), studentDemographic.getLastName()});
-            }
-
-        } catch (Exception ex) {
-            String msg = "Failed to access TRAX transcript data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
-            throw dex;
-        }
-
-        LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, _m);
-        return studentDemographic;
-    }
-
-    /**
      * Read the collection of transcript courses from the TRAX Adaptor which is
      * required for the transcript service.
      *
@@ -623,38 +568,38 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      *
      * @param programCode The graduation program code that influences sort
      * order.
-     * @param traxTranscriptCourses
+     * @param transcriptCourses
      */
     private List<TranscriptResult> adapt(
             final GraduationProgramCode programCode,
-            final List<TranscriptCourse> traxTranscriptCourses) {
+            final List<TranscriptCourse> transcriptCourses) {
         final String m_ = "adapt(GraduationProgramCode, List<TranscriptCourse>)";
-        LOG.entering(CLASSNAME, m_, traxTranscriptCourses);
+        LOG.entering(CLASSNAME, m_, transcriptCourses);
 
         List<TranscriptResult> transcriptResults = Collections.emptyList();
 
-        if (traxTranscriptCourses != null) {
-            final int size = traxTranscriptCourses.size();
+        if (transcriptCourses != null) {
+            final int size = transcriptCourses.size();
             transcriptResults = new ArrayList<>(size);
 
-            for (final TranscriptCourse traxCourse : traxTranscriptCourses) {
-                final String courseType = traxCourse.getCourseType();
+            for (final TranscriptCourse transcriptCourse : transcriptCourses) {
+                final String courseType = transcriptCourse.getCourseType();
 
-                final String eq = traxCourse.getEquivalency();
-                final String req = traxCourse.getRequirement();
-                final String ufg = traxCourse.getUsedForGrad();
+                final String eq = transcriptCourse.getEquivalency();
+                final String req = transcriptCourse.getRequirement();
+                final String ufg = transcriptCourse.getUsedForGrad();
                 final String reqName = getName(req, programCode.toString());
                 final TranscriptResultImpl tResult = new TranscriptResultImpl(
                         req, eq, ufg, reqName);
 
-                final String courseName = traxCourse.getCourseName();
-                final String courseCode = traxCourse.getCourseCode();
-                final String courseLevel = traxCourse.getCourseLevel();
-                final String traxCredits = traxCourse.getCredits();
-                final String relatedCourse = traxCourse.getRelatedCourse();
-                final String relatedLevel = traxCourse.getRelatedLevel();
+                final String courseName = transcriptCourse.getCourseName();
+                final String courseCode = transcriptCourse.getCourseCode();
+                final String courseLevel = transcriptCourse.getCourseLevel();
+                final String traxCredits = transcriptCourse.getCredits();
+                final String relatedCourse = transcriptCourse.getRelatedCourse();
+                final String relatedLevel = transcriptCourse.getRelatedLevel();
 
-                final String sessionDate = traxCourse.getSessionDate();
+                final String sessionDate = transcriptCourse.getSessionDate();
                 final CourseImpl course = new CourseImpl(
                         courseName, courseCode,
                         courseLevel, traxCredits,
@@ -663,12 +608,12 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
 
                 tResult.setCourse(course);
 
-                final String schoolPct = traxCourse.getSchoolPercent();
-                final String examPct = traxCourse.getExamPercent();
-                String finalPct = traxCourse.getFinalPercent();
-                final String finalLetterGrade = traxCourse.getFinalLetterGrade();
-                final String interimPct = traxCourse.getInterimMark();
-                final String interimLetterGrade = traxCourse.getInterimLetterGrade();
+                final String schoolPct = transcriptCourse.getSchoolPercent();
+                final String examPct = transcriptCourse.getExamPercent();
+                String finalPct = transcriptCourse.getFinalPercent();
+                final String finalLetterGrade = transcriptCourse.getFinalLetterGrade();
+                final String interimPct = transcriptCourse.getInterimMark();
+                final String interimLetterGrade = transcriptCourse.getInterimLetterGrade();
 
                 final MarkImpl mark = new MarkImpl();
                 mark.setSchoolPercent(schoolPct);
@@ -861,7 +806,6 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         LOG.entering(CLASSNAME, _m);
         final String pen = personalEducationNumber.getValue();
         final StudentInfo studentInfo = getStudentInfo(pen);
-        final StudentDemographic studentDemog = getStudentDemog(pen);
 
         // Adapt TRAX data to other objects for reporting.
         final String programCode = studentInfo.getGradProgram();
@@ -873,7 +817,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
 
         // FIXME: Replace with GraduationProgramCode enum.
         final GradProgram program = createGradProgram(programCode);
-        final GraduationData graduationData = adaptGraduationData(studentInfo, studentDemog, transcript, programCode);
+        final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);
 
         final String gradMessage = studentInfo.getGradMessage();
         final List<NonGradReason> nonGradReasons = adaptReasons(studentInfo);
@@ -912,23 +856,14 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
     // FIXME: Pass in GraduationProgramCode enum
     private GraduationData adaptGraduationData(
             final StudentInfo studentInfo,
-            final StudentDemographic studentDemog,
-            final Transcript transcript,
-            final String programCode) {
-        final String _m = "adaptGraduationData(StudentInfo, StudentDemographic, Transcript, String)";
-        final Object[] params = {studentInfo, studentDemog, transcript};
+            final Transcript transcript) {
+        final String _m = "adaptGraduationData(StudentInfo, Transcript, String)";
+        final Object[] params = {studentInfo, transcript};
         LOG.entering(CLASSNAME, _m, params);
 
         final GraduationData graduationData = new GraduationDataImpl();
-        final GraduationProgramCode program = GraduationProgramCode.valueFrom(programCode);
 
-        Date gradDate = null;
-
-        if (PROGRAM_SCCP.equals(program)) {
-            gradDate = studentDemog.getSccDate();
-        } else {
-            gradDate = studentDemog.getCertificateDate();
-        }
+        Date gradDate = studentInfo.getGradDate();
 
         ((GraduationDataImpl) graduationData).setGraduationDate(gradDate);
         ((GraduationDataImpl) graduationData).setHonorsFlag(studentInfo.isHonourFlag());
