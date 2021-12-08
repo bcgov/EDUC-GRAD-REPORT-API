@@ -17,11 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.jasper.impl;
 
-import ca.bc.gov.educ.grad.report.dto.reports.data.admin.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.data.assessment.impl.AssessmentScore;
-import ca.bc.gov.educ.grad.report.dto.reports.data.assessment.impl.LiteracyAssessmentResult;
-import ca.bc.gov.educ.grad.report.dto.reports.data.assessment.impl.NumeracyAssessmentResult;
-import ca.bc.gov.educ.grad.report.dto.reports.data.assessment.impl.RawScore;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.*;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentCode;
 import ca.bc.gov.educ.grad.report.model.assessment.RawScoreCategory;
@@ -34,11 +30,9 @@ import java.util.*;
 import static ca.bc.gov.educ.grad.report.dto.reports.data.impl.DistrictOrganisation.LOGO_CODE_BC;
 import static ca.bc.gov.educ.grad.report.dto.reports.data.impl.TranscriptResult.*;
 import static ca.bc.gov.educ.grad.report.model.assessment.AssessmentCode.*;
-import static ca.bc.gov.educ.grad.report.model.assessment.RawScoreCategory.*;
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_TRAX_YM;
 import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.PROGRAM_1950;
 import static java.lang.String.format;
-import static java.lang.String.valueOf;
 
 /**
  * Only used by the Jaspersoft Studio reports IDE to obtain mock data for
@@ -318,65 +312,6 @@ public class JRDataSourceFactory {
     }
 
     /**
-     * Creates a single ExaminationResult instance populated with mock data.
-     *
-     * @param courseLevel The grade level for a course.
-     * @param month The month a course was offered.
-     *
-     * @return A mock ExaminationResult instance for testing purposes.
-     */
-    public static ExaminationResult createExaminationResult(
-            final String courseLevel, final int month) {
-        final String courseName;
-        final String courseCode;
-        final int i = randomInteger() % 3;
-
-        switch (i) {
-            case 0:
-                courseName = "NUMERACY ASSESSMENT";
-                courseCode = "NME";
-                break;
-            case 1:
-                courseName = "LITERACY ASSESSMENT";
-                courseCode = "LTE";
-                break;
-            case 2:
-            default:
-                courseName = randomCourseName("3");
-                courseCode = "UWAPM";
-                break;
-        }
-
-        return new ExaminationResult.Builder()
-                .withCourseName(courseName)
-                .withExamPercent(randomPercent())
-                .withSchoolPercent(randomPercent())
-                .withBestExamPercent(randomPercent())
-                .withBestSchoolPercent(randomPercent())
-                .withCourseCode(courseCode)
-                .withCourseLevel(courseLevel)
-                .withFinalGrade(randomGrade())
-                .withSessionDate(randomSessionDate())
-                .build();
-    }
-
-    /**
-     * Returns a Scholarship instance with mock data.
-     *
-     * @return A mock Scholarship for testing purposes.
-     */
-    public static Scholarship createScholarship() {
-        return new Scholarship.Builder()
-                .withAmount(randomPercent() * 10)
-                .withExpiry(randomDate())
-                .withName(randomScholarshipName())
-                .withRedeemed(randomRedeemed())
-                .withCode(randomScholarshipType())
-                .withYearAwarded(randomDate())
-                .build();
-    }
-
-    /**
      * Returns the district organisation of the school the student attended.
      *
      * @param logoCode The logo code for the school (e.g., "BC", "YU").
@@ -460,29 +395,13 @@ public class JRDataSourceFactory {
                 ? createAdultTranscriptResults()
                 : createTranscriptResults(examinable, nonExaminable, assessable);
 
-//        final int penResults = randomPercent() % GROUPED_RESULTS.length;
-//
-//        if (penResults > 0) {
-//            transcriptResults.clear();
-//            transcriptResults.addAll(GROUPED_RESULTS[penResults]);
-//        }
-        int size = (randomPercent() % 30) + 25;
-        final List<ExaminationResult> examinationResults = createExaminationResults(size);
-
-        size = randomPercent() % 50 + 20;
-        final List<Scholarship> scholarships = createScholarshipResults(size);
-
-        size = randomPercent() % 5 + 1;
+        int size = randomPercent() % 5 + 1;
         final List<Certificate> certificates = createCertificateResults(size);
 
         if (randomPercent() % 2 == 0) {
             final List<IncompletionReason> reasons = createIncompletionReasons();
             status.setIncompletionReasons(reasons);
         }
-
-        final NumeracyAssessmentResult gna = createNumeracyAssessmentResult();
-        
-        final LiteracyAssessmentResult gla = createLiteracyAssessmentResult();
 
         final Student student = new Student.Builder()
                 .withPEN(pen)
@@ -493,10 +412,6 @@ public class JRDataSourceFactory {
                 .withSchool(school)
                 .withAddress(studentAddress)
                 .withTranscriptResults(transcriptResults)
-                .withExaminationResults(examinationResults)
-                .withScholarships(scholarships)
-                .withNumeracyAssessmentResult(gna)
-                .withLiteracyAssessmentResult(gla)
                 .withCertificates(certificates)
                 .withGraduationProgram(graduationProgram)
                 .withStatus(status)
@@ -605,38 +520,12 @@ public class JRDataSourceFactory {
         }
     }
 
-    private static List<ExaminationResult> createExaminationResults(final int size) {
-        final List<ExaminationResult> results = new ArrayList<>(size);
-
-        if (randomPercent() % 10 != 0) {
-            for (int i = 0; i < size; i++) {
-                results.add(createExaminationResult("11", i));
-                results.add(createExaminationResult("12", i));
-                results.add(createExaminationResult("13", i));
-            }
-        }
-
-        return results;
-    }
-
     private static List<Certificate> createCertificateResults(final int size) {
         final List<Certificate> results = new ArrayList<>(size);
 
         if (randomPercent() % 5 != 0) {
             for (int i = 1; i <= size; i++) {
                 results.add(createCertificate());
-            }
-        }
-
-        return results;
-    }
-
-    private static List<Scholarship> createScholarshipResults(final int size) {
-        final List<Scholarship> results = new ArrayList<>(size);
-
-        if (randomPercent() % 25 != 0) {
-            for (int i = 1; i <= size; i++) {
-                results.add(createScholarship());
             }
         }
 
@@ -731,259 +620,11 @@ public class JRDataSourceFactory {
     }
 
     /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<ManualInterventionOrderImpl> createManualInterventionOrderCollection() {
-        final int size = getAdminReportListSize();
-        final Collection<ManualInterventionOrderImpl> c = new ArrayList<>(size);
-
-        for (int i = size; i >= 0; i--) {
-            c.add(createManualInterventionOrderImpl());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static ManualInterventionOrderImpl createManualInterventionOrderImpl() {
-        return new ManualInterventionOrderImpl.Builder()
-                .withCertificate(randomBoolean())
-                .withCost(randomMoney100())
-                .withOrder(randomPercent() * 10L)
-                .withQueued(randomQueued())
-                .withTranscript(randomBoolean())
-                .withOrdered(randomGroupableDate())
-                .withPayment(randomPayment())
-                .withStatus(random("Pending", "In Progress", "Cancelled", "Complete"))
-                .withDelivery(randomDelivery())
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<SelfServeOrderImpl> createSelfServeOrderCollection() {
-        final int size = getAdminReportListSize();
-        final Collection<SelfServeOrderImpl> c = new ArrayList<>(size);
-
-        for (int i = size; i >= 0; i--) {
-            c.add(createSelfServeOrder());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static SelfServeOrderImpl createSelfServeOrder() {
-        return new SelfServeOrderImpl.Builder()
-                .withCertificate(randomBoolean())
-                .withCost(randomMoney100())
-                .withOrder(randomPercent() * 10L)
-                .withTranscript(randomBoolean())
-                .withOrdered(randomGroupableDate())
-                .withPayment(randomPayment())
-                .withStatus(random("Processing", "Complete"))
-                .withDelivery(randomDelivery())
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<PSIChoiceImpl> createPSIChoiceCollection() {
-        final int size = getAdminReportListSize();
-        final Collection<PSIChoiceImpl> c = new ArrayList<>(size);
-
-        for (int i = size; i >= 0; i--) {
-            c.add(createPSIChoice());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static PSIChoiceImpl createPSIChoice() {
-        return new PSIChoiceImpl.Builder()
-                .withCode("" + randomPercent() * 10)
-                .withName(randomPSIName())
-                .withTally(10)
-                .withTransmission(random("Electronic", "XML", "Print"))
-                .withTransmitted(new Date())
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<RegistrationIssueImpl> createRegistrationIssueCollection() {
-        final int size = getAdminReportListSize();
-        final Collection<RegistrationIssueImpl> c = new ArrayList<>(size);
-
-        for (int i = size; i >= 0; i--) {
-            c.add(createRegistrationIssue());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static RegistrationIssueImpl createRegistrationIssue() {
-        return new RegistrationIssueImpl.Builder()
-                .withQueued(randomQueued())
-                .withReference("" + randomPercent() * 10)
-                .withRegistered(randomGroupableDate())
-                .withStatus(random("Pending", "In Progress", "Resolved"))
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<StudentProfileImpl> createStudentProfileCollection() {
-        final int size = getAdminReportListSize();
-        final Collection<StudentProfileImpl> c = new ArrayList<>(size);
-
-        for (int i = size; i >= 0; i--) {
-            c.add(createStudentProfile());
-        }
-
-        return c;
-    }
-
-    /**
      * 12/28/1993 must display as 28-DEC-1993. This tests the difference between
      * "dd-MMM-yyyy" (correct) and "dd-MMM-YYYY" (incorrect).
      */
     private static Date getStudentBirthdate() {
         return new Date(757065600000L);
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static StudentProfileImpl createStudentProfile() {
-        return new StudentProfileImpl.Builder()
-                .withRegistered(randomDate())
-                .withBcServices(randomInteger())
-                .withBceId(randomInteger())
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<PENUserOrderImpl> createPENUserOrderCollection() {
-        final int size = getAdminReportListSize();
-        final Collection<PENUserOrderImpl> c = new ArrayList<>(size);
-
-        for (int i = size; i >= 0; i--) {
-            c.add(createPENUserOrder());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static PENUserOrderImpl createPENUserOrder() {
-        return new PENUserOrderImpl.Builder()
-                .withCost(randomDouble())
-                .withDelivery(randomDelivery())
-                .withOrdered(randomGroupableDate())
-                .withOrders(randomPercent())
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<NonPENUserOrderImpl> createNonPENUserOrderCollection() {
-        final Collection<NonPENUserOrderImpl> c = new ArrayList<>();
-
-        for (int i = getAdminReportListSize(); i >= 0; i--) {
-            c.add(createNonPENUserOrder());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static NonPENUserOrderImpl createNonPENUserOrder() {
-        return new NonPENUserOrderImpl.Builder()
-                .withCost(randomDouble())
-                .withDelivery(randomDelivery())
-                .withOrdered(randomGroupableDate())
-                .withOrders(randomPercent())
-                .build();
-    }
-
-    /**
-     * For testing an admin report.
-     *
-     * @return A list of object instances required for the report.
-     */
-    public static Collection<IdleTranscriptImpl> createIdleTranscriptCollection() {
-        final Collection<IdleTranscriptImpl> c = new ArrayList<>();
-
-        for (int i = getAdminReportListSize(); i >= 0; i--) {
-            c.add(createIdleTranscript());
-        }
-
-        return c;
-    }
-
-    /**
-     * Creates an object used by an admin report.
-     *
-     * @return A report object instance.
-     */
-    public static IdleTranscriptImpl createIdleTranscript() {
-        return new IdleTranscriptImpl.Builder()
-                .withDocumentId(valueOf(randomLong()))
-                .withOrderNumber(valueOf(randomLong()))
-                .withOrderedDate(randomDate())
-                .withRecipient(randomPSIName())
-                .withPen(valueOf(randomLong()))
-                .build();
     }
 
     /**
@@ -1014,15 +655,6 @@ public class JRDataSourceFactory {
                 "PSI: Electronic send now",
                 "PSI: Electronic send interim and final"
         );
-    }
-
-    /**
-     * Returns a number of entries to use for the report.
-     *
-     * @return A number of entries.
-     */
-    private static int getAdminReportListSize() {
-        return randomPercent() % 15;
     }
 
     /**
@@ -1420,22 +1052,6 @@ public class JRDataSourceFactory {
         return (double) randomPercent();
     }
 
-    /**
-     * A payment method description selected randomly from a list of available
-     * payment methods.
-     *
-     * @return A non-null, non-empty String.
-     */
-    private static String randomPayment() {
-        return random(
-                "Visa",
-                "MasterCard",
-                "American Express",
-                "Visa Debit",
-                "Cheque/Money Order"
-        );
-    }
-
     private static String randomCredits() {
         return random("2", "2p", "(4)", "", "4");
     }
@@ -1488,59 +1104,6 @@ public class JRDataSourceFactory {
         return random("123456780", "111111111", "000000000", "999999999");
     }
 
-    private static NumeracyAssessmentResult createNumeracyAssessmentResult() {
-        final Integer proficiency = 1 + (new Random().nextInt(4));
-
-        return new NumeracyAssessmentResult.Builder()
-                .withProficiencyScore(proficiency)
-                .withRawScores(createRawScoresGNA())
-                .withSessionDate(randomSessionDate())
-                .build();
-    }
-    
-    private static LiteracyAssessmentResult createLiteracyAssessmentResult() {
-        final Integer proficiency = 1 + (new Random().nextInt(4));
-
-        return new LiteracyAssessmentResult.Builder()
-                .withProficiencyScore(proficiency)
-                .withRawScores(createRawScoresGLA())
-                .withSessionDate(randomSessionDate())
-                .build();
-    }
-
-    private static List<RawScore> createRawScoresGNA() {
-        final List<RawScore> rawScores = new ArrayList<>(2);
-
-        final RawScore onlineScore = createRawScore(ONLINE);
-        final RawScore writtenScore = createRawScore(WRITTEN_RESPONSE);
-
-        rawScores.add(onlineScore);
-        rawScores.add(writtenScore);
-
-        return rawScores;
-    }
-    
-    private static List<RawScore> createRawScoresGLA() {
-        final List<RawScore> rawScores = new ArrayList<>(2);
-
-        final RawScore byTaskScore = createRawScore(TASK);
-        final RawScore byPartScore = createRawScore(PART);
-
-        rawScores.add(byTaskScore);
-        rawScores.add(byPartScore);
-
-        return rawScores;
-    }
-
-    private static RawScore createRawScore(final RawScoreCategory category) {
-        return new RawScore.Builder()
-                .withAssessmentScores(createAssessmentScores(category))
-                .withRawScoreCategory(category)
-                .withTotalScore(randomPercent() / 2)
-                .withTotalStudentScore(randomPercent() / 2)
-                .build();
-    }
-    
     private static List<AssessmentScore> createAssessmentScores(final RawScoreCategory category) {
         final List<AssessmentScore> result;
 

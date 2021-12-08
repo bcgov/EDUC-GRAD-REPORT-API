@@ -18,8 +18,6 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
-import ca.bc.gov.educ.grad.report.dto.reports.data.assessment.impl.LiteracyAssessmentResult;
-import ca.bc.gov.educ.grad.report.dto.reports.data.assessment.impl.NumeracyAssessmentResult;
 import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
 
 import javax.xml.bind.annotation.*;
@@ -120,18 +118,6 @@ public final class Student extends BusinessEntity {
     private List<AchievementResult> achievementResults = new ArrayList<>();
 
     /**
-     * Used for the GNA report.
-     */
-    @XmlTransient
-    private NumeracyAssessmentResult numeracyAssessmentResult;
-    
-    /**
-     * Used for the GlA report.
-     */
-    @XmlTransient
-    private LiteracyAssessmentResult literacyAssessmentResult;
-
-    /**
      * Used for the certificate report.
      */
     @XmlElementWrapper(name = "certificates")
@@ -229,10 +215,6 @@ public final class Student extends BusinessEntity {
         return this.birthdate == null
                 ? createBirthdate()
                 : new Date(this.birthdate.getTime());
-    }
-
-    public AcademicAward getAcademicAward() {
-        return academicAward;
     }
 
     /**
@@ -437,64 +419,6 @@ public final class Student extends BusinessEntity {
         }
 
         return this.achievementResults;
-    }
-
-    /**
-     * Returns a list of graduation numeracy assessments used to populate the
-     * GNA report.
-     *
-     * Lazily initialized.
-     *
-     * @return A list of assessments, never null (possibly empty).
-     */
-    public NumeracyAssessmentResult getNumeracyAssessmentResult() {
-        if (this.numeracyAssessmentResult == null) {
-            this.numeracyAssessmentResult = createNumeracyAssessmentResult();
-        }
-
-        return this.numeracyAssessmentResult;
-    }
-
-    /**
-     * Sets numeracy assessment result (proficiency and tasks).
-     *
-     * @param numeracyAssessmentResult Proficiency results.
-     */
-    public void setNumeracyAssessmentResult(final NumeracyAssessmentResult numeracyAssessmentResult) {
-        this.numeracyAssessmentResult = numeracyAssessmentResult;
-    }
-
-    private NumeracyAssessmentResult createNumeracyAssessmentResult() {
-        return new NumeracyAssessmentResult();
-    }
-    
-    /**
-     * Returns a list of graduation literacy assessments used to populate the
-     * GLA report.
-     *
-     * Lazily initialized.
-     *
-     * @return A list of assessments, never null (possibly empty).
-     */
-    public LiteracyAssessmentResult getLiteracyAssessmentResult() {
-        if (this.literacyAssessmentResult == null) {
-            this.literacyAssessmentResult = createLiteracyAssessmentResult();
-        }
-
-        return this.literacyAssessmentResult;
-    }
-    
-    /**
-     * Sets literacy assessment result (proficiency and tasks).
-     *
-     * @param literacyAssessmentResult Proficiency results.
-     */
-    public void setLiteracyAssessmentResult(final LiteracyAssessmentResult literacyAssessmentResult) {
-        this.literacyAssessmentResult = literacyAssessmentResult;
-    }
-
-    private LiteracyAssessmentResult createLiteracyAssessmentResult() {
-        return new LiteracyAssessmentResult();
     }
 
     /**
@@ -1073,61 +997,6 @@ public final class Student extends BusinessEntity {
          */
         public Builder withTranscriptResults(final List<TranscriptResult> transcriptResults) {
             getObject().setTranscriptResults(transcriptResults);
-            return thisBuilder();
-        }
-
-        /**
-         * Sets the list of academic sessions.
-         *
-         * @param academicSession Academic session with grades.
-         * @return thisBuilder
-         */
-        public Builder withAcademicSessions(final List<AcademicSession> academicSession) {
-            getObject().setAcademicSessions(academicSession);
-            return thisBuilder();
-        }
-
-        /**
-         * Sets the list of examination results.
-         *
-         * @param examinationResults Course names and grades.
-         * @return thisBuilder
-         */
-        public Builder withExaminationResults(final List<ExaminationResult> examinationResults) {
-            getObject().setExaminationResults(examinationResults);
-            return thisBuilder();
-        }
-
-        /**
-         * Sets the list of numeracy assessment result.
-         *
-         * @param numeracyAssessmentResult Overall proficiency and task scores.
-         * @return thisBuilder
-         */
-        public Builder withNumeracyAssessmentResult(final NumeracyAssessmentResult numeracyAssessmentResult) {
-            getObject().setNumeracyAssessmentResult(numeracyAssessmentResult);
-            return thisBuilder();
-        }
-        
-        /**
-         * Sets the list of literacy assessment result.
-         *
-         * @param literacyAssessmentResult Overall proficiency and task scores.
-         * @return thisBuilder
-         */
-        public Builder withLiteracyAssessmentResult(final LiteracyAssessmentResult literacyAssessmentResult) {
-            getObject().setLiteracyAssessmentResult(literacyAssessmentResult);
-            return thisBuilder();
-        }
-
-        /**
-         * Sets the list of awards and scholarships.
-         *
-         * @param scholarships The list of scholarships awarded.
-         * @return thisBuilder
-         */
-        public Builder withScholarships(final List<Scholarship> scholarships) {
-            getObject().setScholarships(scholarships);
             return thisBuilder();
         }
 
