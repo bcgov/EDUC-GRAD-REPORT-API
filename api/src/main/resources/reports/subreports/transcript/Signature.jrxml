@@ -26,7 +26,7 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
-	<field name="student" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Student">
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
 	<field name="F_LABEL_MAP" class="java.util.HashMap">

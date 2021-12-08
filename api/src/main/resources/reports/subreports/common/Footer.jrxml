@@ -5,7 +5,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
-	<import value="ca.bc.gov.educ.grad.dto.reports.jasper.EmbeddedImageTranscoder"/>
+	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.EmbeddedImageTranscoder"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_SUBTITLE" class="java.lang.String"/>

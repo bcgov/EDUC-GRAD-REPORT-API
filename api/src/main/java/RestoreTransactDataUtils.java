@@ -1,4 +1,4 @@
-import ca.bc.gov.educ.grad.dao.NamedParameterStatement;
+import ca.bc.gov.educ.grad.report.dao.NamedParameterStatement;
 import oracle.jdbc.OracleBlob;
 import oracle.jdbc.OracleClob;
 

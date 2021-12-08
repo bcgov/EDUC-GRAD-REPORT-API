@@ -26,8 +26,8 @@
 	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
-	<import value="ca.bc.gov.educ.grad.dto.reports.jasper.TranscriptCalculator"/>
-	<import value="ca.bc.gov.educ.grad.dto.reports.jasper.EmbeddedImageTranscoder"/>
+	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.TranscriptCalculator"/>
+	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.EmbeddedImageTranscoder"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<import value="net.sf.jasperreports.engine.util.JRLoader"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
@@ -72,7 +72,7 @@
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
-	<field name="student" class="ca.bc.gov.educ.grad.dto.reports.data.impl.Student">
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
 	<field name="student.transcriptResults" class="java.util.List">
