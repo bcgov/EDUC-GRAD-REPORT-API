@@ -1,7 +1,6 @@
 package ca.bc.gov.educ.api.report.service;
 
 import ca.bc.gov.educ.api.report.model.dto.*;
-import ca.bc.gov.educ.api.report.util.ReportApiUtils;
 import ca.bc.gov.educ.grad.dto.GenerateReportRequest;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.isd.achievement.StudentAchievementService;
@@ -23,19 +22,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
 public class ReportService {
 
 	private static final String CLASS_NAME = ReportService.class.getName();
-	private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
+	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
 	private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 
@@ -260,12 +256,10 @@ public class ReportService {
 	}
 
 	private InputStream openResource(final String resource) throws IOException {
-		//final URL url = getReportResource(resource);
 		URL url = this.getClass().getResource(DIR_REPORT_BASE + resource);
 		return url.openStream();
 	}
 	private InputStream openImageResource(final String resource) throws IOException {
-		//final URL url = getReportResource(resource);
 		URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
 		return url.openStream();
 	}
