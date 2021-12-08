@@ -125,11 +125,6 @@ public final class Student extends BusinessEntity {
     private List<Certificate> certificates = new ArrayList<>();
 
     /**
-     * Used for the scholarship report.
-     */
-    private List<Scholarship> scholarships = new ArrayList<>();
-
-    /**
      * Used for the transcript of grades XML reports.
      */
     @XmlElement(name = "academicSession")
@@ -509,21 +504,6 @@ public final class Student extends BusinessEntity {
     }
 
     /**
-     * Returns a list of scholarships and awards this student instance has won.
-     *
-     * Lazily initialized.
-     *
-     * @return A list of awards and scholarships, never null (possibly empty).
-     */
-    public List<Scholarship> getScholarships() {
-        if (this.scholarships == null) {
-            this.scholarships = createEmptyList();
-        }
-
-        return this.scholarships;
-    }
-
-    /**
      * TODO: Finish this.
      *
      * Lazily initialized.
@@ -617,26 +597,6 @@ public final class Student extends BusinessEntity {
      */
     public void addAcademicSession(final AcademicSession academicSession) {
         getAcademicSession().add(academicSession);
-    }
-
-    /**
-     * Sets the list of scholarships and awards the student won. This is null
-     * safe.
-     *
-     * @param scholarships List of scholarships and awards.
-     */
-    public void setScholarships(final List<Scholarship> scholarships) {
-        this.scholarships = scholarships;
-    }
-
-    /**
-     * Helper method to add a scholarship to the student's list of scholarships.
-     *
-     * @param scholarship The scholarship to add to the internal list of
-     * scholarships.
-     */
-    public void addScholarship(final Scholarship scholarship) {
-        getScholarships().add(scholarship);
     }
 
     /**
@@ -785,15 +745,6 @@ public final class Student extends BusinessEntity {
      */
     public int countExaminationResults() {
         return getExaminationResults().size();
-    }
-
-    /**
-     * Returns the number of entries (size) in the scholarships list.
-     *
-     * @return A whole number.
-     */
-    public int countScholarships() {
-        return getScholarships().size();
     }
 
     /**
@@ -1019,7 +970,7 @@ public final class Student extends BusinessEntity {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" + "pen=" + pen + ", firstName=" + firstName + ", lastName=" + lastName + ", middleNames=" + middleNames + ", grade=" + grade + ", birthdate=" + birthdate + ", school=" + school + ", address=" + address + ", graduationProgram=" + graduationProgram + ", status=" + status + ", examinationResults=" + examinationResults + ", transcriptResults=" + transcriptResults + ", certificates=" + certificates + ", scholarships=" + scholarships + ", academicSession=" + academicSession + ", academicAward=" + academicAward + '}';
+        return getClass().getSimpleName() + "{" + "pen=" + pen + ", firstName=" + firstName + ", lastName=" + lastName + ", middleNames=" + middleNames + ", grade=" + grade + ", birthdate=" + birthdate + ", school=" + school + ", address=" + address + ", graduationProgram=" + graduationProgram + ", status=" + status + ", examinationResults=" + examinationResults + ", transcriptResults=" + transcriptResults + ", certificates=" + certificates + ", academicSession=" + academicSession + ", academicAward=" + academicAward + '}';
     }
 
 }

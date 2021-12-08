@@ -46,7 +46,7 @@ public class BusinessEntityAdapter {
 
     private static final String CLASSNAME = BusinessEntityAdapter.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final int TRAX_COURSE_LENGTH = 5;
+    private static final int COURSE_LENGTH = 5;
 
     /**
      * Creates and populates a Certificate instance.
@@ -374,7 +374,7 @@ public class BusinessEntityAdapter {
     }
 
     /**
-     * Maps the ISD GraduationData to a Student to be used in constructing
+     * Maps the GraduationData to a Student to be used in constructing
      * graduation program data.
      *
      * TODO: Parameter comments should add information.
@@ -487,8 +487,7 @@ public class BusinessEntityAdapter {
             final String relatedCourse, final String relatedLevel) {
         String course = nullSafe(relatedCourse).trim();
         final String level = nullSafe(relatedLevel).trim();
-        //ST-1753 TRAX has the format of 5 characters as the course length, STs has to be consistent with it.
-        int length = TRAX_COURSE_LENGTH - course.length();
+        int length = COURSE_LENGTH - course.length();
         if (length >= 0) {
             for (int i = 0; i < length; i++) {
                 course = course + " ";
@@ -519,23 +518,23 @@ public class BusinessEntityAdapter {
      * This method converts a TRAX-specific date format into the PESC standard
      * date format for sessions.
      *
-     * @param traxSessionDate TRAX-formatted date.
+     * @param sessionDate formatted date.
      * @return PESC-formatted date, or FORMAT ERROR message.
      */
-    private static String formatSessionDate(final String traxSessionDate) {
-        String result = nullSafe(traxSessionDate);
+    private static String formatSessionDate(final String sessionDate) {
+        String result = nullSafe(sessionDate);
 
         try {
             if (!result.isEmpty()) {
                 final DateFormat traxSdf = new SimpleDateFormat(DATE_TRAX_YM);
                 final DateFormat ymFormat = new SimpleDateFormat(DATE_YEAR_MONTH);
 
-                final Date date = traxSdf.parse(traxSessionDate);
+                final Date date = traxSdf.parse(sessionDate);
                 result = ymFormat.format(date);
             }
         } catch (final ParseException ex) {
-            LOG.log(Level.WARNING, "Could not parse session date: <{0}>", traxSessionDate);
-            result = "FORMAT ERROR (" + traxSessionDate + ") " + ex.getMessage();
+            LOG.log(Level.WARNING, "Could not parse session date: <{0}>", sessionDate);
+            result = "FORMAT ERROR (" + sessionDate + ") " + ex.getMessage();
         }
 
         return result;
