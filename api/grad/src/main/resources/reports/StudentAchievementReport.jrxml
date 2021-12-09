@@ -1334,7 +1334,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="160" height="43" isRemoveLineWhenBlank="true" uuid="ff4663a1-85c9-4ac1-a3b0-73d4dfa6b585"/>
 								<textElement verticalAlignment="Top"/>
-								<textFieldExpression><![CDATA[$F{hasRequirementMet} == "false"?" Check With School":""]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{hasRequirementMet}]]></textFieldExpression>
 							</textField>
 							<componentElement>
 								<reportElement style="GeneratedText" positionType="Float" x="0" y="43" width="160" height="42" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
