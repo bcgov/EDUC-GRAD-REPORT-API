@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.api.report.client.model;
+package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +12,7 @@ public class Assessment {
 
     private Date issueDate;
     private List<AssessmentResult> results;
+    private String interim;
 
     public String getInterim() {
         return interim;

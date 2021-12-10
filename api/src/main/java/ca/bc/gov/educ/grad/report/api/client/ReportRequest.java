@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.api.report.client.model;
+package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

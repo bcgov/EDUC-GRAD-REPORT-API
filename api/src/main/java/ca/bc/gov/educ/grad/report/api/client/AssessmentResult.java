@@ -1,6 +1,8 @@
-package ca.bc.gov.educ.api.report.client.model;
+package ca.bc.gov.educ.grad.report.api.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Data;
 
 @Data
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")

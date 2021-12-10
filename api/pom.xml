@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ca.bc.gov.educ</groupId>
-    <artifactId>GRAD-Report-api-parent</artifactId>
-    <name>GRAD-Report-api-parent</name>
+    <artifactId>educ-grad-report-api</artifactId>
+    <name>educ-grad-report-api</name>
     <version>0.0.1-SNAPSHOT</version>
     <description>Ministry of Education REPORT API</description>
 
@@ -658,6 +658,14 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
             </plugin>
+            <!--plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <finalName>educ-grad-report-api</finalName>
+                </configuration>
+            </plugin-->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
@@ -761,6 +769,25 @@
                     <failOnMissingSourceDirectory>true</failOnMissingSourceDirectory>
                     <sourceScanner>org.codehaus.plexus.compiler.util.scan.StaleSourceScanner</sourceScanner>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/client.xml</descriptor>
+                        <!--descriptor>src/main/assembly/server.xml</descriptor-->
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
