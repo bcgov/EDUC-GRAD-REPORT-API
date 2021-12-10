@@ -416,7 +416,7 @@
         "optionalProgramCode": "DD",
         "optionalProgramName": "Dual Dogwood",
         "programCompletionDate": "2020-06-01",
-        "hasRequirementMet": "true",
+        "hasRequirementMet": null,
         "requirementMet": [
           {
             "rule": "400",
@@ -462,6 +462,14 @@
             "courseDetails": []
           }
         ],
+        "nonGradReasons": []
+      },
+      {
+        "optionalProgramCode": "BC",
+        "optionalProgramName": "Dual Dogwood",
+        "programCompletionDate": "2020-06-01",
+        "hasRequirementMet": " Check With School",
+        "requirementMet": [],
         "nonGradReasons": []
       }
     ],

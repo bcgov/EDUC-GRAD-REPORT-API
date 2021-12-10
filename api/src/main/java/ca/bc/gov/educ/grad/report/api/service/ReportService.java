@@ -35,7 +35,7 @@ import java.util.Map;
 public class ReportService {
 
 	private static final String CLASS_NAME = ReportService.class.getName();
-	private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
+	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
 	private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 
