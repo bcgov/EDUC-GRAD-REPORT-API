@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<beanDataAdapter class="net.sf.jasperreports.data.bean.BeanDataAdapterImpl"><name>Student</name><factoryClass>ca.bc.gov.educ.isd.reports.jasper.impl.JRDataSourceFactory</factoryClass><methodName>createStudentCollection</methodName><useFieldDescription>false</useFieldDescription></beanDataAdapter>
