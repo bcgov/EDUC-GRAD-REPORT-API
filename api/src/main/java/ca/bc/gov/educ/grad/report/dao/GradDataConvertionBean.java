@@ -43,7 +43,7 @@ public class GradDataConvertionBean {
             school.getMinistryCode(),// String mincode,
             student.getGrade(),// String studGrade,
             gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
-            reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : "",// String gradReqtYear,
+            reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : null,// String gradReqtYear,
             reportData.getGradMessage(),// String gradMessage,
             reportData.getUpdateDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getUpdateDate(),// String updateDt,
             reportData.getLogo(),// String logoType,

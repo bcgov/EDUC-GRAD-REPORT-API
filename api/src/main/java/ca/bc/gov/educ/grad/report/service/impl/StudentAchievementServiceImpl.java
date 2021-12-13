@@ -40,6 +40,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -289,6 +290,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     }
 
     private GradProgram createGradProgram(String code) {
+        if(StringUtils.trimToNull(code) == null) {
+            code = GraduationProgramCode.PROGRAM_2018.getCode();
+        }
         return new GradProgramImpl(GraduationProgramCode.valueFrom(code));
     }
 

@@ -636,34 +636,6 @@
         }
       ]
 	},
-    "gradProgram": {
-      "code": {
-        "code": "2018",
-        "description": "Graduation Program 2018",
-        "credits": "",
-        "name": ""
-      }
-    },
-    "graduationData": {
-      "graduationDate": "2018-06-30",
-      "honorsFlag": false,
-      "dogwoodFlag": false,
-      "programCodes": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      "programNames": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      "totalCreditsUsedForGrad": ""
-    },
     "gradMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 2018. Graduation date: September 2020.",
     "updateDate": ""
   }
