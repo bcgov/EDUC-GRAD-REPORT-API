@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2017-12-07T14:20:57 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Detail 1950, 1986" pageWidth="612" pageHeight="792" whenNoDataType="BlankPage" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="c0036d4f-8c7c-4d4d-8580-00a67cc9ef1b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\StudentAdapter.xml"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
+	<field name="student.provinciallyExaminableCourses" class="java.util.List">
+		<fieldDescription><![CDATA[student.provinciallyExaminableCourses]]></fieldDescription>
+	</field>
+	<field name="student.nonProvinciallyExaminableCourses" class="java.util.List">
+		<fieldDescription><![CDATA[student.nonProvinciallyExaminableCourses]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="100">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<subreport>
+				<reportElement x="0" y="0" width="612" height="100" isRemoveLineWhenBlank="true" uuid="f13a63c4-1365-43a9-ab68-cc254d9d8c1e"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.provinciallyExaminableCourses})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_PROVINCIAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="100">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<subreport>
+				<reportElement x="0" y="0" width="612" height="100" isRemoveLineWhenBlank="true" uuid="6d0c5520-3a49-4e54-85fc-22f4cfff7836"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.nonProvinciallyExaminableCourses})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_NONPROVINCIAL.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

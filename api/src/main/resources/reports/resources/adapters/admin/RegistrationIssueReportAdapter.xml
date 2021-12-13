@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beanDataAdapter class="net.sf.jasperreports.data.bean.BeanDataAdapterImpl"><name>Registration Issue Adapter</name><factoryClass>ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.JRDataSourceFactory</factoryClass><methodName>createRegistrationIssueCollection</methodName><useFieldDescription>false</useFieldDescription></beanDataAdapter>

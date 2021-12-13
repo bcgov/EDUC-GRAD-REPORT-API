@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2018-03-20T08:58:47 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Detail 1995, 2004, SCCP" pageWidth="567" pageHeight="792" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="c0036d4f-8c7c-4d4d-8580-00a67cc9ef1b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<field name="achievementResult.courseName" class="java.lang.String">
+		<fieldDescription><![CDATA[courseName]]></fieldDescription>
+	</field>
+	<field name="achievementResult.courseCode" class="java.lang.String">
+		<fieldDescription><![CDATA[courseCode]]></fieldDescription>
+	</field>
+	<field name="achievementResult.courseLevel" class="java.lang.String">
+		<fieldDescription><![CDATA[courseLevel]]></fieldDescription>
+	</field>
+	<field name="achievementResult.courseLevelGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[courseLevelGroup]]></fieldDescription>
+	</field>
+	<field name="achievementResult.requirementMet" class="java.lang.String">
+		<fieldDescription><![CDATA[requirementMet]]></fieldDescription>
+	</field>
+	<field name="achievementResult.equivalencyChallenge" class="java.lang.String">
+		<fieldDescription><![CDATA[equivalencyChallenge]]></fieldDescription>
+	</field>
+	<field name="achievementResult.schoolPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[schoolPercent]]></fieldDescription>
+	</field>
+	<field name="achievementResult.examPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[examPercent]]></fieldDescription>
+	</field>
+	<field name="achievementResult.sessionDate" class="java.lang.String">
+		<fieldDescription><![CDATA[sessionDate]]></fieldDescription>
+	</field>
+	<field name="achievementResult.formattedSessionDate" class="java.lang.String">
+		<fieldDescription><![CDATA[formattedSessionDate]]></fieldDescription>
+	</field>
+	<field name="achievementResult.finalPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[finalPercent]]></fieldDescription>
+	</field>
+	<field name="achievementResult.finalLetterGrade" class="java.lang.String">
+		<fieldDescription><![CDATA[finalLetterGrade]]></fieldDescription>
+	</field>
+	<field name="achievementResult.credits" class="java.lang.String">
+		<fieldDescription><![CDATA[credits]]></fieldDescription>
+	</field>
+	<variable name="V_PREVIOUS_COURSE_LEVEL" class="java.lang.String">
+		<variableExpression><![CDATA[$V{V_CURRENT_COURSE_LEVEL}]]></variableExpression>
+		<initialValueExpression><![CDATA[""]]></initialValueExpression>
+	</variable>
+	<variable name="V_CURRENT_COURSE_LEVEL" class="java.lang.String">
+		<variableExpression><![CDATA[$F{achievementResult.courseLevelGroup}]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="24">
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseHeader" x="0" y="0" width="251" height="24" uuid="08126461-2b3e-48fa-8862-d18befd04651"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.header.column.course.name}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseHeader" x="251" y="0" width="73" height="24" uuid="7f4a74d0-6ce7-4210-b1b6-9b65c27665df"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.header.column.course.code}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="CourseHeader" x="324" y="0" width="27" height="24" uuid="bb643038-046f-487f-b17f-f372fb3a3fe9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[REQ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="351" y="0" width="18" height="24" uuid="72898835-bd17-4495-9c4d-c034fdbd43ce"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[EQU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="369" y="0" width="46" height="24" uuid="fd519695-7ec6-4139-869b-6c11df93dcee"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[SESSION
+DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="415" y="0" width="30" height="24" uuid="569077a3-e8c7-4b3b-9004-bcec1b1c819b"/>
+				<box topPadding="0" bottomPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[GR 12
+SCHOOL
+%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="445" y="0" width="30" height="24" uuid="fe35b25f-2696-4ce0-80a8-aad536b82c6c"/>
+				<box topPadding="0" bottomPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[GR 12
+EXAM
+%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="506" y="0" width="28" height="24" uuid="16c992bd-2adc-4d95-bf45-4f88872ff552"/>
+				<box topPadding="0" bottomPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[FINAL
+LETTER
+GRADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="534" y="0" width="33" height="24" uuid="063bd629-b5ec-4987-adf2-37ee1f219982"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[CREDITS]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseHeader" x="475" y="0" width="31" height="24" uuid="7b915bf2-7434-4043-a0a4-80aa26cb029e"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.header.column.course.grade.final}.toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="0" y="0" width="251" height="14" uuid="85e5e2b1-a1a7-409b-8113-0407afd8050a"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.courseName}.trim().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="251" y="0" width="73" height="14" uuid="6ff863c9-bcc2-4331-aa52-d9cb4e2654ff"/>
+				<textElement>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{achievementResult.courseCode}.trim() + " " + $F{achievementResult.courseLevel}.trim()).toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="324" y="0" width="27" height="14" uuid="875238cf-e944-4943-9c51-f4862ea47b10"/>
+				<textElement textAlignment="Right">
+					<paragraph rightIndent="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.requirementMet}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="351" y="0" width="18" height="14" uuid="5abbc5b6-6cf6-4f48-8eb5-7f95cfde2f9f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{achievementResult.equivalencyChallenge}.trim().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="369" y="0" width="46" height="14" uuid="ae2b778c-a156-46ad-b3a9-6ef0f0c04c5d"/>
+				<textElement textAlignment="Center">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.formattedSessionDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="415" y="0" width="30" height="14" uuid="545d6c4f-0ba9-41b4-b90c-4d75e5e4e3d9"/>
+				<textElement textAlignment="Right">
+					<paragraph rightIndent="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.schoolPercent}.trim().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="445" y="0" width="30" height="14" uuid="5e8b3315-f1de-4861-a2c2-1203eaff32bb"/>
+				<textElement textAlignment="Right">
+					<paragraph rightIndent="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.examPercent}.trim().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="475" y="0" width="31" height="14" uuid="2647f7c3-f26c-484b-b61a-9ddd63c63245"/>
+				<textElement textAlignment="Right">
+					<paragraph rightIndent="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.finalPercent}.trim().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseRow" x="506" y="0" width="28" height="14" uuid="b3906865-dca4-47d6-a83d-cc323cc687fa"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{achievementResult.finalLetterGrade}.trim().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="CourseCredits" x="534" y="0" width="33" height="14" uuid="44c003ae-ad41-40c9-b3ca-1ea0850a819c"/>
+				<textFieldExpression><![CDATA[$F{achievementResult.credits}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
