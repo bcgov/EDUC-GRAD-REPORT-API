@@ -55,11 +55,48 @@ public class AchievementCourseImpl implements AchievementCourse {
     private String relatedLevel = "";
     private String usedForGrad = "";
 
+    private String gradReqMet;
+    private String completedCoursePercentage;
+    private String completedCourseLetterGrade;
+    private String interimPercent;
+    private String equivOrChallenge;
+
     /**
      * Constructor method.
      *
      */
     public AchievementCourseImpl() {
+    }
+
+    /**
+     * Constructor method. Used by the JPQL to create an object from the
+     * database entities.
+     * @param crseCode
+     * @param crseLevel
+     * @param sessionDate
+     */
+    public AchievementCourseImpl(
+            final String crseName,
+            final String crseCode,
+            final String crseLevel,
+            final String sessionDate,
+            final String gradReqMet,
+            final String completedCoursePercentage,
+            final String completedCourseLetterGrade,
+            final String interimPercent,
+            final String equivOrChallenge,
+            final Integer usedForGrad) {
+        this.courseName = nullSafe(crseName);
+        this.courseCode = nullSafe(crseCode);
+        this.courseLevel = nullSafe(crseLevel);
+        this.sessionDate = nullSafe(sessionDate);
+
+        this.gradReqMet = nullSafe(gradReqMet);
+        this.completedCoursePercentage = nullSafe(completedCoursePercentage);
+        this.completedCourseLetterGrade = nullSafe(completedCourseLetterGrade);
+        this.interimPercent = nullSafe(interimPercent);
+        this.equivOrChallenge = nullSafe(equivOrChallenge);
+        this.usedForGrad = nullSafe(usedForGrad).toString();
     }
 
     /**
@@ -94,7 +131,8 @@ public class AchievementCourseImpl implements AchievementCourse {
             final String interimMark,
             final String requirement,
             final String specialCase,
-            final String courseType) {
+            final String courseType,
+            final Integer usedForGrad) {
         this.pen = pen;
         this.courseName = nullSafe(courseName);
         this.courseCode = nullSafe(crseCode);
@@ -108,6 +146,7 @@ public class AchievementCourseImpl implements AchievementCourse {
         this.requirement = nullSafe(requirement);
         this.equivalency = nullSafe(specialCase);
         this.courseType = nullSafe(courseType);
+        this.usedForGrad = nullSafe(usedForGrad).toString();
 
         if (finalPercent == null || finalPercent.equals("---")) {
             this.finalPercent = "";
@@ -137,7 +176,7 @@ public class AchievementCourseImpl implements AchievementCourse {
      * @param interimLetterGrade
      */
     public AchievementCourseImpl(String studNo, String courseName, String crseCode, String crseLevel, String courseSession, String numCredits, String examPct, String schoolPct, String finalPct, String finalLg, String interimMark, String foundationReq, String specialCase, String rptCrsType, String interimLetterGrade) {
-        this(studNo, courseName, crseCode, crseLevel, courseSession, numCredits, examPct, schoolPct, finalPct, finalLg, interimMark, foundationReq, specialCase, rptCrsType);
+        this(studNo, courseName, crseCode, crseLevel, courseSession, numCredits, examPct, schoolPct, finalPct, finalLg, interimMark, foundationReq, specialCase, rptCrsType, (Integer)null);
         this.interimLetterGrade = (interimLetterGrade == null ? "" : interimLetterGrade.trim());
     }
 
@@ -229,6 +268,31 @@ public class AchievementCourseImpl implements AchievementCourse {
         return relatedCourse;
     }
 
+    @Override
+    public String getGradReqMet() {
+        return gradReqMet;
+    }
+
+    @Override
+    public String getCompletedCoursePercentage() {
+        return completedCoursePercentage;
+    }
+
+    @Override
+    public String getCompletedCourseLetterGrade() {
+        return completedCourseLetterGrade;
+    }
+
+    @Override
+    public String getInterimPercent() {
+        return interimPercent;
+    }
+
+    @Override
+    public String getEquivOrChallenge() {
+        return equivOrChallenge;
+    }
+
     /**
      * set the related course value.
      * <p>
@@ -254,7 +318,15 @@ public class AchievementCourseImpl implements AchievementCourse {
 
     @Override
     public String getUsedForGrad() {
-        return usedForGrad;
+        if (usedForGrad == null)
+            return "0";
+        else
+            return usedForGrad;
+    }
+
+    @Override
+    public Integer getCreditsUsedForGrad() {
+        return Integer.valueOf(getUsedForGrad());
     }
 
     @Override
@@ -303,10 +375,10 @@ public class AchievementCourseImpl implements AchievementCourse {
      * Set the code value which indicates if this course is used for graduation
      * requirements.
      *
-     * @param usedForGrad
+     * @param creditsUsedForGrad
      */
-    public void setUsedForGrad(final String usedForGrad) {
-        this.usedForGrad = usedForGrad;
+    public void setCreditsUsedForGrad(final String creditsUsedForGrad) {
+        this.usedForGrad = creditsUsedForGrad;
     }
 
     @Override
@@ -326,6 +398,16 @@ public class AchievementCourseImpl implements AchievementCourse {
      */
     private String nullSafe(final String s) {
         return s == null ? "" : s.trim();
+    }
+
+    /**
+     * Returns a version of the given Integer.
+     *
+     * @param s The string to trim.
+     * @return The empty string if s is null, otherwise s.trim().
+     */
+    private Integer nullSafe(final Integer s) {
+        return s == null ? 0 : s;
     }
 
     /**

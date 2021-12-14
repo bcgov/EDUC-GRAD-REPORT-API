@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
@@ -187,7 +188,7 @@ public class ReportService {
 				parameters.put("hasStudentExam","true");
 			}
 
-			List<StudentCourse> sCourseObjList = generateReportData.getData().getStudentCourses();
+			List<AchievementCourse> sCourseObjList = generateReportData.getData().getStudentCourses();
 			parameters.put("hasStudentCourse","false");
 			if(!sCourseObjList.isEmpty()) {
 				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sCourseObjList);

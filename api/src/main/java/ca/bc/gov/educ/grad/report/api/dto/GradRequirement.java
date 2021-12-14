@@ -1,5 +1,8 @@
 package ca.bc.gov.educ.grad.report.api.dto;
 
+import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
+import ca.bc.gov.educ.grad.report.utils.AchievementCourseListDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +18,8 @@ import java.util.List;
 public class GradRequirement {
     private String rule;
     private String description;
-    private List<CourseDetails> courseDetails;
+    @JsonDeserialize(using = AchievementCourseListDeserializer.class)
+    private List<AchievementCourse> courseDetails;
     private JRBeanCollectionDataSource courseDetailsdataSource;
 
     public JRBeanCollectionDataSource getCourseDetailsdataSource() {

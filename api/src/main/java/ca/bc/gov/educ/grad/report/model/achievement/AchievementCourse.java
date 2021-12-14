@@ -163,6 +163,48 @@ public interface AchievementCourse {
     String getUsedForGrad();
 
     /**
+     * get the code if this course is used for grad as Integer.
+     *
+     * @return used for grad code
+     */
+    Integer getCreditsUsedForGrad();
+
+    /**
+     * Gets grad req met.
+     *
+     * @return the grad req met
+     */
+    String getGradReqMet();
+
+    /**
+     * Gets completed course percentage.
+     *
+     * @return the completed course percentage
+     */
+    String getCompletedCoursePercentage();
+
+    /**
+     * Gets completed course letter grade.
+     *
+     * @return the completed course letter grade
+     */
+    String getCompletedCourseLetterGrade();
+
+    /**
+     * Gets interim percent.
+     *
+     * @return the interim percent
+     */
+    String getInterimPercent();
+
+    /**
+     * Gets equiv or challenge.
+     *
+     * @return the equiv or challenge
+     */
+    String getEquivOrChallenge();
+
+    /**
      * Checks two courses which has same courseCode, courseLevel
      *
      * @param compareCourse

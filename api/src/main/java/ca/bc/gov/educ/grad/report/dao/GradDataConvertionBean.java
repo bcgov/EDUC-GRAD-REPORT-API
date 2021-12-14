@@ -154,7 +154,8 @@ public class GradDataConvertionBean {
                         r.getMark().getInterimPercent(), //String interimMark,
                         r.getRequirementMet(), //String requirement,
                         null, //String specialCase,
-                        r.getCourse().getType() //Character courseType
+                        r.getCourse().getType(),
+                        r.getUsedForGrad()//Character courseType
                 );
                 result.add(course);
             }
