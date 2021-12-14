@@ -419,7 +419,7 @@
         "hasRequirementMet": null,
         "requirementMet": [
           {
-            "rule": "400",
+            "code": "400",
             "description": "Language Arts 10 - English",
             "courseDetails": [
               {
@@ -430,7 +430,7 @@
             ]
           },
           {
-            "rule": "401",
+            "code": "401",
             "description": "Language Arts 11 - English",
             "courseDetails": [
               {
@@ -441,7 +441,7 @@
             ]
           },
           {
-            "rule": "402",
+            "code": "402",
             "description": "Language Arts 12 - English",
             "courseDetails": [
               {
@@ -452,12 +452,12 @@
             ]
           },
           {
-            "rule": "403",
+            "code": "403",
             "description": "Literacy 10 Assessment",
             "courseDetails": []
           },
           {
-            "rule": "404",
+            "code": "404",
             "description": "Literacy 12 Assessment",
             "courseDetails": []
           }
@@ -474,7 +474,7 @@
       }
     ],
     "school": {
-      "schoolName": "DE L'ANSE-AU-SABLE",
+      "name": "DE L'ANSE-AU-SABLE",
       "mincode": "09323027"
     },
     "student": {
@@ -484,9 +484,9 @@
       "lastName": "KLEPAYCHUK",
       "grade": "12",
       "gender": "Male",
-      "birthdate": 1043136000000,
+      "birthdate": "2010-01-01",
       "localId": null,
-      "program": "2018-PF",
+      "gradProgram": "2018-PF",
       "otherProgramParticipation": [
         {
           "programCode": "DD",

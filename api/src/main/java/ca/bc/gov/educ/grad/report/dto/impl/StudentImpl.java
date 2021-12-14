@@ -46,7 +46,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String middleName = "";
     private String lastName = "";
     private String grade = "";
-    private Character gender = ' ';
+    private String gender = "";
     private Date sccDate;
     private String mincodeGrad;
     private String englishCert;
@@ -94,11 +94,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    public Character getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Character gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

@@ -1,8 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.service;
 
-import ca.bc.gov.educ.grad.report.api.dto.*;
+import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
+import ca.bc.gov.educ.grad.report.api.dto.GraduationStatus;
+import ca.bc.gov.educ.grad.report.api.dto.StudentAssessment;
+import ca.bc.gov.educ.grad.report.api.dto.StudentExam;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
+import ca.bc.gov.educ.grad.report.dto.impl.OptionalProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
@@ -204,7 +208,7 @@ public class ReportService {
 				parameters.put("hasStudentAssessment","true");
 			}
 
-			List<NonGradReason> nongradList = generateReportData.getData().getNonGradReasons();
+			List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nongradList = generateReportData.getData().getNonGradReasons();
 			parameters.put("hasNonGradReasons","false");
 			if(!nongradList.isEmpty()) {
 				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(nongradList);
@@ -212,7 +216,7 @@ public class ReportService {
 				parameters.put("hasNonGradReasons","true");
 			}
 
-			List<OptionalProgram> optionalProgramList = generateReportData.getData().getOptionalPrograms();
+			List<OptionalProgramImpl> optionalProgramList = generateReportData.getData().getOptionalPrograms();
 			parameters.put("hasOptionalPrograms","false");
 			if(!optionalProgramList.isEmpty()) {
 				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);
@@ -220,12 +224,12 @@ public class ReportService {
 				parameters.put("hasOptionalPrograms","true");
 			}
 
-			School schoolObj = generateReportData.getData().getSchool();
+			ca.bc.gov.educ.grad.report.model.school.School schoolObj = generateReportData.getData().getSchool();
 			if(schoolObj != null) {
 				parameters.put("schoolObj",schoolObj);
 			}
 
-			Student studentObj = generateReportData.getData().getStudent();
+			ca.bc.gov.educ.grad.report.model.student.StudentInfo studentObj = generateReportData.getData().getStudent();
 			if(studentObj != null) {
 				parameters.put("studentObj",studentObj);
 			}

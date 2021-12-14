@@ -180,8 +180,8 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="rule" class="java.lang.String">
-			<fieldDescription><![CDATA[rule]]></fieldDescription>
+		<field name="code" class="java.lang.String">
+			<fieldDescription><![CDATA[code]]></fieldDescription>
 		</field>
 		<field name="description" class="java.lang.String">
 			<fieldDescription><![CDATA[description]]></fieldDescription>
@@ -214,8 +214,8 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="rule" class="java.lang.String">
-			<fieldDescription><![CDATA[rule]]></fieldDescription>
+		<field name="code" class="java.lang.String">
+			<fieldDescription><![CDATA[code]]></fieldDescription>
 		</field>
 		<field name="description" class="java.lang.String">
 			<fieldDescription><![CDATA[description]]></fieldDescription>
@@ -242,8 +242,8 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="rule" class="java.lang.String">
-			<fieldDescription><![CDATA[rule]]></fieldDescription>
+		<field name="code" class="java.lang.String">
+			<fieldDescription><![CDATA[code]]></fieldDescription>
 		</field>
 		<field name="description" class="java.lang.String">
 			<fieldDescription><![CDATA[description]]></fieldDescription>
@@ -287,8 +287,8 @@
 	<parameter name="studentCourse" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasStudentAssessment" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="studentAssessment" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
-	<parameter name="schoolObj" class="ca.bc.gov.educ.grad.report.api.dto.School"/>
-	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.api.dto.Student"/>
+	<parameter name="schoolObj" class="ca.bc.gov.educ.grad.report.model.school.School"/>
+	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.model.student.StudentInfo"/>
 	<parameter name="gradObj" class="ca.bc.gov.educ.grad.report.api.dto.GraduationStatus"/>
 	<parameter name="nonGradReason" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasOptionalPrograms" class="java.lang.String" isForPrompting="false"/>
@@ -382,7 +382,7 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="GeneratedText" x="56" y="12" width="120" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
-				<textFieldExpression><![CDATA[$P{schoolObj}.getMincode() +"  "+$P{schoolObj}.getSchoolName()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{schoolObj}.getMinistryCode() +"  "+$P{schoolObj}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="186" y="12" width="50" height="15" uuid="be19d68f-6ac4-4a89-b475-294b1062d4e3">
@@ -403,7 +403,7 @@
 				<reportElement style="GeneratedText" x="260" y="43" width="122" height="15" uuid="6b02265f-b055-4dcf-9052-dee6d0fb3c3e">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$P{studentObj}.getProgram()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{studentObj}.getGradProgram()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="2" y="39" width="50" height="15" uuid="ae812dde-a045-41c9-963a-9950496d45d7">
@@ -455,7 +455,7 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="GeneratedText" x="55" y="96" width="120" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthdate())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthDate())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="388" y="43" width="50" height="15" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
@@ -470,7 +470,7 @@
 				<reportElement style="GeneratedText" x="445" y="43" width="110" height="15" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
 				<textFieldExpression><![CDATA[$P{studentObj}.getLocalId()]]></textFieldExpression>
 			</textField>
-			<componentElement>
+			<!--componentElement>
 				<reportElement x="260" y="71" width="230" height="15" uuid="cba32c3c-e18f-44e8-9675-5b4f22bfc073">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -490,7 +490,7 @@
 						</textField>
 					</jr:listContents>
 				</jr:list>
-			</componentElement>
+			</componentElement-->
 			<textField isBlankWhenNull="true">
 				<reportElement style="GeneratedText" positionType="Float" x="186" y="65" width="64" height="51" uuid="fac13d46-b91f-4213-ac3d-79aae4c59e6f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -801,7 +801,7 @@
 							<textField>
 								<reportElement style="GeneratedText" x="0" y="0" width="80" height="30" uuid="a2775a1b-2ed9-4c32-92e7-89fee5dd7f7b"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{rule}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1348,7 +1348,7 @@
 									<jr:listContents height="42" width="160">
 										<textField>
 											<reportElement style="GeneratedText" x="9" y="0" width="121" height="30" uuid="b28957b1-e52e-4c4b-baed-49ade5d877db"/>
-											<textFieldExpression><![CDATA[" * "+$F{rule}+" "+$F{description}]]></textFieldExpression>
+											<textFieldExpression><![CDATA[" * "+$F{code}+" "+$F{description}]]></textFieldExpression>
 										</textField>
 										<componentElement>
 											<reportElement x="20" y="25" width="110" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
@@ -1396,7 +1396,7 @@
 										<textField>
 											<reportElement style="GeneratedText" x="9" y="0" width="121" height="30" isRemoveLineWhenBlank="true" uuid="76290008-ca46-45de-a0cd-22b8f9078f40"/>
 											<textElement textAlignment="Justified"/>
-											<textFieldExpression><![CDATA[" * "+$F{rule}+" "+$F{description}]]></textFieldExpression>
+											<textFieldExpression><![CDATA[" * "+$F{code}+" "+$F{description}]]></textFieldExpression>
 										</textField>
 									</jr:listContents>
 								</jr:list>

@@ -60,7 +60,7 @@ public interface Student extends Person {
      *
      * @return Current gender.
      */
-    Character getGender();
+    String getGender();
 
     /**
      * Returns information about where to send physical items (such as the

@@ -4,10 +4,7 @@ package ca.bc.gov.educ.grad.report.api.test;
 import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
@@ -47,6 +44,9 @@ public abstract class GradReportBaseTest {
     public void init() throws Exception {
 
     }
+
+    @Test
+    public void dummyTest() {}
 
     protected byte[] loadTestImage(String path) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();

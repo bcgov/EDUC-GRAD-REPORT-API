@@ -236,7 +236,7 @@
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
-        "interimPercent": null,
+        "interimPercent": "75",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 0
@@ -249,7 +249,7 @@
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
-        "interimPercent": null,
+        "interimPercent": "90",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 0
@@ -293,7 +293,7 @@
         "hasRequirementMet": "true",
         "requirementMet": [
           {
-            "rule": "202",
+            "code": "202",
             "description": "Français langue seconde-immersion 10 - French Immersion ",
             "courseDetails": [
               {
@@ -361,42 +361,42 @@
         ],
         "nonGradReasons": [
           {
-            "rule": "200",
+            "code": "200",
             "description": "No Français langue seconde-immersion 12 "
           },
           {
-            "rule": "201",
+            "code": "201",
             "description": "No Français langue seconde-immersion 11 "
           },
           {
-            "rule": "203",
+            "code": "203",
             "description": "No Evaluation de Litteratie 12 - Immersion "
           },
           {
-            "rule": "204",
+            "code": "204",
             "description": "Fewer than 12 Other French credits"
           },
           {
-            "rule": "205",
+            "code": "205",
             "description": "Fewer than 4 Gr 11 or 12 French Other credits"
           }
         ]
       }
     ],
     "school": {
-      "schoolName": "MOUNT BAKER SECONDARY",
+      "name": "MOUNT BAKER SECONDARY",
       "mincode": "00502001"
     },
     "student": {
       "pen": "129382610",
       "firstName": "CAYMAN",
-      "middleName": null,
+      "middleName": "",
       "lastName": "HILL",
       "grade": "11",
       "gender": "M",
-      "birthdate": 1092726000000,
+      "birthdate": "2010-01-01",
       "localId": null,
-      "program": "2018-EN",
+      "gradProgram": "2018-EN",
       "otherProgramParticipation": [
         {
           "programCode": "FI",

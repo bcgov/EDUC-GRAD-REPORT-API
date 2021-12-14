@@ -58,7 +58,7 @@ public class AchievementCourseImpl implements AchievementCourse {
     private String gradReqMet;
     private String completedCoursePercentage;
     private String completedCourseLetterGrade;
-    private String interimPercent;
+    private String interimPercent = "";
     private String equivOrChallenge;
 
     /**

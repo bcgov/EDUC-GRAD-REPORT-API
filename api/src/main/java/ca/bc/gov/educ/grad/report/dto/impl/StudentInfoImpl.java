@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,7 +57,7 @@ public class StudentInfoImpl implements StudentInfo {
     private Date reportDate = new Date(0L);
     private Date lastUpdateDate = new Date(0L);
     private String logo = "";
-    private Character gender = ' ';
+    private String gender = "";
     private String status = "";
     private Boolean honourFlag = Boolean.FALSE;
     private Boolean dogwoodFlag = Boolean.FALSE;
@@ -66,6 +67,9 @@ public class StudentInfoImpl implements StudentInfo {
     private final List<String> academicProgram = new ArrayList<>();
     private Map<String, String> nonGradReasons = new HashMap<>();
     private String gradMessage = "";
+
+    private String localId = "";
+    private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
 
     // student address
     private String studentAddress1 = "";
@@ -137,7 +141,7 @@ public class StudentInfoImpl implements StudentInfo {
             final String lastName,
             final Date birthdate,
             final String localId,
-            final Character studGender,
+            final String studGender,
             final String mincode,
             final String studGrade,
             final Date gradDate,
@@ -232,6 +236,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getBirthDate() {
         return this.birthDate;
     }
@@ -267,7 +272,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    public Character getGender() {
+    public String getGender() {
         return this.gender;
     }
 
@@ -289,6 +294,21 @@ public class StudentInfoImpl implements StudentInfo {
     @Override
     public String getGradProgram() {
         return this.gradProgram;
+    }
+
+    @Override
+    public String getLocalId() {
+        return localId;
+    }
+
+    @Override
+    public List<OtherProgramImpl> getOtherProgramParticipation() {
+        return otherProgramParticipation;
+    }
+
+    @Override
+    public String getHasOtherProgram() {
+        return getOtherProgramParticipation().isEmpty() ? "N" : "Y";
     }
 
     @Override
@@ -357,22 +377,13 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getLastUpdateDate() {
         return this.lastUpdateDate;
     }
 
     public void setLastUpdateDate(final Date lastUpdated) {
         this.lastUpdateDate = lastUpdated;
-    }
-
-    /**
-     * Sets the last updated date (for reporting) based on the DATE_TRAX_YMD
-     * format.
-     *
-     * @param lastUpdated The most recent update date to this student record.
-     */
-    public void setLastUpdateDate(final Long lastUpdated) {
-        setLastUpdateDate(createDate(lastUpdated == null ? 0L : lastUpdated));
     }
 
     @Override
