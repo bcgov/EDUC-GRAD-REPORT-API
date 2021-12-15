@@ -1,12 +1,10 @@
 package ca.bc.gov.educ.grad.report.api.service;
 
 import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
-import ca.bc.gov.educ.grad.report.api.dto.GraduationStatus;
 import ca.bc.gov.educ.grad.report.api.dto.StudentAssessment;
 import ca.bc.gov.educ.grad.report.api.dto.StudentExam;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
-import ca.bc.gov.educ.grad.report.dto.impl.OptionalProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
@@ -14,6 +12,8 @@ import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationStatus;
+import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import net.sf.jasperreports.engine.*;
@@ -216,7 +216,7 @@ public class ReportService {
 				parameters.put("hasNonGradReasons","true");
 			}
 
-			List<OptionalProgramImpl> optionalProgramList = generateReportData.getData().getOptionalPrograms();
+			List<OptionalProgram> optionalProgramList = generateReportData.getData().getOptionalPrograms();
 			parameters.put("hasOptionalPrograms","false");
 			if(!optionalProgramList.isEmpty()) {
 				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);

@@ -289,7 +289,7 @@
 	<parameter name="studentAssessment" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="schoolObj" class="ca.bc.gov.educ.grad.report.model.school.School"/>
 	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.model.student.StudentInfo"/>
-	<parameter name="gradObj" class="ca.bc.gov.educ.grad.report.api.dto.GraduationStatus"/>
+	<parameter name="gradObj" class="ca.bc.gov.educ.grad.report.dto.impl.GraduationStatusImpl"/>
 	<parameter name="nonGradReason" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasOptionalPrograms" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="hasOtherProgram" class="java.lang.String"/>

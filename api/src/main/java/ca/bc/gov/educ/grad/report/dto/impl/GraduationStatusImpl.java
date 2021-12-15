@@ -1,9 +1,10 @@
-package ca.bc.gov.educ.grad.report.api.dto;
+package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationStatus;
 import lombok.Data;
 
 @Data
-public class GraduationStatus {
+public class GraduationStatusImpl implements GraduationStatus {
     private String programCompletionDate;
     private String honours;
     private String gpa;
