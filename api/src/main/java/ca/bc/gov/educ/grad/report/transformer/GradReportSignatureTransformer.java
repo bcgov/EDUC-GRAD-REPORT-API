@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.grad.report.transformer;
 
-import ca.bc.gov.educ.grad.report.dto.GragReportSignatureImage;
-import ca.bc.gov.educ.grad.report.entity.GragReportSignatureImageEntity;
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
+import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,32 +16,32 @@ public class GradReportSignatureTransformer {
     @Autowired
     ModelMapper modelMapper;
 
-    public GragReportSignatureImage transformToDTO (GragReportSignatureImageEntity GragReportSignatureImageEntity) {
-    	GragReportSignatureImage GragReportSignatureImage = modelMapper.map(GragReportSignatureImageEntity, GragReportSignatureImage.class);
-        return GragReportSignatureImage;
+    public GradReportSignatureImage transformToDTO (GradReportSignatureImageEntity GradReportSignatureImageEntity) {
+    	GradReportSignatureImage GradReportSignatureImage = modelMapper.map(GradReportSignatureImageEntity, GradReportSignatureImage.class);
+        return GradReportSignatureImage;
     }
 
-    public GragReportSignatureImage transformToDTO ( Optional<GragReportSignatureImageEntity> GragReportSignatureImageEntity ) {
-    	GragReportSignatureImageEntity cae = new GragReportSignatureImageEntity();
+    public GradReportSignatureImage transformToDTO (Optional<GradReportSignatureImageEntity> GragReportSignatureImageEntity ) {
+    	GradReportSignatureImageEntity cae = new GradReportSignatureImageEntity();
         if (GragReportSignatureImageEntity.isPresent())
             cae = GragReportSignatureImageEntity.get();
 
-        GragReportSignatureImage GragReportSignatureImage = modelMapper.map(cae, GragReportSignatureImage.class);
-        return GragReportSignatureImage;
+        GradReportSignatureImage GradReportSignatureImage = modelMapper.map(cae, GradReportSignatureImage.class);
+        return GradReportSignatureImage;
     }
 
-	public List<GragReportSignatureImage> transformToDTO (List<GragReportSignatureImageEntity> GragReportSignatureImageEntities ) {
-		List<GragReportSignatureImage> GragReportSignatureImageList = new ArrayList<GragReportSignatureImage>();
-        for (GragReportSignatureImageEntity GragReportSignatureImageEntity : GragReportSignatureImageEntities) {
-        	GragReportSignatureImage GragReportSignatureImage = new GragReportSignatureImage();
-        	GragReportSignatureImage = modelMapper.map(GragReportSignatureImageEntity, GragReportSignatureImage.class);            
-        	GragReportSignatureImageList.add(GragReportSignatureImage);
+	public List<GradReportSignatureImage> transformToDTO (List<GradReportSignatureImageEntity> GragReportSignatureImageEntities ) {
+		List<GradReportSignatureImage> gradReportSignatureImageList = new ArrayList<GradReportSignatureImage>();
+        for (GradReportSignatureImageEntity GradReportSignatureImageEntity : GragReportSignatureImageEntities) {
+        	GradReportSignatureImage GradReportSignatureImage = new GradReportSignatureImage();
+        	GradReportSignatureImage = modelMapper.map(GradReportSignatureImageEntity, GradReportSignatureImage.class);
+        	gradReportSignatureImageList.add(GradReportSignatureImage);
         }
-        return GragReportSignatureImageList;
+        return gradReportSignatureImageList;
     }
 
-    public GragReportSignatureImageEntity transformToEntity(GragReportSignatureImage GragReportSignatureImage) {
-        GragReportSignatureImageEntity GragReportSignatureImageEntity = modelMapper.map(GragReportSignatureImage, GragReportSignatureImageEntity.class);
-        return GragReportSignatureImageEntity;
+    public GradReportSignatureImageEntity transformToEntity(GradReportSignatureImage GradReportSignatureImage) {
+        GradReportSignatureImageEntity GradReportSignatureImageEntity = modelMapper.map(GradReportSignatureImage, GradReportSignatureImageEntity.class);
+        return GradReportSignatureImageEntity;
     }
 }

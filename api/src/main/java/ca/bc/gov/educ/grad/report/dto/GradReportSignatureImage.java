@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Component
-public class GragReportSignatureImage extends BaseModel {
+public class GradReportSignatureImage extends BaseModel {
 
     private UUID signatureId;
     @JsonSerialize(using = Base64Serializer.class)

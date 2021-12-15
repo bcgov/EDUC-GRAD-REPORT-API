@@ -12,6 +12,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.utils.NonGradReasonListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
@@ -42,6 +43,14 @@ import java.util.Map;
 //@JsonPropertyOrder(alphabetic = true)
 //@JsonRootName("generateReport")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = StudentImpl.class),
+		@JsonSubTypes.Type(value = SchoolImpl.class),
+		@JsonSubTypes.Type(value = TranscriptImpl.class),
+		@JsonSubTypes.Type(value = GradProgramImpl.class),
+		@JsonSubTypes.Type(value = NonGradReasonImpl.class),
+		@JsonSubTypes.Type(value = CertificateImpl.class)
+})
 public class ReportData implements Serializable {
 
 	@JsonDeserialize(as = StudentImpl.class)

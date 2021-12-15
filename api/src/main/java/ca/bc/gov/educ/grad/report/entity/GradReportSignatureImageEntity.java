@@ -10,7 +10,7 @@ import java.util.UUID;
 @Immutable
 @Entity
 @Table(name = "DIGITAL_SIGNATURE")
-public class GragReportSignatureImageEntity extends BaseEntity {
+public class GradReportSignatureImageEntity extends BaseEntity {
 
     @Id
     @Column(name = "DIGITAL_SIGNATURE_KEY", nullable = false)

@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.model.student;
 
 import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.Date;
 import java.util.List;
@@ -308,5 +309,12 @@ public interface StudentInfo {
      * @return country code
      */
     String getCountryCode();
+
+    /**
+     * Gets other program participationdata source.
+     *
+     * @return the other program participationdata source
+     */
+    JRBeanCollectionDataSource getOtherProgramParticipationdataSource();
 
 }

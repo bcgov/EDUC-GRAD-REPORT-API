@@ -4,10 +4,10 @@ import ca.bc.gov.educ.grad.report.model.graduation.GradRequirement;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.utils.GradRequirementListDeserializer;
 import ca.bc.gov.educ.grad.report.utils.NonGradReasonListDeserializer;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,11 @@ import java.util.List;
 @Component
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = NonGradReasonImpl.class),
+        @JsonSubTypes.Type(value = GradRequirementImpl.class),
+        @JsonSubTypes.Type(value = AchievementCourseImpl.class)
+})
 public class OptionalProgramImpl implements OptionalProgram {
 
     private String optionalProgramCode;
@@ -29,6 +33,8 @@ public class OptionalProgramImpl implements OptionalProgram {
     @JsonDeserialize(using = NonGradReasonListDeserializer.class)
     private List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons;
     private JRBeanCollectionDataSource nonGradReasonsdataSource;
+
+    public OptionalProgramImpl() {}
 
     @Override
     public JRBeanCollectionDataSource getRequirementMetdataSource() {

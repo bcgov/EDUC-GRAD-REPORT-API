@@ -76,6 +76,22 @@ public class AchievementCourseImpl implements AchievementCourse {
      * @param sessionDate
      */
     public AchievementCourseImpl(
+            final String crseCode,
+            final String crseLevel,
+            final String sessionDate) {
+        this.courseCode = nullSafe(crseCode);
+        this.courseLevel = nullSafe(crseLevel);
+        this.sessionDate = nullSafe(sessionDate);
+    }
+
+    /**
+     * Constructor method. Used by the JPQL to create an object from the
+     * database entities.
+     * @param crseCode
+     * @param crseLevel
+     * @param sessionDate
+     */
+    public AchievementCourseImpl(
             final String crseName,
             final String crseCode,
             final String crseLevel,

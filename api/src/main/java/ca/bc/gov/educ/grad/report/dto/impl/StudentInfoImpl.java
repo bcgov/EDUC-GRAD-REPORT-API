@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -69,6 +70,7 @@ public class StudentInfoImpl implements StudentInfo {
     private String gradMessage = "";
 
     private String localId = "";
+    private String hasOtherProgram = "";
     private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
 
     // student address
@@ -308,7 +310,7 @@ public class StudentInfoImpl implements StudentInfo {
 
     @Override
     public String getHasOtherProgram() {
-        return getOtherProgramParticipation().isEmpty() ? "N" : "Y";
+        return this.hasOtherProgram;
     }
 
     @Override
@@ -525,5 +527,11 @@ public class StudentInfoImpl implements StudentInfo {
         }
 
         return date;
+    }
+
+    private JRBeanCollectionDataSource otherProgramParticipationdataSource;
+
+    public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
+        return new JRBeanCollectionDataSource(otherProgramParticipation, false);
     }
 }

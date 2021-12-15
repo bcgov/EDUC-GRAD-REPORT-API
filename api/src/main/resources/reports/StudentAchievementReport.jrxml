@@ -470,7 +470,7 @@
 				<reportElement style="GeneratedText" x="445" y="43" width="110" height="15" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
 				<textFieldExpression><![CDATA[$P{studentObj}.getLocalId()]]></textFieldExpression>
 			</textField>
-			<!--componentElement>
+			<componentElement>
 				<reportElement x="260" y="71" width="230" height="15" uuid="cba32c3c-e18f-44e8-9675-5b4f22bfc073">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -490,7 +490,7 @@
 						</textField>
 					</jr:listContents>
 				</jr:list>
-			</componentElement-->
+			</componentElement>
 			<textField isBlankWhenNull="true">
 				<reportElement style="GeneratedText" positionType="Float" x="186" y="65" width="64" height="51" uuid="fac13d46-b91f-4213-ac3d-79aae4c59e6f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
