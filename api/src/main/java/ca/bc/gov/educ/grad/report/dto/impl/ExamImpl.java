@@ -1,5 +1,6 @@
-package ca.bc.gov.educ.grad.report.api.dto;
+package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentExam {
+public class ExamImpl implements Exam {
 
     private String courseCode;
     private String courseName;
@@ -20,6 +21,7 @@ public class StudentExam {
     private String completedCourseLetterGrade;
     private String bestSchoolPercent;
     private String bestExamPercent;
+    private String interimPercent;
     private String equivOrChallenge;
     private String metLitNumRequirement;
     private String credits;

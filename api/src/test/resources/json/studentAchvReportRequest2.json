@@ -13,7 +13,7 @@
         "gradReqMet": "111",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -28,7 +28,7 @@
         "gradReqMet": "111",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -41,7 +41,7 @@
         "gradReqMet": "106",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -54,7 +54,7 @@
         "gradReqMet": "112",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -67,7 +67,7 @@
         "gradReqMet": "108",
         "completedCoursePercentage": "92",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -80,7 +80,7 @@
         "gradReqMet": "110",
         "completedCoursePercentage": "89",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -93,7 +93,7 @@
         "gradReqMet": "101",
         "completedCoursePercentage": "87",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "2",
         "creditsUsedForGrad": 2
@@ -106,7 +106,7 @@
         "gradReqMet": "101",
         "completedCoursePercentage": "87",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "2",
         "creditsUsedForGrad": 2
@@ -119,7 +119,7 @@
         "gradReqMet": "107",
         "completedCoursePercentage": "86",
         "completedCourseLetterGrade": "A",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -132,7 +132,7 @@
         "gradReqMet": "102",
         "completedCoursePercentage": "84",
         "completedCourseLetterGrade": "B",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -145,7 +145,7 @@
         "gradReqMet": "100, 103",
         "completedCoursePercentage": "77",
         "completedCourseLetterGrade": "B",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -158,7 +158,7 @@
         "gradReqMet": "117",
         "completedCoursePercentage": "74",
         "completedCourseLetterGrade": "B",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -171,7 +171,7 @@
         "gradReqMet": "104",
         "completedCoursePercentage": "67",
         "completedCourseLetterGrade": "C+",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -184,7 +184,7 @@
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "2",
         "creditsUsedForGrad": 0
@@ -197,7 +197,7 @@
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 0
@@ -210,7 +210,7 @@
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 0
@@ -223,7 +223,7 @@
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
-        "interimPercent": null,
+        "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 0

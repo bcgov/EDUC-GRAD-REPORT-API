@@ -2,7 +2,6 @@ package ca.bc.gov.educ.grad.report.api.service;
 
 import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
 import ca.bc.gov.educ.grad.report.api.dto.StudentAssessment;
-import ca.bc.gov.educ.grad.report.api.dto.StudentExam;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
@@ -11,6 +10,7 @@ import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationStatus;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
@@ -184,7 +184,7 @@ public class ReportService {
 		String reportFile = generateReportData.getOptions().getReportFile();
 		try {
 
-			List<StudentExam> sExamObjList = generateReportData.getData().getStudentExams();
+			List<Exam> sExamObjList = generateReportData.getData().getStudentExams();
 			parameters.put("hasStudentExam","false");
 			if(!sExamObjList.isEmpty()) {
 				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sExamObjList);
