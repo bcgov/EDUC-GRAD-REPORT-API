@@ -289,7 +289,7 @@
       {
         "optionalProgramCode": "FI",
         "optionalProgramName": "2018 Graduation Program French Immersion",
-        "programCompletionDate": null,
+        "programCompletionDate": "",
         "hasRequirementMet": "The following requirements met",
         "requirementMet": [
           {
