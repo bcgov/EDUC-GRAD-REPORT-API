@@ -6,6 +6,7 @@ import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.entity.SignatureBlockTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureBlockTypeCodeTransformer;
 import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class StudentReportApiRepositoryTests extends GradReportBaseTest {
 
 	}
 
-	//@Test
+	@Test
 	public void getSignatureBlockTypesTest() throws Exception {
 		LOG.debug("<{}.getSignatureBlockTypesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 		List<SignatureBlockTypeCodeEntity> dtos = signatureBlockTypeRepository.findAll();

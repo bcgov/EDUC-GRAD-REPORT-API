@@ -599,39 +599,39 @@
       "issueDate": "2021-04-26",
       "results": [
         {
-		  "name": "LITERACY ASSESSMENT 10",
-		  "code": "LTE10",
-		  "requirementMet": "115",
+		  "assessmentName": "LITERACY ASSESSMENT 10",
+		  "assessmentCode": "LTE10",
+		  "gradReqMet": "115",
 		  "specialCase": "E",
 		  "sessionDate": "201806",
-		  "exceededWrites": "N",
+		  "exceededWriteFlag": "N",
 		  "proficiencyScore": "4"
 		},
 		{
-		  "name": "NUMERACY ASSESSMENT",
-		  "code": "NME",
-		  "requirementMet": "116",
+		  "assessmentName": "NUMERACY ASSESSMENT",
+		  "assessmentCode": "NME",
+		  "gradReqMet": "116",
 		  "specialCase": "",
 		  "sessionDate": "201806",
-		  "exceededWrites": "N",
+		  "exceededWriteFlag": "N",
 		  "proficiencyScore": "0"
 		},
         {
-          "name": "Literacy 12 Assessment",
-          "code": "LTE12",
-          "requirementMet": "116",
+          "assessmentName": "Literacy 12 Assessment",
+          "assessmentCode": "LTE12",
+          "gradReqMet": "116",
           "specialCase": "E",
           "sessionDate": "201806",
-          "exceededWrites": "N",
+          "exceededWriteFlag": "N",
           "proficiencyScore": "0"
         },
         {
-          "name": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
-          "code": "LTP10",
-          "requirementMet": "303",
+          "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
+          "assessmentCode": "LTP10",
+          "gradReqMet": "303",
           "specialCase": "E",
           "sessionDate": "201805",
-          "exceededWrites": "N",
+          "exceededWriteFlag": "N",
           "proficiencyScore": "0"
         }
       ]

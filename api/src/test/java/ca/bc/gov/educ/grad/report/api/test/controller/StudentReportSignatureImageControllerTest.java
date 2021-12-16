@@ -10,6 +10,7 @@ import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -66,7 +67,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
     private GradReportSignatureController reportSignatureController;
 
 
-    //@Test
+    @Test
     public void extractSignatureImageTest() throws Exception {
         LOG.debug("<{}.extractSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
         byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -87,7 +88,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         LOG.debug(">extractSignatureImageTest");
     }
 
-    //@Test
+    @Test
     public void getSignatureImagesTest() throws Exception {
         LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
         byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -111,7 +112,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         LOG.debug(">getSignatureImagesTest");
     }
 
-    //@Test
+    @Test
     public void getSignatureImageTest() throws Exception {
         LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
         byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");

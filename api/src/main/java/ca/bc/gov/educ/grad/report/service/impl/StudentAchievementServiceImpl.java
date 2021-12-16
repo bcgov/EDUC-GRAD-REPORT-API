@@ -541,7 +541,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 LOG.log(Level.FINEST, "Retrieved student achievement course results:");
                 for (AssessmentResult result : results) {
                     LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getAssessmentCode(), result.getAssessmentProficiencyScore()});
+                            new Object[]{result.getAssessmentCode(), result.getProficiencyScore()});
                 }
             }
         } catch (final Exception ex) {

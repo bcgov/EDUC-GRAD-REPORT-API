@@ -182,11 +182,11 @@ public class GradDataConvertionBean {
             assessmentResult.setStudentNumber(studentInfo.getPen());
             assessmentResult.setAssessmentName(r.getAssessmentName());
             assessmentResult.setAssessmentCode(r.getAssessmentCode());
-            assessmentResult.setAssessmentSession(r.getAssessmentSession());
-            assessmentResult.setRequirementMet(r.getRequirementMet());
+            assessmentResult.setSessionDate(r.getSessionDate());
+            assessmentResult.setGradReqMet(r.getGradReqMet());
             assessmentResult.setSpecialCase(r.getSpecialCase());
-            assessmentResult.setExceededWrites(r.getExceededWrites());
-            assessmentResult.setAssessmentProficiencyScore(r.getAssessmentProficiencyScore());
+            assessmentResult.setExceededWriteFlag(r.getExceededWriteFlag());
+            assessmentResult.setProficiencyScore(r.getProficiencyScore());
             result.add(assessmentResult);
         }
         return result;

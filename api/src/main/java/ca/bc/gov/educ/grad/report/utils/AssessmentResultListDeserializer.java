@@ -33,23 +33,23 @@ public class AssessmentResultListDeserializer extends StdDeserializer<List<Asses
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
 
-            String name = (String) nextNode.get("name").asText();
-            String code = (String) nextNode.get("code").asText();
-            String requirementMet = (String) nextNode.get("requirementMet").asText();
+            String name = (String) nextNode.get("assessmentName").asText();
+            String code = (String) nextNode.get("assessmentCode").asText();
+            String requirementMet = (String) nextNode.get("gradReqMet").asText();
             String specialCase = (String) nextNode.get("specialCase").asText();
             String sessionDate = (String) nextNode.get("sessionDate").asText();
-            String exceededWrites = (String) nextNode.get("exceededWrites").asText();
-            Integer proficiencyScore = (Integer) nextNode.get("proficiencyScore").asInt();
+            String exceededWrites = (String) nextNode.get("exceededWriteFlag").asText();
+            Double proficiencyScore = (Double) nextNode.get("proficiencyScore").asDouble(0.0);
 
             AssessmentResultImpl r = new AssessmentResultImpl();
 
             r.setAssessmentName(name);
             r.setAssessmentCode(code);
-            r.setAssessmentSession(sessionDate);
-            r.setAssessmentProficiencyScore(proficiencyScore);
-            r.setRequirementMet(requirementMet);
+            r.setSessionDate(sessionDate);
+            r.setProficiencyScore(proficiencyScore);
+            r.setGradReqMet(requirementMet);
             r.setSpecialCase(specialCase);
-            r.setExceededWrites(exceededWrites);
+            r.setExceededWriteFlag(exceededWrites);
 
             result.add(r);
         }

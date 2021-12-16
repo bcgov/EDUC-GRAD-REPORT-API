@@ -345,71 +345,74 @@
         "creditsUsedForGrad": 0
       }
     ],
-    "studentAssessments": [
-      {
-        "assessmentCode": "LTE10",
-        "assessmentName": "Literacy 10 Assessment",
-        "sessionDate": "2020/04",
-        "gradReqMet": "",
-        "specialCase": "E",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 0.0
-      },
-      {
-        "assessmentCode": "LTE12",
-        "assessmentName": "Literacy 12 Assessment",
-        "sessionDate": "2022/01",
-        "gradReqMet": "",
-        "specialCase": "E",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 0.0
-      },
-      {
-        "assessmentCode": "LTP10",
-        "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
-        "sessionDate": "2020/04",
-        "gradReqMet": "303",
-        "specialCase": "E",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 0.0
-      },
-      {
-        "assessmentCode": "LTP12",
-        "assessmentName": "Evaluation de Litteratie  12 - Premiere - Programme francophone",
-        "sessionDate": "2022/01",
-        "gradReqMet": "304",
-        "specialCase": "E",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 0.0
-      },
-      {
-        "assessmentCode": "NMF",
-        "assessmentName": "Evaluation de Numeratie",
-        "sessionDate": "2018/06",
-        "gradReqMet": "116",
-        "specialCase": " ",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 3.0
-      },
-      {
-        "assessmentCode": "NMF",
-        "assessmentName": "Evaluation de Numeratie",
-        "sessionDate": "2019/06",
-        "gradReqMet": "",
-        "specialCase": null,
-        "exceededWriteFlag": " ",
-        "proficiencyScore": null
-      },
-      {
-        "assessmentCode": "NMF10",
-        "assessmentName": "Evaluation de Numeratie 10",
-        "sessionDate": "2020/04",
-        "gradReqMet": "",
-        "specialCase": " ",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": null
-      }
-    ],
+    "assessment": {
+      "issueDate": "2021-04-26",
+      "results": [
+        {
+          "assessmentCode": "LTE10",
+          "assessmentName": "Literacy 10 Assessment",
+          "sessionDate": "2020/04",
+          "gradReqMet": "",
+          "specialCase": "E",
+          "exceededWriteFlag": " ",
+          "proficiencyScore": 0.0
+        },
+        {
+          "assessmentCode": "LTE12",
+          "assessmentName": "Literacy 12 Assessment",
+          "sessionDate": "2022/01",
+          "gradReqMet": "",
+          "specialCase": "E",
+          "exceededWriteFlag": " ",
+          "proficiencyScore": 0.0
+        },
+        {
+          "assessmentCode": "LTP10",
+          "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
+          "sessionDate": "2020/04",
+          "gradReqMet": "303",
+          "specialCase": "E",
+          "exceededWriteFlag": " ",
+          "proficiencyScore": 0.0
+        },
+        {
+          "assessmentCode": "LTP12",
+          "assessmentName": "Evaluation de Litteratie  12 - Premiere - Programme francophone",
+          "sessionDate": "2022/01",
+          "gradReqMet": "304",
+          "specialCase": "E",
+          "exceededWriteFlag": " ",
+          "proficiencyScore": 0.0
+        },
+        {
+          "assessmentCode": "NMF",
+          "assessmentName": "Evaluation de Numeratie",
+          "sessionDate": "2018/06",
+          "gradReqMet": "116",
+          "specialCase": " ",
+          "exceededWriteFlag": " ",
+          "proficiencyScore": 3.0
+        },
+        {
+          "assessmentCode": "NMF",
+          "assessmentName": "Evaluation de Numeratie",
+          "sessionDate": "2019/06",
+          "gradReqMet": "",
+          "specialCase": null,
+          "exceededWriteFlag": " ",
+          "proficiencyScore": null
+        },
+        {
+          "assessmentCode": "NMF10",
+          "assessmentName": "Evaluation de Numeratie 10",
+          "sessionDate": "2020/04",
+          "gradReqMet": "",
+          "specialCase": " ",
+          "exceededWriteFlag": " ",
+          "proficiencyScore": null
+        }
+      ]
+    },
     "nonGradReasons": [],
     "optionalPrograms": [
       {
@@ -477,7 +480,7 @@
       "name": "DE L'ANSE-AU-SABLE",
       "mincode": "09323027"
     },
-    "student": {
+    "studentInfo": {
       "pen": "126604461",
       "firstName": "YUCHEN",
       "middleName": "",

@@ -19,6 +19,47 @@
         "creditsUsedForGrad": 4
       }
     ],
+    "assessment": {
+      "issueDate": "2021-04-26",
+      "results": [
+        {
+          "assessmentName": "LITERACY ASSESSMENT 10",
+          "assessmentCode": "LTE10",
+          "gradReqMet": "115",
+          "specialCase": "E",
+          "sessionDate": "201806",
+          "exceededWriteFlag": "N",
+          "proficiencyScore": "4"
+        },
+        {
+          "assessmentName": "NUMERACY ASSESSMENT",
+          "assessmentCode": "NME",
+          "gradReqMet": "116",
+          "specialCase": "",
+          "sessionDate": "201806",
+          "exceededWriteFlag": "N",
+          "proficiencyScore": "0"
+        },
+        {
+          "assessmentName": "Literacy 12 Assessment",
+          "assessmentCode": "LTE12",
+          "gradReqMet": "116",
+          "specialCase": "E",
+          "sessionDate": "201806",
+          "exceededWriteFlag": "N",
+          "proficiencyScore": "0"
+        },
+        {
+          "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
+          "assessmentCode": "LTP10",
+          "gradReqMet": "303",
+          "specialCase": "E",
+          "sessionDate": "201805",
+          "exceededWriteFlag": "N",
+          "proficiencyScore": "0"
+        }
+      ]
+    },
     "studentCourses": [
       {
         "courseCode": "AC",
@@ -281,7 +322,7 @@
         "gradReqMet": "",
         "specialCase": " ",
         "exceededWriteFlag": " ",
-        "proficiencyScore": null
+        "proficiencyScore": 4.0
       }
     ],
     "nonGradReasons": [],
@@ -387,7 +428,7 @@
       "name": "MOUNT BAKER SECONDARY",
       "mincode": "00502001"
     },
-    "student": {
+    "studentInfo": {
       "pen": "129382610",
       "firstName": "CAYMAN",
       "middleName": "",
