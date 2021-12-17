@@ -228,7 +228,7 @@ public class ReportService {
 				parameters.put("schoolObj",schoolObj);
 			}
 
-			ca.bc.gov.educ.grad.report.model.student.StudentInfo studentObj = reportRequest.getData().getStudentInfo();
+			ca.bc.gov.educ.grad.report.model.student.Student studentObj = reportRequest.getData().getStudent();
 			if(studentObj != null) {
 				parameters.put("studentObj",studentObj);
 			}

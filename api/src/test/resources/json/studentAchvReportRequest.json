@@ -480,8 +480,11 @@
       "name": "DE L'ANSE-AU-SABLE",
       "mincode": "09323027"
     },
-    "studentInfo": {
-      "pen": "126604461",
+    "student": {
+      "pen": {
+        "pen": "126604461",
+        "entityId": null
+      },
       "firstName": "YUCHEN",
       "middleName": "",
       "lastName": "KLEPAYCHUK",

@@ -92,8 +92,6 @@ public class ReportData implements Serializable {
 	private List<AchievementCourse> studentCourses;
 	@JsonDeserialize(using = OptionalProgramListDeserializer.class)
 	private List<OptionalProgram> optionalPrograms;
-	@JsonDeserialize(as = StudentInfoImpl.class)
-	private ca.bc.gov.educ.grad.report.model.student.StudentInfo studentInfo;
 	@JsonDeserialize(as = GraduationStatusImpl.class)
 	private GraduationStatus graduationStatus;
 	private String orgCode;

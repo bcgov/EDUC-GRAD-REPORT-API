@@ -428,8 +428,11 @@
       "name": "MOUNT BAKER SECONDARY",
       "mincode": "00502001"
     },
-    "studentInfo": {
-      "pen": "129382610",
+    "student": {
+      "pen": {
+        "pen": "129382610",
+        "entityId": null
+      },
       "firstName": "CAYMAN",
       "middleName": "",
       "lastName": "HILL",

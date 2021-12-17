@@ -66,7 +66,7 @@ public interface StudentInfo {
      *
      * @return date of birth
      */
-    Date getBirthDate();
+    Date getBirthdate();
 
     /**
      * get the student's address field #1.

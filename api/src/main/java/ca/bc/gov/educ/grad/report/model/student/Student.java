@@ -17,11 +17,14 @@
  */
 package ca.bc.gov.educ.grad.report.model.student;
 
+import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.Person;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -104,7 +107,42 @@ public interface Student extends Person {
      *
      * @return the Map of SignatureBlockType types
      */
-
     Map<String, SignatureBlockType> getSignatureBlockTypes();
+
+    /**
+     * Gets grad program.
+     *
+     * @return the grad program
+     */
+    String getGradProgram();
+
+    /**
+     * Gets local id.
+     *
+     * @return the local id
+     */
+    String getLocalId();
+
+    /**
+     * Gets has other program.
+     *
+     * @return the has other program
+     */
+    String getHasOtherProgram();
+
+    /**
+     * Gets other program participation.
+     *
+     * @return the other program participation
+     */
+    List<OtherProgramImpl> getOtherProgramParticipation();
+
+    /**
+     * Gets other program participationdata source.
+     *
+     * @return the other program participationdata source
+     */
+    JRBeanCollectionDataSource getOtherProgramParticipationdataSource();
+
 
 }

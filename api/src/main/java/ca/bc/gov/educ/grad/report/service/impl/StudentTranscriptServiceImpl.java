@@ -486,7 +486,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         student.setFirstName(studentInfo.getFirstName());
         student.setMiddleName(studentInfo.getMiddleName());
         student.setLastName(studentInfo.getLastName());
-        student.setBirthdate(studentInfo.getBirthDate());
+        student.setBirthdate(studentInfo.getBirthdate());
         student.setGrade(studentInfo.getGrade());
 
         final PostalAddressImpl address = new PostalAddressImpl();

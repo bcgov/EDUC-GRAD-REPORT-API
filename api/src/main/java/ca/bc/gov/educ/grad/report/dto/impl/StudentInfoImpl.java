@@ -53,7 +53,7 @@ public class StudentInfoImpl implements StudentInfo {
     private String firstName = "";
     private String middleName = "";
     private String lastName = "";
-    private Date birthDate = new Date();
+    private Date birthdate = new Date();
 
     // student transcript info
     private String schoolId = "";
@@ -180,7 +180,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.firstName = trimSafe(firstName);
         this.middleName = trimSafe(middleName);
         this.lastName = trimSafe(lastName);
-        this.birthDate = birthdate;
+        this.birthdate = birthdate;
         this.schoolId = trimSafe(localId);
         this.gender = studGender;
         this.mincode = trimSafe(mincode);
@@ -241,8 +241,8 @@ public class StudentInfoImpl implements StudentInfo {
 
     @Override
     @JsonFormat(pattern="yyyy-MM-dd")
-    public Date getBirthDate() {
-        return this.birthDate;
+    public Date getBirthdate() {
+        return this.birthdate;
     }
 
     @Override
@@ -456,7 +456,7 @@ public class StudentInfoImpl implements StudentInfo {
         hash = 13 * hash + Objects.hashCode(this.pen);
         hash = 13 * hash + Objects.hashCode(this.firstName);
         hash = 13 * hash + Objects.hashCode(this.lastName);
-        hash = 13 * hash + Objects.hashCode(this.birthDate);
+        hash = 13 * hash + Objects.hashCode(this.birthdate);
         hash = 13 * hash + Objects.hashCode(this.schoolId);
         return hash;
     }
@@ -479,7 +479,7 @@ public class StudentInfoImpl implements StudentInfo {
         if (!(this.lastName.equals(other.lastName))) {
             return false;
         }
-        if (!(this.birthDate.getTime() == other.birthDate.getTime())) {
+        if (!(this.birthdate.getTime() == other.birthdate.getTime())) {
             return false;
         }
         return this.schoolId.equals(other.schoolId);

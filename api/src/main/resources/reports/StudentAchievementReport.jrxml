@@ -288,7 +288,7 @@
 	<parameter name="hasStudentAssessment" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="studentAssessment" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="schoolObj" class="ca.bc.gov.educ.grad.report.model.school.School"/>
-	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.model.student.StudentInfo"/>
+	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.model.student.Student"/>
 	<parameter name="gradObj" class="ca.bc.gov.educ.grad.report.dto.impl.GraduationStatusImpl"/>
 	<parameter name="nonGradReason" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasOptionalPrograms" class="java.lang.String" isForPrompting="false"/>
@@ -455,7 +455,7 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="GeneratedText" x="55" y="96" width="120" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthDate())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthdate())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="388" y="43" width="50" height="15" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">

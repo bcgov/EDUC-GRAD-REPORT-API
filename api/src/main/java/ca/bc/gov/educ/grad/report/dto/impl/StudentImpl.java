@@ -25,9 +25,12 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,7 +55,12 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String englishCert;
     private String frenchCert;
     private String studStatus = "";
+    private String gradProgram = "";
     private Map<String, SignatureBlockType> signatureBlockTypes;
+
+    private String localId = "";
+    private String hasOtherProgram = "";
+    private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -96,6 +104,26 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public String getGender() {
         return gender;
+    }
+
+    @Override
+    public String getGradProgram() {
+        return gradProgram;
+    }
+
+    @Override
+    public String getLocalId() {
+        return localId;
+    }
+
+    @Override
+    public String getHasOtherProgram() {
+        return hasOtherProgram;
+    }
+
+    @Override
+    public List<OtherProgramImpl> getOtherProgramParticipation() {
+        return otherProgramParticipation;
     }
 
     public void setGender(String gender) {
@@ -195,5 +223,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
         this.signatureBlockTypes = signatureBlockTypes;
+    }
+
+    private JRBeanCollectionDataSource otherProgramParticipationdataSource;
+
+    public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
+        return new JRBeanCollectionDataSource(otherProgramParticipation, false);
     }
 }
