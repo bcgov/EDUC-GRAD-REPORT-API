@@ -80,7 +80,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		reportRequest.getOptions().setReportFile("Student Achievement Report 2.pdf");
 
-		ResponseEntity response = reportService.getStudentAchvReport(reportRequest);
+		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {

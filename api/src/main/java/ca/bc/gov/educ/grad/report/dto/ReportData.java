@@ -80,7 +80,7 @@ public class ReportData implements Serializable {
 	private List<NonGradReason> nonGradReasons;
 	private String gradMessage;
 	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date updateDate;
+	private Date issueDate;
 	private Map<String, String> parameters;
 	@JsonDeserialize(as = CertificateImpl.class)
 	private Certificate certificate;

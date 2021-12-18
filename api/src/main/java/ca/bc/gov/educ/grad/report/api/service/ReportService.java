@@ -268,6 +268,7 @@ public class ReportService {
 		URL url = this.getClass().getResource(DIR_REPORT_BASE + resource);
 		return url.openStream();
 	}
+
 	private InputStream openImageResource(final String resource) throws IOException {
 		//final URL url = getReportResource(resource);
 		URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);

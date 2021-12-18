@@ -29,9 +29,6 @@ public interface OptionalProgram {
 
     void setRequirementMet(java.util.List<GradRequirement> requirementMet);
 
-    void setRequirementMetdataSource(JRBeanCollectionDataSource requirementMetdataSource);
-
     void setNonGradReasons(java.util.List<NonGradReason> nonGradReasons);
 
-    void setNonGradReasonsdataSource(JRBeanCollectionDataSource nonGradReasonsdataSource);
 }

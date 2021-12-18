@@ -9,7 +9,7 @@
         "courseCode": "AC",
         "courseName": "ACCOUNTING 11",
         "courseLevel": "11",
-        "sessionDate": "2020/01",
+        "sessionDate": "202001",
         "gradReqMet": "111",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
@@ -65,7 +65,7 @@
         "courseCode": "AC",
         "courseName": "ACCOUNTING 11",
         "courseLevel": "11",
-        "sessionDate": "2020/01",
+        "sessionDate": "202001",
         "gradReqMet": "111",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
@@ -78,7 +78,7 @@
         "courseCode": "FMP",
         "courseName": "FOUNDATIONS OF MATH AND PRE-CALCULUS 10",
         "courseLevel": "10",
-        "sessionDate": "2020/01",
+        "sessionDate": "202001",
         "gradReqMet": "106",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
@@ -91,7 +91,7 @@
         "courseCode": "CLE",
         "courseName": "CAREER-LIFE EDUCATION",
         "courseLevel": "",
-        "sessionDate": "2020/01",
+        "sessionDate": "202001",
         "gradReqMet": "112",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
@@ -104,7 +104,7 @@
         "courseCode": "SC",
         "courseName": "SCIENCE 10",
         "courseLevel": "10",
-        "sessionDate": "2020/06",
+        "sessionDate": "202006",
         "gradReqMet": "108",
         "completedCoursePercentage": "92",
         "completedCourseLetterGrade": "A",
@@ -117,7 +117,7 @@
         "courseCode": "PHED",
         "courseName": "PHYSICAL AND HEALTH EDUCATION 10",
         "courseLevel": "10",
-        "sessionDate": "2020/06",
+        "sessionDate": "202006",
         "gradReqMet": "110",
         "completedCoursePercentage": "89",
         "completedCourseLetterGrade": "A",
@@ -130,7 +130,7 @@
         "courseCode": "LTST",
         "courseName": "LITERARY STUDIES 10",
         "courseLevel": "10",
-        "sessionDate": "2020/06",
+        "sessionDate": "202006",
         "gradReqMet": "101",
         "completedCoursePercentage": "87",
         "completedCourseLetterGrade": "A",
@@ -143,7 +143,7 @@
         "courseCode": "SPLG",
         "courseName": "SPOKEN LANGUAGE 10",
         "courseLevel": "10",
-        "sessionDate": "2020/06",
+        "sessionDate": "202006",
         "gradReqMet": "101",
         "completedCoursePercentage": "87",
         "completedCourseLetterGrade": "A",
@@ -156,7 +156,7 @@
         "courseCode": "PREC",
         "courseName": "PRE-CALCULUS 11",
         "courseLevel": "11",
-        "sessionDate": "2020/11",
+        "sessionDate": "202011",
         "gradReqMet": "107",
         "completedCoursePercentage": "86",
         "completedCourseLetterGrade": "A",
@@ -169,7 +169,7 @@
         "courseCode": "SPLG",
         "courseName": "SPOKEN LANGUAGE 11",
         "courseLevel": "11",
-        "sessionDate": "2020/11",
+        "sessionDate": "202011",
         "gradReqMet": "102",
         "completedCoursePercentage": "84",
         "completedCourseLetterGrade": "B",
@@ -182,7 +182,7 @@
         "courseCode": "ENST",
         "courseName": "ENGLISH STUDIES 12",
         "courseLevel": "12",
-        "sessionDate": "2021/01",
+        "sessionDate": "202101",
         "gradReqMet": "100, 103",
         "completedCoursePercentage": "77",
         "completedCourseLetterGrade": "B",
@@ -195,7 +195,7 @@
         "courseCode": "FRAL",
         "courseName": "FRANCAIS LANGUE SECONDE-IMMERSION 10",
         "courseLevel": "10",
-        "sessionDate": "2020/01",
+        "sessionDate": "202001",
         "gradReqMet": "117",
         "completedCoursePercentage": "74",
         "completedCourseLetterGrade": "B",
@@ -208,7 +208,7 @@
         "courseCode": "SS",
         "courseName": "SOCIAL STUDIES 10",
         "courseLevel": "10",
-        "sessionDate": "2020/06",
+        "sessionDate": "202006",
         "gradReqMet": "104",
         "completedCoursePercentage": "67",
         "completedCourseLetterGrade": "C+",
@@ -221,7 +221,7 @@
         "courseCode": "CLCA",
         "courseName": "CAREER-LIFE CONNECTIONS A",
         "courseLevel": "",
-        "sessionDate": "2021/06",
+        "sessionDate": "202106",
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
@@ -234,7 +234,7 @@
         "courseCode": "LST",
         "courseName": "LAW STUDIES 12",
         "courseLevel": "12",
-        "sessionDate": "2021/01",
+        "sessionDate": "202101",
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
@@ -247,7 +247,7 @@
         "courseCode": "ACLV",
         "courseName": "ACTIVE LIVING 11",
         "courseLevel": "11",
-        "sessionDate": "2021/04",
+        "sessionDate": "202104",
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
@@ -260,7 +260,7 @@
         "courseCode": "CH",
         "courseName": "CHEMISTRY 11",
         "courseLevel": "11",
-        "sessionDate": "2021/04",
+        "sessionDate": "202104",
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
@@ -273,7 +273,7 @@
         "courseCode": "LFSC",
         "courseName": "LIFE SCIENCES 11",
         "courseLevel": "11",
-        "sessionDate": "2021/06",
+        "sessionDate": "202106",
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
@@ -286,7 +286,7 @@
         "courseCode": "PH",
         "courseName": "PHYSICS 11",
         "courseLevel": "11",
-        "sessionDate": "2021/06",
+        "sessionDate": "202106",
         "gradReqMet": "",
         "completedCoursePercentage": "",
         "completedCourseLetterGrade": "",
@@ -300,7 +300,7 @@
       {
         "assessmentCode": "LTE10",
         "assessmentName": "Literacy 10 Assessment",
-        "sessionDate": "2020/11",
+        "sessionDate": "202011",
         "gradReqMet": "115",
         "specialCase": " ",
         "exceededWriteFlag": " ",
@@ -309,7 +309,7 @@
       {
         "assessmentCode": "NME10",
         "assessmentName": "Numeracy 10 Assessment",
-        "sessionDate": "2020/01",
+        "sessionDate": "202001",
         "gradReqMet": "116",
         "specialCase": " ",
         "exceededWriteFlag": " ",
@@ -340,62 +340,62 @@
               {
                 "courseCode": "ENST",
                 "courseLevel": "12",
-                "sessionDate": "2021/01"
+                "sessionDate": "202101"
               },
               {
                 "courseCode": "AC",
                 "courseLevel": "11",
-                "sessionDate": "2020/01"
+                "sessionDate": "202001"
               },
               {
                 "courseCode": "PREC",
                 "courseLevel": "11",
-                "sessionDate": "2020/11"
+                "sessionDate": "202011"
               },
               {
                 "courseCode": "SPLG",
                 "courseLevel": "11",
-                "sessionDate": "2020/11"
+                "sessionDate": "202011"
               },
               {
                 "courseCode": "FMP",
                 "courseLevel": "10",
-                "sessionDate": "2020/01"
+                "sessionDate": "202001"
               },
               {
                 "courseCode": "SC",
                 "courseLevel": "10",
-                "sessionDate": "2020/06"
+                "sessionDate": "202006"
               },
               {
                 "courseCode": "PHED",
                 "courseLevel": "10",
-                "sessionDate": "2020/06"
+                "sessionDate": "202006"
               },
               {
                 "courseCode": "LTST",
                 "courseLevel": "10",
-                "sessionDate": "2020/06"
+                "sessionDate": "202006"
               },
               {
                 "courseCode": "SPLG",
                 "courseLevel": "10",
-                "sessionDate": "2020/06"
+                "sessionDate": "202006"
               },
               {
                 "courseCode": "SS",
                 "courseLevel": "10",
-                "sessionDate": "2020/06"
+                "sessionDate": "202006"
               },
               {
                 "courseCode": "CLE",
                 "courseLevel": "",
-                "sessionDate": "2020/01"
+                "sessionDate": "202001"
               },
               {
                 "courseCode": "FRAL",
                 "courseLevel": "10",
-                "sessionDate": "2020/01"
+                "sessionDate": "202001"
               }
             ]
           }
@@ -462,6 +462,7 @@
       "graduationMessage": "Based on the information provided by the school, this student is projected to not graduate in the Graduation Program 2018. Students with questions should contact their schools immediately.",
       "programName": null
     },
-    "orgCode": "BC"
+    "orgCode": "BC",
+    "issueDate": "2021-04-26"
   }
 }

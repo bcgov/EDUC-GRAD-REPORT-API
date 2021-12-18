@@ -8,7 +8,9 @@ import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementResult;
 import ca.bc.gov.educ.grad.report.model.assessment.Assessment;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
+import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
@@ -30,7 +32,7 @@ public class GradDataConvertionBean {
         Student student = getStudent(reportData);
         School school = getSchool(reportData);
         GraduationData gradData = reportData.getGraduationData();
-        List<String> programCodes = gradData == null ? new ArrayList() : gradData.getProgramCodes();
+        List<String> programCodes = gradData == null ? new ArrayList<>() : gradData.getProgramCodes();
         Transcript transcript = reportData.getTranscript();
         StudentInfoImpl result = new StudentInfoImpl(
             student.getPen().getValue(),// String studNo,
@@ -45,8 +47,8 @@ public class GradDataConvertionBean {
             gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
             reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : null,// String gradReqtYear,
             reportData.getGradMessage(),// String gradMessage,
-            reportData.getUpdateDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getUpdateDate(),// String updateDt,
-            reportData.getLogo(),// String logoType,
+            reportData.getIssueDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getIssueDate(),// String updateDt,
+            reportData.getLogo() == null ? reportData.getOrgCode() : reportData.getLogo(),// String logoType,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine1() : "",// String studentAddress1,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine2() : "",// String studentAddress2,
             student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCity() : "",// String studentCity,
@@ -70,6 +72,7 @@ public class GradDataConvertionBean {
             school.getPhoneNumber(),// String schoolPhone,
             school.getTypeIndicator()// Character schlIndType
         );
+        result.setNonGradReasons(this.getNongradReasons(reportData));
         return result;
     }
 
@@ -135,7 +138,9 @@ public class GradDataConvertionBean {
     public List<AchievementCourse> getAchievementCourses(ReportData reportData) {
         Student student = getStudent(reportData);
         List<AchievementCourse> result = new ArrayList<>();
-        if(reportData.getAchievement() != null) {
+        if(reportData.getAchievement() == null) {
+            return reportData.getStudentCourses();
+        } else {
             for(AchievementResult r: reportData.getAchievement().getResults()) {
                 if(r.getCourse() == null || r.getMark() == null) {
                     throw new InvalidParameterException("Achievement Result Course and Mark can't be NULL");
@@ -158,6 +163,58 @@ public class GradDataConvertionBean {
                         r.getUsedForGrad()//Character courseType
                 );
                 result.add(course);
+            }
+        }
+        return result;
+    }
+
+    public List<Exam> getStudentExams(ReportData reportData) {
+        Student student = getStudent(reportData);
+        List<Exam> result = new ArrayList<>();
+        if(reportData.getStudentExams() != null) {
+            for(Exam r: reportData.getStudentExams()) {
+                if(r.getCourseCode() == null || r.getSessionDate() == null) {
+                    throw new InvalidParameterException("Exam code and Session date can't be NULL");
+                }
+                ExamImpl exam = new ExamImpl(
+                        r.getCourseCode(),//courseCode
+                        r.getCourseName(),//courseName
+                        r.getCourseLevel(),//courseLevel;
+                        r.getSessionDate(),//sessionDate;
+                        r.getGradReqMet(),//gradReqMet;
+                        r.getCompletedCoursePercentage(),//completedCoursePercentage;
+                        r.getCompletedCourseLetterGrade(),//completedCourseLetterGrade;
+                        r.getBestSchoolPercent(),//bestSchoolPercent;
+                        r.getBestExamPercent(),//bestExamPercent;
+                        r.getInterimPercent(),//interimPercent;
+                        r.getEquivOrChallenge(),//equivOrChallenge;
+                        r.getMetLitNumRequirement(),//metLitNumRequirement;
+                        r.getCredits(),//credits;
+                        r.getCreditsUsedForGrad()//creditsUsedForGrad;
+                );
+                result.add(exam);
+            }
+        }
+        return result;
+    }
+
+    public List<OptionalProgram> getOptionalPrograms(ReportData reportData) {
+        Student student = getStudent(reportData);
+        List<OptionalProgram> result = new ArrayList<>();
+        if(reportData.getOptionalPrograms() != null) {
+            for(OptionalProgram r: reportData.getOptionalPrograms()) {
+                if(r.getOptionalProgramCode() == null || r.getOptionalProgramName() == null) {
+                    throw new InvalidParameterException("Optional Program code and name can't be NULL");
+                }
+                OptionalProgramImpl program = new OptionalProgramImpl(
+                    r.getOptionalProgramCode(),//optionalProgramCode;
+                    r.getOptionalProgramName(),//optionalProgramName;
+                    r.getProgramCompletionDate(),//programCompletionDate;
+                    r.getHasRequirementMet(),//hasRequirementMet;
+                    r.getRequirementMet(),//requirementMet;
+                    r.getNonGradReasons()//nonGradReasons;
+                );
+                result.add(program);
             }
         }
         return result;

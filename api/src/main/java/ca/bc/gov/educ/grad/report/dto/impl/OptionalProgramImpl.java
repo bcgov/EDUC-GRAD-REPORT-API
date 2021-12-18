@@ -29,10 +29,8 @@ public class OptionalProgramImpl implements OptionalProgram {
     private String hasRequirementMet;
     @JsonDeserialize(using = GradRequirementListDeserializer.class)
     private List<GradRequirement> requirementMet;
-    private JRBeanCollectionDataSource requirementMetdataSource;
     @JsonDeserialize(using = NonGradReasonListDeserializer.class)
     private List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons;
-    private JRBeanCollectionDataSource nonGradReasonsdataSource;
 
     public OptionalProgramImpl() {}
 

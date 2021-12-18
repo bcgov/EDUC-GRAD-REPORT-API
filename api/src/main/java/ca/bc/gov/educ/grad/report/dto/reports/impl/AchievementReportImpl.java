@@ -18,10 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.GraduationProgram;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Status;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.TranscriptResult;
 import ca.bc.gov.educ.grad.report.model.assessment.Assessment;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
@@ -29,13 +26,12 @@ import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.reports.AchievementReport;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 
+import java.util.Date;
 import java.util.List;
 
 import static ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter.adapt;
-import static ca.bc.gov.educ.grad.report.dto.reports.util.InheritableResourceBundle.BASE_NAME_SEPARATOR;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.HTML;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.XML;
-import static java.lang.String.format;
 
 /**
  * Represents a student's transcript report.
@@ -54,7 +50,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      * Only used for creating the transcripts; summary pages (backs of
      * transcripts) use SUMMARY_REPORT_NAME_PREFIX.
      */
-    public static final String ACHIEVEMENT_REPORT_NAME = "Achievement";
+    public static final String ACHIEVEMENT_REPORT_NAME = "StudentAchievementReport";
 
     private static final String SUMMARY_REPORT_NAME_PREFIX = "subreports/transcript/SUMMARY_";
 
@@ -185,10 +181,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      */
     @Override
     public void setGraduationProgram(final GradProgram gradProgram) {
-        ensureValidStudent("setGraduationProgram");
         setGraduationProgramCode(gradProgram.getCode());
-        final GraduationProgram program = adapt(gradProgram);
-        getStudent().setGraduationProgram(program);
     }
 
     /**
@@ -201,9 +194,8 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
     @Override
     public void setGraduationStatus(final List<NonGradReason> reasons,
             final String graduationMessageText) {
-        ensureValidStudent("setGraduationStatus");
         final Status status = adapt(reasons, graduationMessageText);
-        getStudent().setStatus(status);
+        //getStudent().setStatus(status);
     }
 
     /**
@@ -216,23 +208,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      */
     @Override
     protected String getFilenameSuffix() {
-        final Student student = getStudent();
-        final List<TranscriptResult> assessable = student.getAssessments();
-        final List<TranscriptResult> examinable = student.getTranscriptResults();
-
-        final int assessments = assessable.size();
-        final int examinations = examinable.size() - assessments;
-
-        final String type = getReportType();
-        final String logo = getLogoCode();
-        final String previewing = isPreview() ? "" : SUFFIX_PREVIEW;
-
-        final String filename = format(
-                "-ex%d-as%d-%s-%s%s",
-                examinations, assessments, type, logo, previewing
-        );
-
-        return filename;
+        return new Date().toString();
     }
 
     /**
@@ -301,20 +277,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
     @Override
     protected String getResourceBundleName() {
         // Get the report namem.
-        final String superName = super.getResourceBundleName();
-
-        // Get the graduation program code to generate a new resource bundle
-        // reference name.
-        final GraduationProgramCode code = getGraduationProgramCode();
-
-        // The inheritable resource bundle derives resource bundles by
-        // parsing the report name. We override the report name in this
-        // method by appending to the graduation program code so that
-        // text values can be shared across various transcripts.
-        final String resourceBundleName = superName + BASE_NAME_SEPARATOR
-                + code.toString();
-
-        return resourceBundleName;
+        return "StudentAchievement";
     }
 
     /**
