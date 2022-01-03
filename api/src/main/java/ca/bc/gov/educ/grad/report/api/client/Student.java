@@ -14,6 +14,9 @@ public class Student {
     private Date birthdate;
     private Address address;
     private String grade;
+    private String gradProgram;
+    private String localId;
+    private String hasOtherProgram;
     private String studStatus;
     private String sccDate;
     private String mincodeGrad;

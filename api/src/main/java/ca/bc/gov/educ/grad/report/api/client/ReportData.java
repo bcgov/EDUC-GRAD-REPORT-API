@@ -1,15 +1,30 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Student.class),
+        @JsonSubTypes.Type(value = School.class),
+        @JsonSubTypes.Type(value = Transcript.class),
+        @JsonSubTypes.Type(value = GradProgram.class),
+        @JsonSubTypes.Type(value = NonGradReason.class),
+        @JsonSubTypes.Type(value = Certificate.class),
+        @JsonSubTypes.Type(value = OptionalProgram.class),
+        @JsonSubTypes.Type(value = GradRequirement.class),
+        @JsonSubTypes.Type(value = Exam.class),
+        @JsonSubTypes.Type(value = Assessment.class),
+        @JsonSubTypes.Type(value = AssessmentResult.class),
+        @JsonSubTypes.Type(value = AchievementCourse.class)
+})
 public class ReportData {
     private Student student;
     private School school;
     private String logo;
-    private List<NonGradReason> nonGradReasons;
     private Transcript transcript;
     private Assessment assessment;
     private GradProgram gradProgram;
@@ -17,6 +32,14 @@ public class ReportData {
     private String gradMessage;
     private String updateDate;
     private Certificate certificate;
+    private GraduationStatus graduationStatus;
+    private String orgCode;
+    private String issueDate;
+
+    private List<NonGradReason> nonGradReasons;
+    private List<AchievementCourse> achievementCourses;
+    private List<Exam> exams;
+    private List<OptionalProgram> optionalPrograms;
 
     public Student getStudent() {
         return student;
@@ -104,5 +127,54 @@ public class ReportData {
 
     public void setCertificate(Certificate value) {
         this.certificate = value;
+    }
+
+    public GraduationStatus getGraduationStatus() {
+        return graduationStatus;
+    }
+
+    public void setGraduationStatus(GraduationStatus graduationStatus) {
+        this.graduationStatus = graduationStatus;
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(String issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public List<AchievementCourse> getAchievementCourses() {
+        return achievementCourses;
+    }
+
+    public void setAchievementCourses(List<AchievementCourse> achievementCourses) {
+        this.achievementCourses = achievementCourses;
+    }
+
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
+    }
+
+    public List<OptionalProgram> getOptionalPrograms() {
+        return optionalPrograms;
+    }
+
+    public void setOptionalPrograms(List<OptionalProgram> optionalPrograms) {
+        this.optionalPrograms = optionalPrograms;
     }
 }

@@ -296,35 +296,6 @@
         "creditsUsedForGrad": 0
       }
     ],
-    "studentAssessments": [
-      {
-        "assessmentCode": "LTE10",
-        "assessmentName": "Literacy 10 Assessment",
-        "sessionDate": "202011",
-        "gradReqMet": "115",
-        "specialCase": " ",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 3.0
-      },
-      {
-        "assessmentCode": "NME10",
-        "assessmentName": "Numeracy 10 Assessment",
-        "sessionDate": "202001",
-        "gradReqMet": "116",
-        "specialCase": " ",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 3.0
-      },
-      {
-        "assessmentCode": "LTE10",
-        "assessmentName": "Literacy 10 Assessment",
-        "sessionDate": "2020/04",
-        "gradReqMet": "",
-        "specialCase": " ",
-        "exceededWriteFlag": " ",
-        "proficiencyScore": 4.0
-      }
-    ],
     "nonGradReasons": [
       {
         "code": "000",
