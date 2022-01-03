@@ -47,39 +47,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Student Achievement Report (Legacy).pdf");
-		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
-		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
-		}
-		LOG.debug(">createStudentAchievementReport");
-	}
-
-	@Test
-	public void createStudentAchvReport() throws Exception {
-		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentAchvReportRequest.json");
-		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
-
-		ResponseEntity response = reportService.getStudentAchvReport(reportRequest);
-		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
-		}
-		LOG.debug(">createStudentAchievementReport");
-	}
-
-	@Test
-	public void createStudentAchvReport2() throws Exception {
-		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentAchvReportRequest2.json");
-		assertNotNull(reportRequest);
-		reportRequest.getOptions().setReportFile("Student Achievement Report 2.pdf");
-
+		reportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
 		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();

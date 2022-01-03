@@ -22,6 +22,7 @@ import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
+import ca.bc.gov.educ.grad.report.utils.OtherProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -122,6 +123,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
+    @JsonDeserialize(using = OtherProgramListDeserializer.class)
     public List<OtherProgramImpl> getOtherProgramParticipation() {
         return otherProgramParticipation;
     }
@@ -191,6 +193,18 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.frenchCert = frenchCert;
     }
 
+    public void setGradProgram(String gradProgram) {
+        this.gradProgram = gradProgram;
+    }
+
+    public void setHasOtherProgram(String hasOtherProgram) {
+        this.hasOtherProgram = hasOtherProgram;
+    }
+
+    public void setOtherProgramParticipation(List<OtherProgramImpl> otherProgramParticipation) {
+        this.otherProgramParticipation = otherProgramParticipation;
+    }
+
     @Override
     public String getStudStatus() {
         return studStatus;
@@ -224,8 +238,6 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
         this.signatureBlockTypes = signatureBlockTypes;
     }
-
-    private JRBeanCollectionDataSource otherProgramParticipationdataSource;
 
     public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
         return new JRBeanCollectionDataSource(otherProgramParticipation, false);

@@ -4,20 +4,12 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
-import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
-import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
-import ca.bc.gov.educ.grad.report.model.graduation.GraduationStatus;
-import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 @Service
 public class ReportService {
@@ -174,105 +160,6 @@ public class ReportService {
 
 		result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message);
 		return result;
-	}
-
-
-	public ResponseEntity getStudentAchvReport(GenerateReportRequest reportRequest) {
-		ResponseEntity response = null;
-		Map<String,Object> parameters = new HashMap<>();
-		String reportFile = reportRequest.getOptions().getReportFile();
-		try {
-
-			List<Exam> sExamObjList = reportRequest.getData().getStudentExams();
-			parameters.put("hasStudentExam","false");
-			if(!sExamObjList.isEmpty()) {
-				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sExamObjList);
-				parameters.put("studentExam", jrBeanCollectionDataSource);
-				parameters.put("hasStudentExam","true");
-			}
-
-			List<AchievementCourse> sCourseObjList = reportRequest.getData().getStudentCourses();
-			parameters.put("hasStudentCourse","false");
-			if(!sCourseObjList.isEmpty()) {
-				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sCourseObjList);
-				parameters.put("studentCourse", jrBeanCollectionDataSource);
-				parameters.put("hasStudentCourse","true");
-			}
-
-			List<AssessmentResult> sAssessmentObjList = reportRequest.getData().getAssessment().getResults();
-			parameters.put("hasStudentAssessment","false");
-			if(!sAssessmentObjList.isEmpty()) {
-				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sAssessmentObjList);
-				parameters.put("studentAssessment", jrBeanCollectionDataSource);
-				parameters.put("hasStudentAssessment","true");
-			}
-
-			List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nongradList = reportRequest.getData().getNonGradReasons();
-			parameters.put("hasNonGradReasons","false");
-			if(!nongradList.isEmpty()) {
-				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(nongradList);
-				parameters.put("nonGradReason", jrBeanCollectionDataSource);
-				parameters.put("hasNonGradReasons","true");
-			}
-
-			List<OptionalProgram> optionalProgramList = reportRequest.getData().getOptionalPrograms();
-			parameters.put("hasOptionalPrograms","false");
-			if(!optionalProgramList.isEmpty()) {
-				JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);
-				parameters.put("optionalProgram", jrBeanCollectionDataSource);
-				parameters.put("hasOptionalPrograms","true");
-			}
-
-			ca.bc.gov.educ.grad.report.model.school.School schoolObj = reportRequest.getData().getSchool();
-			if(schoolObj != null) {
-				parameters.put("schoolObj",schoolObj);
-			}
-
-			ca.bc.gov.educ.grad.report.model.student.Student studentObj = reportRequest.getData().getStudent();
-			if(studentObj != null) {
-				parameters.put("studentObj",studentObj);
-			}
-
-			GraduationStatus graduationStatus = reportRequest.getData().getGraduationStatus();
-			if(graduationStatus != null) {
-				parameters.put("gradObj",graduationStatus);
-			}
-
-			InputStream inputLogo = openImageResource("logo_"+reportRequest.getData().getOrgCode().toLowerCase(Locale.ROOT)+".svg");
-			parameters.put("orgImage",inputLogo);
-
-			InputStream inputMainReport = openResource("StudentAchievementReport.jrxml");
-			JasperPrint jasperPrint = JasperFillManager.fillReport(JasperCompileManager.compileReport(JRXmlLoader.load(inputMainReport)),parameters,new JREmptyDataSource());
-
-			byte[] resultBinary = JasperExportManager.exportReportToPdf(jasperPrint);
-			if(resultBinary.length > 0) {
-				HttpHeaders headers = new HttpHeaders();
-				headers.add("Content-Disposition", "inline; filename=" + reportFile);
-				response = ResponseEntity
-						.ok()
-						.headers(headers)
-						.contentType(MediaType.APPLICATION_PDF)
-						.body(resultBinary);
-			} else {
-				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			}
-		} catch (Exception e) {
-			response = getInternalServerErrorResponse(e);
-		}
-		return response;
-
-	}
-
-	private InputStream openResource(final String resource) throws IOException {
-		//final URL url = getReportResource(resource);
-		URL url = this.getClass().getResource(DIR_REPORT_BASE + resource);
-		return url.openStream();
-	}
-
-	private InputStream openImageResource(final String resource) throws IOException {
-		//final URL url = getReportResource(resource);
-		URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
-		return url.openStream();
 	}
 
 }

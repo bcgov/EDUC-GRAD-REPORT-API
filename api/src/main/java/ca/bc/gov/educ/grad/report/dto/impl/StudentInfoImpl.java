@@ -415,6 +415,14 @@ public class StudentInfoImpl implements StudentInfo {
         return this.schoolTypeBanner;
     }
 
+    public void setHasOtherProgram(String hasOtherProgram) {
+        this.hasOtherProgram = hasOtherProgram;
+    }
+
+    public void setOtherProgramParticipation(List<OtherProgramImpl> otherProgramParticipation) {
+        this.otherProgramParticipation = otherProgramParticipation;
+    }
+
     /**
      * set the school type banner.
      *
@@ -530,8 +538,6 @@ public class StudentInfoImpl implements StudentInfo {
 
         return date;
     }
-
-    private JRBeanCollectionDataSource otherProgramParticipationdataSource;
 
     public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
         return new JRBeanCollectionDataSource(otherProgramParticipation, false);

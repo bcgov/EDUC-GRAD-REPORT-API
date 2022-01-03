@@ -51,5 +51,9 @@ public class PersonalEducationNumberObject implements PersonalEducationNumber {
     public void setPen(String pen) {
         this.pen = pen;
     }
-    
+
+    @Override
+    public String toString() {
+        return getPen();
+    }
 }

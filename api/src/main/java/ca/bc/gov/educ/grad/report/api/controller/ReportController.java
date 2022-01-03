@@ -39,16 +39,6 @@ public class ReportController extends BaseController {
         logRequest();
         return reportService.getStudentAchievementReport(report);
     }
-
-    @PostMapping (ReportApiConstants.STUDENT_ACHV_REPORT)
-    @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
-    @Operation(summary = "Generate Student Achievement Report", description = "Generate Student Achievement Report", tags = { "Report" })
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentAchvReport(@RequestBody GenerateReportRequest report) {
-        logger.debug("getStudentAchievementReport");
-        logRequest();
-        return reportService.getStudentAchvReport(report);
-    }
     
     @PostMapping (ReportApiConstants.STUDENT_TRANSCRIPT_REPORT)
     @PreAuthorize(PermissionsContants.STUDENT_TRANSCRIPT_REPORT)

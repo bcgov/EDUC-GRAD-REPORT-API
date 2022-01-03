@@ -45,7 +45,7 @@ public class GradDataConvertionBean {
             school.getMinistryCode(),// String mincode,
             student.getGrade(),// String studGrade,
             gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
-            reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : null,// String gradReqtYear,
+            reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : student.getGradProgram(),// String gradReqtYear,
             reportData.getGradMessage(),// String gradMessage,
             reportData.getIssueDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getIssueDate(),// String updateDt,
             reportData.getLogo() == null ? reportData.getOrgCode() : reportData.getLogo(),// String logoType,
@@ -73,6 +73,8 @@ public class GradDataConvertionBean {
             school.getTypeIndicator()// Character schlIndType
         );
         result.setNonGradReasons(this.getNongradReasons(reportData));
+        result.setHasOtherProgram(student.getHasOtherProgram());
+        result.setOtherProgramParticipation(student.getOtherProgramParticipation());
         return result;
     }
 

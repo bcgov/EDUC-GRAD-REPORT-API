@@ -720,6 +720,10 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         student.setLastName(studentInfo.getLastName());
         student.setBirthdate(studentInfo.getBirthdate());
         student.setGrade(studentInfo.getGrade());
+        student.setGender(studentInfo.getGender());
+        student.setHasOtherProgram(studentInfo.getHasOtherProgram());
+        student.setGradProgram(studentInfo.getGradProgram());
+        student.setOtherProgramParticipation(studentInfo.getOtherProgramParticipation());
 
         final PostalAddressImpl address = new PostalAddressImpl();
         address.setStreetLine1(studentInfo.getStudentAddress1());

@@ -50,9 +50,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      * Only used for creating the transcripts; summary pages (backs of
      * transcripts) use SUMMARY_REPORT_NAME_PREFIX.
      */
-    public static final String ACHIEVEMENT_REPORT_NAME = "StudentAchievementReport";
-
-    private static final String SUMMARY_REPORT_NAME_PREFIX = "subreports/transcript/SUMMARY_";
+    public static final String ACHIEVEMENT_REPORT_NAME = "Achievement";
 
     private Assessment assessment;
 
@@ -87,8 +85,7 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      */
     @Override
     public void preprocessReportName() {
-        final String code = getGraduationProgramCode().toString();
-        setName(SUMMARY_REPORT_NAME_PREFIX + code);
+
     }
 
     /**
