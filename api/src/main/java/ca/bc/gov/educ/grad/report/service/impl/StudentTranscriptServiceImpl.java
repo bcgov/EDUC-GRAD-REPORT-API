@@ -17,9 +17,9 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
+import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.ReportData;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
@@ -347,7 +347,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         }
 
         PersonalEducationNumberObject pen = new PersonalEducationNumberObject();
-        pen.setPen(reportData.getStudent().getPen().getValue());
+        pen.setPen(reportData.getStudent().getPen().getPen());
 
         LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
         LOG.exiting(CLASSNAME, _m);

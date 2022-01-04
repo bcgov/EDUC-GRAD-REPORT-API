@@ -1,7 +1,6 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
-import ca.bc.gov.educ.grad.report.dto.impl.NonGradReasonImpl;
-import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.report.api.client.GradRequirement;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -14,19 +13,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class NonGradReasonListDeserializer extends StdDeserializer<List<NonGradReason>> {
+public class GradRequirementListDeserializer extends StdDeserializer<List<GradRequirement>> {
 
-    protected NonGradReasonListDeserializer() {
+    protected GradRequirementListDeserializer() {
         this(null);
     }
 
-    protected NonGradReasonListDeserializer(Class<?> vc) {
+    protected GradRequirementListDeserializer(Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public List<NonGradReason> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-        List<NonGradReason> result = new ArrayList<>();
+    public List<GradRequirement> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+        List<GradRequirement> result = new ArrayList<>();
         ObjectCodec oc = jsonParser.getCodec();
         JsonNode node = oc.readTree(jsonParser);
         Iterator<JsonNode> elements = node.elements();
@@ -34,7 +33,7 @@ public class NonGradReasonListDeserializer extends StdDeserializer<List<NonGradR
             JsonNode nextNode = elements.next();
             String code = (String) nextNode.get("code").asText();
             String description = (String) nextNode.get("description").asText();
-            NonGradReasonImpl r = new NonGradReasonImpl();
+            GradRequirement r = new GradRequirement();
             r.setCode(code);
             r.setDescription(description);
             result.add(r);

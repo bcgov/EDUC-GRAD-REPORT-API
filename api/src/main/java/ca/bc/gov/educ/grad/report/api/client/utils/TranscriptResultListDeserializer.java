@@ -1,9 +1,8 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
-import ca.bc.gov.educ.grad.report.dto.impl.CourseImpl;
-import ca.bc.gov.educ.grad.report.dto.impl.MarkImpl;
-import ca.bc.gov.educ.grad.report.dto.impl.TranscriptResultImpl;
-import ca.bc.gov.educ.grad.report.model.transcript.TranscriptResult;
+import ca.bc.gov.educ.grad.report.api.client.Mark;
+import ca.bc.gov.educ.grad.report.api.client.TranscriptCourse;
+import ca.bc.gov.educ.grad.report.api.client.TranscriptResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -36,7 +35,7 @@ public class TranscriptResultListDeserializer extends StdDeserializer<List<Trans
             JsonNode nextNode = elements.next();
 
             JsonNode courseNode = nextNode.get("course");
-            CourseImpl course = new CourseImpl();
+            TranscriptCourse course = new TranscriptCourse();
             course.setCode(courseNode.get("code").asText());
             course.setCredits(courseNode.get("credits").asText());
             course.setName(courseNode.get("name").asText());
@@ -47,7 +46,7 @@ public class TranscriptResultListDeserializer extends StdDeserializer<List<Trans
             course.setRelatedLevel(courseNode.get("relatedLevel").asText());
 
             JsonNode markNode = nextNode.get("mark");
-            MarkImpl mark = new MarkImpl();
+            Mark mark = new Mark();
             mark.setSchoolPercent(markNode.get("schoolPercent").asText());
             mark.setExamPercent(markNode.get("examPercent").asText());
             mark.setFinalPercent(markNode.get("finalPercent").asText());
@@ -60,12 +59,12 @@ public class TranscriptResultListDeserializer extends StdDeserializer<List<Trans
             String equivalency = (String) nextNode.get("equivalency").asText();
             String usedForGrad = (String) nextNode.get("usedForGrad").asText();
 
-            TranscriptResultImpl r = new TranscriptResultImpl();
+            TranscriptResult r = new TranscriptResult();
             r.setCourse(course);
             r.setMark(mark);
-            r.setEquivalencyChallenge(equivalency);
-            r.setRequirementMet(requirement);
-            r.setRequirementMetName(requirementName);
+            r.setEquivalency(equivalency);
+            r.setRequirement(requirement);
+            r.setRequirementName(requirementName);
             r.setUsedForGrad(usedForGrad);
 
             result.add(r);

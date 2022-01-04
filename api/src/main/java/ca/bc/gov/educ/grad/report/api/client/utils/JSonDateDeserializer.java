@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author alex.rybakov
  */
-public class JSonDateDeSerializer extends JsonDeserializer<Date> {
+public class JSonDateDeserializer extends JsonDeserializer<Date> {
 
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 

@@ -4,6 +4,31 @@
     "reportFile": "Student Achievement Report.pdf"
   },
   "data": {
+    "school": {
+      "name": "MOUNT BAKER SECONDARY",
+      "mincode": "00502001"
+    },
+    "student": {
+      "pen": {
+        "pen": "129382610",
+        "entityId": null
+      },
+      "firstName": "CAYMAN",
+      "middleName": "",
+      "lastName": "HILL",
+      "grade": "11",
+      "gender": "M",
+      "birthdate": "2010-01-01",
+      "localId": null,
+      "gradProgram": "2018-PF",
+      "otherProgramParticipation": [
+        {
+          "programCode": "FI",
+          "programName": "2018 Graduation Program French Immersion"
+        }
+      ],
+      "hasOtherProgram": "Other Program Participation"
+    },
     "studentExams": [
       {
         "courseCode": "AC",
@@ -400,31 +425,6 @@
         ]
       }
     ],
-    "school": {
-      "name": "MOUNT BAKER SECONDARY",
-      "mincode": "00502001"
-    },
-    "student": {
-      "pen": {
-        "pen": "129382610",
-        "entityId": null
-      },
-      "firstName": "CAYMAN",
-      "middleName": "",
-      "lastName": "HILL",
-      "grade": "11",
-      "gender": "M",
-      "birthdate": "2010-01-01",
-      "localId": null,
-      "gradProgram": "2018-PF",
-      "otherProgramParticipation": [
-        {
-          "programCode": "FI",
-          "programName": "2018 Graduation Program French Immersion"
-        }
-      ],
-      "hasOtherProgram": "Other Program Participation"
-    },
     "graduationStatus": {
       "programCompletionDate": null,
       "honours": null,

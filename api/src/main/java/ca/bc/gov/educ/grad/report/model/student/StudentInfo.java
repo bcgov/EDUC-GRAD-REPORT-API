@@ -17,8 +17,8 @@
  */
 package ca.bc.gov.educ.grad.report.model.student;
 
-import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.Date;
@@ -122,7 +122,7 @@ public interface StudentInfo {
      *
      * @return the other program participation
      */
-    List<OtherProgramImpl> getOtherProgramParticipation();
+    List<OtherProgram> getOtherProgramParticipation();
 
     /**
      * Gets has other program.

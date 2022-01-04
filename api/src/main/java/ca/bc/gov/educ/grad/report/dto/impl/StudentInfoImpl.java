@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -73,7 +74,7 @@ public class StudentInfoImpl implements StudentInfo {
 
     private String localId = "";
     private String hasOtherProgram = "";
-    private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
+    private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
     // student address
     private String studentAddress1 = "";
@@ -306,7 +307,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    public List<OtherProgramImpl> getOtherProgramParticipation() {
+    public List<OtherProgram> getOtherProgramParticipation() {
         return otherProgramParticipation;
     }
 
@@ -419,7 +420,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.hasOtherProgram = hasOtherProgram;
     }
 
-    public void setOtherProgramParticipation(List<OtherProgramImpl> otherProgramParticipation) {
+    public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
         this.otherProgramParticipation = otherProgramParticipation;
     }
 

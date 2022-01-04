@@ -1,7 +1,6 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
-import ca.bc.gov.educ.grad.report.dto.impl.AssessmentResultImpl;
-import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
+import ca.bc.gov.educ.grad.report.api.client.AssessmentResult;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -41,15 +40,15 @@ public class AssessmentResultListDeserializer extends StdDeserializer<List<Asses
             String exceededWrites = (String) nextNode.get("exceededWriteFlag").asText();
             Double proficiencyScore = (Double) nextNode.get("proficiencyScore").asDouble(0.0);
 
-            AssessmentResultImpl r = new AssessmentResultImpl();
+            AssessmentResult r = new AssessmentResult();
 
             r.setAssessmentName(name);
             r.setAssessmentCode(code);
-            r.setSessionDate(sessionDate);
-            r.setProficiencyScore(proficiencyScore);
-            r.setGradReqMet(requirementMet);
+            r.setAssessmentSession(sessionDate);
+            r.setAssessmentProficiencyScore(proficiencyScore);
+            r.setRequirementMet(requirementMet);
             r.setSpecialCase(specialCase);
-            r.setExceededWriteFlag(exceededWrites);
+            r.setExceededWrites(exceededWrites);
 
             result.add(r);
         }

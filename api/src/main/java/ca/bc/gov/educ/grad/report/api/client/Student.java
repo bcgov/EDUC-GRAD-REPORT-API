@@ -1,12 +1,15 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class Student {
+
     private Pen pen;
     private String firstName;
     private String lastName;
@@ -15,14 +18,17 @@ public class Student {
     private Address address;
     private String grade;
     private String gradProgram;
-    private String localId;
-    private String hasOtherProgram;
     private String studStatus;
     private String sccDate;
     private String mincodeGrad;
-    private String englishCERT;
-    private String frenchCERT;
+    private String englishCert;
+    private String frenchCert;
 
+    private String localId;
+    private String hasOtherProgram;
+    private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
+
+    @JsonDeserialize(as = Pen.class)
     public Pen getPen() {
         return pen;
     }
@@ -64,6 +70,7 @@ public class Student {
         this.birthdate = value;
     }
 
+    @JsonDeserialize(as = Address.class)
     public Address getAddress() {
         return address;
     }
@@ -104,19 +111,52 @@ public class Student {
         this.mincodeGrad = value;
     }
 
-    public String getEnglishCERT() {
-        return englishCERT;
+    public String getEnglishCert() {
+        return englishCert;
     }
 
-    public void setEnglishCERT(String value) {
-        this.englishCERT = value;
+    public void setEnglishCert(String value) {
+        this.englishCert = value;
     }
 
-    public String getFrenchCERT() {
-        return frenchCERT;
+    public String getFrenchCert() {
+        return frenchCert;
     }
 
-    public void setFrenchCERT(String value) {
-        this.frenchCERT = value;
+    public void setFrenchCert(String value) {
+        this.frenchCert = value;
+    }
+
+    public String getGradProgram() {
+        return gradProgram;
+    }
+
+    public void setGradProgram(String gradProgram) {
+        this.gradProgram = gradProgram;
+    }
+
+    public String getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
+    }
+
+    public String getHasOtherProgram() {
+        return hasOtherProgram;
+    }
+
+    public void setHasOtherProgram(String hasOtherProgram) {
+        this.hasOtherProgram = hasOtherProgram;
+    }
+
+    @JsonDeserialize(using = OtherProgramListDeserializer.class)
+    public List<OtherProgram> getOtherProgramParticipation() {
+        return otherProgramParticipation;
+    }
+
+    public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
+        this.otherProgramParticipation = otherProgramParticipation;
     }
 }

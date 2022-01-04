@@ -20,9 +20,9 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
-import ca.bc.gov.educ.grad.report.utils.OtherProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -61,7 +61,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     private String localId = "";
     private String hasOtherProgram = "";
-    private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
+    private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -123,8 +123,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    @JsonDeserialize(using = OtherProgramListDeserializer.class)
-    public List<OtherProgramImpl> getOtherProgramParticipation() {
+    public List<OtherProgram> getOtherProgramParticipation() {
         return otherProgramParticipation;
     }
 
@@ -201,7 +200,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.hasOtherProgram = hasOtherProgram;
     }
 
-    public void setOtherProgramParticipation(List<OtherProgramImpl> otherProgramParticipation) {
+    public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
         this.otherProgramParticipation = otherProgramParticipation;
     }
 

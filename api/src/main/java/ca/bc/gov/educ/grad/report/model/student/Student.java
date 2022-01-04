@@ -17,10 +17,10 @@
  */
 package ca.bc.gov.educ.grad.report.model.student;
 
-import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.Person;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.Date;
@@ -135,7 +135,7 @@ public interface Student extends Person {
      *
      * @return the other program participation
      */
-    List<OtherProgramImpl> getOtherProgramParticipation();
+    List<OtherProgram> getOtherProgramParticipation();
 
     /**
      * Gets other program participationdata source.

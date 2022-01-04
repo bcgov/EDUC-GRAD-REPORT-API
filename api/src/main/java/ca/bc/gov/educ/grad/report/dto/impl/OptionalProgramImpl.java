@@ -1,11 +1,9 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.graduation.GradRequirement;
+import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
-import ca.bc.gov.educ.grad.report.utils.GradRequirementListDeserializer;
-import ca.bc.gov.educ.grad.report.utils.NonGradReasonListDeserializer;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -27,10 +25,8 @@ public class OptionalProgramImpl implements OptionalProgram {
     private String optionalProgramName;
     private String programCompletionDate;
     private String hasRequirementMet;
-    @JsonDeserialize(using = GradRequirementListDeserializer.class)
     private List<GradRequirement> requirementMet;
-    @JsonDeserialize(using = NonGradReasonListDeserializer.class)
-    private List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons;
+    private List<NonGradReason> nonGradReasons;
 
     public OptionalProgramImpl() {}
 

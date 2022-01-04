@@ -1,13 +1,9 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
-import ca.bc.gov.educ.grad.report.dto.impl.AchievementCourseImpl;
-import ca.bc.gov.educ.grad.report.dto.impl.GradRequirementImpl;
-import ca.bc.gov.educ.grad.report.dto.impl.NonGradReasonImpl;
-import ca.bc.gov.educ.grad.report.dto.impl.OptionalProgramImpl;
-import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
-import ca.bc.gov.educ.grad.report.model.graduation.GradRequirement;
-import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
-import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
+import ca.bc.gov.educ.grad.report.api.client.AchievementCourse;
+import ca.bc.gov.educ.grad.report.api.client.GradRequirement;
+import ca.bc.gov.educ.grad.report.api.client.NonGradReason;
+import ca.bc.gov.educ.grad.report.api.client.OptionalProgram;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -43,7 +39,7 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
             String programCompletionDate = (String) nextNode.get("programCompletionDate").asText();
             String hasRequirementMet = (String) nextNode.get("hasRequirementMet").asText();
 
-            OptionalProgramImpl r = new OptionalProgramImpl();
+            OptionalProgram r = new OptionalProgram();
             r.setOptionalProgramCode(optionalProgramCode);
             r.setOptionalProgramName(optionalProgramName);
             r.setProgramCompletionDate(programCompletionDate);
@@ -56,7 +52,7 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
                 JsonNode gradRequirementNextNode = gradRequirementNodeElements.next();
                 String gradRequirementCode = gradRequirementNextNode.get("code").asText("");
                 String gradRequirementDescription = gradRequirementNextNode.get("description").asText("");
-                GradRequirementImpl gradRequirement = new GradRequirementImpl();
+                GradRequirement gradRequirement = new GradRequirement();
                 gradRequirement.setCode(gradRequirementCode);
                 gradRequirement.setDescription(gradRequirementDescription);
 
@@ -68,7 +64,7 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
                     String courseCode = courseDetailsNextNode.get("courseCode").asText("");
                     String courseLevel = courseDetailsNextNode.get("courseLevel").asText("");
                     String sessionDate = courseDetailsNextNode.get("sessionDate").asText("");
-                    AchievementCourseImpl achievementCourse = new AchievementCourseImpl(courseCode, courseLevel, sessionDate);
+                    AchievementCourse achievementCourse = new AchievementCourse(courseCode, courseLevel, sessionDate);
 
                     courseDetails.add(achievementCourse);
 
@@ -86,7 +82,7 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
                 JsonNode nonGradReasonsNextNode = nonGradReasonsNodeElements.next();
                 String nonGradReasonCode = nonGradReasonsNextNode.get("code").asText("");
                 String nonGradReasonDescription = nonGradReasonsNextNode.get("description").asText("");
-                NonGradReasonImpl nonGradReason = new NonGradReasonImpl();
+                NonGradReason nonGradReason = new NonGradReason();
                 nonGradReason.setCode(nonGradReasonCode);
                 nonGradReason.setDescription(nonGradReasonDescription);
                 nonGradReasons.add(nonGradReason);

@@ -1,17 +1,23 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-
-@Component
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class OtherProgram {
 
     private String programCode;
     private String programName;
 
+    public String getProgramCode() {
+        return programCode;
+    }
+
+    public void setProgramCode(String programCode) {
+        this.programCode = programCode;
+    }
+
+    public String getProgramName() {
+        return programName;
+    }
+
+    public void setProgramName(String programName) {
+        this.programName = programName;
+    }
 }

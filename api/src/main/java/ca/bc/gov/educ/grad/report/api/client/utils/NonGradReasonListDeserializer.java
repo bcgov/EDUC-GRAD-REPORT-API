@@ -1,7 +1,6 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
-import ca.bc.gov.educ.grad.report.dto.impl.GradRequirementImpl;
-import ca.bc.gov.educ.grad.report.model.graduation.GradRequirement;
+import ca.bc.gov.educ.grad.report.api.client.NonGradReason;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -14,19 +13,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class GradRequirementListDeserializer extends StdDeserializer<List<GradRequirement>> {
+public class NonGradReasonListDeserializer extends StdDeserializer<List<NonGradReason>> {
 
-    protected GradRequirementListDeserializer() {
+    protected NonGradReasonListDeserializer() {
         this(null);
     }
 
-    protected GradRequirementListDeserializer(Class<?> vc) {
+    protected NonGradReasonListDeserializer(Class<?> vc) {
         super(vc);
     }
 
     @Override
-    public List<GradRequirement> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
-        List<GradRequirement> result = new ArrayList<>();
+    public List<NonGradReason> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+        List<NonGradReason> result = new ArrayList<>();
         ObjectCodec oc = jsonParser.getCodec();
         JsonNode node = oc.readTree(jsonParser);
         Iterator<JsonNode> elements = node.elements();
@@ -34,7 +33,7 @@ public class GradRequirementListDeserializer extends StdDeserializer<List<GradRe
             JsonNode nextNode = elements.next();
             String code = (String) nextNode.get("code").asText();
             String description = (String) nextNode.get("description").asText();
-            GradRequirementImpl r = new GradRequirementImpl();
+            NonGradReason r = new NonGradReason();
             r.setCode(code);
             r.setDescription(description);
             result.add(r);

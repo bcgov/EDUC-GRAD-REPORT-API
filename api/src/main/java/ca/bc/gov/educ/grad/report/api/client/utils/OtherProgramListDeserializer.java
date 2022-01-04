@@ -1,7 +1,6 @@
-package ca.bc.gov.educ.grad.report.utils;
+package ca.bc.gov.educ.grad.report.api.client.utils;
 
-import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
-import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
+import ca.bc.gov.educ.grad.report.api.client.OtherProgram;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -34,7 +33,7 @@ public class OtherProgramListDeserializer extends StdDeserializer<List<OtherProg
             JsonNode nextNode = elements.next();
             String code = (String) nextNode.get("programCode").asText();
             String description = (String) nextNode.get("programName").asText();
-            OtherProgramImpl r = new OtherProgramImpl();
+            OtherProgram r = new OtherProgram();
             r.setProgramCode(code);
             r.setProgramName(description);
             result.add(r);

@@ -1,23 +1,21 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
+import java.util.Date;
 import java.util.List;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class GraduationData {
-    private String graduationDate;
+    private Date graduationDate;
     private boolean honorsFlag;
     private boolean dogwoodFlag;
     private List<String> programCodes;
     private List<String> programNames;
     private String totalCreditsUsedForGrad;
 
-    public String getGraduationDate() {
+    public Date getGraduationDate() {
         return graduationDate;
     }
 
-    public void setGraduationDate(String value) {
+    public void setGraduationDate(Date value) {
         this.graduationDate = value;
     }
 

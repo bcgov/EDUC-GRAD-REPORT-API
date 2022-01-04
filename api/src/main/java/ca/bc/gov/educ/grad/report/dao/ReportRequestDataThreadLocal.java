@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.grad.report.dao;
 
-import ca.bc.gov.educ.grad.report.dto.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.ReportData;
 
 public class ReportRequestDataThreadLocal {
 
