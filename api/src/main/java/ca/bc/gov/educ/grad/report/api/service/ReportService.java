@@ -2,7 +2,7 @@ package ca.bc.gov.educ.grad.report.api.service;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.OrderTypeImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
@@ -120,7 +120,7 @@ public class ReportService {
 
 		try {
 			List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
-			ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new OrderTypeImpl() {
+			ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
 				@Override
 				public String getName() {
 					return reportRequest.getData().getCertificate().getOrderType().getName();

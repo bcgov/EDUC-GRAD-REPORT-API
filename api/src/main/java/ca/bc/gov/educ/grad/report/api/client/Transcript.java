@@ -31,7 +31,7 @@ public class Transcript {
         this.issueDate = value;
     }
 
-    @JsonProperty("result")
+    @JsonProperty("results")
     @JsonDeserialize(using = TranscriptResultListDeserializer.class)
     public List<TranscriptResult> getResults() {
         return results;

@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Certificate {
     private Date issued;
+    private String certStyle;
     private OrderType orderType;
     private boolean isOrigin;
 
@@ -32,5 +33,13 @@ public class Certificate {
 
     public void setIsOrigin(boolean origin) {
         isOrigin = origin;
+    }
+
+    public String getCertStyle() {
+        return certStyle;
+    }
+
+    public void setCertStyle(String certStyle) {
+        this.certStyle = certStyle;
     }
 }

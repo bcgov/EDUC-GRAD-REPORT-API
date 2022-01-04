@@ -1,5 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class GraduationData {
     private List<String> programNames;
     private String totalCreditsUsedForGrad;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getGraduationDate() {
         return graduationDate;
     }

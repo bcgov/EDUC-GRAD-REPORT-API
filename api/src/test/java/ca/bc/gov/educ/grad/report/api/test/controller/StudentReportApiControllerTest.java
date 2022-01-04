@@ -6,7 +6,7 @@ import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.ReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.OrderTypeImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
@@ -159,7 +159,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         reportRequest.getOptions().setReportFile("Certificate 1950 Report.pdf");
         List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
 
-        ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new OrderTypeImpl() {
+        ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
             @Override
             public String getName() {
                 return reportRequest.getData().getCertificate().getOrderType().getName();

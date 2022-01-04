@@ -4,10 +4,12 @@ import ca.bc.gov.educ.grad.report.api.client.GradRequirement;
 import ca.bc.gov.educ.grad.report.api.client.OtherProgram;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
+import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.school.School;
@@ -266,8 +268,43 @@ public class GradDataConvertionBean {
     }
 
     public Certificate getCertificate(ca.bc.gov.educ.grad.report.api.client.Certificate certificate) {
-        Certificate result = new CertificateImpl();
+        CertificateImpl result = new CertificateImpl();
         BeanUtils.copyProperties(certificate, result);
+        final CertificateType rsRptType;
+        switch(certificate.getOrderType().getCertificateType().getReportName()) {
+            case "E":
+                rsRptType = CertificateType.E;
+                break;
+            case "A":
+                rsRptType = CertificateType.A;
+                break;
+            case "EI":
+                rsRptType = CertificateType.EI;
+                break;
+            case "AI":
+                rsRptType = CertificateType.AI;
+                break;
+            case "S":
+                rsRptType = CertificateType.S;
+                break;
+            case "SC":
+                rsRptType = CertificateType.SC;
+                break;
+            case "SCF":
+                rsRptType = CertificateType.SCF;
+                break;
+            case "F":
+                rsRptType = CertificateType.F;
+                break;
+            case "O":
+                rsRptType = CertificateType.O;
+                break;
+            default:
+                rsRptType = CertificateType.E;
+        }
+        CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl(rsRptType);
+        orderType.setName(certificate.getOrderType().getName());
+        result.setOrderType(orderType);
         return result;
     }
 }
