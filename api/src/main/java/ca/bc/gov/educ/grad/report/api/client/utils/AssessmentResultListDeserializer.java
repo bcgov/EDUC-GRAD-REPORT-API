@@ -44,11 +44,11 @@ public class AssessmentResultListDeserializer extends StdDeserializer<List<Asses
 
             r.setAssessmentName(name);
             r.setAssessmentCode(code);
-            r.setAssessmentSession(sessionDate);
-            r.setAssessmentProficiencyScore(proficiencyScore);
-            r.setRequirementMet(requirementMet);
+            r.setSessionDate(sessionDate);
+            r.setProficiencyScore(proficiencyScore);
+            r.setGradReqMet(requirementMet);
             r.setSpecialCase(specialCase);
-            r.setExceededWrites(exceededWrites);
+            r.setExceededWriteFlag(exceededWrites);
 
             result.add(r);
         }

@@ -163,23 +163,8 @@ public class GradDataConvertionBean {
         Student student = getStudent(reportData);
         List<AchievementCourse> result = new ArrayList<>();
             for(ca.bc.gov.educ.grad.report.api.client.AchievementCourse r: reportData.getStudentCourses()) {
-                AchievementCourseImpl course = new AchievementCourseImpl(
-                        student.getPen().getValue(), //String pen,
-                        r.getCourseName(), //String courseName,
-                        r.getCourseCode(), //String crseCode,
-                        r.getCourseLevel(), //String crseLevel,
-                        r.getSessionDate(), //String sessionDate,
-                        r.getCredits(), //String credits,
-                        r.getExamPercent(), //String examPercent,
-                        r.getSchoolPercent(), //String schoolPercent,
-                        r.getFinalPercent(), //String finalPercent,
-                        r.getFinalLetterGrade(), //String finalLetterGrade,
-                        r.getInterimPercent(), //String interimMark,
-                        r.getRequirement(), //String requirement,
-                        null, //String specialCase,
-                        r.getCourseType(),
-                        r.getUsedForGrad()//Character courseType
-                );
+                AchievementCourseImpl course = new AchievementCourseImpl();
+                BeanUtils.copyProperties(r, course);
                 result.add(course);
         }
         return result;
@@ -192,22 +177,8 @@ public class GradDataConvertionBean {
                 if(r.getCourseCode() == null || r.getSessionDate() == null) {
                     throw new InvalidParameterException("Exam code and Session date can't be NULL");
                 }
-                ExamImpl exam = new ExamImpl(
-                        r.getCourseCode(),//courseCode
-                        r.getCourseName(),//courseName
-                        r.getCourseLevel(),//courseLevel;
-                        r.getSessionDate(),//sessionDate;
-                        r.getGradReqMet(),//gradReqMet;
-                        r.getCompletedCoursePercentage(),//completedCoursePercentage;
-                        r.getCompletedCourseLetterGrade(),//completedCourseLetterGrade;
-                        r.getBestSchoolPercent(),//bestSchoolPercent;
-                        r.getBestExamPercent(),//bestExamPercent;
-                        r.getInterimPercent(),//interimPercent;
-                        r.getEquivOrChallenge(),//equivOrChallenge;
-                        r.getMetLitNumRequirement(),//metLitNumRequirement;
-                        r.getCredits(),//credits;
-                        r.getCreditsUsedForGrad()//creditsUsedForGrad;
-                );
+                ExamImpl exam = new ExamImpl();
+                BeanUtils.copyProperties(r, exam);
                 result.add(exam);
             }
         }
@@ -226,6 +197,13 @@ public class GradDataConvertionBean {
                 for(GradRequirement gr: r.getRequirementMet()) {
                     ca.bc.gov.educ.grad.report.model.graduation.GradRequirement data = new GradRequirementImpl();
                     BeanUtils.copyProperties(gr, data);
+                    List<AchievementCourse> acrs = new ArrayList<>();
+                    for(ca.bc.gov.educ.grad.report.api.client.AchievementCourse ac: gr.getCourseDetails()) {
+                        AchievementCourseImpl course = new AchievementCourseImpl();
+                        BeanUtils.copyProperties(ac, course);
+                        acrs.add(course);
+                    }
+                    data.setCourseDetails(acrs);
                     requirementMet.add(data);
                 }
                 List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons = new ArrayList();
@@ -234,14 +212,10 @@ public class GradDataConvertionBean {
                     BeanUtils.copyProperties(gr, data);
                     nonGradReasons.add(data);
                 }
-                OptionalProgramImpl program = new OptionalProgramImpl(
-                    r.getOptionalProgramCode(),//optionalProgramCode;
-                    r.getOptionalProgramName(),//optionalProgramName;
-                    r.getProgramCompletionDate(),//programCompletionDate;
-                    r.getHasRequirementMet(),//hasRequirementMet;
-                    requirementMet,//requirementMet;
-                    nonGradReasons//nonGradReasons;
-                );
+                OptionalProgramImpl program = new OptionalProgramImpl();
+                BeanUtils.copyProperties(r, program);
+                program.setRequirementMet(requirementMet);
+                program.setNonGradReasons(nonGradReasons);
                 result.add(program);
             }
         }
@@ -264,14 +238,7 @@ public class GradDataConvertionBean {
         ca.bc.gov.educ.grad.report.api.client.Assessment assessment = reportData.getAssessment();
         for(ca.bc.gov.educ.grad.report.api.client.AssessmentResult r: assessment.getResults()) {
             AssessmentResultImpl assessmentResult = new AssessmentResultImpl();
-            assessmentResult.setStudentNumber(studentInfo.getPen());
-            assessmentResult.setAssessmentName(r.getAssessmentName());
-            assessmentResult.setAssessmentCode(r.getAssessmentCode());
-            assessmentResult.setSessionDate(r.getAssessmentSession());
-            assessmentResult.setGradReqMet(r.getRequirementMet());
-            assessmentResult.setSpecialCase(r.getSpecialCase());
-            assessmentResult.setExceededWriteFlag(r.getExceededWrites());
-            assessmentResult.setProficiencyScore(r.getAssessmentProficiencyScore());
+            BeanUtils.copyProperties(r, assessmentResult);
             result.add(assessmentResult);
         }
         return result;

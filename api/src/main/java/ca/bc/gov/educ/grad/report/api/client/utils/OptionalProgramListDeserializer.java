@@ -65,12 +65,9 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
                     String courseLevel = courseDetailsNextNode.get("courseLevel").asText("");
                     String sessionDate = courseDetailsNextNode.get("sessionDate").asText("");
                     AchievementCourse achievementCourse = new AchievementCourse(courseCode, courseLevel, sessionDate);
-
                     courseDetails.add(achievementCourse);
-
                 }
                 gradRequirement.setCourseDetails(courseDetails);
-
                 gradRequirements.add(gradRequirement);
             }
             r.setRequirementMet(gradRequirements);
@@ -88,7 +85,6 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
                 nonGradReasons.add(nonGradReason);
             }
             r.setNonGradReasons(nonGradReasons);
-
             result.add(r);
         }
         return result;

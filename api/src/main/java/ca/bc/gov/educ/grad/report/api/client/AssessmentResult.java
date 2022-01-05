@@ -1,18 +1,15 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class AssessmentResult {
 
     private String assessmentName;
     private String assessmentCode;
-    private double assessmentProficiencyScore;
-    private String assessmentSession;
-    private String requirementMet;
+    private double proficiencyScore;
+    private String sessionDate;
+    private String gradReqMet;
     private String specialCase;
-    private String exceededWrites;
+    private String exceededWriteFlag;
 
-    @JsonProperty("assessmentName")
     public String getAssessmentName() {
         return assessmentName;
     }
@@ -21,7 +18,6 @@ public class AssessmentResult {
         this.assessmentName = assessmentName;
     }
 
-    @JsonProperty("assessmentCode")
     public String getAssessmentCode() {
         return assessmentCode;
     }
@@ -30,34 +26,30 @@ public class AssessmentResult {
         this.assessmentCode = assessmentCode;
     }
 
-    @JsonProperty("proficiencyScore")
-    public double getAssessmentProficiencyScore() {
-        return assessmentProficiencyScore;
+    public double getProficiencyScore() {
+        return proficiencyScore;
     }
 
-    public void setAssessmentProficiencyScore(double assessmentProficiencyScore) {
-        this.assessmentProficiencyScore = assessmentProficiencyScore;
+    public void setProficiencyScore(double proficiencyScore) {
+        this.proficiencyScore = proficiencyScore;
     }
 
-    @JsonProperty("sessionDate")
-    public String getAssessmentSession() {
-        return assessmentSession;
+    public String getSessionDate() {
+        return sessionDate;
     }
 
-    public void setAssessmentSession(String assessmentSession) {
-        this.assessmentSession = assessmentSession;
+    public void setSessionDate(String sessionDate) {
+        this.sessionDate = sessionDate;
     }
 
-    @JsonProperty("gradReqMet")
-    public String getRequirementMet() {
-        return requirementMet;
+    public String getGradReqMet() {
+        return gradReqMet;
     }
 
-    public void setRequirementMet(String requirementMet) {
-        this.requirementMet = requirementMet;
+    public void setGradReqMet(String gradReqMet) {
+        this.gradReqMet = gradReqMet;
     }
 
-    @JsonProperty("specialCase")
     public String getSpecialCase() {
         return specialCase;
     }
@@ -66,12 +58,11 @@ public class AssessmentResult {
         this.specialCase = specialCase;
     }
 
-    @JsonProperty("exceededWriteFlag")
-    public String getExceededWrites() {
-        return exceededWrites;
+    public String getExceededWriteFlag() {
+        return exceededWriteFlag;
     }
 
-    public void setExceededWrites(String exceededWrites) {
-        this.exceededWrites = exceededWrites;
+    public void setExceededWriteFlag(String exceededWriteFlag) {
+        this.exceededWriteFlag = exceededWriteFlag;
     }
 }

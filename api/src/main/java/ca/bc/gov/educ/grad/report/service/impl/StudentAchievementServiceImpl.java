@@ -912,57 +912,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     }
 
     /**
-     * Ensure that the student's highest mark for a particular course is used.
-     * This will remove any duplicate courses that may be present in favour of
-     * the highest marked course.
-     *
-     * @param results Courses for PEN user which might have duplicated courses
-     * @return
-     */
-    private List<AchievementCourse> filterCourses(final List<AchievementCourse> results) {
-
-        final List<AchievementCourse> resultOfCourses = new ArrayList<>();
-        for (final AchievementCourse course : results) {
-
-            if (!resultOfCourses.contains(course)) {
-                final AchievementCourse interimCourse
-                        = getInterimCourse(course, results);
-
-                if (!(resultOfCourses.contains(interimCourse))) {
-                    resultOfCourses.add(interimCourse);
-                }
-            }
-        }
-
-        return resultOfCourses;
-    }
-
-    /**
-     * If the in progress course is a duplicate of a successfully complete
-     * course (i.e. the course already appears on the student's achievement with
-     * a passing final mark), the in progress course replaces the successfully
-     * completed occurrence of the course if and only if the interim percent is
-     * greater than the final percent on the successfully completed occurrence
-     * of the course. If the interim percent is blank it should not replace the
-     * successfully completed occurrence of the course.
-     */
-    private AchievementCourse getInterimCourse(
-            AchievementCourse course,
-            final List<AchievementCourse> results) {
-        //Check for dulicate courses
-        for (final AchievementCourse compareCourse : results) {
-            //Check and compare two courses for duplication and if required
-            //replace course based on requirement.
-            if (course.courseEquals(compareCourse)
-                    && course.compareCourse(compareCourse)) {
-                course = compareCourse;
-            }
-        }
-        return course;
-
-    }
-
-    /**
      * The number of credits can be a pure numeric value or adorned with extra
      * characters (e.g., 2, 2p, (4)). This parses the numeric value regardless
      * of whether there are non-numeric characters present.
