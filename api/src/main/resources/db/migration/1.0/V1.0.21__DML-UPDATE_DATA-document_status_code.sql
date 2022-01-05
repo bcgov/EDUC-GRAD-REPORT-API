@@ -1,0 +1,3 @@
+UPDATE DOCUMENT_STATUS_CODE SET DESCRIPTION = 'Document is in progress and not completed - student has not yet met their program requirements' WHERE DOCUMENT_STATUS_CODE='IP';
+UPDATE DOCUMENT_STATUS_CODE SET DESCRIPTION = 'Document is complete - student has met their program requirements' WHERE DOCUMENT_STATUS_CODE='COMPL';
+UPDATE DOCUMENT_STATUS_CODE SET DESCRIPTION = 'Document is archived - student has completed documents under a different program than their current program' WHERE DOCUMENT_STATUS_CODE='ARCH';
