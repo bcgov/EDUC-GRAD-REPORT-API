@@ -91,6 +91,11 @@ public class GradDataConvertionBean {
         StudentImpl student = new StudentImpl();
         BeanUtils.copyProperties(reportData.getStudent(), student);
         student.setPen(new PersonalEducationNumberObject(reportData.getStudent().getPen().getPen()));
+        if(reportData.getStudent().getAddress() != null) {
+            PostalAddressImpl address = new PostalAddressImpl();
+            BeanUtils.copyProperties(reportData.getStudent().getAddress(), address);
+            student.setCurrentMailingAddress(address);
+        }
 
         List<ca.bc.gov.educ.grad.report.model.graduation.OtherProgram> otherPrograms = new ArrayList<>();
         for(OtherProgram p: reportData.getStudent().getOtherProgramParticipation()) {
@@ -116,6 +121,11 @@ public class GradDataConvertionBean {
         }
         SchoolImpl school = new SchoolImpl();
         BeanUtils.copyProperties(reportData.getSchool(), school);
+        if(reportData.getSchool().getAddress() != null) {
+            PostalAddressImpl address = new PostalAddressImpl();
+            BeanUtils.copyProperties(reportData.getSchool().getAddress(), address);
+            school.setAddress(address);
+        }
         return school;
     }
 
