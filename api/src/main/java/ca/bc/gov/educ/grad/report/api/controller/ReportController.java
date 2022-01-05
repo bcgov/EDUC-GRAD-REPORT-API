@@ -39,7 +39,22 @@ public class ReportController extends BaseController {
         logRequest();
         return reportService.getStudentAchievementReport(report);
     }
-    
+
+    /**
+     * @deprecated
+     * The end point duplicates the one above and is used for compatibility only.
+     * Please delete it after other APIs fix the URL
+    **/
+    @PostMapping (ReportApiConstants.STUDENT_ACHV_REPORT)
+    @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
+    @Operation(summary = "Generate Student Achievement Report", description = "@deprecated -- Generate Student Achievement Report -- @deprecated", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity getStudentAchvReport(@RequestBody ReportRequest report) {
+        logger.debug("getStudentAchvReport");
+        logRequest();
+        return reportService.getStudentAchievementReport(report);
+    }
+
     @PostMapping (ReportApiConstants.STUDENT_TRANSCRIPT_REPORT)
     @PreAuthorize(PermissionsContants.STUDENT_TRANSCRIPT_REPORT)
     @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
