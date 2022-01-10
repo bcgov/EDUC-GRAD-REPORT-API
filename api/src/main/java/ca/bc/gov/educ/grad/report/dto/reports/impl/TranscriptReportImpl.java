@@ -31,7 +31,6 @@ import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import java.util.List;
 
 import static ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter.adapt;
-import static ca.bc.gov.educ.grad.report.dto.reports.util.InheritableResourceBundle.BASE_NAME_SEPARATOR;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.HTML;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.XML;
 import static java.lang.String.format;
@@ -53,7 +52,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
      * Only used for creating the transcripts; summary pages (backs of
      * transcripts) use SUMMARY_REPORT_NAME_PREFIX.
      */
-    public static final String TRANSCRIPT_REPORT_NAME = "Transcript";
+    public static final String TRANSCRIPT_REPORT_NAME = "Transcript_%s";
 
     private static final String SUMMARY_REPORT_NAME_PREFIX = "subreports/transcript/sections/%s/SUMMARY_%s";
 
@@ -72,9 +71,8 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     /**
      * Constructs a new report using the default report template.
      */
-    public TranscriptReportImpl() {
-        super(TRANSCRIPT_REPORT_NAME);
-
+    public TranscriptReportImpl(GradProgram program) {
+        super(String.format(TRANSCRIPT_REPORT_NAME, program.getCode().getCode()));
         // Prevent two HTML header/footers from being added to the
         // HTML version of transcripts.
         setWrapHtml(false);
@@ -266,32 +264,6 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
         if (!isFormat(XML)) {
             setParameter(P_REPORT_TYPE, getReportType());
         }
-    }
-
-    /**
-     * Returns Transcript_GraduationProgramCode where GraduationProgramCode is
-     * the code from the graduation program code enumeration instance associated
-     * with the student.
-     *
-     * @return The report name.
-     */
-    @Override
-    protected String getResourceBundleName() {
-        // Get the report namem.
-        final String superName = super.getResourceBundleName();
-
-        // Get the graduation program code to generate a new resource bundle
-        // reference name.
-        final GraduationProgramCode code = getGraduationProgramCode();
-
-        // The inheritable resource bundle derives resource bundles by
-        // parsing the report name. We override the report name in this
-        // method by appending to the graduation program code so that
-        // text values can be shared across various transcripts.
-        final String resourceBundleName = superName + BASE_NAME_SEPARATOR
-                + code.toString();
-
-        return resourceBundleName;
     }
 
     /**

@@ -15,6 +15,7 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.report.model.reports;
 
+import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.transcript.ParameterPredicate;
 
 /**
@@ -31,7 +32,7 @@ public interface ReportService extends ReportExportService {
      *
      * @return A non-null report instance that must be populated with data.
      */
-    TranscriptReport createTranscriptReport();
+    TranscriptReport createTranscriptReport(GradProgram program);
 
     /**
      * Creates a certificate report instance that can be exported into a final

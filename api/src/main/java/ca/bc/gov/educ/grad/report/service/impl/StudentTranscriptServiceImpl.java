@@ -705,7 +705,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final String _m = "createReport(...)";
         LOG.entering(CLASSNAME, _m);
 
-        final TranscriptReport report = reportService.createTranscriptReport();
+        final TranscriptReport report = reportService.createTranscriptReport(program);
 
         if (parameters != null) {
             report.setParameters(parameters);
