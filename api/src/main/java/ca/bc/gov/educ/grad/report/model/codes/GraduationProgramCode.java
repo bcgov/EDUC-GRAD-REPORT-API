@@ -37,7 +37,7 @@ package ca.bc.gov.educ.grad.report.model.codes;
  */
 public enum GraduationProgramCode {
 
-    PROGRAM_1950("1950", "Adult Graduation Program", 20),
+    BC1950_PUB("BC1950-PUB", "Adult Graduation Program BC", 20),
     PROGRAM_1986("1986", "Course-Based Graduation Program", 52),
     PROGRAM_1995("1995", "Graduation Program 1995", 52),
     PROGRAM_1996("1996", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
@@ -123,7 +123,7 @@ public enum GraduationProgramCode {
      * @return true This is an adult program.
      */
     public boolean isAdult() {
-        return equals(PROGRAM_1950);
+        return equals(BC1950_PUB);
     }
 
     /**

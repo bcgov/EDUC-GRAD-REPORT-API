@@ -52,9 +52,13 @@ import java.io.Serializable;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public enum GraduationProgramCode implements Serializable {
 
-    @XmlEnumValue("1950")
-    @JsonProperty("1950")
-    PROGRAM_1950("1950", "Adult Graduation Program", 20),
+    @XmlEnumValue("BC1950-PUB")
+    @JsonProperty("BC1950-PUB")
+    BC1950_PUB("BC1950-PUB", "Adult Graduation Program BC", 20),
+
+    @XmlEnumValue("YU1950-PUB")
+    @JsonProperty("YU1950-PUB")
+    YU1950_PUB("YU1950-PUB", "Adult Graduation Program Yukon", 20),
 
     @XmlEnumValue("1986")
     @JsonProperty("1986")
@@ -197,7 +201,7 @@ public enum GraduationProgramCode implements Serializable {
      * @return true This is an adult program.
      */
     public boolean isAdult() {
-        return equals(PROGRAM_1950);
+        return equals(BC1950_PUB);
     }
 
     /**

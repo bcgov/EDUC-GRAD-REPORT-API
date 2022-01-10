@@ -77,7 +77,7 @@
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "SUMMARY_1950.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "SUMMARY_SCCP_SUB.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

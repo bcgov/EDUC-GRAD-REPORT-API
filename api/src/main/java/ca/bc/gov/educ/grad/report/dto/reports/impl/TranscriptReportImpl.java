@@ -55,7 +55,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
      */
     public static final String TRANSCRIPT_REPORT_NAME = "Transcript";
 
-    private static final String SUMMARY_REPORT_NAME_PREFIX = "subreports/transcript/SUMMARY_";
+    private static final String SUMMARY_REPORT_NAME_PREFIX = "subreports/transcript/sections/%s/SUMMARY_%s";
 
     private GraduationProgramCode graduationProgramCode;
 
@@ -89,7 +89,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     @Override
     public void preprocessReportName() {
         final String code = getGraduationProgramCode().toString();
-        setName(SUMMARY_REPORT_NAME_PREFIX + code);
+        setName(String.format(SUMMARY_REPORT_NAME_PREFIX, code, code));
     }
 
     /**

@@ -982,7 +982,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final Comparator<AchievementResult> result;
 
         switch (code) {
-            case PROGRAM_1950:
+            case BC1950_PUB:
             case PROGRAM_1986:
                 result = createAdultComparator();
                 break;

@@ -57,7 +57,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createStudentAchievementReport");
 	}
 
-	@Test
+	//@Test
 	public void createTranscriptReport_2004() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2004 at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
@@ -78,26 +78,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void createTranscriptReport_1950() throws Exception {
-		LOG.debug("<{}.createTranscriptReport_1950 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-1950.json");
+	public void createTranscriptReport_BC1950_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-PUB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript 1950 Report.pdf");
+		reportRequest.getOptions().setReportFile("Transcript BC1950-PUB Report.pdf");
 		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createTranscriptReport_1950");
+		LOG.debug(">createTranscriptReport_BC1950_PUB");
 	}
 
-	@Test
+	//@Test
 	public void createTranscriptReport_2018() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2018 at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2018.json");
@@ -117,7 +117,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_2018");
 	}
 
-	@Test
+	//@Test
 	public void createTranscriptReport_SCCP() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_SCCP at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP.json");
