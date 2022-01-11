@@ -60,7 +60,7 @@
 	</parameter>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String">
 		<parameterDescription><![CDATA[Graduation program code]]></parameterDescription>
-		<defaultValueExpression><![CDATA["YU1986-PUB"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
 		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
@@ -190,7 +190,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 	<background>
 		<band height="761">
 			<subreport>
-				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="e2bca6ce-a978-4a55-893d-fda3e775e165"/>
+				<reportElement x="0" y="211" width="567" height="550" isRemoveLineWhenBlank="true" uuid="34e89239-8317-4e5d-a627-642c83f563d0"/>
 				<subreportParameter name="P_REPORT_TYPE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
 				</subreportParameter>
