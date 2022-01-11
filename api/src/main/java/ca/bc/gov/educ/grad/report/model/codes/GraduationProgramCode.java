@@ -38,7 +38,9 @@ package ca.bc.gov.educ.grad.report.model.codes;
 public enum GraduationProgramCode {
 
     BC1950_PUB("BC1950-PUB", "Adult Graduation Program BC", 20),
-    PROGRAM_1986("1986", "Course-Based Graduation Program", 52),
+    YU1950_PUB("YU1950-PUB", "Adult Graduation Program Yukon", 20),
+    BC1986_PUB("BC1986-PUB", "Course Based Graduation Program", 52),
+    YU1986_PUB("YU1986-PUB", "Course Based Graduation Program", 52),
     PROGRAM_1995("1995", "Graduation Program 1995", 52),
     PROGRAM_1996("1996", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
     PROGRAM_2004("2004", "Graduation Program 2004", 80),

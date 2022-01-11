@@ -117,6 +117,46 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU1950_PUB");
 	}
 
+	@Test
+	public void createTranscriptReport_BC1986_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript BC1986-PUB Report.pdf");
+		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_BC1986_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_YU1986_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1986-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript YU1986-PUB Report.pdf");
+		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_YU1986_PUB");
+	}
+
 	////@Test
 	public void createTranscriptReport_2018() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2018 at {}", CLASS_NAME, dateFormat.format(new Date()));

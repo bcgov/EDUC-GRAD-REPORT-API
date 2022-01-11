@@ -60,9 +60,13 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("YU1950-PUB")
     YU1950_PUB("YU1950-PUB", "Adult Graduation Program Yukon", 20),
 
-    @XmlEnumValue("1986")
-    @JsonProperty("1986")
-    PROGRAM_1986("1986", "Course-Based Graduation Program", 52),
+    @XmlEnumValue("BC1986-PUB")
+    @JsonProperty("BC1986-PUB")
+    BC1986_PUB("BC1986-PUB", "Course Based Graduation Program", 52),
+
+    @XmlEnumValue("YU1986-PUB")
+    @JsonProperty("YU1986-PUB")
+    YU1986_PUB("YU1986-PUB", "Course Based Graduation Program", 52),
 
     @XmlEnumValue("1986-EN")
     @JsonProperty("1986-EN")
@@ -111,7 +115,6 @@ public enum GraduationProgramCode implements Serializable {
     @XmlEnumValue("2018-PF")
     @JsonProperty("2018-PF")
     PROGRAM_2018_PF("2018-PF", "2018 Programme Francophone", 80);
-
 
     private String code;
     private String description;

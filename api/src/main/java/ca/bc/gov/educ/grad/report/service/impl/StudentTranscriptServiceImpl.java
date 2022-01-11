@@ -1006,7 +1006,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
 
         switch (code) {
             case BC1950_PUB:
-            case PROGRAM_1986:
+            case BC1986_PUB:
                 result = createAdultComparator();
                 break;
 
