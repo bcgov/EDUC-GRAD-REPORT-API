@@ -17,7 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
-import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -30,10 +30,10 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode.valueFrom;
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_TRAX_YMD;
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.asBoolean;
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.trimSafe;
+import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.valueFrom;
 
 /**
  * A TRAX data object containing data from the TRAX database for the given

@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.grad.report.model.codes;
+package ca.bc.gov.educ.grad.report.model.common;
 
 public interface SignatureBlockType {
 

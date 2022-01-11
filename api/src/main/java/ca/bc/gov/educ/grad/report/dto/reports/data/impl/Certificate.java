@@ -18,7 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
-import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 
 import java.util.Calendar;
 import java.util.Date;

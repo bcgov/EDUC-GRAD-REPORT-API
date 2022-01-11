@@ -68,21 +68,21 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("YU1986-PUB")
     YU1986_PUB("YU1986-PUB", "Course Based Graduation Program", 52),
 
-    @XmlEnumValue("1986-EN")
-    @JsonProperty("1986-EN")
-    PROGRAM_1986_EN("1986-EN", "Course-Based Graduation Program", 52),
+    @XmlEnumValue("BC1995-PUB")
+    @JsonProperty("BC1995-PUB")
+    BC1995_PUB("BC1995-PUB", "Graduation Program 1995", 52),
 
-    @XmlEnumValue("1995")
-    @JsonProperty("1995")
-    PROGRAM_1995("1995", "Graduation Program 1995", 52),
+    @XmlEnumValue("BC1996-PUB")
+    @JsonProperty("BC1996-PUB")
+    BC1996_PUB("BC1996-PUB", BC1995_PUB.getDescription(), BC1995_PUB.getCredits()),
 
-    @XmlEnumValue("1996")
-    @JsonProperty("1996")
-    PROGRAM_1996("1996", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
+    @XmlEnumValue("YU1995-PUB")
+    @JsonProperty("YU1995-PUB")
+    YU1995_PUB("YU1995-PUB", "Graduation Program 1995", 52),
 
-    @XmlEnumValue("1996-PF")
-    @JsonProperty("1996-PF")
-    PROGRAM_1996_PF("1996-PF", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
+    @XmlEnumValue("YU1996-PUB")
+    @JsonProperty("YU1996-PUB")
+    YU1996_PUB("YU1996-PUB", YU1995_PUB.getDescription(), YU1995_PUB.getCredits()),
 
     @XmlEnumValue("SCCP")
     @JsonProperty("SCCP")
