@@ -56,6 +56,10 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("BC1950-PUB")
     BC1950_PUB("BC1950-PUB", "Adult Graduation Program BC", 20),
 
+    @XmlEnumValue("BC1950-IND")
+    @JsonProperty("BC1950-IND")
+    BC1950_IND("BC1950-IND", "Adult Graduation Program BC", 20),
+
     @XmlEnumValue("YU1950-PUB")
     @JsonProperty("YU1950-PUB")
     YU1950_PUB("YU1950-PUB", "Adult Graduation Program Yukon", 20),
@@ -63,6 +67,10 @@ public enum GraduationProgramCode implements Serializable {
     @XmlEnumValue("BC1986-PUB")
     @JsonProperty("BC1986-PUB")
     BC1986_PUB("BC1986-PUB", "Course Based Graduation Program", 52),
+
+    @XmlEnumValue("BC1986-IND")
+    @JsonProperty("BC1986-IND")
+    BC1986_IND("BC1986-IND", "Course Based Graduation Program", 52),
 
     @XmlEnumValue("YU1986-PUB")
     @JsonProperty("YU1986-PUB")
@@ -76,6 +84,10 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("BC1996-PUB")
     BC1996_PUB("BC1996-PUB", BC1995_PUB.getDescription(), BC1995_PUB.getCredits()),
 
+    @XmlEnumValue("BC1996-IND")
+    @JsonProperty("BC1996-IND")
+    BC1996_IND("BC1996-IND", BC1995_PUB.getDescription(), BC1995_PUB.getCredits()),
+
     @XmlEnumValue("YU1995-PUB")
     @JsonProperty("YU1995-PUB")
     YU1995_PUB("YU1995-PUB", "Graduation Program 1995", 52),
@@ -88,9 +100,17 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("SCCP")
     PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
 
-    @XmlEnumValue("2004")
-    @JsonProperty("2004")
-    PROGRAM_2004("2004", "Graduation Program 2004", 80),
+    @XmlEnumValue("BC2004-PUB")
+    @JsonProperty("BC2004-PUB")
+    BC2004_PUB("BC2004-PUB", "Graduation Program 2004", 80),
+
+    @XmlEnumValue("BC2004-IND")
+    @JsonProperty("BC2004-IND")
+    BC2004_IND("BC2004-IND", "Graduation Program 2004", 80),
+
+    @XmlEnumValue("YU2004-PUB")
+    @JsonProperty("YU2004-PUB")
+    YU2004_PUB("YU2004-PUB", "Graduation Program 2004", 80),
 
     @XmlEnumValue("2004-PF")
     @JsonProperty("2004-PF")
