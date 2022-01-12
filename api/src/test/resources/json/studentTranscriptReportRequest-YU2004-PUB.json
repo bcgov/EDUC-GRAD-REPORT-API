@@ -50,7 +50,7 @@
         "code": "V6R3C9"
       }
     },
-    "logo": "BC",
+    "logo": "YU",
     "nonGradReasons" : [
       {
         "code": "101",
@@ -64,8 +64,8 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "BC2004-IND",
-      "name": "2004 Independent School Transcript",
+      "code": "YU2004-PUB",
+      "name": "2004 Public School Transcript Yukon",
       "results": [
         {
           "course": {
@@ -816,7 +816,7 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC2004-IND",
+        "code": "YU2004-PUB",
         "description": "Graduation Program 2004",
         "credits": 80,
         "name": ""

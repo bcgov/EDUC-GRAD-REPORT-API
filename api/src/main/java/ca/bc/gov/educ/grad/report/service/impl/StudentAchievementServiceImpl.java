@@ -199,7 +199,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
     private GradProgram createGradProgram(String code) {
         if (StringUtils.trimToNull(code) == null) {
-            code = GraduationProgramCode.PROGRAM_2018.getCode();
+            code = GraduationProgramCode.BC2018_PUB.getCode();
         }
         return new GradProgramImpl(GraduationProgramCode.valueFrom(code));
     }

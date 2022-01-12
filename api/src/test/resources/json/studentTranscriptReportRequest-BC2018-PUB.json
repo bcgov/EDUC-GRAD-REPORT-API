@@ -64,8 +64,8 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "BC2004-PUB",
-      "name": "2004 Public School Transcript BC; including Programme Francophone and Offshore",
+      "code": "BC2018-PUB",
+      "name": "2018 Public School Transcript BC",
       "results": [
         {
           "course": {
@@ -816,10 +816,10 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC2004-PUB",
-        "description": "Graduation Program 2004",
+        "code": "BC2018-PUB",
+        "description": "Graduation Program 2018",
         "credits": 80,
-        "name": "Graduation Program 2004"
+        "name": ""
       }
     },
     "graduationData": {

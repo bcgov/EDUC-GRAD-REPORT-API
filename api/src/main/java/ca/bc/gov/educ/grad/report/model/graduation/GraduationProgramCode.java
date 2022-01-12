@@ -124,9 +124,17 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("NOPROG")
     PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
 
-    @XmlEnumValue("2018")
-    @JsonProperty("2018")
-    PROGRAM_2018("2018", "Graduation Program 2018", 80),
+    @XmlEnumValue("BC2018-PUB")
+    @JsonProperty("BC2018-PUB")
+    BC2018_PUB("BC2018-PUB", "Graduation Program 2018", 80),
+
+    @XmlEnumValue("BC2018-IND")
+    @JsonProperty("BC2018-IND")
+    BC2018_IND("BC2018-IND", "Graduation Program 2018", 80),
+
+    @XmlEnumValue("YU2018-PUB")
+    @JsonProperty("YU2018-PUB")
+    YU2018_PUB("YU2018-PUB", "Graduation Program 2018", 80),
 
     @XmlEnumValue("2018-EN")
     @JsonProperty("2018-EN")

@@ -317,24 +317,44 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU2004_PUB");
 	}
 
-	////@Test
-	public void createTranscriptReport_2018() throws Exception {
-		LOG.debug("<{}.createTranscriptReport_2018 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2018.json");
+	@Test
+	public void createTranscriptReport_BC2018_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PUB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript 2018 Report.pdf");
+		reportRequest.getOptions().setReportFile("Transcript BC2018-PUB Report.pdf");
 		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createTranscriptReport_2018");
+		LOG.debug(">createTranscriptReport_BC2018_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_YU2018_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2018-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript YU2018-PUB Report.pdf");
+		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_YU2018_PUB");
 	}
 
 	////@Test
