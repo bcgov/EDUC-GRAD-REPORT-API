@@ -338,6 +338,66 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createTranscriptReport_BC2018_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript BC2018-IND Report.pdf");
+		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_OFF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_OFF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-OFF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript BC2018-OFF Report.pdf");
+		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_OFF");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_PF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript BC2018-PF Report.pdf");
+		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_PF");
+	}
+
+	@Test
 	public void createTranscriptReport_YU2018_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2018-PUB.json");
