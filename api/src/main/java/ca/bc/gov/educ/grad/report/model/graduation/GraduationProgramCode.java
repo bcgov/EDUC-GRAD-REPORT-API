@@ -96,9 +96,13 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("YU1996-PUB")
     YU1996_PUB("YU1996-PUB", YU1995_PUB.getDescription(), YU1995_PUB.getCredits()),
 
-    @XmlEnumValue("SCCP")
-    @JsonProperty("SCCP")
-    PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
+    @XmlEnumValue("SCCP-EN")
+    @JsonProperty("SCCP-EN")
+    SCCP_EN("SCCP-EN", "School Completion Certificate Program", 0),
+
+    @XmlEnumValue("SCCP-FR")
+    @JsonProperty("SCCP-FR")
+    SCCP_FR("SCCP-FR", "School Completion Certificate Program French", 0),
 
     @XmlEnumValue("BC2004-PUB")
     @JsonProperty("BC2004-PUB")
@@ -116,14 +120,6 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("2004-PF")
     PROGRAM_2004_PF("2004-PF", "2004 Programme Francophone", 80),
 
-    @XmlEnumValue("2004-EN")
-    @JsonProperty("2004-EN")
-    PROGRAM_2004_EN("2004-EN", "Graduation Program 2004", 80),
-
-    @XmlEnumValue("NOPROG")
-    @JsonProperty("NOPROG")
-    PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
-
     @XmlEnumValue("BC2018-PUB")
     @JsonProperty("BC2018-PUB")
     BC2018_PUB("BC2018-PUB", "Graduation Program 2018", 80),
@@ -139,10 +135,6 @@ public enum GraduationProgramCode implements Serializable {
     @XmlEnumValue("YU2018-PUB")
     @JsonProperty("YU2018-PUB")
     YU2018_PUB("YU2018-PUB", "Graduation Program 2018", 80),
-
-    @XmlEnumValue("2018-EN")
-    @JsonProperty("2018-EN")
-    PROGRAM_2018_EN("2018-EN", "Graduation Program 2018", 80),
 
     @XmlEnumValue("BC2018-PF")
     @JsonProperty("BC2018-PF")

@@ -57,26 +57,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createStudentAchievementReport");
 	}
 
-	////@Test
-	public void createTranscriptReport_2004() throws Exception {
-		LOG.debug("<{}.createTranscriptReport_2004 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-
-		reportRequest.getOptions().setReportFile("Transcript 2004 Report.pdf");
-		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
-		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
-		}
-		LOG.debug(">createTranscriptReport_2004");
-	}
-
 	@Test
 	public void createTranscriptReport_BC1950_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1950_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -417,24 +397,24 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU2018_PUB");
 	}
 
-	////@Test
-	public void createTranscriptReport_SCCP() throws Exception {
-		LOG.debug("<{}.createTranscriptReport_SCCP at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP.json");
+	@Test
+	public void createTranscriptReport_SCCP_EN() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_EN at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript SCCP Report.pdf");
+		reportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
 		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createTranscriptReport_SCCP");
+		LOG.debug(">createTranscriptReport_SCCP_EN");
 	}
 
 	//@Test
