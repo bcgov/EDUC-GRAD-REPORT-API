@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "SCCP-EN",
-      "name": "School Completion Certificate Program Transcript",
+      "code": {
+        "code": "SCCP-EN",
+        "description": "School Completion Certificate Program Transcript"
+      },
       "results": [
         {
           "course": {
@@ -359,10 +361,9 @@
     },
     "gradProgram": {
       "code": {
-        "code": "SCCP-EN",
-        "description": "",
-        "credits": "",
-        "name": "School Completion Certificate Program"
+        "code": "SCCP",
+        "description": "School Completion Certificate Program",
+        "credits": "0"
       }
     },
     "graduationData": {

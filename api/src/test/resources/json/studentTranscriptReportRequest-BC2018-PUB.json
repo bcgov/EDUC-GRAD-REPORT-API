@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "BC2018-PUB",
-      "name": "2018 Public School Transcript BC",
+      "code": {
+        "code": "BC2018-PUB",
+        "description": "2018 Public School Transcript BC"
+      },
       "results": [
         {
           "course": {
@@ -816,10 +818,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC2018-PUB",
+        "code": "2018-EN",
         "description": "Graduation Program 2018",
-        "credits": 80,
-        "name": ""
+        "credits": 80
       }
     },
     "graduationData": {

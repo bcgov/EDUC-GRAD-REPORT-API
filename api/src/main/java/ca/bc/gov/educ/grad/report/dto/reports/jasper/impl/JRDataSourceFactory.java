@@ -31,7 +31,7 @@ import static ca.bc.gov.educ.grad.report.dto.reports.data.impl.DistrictOrganisat
 import static ca.bc.gov.educ.grad.report.dto.reports.data.impl.TranscriptResult.*;
 import static ca.bc.gov.educ.grad.report.model.assessment.AssessmentCode.*;
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_TRAX_YM;
-import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.BC1950_PUB;
+import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.PROGRAM_1950;
 import static java.lang.String.format;
 
 /**
@@ -368,7 +368,7 @@ public class JRDataSourceFactory {
      * @return A mock Student for testing purposes.
      */
     public static Student createStudent(final String pen, final String logoCode) {
-        return createStudent(pen, logoCode, BC1950_PUB.toString());
+        return createStudent(pen, logoCode, PROGRAM_1950.toString());
     }
 
     /**

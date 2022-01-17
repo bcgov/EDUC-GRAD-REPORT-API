@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2001-06-01",
-      "code": "BC1950-IND",
-      "name": "Adult Public School Transcript BC",
+      "code": {
+        "code": "BC1950-IND",
+        "description": "Adult Independent School Transcript"
+      },
       "results": [
         {
           "course": {
@@ -264,10 +266,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC1950-IND",
-        "description": "",
-        "credits": "",
-        "name": "BC1950_IND"
+        "code": "1950",
+        "description": "Adult Graduation Program",
+        "credits": "20"
       }
     },
     "graduationData": {

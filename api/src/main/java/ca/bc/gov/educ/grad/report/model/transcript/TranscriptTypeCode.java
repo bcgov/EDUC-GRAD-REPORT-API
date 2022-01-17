@@ -15,7 +15,7 @@
  *
  * ***********************************************************************
  */
-package ca.bc.gov.educ.grad.report.model.graduation;
+package ca.bc.gov.educ.grad.report.model.transcript;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -50,74 +50,112 @@ import java.io.Serializable;
 @XmlEnum(String.class)
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public enum GraduationProgramCode implements Serializable {
+public enum TranscriptTypeCode implements Serializable {
 
-    @XmlEnumValue("1950")
-    @JsonProperty("1950")
-    PROGRAM_1950("1950", "Adult Graduation Program", 20),
-    @XmlEnumValue("1986")
-    @JsonProperty("1986")
-    PROGRAM_1986("1986", "Course-Based Graduation Program", 52),
-    @XmlEnumValue("1986-EN")
-    @JsonProperty("1986-EN")
-    PROGRAM_1986_EN("1986-EN", "Course-Based Graduation Program", 52),
-    @XmlEnumValue("1995")
-    @JsonProperty("1995")
-    PROGRAM_1995("1995", "Graduation Program 1995", 52),
-    @XmlEnumValue("1996")
-    @JsonProperty("1996")
-    PROGRAM_1996("1996", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
-    @XmlEnumValue("1996-PF")
-    @JsonProperty("1996-PF")
-    PROGRAM_1996_PF("1996-PF", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
-    @XmlEnumValue("2004")
-    @JsonProperty("2004")
-    PROGRAM_2004("2004", "Graduation Program 2004", 80),
-    @XmlEnumValue("2018")
-    @JsonProperty("2018")
-    PROGRAM_2018("2018", "Graduation Program 2018", 80),
-    @XmlEnumValue("2018-EN")
-    @JsonProperty("2018-EN")
-    PROGRAM_2018_EN("2018-EN", "Graduation Program 2018", 80),
-    @XmlEnumValue("SCCP")
-    @JsonProperty("SCCP")
-    PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
-    @XmlEnumValue("2004-PF")
-    @JsonProperty("2004-PF")
-    PROGRAM_2004_PF("2004-PF", "2004 Programme Francophone", 80),
-    @XmlEnumValue("2004-EN")
-    @JsonProperty("2004-EN")
-    PROGRAM_2004_EN("2004-EN", "Graduation Program 2004", 80),
-    @XmlEnumValue("NOPROG")
-    @JsonProperty("NOPROG")
-    PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
-    @XmlEnumValue("2018-PF")
-    @JsonProperty("2018-PF")
-    PROGRAM_2018_PF("2018-PF", "2018 Programme Francophone", 80);
+    @XmlEnumValue("BC1950-PUB")
+    @JsonProperty("BC1950-PUB")
+    BC1950_PUB("BC1950-PUB", "Adult Public School Transcript BC"),
 
+    @XmlEnumValue("BC1950-IND")
+    @JsonProperty("BC1950-IND")
+    BC1950_IND("BC1950-IND", "Adult Independent School Transcript"),
+
+    @XmlEnumValue("YU1950-PUB")
+    @JsonProperty("YU1950-PUB")
+    YU1950_PUB("YU1950-PUB", "Adult Public School Transcript Yukon"),
+
+    @XmlEnumValue("BC1986-PUB")
+    @JsonProperty("BC1986-PUB")
+    BC1986_PUB("BC1986-PUB", "1986 Public School Transcript BC; including Programme Francophone (no offshore)"),
+
+    @XmlEnumValue("BC1986-IND")
+    @JsonProperty("BC1986-IND")
+    BC1986_IND("BC1986-IND", "1986 Independent School Transcript"),
+
+    @XmlEnumValue("YU1986-PUB")
+    @JsonProperty("YU1986-PUB")
+    YU1986_PUB("YU1986-PUB", "1986 Public School Transcript Yukon"),
+
+    @XmlEnumValue("BC1995-PUB")
+    @JsonProperty("BC1995-PUB")
+    BC1995_PUB("BC1995-PUB", "1996 Public School Transcript BC; including Programme Francophone and Offshore"),
+
+    @XmlEnumValue("BC1996-PUB")
+    @JsonProperty("BC1996-PUB")
+    BC1996_PUB("BC1996-PUB", BC1995_PUB.getDescription()),
+
+    @XmlEnumValue("BC1996-IND")
+    @JsonProperty("BC1996-IND")
+    BC1996_IND("BC1996-IND", BC1995_PUB.getDescription()),
+
+    @XmlEnumValue("YU1995-PUB")
+    @JsonProperty("YU1995-PUB")
+    YU1995_PUB("YU1995-PUB", "1996 Public School Transcript Yukon"),
+
+    @XmlEnumValue("YU1996-PUB")
+    @JsonProperty("YU1996-PUB")
+    YU1996_PUB("YU1996-PUB", YU1995_PUB.getDescription()),
+
+    @XmlEnumValue("SCCP-EN")
+    @JsonProperty("SCCP-EN")
+    SCCP_EN("SCCP-EN", "School Completion Certificate Program Transcript"),
+
+    @XmlEnumValue("SCCP-FR")
+    @JsonProperty("SCCP-FR")
+    SCCP_FR("SCCP-FR", "School Completion Certificate Program French Transcript"),
+
+    @XmlEnumValue("BC2004-PUB")
+    @JsonProperty("BC2004-PUB")
+    BC2004_PUB("BC2004-PUB", "2004 Public School Transcript BC; including Programme Francophone and Offshore"),
+
+    @XmlEnumValue("BC2004-IND")
+    @JsonProperty("BC2004-IND")
+    BC2004_IND("BC2004-IND", "2004 Independent School Transcript"),
+
+    @XmlEnumValue("YU2004-PUB")
+    @JsonProperty("YU2004-PUB")
+    YU2004_PUB("YU2004-PUB", "2004 Public School Transcript Yukon"),
+
+    @XmlEnumValue("BC2018-PUB")
+    @JsonProperty("BC2018-PUB")
+    BC2018_PUB("BC2018-PUB", "2018 Public School Transcript BC"),
+
+    @XmlEnumValue("BC2018-IND")
+    @JsonProperty("BC2018-IND")
+    BC2018_IND("BC2018-IND", "2018 Independent School Transcript"),
+
+    @XmlEnumValue("BC2018-OFF")
+    @JsonProperty("BC2018-OFF")
+    BC2018_OFF("BC2018-OFF", "2018 Offshore Transcript"),
+
+    @XmlEnumValue("YU2018-PUB")
+    @JsonProperty("YU2018-PUB")
+    YU2018_PUB("YU2018-PUB", "2018 Public School Transcript Yukon"),
+
+    @XmlEnumValue("BC2018-PF")
+    @JsonProperty("BC2018-PF")
+    BC2018_PF("BC2018-PF", "2018 Programme Francophone Transcript");
 
     private String code;
     private String description;
-    private int credits;
 
     /**
      * Constructs a new graduation program code enumerated type.
      *
      * @param code The graduation program code (from TRAX).
      * @param description The human-readable description of the code.
-     * @param credits The number of credits required to graduate from this
      * program.
      */
-    GraduationProgramCode(final String code, final String description, final int credits) {
+    TranscriptTypeCode(final String code, final String description) {
         this.code = code;
         this.description = description;
-        this.credits = credits;
     }
 
     @JsonCreator
-    public static GraduationProgramCode forValue(@JsonProperty("code") final String code, @JsonProperty("description") final String description, @JsonProperty("credits") final int credits) {
-        for (GraduationProgramCode graduationProgramCode : GraduationProgramCode.values()) {
+    public static TranscriptTypeCode forValue(@JsonProperty("code") final String code, @JsonProperty("description") final String description) {
+        for (TranscriptTypeCode graduationProgramCode : TranscriptTypeCode.values()) {
             if (graduationProgramCode.code.equals(code)) {
+                graduationProgramCode.description = description;
                 return graduationProgramCode;
             }
         }
@@ -129,8 +167,8 @@ public enum GraduationProgramCode implements Serializable {
      * @param code The code to find the value of.
      * @return The graduation program code for the given code.
      */
-    public static GraduationProgramCode valueFrom(final String code) {
-        for (final GraduationProgramCode gpc : values()) {
+    public static TranscriptTypeCode valueFrom(final String code) {
+        for (final TranscriptTypeCode gpc : values()) {
             if (gpc.isCode(code)) {
                 return gpc;
             }
@@ -169,22 +207,12 @@ public enum GraduationProgramCode implements Serializable {
     }
 
     /**
-     * Returns the number of credits required to graduate from the program.
-     *
-     * @return A positive integer.
-     */
-    @JsonValue
-    public int getCredits() {
-        return this.credits;
-    }
-
-    /**
      * Returns true if this code represents an adult graduation program.
      *
      * @return true This is an adult program.
      */
     public boolean isAdult() {
-        return equals(PROGRAM_1950);
+        return equals(BC1950_PUB);
     }
 
     /**

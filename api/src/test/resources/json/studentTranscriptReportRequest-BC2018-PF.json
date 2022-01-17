@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "BC2018-PF",
-      "name": "2018 Programme Francophone Transcript",
+      "code": {
+        "code": "BC2018-PF",
+        "description": "2018 Programme Francophone Transcript"
+      },
       "results": [
         {
           "course": {
@@ -816,10 +818,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC2018-PF",
-        "description": "Graduation Program 2018",
-        "credits": 80,
-        "name": ""
+        "code": "2018-PF",
+        "description": "2018 Programme Francophone",
+        "credits": 80
       }
     },
     "graduationData": {

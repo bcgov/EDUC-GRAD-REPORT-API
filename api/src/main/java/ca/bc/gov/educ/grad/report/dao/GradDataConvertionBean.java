@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.dao;
 
+import ca.bc.gov.educ.grad.report.api.client.Code;
 import ca.bc.gov.educ.grad.report.api.client.GradRequirement;
 import ca.bc.gov.educ.grad.report.api.client.OtherProgram;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
@@ -17,6 +18,7 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -79,8 +81,12 @@ public class GradDataConvertionBean {
     }
 
     public Transcript getTranscript(ReportData reportData) {
-        Transcript transcript = new TranscriptImpl();
-        BeanUtils.copyProperties(reportData.getTranscript(), transcript);
+        ca.bc.gov.educ.grad.report.api.client.Transcript clientTranscript = reportData.getTranscript();
+        TranscriptImpl transcript = new TranscriptImpl();
+        BeanUtils.copyProperties(clientTranscript, transcript);
+        Code clientTranscriptTypeCode = clientTranscript.getTranscriptTypeCode();
+        TranscriptTypeCode transcriptTypeCode = TranscriptTypeCode.valueFrom(clientTranscriptTypeCode.getCode());
+        transcript.setTranscriptTypeCode(transcriptTypeCode);
         return transcript;
     }
 

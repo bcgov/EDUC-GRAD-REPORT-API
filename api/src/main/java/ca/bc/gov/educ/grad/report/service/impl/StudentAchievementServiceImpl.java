@@ -199,7 +199,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
     private GradProgram createGradProgram(String code) {
         if (StringUtils.trimToNull(code) == null) {
-            code = GraduationProgramCode.BC2018_PUB.getCode();
+            code = GraduationProgramCode.PROGRAM_2018.getCode();
         }
         return new GradProgramImpl(GraduationProgramCode.valueFrom(code));
     }
@@ -982,8 +982,8 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final Comparator<AchievementResult> result;
 
         switch (code) {
-            case BC1950_PUB:
-            case BC1986_PUB:
+            case PROGRAM_1950:
+            case PROGRAM_1986:
                 result = createAdultComparator();
                 break;
 

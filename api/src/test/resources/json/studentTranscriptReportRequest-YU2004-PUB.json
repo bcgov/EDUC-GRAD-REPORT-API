@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "YU2004-PUB",
-      "name": "2004 Public School Transcript Yukon",
+      "code": {
+        "code": "YU2004-PUB",
+        "description": "2004 Public School Transcript Yukon"
+      },
       "results": [
         {
           "course": {
@@ -816,10 +818,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "YU2004-PUB",
+        "code": "2004",
         "description": "Graduation Program 2004",
-        "credits": 80,
-        "name": ""
+        "credits": 80
       }
     },
     "graduationData": {

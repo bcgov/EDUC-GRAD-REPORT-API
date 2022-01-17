@@ -27,6 +27,7 @@ import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.reports.TranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 
 import java.util.List;
 
@@ -58,6 +59,8 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
 
     private GraduationProgramCode graduationProgramCode;
 
+    private TranscriptTypeCode transcriptTypeCode;
+
     /**
      * Assume unofficial transcripts by default.
      */
@@ -71,8 +74,10 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     /**
      * Constructs a new report using the default report template.
      */
-    public TranscriptReportImpl(GradProgram program) {
-        super(String.format(TRANSCRIPT_REPORT_NAME, program.getCode().getCode()));
+    public TranscriptReportImpl(TranscriptTypeCode transcriptTypeCode, GradProgram program) {
+        super(String.format(TRANSCRIPT_REPORT_NAME, transcriptTypeCode.getCode()));
+        setGraduationProgramCode(program.getCode());
+        setTranscriptTypeCode(transcriptTypeCode);
         // Prevent two HTML header/footers from being added to the
         // HTML version of transcripts.
         setWrapHtml(false);
@@ -86,7 +91,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
      */
     @Override
     public void preprocessReportName() {
-        final String code = getGraduationProgramCode().toString();
+        final String code = getTranscriptTypeCode().toString();
         setName(String.format(SUMMARY_REPORT_NAME_PREFIX, code, code));
     }
 
@@ -99,7 +104,15 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
      * ascertained (i.e., unknown report type).
      */
     private String getReportType() {
-        return getGraduationProgramCode().toString();
+        return getTranscriptTypeCode().toString();
+    }
+
+    public TranscriptTypeCode getTranscriptTypeCode() {
+        return transcriptTypeCode;
+    }
+
+    public void setTranscriptTypeCode(TranscriptTypeCode transcriptTypeCode) {
+        this.transcriptTypeCode = transcriptTypeCode;
     }
 
     /**

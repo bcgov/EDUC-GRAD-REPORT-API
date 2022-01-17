@@ -3,6 +3,7 @@ package ca.bc.gov.educ.grad.report.model.graduation;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public interface GradRequirement {
+
     JRBeanCollectionDataSource getCourseDetailsdataSource();
 
     String getCode();

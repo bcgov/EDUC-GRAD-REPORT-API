@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
-      "code": "YU1996-PUB",
-      "name": "1996 Public School Transcript Yukon",
+      "code": {
+        "code": "YU1996-PUB",
+        "description": "1996 Public School Transcript Yukon"
+      },
       "results": [
         {
           "course": {
@@ -648,10 +650,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "YU1996-PUB",
+        "code": "1995",
         "description": "Graduation Program 1995",
-        "credits": 80,
-        "name": ""
+        "credits": 52
       }
     },
     "graduationData": {

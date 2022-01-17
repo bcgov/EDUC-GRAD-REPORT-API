@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2001-06-01",
-      "code": "BC1986-PUB",
-      "name": "Course Based Graduation Program",
+      "code": {
+        "code": "BC1986-PUB",
+        "description": "1996 Public School Transcript BC; including Programme Francophone and Offshore"
+      },
       "results": [
         {
           "course": {
@@ -240,10 +242,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC1986-PUB",
-        "description": "",
-        "credits": "",
-        "name": "BC1986_PUB"
+        "code": "1986",
+        "description": "Course-Based Graduation Program",
+        "credits": "52"
       }
     },
     "graduationData": {

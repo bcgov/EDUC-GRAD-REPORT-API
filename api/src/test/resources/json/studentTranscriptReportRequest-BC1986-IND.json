@@ -64,8 +64,10 @@
     "transcript": {
       "interim": false,
       "issueDate": "2001-06-01",
-      "code": "BC1986-IND",
-      "name": "Course Based Graduation Program",
+      "code": {
+        "code": "BC1986-IND",
+        "description": "1986 Independent School Transcript"
+      },
       "results": [
         {
           "course": {
@@ -240,10 +242,9 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "BC1986-IND",
-        "description": "",
-        "credits": "",
-        "name": "BC1986_IND"
+        "code": "1986",
+        "description": "Course-Based Graduation Program",
+        "credits": "52"
       }
     },
     "graduationData": {

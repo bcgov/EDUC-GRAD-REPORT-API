@@ -25,6 +25,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.service.AbstractReportService;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.reports.*;
 import ca.bc.gov.educ.grad.report.model.transcript.ParameterPredicate;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.security.DeclareRoles;
@@ -77,8 +78,8 @@ public class ReportServiceImpl extends AbstractReportService
      */
     @Override
     @RolesAllowed({USER_REPORTS_TRANSCRIPT, FULFILLMENT_SERVICES_USER})
-    public TranscriptReport createTranscriptReport(GradProgram program) {
-        return new TranscriptReportImpl(program);
+    public TranscriptReport createTranscriptReport(TranscriptTypeCode transcriptTypeCode, GradProgram program) {
+        return new TranscriptReportImpl(transcriptTypeCode, program);
     }
 
     /**

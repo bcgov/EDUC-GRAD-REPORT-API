@@ -215,11 +215,12 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final Transcript transcriptInfo = getTranscriptInformation(pen);
         final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, interim);
         final StudentInfo studentInfo = getStudentInfo(pen);
-        final String programCode = studentInfo.getGradProgram();
-        final GradProgram program = createGradProgram(programCode);
+        final TranscriptTypeCode transcriptTypeCode = transcriptInfo.getTranscriptTypeCode();
+        final GradProgram program = createGradProgram(studentInfo.getGradProgram());
         final Date reportDate = transcriptInfo.getIssueDate();
 
         final Transcript transcript = adapt(
+                transcriptTypeCode,
                 program.getCode(),
                 transcriptCourses,
                 reportDate,
@@ -538,22 +539,25 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      * Adapt the TRAX data from the collection of data value objects into a
      * Transcript object.
      *
-     * @param code The graduation program code that influences sort order.
-     * @param traxTranscriptCourses
+     * @param transcriptTypeCode
+     * @param graduationProgramCode The graduation program code that influences sort order.
+     * @param transcriptCourses
      * @param issueDate
      */
     private Transcript adapt(
-            final GraduationProgramCode code,
-            final List<TranscriptCourse> traxTranscriptCourses,
+            final TranscriptTypeCode transcriptTypeCode,
+            final GraduationProgramCode graduationProgramCode,
+            final List<TranscriptCourse> transcriptCourses,
             final Date issueDate,
             final boolean interim) {
         final String m_ = "adapt(GraduationProgramCode, List<TranscriptCourse>, Date, boolean)";
-        LOG.entering(CLASSNAME, m_, traxTranscriptCourses);
+        LOG.entering(CLASSNAME, m_, transcriptCourses);
 
         final List<TranscriptResult> transcriptResults = adapt(
-                code, traxTranscriptCourses);
+                graduationProgramCode, transcriptCourses);
 
         final TranscriptImpl transcript = new TranscriptImpl();
+        transcript.setTranscriptTypeCode(transcriptTypeCode);
         transcript.setIssueDate(issueDate);
         transcript.setResults(transcriptResults);
         transcript.setInterim(interim);
@@ -705,7 +709,9 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final String _m = "createReport(...)";
         LOG.entering(CLASSNAME, _m);
 
-        final TranscriptReport report = reportService.createTranscriptReport(program);
+        final TranscriptTypeCode transcriptTypeCode = transcript.getTranscriptTypeCode();
+
+        final TranscriptReport report = reportService.createTranscriptReport(transcriptTypeCode, program);
 
         if (parameters != null) {
             report.setParameters(parameters);
@@ -1005,8 +1011,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final Comparator<TranscriptResult> result;
 
         switch (code) {
-            case BC1950_PUB:
-            case BC1986_PUB:
+            case PROGRAM_1950:
+            case PROGRAM_1986:
                 result = createAdultComparator();
                 break;
 
