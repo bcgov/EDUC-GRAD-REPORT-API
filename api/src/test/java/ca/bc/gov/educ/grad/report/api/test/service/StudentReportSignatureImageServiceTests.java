@@ -6,6 +6,7 @@ import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 
 	}
 
-	//@Test
+	@Test
 	public void getSignatureImagesTest() throws Exception {
 		LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -58,7 +59,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug(">getSignatureImagesTest");
 	}
 
-	//@Test
+	@Test
 	public void getSignatureImageTest() throws Exception {
 		LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -79,7 +80,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug(">getSignatureImageTest");
 	}
 
-	//@Test
+	@Test
 	public void saveSignatureImageTest() throws Exception {
 		LOG.debug("<{}.saveSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -99,7 +100,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug(">saveSignatureImageTest");
 	}
 
-	//@Test
+	@Test
 	public void getSignatureBlockTypesTest() {
 		LOG.debug("<{}.getSignatureBlockTypesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -110,7 +111,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug(">getSignatureBlockTypesTest");
 	}
 
-	//@Test
+	@Test
 	public void saveSignatureBlockTypesTest() {
 		LOG.debug("<{}.saveSignatureBlockTypesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 

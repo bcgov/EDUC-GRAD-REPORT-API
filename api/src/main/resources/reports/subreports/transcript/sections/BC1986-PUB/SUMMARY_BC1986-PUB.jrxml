@@ -9,7 +9,9 @@
 	<parameter name="P_REPORT_BASE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
@@ -46,6 +48,9 @@
 				<reportElement x="0" y="0" width="612" height="792" uuid="72491c08-4088-49ac-8f65-115e16b33cc2"/>
 				<subreportParameter name="P_REPORT_BASE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_PREVIEW">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>

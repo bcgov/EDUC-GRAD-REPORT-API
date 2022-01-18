@@ -9,6 +9,9 @@
 	<parameter name="P_REPORT_BASE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
@@ -37,7 +40,7 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_SIGNATURE_FILE" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH} + "SALLY3.png"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","MOE_ADM")]]></defaultValueExpression>
 	</parameter>
 	<summary>
 		<band height="792">
@@ -317,6 +320,9 @@
 					<subreportParameter name="P_REPORT_STYLE_FILE">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+						<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="P_SIGNATURE_FILE">
 						<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -331,7 +337,10 @@
 				<subreportParameter name="P_REPORT_STYLE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Forwarded.jasper"]]></subreportExpression>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/FORWARDED_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement x="0" y="167" width="567" height="94" uuid="eea0da9b-0425-4742-adc2-61092b5950f5">
@@ -343,7 +352,16 @@
 				<subreportParameter name="P_REPORT_BASE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Assessments.jasper"]]></subreportExpression>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

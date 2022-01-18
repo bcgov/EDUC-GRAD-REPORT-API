@@ -49,6 +49,9 @@
 				<subreportParameter name="P_REPORT_BASE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="P_REPORT_PREVIEW">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>

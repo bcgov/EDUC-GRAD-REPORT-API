@@ -14,6 +14,7 @@ import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -70,7 +71,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     @InjectMocks
     private GradReportSignatureController reportSignatureController;
 
-    //@Test
+    @Test
     public void getStudentAchievementReportTest() throws Exception {
         LOG.debug("<{}.getStudentAchievementReportReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -107,7 +108,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         LOG.debug(">getStudentAchievementReportTest");
     }
 
-    //@Test
+    @Test
     public void getStudentTranscriptReportTest() throws Exception {
         LOG.debug("<{}.getStudentTranscriptReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -144,7 +145,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         LOG.debug(">getStudentTranscriptReportTest");
     }
 
-    //@Test
+    @Test
     public void getStudentCertificateTest() throws Exception {
         LOG.debug("<{}.getStudentCertificateTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 

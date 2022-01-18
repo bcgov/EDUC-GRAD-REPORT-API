@@ -60,10 +60,7 @@
 	</parameter>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String">
 		<parameterDescription><![CDATA[Graduation program code]]></parameterDescription>
-		<defaultValueExpression><![CDATA["1950"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="P_TRANSCRIPT_TYPE" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[($P{P_REPORT_TYPE}.equals("1950") || $P{P_REPORT_TYPE}.equals("1986")) ? "1950_1986" : "Regular"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
 		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
@@ -163,8 +160,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_SUMMARY" class="java.lang.String">
-		<variableExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ? "1950" : $P{P_REPORT_TYPE}]]></variableExpression>
-		<initialValueExpression><![CDATA["SCCP".equalsIgnoreCase($P{P_REPORT_TYPE}) || "1950_1986".equals($P{P_TRANSCRIPT_TYPE}) ? "1950" : $P{P_REPORT_TYPE}]]></initialValueExpression>
+		<variableExpression><![CDATA[$P{P_REPORT_TYPE}]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></initialValueExpression>
 	</variable>
 	<variable name="V_TOTAL_ROWS" class="java.lang.Integer">
 		<variableExpression><![CDATA[$F{student.transcriptResults}.size()]]></variableExpression>
@@ -193,33 +190,10 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 	<background>
 		<band height="761">
 			<subreport>
-				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="736c2390-ffd6-447d-8349-b3ef91d3ca91">
-					<printWhenExpression><![CDATA[!"1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) && !($V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES}))]]></printWhenExpression>
-				</reportElement>
-				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
-					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				<reportElement x="0" y="211" width="567" height="550" isRemoveLineWhenBlank="true" uuid="34e89239-8317-4e5d-a627-642c83f563d0"/>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="P_REPORT_STYLE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_CONCRETE_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_GRADUATION_MESSAGE">
-					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_COMPLETION_NOTICE">
-					<subreportParameterExpression><![CDATA["YU".equalsIgnoreCase($V{V_LOGO_CODE})]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "BG_Long.jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="e2bca6ce-a978-4a55-893d-fda3e775e165">
-					<printWhenExpression><![CDATA[!"1950_1986".equals( $P{P_TRANSCRIPT_TYPE} ) && $V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
-				</reportElement>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -239,34 +213,10 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<subreportParameterExpression><![CDATA["YU".equalsIgnoreCase($V{V_LOGO_CODE})]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "BG_" + $P{P_TRANSCRIPT_TYPE} + "_" + ($F{student.status.graduated} ? "Complete" : "Incomplete") + ".jasper"]]></subreportExpression>
-			</subreport>
-			<subreport>
-				<reportElement x="0" y="211" width="567" height="550" isRemoveLineWhenBlank="true" uuid="34e89239-8317-4e5d-a627-642c83f563d0">
-					<printWhenExpression><![CDATA["1950_1986".equals( $P{P_TRANSCRIPT_TYPE} )]]></printWhenExpression>
-				</reportElement>
-				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
-					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_STYLE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_CONCRETE_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_GRADUATION_MESSAGE">
-					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "BG_" + $P{P_TRANSCRIPT_TYPE} + ".jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/BG_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<frame>
-				<reportElement x="0" y="254" width="567" height="357" uuid="e257ccaa-ab74-472b-8460-3afc9740edce">
-					<printWhenExpression><![CDATA["1950_1986".equals($P{P_TRANSCRIPT_TYPE})]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="0" y="254" width="567" height="357" uuid="e257ccaa-ab74-472b-8460-3afc9740edce"/>
 				<textField>
 					<reportElement style="CourseNameAdult" x="0" y="0" width="275" height="12" isRemoveLineWhenBlank="true" uuid="e62763d4-0bb5-4a5a-b5fd-8591195d7b2e">
 						<printWhenExpression><![CDATA[($V{PAGE_NUMBER} > Math.ceil( $F{student.provinciallyExaminableCourses}.size() / (double)10) || $F{student.provinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
@@ -313,6 +263,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="P_REPORT_STYLE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -335,19 +288,13 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<subreportParameterExpression><![CDATA[$V{V_STUDENT_BIRTHDATE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_PAGE_NUMBER">
-					<subreportParameterExpression><![CDATA["1950_1986".equals($P{P_TRANSCRIPT_TYPE})&&
-(($F{student.provinciallyExaminableCourses}.size() >= 11) ||
-($F{student.nonProvinciallyExaminableCourses}.size() >= 15))
-?  $V{PAGE_NUMBER}
-: null]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[(($F{student.provinciallyExaminableCourses}.size() >= 11) || ($F{student.nonProvinciallyExaminableCourses}.size() >= 15)) ?  $V{PAGE_NUMBER} : null]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Header.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<frame>
-				<reportElement x="0" y="186" width="567" height="16" isRemoveLineWhenBlank="true" uuid="a25f4ee6-f0a8-4983-93b6-ad166d5d488c">
-					<printWhenExpression><![CDATA["1950_1986".equals($P{P_TRANSCRIPT_TYPE})]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="0" y="186" width="567" height="16" isRemoveLineWhenBlank="true" uuid="a25f4ee6-f0a8-4983-93b6-ad166d5d488c"/>
 			</frame>
 			<textField>
 				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0"/>
@@ -359,38 +306,17 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["The face of this transcript has a coloured background - not a white background - the transcript has a watermark of the B.C. flag - hold up to a light to view".toUpperCase()]]></textFieldExpression>
 			</textField>
-			<subreport>
-				<reportElement positionType="Float" x="0" y="214" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799">
-					<printWhenExpression><![CDATA[!"1950_1986".equals($P{P_TRANSCRIPT_TYPE})]]></printWhenExpression>
-				</reportElement>
-				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
-					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_STYLE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Header_" + $P{P_TRANSCRIPT_TYPE} + ".jasper"]]></subreportExpression>
-			</subreport>
-			<textField evaluationTime="Master" isBlankWhenNull="true">
-				<reportElement style="Title" isPrintRepeatedValues="false" x="337" y="32" width="230" height="12" uuid="9b55f08f-c74f-49d6-83db-f71392a58533">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<printWhenExpression><![CDATA[!"1950_1986".equals($P{P_TRANSCRIPT_TYPE}) && $V{V_TOTAL_PAGES} > 1]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Right">
-					<font size="10" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[msg("Page   {0}   of   {1}", $V{MASTER_CURRENT_PAGE}, $V{MASTER_TOTAL_PAGES})]]></textFieldExpression>
-			</textField>
 		</band>
 	</pageHeader>
 	<detail>
 		<band height="399">
-			<printWhenExpression><![CDATA["1950_1986".equals($P{P_TRANSCRIPT_TYPE})]]></printWhenExpression>
 			<frame>
 				<reportElement x="0" y="0" width="567" height="174" isPrintWhenDetailOverflows="true" uuid="02a8019c-b2c9-4c2f-bacb-bd2f6bd2853f"/>
 			</frame>
 			<subreport overflowType="NoStretch">
-				<reportElement x="0" y="0" width="567" height="174" uuid="64a5d6b6-4093-4fac-ba67-f7d41efa8914"/>
+				<reportElement x="0" y="0" width="567" height="174" uuid="64a5d6b6-4093-4fac-ba67-f7d41efa8914">
+					<printWhenExpression><![CDATA[$F{student.provinciallyExaminableCourses}.size() > 0]]></printWhenExpression>
+				</reportElement>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -404,7 +330,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<subreportParameterExpression><![CDATA[$F{student.provinciallyExaminableCourses}.size()]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.provinciallyExaminableCourses})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_PROVINCIAL.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_PROV_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<subreport overflowType="NoStretch">
 				<reportElement x="0" y="174" width="567" height="225" uuid="470b4271-69be-49ed-8e28-d085e938ce98"/>
@@ -421,78 +347,18 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<subreportParameterExpression><![CDATA[$F{student.nonProvinciallyExaminableCourses}.size()]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.nonProvinciallyExaminableCourses})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_NONPROVINCIAL.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
-		<band height="432">
-			<printWhenExpression><![CDATA[!"1950_1986".equals($P{P_TRANSCRIPT_TYPE}) && $V{V_LONG_PAGE}]]></printWhenExpression>
-			<subreport overflowType="NoStretch">
-				<reportElement x="0" y="0" width="567" height="432" uuid="1e4bcc86-711a-4267-8a0a-13323879773c"/>
-				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
-					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_STYLE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_CONCRETE_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_TOTAL_ROWS">
-					<subreportParameterExpression><![CDATA[$V{V_TOTAL_ROWS}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_SHORT_PAGE_ROWS">
-					<subreportParameterExpression><![CDATA[$V{V_SHORT_PAGE_ROWS}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_LONG_PAGE_ROWS">
-					<subreportParameterExpression><![CDATA[$V{V_LONG_PAGE_ROWS}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource("Regular".equals( $P{P_TRANSCRIPT_TYPE} ) ? $F{student.transcriptResults} : java.util.Arrays.asList( $F{student} ))]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_" + $P{P_TRANSCRIPT_TYPE} + ".jasper"]]></subreportExpression>
-			</subreport>
-		</band>
-		<band height="310">
-			<printWhenExpression><![CDATA[!"1950_1986".equals($P{P_TRANSCRIPT_TYPE}) && !$V{V_LONG_PAGE}]]></printWhenExpression>
-			<subreport overflowType="NoStretch">
-				<reportElement x="0" y="0" width="567" height="310" uuid="0baaca0e-0222-49d8-9d7f-338a97c98fac"/>
-				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
-					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_STYLE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_CONCRETE_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_TOTAL_ROWS">
-					<subreportParameterExpression><![CDATA[$V{V_TOTAL_ROWS}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_SHORT_PAGE_ROWS">
-					<subreportParameterExpression><![CDATA[$V{V_SHORT_PAGE_ROWS}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_LONG_PAGE_ROWS">
-					<subreportParameterExpression><![CDATA[$V{V_LONG_PAGE_ROWS}]]></subreportParameterExpression>
-				</subreportParameter>
-				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource("Regular".equals( $P{P_TRANSCRIPT_TYPE} ) ? $F{student.transcriptResults} : java.util.Arrays.asList( $F{student} ))]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Detail_" + $P{P_TRANSCRIPT_TYPE} + ".jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_NONPROV_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="18">
 			<textField>
-				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" x="113" y="0" width="340" height="18" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b">
-					<printWhenExpression><![CDATA["Regular".equals( $P{P_TRANSCRIPT_TYPE} )]]></printWhenExpression>
-				</reportElement>
+				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" x="113" y="0" width="340" height="18" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$R{text.footer.contact}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

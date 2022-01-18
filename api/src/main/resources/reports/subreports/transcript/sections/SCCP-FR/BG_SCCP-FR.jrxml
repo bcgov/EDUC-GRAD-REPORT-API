@@ -9,8 +9,10 @@
 	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
 	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
@@ -224,17 +226,16 @@ GRADE]]></text>
 					<subreportParameter name="P_REPORT_STYLE_FILE">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
-// transcript can hold. To do so would cause the list to overflow onto
-// an additional page, breaking the report formatting. The Ministry is aware
-// that these are truncated.
-new JRBeanCollectionDataSource( 
-	$F{student.status.incompletionReasons}.subList(
-		0,
-		java.lang.Math.min($F{student.status.incompletionReasons}.size(), 8)
-	)
-)]]></dataSourceExpression>
-					<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Incomplete_Regular.jasper"]]></subreportExpression>
+					<dataSourceExpression><![CDATA[
+						// Do not add more reasons than the non-grad reasons box on the paper
+						// transcript can hold. To do so would cause the list to overflow onto
+						// an additional page, breaking the report formatting. The Ministry is aware
+						// that these are truncated.
+						new JRBeanCollectionDataSource(
+							$F{student.status.incompletionReasons}.subList(0, java.lang.Math.min($F{student.status.incompletionReasons}.size(), 8)
+						))]]>
+					</dataSourceExpression>
+					<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/NGR_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 				</subreport>
 			</frame>
 		</band>

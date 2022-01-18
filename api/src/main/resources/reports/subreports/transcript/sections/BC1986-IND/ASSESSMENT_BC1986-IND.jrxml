@@ -14,10 +14,15 @@
 	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
-	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_BASE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
@@ -58,7 +63,7 @@
 				<subreportParameter name="P_REPORT_COMMON_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_COMMON_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_COMMON_PATH} + "AssessmentScores.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_SCORE_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</summary>

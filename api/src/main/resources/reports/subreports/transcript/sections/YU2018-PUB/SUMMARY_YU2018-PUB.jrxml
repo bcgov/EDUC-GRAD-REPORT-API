@@ -10,6 +10,9 @@
 	<parameter name="P_REPORT_BASE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
+	</parameter>
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
@@ -439,7 +442,7 @@
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Forwarded.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/FORWARDED_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
 				<reportElement x="0" y="132" width="567" height="94" uuid="931d6184-3d5a-421e-a58f-e83d7480d6fc">
@@ -451,13 +454,19 @@
 				<subreportParameter name="P_REPORT_BASE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_SIGNATURE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Assessments_2018.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
 				<reportElement style="SummaryBody" x="225" y="453" width="16" height="12" uuid="b089dfde-7193-4f05-9493-60aa12cb5d0e"/>
