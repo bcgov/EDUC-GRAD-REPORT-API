@@ -418,23 +418,23 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void createTranscriptReport_SCCP_FR() throws Exception {
-		LOG.debug("<{}.createTranscriptReport_SCCP_FR at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-FR.json");
+	public void createTranscriptReport_SCCP_PF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript SCCP-FR Report.pdf");
+		reportRequest.getOptions().setReportFile("Transcript SCCP-PF Report.pdf");
 		ResponseEntity response = reportService.getStudentTranscriptReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(bArrray);
 		}
-		LOG.debug(">createTranscriptReport_SCCP_FR");
+		LOG.debug(">createTranscriptReport_SCCP_PF");
 	}
 
 	@Test

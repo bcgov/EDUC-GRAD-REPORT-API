@@ -361,8 +361,8 @@
     },
     "gradProgram": {
       "code": {
-        "code": "SCCP",
-        "description": "School Completion Certificate Program",
+        "code": "SCCP-PF",
+        "description": "School Completion Certificate Program French",
         "credits": "0"
       }
     },
