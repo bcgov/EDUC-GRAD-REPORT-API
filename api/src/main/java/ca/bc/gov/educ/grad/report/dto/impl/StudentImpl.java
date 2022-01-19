@@ -20,14 +20,18 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,13 +50,18 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String middleName = "";
     private String lastName = "";
     private String grade = "";
-    private Character gender = ' ';
+    private String gender = "";
     private Date sccDate;
     private String mincodeGrad;
     private String englishCert;
     private String frenchCert;
     private String studStatus = "";
+    private String gradProgram = "";
     private Map<String, SignatureBlockType> signatureBlockTypes;
+
+    private String localId = "";
+    private String hasOtherProgram = "";
+    private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -94,11 +103,31 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    public Character getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Character gender) {
+    @Override
+    public String getGradProgram() {
+        return gradProgram;
+    }
+
+    @Override
+    public String getLocalId() {
+        return localId;
+    }
+
+    @Override
+    public String getHasOtherProgram() {
+        return hasOtherProgram;
+    }
+
+    @Override
+    public List<OtherProgram> getOtherProgramParticipation() {
+        return otherProgramParticipation;
+    }
+
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -163,6 +192,18 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.frenchCert = frenchCert;
     }
 
+    public void setGradProgram(String gradProgram) {
+        this.gradProgram = gradProgram;
+    }
+
+    public void setHasOtherProgram(String hasOtherProgram) {
+        this.hasOtherProgram = hasOtherProgram;
+    }
+
+    public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
+        this.otherProgramParticipation = otherProgramParticipation;
+    }
+
     @Override
     public String getStudStatus() {
         return studStatus;
@@ -195,5 +236,9 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
         this.signatureBlockTypes = signatureBlockTypes;
+    }
+
+    public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
+        return new JRBeanCollectionDataSource(otherProgramParticipation, false);
     }
 }

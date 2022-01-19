@@ -4,7 +4,7 @@ import ca.bc.gov.educ.grad.report.api.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.ReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
-import ca.bc.gov.educ.grad.report.dto.GragReportSignatureImage;
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
@@ -76,7 +76,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
         String signatureCode = "MOE";
-        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+        GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
         signatureImage.setSignatureContent(imageBinary);
         signatureImage.setSignatureId(UUID.randomUUID());
@@ -97,12 +97,12 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
         String signatureCode = "MOE";
-        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+        GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
         signatureImage.setSignatureContent(imageBinary);
         signatureImage.setSignatureId(UUID.randomUUID());
 
-        List<GragReportSignatureImage> signatureImages = new ArrayList();
+        List<GradReportSignatureImage> signatureImages = new ArrayList();
         signatureImages.add(signatureImage);
 
         Mockito.when(reportSignatureService.getSignatureImages()).thenReturn(signatureImages);
@@ -121,7 +121,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
         String signatureCode = "MOE.png";
-        GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+        GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
         signatureImage.setSignatureContent(imageBinary);
         signatureImage.setSignatureId(UUID.randomUUID());

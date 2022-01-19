@@ -38,6 +38,8 @@ public class NonGradReasonImpl extends AbstractDomainEntity
     private String code;
     private String description;
 
+    public NonGradReasonImpl() {}
+
     @Override
     public String getCode() {
         return this.code;

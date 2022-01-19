@@ -535,11 +535,6 @@ public abstract class ReportImpl implements Report {
         return this.locale;
     }
 
-    @Override
-    public void setParameterPredicate(final Predicate<String> parameterPredicate) {
-        this.parameterPredicate = parameterPredicate;
-    }
-
     /**
      * @inheritDoc
      */

@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
+import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
 
@@ -136,6 +137,10 @@ public final class Student extends BusinessEntity {
     private AcademicAward academicAward;
 
     private Map<String, SignatureBlockType> signatureBlockTypes;
+
+    private String localId = "";
+    private String hasOtherProgram = "";
+    private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
 
     /**
      * Default (empty) constructor.
@@ -774,6 +779,30 @@ public final class Student extends BusinessEntity {
 
     public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
         this.signatureBlockTypes = signatureBlockTypes;
+    }
+
+    public String getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
+    }
+
+    public String getHasOtherProgram() {
+        return hasOtherProgram;
+    }
+
+    public void setHasOtherProgram(String hasOtherProgram) {
+        this.hasOtherProgram = hasOtherProgram;
+    }
+
+    public List<OtherProgramImpl> getOtherProgramParticipation() {
+        return otherProgramParticipation;
+    }
+
+    public void setOtherProgramParticipation(List<OtherProgramImpl> otherProgramParticipation) {
+        this.otherProgramParticipation = otherProgramParticipation;
     }
 
     /**

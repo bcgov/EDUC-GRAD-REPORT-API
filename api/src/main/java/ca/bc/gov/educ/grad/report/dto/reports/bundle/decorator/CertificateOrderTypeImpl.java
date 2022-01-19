@@ -45,6 +45,7 @@ public class CertificateOrderTypeImpl extends OrderTypeImpl
      * @param certificateType Type of certificate ordered.
      */
     public CertificateOrderTypeImpl(final CertificateType certificateType) {
+        this.certificateType = certificateType;
         setPaperType(certificateType.getPaperType());
     }
 

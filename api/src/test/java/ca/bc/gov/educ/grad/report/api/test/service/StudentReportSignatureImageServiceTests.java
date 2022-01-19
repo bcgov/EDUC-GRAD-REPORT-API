@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
-import ca.bc.gov.educ.grad.report.dto.GragReportSignatureImage;
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
@@ -45,14 +45,14 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
 		String signatureCode = "MOE.png";
-		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+		GradReportSignatureImage signatureImage = new GradReportSignatureImage();
 		signatureImage.setGradReportSignatureCode(signatureCode);
 		signatureImage.setSignatureContent(imageBinary);
 		signatureImage.setSignatureId(UUID.randomUUID());
 
 		reportSignatureService.saveSignatureImage(signatureImage);
 
-		List<GragReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages();
+		List<GradReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages();
 		assertNotNull(signatureImages);
 		assertTrue(signatureImages.size() > 0);
 
@@ -68,7 +68,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
 		String signatureCode = "MOE.png";
-		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+		GradReportSignatureImage signatureImage = new GradReportSignatureImage();
 		signatureImage.setGradReportSignatureCode(signatureCode);
 		signatureImage.setSignatureContent(imageBinary);
 		signatureImage.setSignatureId(UUID.randomUUID());
@@ -89,7 +89,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
 		String signatureCode = "TEST.png";
-		GragReportSignatureImage signatureImage = new GragReportSignatureImage();
+		GradReportSignatureImage signatureImage = new GradReportSignatureImage();
 		signatureImage.setGradReportSignatureCode(signatureCode);
 		signatureImage.setSignatureContent(imageBinary);
 		signatureImage.setSignatureId(UUID.randomUUID());

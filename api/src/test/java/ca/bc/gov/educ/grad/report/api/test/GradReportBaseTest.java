@@ -1,13 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.test;
 
 
-import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
+import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
-import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.slf4j.Logger;
@@ -48,6 +44,9 @@ public abstract class GradReportBaseTest {
 
     }
 
+    @Test
+    public void dummyTest() {}
+
     protected byte[] loadTestImage(String path) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(path);
@@ -56,18 +55,11 @@ public abstract class GradReportBaseTest {
         return imageBytes;
     }
 
-    protected GenerateReportRequest createReportRequest(String jsonPath) throws Exception {
+    protected ReportRequest createReportRequest(String jsonPath) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
         String transcriptJson = readInputStream(inputStream);
-        return (GenerateReportRequest)jsonTransformer.unmarshall(transcriptJson, GenerateReportRequest.class);
-    }
-
-    protected GenerateReportData createReportRequestObj(String jsonPath) throws Exception {
-        ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
-        String transcriptJson = readInputStream(inputStream);
-        return (GenerateReportData)jsonTransformer.unmarshall(transcriptJson, GenerateReportData.class);
+        return (ReportRequest)jsonTransformer.unmarshall(transcriptJson, ReportRequest.class);
     }
 
     private String readInputStream(InputStream is) throws Exception {

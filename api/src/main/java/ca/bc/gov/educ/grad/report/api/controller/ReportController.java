@@ -1,10 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
-import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
+import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.service.ReportService;
 import ca.bc.gov.educ.grad.report.api.util.PermissionsContants;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
-import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -35,27 +34,32 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
     @Operation(summary = "Generate Student Achievement Report", description = "Generate Student Achievement Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentAchievementReport(@RequestBody GenerateReportRequest report) {
+    public ResponseEntity getStudentAchievementReport(@RequestBody ReportRequest report) {
         logger.debug("getStudentAchievementReport");
         logRequest();
         return reportService.getStudentAchievementReport(report);
     }
 
+    /**
+     * @deprecated
+     * The end point duplicates the one above and is used for compatibility only.
+     * Please delete it after other APIs fix the URL
+    **/
     @PostMapping (ReportApiConstants.STUDENT_ACHV_REPORT)
     @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
-    @Operation(summary = "Generate Student Achievement Report", description = "Generate Student Achievement Report", tags = { "Report" })
+    @Operation(summary = "Generate Student Achievement Report", description = "@deprecated -- Generate Student Achievement Report -- @deprecated", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentAchvReport(@RequestBody GenerateReportData reportData) {
-        logger.debug("getStudentAchievementReport");
+    public ResponseEntity getStudentAchvReport(@RequestBody ReportRequest report) {
+        logger.debug("getStudentAchvReport");
         logRequest();
-        return reportService.getStudentAchvReport(reportData);
+        return reportService.getStudentAchievementReport(report);
     }
-    
+
     @PostMapping (ReportApiConstants.STUDENT_TRANSCRIPT_REPORT)
     @PreAuthorize(PermissionsContants.STUDENT_TRANSCRIPT_REPORT)
     @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentTranscriptReport(@RequestBody GenerateReportRequest report) {
+    public ResponseEntity getStudentTranscriptReport(@RequestBody ReportRequest report) {
         logger.debug("getStudentTranscriptReport");
         logRequest();
         return reportService.getStudentTranscriptReport(report);
@@ -65,7 +69,7 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.STUDENT_CERTIFICATE)
     @Operation(summary = "Generate Student Certificate", description = "Generate Student Certificate", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentCertificate(@RequestBody GenerateReportRequest report) {
+    public ResponseEntity getStudentCertificate(@RequestBody ReportRequest report) {
         logger.debug("getStudentCertificate");
         logRequest();
         return reportService.getStudentCertificateReport(report);
