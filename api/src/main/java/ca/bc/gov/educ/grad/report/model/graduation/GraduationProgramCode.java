@@ -78,7 +78,7 @@ public enum GraduationProgramCode implements Serializable {
   
     @XmlEnumValue("1996-PF")
     @JsonProperty("1996-PF")
-    PROGRAM_1996_PF("1996-PF", "1995 Programme Francophone", 52);
+    PROGRAM_1996_PF("1996-PF", "1995 Programme Francophone", 52),
 
     @XmlEnumValue("SCCP")
     @JsonProperty("SCCP")
