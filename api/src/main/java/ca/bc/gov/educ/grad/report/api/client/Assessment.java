@@ -1,26 +1,17 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.api.client.utils.AssessmentResultListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 import java.util.List;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class Assessment {
 
     private Date issueDate;
     private List<AssessmentResult> results;
-    private String interim;
-
-    public String getInterim() {
-        return interim;
-    }
-
-    public void setInterim(String value) {
-        this.interim = value;
-    }
 
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getIssueDate() {
@@ -31,7 +22,8 @@ public class Assessment {
         this.issueDate = value;
     }
 
-    @JsonProperty("result")
+    @JsonProperty("results")
+    @JsonDeserialize(using = AssessmentResultListDeserializer.class)
     public List<AssessmentResult> getResults() {
         return results;
     }

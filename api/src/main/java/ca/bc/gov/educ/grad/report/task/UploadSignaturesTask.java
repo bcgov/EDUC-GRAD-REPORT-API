@@ -2,8 +2,8 @@ package ca.bc.gov.educ.grad.report.task;
 
 import ca.bc.gov.educ.grad.report.dao.SignatureImageLightRepository;
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
-import ca.bc.gov.educ.grad.report.entity.GragReportSignatureImageEntity;
-import ca.bc.gov.educ.grad.report.entity.GragReportSignatureImageLightEntity;
+import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
+import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageLightEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +48,9 @@ public class UploadSignaturesTask {
 
     private void uploadSignatureImageFile(File file) throws IOException {
         log.debug("<{}.uploadSignatureImageFile at {} file name {}", CLASS_NAME, dateFormat.format(new Date()), file.getName());
-        GragReportSignatureImageLightEntity signatureImageLightEntity = signatureImageLightRepository.findBySignatureCode(file.getName());
+        GradReportSignatureImageLightEntity signatureImageLightEntity = signatureImageLightRepository.findBySignatureCode(file.getName());
         if(signatureImageLightEntity == null) {
-            GragReportSignatureImageEntity toBeSaved = new GragReportSignatureImageEntity();
+            GradReportSignatureImageEntity toBeSaved = new GradReportSignatureImageEntity();
             toBeSaved.setSignatureId(UUID.randomUUID());
             toBeSaved.setGradReportSignatureCode(file.getName());
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream(signatureImageResourcePath + "/" + file.getName());

@@ -21,10 +21,8 @@ import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptResult;
-import ca.bc.gov.educ.grad.report.utils.TranscriptResultListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.io.Serializable;
@@ -43,12 +41,11 @@ public class TranscriptImpl extends AbstractDomainEntity
 
     private static final long serialVersionUID = 3L;
 
-    private List<TranscriptResult> results = new ArrayList<>();
-    private Date issueDate;
     private boolean interim;
+    private Date issueDate;
+    private List<TranscriptResult> results = new ArrayList<>();
 
     @Override
-    @JsonDeserialize(using = TranscriptResultListDeserializer.class)
     public List<TranscriptResult> getResults() {
         return this.results;
     }

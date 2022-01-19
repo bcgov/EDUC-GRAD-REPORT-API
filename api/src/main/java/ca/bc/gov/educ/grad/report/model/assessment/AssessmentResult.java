@@ -29,17 +29,16 @@ public interface AssessmentResult {
 
     public String getAssessmentCode();
 
-    public int getAssessmentProficiencyScore();
+    public Double getProficiencyScore();
 
-    public String getAssessmentSession();
+    public String getSessionDate();
 
     public String getAssessmentName();
 
-    public String getRequirementMet();
+    public String getGradReqMet();
 
     public String getSpecialCase();
 
-    public String getExceededWrites();
+    public String getExceededWriteFlag();
 
-    public String getAssessementSession();
 }

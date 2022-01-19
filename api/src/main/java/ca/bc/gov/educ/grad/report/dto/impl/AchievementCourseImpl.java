@@ -19,11 +19,6 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 
-import java.util.Objects;
-import java.util.logging.Logger;
-
-import static java.lang.Integer.parseInt;
-
 /**
  * A TRAX data object containing data from the TRAX database for the given
  * student PEN. The data is for a course the student has taken
@@ -33,8 +28,6 @@ import static java.lang.Integer.parseInt;
 public class AchievementCourseImpl implements AchievementCourse {
 
     private static final long serialVersionUID = 1L;
-    private static final String CLASSNAME = AchievementCourseImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     private String pen;
     private String courseName = "";
@@ -55,90 +48,17 @@ public class AchievementCourseImpl implements AchievementCourse {
     private String relatedLevel = "";
     private String usedForGrad = "";
 
+    private String gradReqMet;
+    private String completedCoursePercentage;
+    private String completedCourseLetterGrade;
+    private String interimPercent = "";
+    private String equivOrChallenge;
+
     /**
      * Constructor method.
      *
      */
     public AchievementCourseImpl() {
-    }
-
-    /**
-     * Constructor method. Used by the JPQL to create an object from the
-     * database entities.
-     *  @param pen
-     * @param courseName
-     * @param crseCode
-     * @param crseLevel
-     * @param sessionDate
-     * @param credits
-     * @param examPercent
-     * @param schoolPercent
-     * @param finalPercent
-     * @param finalLetterGrade
-     * @param interimMark
-     * @param requirement
-     * @param specialCase
-     * @param courseType
-     */
-    public AchievementCourseImpl(
-            final String pen,
-            final String courseName,
-            final String crseCode,
-            final String crseLevel,
-            final String sessionDate,
-            final String credits,
-            final String examPercent,
-            final String schoolPercent,
-            final String finalPercent,
-            final String finalLetterGrade,
-            final String interimMark,
-            final String requirement,
-            final String specialCase,
-            final String courseType) {
-        this.pen = pen;
-        this.courseName = nullSafe(courseName);
-        this.courseCode = nullSafe(crseCode);
-        this.courseLevel = nullSafe(crseLevel);
-        this.sessionDate = nullSafe(sessionDate);
-        this.credits = nullSafe(credits);
-        this.examPercent = nullSafe(examPercent);
-        this.schoolPercent = nullSafe(schoolPercent);
-        this.finalLetterGrade = nullSafe(finalLetterGrade);
-        this.interimMark = nullSafe(interimMark);
-        this.requirement = nullSafe(requirement);
-        this.equivalency = nullSafe(specialCase);
-        this.courseType = nullSafe(courseType);
-
-        if (finalPercent == null || finalPercent.equals("---")) {
-            this.finalPercent = "";
-        } else {
-            this.finalPercent = finalPercent.trim();
-        }
-    }
-
-    /**
-     * Constructor method. Used by the JPQL to create an object from the
-     * database entities.
-     *
-     * @param studNo
-     * @param courseName
-     * @param crseCode
-     * @param crseLevel
-     * @param courseSession
-     * @param numCredits
-     * @param examPct
-     * @param schoolPct
-     * @param finalPct
-     * @param finalLg
-     * @param interimMark
-     * @param foundationReq
-     * @param specialCase
-     * @param rptCrsType
-     * @param interimLetterGrade
-     */
-    public AchievementCourseImpl(String studNo, String courseName, String crseCode, String crseLevel, String courseSession, String numCredits, String examPct, String schoolPct, String finalPct, String finalLg, String interimMark, String foundationReq, String specialCase, String rptCrsType, String interimLetterGrade) {
-        this(studNo, courseName, crseCode, crseLevel, courseSession, numCredits, examPct, schoolPct, finalPct, finalLg, interimMark, foundationReq, specialCase, rptCrsType);
-        this.interimLetterGrade = (interimLetterGrade == null ? "" : interimLetterGrade.trim());
     }
 
     @Override
@@ -202,14 +122,6 @@ public class AchievementCourseImpl implements AchievementCourse {
     }
 
     @Override
-    public Boolean isExaminable() {
-        final String ct = getCourseType();
-        final Boolean result = "1".equals(ct);
-
-        return result;
-    }
-
-    @Override
     public String getCourseLevel() {
         return courseLevel;
     }
@@ -227,6 +139,31 @@ public class AchievementCourseImpl implements AchievementCourse {
     @Override
     public String getRelatedCourse() {
         return relatedCourse;
+    }
+
+    @Override
+    public String getGradReqMet() {
+        return gradReqMet;
+    }
+
+    @Override
+    public String getCompletedCoursePercentage() {
+        return completedCoursePercentage;
+    }
+
+    @Override
+    public String getCompletedCourseLetterGrade() {
+        return completedCourseLetterGrade;
+    }
+
+    @Override
+    public String getInterimPercent() {
+        return interimPercent;
+    }
+
+    @Override
+    public String getEquivOrChallenge() {
+        return equivOrChallenge;
     }
 
     /**
@@ -252,153 +189,101 @@ public class AchievementCourseImpl implements AchievementCourse {
         this.relatedLevel = relatedLevel;
     }
 
-    @Override
-    public String getUsedForGrad() {
-        return usedForGrad;
-    }
-
-    @Override
-    public boolean courseEquals(final AchievementCourse compareCourse) {
-
-        boolean isEqual = ((!this.equals(compareCourse))
-                && this.getCourseCode().equals(compareCourse.getCourseCode())
-                && this.getCourseLevel().equals(compareCourse.getCourseLevel()));
-        return isEqual;
-    }
-
-    @Override
-    public boolean compareCourse(final AchievementCourse compareCourse) {
-
-        final int interimPercentage = getInt(this.getInterimMark());
-        final int finalPercentage = getInt(this.getFinalPercent());
-        final int compareFinalPercentage = getInt(compareCourse.getFinalPercent());
-        final int compareInterimPercentage = getInt(compareCourse.getInterimMark());
-
-        // Removes duplication of courses by comparing and finding course with
-        //highest percentage.
-        boolean replaceCourse = ((interimPercentage < compareFinalPercentage
-                && finalPercentage < compareFinalPercentage
-                && compareFinalPercentage != 0)
-                || (finalPercentage < compareInterimPercentage
-                && finalPercentage != 0
-                && compareInterimPercentage != 0));
-        return replaceCourse;
-    }
-
-    /**
-     * Returns the integer value of the given string.
-     *
-     * @param s The string that contains an integer.
-     * @return The integer value from the string, or 0 if no value found.
-     */
-    private int getInt(final String s) {
-        int value = 0;
-        if (s.matches("^-?\\d+$")) {
-            value = parseInt(s);
-        }
-        return value;
-    }
-
     /**
      * Set the code value which indicates if this course is used for graduation
      * requirements.
      *
-     * @param usedForGrad
+     * @param creditsUsedForGrad
      */
-    public void setUsedForGrad(final String usedForGrad) {
+    public void setCreditsUsedForGrad(final String creditsUsedForGrad) {
+        this.usedForGrad = creditsUsedForGrad;
+    }
+
+    public void setPen(String pen) {
+        this.pen = pen;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public void setCourseLevel(String courseLevel) {
+        this.courseLevel = courseLevel;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
+    public void setEquivalency(String equivalency) {
+        this.equivalency = equivalency;
+    }
+
+    public void setSessionDate(String sessionDate) {
+        this.sessionDate = sessionDate;
+    }
+
+    public void setSchoolPercent(String schoolPercent) {
+        this.schoolPercent = schoolPercent;
+    }
+
+    public void setExamPercent(String examPercent) {
+        this.examPercent = examPercent;
+    }
+
+    public void setFinalPercent(String finalPercent) {
+        this.finalPercent = finalPercent;
+    }
+
+    public void setCredits(String credits) {
+        this.credits = credits;
+    }
+
+    public void setFinalLetterGrade(String finalLetterGrade) {
+        this.finalLetterGrade = finalLetterGrade;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
+    }
+
+    public void setInterimMark(String interimMark) {
+        this.interimMark = interimMark;
+    }
+
+    public void setInterimLetterGrade(String interimLetterGrade) {
+        this.interimLetterGrade = interimLetterGrade;
+    }
+
+    public String getUsedForGrad() {
+        return usedForGrad;
+    }
+
+    public void setUsedForGrad(String usedForGrad) {
         this.usedForGrad = usedForGrad;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + (this.pen != null ? this.pen.hashCode() : 0);
-        hash = 59 * hash + (this.courseCode != null ? this.courseCode.hashCode() : 0);
-        hash = 59 * hash + (this.sessionDate != null ? this.sessionDate.hashCode() : 0);
-        return hash;
+    public void setGradReqMet(String gradReqMet) {
+        this.gradReqMet = gradReqMet;
     }
 
-    /**
-     * Returns a trimmed version of the given string.
-     *
-     * @param s The string to trim.
-     * @return The empty string if s is null, otherwise s.trim().
-     */
-    private String nullSafe(final String s) {
-        return s == null ? "" : s.trim();
+    public void setCompletedCoursePercentage(String completedCoursePercentage) {
+        this.completedCoursePercentage = completedCoursePercentage;
     }
 
-    /**
-     * Returns c or an empty space if c is null.
-     *
-     * @param c The character to ensure is not null.
-     * @return A space or the given character, never null.
-     */
-    private String nullSafe(final Character c) {
-        return c == null ? " " : c.toString();
+    public void setCompletedCourseLetterGrade(String completedCourseLetterGrade) {
+        this.completedCourseLetterGrade = completedCourseLetterGrade;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AchievementCourseImpl other = (AchievementCourseImpl) obj;
-        if (!Objects.equals(this.pen, other.pen)) {
-            return false;
-        }
-        if (!Objects.equals(this.courseName, other.courseName)) {
-            return false;
-        }
-        if (!Objects.equals(this.courseCode, other.courseCode)) {
-            return false;
-        }
-        if (!Objects.equals(this.courseLevel, other.courseLevel)) {
-            return false;
-        }
-        if (!Objects.equals(this.requirement, other.requirement)) {
-            return false;
-        }
-        if (!Objects.equals(this.equivalency, other.equivalency)) {
-            return false;
-        }
-        if (!Objects.equals(this.sessionDate, other.sessionDate)) {
-            return false;
-        }
-        if (!Objects.equals(this.schoolPercent, other.schoolPercent)) {
-            return false;
-        }
-        if (!Objects.equals(this.examPercent, other.examPercent)) {
-            return false;
-        }
-        if (!Objects.equals(this.finalPercent, other.finalPercent)) {
-            return false;
-        }
-        if (!Objects.equals(this.credits, other.credits)) {
-            return false;
-        }
-        if (!Objects.equals(this.finalLetterGrade, other.finalLetterGrade)) {
-            return false;
-        }
-        if (!Objects.equals(this.courseType, other.courseType)) {
-            return false;
-        }
-        if (!Objects.equals(this.interimMark, other.interimMark)) {
-            return false;
-        }
-        if (!Objects.equals(this.interimLetterGrade, other.interimLetterGrade)) {
-            return false;
-        }
-        if (!Objects.equals(this.relatedCourse, other.relatedCourse)) {
-            return false;
-        }
-        if (!Objects.equals(this.relatedLevel, other.relatedLevel)) {
-            return false;
-        }
-        return Objects.equals(this.usedForGrad, other.usedForGrad);
+    public void setInterimPercent(String interimPercent) {
+        this.interimPercent = interimPercent;
     }
 
+    public void setEquivOrChallenge(String equivOrChallenge) {
+        this.equivOrChallenge = equivOrChallenge;
+    }
 }

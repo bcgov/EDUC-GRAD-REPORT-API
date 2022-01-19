@@ -135,13 +135,6 @@ public interface AchievementCourse {
     String getCourseType();
 
     /**
-     * Returns true if the course type is 1.
-     *
-     * @return true The course type is 1.
-     */
-    Boolean isExaminable();
-
-    /**
      * get the related course code.
      *
      * @return related course
@@ -156,25 +149,38 @@ public interface AchievementCourse {
     String getRelatedLevel();
 
     /**
-     * get the code if this course is used for grad.
+     * Gets grad req met.
      *
-     * @return used for grad code
+     * @return the grad req met
      */
-    String getUsedForGrad();
+    String getGradReqMet();
 
     /**
-     * Checks two courses which has same courseCode, courseLevel
+     * Gets completed course percentage.
      *
-     * @param compareCourse
-     * @return true when courses matches.
+     * @return the completed course percentage
      */
-    boolean courseEquals(final AchievementCourse compareCourse);
+    String getCompletedCoursePercentage();
 
     /**
-     * Compare courses for highest marks.
+     * Gets completed course letter grade.
      *
-     * @param compareCourse
-     * @return true when compareCourse has highest marks.
+     * @return the completed course letter grade
      */
-    boolean compareCourse(final AchievementCourse compareCourse);
+    String getCompletedCourseLetterGrade();
+
+    /**
+     * Gets interim percent.
+     *
+     * @return the interim percent
+     */
+    String getInterimPercent();
+
+    /**
+     * Gets equiv or challenge.
+     *
+     * @return the equiv or challenge
+     */
+    String getEquivOrChallenge();
+
 }

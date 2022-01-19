@@ -1,8 +1,8 @@
 package ca.bc.gov.educ.grad.report.service;
 
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
-import ca.bc.gov.educ.grad.report.dto.GragReportSignatureImage;
-import ca.bc.gov.educ.grad.report.entity.GragReportSignatureImageEntity;
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
+import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,13 +29,13 @@ public class GradReportSignatureService {
     GradReportSignatureTransformer gradReportSignatureTransformer;
 
     @Transactional
-    public GragReportSignatureImage getSignatureImageBySignatureId(String id) {
+    public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
         String _m = String.format("getSignatureImageBySignatureId(String %s)", id);
         log.debug("<{}.{}", _m, CLASS_NAME);
-        Optional<GragReportSignatureImageEntity> entity = signatureImageRepository.findById(UUID.fromString(id));
+        Optional<GradReportSignatureImageEntity> entity = signatureImageRepository.findById(UUID.fromString(id));
         if(!entity.isPresent()) {
             try {
-                entity = Optional.of(new GragReportSignatureImageEntity());
+                entity = Optional.of(new GradReportSignatureImageEntity());
                 byte[] imageBinary = loadBlankImage("reports/resources/images/signatures/BLANK.png");
                 entity.get().setGradReportSignatureCode("BLANK.png");
                 entity.get().setSignatureContent(imageBinary);
@@ -43,32 +43,32 @@ public class GradReportSignatureService {
                 log.error("Unable to load BLANK image from resources", e);
             }
         }
-        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+        GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
         log.debug(">{}.{}", _m, CLASS_NAME);
         return  signatureImage;
     }
 
     @Transactional
-    public List<GragReportSignatureImage> getSignatureImages() {
+    public List<GradReportSignatureImage> getSignatureImages() {
         String _m = String.format("getSignatureImages()");
         log.debug("<{}.{}", _m, CLASS_NAME);
-        List<GragReportSignatureImageEntity> entities = signatureImageRepository.findAll();
-        List<GragReportSignatureImage> result = new ArrayList();
-        for(GragReportSignatureImageEntity entity: entities) {
-            GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+        List<GradReportSignatureImageEntity> entities = signatureImageRepository.findAll();
+        List<GradReportSignatureImage> result = new ArrayList();
+        for(GradReportSignatureImageEntity entity: entities) {
+            GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
             result.add(signatureImage);
         }
         return result;
     }
 
     @Transactional
-    public GragReportSignatureImage getSignatureImageByCode(String code) {
+    public GradReportSignatureImage getSignatureImageByCode(String code) {
         String _m = String.format("getSignatureImageByCode(String %s)", code);
         log.debug("<{}.{}", _m, CLASS_NAME);
-        GragReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
+        GradReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
         if(entity ==  null) {
             try {
-                entity = new GragReportSignatureImageEntity();
+                entity = new GradReportSignatureImageEntity();
                 byte[] imageBinary = loadBlankImage("reports/resources/images/signatures/BLANK.png");
                 entity.setGradReportSignatureCode("BLANK.png");
                 entity.setSignatureContent(imageBinary);
@@ -76,18 +76,18 @@ public class GradReportSignatureService {
                 log.error("Unable to load BLANK image from resources", e);
             }
         }
-        GragReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+        GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
         log.debug(">{}.{}", _m, CLASS_NAME);
         return  signatureImage;
     }
 
     @Transactional
-    public GragReportSignatureImage saveSignatureImage(GragReportSignatureImage signatureImage) {
-        GragReportSignatureImageEntity toBeSaved = gradReportSignatureTransformer.transformToEntity(signatureImage);
+    public GradReportSignatureImage saveSignatureImage(GradReportSignatureImage signatureImage) {
+        GradReportSignatureImageEntity toBeSaved = gradReportSignatureTransformer.transformToEntity(signatureImage);
         if(toBeSaved.getSignatureId() != null) {
-            Optional<GragReportSignatureImageEntity> existingEnity = signatureImageRepository.findById(toBeSaved.getSignatureId());
+            Optional<GradReportSignatureImageEntity> existingEnity = signatureImageRepository.findById(toBeSaved.getSignatureId());
             if(existingEnity.isPresent()) {
-                GragReportSignatureImageEntity signEntity = existingEnity.get();
+                GradReportSignatureImageEntity signEntity = existingEnity.get();
                 signEntity.setSignatureContent(signatureImage.getSignatureContent());
                 return gradReportSignatureTransformer.transformToDTO(signatureImageRepository.save(signEntity));
             }
