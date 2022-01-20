@@ -539,4 +539,27 @@ public class BusinessEntityAdapter {
 
         return result;
     }
+
+    /**
+     * Maps the ISD packing slip details API to the reports-specific packing
+     * details API. This performs an internal adaption of the postal address.
+     *
+     * @param details The packing slip details to adapt for reporting.
+     * @return A PackingSlipDetails instance that can be passed into the
+     * reports.
+     */
+    public static PackingSlipDetails adapt(
+            final ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails details) {
+        validate(details, "packing slip details");
+
+        return new PackingSlipDetails.Builder()
+                .withAddress(adapt(details.getAddress()))
+                .withDocumentsShipped(details.getDocumentsShipped())
+                .withRecipient(details.getRecipient())
+                .withOrderedByName(details.getOrderedByName())
+                .withOrderNumber(details.getOrderNumber())
+                .withOrderDate(details.getOrderDate())
+                .withDestinationType(details.getDestinationType())
+                .build();
+    }
 }

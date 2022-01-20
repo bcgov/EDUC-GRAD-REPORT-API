@@ -160,4 +160,13 @@ public class ReportServiceImpl extends AbstractReportService
 
         return result;
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @RolesAllowed({USER_REPORTS_PACKINGSLIP, FULFILLMENT_SERVICES_USER})
+    public PackingSlipReport createPackingSlipReport() {
+        return new PackingSlipReportImpl();
+    }
 }
