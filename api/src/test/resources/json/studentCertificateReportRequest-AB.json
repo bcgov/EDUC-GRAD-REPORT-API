@@ -53,10 +53,10 @@
     "logo": "BC",
     "gradProgram": {
       "code": {
-        "code": "1950",
+        "code": "BC1950-PUB",
         "description": "",
         "credits": "",
-        "name": "PROGRAM_1950"
+        "name": "BC1950_PUB"
       }
     },
     "updateDate": "2001-06-01",

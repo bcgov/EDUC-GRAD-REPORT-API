@@ -17,7 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.model.student;
 
-import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 

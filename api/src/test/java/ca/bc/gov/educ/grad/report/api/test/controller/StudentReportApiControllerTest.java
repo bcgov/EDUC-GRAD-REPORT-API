@@ -112,14 +112,14 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     public void getStudentTranscriptReportTest() throws Exception {
         LOG.debug("<{}.getStudentTranscriptReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
-        ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
+        ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-PUB.json");
 
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
         ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-        reportRequest.getOptions().setReportFile("Transcript 2004 Report.pdf");
+        reportRequest.getOptions().setReportFile("Transcript BC1950-PUB Report.pdf");
         StudentTranscriptReport report = transcriptService.buildOfficialTranscriptReport();
         byte[] resultBinary = report.getReportData();
         HttpHeaders headers = new HttpHeaders();
