@@ -10,7 +10,7 @@
 	<pageHeader>
 		<band height="24">
 			<staticText>
-				<reportElement style="CourseHeader" x="324" y="0" width="27" height="24" uuid="f6396a2d-fabd-4ef0-b460-ce3f52c48371"/>
+				<reportElement style="CourseHeader" x="294" y="0" width="57" height="24" uuid="f6396a2d-fabd-4ef0-b460-ce3f52c48371"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -81,7 +81,7 @@ GRADE]]></text>
 				<text><![CDATA[CREDITS]]></text>
 			</staticText>
 			<textField>
-				<reportElement style="CourseHeader" x="0" y="0" width="251" height="24" uuid="969ac295-214a-4acc-9246-be68133d1f6a"/>
+				<reportElement style="CourseHeader" x="0" y="0" width="231" height="24" uuid="969ac295-214a-4acc-9246-be68133d1f6a"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -93,7 +93,7 @@ GRADE]]></text>
 				<textFieldExpression><![CDATA[$R{text.header.column.course.name}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="CourseHeader" x="251" y="0" width="73" height="24" uuid="ca16aa99-5594-4075-8ba2-6829f51ca02a"/>
+				<reportElement style="CourseHeader" x="231" y="0" width="63" height="24" uuid="ca16aa99-5594-4075-8ba2-6829f51ca02a"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
