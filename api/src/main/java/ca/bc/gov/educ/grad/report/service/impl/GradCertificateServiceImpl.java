@@ -17,9 +17,9 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
+import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.ReportData;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.CertificateImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.GradCertificateReportImpl;
@@ -104,7 +104,7 @@ public class GradCertificateServiceImpl
         final Student student = gradDataConvertionBean.getStudent(reportData); //validated
         final School school = gradDataConvertionBean.getSchool(reportData); //validated
 
-        final CertificateImpl certificate = (CertificateImpl)reportData.getCertificate();
+        final CertificateImpl certificate = (CertificateImpl)gradDataConvertionBean.getCertificate(reportData.getCertificate());
         if (certificate == null) {
             final String msg = "Failed to find student certificate";
             final DomainServiceException dse = new DomainServiceException(msg);

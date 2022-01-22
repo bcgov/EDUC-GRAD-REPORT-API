@@ -61,11 +61,6 @@ public class ReportServiceImpl extends AbstractReportService
     private static final long serialVersionUID = 2L;
 
     /**
-     * TODO: The PermitAll is required so that the DocumentDownloadServlet,
-     * which exists outside of a locked-down URL, can generate transcripts and
-     * other reports for the user. This should be reviewed and its ramifications
-     * fully understood.
-     *
      * @throws IOException Could not read resources required for filling the
      * report (e.g., resource bundle or report template).
      * @param report The report to fill and export.

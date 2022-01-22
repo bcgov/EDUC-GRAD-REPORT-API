@@ -1,11 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.test.controller;
 
+import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.ReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
@@ -74,7 +75,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     public void getStudentAchievementReportTest() throws Exception {
         LOG.debug("<{}.getStudentAchievementReportReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
-        GenerateReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+        ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
 
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
@@ -111,7 +112,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     public void getStudentTranscriptReportTest() throws Exception {
         LOG.debug("<{}.getStudentTranscriptReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
-        GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
+        ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
 
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
@@ -148,7 +149,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     public void getStudentCertificateTest() throws Exception {
         LOG.debug("<{}.getStudentCertificateTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
-        GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
+        ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
 
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
@@ -158,7 +159,13 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         reportRequest.getOptions().setReportFile("Certificate 1950 Report.pdf");
         List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
 
-        DocumentBundle documentBundle = bcmpBundleService.createDocumentBundle(reportRequest.getData().getCertificate().getOrderType());
+        ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
+            @Override
+            public String getName() {
+                return reportRequest.getData().getCertificate().getOrderType().getName();
+            }
+        };
+        DocumentBundle documentBundle = bcmpBundleService.createDocumentBundle(orderType);
         documentBundle.appendBusinessReport(gradCertificateReports);
         byte[] resultBinary = documentBundle.asBytes();
 

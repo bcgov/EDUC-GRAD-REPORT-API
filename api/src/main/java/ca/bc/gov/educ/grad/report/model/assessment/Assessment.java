@@ -17,14 +17,15 @@ package ca.bc.gov.educ.grad.report.model.assessment;
 
 import ca.bc.gov.educ.grad.report.model.common.DomainEntity;
 
+import java.util.Date;
 import java.util.List;
 
+
 /**
+ * The interface Assessment.
  *
  * @author CGI Information Management Consultants Inc.
  */
-
-
 public interface Assessment extends DomainEntity {
     /**
      * Returns a list of results that contains assessment that a
@@ -40,4 +41,11 @@ public interface Assessment extends DomainEntity {
      * @return true iff getResults().isEmpty() == true.
      */
     boolean isEmpty();
+
+    /**
+     * Gets issue date.
+     *
+     * @return the issue date
+     */
+    Date getIssueDate();
 }

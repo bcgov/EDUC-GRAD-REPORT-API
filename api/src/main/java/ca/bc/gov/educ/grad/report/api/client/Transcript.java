@@ -1,14 +1,15 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.api.client.utils.TranscriptResultListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 import java.util.List;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class Transcript {
+
     private String interim;
     private Date issueDate;
     private List<TranscriptResult> results;
@@ -30,7 +31,8 @@ public class Transcript {
         this.issueDate = value;
     }
 
-    @JsonProperty("result")
+    @JsonProperty("results")
+    @JsonDeserialize(using = TranscriptResultListDeserializer.class)
     public List<TranscriptResult> getResults() {
         return results;
     }

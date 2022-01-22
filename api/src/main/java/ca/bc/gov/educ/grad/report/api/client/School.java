@@ -1,9 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class School {
+
     private String mincode;
     private String name;
     private String typeIndicator;
@@ -13,6 +13,8 @@ public class School {
     private String schlno;
     private String schoolCategoryCode;
     private Address address;
+    private String phoneNumber = "";
+    private String dogwoodElig = "";
 
     public String getMincode() {
         return mincode;
@@ -78,11 +80,28 @@ public class School {
         this.schoolCategoryCode = value;
     }
 
+    @JsonDeserialize(as = Address.class)
     public Address getAddress() {
         return address;
     }
 
     public void setAddress(Address value) {
         this.address = value;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getDogwoodElig() {
+        return dogwoodElig;
+    }
+
+    public void setDogwoodElig(String dogwoodElig) {
+        this.dogwoodElig = dogwoodElig;
     }
 }

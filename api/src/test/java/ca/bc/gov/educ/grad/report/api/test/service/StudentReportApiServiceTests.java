@@ -1,10 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
-import ca.bc.gov.educ.grad.report.api.dto.GenerateReportData;
+import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.service.ReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.GenerateReportRequest;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,14 +40,14 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createStudentAchievementReport() throws Exception {
 		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Student Achievement Report (Legacy).pdf");
+		reportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
 		ResponseEntity response = reportService.getStudentAchievementReport(reportRequest);
 		assertNotNull(response.getBody());
 		byte[] bArrray = (byte[]) response.getBody();
@@ -59,41 +58,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void createStudentAchvReport() throws Exception {
-		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportData reportData = createReportRequestObj("json/studentAchvReportRequest.json");
-		assertNotNull(reportData);
-		reportData.getOptions().setReportFile("Student Achievement Report.pdf");
-
-		ResponseEntity response = reportService.getStudentAchvReport(reportData);
-		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
-		try (OutputStream out = new FileOutputStream("target/"+reportData.getOptions().getReportFile())) {
-			out.write(bArrray);
-		}
-		LOG.debug(">createStudentAchievementReport");
-	}
-
-	@Test
-	public void createStudentAchvReport2() throws Exception {
-		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportData reportData = createReportRequestObj("json/studentAchvReportRequest2.json");
-		assertNotNull(reportData);
-		reportData.getOptions().setReportFile("Student Achievement Report 2.pdf");
-
-		ResponseEntity response = reportService.getStudentAchvReport(reportData);
-		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
-		try (OutputStream out = new FileOutputStream("target/"+reportData.getOptions().getReportFile())) {
-			out.write(bArrray);
-		}
-		LOG.debug(">createStudentAchievementReport");
-	}
-
-	@Test
 	public void createTranscriptReport_2004() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2004 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2004.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -113,7 +80,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createTranscriptReport_1950() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_1950 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-1950.json");
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-1950.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -133,7 +100,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createTranscriptReport_2018() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_2018 at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2018.json");
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-2018.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -153,7 +120,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createTranscriptReport_SCCP() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_SCCP at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP.json");
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -173,7 +140,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_E() throws Exception {
 		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -193,7 +160,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_EO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -213,7 +180,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_EB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -233,7 +200,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_A() throws Exception {
 		LOG.debug("<{}.createCertificateReport_A at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -253,7 +220,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_AB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_AB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -273,7 +240,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_AIB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_AIB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AIB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AIB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -293,7 +260,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_EI() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EI at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EI.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EI.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -313,7 +280,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_EIB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EIB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -333,7 +300,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_EIO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EIO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -353,7 +320,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_AI() throws Exception {
 		LOG.debug("<{}.createCertificateReport_AI at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AI.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AI.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -373,7 +340,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SC() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SC at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SC.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SC.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -393,7 +360,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SCB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -413,7 +380,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SCO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCO.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCO.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -433,7 +400,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_S() throws Exception {
 		LOG.debug("<{}.createCertificateReport_S at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-S.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-S.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -453,7 +420,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -473,7 +440,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -493,7 +460,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_F() throws Exception {
 		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -513,7 +480,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_FB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_FB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -533,7 +500,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_FO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_FO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -553,7 +520,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SCF() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCF at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -573,7 +540,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_O() throws Exception {
 		LOG.debug("<{}.createCertificateReport_O at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-O.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-O.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -593,7 +560,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_OB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_OB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OB.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -613,7 +580,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_OO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_OO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		GenerateReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OO.json");
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OO.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());

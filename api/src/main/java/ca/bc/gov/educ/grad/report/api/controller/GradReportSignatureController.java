@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
-import ca.bc.gov.educ.grad.report.dto.GragReportSignatureImage;
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
@@ -48,7 +48,7 @@ public class GradReportSignatureController extends BaseController {
         String _m = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug("<{}.{}", _m, CLASS_NAME);
     	logRequest();
-        GragReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
+        GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
         return signatureImage.getSignatureContent();
     }
 
@@ -56,7 +56,7 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image Object", description = "Retrieve Signature Object by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public GragReportSignatureImage getSignatureImageByCode(@PathVariable String signCode) {
+    public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode) {
         String _m = String.format("getSignatureImageByCode(String %s)", signCode);
         logger.debug("<{}.{}", _m, CLASS_NAME);
         logRequest();
@@ -67,7 +67,7 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Images", description = "Retrieve Signature Objects", tags = { "Signature Images" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public List<GragReportSignatureImage> getSignatureImages() {
+    public List<GradReportSignatureImage> getSignatureImages() {
         String _m = String.format("getSignatureImages()");
         logger.debug("<{}.{}", _m, CLASS_NAME);
         logRequest();
@@ -78,7 +78,7 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.CREATE_OR_UPDATE_SIGNATURE_IMAGE)
     @Operation(summary = "Create Signature", description = "Create Signature Image File", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public GragReportSignatureImage saveGragReportSignatureImage(@RequestBody GragReportSignatureImage signatureImage) {
+    public GradReportSignatureImage saveGragReportSignatureImage(@RequestBody GradReportSignatureImage signatureImage) {
         String _m = String.format("saveGragReportSignatureImage(String %s)", signatureImage.getGradReportSignatureCode());
         logger.debug("<{}.{}", _m, CLASS_NAME);
         logRequest();
