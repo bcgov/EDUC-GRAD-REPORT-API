@@ -1,13 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Date;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class Certificate {
     private Date issued;
+    private String certStyle;
     private OrderType orderType;
     private boolean isOrigin;
 
@@ -34,5 +33,13 @@ public class Certificate {
 
     public void setIsOrigin(boolean origin) {
         isOrigin = origin;
+    }
+
+    public String getCertStyle() {
+        return certStyle;
+    }
+
+    public void setCertStyle(String certStyle) {
+        this.certStyle = certStyle;
     }
 }

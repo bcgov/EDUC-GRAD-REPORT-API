@@ -18,7 +18,11 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,6 +41,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.trimSa
  *
  * @author CGI Information Management Consultants Inc.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class StudentInfoImpl implements StudentInfo {
 
     private static final long serialVersionUID = 5L;
@@ -49,14 +54,14 @@ public class StudentInfoImpl implements StudentInfo {
     private String firstName = "";
     private String middleName = "";
     private String lastName = "";
-    private Date birthDate = new Date();
+    private Date birthdate = new Date();
 
     // student transcript info
     private String schoolId = "";
     private Date reportDate = new Date(0L);
     private Date lastUpdateDate = new Date(0L);
     private String logo = "";
-    private Character gender = ' ';
+    private String gender = "";
     private String status = "";
     private Boolean honourFlag = Boolean.FALSE;
     private Boolean dogwoodFlag = Boolean.FALSE;
@@ -66,6 +71,10 @@ public class StudentInfoImpl implements StudentInfo {
     private final List<String> academicProgram = new ArrayList<>();
     private Map<String, String> nonGradReasons = new HashMap<>();
     private String gradMessage = "";
+
+    private String localId = "";
+    private String hasOtherProgram = "";
+    private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
     // student address
     private String studentAddress1 = "";
@@ -137,7 +146,7 @@ public class StudentInfoImpl implements StudentInfo {
             final String lastName,
             final Date birthdate,
             final String localId,
-            final Character studGender,
+            final String studGender,
             final String mincode,
             final String studGrade,
             final Date gradDate,
@@ -172,7 +181,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.firstName = trimSafe(firstName);
         this.middleName = trimSafe(middleName);
         this.lastName = trimSafe(lastName);
-        this.birthDate = birthdate;
+        this.birthdate = birthdate;
         this.schoolId = trimSafe(localId);
         this.gender = studGender;
         this.mincode = trimSafe(mincode);
@@ -232,8 +241,9 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    public Date getBirthDate() {
-        return this.birthDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    public Date getBirthdate() {
+        return this.birthdate;
     }
 
     @Override
@@ -267,7 +277,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    public Character getGender() {
+    public String getGender() {
         return this.gender;
     }
 
@@ -289,6 +299,21 @@ public class StudentInfoImpl implements StudentInfo {
     @Override
     public String getGradProgram() {
         return this.gradProgram;
+    }
+
+    @Override
+    public String getLocalId() {
+        return localId;
+    }
+
+    @Override
+    public List<OtherProgram> getOtherProgramParticipation() {
+        return otherProgramParticipation;
+    }
+
+    @Override
+    public String getHasOtherProgram() {
+        return this.hasOtherProgram;
     }
 
     @Override
@@ -357,22 +382,13 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getLastUpdateDate() {
         return this.lastUpdateDate;
     }
 
     public void setLastUpdateDate(final Date lastUpdated) {
         this.lastUpdateDate = lastUpdated;
-    }
-
-    /**
-     * Sets the last updated date (for reporting) based on the DATE_TRAX_YMD
-     * format.
-     *
-     * @param lastUpdated The most recent update date to this student record.
-     */
-    public void setLastUpdateDate(final Long lastUpdated) {
-        setLastUpdateDate(createDate(lastUpdated == null ? 0L : lastUpdated));
     }
 
     @Override
@@ -398,6 +414,14 @@ public class StudentInfoImpl implements StudentInfo {
     @Override
     public String getSchoolTypeBanner() {
         return this.schoolTypeBanner;
+    }
+
+    public void setHasOtherProgram(String hasOtherProgram) {
+        this.hasOtherProgram = hasOtherProgram;
+    }
+
+    public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
+        this.otherProgramParticipation = otherProgramParticipation;
     }
 
     /**
@@ -441,7 +465,7 @@ public class StudentInfoImpl implements StudentInfo {
         hash = 13 * hash + Objects.hashCode(this.pen);
         hash = 13 * hash + Objects.hashCode(this.firstName);
         hash = 13 * hash + Objects.hashCode(this.lastName);
-        hash = 13 * hash + Objects.hashCode(this.birthDate);
+        hash = 13 * hash + Objects.hashCode(this.birthdate);
         hash = 13 * hash + Objects.hashCode(this.schoolId);
         return hash;
     }
@@ -464,7 +488,7 @@ public class StudentInfoImpl implements StudentInfo {
         if (!(this.lastName.equals(other.lastName))) {
             return false;
         }
-        if (!(this.birthDate.getTime() == other.birthDate.getTime())) {
+        if (!(this.birthdate.getTime() == other.birthdate.getTime())) {
             return false;
         }
         return this.schoolId.equals(other.schoolId);
@@ -514,5 +538,9 @@ public class StudentInfoImpl implements StudentInfo {
         }
 
         return date;
+    }
+
+    public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
+        return new JRBeanCollectionDataSource(otherProgramParticipation, false);
     }
 }

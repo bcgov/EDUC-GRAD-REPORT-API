@@ -1,21 +1,22 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class TranscriptResult {
-    private Course course;
+
+    private TranscriptCourse course;
     private Mark mark;
     private String requirement;
     private String requirementName;
     private String equivalency;
     private String usedForGrad;
 
-    public Course getCourse() {
+    @JsonDeserialize(as = TranscriptCourse.class)
+    public TranscriptCourse getCourse() {
         return course;
     }
 
-    public void setCourse(Course value) {
+    public void setCourse(TranscriptCourse value) {
         this.course = value;
     }
 

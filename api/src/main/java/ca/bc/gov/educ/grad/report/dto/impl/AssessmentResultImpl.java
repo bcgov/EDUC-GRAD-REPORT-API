@@ -43,11 +43,11 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     private String studentNumber;
     private String assessmentName;
     private String assessmentCode;
-    private int assessmentProficiencyScore;
-    private String assessmentSession;
-    private String requirementMet;
+    private Double proficiencyScore;
+    private String sessionDate;
+    private String gradReqMet;
     private String specialCase;
-    private String exceededWrites;
+    private String exceededWriteFlag;
 
     @Override
     public Long getId() {
@@ -65,13 +65,13 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     }
 
     @Override
-    public String getAssessmentSession() {
-        return assessmentSession;
+    public String getSessionDate() {
+        return sessionDate;
     }
 
     @Override
-    public int getAssessmentProficiencyScore() {
-        return assessmentProficiencyScore;
+    public Double getProficiencyScore() {
+        return proficiencyScore;
     }
 
     public String getAssessmentName() {
@@ -82,12 +82,12 @@ public class AssessmentResultImpl extends AbstractDomainEntity
         this.assessmentName = assessmentName;
     }
 
-    public String getRequirementMet() {
-        return requirementMet;
+    public String getGradReqMet() {
+        return gradReqMet;
     }
 
-    public void setRequirementMet(String requirementMet) {
-        this.requirementMet = requirementMet;
+    public void setGradReqMet(String gradReqMet) {
+        this.gradReqMet = gradReqMet;
     }
 
     public String getSpecialCase() {
@@ -98,17 +98,12 @@ public class AssessmentResultImpl extends AbstractDomainEntity
         this.specialCase = specialCase;
     }
 
-    public String getExceededWrites() {
-        return exceededWrites;
+    public String getExceededWriteFlag() {
+        return exceededWriteFlag;
     }
 
-    @Override
-    public String getAssessementSession() {
-        return this.assessmentSession;
-    }
-
-    public void setExceededWrites(String exceededWrites) {
-        this.exceededWrites = exceededWrites;
+    public void setExceededWriteFlag(String exceededWriteFlag) {
+        this.exceededWriteFlag = exceededWriteFlag;
     }
 
     public void setStudentNumber(String studentNumber) {
@@ -119,12 +114,12 @@ public class AssessmentResultImpl extends AbstractDomainEntity
         this.assessmentCode = nullSafe(assessmentCode);
     }
 
-    public void setAssessmentProficiencyScore(int assessmentProficiencyScore) {
-        this.assessmentProficiencyScore = assessmentProficiencyScore;
+    public void setProficiencyScore(Double proficiencyScore) {
+        this.proficiencyScore = proficiencyScore;
     }
 
-    public void setAssessmentSession(String assessmentSession) {
-        this.assessmentSession = nullSafe(assessmentSession);
+    public void setSessionDate(String sessionDate) {
+        this.sessionDate = nullSafe(sessionDate);
     }
 
 }

@@ -18,6 +18,8 @@
 package ca.bc.gov.educ.grad.report.model.student;
 
 import ca.bc.gov.educ.grad.report.model.codes.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.Date;
 import java.util.List;
@@ -34,7 +36,7 @@ public interface StudentInfo {
     /**
      * get the PEN which the data corresponds to.
      *
-     * @return PEN
+     * @return PEN pen
      */
     String getPen();
 
@@ -64,7 +66,7 @@ public interface StudentInfo {
      *
      * @return date of birth
      */
-    Date getBirthDate();
+    Date getBirthdate();
 
     /**
      * get the student's address field #1.
@@ -97,7 +99,7 @@ public interface StudentInfo {
     /**
      * get the student's living status.
      *
-     * @return status
+     * @return status student status
      */
     String getStudentStatus();
 
@@ -106,7 +108,28 @@ public interface StudentInfo {
      *
      * @return M for male or F for female
      */
-    Character getGender();
+    String getGender();
+
+    /**
+     * Gets local id.
+     *
+     * @return the local id
+     */
+    String getLocalId();
+
+    /**
+     * Gets other program participation.
+     *
+     * @return the other program participation
+     */
+    List<OtherProgram> getOtherProgramParticipation();
+
+    /**
+     * Gets has other program.
+     *
+     * @return the has other program
+     */
+    String getHasOtherProgram();
 
     /**
      * get the student honours title.
@@ -125,7 +148,7 @@ public interface StudentInfo {
     /**
      * get the student's grade.
      *
-     * @return grade
+     * @return grade grade
      */
     String getGrade();
 
@@ -149,8 +172,7 @@ public interface StudentInfo {
      * graduation program.
      *
      * @return A non-null instance.
-     * @throws IllegalArgumentException The gradProgram is not represented by
-     * GraduationProgramCode.
+     * @throws IllegalArgumentException The gradProgram is not represented by GraduationProgramCode.
      */
     GraduationProgramCode getGraduationProgramCode();
 
@@ -178,7 +200,7 @@ public interface StudentInfo {
     /**
      * get the secondary school street address field #2.
      *
-     * @return
+     * @return school street 2
      */
     String getSchoolStreet2();
 
@@ -199,7 +221,7 @@ public interface StudentInfo {
     /**
      * get the secondary school province name.
      *
-     * @return province
+     * @return province school prov
      */
     String getSchoolProv();
 
@@ -227,7 +249,7 @@ public interface StudentInfo {
     /**
      * get the display logo.
      *
-     * @return logo; values are BC or YU
+     * @return logo ; values are BC or YU
      */
     String getLogo();
 
@@ -269,23 +291,30 @@ public interface StudentInfo {
     /**
      * get school type banner. Value depends on school type.
      *
-     * @return
+     * @return school type banner
      */
     String getSchoolTypeBanner();
 
     /**
      * get the graduation message.
      * <p>
-     * @return
+     *
+     * @return grad message
      */
     String getGradMessage();
 
     /**
      * get the student address ISO country code.
      *
-     *
-     * @return
+     * @return country code
      */
     String getCountryCode();
+
+    /**
+     * Gets other program participationdata source.
+     *
+     * @return the other program participationdata source
+     */
+    JRBeanCollectionDataSource getOtherProgramParticipationdataSource();
 
 }

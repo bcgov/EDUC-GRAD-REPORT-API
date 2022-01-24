@@ -150,20 +150,6 @@ public interface Report extends Serializable {
     void setLocale(Locale locale);
 
     /**
-     * Allows the report to filter its parameter map prior to processing. This
-     * is used, for example, when the XmlExporter creates an XML document using
-     * values from a parameter map that start with a specific prefix. Without
-     * the predicate, there would be no way to differentiate between the
-     * parameters required for general report export and parameters required for
-     * creating XML elements (document fragments). The predicate acts on the
-     * parameter keys.
-     *
-     * @param parameterPredicate The filter for report parameter key/value
-     * pairs.
-     */
-    void setParameterPredicate(Predicate<String> parameterPredicate);
-
-    /**
      * Returns the report template opened and ready for reading by JasperReports
      * API.
      *

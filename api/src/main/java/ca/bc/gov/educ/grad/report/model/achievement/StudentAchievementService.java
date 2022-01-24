@@ -134,37 +134,6 @@ public interface StudentAchievementService extends BusinessService {
             throws DomainServiceException, IOException, DataException;
 
     /**
-     * Retrieves a transcript that contains course results and the report date.
-     *
-     * @return A transcript for the currently logged in user.
-     * @throws DomainServiceException Could not read data from TRAX.
-     */
-    Achievement getAchievement() throws DomainServiceException;
-
-    /**
-     * Retrieves a transcript that contains course results and the report date.
-     *
-     * @param pen The PEN of the student of which transcript to fetch.
-     * @param interim Should the transcript include interim marks.
-     * @return A transcript for the queried user.
-     * @throws DomainServiceException Could not read data from TRAX.
-     */
-    Achievement getAchievement(String pen, boolean interim) throws DomainServiceException;
-
-    /**
-     * Retrieves basic transcript information for the given PEN. This is for
-     * determining whether the student with the given PEN has any transcript
-     * results and what the issue date is. It does NOT contain the list of
-     * transcriptResults and will throw an exception if this method is called.
-     *
-     *
-     * @param pen Student number for which information is desired.
-     * @return A lightweight transcript object for the passed PEN.
-     * @throws DomainServiceException Could not read data from TRAX.
-     */
-    Achievement getAchievementInformation(String pen) throws DomainServiceException;
-
-    /**
      * Retrieves a new instance of Linked Parameters to be used when preserving
      * insertion order of data is required.
      *

@@ -1,9 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 public class CertificateType {
+
     private String reportName;
     private PaperType paperType;
 
@@ -15,6 +15,7 @@ public class CertificateType {
         this.reportName = value;
     }
 
+    @JsonDeserialize(as = PaperType.class)
     public PaperType getPaperType() {
         return paperType;
     }

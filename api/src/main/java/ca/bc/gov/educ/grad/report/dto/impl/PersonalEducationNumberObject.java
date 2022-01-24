@@ -30,6 +30,12 @@ public class PersonalEducationNumberObject implements PersonalEducationNumber {
     private String pen;
     private String entityId;
 
+    public PersonalEducationNumberObject() {}
+
+    public PersonalEducationNumberObject(String pen) {
+        this.pen = pen;
+    }
+
     @Override
     public String getValue() {
         return pen;
@@ -51,5 +57,9 @@ public class PersonalEducationNumberObject implements PersonalEducationNumber {
     public void setPen(String pen) {
         this.pen = pen;
     }
-    
+
+    @Override
+    public String toString() {
+        return getPen();
+    }
 }
