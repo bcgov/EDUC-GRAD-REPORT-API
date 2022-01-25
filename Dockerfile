@@ -2,8 +2,7 @@ FROM docker-remote.artifacts.developer.gov.bc.ca/maven:3-jdk-11 as build
 WORKDIR /workspace/app
 
 COPY api/pom.xml .
-COPY api/isd isd
-COPY api/grad grad
+COPY api/src src
 RUN mvn package -DskipTests
 RUN mkdir -p target/dependency && cd target/dependency && jar -xf ../../grad/target/*.jar
 
