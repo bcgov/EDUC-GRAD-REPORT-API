@@ -69,7 +69,7 @@ public class GraduationProgram extends BusinessEntity implements Serializable {
         // Forces TRAX graduation program codes of 1996 to be 1995 so that
         // the transcript description is correct.
         if (PROGRAM_1996.isCode(code)) {
-            this.code = PROGRAM_1995;
+            this.code = PROGRAM_1996;
         }
 
         this.description = this.code.getDescription();
