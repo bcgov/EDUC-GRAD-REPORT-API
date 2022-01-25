@@ -15,7 +15,7 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.report.model.cert;
 
-import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 
 import java.util.Date;

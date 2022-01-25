@@ -380,7 +380,7 @@
 				</textElement>
 				<text><![CDATA[School :]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
 				<reportElement style="GeneratedText" x="56" y="12" width="120" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
 				<textFieldExpression><![CDATA[$P{schoolObj}.getMinistryCode() +"  "+$P{schoolObj}.getName()]]></textFieldExpression>
 			</textField>
@@ -481,24 +481,24 @@
 						<dataSourceExpression><![CDATA[$P{studentObj}.getOtherProgramParticipationdataSource()]]></dataSourceExpression>
 					</datasetRun>
 					<jr:listContents height="15" width="230">
-						<textField>
+						<textField textAdjust="StretchHeight">
 							<reportElement style="GeneratedText" x="0" y="0" width="230" height="15" uuid="dca6b97e-35bc-491f-8982-4ed7122d8228">
 								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 								<property name="com.jaspersoft.studio.unit.height" value="px"/>
 							</reportElement>
-							<textFieldExpression><![CDATA[$F{programName}]]></textFieldExpression>
+							<textFieldExpression><![CDATA[$F{programName} == null ? "" : $F{programName}]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>
 			</componentElement>
-			<textField isBlankWhenNull="true">
+			<textField isBlankWhenNull="true" textAdjust="StretchHeight">
 				<reportElement style="GeneratedText" positionType="Float" x="186" y="65" width="64" height="51" uuid="fac13d46-b91f-4213-ac3d-79aae4c59e6f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{studentObj}.getHasOtherProgram()+":"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{studentObj}.getHasOtherProgram() == null ? "" : $P{studentObj}.getHasOtherProgram() + ":"]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="257">
@@ -530,7 +530,7 @@
 								<textElement verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA["  "+$F{courseName}]]></textFieldExpression>
+								<textFieldExpression><![CDATA["  " + $F{courseName}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -761,7 +761,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{metLitNumRequirement}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{metLitNumRequirement} == null ? "" : $F{metLitNumRequirement}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1277,7 +1277,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="70" height="85" uuid="c47fe19f-39a8-44d8-bcd3-2a20266b6cc2"/>
 								<textElement verticalAlignment="Top"/>
-								<textFieldExpression><![CDATA["  "+$F{optionalProgramCode}]]></textFieldExpression>
+								<textFieldExpression><![CDATA["  " + $F{optionalProgramCode}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

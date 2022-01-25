@@ -64,29 +64,37 @@ public enum GraduationProgramCode implements Serializable {
     @JsonProperty("1986-EN")
     PROGRAM_1986_EN("1986-EN", "Course-Based Graduation Program", 52),
 
-    @XmlEnumValue("1995")
-    @JsonProperty("1995")
-    PROGRAM_1995("1995", "Graduation Program 1995", 52),
-
     @XmlEnumValue("1996")
     @JsonProperty("1996")
-    PROGRAM_1996("1996", PROGRAM_1995.getDescription(), PROGRAM_1995.getCredits()),
+    PROGRAM_1996("1996", "Graduation Program 1995", 52),
 
     @XmlEnumValue("1996-EN")
     @JsonProperty("1996-EN")
     PROGRAM_1996_EN("1996-EN", "Graduation Program 1995", 52),
-  
+
     @XmlEnumValue("1996-PF")
     @JsonProperty("1996-PF")
     PROGRAM_1996_PF("1996-PF", "1995 Programme Francophone", 52),
+
+    @XmlEnumValue("2004")
+    @JsonProperty("2004")
+    PROGRAM_2004("2004", "Graduation Program 2004", 80),
+
+    @XmlEnumValue("2018")
+    @JsonProperty("2018")
+    PROGRAM_2018("2018", "Graduation Program 2018", 80),
+
+    @XmlEnumValue("2018-EN")
+    @JsonProperty("2018-EN")
+    PROGRAM_2018_EN("2018-EN", "Graduation Program 2018", 80),
 
     @XmlEnumValue("SCCP")
     @JsonProperty("SCCP")
     PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
 
-    @XmlEnumValue("2004")
-    @JsonProperty("2004")
-    PROGRAM_2004("2004", "Graduation Program 2004", 80),
+    @XmlEnumValue("SCCP-PF")
+    @JsonProperty("SCCP-PF")
+    PROGRAM_SCCP_PF("SCCP-PF", "School Completion Certificate Program French", 0),
 
     @XmlEnumValue("2004-PF")
     @JsonProperty("2004-PF")
@@ -99,14 +107,6 @@ public enum GraduationProgramCode implements Serializable {
     @XmlEnumValue("NOPROG")
     @JsonProperty("NOPROG")
     PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
-
-    @XmlEnumValue("2018")
-    @JsonProperty("2018")
-    PROGRAM_2018("2018", "Graduation Program 2018", 80),
-
-    @XmlEnumValue("2018-EN")
-    @JsonProperty("2018-EN")
-    PROGRAM_2018_EN("2018-EN", "Graduation Program 2018", 80),
 
     @XmlEnumValue("2018-PF")
     @JsonProperty("2018-PF")

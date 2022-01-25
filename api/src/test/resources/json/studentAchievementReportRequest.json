@@ -25,6 +25,14 @@
         {
           "programCode": "FI",
           "programName": "2018 Graduation Program French Immersion"
+        },
+        {
+          "programCode": "YMO",
+          "programName": "Yacht Master Ocean"
+        },
+        {
+          "programCode": "SS",
+          "programName": "Storm Survival"
         }
       ],
       "hasOtherProgram": "Other Program Participation"
