@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+
 import ca.bc.gov.educ.grad.report.api.client.utils.TranscriptResultListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
