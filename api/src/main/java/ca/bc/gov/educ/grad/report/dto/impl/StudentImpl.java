@@ -17,7 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
-import ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;

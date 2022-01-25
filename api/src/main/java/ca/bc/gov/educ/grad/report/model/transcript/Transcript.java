@@ -64,4 +64,11 @@ public interface Transcript extends DomainEntity {
      */
     boolean isEmpty();
 
+    /**
+     * Returns the type of the transcript
+     *
+     * @return transcript type
+     */
+    TranscriptTypeCode getTranscriptTypeCode();
+
 }

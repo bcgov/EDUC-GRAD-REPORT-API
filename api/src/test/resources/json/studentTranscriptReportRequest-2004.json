@@ -64,6 +64,8 @@
     "transcript": {
       "interim": false,
       "issueDate": "2021-04-26",
+      "code": "BC2004-PUB",
+      "name": "2004 Public School Transcript BC; including Programme Francophone and Offshore",
       "results": [
         {
           "course": {
@@ -596,6 +598,7 @@
       ]
     },
     "gradProgram": {
+      "description": null,
       "code": {
         "code": "2004",
         "description": "Graduation Program 2004",

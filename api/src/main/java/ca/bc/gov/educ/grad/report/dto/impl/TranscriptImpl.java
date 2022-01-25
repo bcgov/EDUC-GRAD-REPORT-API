@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptResult;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
@@ -43,6 +44,7 @@ public class TranscriptImpl extends AbstractDomainEntity
 
     private boolean interim;
     private Date issueDate;
+    private TranscriptTypeCode transcriptTypeCode;
     private List<TranscriptResult> results = new ArrayList<>();
 
     @Override
@@ -119,4 +121,12 @@ public class TranscriptImpl extends AbstractDomainEntity
         return this.interim;
     }
 
+    @Override
+    public TranscriptTypeCode getTranscriptTypeCode() {
+        return transcriptTypeCode;
+    }
+
+    public void setTranscriptTypeCode(TranscriptTypeCode transcriptTypeCode) {
+        this.transcriptTypeCode = transcriptTypeCode;
+    }
 }
