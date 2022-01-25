@@ -30,8 +30,11 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
     private String orderedByName;
     private Integer documentsShipped;
     private String orderNumber;
+    private Date orderDate;
     private DestinationType destinationType;
-    private final PostalAddress address;
+    private PostalAddress address;
+
+    public PackingSlipDetailsImpl() {}
 
     public PackingSlipDetailsImpl(PostalDeliveryInfo info) {
         this.address = info;
@@ -69,7 +72,7 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
 
     @Override
     public Date getOrderDate() {
-        return getCreatedOn();
+        return this.orderDate;
     }
 
     @Override
@@ -95,6 +98,14 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
 
     public void setDestinationType(DestinationType destinationType) {
         this.destinationType = destinationType;
+    }
+
+    public void setOrderDate(final Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setAddress(PostalAddress address) {
+        this.address = address;
     }
 }
 
