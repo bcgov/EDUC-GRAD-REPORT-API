@@ -1,13 +1,36 @@
-FROM docker-remote.artifacts.developer.gov.bc.ca/maven:3-jdk-11 as build
+FROM maven:3.8.4-jdk-11 as build
 WORKDIR /workspace/app
+
+USER root
+
+RUN echo \
+    "<settings xmlns='http://maven.apache.org/SETTINGS/1.0.0\' \
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' \
+    xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd'> \
+        <localRepository>/root/.m2/repository</localRepository> \
+        <interactiveMode>true</interactiveMode> \
+        <usePluginRegistry>false</usePluginRegistry> \
+        <offline>false</offline> \
+    </settings>" \
+    > /usr/share/maven/conf/settings.xml;
+
+VOLUME /root/.m2
 
 COPY api/pom.xml .
 COPY api/src src
 COPY api/lib lib
+
+RUN mvn install:install-file \ 
+	-Dfile=/workspace/app/lib/itext-2.1.7.js7.jar \ 
+	-DgroupId=com.lowagie \ 
+	-DartifactId=itext \ 
+	-Dversion=2.1.7.js7 \ 
+	-Dpackaging=jar
+
 RUN mvn package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM docker-remote.artifacts.developer.gov.bc.ca/openjdk:11-jdk
+FROM openjdk:11-jdk
 RUN useradd -ms /bin/bash spring && mkdir -p /logs && chown -R spring:spring /logs && chmod 755 /logs
 USER spring
 VOLUME /tmp

@@ -17,17 +17,17 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.pdf.BaseFont;
-import com.lowagie.text.pdf.PdfContentByte;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfContentByte;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
 
-import static com.lowagie.text.Element.ALIGN_RIGHT;
-import static com.lowagie.text.pdf.ColumnText.showTextAligned;
+import static com.itextpdf.text.Element.ALIGN_RIGHT;
+import static com.itextpdf.text.pdf.ColumnText.showTextAligned;
 import static java.lang.String.format;
 
 /**
