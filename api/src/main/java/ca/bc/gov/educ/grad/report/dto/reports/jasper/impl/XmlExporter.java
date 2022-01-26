@@ -42,10 +42,9 @@ import java.io.StringWriter;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static mondrian.xmla.XmlaException.getRootCause;
 
 /**
  * This exporter is used in the creation of XML documents that are to be used in
@@ -119,6 +118,15 @@ public class XmlExporter implements Exporter {
         }
 
         LOG.exiting(CLASSNAME, _m);
+    }
+
+    public Throwable getRootCause(Throwable throwable) {
+        Objects.requireNonNull(throwable);
+        Throwable rootCause = throwable;
+        while (rootCause.getCause() != null && rootCause.getCause() != rootCause) {
+            rootCause = rootCause.getCause();
+        }
+        return rootCause;
     }
 
     private Element createElement(final String key) throws ParserConfigurationException {
