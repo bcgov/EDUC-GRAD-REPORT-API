@@ -20,16 +20,16 @@ package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.ReportDocumentImpl;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfDictionary;
-import com.lowagie.text.pdf.PdfNumber;
-import com.lowagie.text.pdf.PdfReader;
-import com.lowagie.text.pdf.PdfStamper;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfDictionary;
+import com.itextpdf.text.pdf.PdfNumber;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import static com.lowagie.text.pdf.PdfName.ROTATE;
+import static com.itextpdf.text.pdf.PdfName.ROTATE;
 
 /**
  * Responsible for bundling certificate reports.

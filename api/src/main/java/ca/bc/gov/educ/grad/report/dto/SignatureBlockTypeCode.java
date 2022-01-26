@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.dto;
 
 import ca.bc.gov.educ.grad.report.entity.BaseEntity;
+import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Component
-public class SignatureBlockTypeCode extends BaseEntity implements ca.bc.gov.educ.grad.report.model.codes.SignatureBlockType {
+public class SignatureBlockTypeCode extends BaseEntity implements SignatureBlockType {
 
     private static final long serialVersionUID = 1L;
 

@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
+import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
 
 import java.util.Date;
 
@@ -87,7 +88,7 @@ public final class PackingSlipDetails extends BusinessEntity {
      * show ordered by or order number values. Setting this value to "PSI" will
      * prevent those fields from being displayed on the packing slip.
      */
-    private String destinationTypeName;
+    private DestinationType destinationType;
 
     /**
      * Used by the builder to create an instance of this class without first
@@ -172,8 +173,17 @@ public final class PackingSlipDetails extends BusinessEntity {
      *
      * @return "PSI" or empty.
      */
+    public DestinationType getDestinationType() {
+        return this.destinationType;
+    }
+
+    /**
+     * Returns name of the destination type
+     *
+     * @return "PSI" or empty.
+     */
     public String getDestinationTypeName() {
-        return this.destinationTypeName;
+        return this.destinationType == null ? "" : nullSafe(this.destinationType.name());
     }
 
     /**
@@ -203,10 +213,10 @@ public final class PackingSlipDetails extends BusinessEntity {
      * Sets whether this packing slip is destined for a post-secondary
      * institution.
      *
-     * @param destinationTypeName "PSI", empty, or null.
+     * @param destinationType "PSI", empty, or null.
      */
-    public void setDestinationTypeName(final String destinationTypeName) {
-        this.destinationTypeName = destinationTypeName;
+    public void setDestinationType(final DestinationType destinationType) {
+        this.destinationType = destinationType;
     }
 
     /**
@@ -374,6 +384,20 @@ public final class PackingSlipDetails extends BusinessEntity {
          */
         public Builder withOrderTypeName(final String orderTypeName) {
             getObject().setOrderTypeName(orderTypeName);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param dt String value is passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withDestinationType(final DestinationType dt) {
+            if (dt != null) {
+                getObject().setDestinationType(dt);
+            }
+
             return thisBuilder();
         }
     }
