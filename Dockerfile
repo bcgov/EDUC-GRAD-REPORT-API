@@ -1,14 +1,12 @@
-FROM docker-remote.artifacts.developer.gov.bc.ca/maven:3-jdk-11 as build
+FROM maven:3-jdk-11 as build
 WORKDIR /workspace/app
-
 COPY api/pom.xml .
 COPY api/src src
 COPY api/lib lib
-
 RUN mvn package -DskipTests
 RUN mv target/*-client.jar target/educ-grad-report-api-client.jar.bkp && mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM docker-remote.artifacts.developer.gov.bc.ca/openjdk:11-jdk
+FROM openjdk:11-jdk
 RUN useradd -ms /bin/bash spring && mkdir -p /logs && chown -R spring:spring /logs && chmod 755 /logs
 USER spring
 VOLUME /tmp
