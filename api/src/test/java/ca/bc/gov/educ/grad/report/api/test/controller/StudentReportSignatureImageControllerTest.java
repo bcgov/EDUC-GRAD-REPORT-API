@@ -2,7 +2,7 @@ package ca.bc.gov.educ.grad.report.api.test.controller;
 
 import ca.bc.gov.educ.grad.report.api.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
-import ca.bc.gov.educ.grad.report.api.service.ReportService;
+import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
@@ -52,7 +52,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
     BCMPBundleService bcmpBundleService;
 
     @Mock
-    ReportService reportService;
+    GradReportService reportService;
 
     @Autowired
     GradReportCodeService gradReportCodeService;

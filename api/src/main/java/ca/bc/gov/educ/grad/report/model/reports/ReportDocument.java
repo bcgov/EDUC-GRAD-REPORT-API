@@ -33,5 +33,5 @@ public interface ReportDocument extends Serializable {
      * @return An array of bytes that represents the final report document,
      * never null.
      */
-    public byte[] asBytes();
+    byte[] asBytes();
 }

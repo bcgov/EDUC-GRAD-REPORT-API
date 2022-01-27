@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.model.common.support.report;
 
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 
 /**
@@ -26,7 +27,7 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class BusinessReportEntity extends AbstractDomainEntity implements BusinessReport {
+public class BusinessReportEntity extends AbstractDomainEntity implements BusinessReport, ReportDocument {
 
     private static final long serialVersionUID = 1L;
 
@@ -93,5 +94,10 @@ public class BusinessReportEntity extends AbstractDomainEntity implements Busine
     @Override
     public Long getId() {
         throw new UnsupportedOperationException("Not supported.");
+    }
+
+    @Override
+    public byte[] asBytes() {
+        return getReportData();
     }
 }

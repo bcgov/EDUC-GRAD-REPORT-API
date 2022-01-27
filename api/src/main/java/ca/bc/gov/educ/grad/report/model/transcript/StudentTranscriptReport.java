@@ -18,12 +18,13 @@
 package ca.bc.gov.educ.grad.report.model.transcript;
 
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 
 /**
  * A container for a Student's Transcript report.
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface StudentTranscriptReport extends BusinessReport {
+public interface StudentTranscriptReport extends BusinessReport, ReportDocument {
 
 }

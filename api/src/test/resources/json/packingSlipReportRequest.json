@@ -1,0 +1,27 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "packingSlip",
+    "reportFile": "Packing Slip Report.pdf"
+  },
+  "data": {
+    "packingSlip": {
+      "recipient": "JOHN",
+      "orderType": "Certificate",
+      "orderedBy": "SILVER",
+      "orderNumber": 184669,
+      "orderDate": "2002-08-05",
+      "address": {
+        "streetLine1": "HISPANIOLA",
+        "streetLine2": "",
+        "city": "SHOONER",
+        "region": "BOAT",
+        "country": "VESSEL",
+        "code": "PAC SEA"
+      },
+      "quantity": 1
+    }
+  }
+}

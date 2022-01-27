@@ -549,7 +549,7 @@ public class BusinessEntityAdapter {
      * reports.
      */
     public static PackingSlipDetails adapt(
-            final ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails details) {
+            final ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails details) {
         validate(details, "packing slip details");
 
         return new PackingSlipDetails.Builder()

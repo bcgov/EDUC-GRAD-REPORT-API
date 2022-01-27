@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.service.ReportService;
+import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.util.PermissionsContants;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -28,7 +28,7 @@ public class ReportController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
 
     @Autowired
-    ReportService reportService;
+    GradReportService reportService;
     
     @PostMapping (ReportApiConstants.STUDENT_ACHIEVEMENT_REPORT)
     @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)

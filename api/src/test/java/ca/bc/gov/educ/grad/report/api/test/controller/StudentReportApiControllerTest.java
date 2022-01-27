@@ -3,7 +3,7 @@ package ca.bc.gov.educ.grad.report.api.test.controller;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
-import ca.bc.gov.educ.grad.report.api.service.ReportService;
+import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
@@ -60,7 +60,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     BCMPBundleService bcmpBundleService;
 
     @Mock
-    ReportService reportService;
+    GradReportService reportService;
 
     @Mock
     GradReportSignatureService reportSignatureService;
