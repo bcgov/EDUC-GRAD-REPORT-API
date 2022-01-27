@@ -1,7 +1,5 @@
 FROM docker-remote.artifacts.developer.gov.bc.ca/maven:3-jdk-11 as build
 WORKDIR /workspace/app
-USER root
-VOLUME /tmp
 
 COPY api/pom.xml .
 COPY api/src src
