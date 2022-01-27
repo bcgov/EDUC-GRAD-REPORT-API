@@ -74,4 +74,14 @@ public class ReportController extends BaseController {
         logRequest();
         return reportService.getStudentCertificateReport(report);
     }
+
+    @PostMapping (ReportApiConstants.PACKING_SLIP)
+    @PreAuthorize(PermissionsContants.PACKING_SLIP)
+    @Operation(summary = "Generate Packing Slip", description = "Generate Packing Slip", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity getPackingSlip(@RequestBody ReportRequest report) {
+        logger.debug("getPackingSlip");
+        logRequest();
+        return reportService.getPackingSlipReport(report);
+    }
 }

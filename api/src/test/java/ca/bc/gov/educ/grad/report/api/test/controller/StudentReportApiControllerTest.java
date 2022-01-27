@@ -1,7 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.test.controller;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
@@ -13,7 +12,6 @@ import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
-import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -62,14 +60,45 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     @Mock
     GradReportService reportService;
 
-    @Mock
-    GradReportSignatureService reportSignatureService;
-
     @InjectMocks
     private ReportController reportController;
 
-    @InjectMocks
-    private GradReportSignatureController reportSignatureController;
+    @Test
+    public void getPackingSlipReportTest() throws Exception {
+        LOG.debug("<{}.getPackingSlipReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/packingSlipReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+        reportRequest.getOptions().setReportFile("Packing Slip Report.pdf");
+
+        byte[] resultBinary = new byte[0];
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+        ResponseEntity response = ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(resultBinary);
+
+        Authentication authentication = Mockito.mock(Authentication.class);
+        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+        // Mockito.whens() for your authorization object
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        //Mockito.when(authentication.getDetails()).thenReturn(details);
+        SecurityContextHolder.setContext(securityContext);
+
+        Mockito.when(reportService.getPackingSlipReport(reportRequest)).thenReturn(response);
+        reportController.getPackingSlip(reportRequest);
+        Mockito.verify(reportService).getPackingSlipReport(reportRequest);
+
+        LOG.debug(">getPackingSlipReportTest");
+    }
 
     @Test
     public void getStudentAchievementReportTest() throws Exception {
