@@ -178,6 +178,15 @@ public final class PackingSlipDetails extends BusinessEntity {
     }
 
     /**
+     * Returns name of the destination type
+     *
+     * @return "PSI" or empty.
+     */
+    public String getDestinationTypeName() {
+        return this.destinationType == null ? "" : nullSafe(this.destinationType.name());
+    }
+
+    /**
      * Returns the STs sequence number.
      *
      * @return PackingSlipDetails.SEQUENCE_NUMBER
