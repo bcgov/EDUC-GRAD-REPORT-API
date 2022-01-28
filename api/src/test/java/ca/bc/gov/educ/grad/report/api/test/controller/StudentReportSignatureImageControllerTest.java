@@ -85,9 +85,17 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         signatureImage.setSignatureContent(imageBinary);
         signatureImage.setSignatureId(UUID.randomUUID());
 
-        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode)).thenReturn(signatureImage);
+        Authentication authentication = Mockito.mock(Authentication.class);
+        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+        // Mockito.whens() for your authorization object
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        Mockito.when(authentication.getDetails()).thenReturn(details);
+        SecurityContextHolder.setContext(securityContext);
+
+        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode, details.getTokenValue())).thenReturn(signatureImage);
         reportSignatureController.extractSignatureImageByCode(signatureCode);
-        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
+        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode, details.getTokenValue());
 
         LOG.debug(">extractSignatureImageTest");
     }
@@ -108,7 +116,6 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         Mockito.when(authentication.getDetails()).thenReturn(details);
         SecurityContextHolder.setContext(securityContext);
 
-        String accessToken = "accessToken";
         String signatureCode = "MOE";
         GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
@@ -118,9 +125,9 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         List<GradReportSignatureImage> signatureImages = new ArrayList();
         signatureImages.add(signatureImage);
 
-        Mockito.when(reportSignatureService.getSignatureImages(null)).thenReturn(signatureImages);
+        Mockito.when(reportSignatureService.getSignatureImages(details.getTokenValue())).thenReturn(signatureImages);
         reportSignatureController.getSignatureImages();
-        Mockito.verify(reportSignatureService).getSignatureImages(null);
+        Mockito.verify(reportSignatureService).getSignatureImages(details.getTokenValue());
 
         LOG.debug(">getSignatureImagesTest");
     }
@@ -133,15 +140,23 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         assertNotEquals(0, imageBinary.length);
         LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
-        String signatureCode = "MOE.png";
+        String signatureCode = "MOE";
         GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
         signatureImage.setSignatureContent(imageBinary);
         signatureImage.setSignatureId(UUID.randomUUID());
 
-        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode)).thenReturn(signatureImage);
+        Authentication authentication = Mockito.mock(Authentication.class);
+        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+        // Mockito.whens() for your authorization object
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        Mockito.when(authentication.getDetails()).thenReturn(details);
+        SecurityContextHolder.setContext(securityContext);
+
+        Mockito.when(reportSignatureService.getSignatureImageByCode(signatureCode, details.getTokenValue())).thenReturn(signatureImage);
         reportSignatureController.getSignatureImageByCode(signatureCode);
-        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode);
+        Mockito.verify(reportSignatureService).getSignatureImageByCode(signatureCode, details.getTokenValue());
 
         LOG.debug(">getSignatureImageTest");
     }
