@@ -1,23 +1,36 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
+import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
+import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
+import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.Consumer;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 @WebAppConfiguration
 public class StudentReportSignatureImageServiceTests extends GradReportBaseTest {
@@ -26,14 +39,33 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 	private static final String CLASS_NAME = StudentReportSignatureImageServiceTests.class.getSimpleName();
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-	@Autowired
-	GradReportSignatureService reportSignatureService;
-	@Autowired
-	GradReportCodeService gradReportCodeService;
+	@Autowired	GradReportSignatureService reportSignatureService;
+	@Autowired	GradReportCodeService gradReportCodeService;
+
+	@MockBean SignatureImageRepository signatureImageRepository;
+
+	@MockBean WebClient webClient;
+	@Autowired	EducGradSignatureImageApiConstants constants;
+
+	@Mock WebClient.RequestHeadersSpec requestHeadersMock;
+	@Mock WebClient.RequestHeadersUriSpec requestHeadersUriMock;
+	@Mock WebClient.ResponseSpec responseMock;
+	@Mock WebClient.RequestBodySpec requestBodyMock;
+	@Mock WebClient.RequestBodyUriSpec requestBodyUriMock;
+
+	@BeforeClass
+	public static void setup() {
+
+	}
+
+	@After
+	public void tearDown() {
+
+	}
 
 	@Before
-	public void init() throws Exception {
-
+	public void init() {
+		openMocks(this);
 	}
 
 	@Test
@@ -44,15 +76,27 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		assertNotEquals(0, imageBinary.length);
 		LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
-		String signatureCode = "MOE.png";
-		GradReportSignatureImage signatureImage = new GradReportSignatureImage();
+		String signatureCode = "023";
+		List<GradReportSignatureImageEntity> list = new ArrayList<>();
+		GradReportSignatureImageEntity signatureImage = new GradReportSignatureImageEntity();
 		signatureImage.setGradReportSignatureCode(signatureCode);
 		signatureImage.setSignatureContent(imageBinary);
 		signatureImage.setSignatureId(UUID.randomUUID());
+		list.add(signatureImage);
 
-		reportSignatureService.saveSignatureImage(signatureImage);
+		District dist = new District();
+		dist.setDistrictNumber("023");
+		dist.setDistrictName("blah");
 
-		List<GradReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages();
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(constants.getDistrictDetails(), "023"))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(District.class)).thenReturn(Mono.just(dist));
+
+		Mockito.when(signatureImageRepository.findAll()).thenReturn(list);
+
+		List<GradReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages(null);
 		assertNotNull(signatureImages);
 		assertTrue(signatureImages.size() > 0);
 
@@ -73,7 +117,12 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		signatureImage.setSignatureContent(imageBinary);
 		signatureImage.setSignatureId(UUID.randomUUID());
 
-		reportSignatureService.saveSignatureImage(signatureImage);
+		GradReportSignatureImageEntity signatureImages = new GradReportSignatureImageEntity();
+		signatureImage.setGradReportSignatureCode(signatureCode);
+		signatureImage.setSignatureContent(imageBinary);
+		signatureImage.setSignatureId(UUID.randomUUID());
+
+		Mockito.when(signatureImageRepository.findBySignatureCode(signatureCode)).thenReturn(signatureImages);
 		signatureImage = reportSignatureService.getSignatureImageByCode(signatureCode);
 		assertNotNull(signatureImage);
 
@@ -94,6 +143,13 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		signatureImage.setSignatureContent(imageBinary);
 		signatureImage.setSignatureId(UUID.randomUUID());
 
+		GradReportSignatureImageEntity signatureImages = new GradReportSignatureImageEntity();
+		signatureImage.setGradReportSignatureCode(signatureCode);
+		signatureImage.setSignatureContent(imageBinary);
+		signatureImage.setSignatureId(UUID.randomUUID());
+
+		Mockito.when(signatureImageRepository.findById(signatureImage.getSignatureId())).thenReturn(Optional.of(signatureImages));
+		Mockito.when(signatureImageRepository.save(signatureImages)).thenReturn(signatureImages);
 		signatureImage = reportSignatureService.saveSignatureImage(signatureImage);
 		assertNotNull(signatureImage);
 
