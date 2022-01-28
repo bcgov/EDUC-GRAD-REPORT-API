@@ -19,7 +19,9 @@ package ca.bc.gov.educ.grad.report.dto.reports.bundle.service;
 
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
+import ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportExportService;
 
@@ -120,6 +122,14 @@ public interface BCMPBundleService extends ReportExportService, Serializable {
      * @return A non-null instance.
      */
     OrderType createCertificateOrderType(CertificateType ct);
+
+    /**
+     * Fill PackingSlip information from Delivery Info object
+     *
+     * @param info
+     * @return PackingSlipDetails
+     */
+    PackingSlipDetails createPackingSlipDetails(PostalDeliveryInfo info);
 
     /**
      * Prepend a bundle with paper type print instructions.

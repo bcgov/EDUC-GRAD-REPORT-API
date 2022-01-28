@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.service.impl;
 
+import ca.bc.gov.educ.grad.report.dto.impl.PackingSlipDetailsImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.model.DocumentBundleImpl;
@@ -26,7 +27,9 @@ import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.JasperReportImpl;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
+import ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import org.apache.commons.codec.binary.Base64;
@@ -201,6 +204,17 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
     @RolesAllowed({Roles.USER_BCMP_CERTIFICATE_ORDER_TYPE, FULFILLMENT_SERVICES_USER})
     public OrderType createCertificateOrderType(final CertificateType certificateType) {
         return new CertificateOrderTypeImpl(certificateType);
+    }
+
+    /**
+     * Fill PackingSlip information with postal mail address information.
+     *
+     * @param info Delivery address information.
+     * @return Packing slip details with mailing address fields filled out.
+     */
+    @Override
+    public PackingSlipDetails createPackingSlipDetails(final PostalDeliveryInfo info) {
+        return new PackingSlipDetailsImpl(info);
     }
 
     /**

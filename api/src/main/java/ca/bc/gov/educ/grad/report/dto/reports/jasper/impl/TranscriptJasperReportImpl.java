@@ -19,11 +19,11 @@ package ca.bc.gov.educ.grad.report.dto.reports.jasper.impl;
 
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfCopy;
-import com.lowagie.text.pdf.PdfReader;
-import com.lowagie.text.pdf.PdfSmartCopy;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfCopy;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfSmartCopy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
