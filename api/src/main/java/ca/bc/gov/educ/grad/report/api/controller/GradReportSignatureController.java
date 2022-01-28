@@ -17,7 +17,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -71,7 +74,10 @@ public class GradReportSignatureController extends BaseController {
         String _m = String.format("getSignatureImages()");
         logger.debug("<{}.{}", _m, CLASS_NAME);
         logRequest();
-        return gradReportSignatureService.getSignatureImages();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+        String accessToken = details.getTokenValue();
+        return gradReportSignatureService.getSignatureImages(accessToken);
     }
 
     @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_IMAGE)

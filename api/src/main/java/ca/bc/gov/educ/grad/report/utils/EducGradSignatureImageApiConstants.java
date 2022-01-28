@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.utils;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -31,5 +32,8 @@ public class EducGradSignatureImageApiConstants {
 
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
+
+    @Value("${endpoint.educ-grad-trax-api.get-district-details.url}")
+    private String districtDetails;
 
 }

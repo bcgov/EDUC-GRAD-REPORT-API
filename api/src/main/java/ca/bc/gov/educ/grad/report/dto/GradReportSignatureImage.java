@@ -23,6 +23,7 @@ public class GradReportSignatureImage extends BaseModel {
     private byte[] signatureContent;
     private String gradReportSignatureCode;
     private String gradReportSignatureName;
+    private String districtName;
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date effectiveDate;
     @JsonFormat(pattern="yyyy-MM-dd")
