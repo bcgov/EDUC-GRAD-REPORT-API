@@ -76,4 +76,7 @@ springdoc:
 endpoint:
   educ-grad-report-api:
     get-signature-by-code:
-      url: http://localhost:8080/api/v1/signatures
+      url: https://educ-grad-report-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/signatures
+  educ-grad-trax-api:
+    get-district-details:
+      url: https://educ-grad-trax-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/district/%s

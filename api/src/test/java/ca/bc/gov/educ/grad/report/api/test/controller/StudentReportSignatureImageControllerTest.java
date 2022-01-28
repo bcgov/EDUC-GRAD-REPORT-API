@@ -19,6 +19,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -96,6 +100,15 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         assertNotEquals(0, imageBinary.length);
         LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
+        Authentication authentication = Mockito.mock(Authentication.class);
+        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+        // Mockito.whens() for your authorization object
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        Mockito.when(authentication.getDetails()).thenReturn(details);
+        SecurityContextHolder.setContext(securityContext);
+
+        String accessToken = "accessToken";
         String signatureCode = "MOE";
         GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
@@ -105,9 +118,9 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         List<GradReportSignatureImage> signatureImages = new ArrayList();
         signatureImages.add(signatureImage);
 
-        Mockito.when(reportSignatureService.getSignatureImages()).thenReturn(signatureImages);
+        Mockito.when(reportSignatureService.getSignatureImages(null)).thenReturn(signatureImages);
         reportSignatureController.getSignatureImages();
-        Mockito.verify(reportSignatureService).getSignatureImages();
+        Mockito.verify(reportSignatureService).getSignatureImages(null);
 
         LOG.debug(">getSignatureImagesTest");
     }

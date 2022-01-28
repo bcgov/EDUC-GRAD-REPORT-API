@@ -1,13 +1,16 @@
 package ca.bc.gov.educ.grad.report.service;
 
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
+import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
+import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.transaction.Transactional;
 import java.io.InputStream;
@@ -27,6 +30,9 @@ public class GradReportSignatureService {
 
     @Autowired
     GradReportSignatureTransformer gradReportSignatureTransformer;
+
+    @Autowired WebClient webClient;
+    @Autowired EducGradSignatureImageApiConstants constants;
 
     @Transactional
     public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
@@ -49,13 +55,16 @@ public class GradReportSignatureService {
     }
 
     @Transactional
-    public List<GradReportSignatureImage> getSignatureImages() {
+    public List<GradReportSignatureImage> getSignatureImages(String accessToken) {
         String _m = String.format("getSignatureImages()");
         log.debug("<{}.{}", _m, CLASS_NAME);
         List<GradReportSignatureImageEntity> entities = signatureImageRepository.findAll();
         List<GradReportSignatureImage> result = new ArrayList();
         for(GradReportSignatureImageEntity entity: entities) {
             GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+            District dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+            if(dist != null)
+                signatureImage.setDistrictName(dist.getDistrictName());
             result.add(signatureImage);
         }
         return result;
@@ -101,5 +110,14 @@ public class GradReportSignatureService {
         byte[] imageBytes = inputStream.readAllBytes();
         inputStream.close();
         return imageBytes;
+    }
+
+    public District getDistrictInfo(String districtCode,String accessToken) {
+        return webClient.get()
+                .uri(String.format(constants.getDistrictDetails(), districtCode))
+                .headers(h -> h.setBearerAuth(accessToken))
+                .retrieve()
+                .bodyToMono(District.class)
+                .block();
     }
 }
