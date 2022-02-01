@@ -75,6 +75,8 @@ public class ReportData implements Serializable {
 	private String orgCode;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date issueDate;
+	@JsonDeserialize(as = PackingSlip.class)
+	private PackingSlip packingSlip;
 
 	@JsonDeserialize(using = NonGradReasonListDeserializer.class)
 	private List<NonGradReason> nonGradReasons;

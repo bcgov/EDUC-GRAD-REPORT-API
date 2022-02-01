@@ -34,10 +34,10 @@ public class OptionalProgramListDeserializer extends StdDeserializer<List<Option
         Iterator<JsonNode> elements = node.elements();
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
-            String optionalProgramCode = (String) nextNode.get("optionalProgramCode").asText();
-            String optionalProgramName = (String) nextNode.get("optionalProgramName").asText();
-            String programCompletionDate = (String) nextNode.get("programCompletionDate").asText();
-            String hasRequirementMet = (String) nextNode.get("hasRequirementMet").asText();
+            String optionalProgramCode = (String) nextNode.get("optionalProgramCode").asText("");
+            String optionalProgramName = (String) nextNode.get("optionalProgramName").asText("");
+            String programCompletionDate = (String) nextNode.get("programCompletionDate").asText("");
+            String hasRequirementMet = (String) nextNode.get("hasRequirementMet").asText("");
 
             OptionalProgram r = new OptionalProgram();
             r.setOptionalProgramCode(optionalProgramCode);

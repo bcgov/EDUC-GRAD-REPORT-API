@@ -34,6 +34,7 @@ public final class Roles {
     public static final String USER_BCMP_APPEND = USER_BCMP_SERVICE + "_append";
     public static final String USER_BCMP_ENUMERATE = USER_BCMP_SERVICE + "_enumerate";
     public static final String USER_BCMP_PAPERTYPE = USER_BCMP_SERVICE + "_papertype";
+    public static final String USER_BCMP_ACHIEVEMENT_ORDER_TYPE = USER_BCMP_SERVICE + "_achievement_order_type";
     public static final String USER_BCMP_TRANSCRIPT_ORDER_TYPE = USER_BCMP_SERVICE + "_transcript_order_type";
     public static final String USER_BCMP_CERTIFICATE_ORDER_TYPE = USER_BCMP_SERVICE + "_certificate_order_type";
 

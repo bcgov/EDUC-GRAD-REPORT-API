@@ -21,20 +21,7 @@
       "birthdate": "2010-01-01",
       "localId": null,
       "gradProgram": "2018-PF",
-      "otherProgramParticipation": [
-        {
-          "programCode": "FI",
-          "programName": "2018 Graduation Program French Immersion"
-        },
-        {
-          "programCode": "YMO",
-          "programName": "Yacht Master Ocean"
-        },
-        {
-          "programCode": "SS",
-          "programName": "Storm Survival"
-        }
-      ],
+      "otherProgramParticipation": null,
       "hasOtherProgram": "Other Program Participation"
     },
     "studentExams": [
@@ -61,7 +48,7 @@
           "gradReqMet": "115",
           "specialCase": "E",
           "sessionDate": "201806",
-          "exceededWriteFlag": "N",
+          "exceededWriteFlag": null,
           "proficiencyScore": "4"
         },
         {
