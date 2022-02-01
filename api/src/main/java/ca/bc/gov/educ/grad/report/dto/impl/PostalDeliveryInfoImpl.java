@@ -43,6 +43,7 @@ public class PostalDeliveryInfoImpl implements PostalDeliveryInfo, Serializable 
     private String postalCode = "";
     private String countryCode = "";
     private String name = "";
+    private String attentionTo = "";
 
     @Override
     public String getName() {
@@ -52,6 +53,16 @@ public class PostalDeliveryInfoImpl implements PostalDeliveryInfo, Serializable 
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getAttentionTo() {
+        return attentionTo;
+    }
+
+    @Override
+    public void setAttentionTo(String attentionTo) {
+        this.attentionTo = attentionTo;
     }
 
     @Override

@@ -1,14 +1,15 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Date;
 
 public class PackingSlip {
 
     String recipient;
-    Address address;
-    String orderType;
+    School school;
+    PackingSlipOrderType orderType;
     Date orderDate;
     String orderedBy;
     Long orderNumber;
@@ -22,19 +23,20 @@ public class PackingSlip {
         this.recipient = recipient;
     }
 
-    public ca.bc.gov.educ.grad.report.api.client.Address getAddress() {
-        return address;
+    public School getSchool() {
+        return school;
     }
 
-    public void setAddress(ca.bc.gov.educ.grad.report.api.client.Address address) {
-        this.address = address;
+    public void setSchool(School school) {
+        this.school = school;
     }
 
-    public String getOrderType() {
+    @JsonDeserialize(as = PackingSlipOrderType.class)
+    public PackingSlipOrderType getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(String orderType) {
+    public void setOrderType(PackingSlipOrderType orderType) {
         this.orderType = orderType;
     }
 

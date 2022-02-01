@@ -8,20 +8,34 @@
   },
   "data": {
     "packingSlip": {
-      "recipient": "JOHN",
-      "orderType": "Certificate",
+      "recipient": "ADMINISTRATION",
+      "orderType": {
+        "name": "Certificate",
+        "packingSlipType": {
+          "name": "S",
+          "paperType": {
+            "code": "YEDR"
+          }
+        }
+      },
       "orderedBy": "SILVER",
       "orderNumber": 184669,
       "orderDate": "2002-08-05",
-      "address": {
-        "streetLine1": "HISPANIOLA",
-        "streetLine2": "",
-        "city": "SHOONER",
-        "region": "BOAT",
-        "country": "VESSEL",
-        "code": "PAC SEA"
-      },
-      "quantity": 1
+      "quantity": 1,
+      "school": {
+        "mincode": "03699064",
+        "name": "GUILDFORD LEARNING CENTRE",
+        "distno": "036",
+        "schlno": "03699064",
+        "address": {
+          "streetLine1": "300-10183 152A ST",
+          "streetLine2": "",
+          "city": "SURREY",
+          "region": "BC",
+          "country": "",
+          "code": "VER4H6"
+        }
+      }
     }
   }
 }

@@ -10,6 +10,10 @@ public interface PostalDeliveryInfo extends PostalAddress {
 
     void setName(String name);
 
+    String getAttentionTo();
+
+    void setAttentionTo(String attentionTo);
+
     void setStreetLine1(String streetLine1);
 
     void setStreetLine2(String streetLine2);

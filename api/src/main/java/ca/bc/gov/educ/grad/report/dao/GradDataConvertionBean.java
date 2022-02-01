@@ -14,6 +14,7 @@ import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
+import ca.bc.gov.educ.grad.report.model.reports.PaperType;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
@@ -263,17 +264,21 @@ public class GradDataConvertionBean {
 
     public PostalDeliveryInfo getPostalDeliveryInfo(ReportData reportData) {
         PackingSlip packingSlip = reportData.getPackingSlip();
-        if(packingSlip == null || packingSlip.getAddress() == null) {
-            throw new InvalidParameterException("Packing Slip can't be NULL");
+        if(packingSlip == null || packingSlip.getSchool() == null) {
+            throw new InvalidParameterException("Packing Slip and School can't be NULL");
+        }
+        if(packingSlip.getSchool().getAddress() == null) {
+            throw new InvalidParameterException("School Address can't be NULL");
         }
         PostalDeliveryInfo deliveryInfo = new PostalDeliveryInfoImpl();
-        deliveryInfo.setName(packingSlip.getRecipient());
-        deliveryInfo.setStreetLine1(packingSlip.getAddress().getStreetLine1());
-        deliveryInfo.setStreetLine2(packingSlip.getAddress().getStreetLine2());
-        deliveryInfo.setCity(packingSlip.getAddress().getCity());
-        deliveryInfo.setRegion(packingSlip.getAddress().getRegion());
-        deliveryInfo.setCountryCode(packingSlip.getAddress().getCountry());
-        deliveryInfo.setPostalCode(packingSlip.getAddress().getCode());
+        deliveryInfo.setName(packingSlip.getSchool().getMincode() + " " + packingSlip.getSchool().getName());
+        deliveryInfo.setAttentionTo(packingSlip.getRecipient());
+        deliveryInfo.setStreetLine1(packingSlip.getSchool().getAddress().getStreetLine1());
+        deliveryInfo.setStreetLine2(packingSlip.getSchool().getAddress().getStreetLine2());
+        deliveryInfo.setCity(packingSlip.getSchool().getAddress().getCity());
+        deliveryInfo.setRegion(packingSlip.getSchool().getAddress().getRegion());
+        deliveryInfo.setCountryCode(packingSlip.getSchool().getAddress().getCountry());
+        deliveryInfo.setPostalCode(packingSlip.getSchool().getAddress().getCode());
 
         return deliveryInfo;
     }
@@ -283,21 +288,35 @@ public class GradDataConvertionBean {
         if(packingSlip == null || packingSlip.getOrderType() == null) {
             throw new InvalidParameterException("Packing Slip can't be NULL");
         }
-        OrderType orderType;
-         switch(packingSlip.getOrderType()) {
-             case "Certificate" :
-                 orderType = new CertificateOrderTypeImpl();
+        OrderType result;
+         switch(packingSlip.getOrderType().getName()) {
+             case "Certificate" : {
+                 CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl();
+                 orderType.setName(packingSlip.getOrderType().getName());
+                 CertificateType certificateType = CertificateType.forValue(packingSlip.getOrderType().getPackingSlipType().getName());
+                 certificateType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
+                 orderType.setCertificateType(certificateType);
+                 result = orderType;
+             }
+                break;
+             case "Transcript" : {
+                 TranscriptOrderTypeImpl orderType = new TranscriptOrderTypeImpl();
+                 orderType.setName(packingSlip.getOrderType().getName());
+                 orderType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
+                 result = orderType;
+             }
                  break;
-             case "Transcript" :
-                 orderType = new TranscriptOrderTypeImpl();
-                 break;
-             case "Achievement" :
-                 orderType = new AchievementOrderTypeImpl();
+             case "Achievement" : {
+                 AchievementOrderTypeImpl orderType = new AchievementOrderTypeImpl();
+                 orderType.setName(packingSlip.getOrderType().getName());
+                 orderType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
+                 result = orderType;
+             }
                  break;
              default:
                  throw new InvalidParameterException("Order Type is not valid");
          }
-        return orderType;
+        return result;
     }
 
     private CertificateType getCertificateType(String reportName) {
