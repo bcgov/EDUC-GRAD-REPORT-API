@@ -106,13 +106,15 @@ public class GradDataConvertionBean {
         }
 
         List<ca.bc.gov.educ.grad.report.model.graduation.OtherProgram> otherPrograms = new ArrayList<>();
-        for(OtherProgram p: reportData.getStudent().getOtherProgramParticipation()) {
-            OtherProgramImpl otherProgram = new OtherProgramImpl();
-            otherProgram.setProgramCode(p.getProgramCode());
-            otherProgram.setProgramName(p.getProgramName());
-            otherPrograms.add(otherProgram);
+        if(reportData.getStudent().getOtherProgramParticipation() != null) {
+            for (OtherProgram p : reportData.getStudent().getOtherProgramParticipation()) {
+                OtherProgramImpl otherProgram = new OtherProgramImpl();
+                otherProgram.setProgramCode(p.getProgramCode());
+                otherProgram.setProgramName(p.getProgramName());
+                otherPrograms.add(otherProgram);
+            }
+            student.setOtherProgramParticipation(otherPrograms);
         }
-        student.setOtherProgramParticipation(otherPrograms);
 
         if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
             student.setEnglishCert("Y");

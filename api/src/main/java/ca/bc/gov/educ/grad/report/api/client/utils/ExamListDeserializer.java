@@ -33,19 +33,19 @@ public class ExamListDeserializer extends StdDeserializer<List<Exam>> {
         Iterator<JsonNode> elements = node.elements();
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
-            String courseCode = (String) nullSafeString(nextNode.get("courseCode")).asText();
-            String courseName = (String) nullSafeString(nextNode.get("courseName")).asText();
-            String courseLevel = (String) nullSafeString(nextNode.get("courseLevel")).asText();
-            String sessionDate = (String) nullSafeString(nextNode.get("sessionDate")).asText();
-            String gradReqMet = (String) nullSafeString(nextNode.get("gradReqMet")).asText();
-            String completedCoursePercentage = (String) nullSafeString(nextNode.get("completedCoursePercentage")).asText();
-            String completedCourseLetterGrade = (String) nullSafeString(nextNode.get("completedCourseLetterGrade")).asText();
-            String bestSchoolPercent = (String) nullSafeString(nextNode.get("bestSchoolPercent")).asText();
-            String bestExamPercent = (String) nullSafeString(nextNode.get("bestExamPercent")).asText();
-            String interimPercent = (String) nullSafeString(nextNode.get("interimPercent")).asText();
-            String equivOrChallenge = (String) nullSafeString(nextNode.get("equivOrChallenge")).asText();
-            String metLitNumRequirement = (String) nullSafeString(nextNode.get("metLitNumRequirement")).asText();
-            String credits = (String) nullSafeString(nextNode.get("credits")).asText();
+            String courseCode = (String) nullSafeString(nextNode.get("courseCode")).asText("");
+            String courseName = (String) nullSafeString(nextNode.get("courseName")).asText("");
+            String courseLevel = (String) nullSafeString(nextNode.get("courseLevel")).asText("");
+            String sessionDate = (String) nullSafeString(nextNode.get("sessionDate")).asText("");
+            String gradReqMet = (String) nullSafeString(nextNode.get("gradReqMet")).asText("");
+            String completedCoursePercentage = (String) nullSafeString(nextNode.get("completedCoursePercentage")).asText("");
+            String completedCourseLetterGrade = (String) nullSafeString(nextNode.get("completedCourseLetterGrade")).asText("");
+            String bestSchoolPercent = (String) nullSafeString(nextNode.get("bestSchoolPercent")).asText("");
+            String bestExamPercent = (String) nullSafeString(nextNode.get("bestExamPercent")).asText("");
+            String interimPercent = (String) nullSafeString(nextNode.get("interimPercent")).asText("");
+            String equivOrChallenge = (String) nullSafeString(nextNode.get("equivOrChallenge")).asText("");
+            String metLitNumRequirement = (String) nullSafeString(nextNode.get("metLitNumRequirement")).asText("");
+            String credits = (String) nullSafeString(nextNode.get("credits")).asText("");
             Integer creditsUsedForGrad = (Integer) nullSafeInteger(nextNode.get("creditsUsedForGrad")).asInt(0);
 
             Exam r = new Exam();
