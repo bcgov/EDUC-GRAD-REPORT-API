@@ -31,8 +31,8 @@ public class OtherProgramListDeserializer extends StdDeserializer<List<OtherProg
         Iterator<JsonNode> elements = node.elements();
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
-            String code = (String) nextNode.get("programCode").asText();
-            String description = (String) nextNode.get("programName").asText();
+            String code = (String) nextNode.get("programCode").asText("");
+            String description = (String) nextNode.get("programName").asText("");
             OtherProgram r = new OtherProgram();
             r.setProgramCode(code);
             r.setProgramName(description);

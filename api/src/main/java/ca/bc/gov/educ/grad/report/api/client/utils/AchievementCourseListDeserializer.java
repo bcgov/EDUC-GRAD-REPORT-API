@@ -33,15 +33,15 @@ public class AchievementCourseListDeserializer extends StdDeserializer<List<Achi
         Iterator<JsonNode> elements = node.elements();
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
-            String courseName = (String) nullSafeString(nextNode.get("courseName")).asText();
-            String courseCode = (String) nullSafeString(nextNode.get("courseCode")).asText();
-            String courseLevel = (String) nullSafeString(nextNode.get("courseLevel")).asText();
-            String sessionDate = (String) nullSafeString(nextNode.get("sessionDate")).asText();
-            String gradReqMet = (String) nullSafeString(nextNode.get("gradReqMet")).asText();
-            String completedCoursePercentage = (String) nullSafeString(nextNode.get("completedCoursePercentage")).asText();
-            String completedCourseLetterGrade = (String) nullSafeString(nextNode.get("completedCourseLetterGrade")).asText();
-            String interimPercent = (String) nullSafeString(nextNode.get("interimPercent")).asText();
-            String equivOrChallenge = (String) nullSafeString(nextNode.get("equivOrChallenge")).asText();
+            String courseName = (String) nullSafeString(nextNode.get("courseName")).asText("");
+            String courseCode = (String) nullSafeString(nextNode.get("courseCode")).asText("");
+            String courseLevel = (String) nullSafeString(nextNode.get("courseLevel")).asText("");
+            String sessionDate = (String) nullSafeString(nextNode.get("sessionDate")).asText("");
+            String gradReqMet = (String) nullSafeString(nextNode.get("gradReqMet")).asText("");
+            String completedCoursePercentage = (String) nullSafeString(nextNode.get("completedCoursePercentage")).asText("");
+            String completedCourseLetterGrade = (String) nullSafeString(nextNode.get("completedCourseLetterGrade")).asText("");
+            String interimPercent = (String) nullSafeString(nextNode.get("interimPercent")).asText("");
+            String equivOrChallenge = (String) nullSafeString(nextNode.get("equivOrChallenge")).asText("");
             Integer creditsUsedForGrad = (Integer) nullSafeInteger(nextNode.get("creditsUsedForGrad")).asInt(0);
             AchievementCourse r = new AchievementCourse(
                     courseName,

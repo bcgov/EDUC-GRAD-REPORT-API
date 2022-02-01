@@ -71,7 +71,7 @@ public class GradReportSignatureService {
     }
 
     @Transactional
-    public GradReportSignatureImage getSignatureImageByCode(String code) {
+    public GradReportSignatureImage getSignatureImageByCode(String code, String accessToken) {
         String _m = String.format("getSignatureImageByCode(String %s)", code);
         log.debug("<{}.{}", _m, CLASS_NAME);
         GradReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
@@ -86,6 +86,10 @@ public class GradReportSignatureService {
             }
         }
         GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
+        District dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+        if(dist != null)
+            signatureImage.setDistrictName(dist.getDistrictName());
+
         log.debug(">{}.{}", _m, CLASS_NAME);
         return  signatureImage;
     }

@@ -31,8 +31,8 @@ public class NonGradReasonListDeserializer extends StdDeserializer<List<NonGradR
         Iterator<JsonNode> elements = node.elements();
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
-            String code = (String) nextNode.get("code").asText();
-            String description = (String) nextNode.get("description").asText();
+            String code = (String) nextNode.get("code").asText("");
+            String description = (String) nextNode.get("description").asText("");
             NonGradReason r = new NonGradReason();
             r.setCode(code);
             r.setDescription(description);

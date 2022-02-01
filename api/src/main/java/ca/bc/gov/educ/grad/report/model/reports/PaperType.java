@@ -41,6 +41,7 @@ public enum PaperType {
     CERTIFICATE_SCF("YED2"),
     CERTIFICATE_F("YEDR"),
     CERTIFICATE_O("YEDR"),
+    ACHIEVEMENT("YED4"),
     TRANSCRIPT("YED4");
 
     private final String code;

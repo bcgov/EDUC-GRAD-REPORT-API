@@ -1,7 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.service.ReportService;
+import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.util.PermissionsContants;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -28,7 +28,7 @@ public class ReportController extends BaseController {
     private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
 
     @Autowired
-    ReportService reportService;
+    GradReportService reportService;
     
     @PostMapping (ReportApiConstants.STUDENT_ACHIEVEMENT_REPORT)
     @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
@@ -73,5 +73,15 @@ public class ReportController extends BaseController {
         logger.debug("getStudentCertificate");
         logRequest();
         return reportService.getStudentCertificateReport(report);
+    }
+
+    @PostMapping (ReportApiConstants.PACKING_SLIP)
+    @PreAuthorize(PermissionsContants.PACKING_SLIP)
+    @Operation(summary = "Generate Packing Slip", description = "Generate Packing Slip", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity getPackingSlip(@RequestBody ReportRequest report) {
+        logger.debug("getPackingSlip");
+        logRequest();
+        return reportService.getPackingSlipReport(report);
     }
 }

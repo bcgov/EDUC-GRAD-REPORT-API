@@ -710,7 +710,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<text><![CDATA[Potential Credits]]></text>
+								<text><![CDATA[NUM CREDITS]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
@@ -916,7 +916,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{gradReqMet}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -937,7 +937,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{specialCase}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{specialCase} == null ? "" : $F{specialCase}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -956,7 +956,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="50" height="15" uuid="86e32be6-ee79-4e72-a979-dda813644906"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA[$F{exceededWriteFlag}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{exceededWriteFlag} == null ? "" : $F{exceededWriteFlag}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -998,7 +998,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{proficiencyScore}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{proficiencyScore} == null ? "" : $F{proficiencyScore}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1039,7 +1039,7 @@
 								<textElement verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA["  "+$F{courseName}]]></textFieldExpression>
+								<textFieldExpression><![CDATA["  " + $F{courseName}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1081,7 +1081,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{gradReqMet}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1102,7 +1102,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{equivOrChallenge}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{equivOrChallenge} == null ? "" : $F{equivOrChallenge}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1144,7 +1144,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{interimPercent}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{interimPercent} == null ? "" : $F{interimPercent}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1165,7 +1165,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{completedCoursePercentage}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{completedCoursePercentage} == null ? "" : $F{completedCoursePercentage}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1186,7 +1186,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{completedCourseLetterGrade}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{completedCourseLetterGrade} == null ? "" : $F{completedCourseLetterGrade}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1198,7 +1198,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<text><![CDATA[Potential Credits]]></text>
+								<text><![CDATA[NUM CREDITS]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
@@ -1207,7 +1207,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{credits}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{credits} == null ? "" : $F{credits}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1228,7 +1228,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{usedForGrad}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{usedForGrad} == null ? "" : $F{usedForGrad}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1315,7 +1315,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="70" height="85" uuid="e3ca4a89-ec3d-49c8-8ac3-1079b232df68"/>
 								<textElement textAlignment="Center" verticalAlignment="Top"/>
-								<textFieldExpression><![CDATA[$F{programCompletionDate}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{programCompletionDate} == null ? "" : $F{programCompletionDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -1331,13 +1331,13 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="85">
-							<textField isBlankWhenNull="true">
+							<!--textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="160" height="43" isRemoveLineWhenBlank="true" uuid="ff4663a1-85c9-4ac1-a3b0-73d4dfa6b585"/>
 								<textElement verticalAlignment="Top"/>
 								<textFieldExpression><![CDATA[$F{hasRequirementMet}]]></textFieldExpression>
-							</textField>
+							</textField-->
 							<componentElement>
-								<reportElement style="GeneratedText" positionType="Float" x="0" y="43" width="160" height="42" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
+								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="160" height="42" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
 								<jr:list printOrder="Vertical">
 									<datasetRun subDataset="gradRequirementDataset" uuid="c6a157a1-50ce-4ad4-9425-50df86460a6f">
 										<datasetParameter name="REPORT_DATA_SOURCE">

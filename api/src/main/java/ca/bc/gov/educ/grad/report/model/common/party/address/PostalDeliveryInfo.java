@@ -4,11 +4,15 @@ package ca.bc.gov.educ.grad.report.model.common.party.address;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface PostalDeliveryInfo extends DeliveryInfo, PostalAddress {
+public interface PostalDeliveryInfo extends PostalAddress {
 
     String getName();
 
     void setName(String name);
+
+    String getAttentionTo();
+
+    void setAttentionTo(String attentionTo);
 
     void setStreetLine1(String streetLine1);
 

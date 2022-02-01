@@ -31,8 +31,8 @@ public class GradRequirementListDeserializer extends StdDeserializer<List<GradRe
         Iterator<JsonNode> elements = node.elements();
         for (; elements.hasNext();) {
             JsonNode nextNode = elements.next();
-            String code = (String) nextNode.get("code").asText();
-            String description = (String) nextNode.get("description").asText();
+            String code = (String) nextNode.get("code").asText("");
+            String description = (String) nextNode.get("description").asText("");
             GradRequirement r = new GradRequirement();
             r.setCode(code);
             r.setDescription(description);

@@ -19,6 +19,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -84,6 +88,14 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		signatureImage.setSignatureId(UUID.randomUUID());
 		list.add(signatureImage);
 
+		Authentication authentication = Mockito.mock(Authentication.class);
+		OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+		// Mockito.whens() for your authorization object
+		SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+		Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+		Mockito.when(authentication.getDetails()).thenReturn(details);
+		SecurityContextHolder.setContext(securityContext);
+
 		District dist = new District();
 		dist.setDistrictNumber("023");
 		dist.setDistrictName("blah");
@@ -96,7 +108,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 
 		Mockito.when(signatureImageRepository.findAll()).thenReturn(list);
 
-		List<GradReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages(null);
+		List<GradReportSignatureImage> signatureImages = reportSignatureService.getSignatureImages(details.getTokenValue());
 		assertNotNull(signatureImages);
 		assertTrue(signatureImages.size() > 0);
 
@@ -111,19 +123,35 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		assertNotEquals(0, imageBinary.length);
 		LOG.debug("Test image loaded {} bytes", imageBinary.length);
 
-		String signatureCode = "MOE.png";
-		GradReportSignatureImage signatureImage = new GradReportSignatureImage();
-		signatureImage.setGradReportSignatureCode(signatureCode);
-		signatureImage.setSignatureContent(imageBinary);
-		signatureImage.setSignatureId(UUID.randomUUID());
+		String signatureCode = "023";
+		UUID signatureId = UUID.randomUUID();
 
-		GradReportSignatureImageEntity signatureImages = new GradReportSignatureImageEntity();
-		signatureImage.setGradReportSignatureCode(signatureCode);
-		signatureImage.setSignatureContent(imageBinary);
-		signatureImage.setSignatureId(UUID.randomUUID());
+		GradReportSignatureImageEntity signatureImageEntity = new GradReportSignatureImageEntity();
+		signatureImageEntity.setGradReportSignatureCode(signatureCode);
+		signatureImageEntity.setSignatureContent(imageBinary);
+		signatureImageEntity.setSignatureId(signatureId);
 
-		Mockito.when(signatureImageRepository.findBySignatureCode(signatureCode)).thenReturn(signatureImages);
-		signatureImage = reportSignatureService.getSignatureImageByCode(signatureCode);
+		Authentication authentication = Mockito.mock(Authentication.class);
+		OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+		// Mockito.whens() for your authorization object
+		SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+		Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+		Mockito.when(authentication.getDetails()).thenReturn(details);
+		SecurityContextHolder.setContext(securityContext);
+
+		District dist = new District();
+		dist.setDistrictNumber("023");
+		dist.setDistrictName("blah");
+
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(constants.getDistrictDetails(), "023"))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(District.class)).thenReturn(Mono.just(dist));
+
+		Mockito.when(signatureImageRepository.findBySignatureCode(signatureCode)).thenReturn(signatureImageEntity);
+
+		GradReportSignatureImage signatureImage = reportSignatureService.getSignatureImageByCode(signatureCode, details.getTokenValue());
 		assertNotNull(signatureImage);
 
 		LOG.debug(">getSignatureImageTest");

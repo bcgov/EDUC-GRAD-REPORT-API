@@ -54,10 +54,10 @@ public class TranscriptResultListDeserializer extends StdDeserializer<List<Trans
             mark.setInterimPercent(markNode.get("interimPercent").asText());
             mark.setInterimLetterGrade(markNode.get("interimLetterGrade").asText());
 
-            String requirement = (String) nextNode.get("requirement").asText();
-            String requirementName = (String) nextNode.get("requirementName").asText();
-            String equivalency = (String) nextNode.get("equivalency").asText();
-            String usedForGrad = (String) nextNode.get("usedForGrad").asText();
+            String requirement = (String) nextNode.get("requirement").asText("");
+            String requirementName = (String) nextNode.get("requirementName").asText("");
+            String equivalency = (String) nextNode.get("equivalency").asText("");
+            String usedForGrad = (String) nextNode.get("usedForGrad").asText("");
 
             TranscriptResult r = new TranscriptResult();
             r.setCourse(course);
