@@ -49,16 +49,16 @@
           "specialCase": "E",
           "sessionDate": "201806",
           "exceededWriteFlag": null,
-          "proficiencyScore": "4"
+          "proficiencyScore": "AEG"
         },
         {
           "assessmentName": "NUMERACY ASSESSMENT",
           "assessmentCode": "NME",
           "gradReqMet": "116",
-          "specialCase": "",
+          "specialCase": "M",
           "sessionDate": "201806",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "0"
+          "proficiencyScore": "MTE"
         },
         {
           "assessmentName": "Literacy 12 Assessment",
@@ -67,7 +67,7 @@
           "specialCase": "E",
           "sessionDate": "201806",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "0"
+          "proficiencyScore": "AEG"
         },
         {
           "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
@@ -76,7 +76,7 @@
           "specialCase": "E",
           "sessionDate": "201805",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "0"
+          "proficiencyScore": "AEG"
         }
       ]
     },
