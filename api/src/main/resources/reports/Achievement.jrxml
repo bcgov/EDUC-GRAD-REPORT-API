@@ -161,7 +161,7 @@
 		<field name="sessionDate" class="java.lang.String">
 			<fieldDescription><![CDATA[sessionDate]]></fieldDescription>
 		</field>
-		<field name="proficiencyScore" class="java.lang.Double">
+		<field name="proficiencyScore" class="java.lang.String">
 			<fieldDescription><![CDATA[proficiencyScore]]></fieldDescription>
 		</field>
 		<field name="exceededWriteFlag" class="java.lang.String">
