@@ -95,7 +95,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1950_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1950_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1950_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND.json");
@@ -775,7 +775,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SO");
 	}
 
-	@Test
+	//@Test
 	public void createCertificateReport_F() throws Exception {
 		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
@@ -915,7 +915,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_OO");
 	}
 
-	@Test
+	//@Test
 	public void testPackingSlipReport() throws Exception {
 		LOG.debug("<{}.testPackingSlipReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 

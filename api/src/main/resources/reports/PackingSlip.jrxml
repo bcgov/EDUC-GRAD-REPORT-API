@@ -113,19 +113,19 @@
 						<printWhenExpression><![CDATA[!"PSI".equalsIgnoreCase($F{destinationTypeName})]]></printWhenExpression>
 					</reportElement>
 					<staticText>
-						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="20" uuid="2bc58a09-08ba-4b75-be5c-fe2b49a24ad0"/>
+						<reportElement style="OrderFieldName" x="0" y="80" width="160" height="20" uuid="2bc58a09-08ba-4b75-be5c-fe2b49a24ad0"/>
 						<text><![CDATA[Ordered By]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement style="OrderFieldValue" x="160" y="0" width="340" height="20" uuid="a9d17ecd-2255-4d2b-a7cc-70e32030183d"/>
+						<reportElement style="OrderFieldValue" x="160" y="80" width="340" height="20" uuid="a9d17ecd-2255-4d2b-a7cc-70e32030183d"/>
 						<textFieldExpression><![CDATA[$F{orderedByName}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement style="OrderFieldName" x="0" y="20" width="160" height="40" uuid="16c220a5-9c0e-4359-b7a6-7df0c9b23bdf"/>
+						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="40" uuid="16c220a5-9c0e-4359-b7a6-7df0c9b23bdf"/>
 						<text><![CDATA[Order #]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true" textAdjust="StretchHeight">
-						<reportElement style="OrderFieldValue" x="160" y="20" width="340" height="40" uuid="9828dc8f-1a17-43de-8adb-8d24be5bb796"/>
+						<reportElement style="OrderFieldValue" x="160" y="0" width="340" height="40" uuid="9828dc8f-1a17-43de-8adb-8d24be5bb796"/>
 						<textFieldExpression><![CDATA[$F{compositeOrderNumber}]]></textFieldExpression>
 					</textField>
 					<staticText>
@@ -137,11 +137,11 @@
 						<textFieldExpression><![CDATA[$F{orderDate}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement style="OrderFieldName" x="0" y="80" width="160" height="20" uuid="6de5468b-bc63-4cd4-8d78-aac9e7d99ee6"/>
+						<reportElement style="OrderFieldName" x="0" y="40" width="160" height="20" uuid="6de5468b-bc63-4cd4-8d78-aac9e7d99ee6"/>
 						<textFieldExpression><![CDATA[$F{orderTypeName} + " Quantity (" + $F{paperTypeCode} + ")"]]></textFieldExpression>
 					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement style="OrderFieldValue" x="160" y="80" width="340" height="20" uuid="9048d3f9-261f-4bd0-b4b5-c428e08a9732">
+						<reportElement style="OrderFieldValue" x="160" y="40" width="340" height="20" uuid="9048d3f9-261f-4bd0-b4b5-c428e08a9732">
 							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						</reportElement>
 						<textFieldExpression><![CDATA[$F{documentsShipped}]]></textFieldExpression>
