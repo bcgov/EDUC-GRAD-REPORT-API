@@ -775,7 +775,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_F() throws Exception {
 		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
