@@ -17,6 +17,8 @@
  */
 package ca.bc.gov.educ.grad.report.model.order;
 
+import ca.bc.gov.educ.grad.report.model.reports.PaperType;
+
 import java.io.Serializable;
 
 /**
@@ -54,4 +56,12 @@ public interface OrderType extends Serializable {
      * @return A non-null, non-empty string.
      */
     String getMediaType();
+
+
+    /**
+     * Gets paper type.
+     *
+     * @return the paper type
+     */
+    PaperType getPaperType();
 }

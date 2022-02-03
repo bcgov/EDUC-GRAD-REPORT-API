@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
 
@@ -50,6 +51,11 @@ public final class PackingSlipDetails extends BusinessEntity {
     private String recipient;
 
     /**
+     * e.g., "ADMINISTRATION"
+     */
+    private String attentionTo = "";
+
+    /**
      * Postal mail delivery address.
      */
     private PostalAddress address;
@@ -75,6 +81,11 @@ public final class PackingSlipDetails extends BusinessEntity {
      * Date the order was placed.
      */
     private Date orderDate;
+
+    /**
+     * The Paper Type Code.
+     */
+    private String paperTypeCode;
 
     /**
      * Transcript or Certificates have minor variations on packing slip.
@@ -118,6 +129,32 @@ public final class PackingSlipDetails extends BusinessEntity {
     }
 
     /**
+     * Returns attention to
+     *
+     * @return A non-null String, possibly empty.
+     */
+    public String getAttentionTo() {
+        return attentionTo;
+    }
+
+    public void setAttentionTo(String attentionTo) {
+        this.attentionTo = attentionTo;
+    }
+
+    /**
+     * Returns paper type code
+     *
+     * @return A non-null String, possibly empty.
+     */
+    public String getPaperTypeCode() {
+        return paperTypeCode;
+    }
+
+    public void setPaperTypeCode(String paperTypeCode) {
+        this.paperTypeCode = paperTypeCode;
+    }
+
+    /**
      * Returns the delivery address for mailing the transcripts and
      * certificates.
      *
@@ -126,6 +163,10 @@ public final class PackingSlipDetails extends BusinessEntity {
      */
     public PostalAddress getAddress() {
         return this.address;
+    }
+
+    public String getCompositeOrderNumber() {
+        return "PS_ID " + StringUtils.substringBefore(nullSafe(this.recipient), " ") + " " + getOrderNumber() + "\n" + nullSafe(this.recipient);
     }
 
     /**
@@ -320,6 +361,29 @@ public final class PackingSlipDetails extends BusinessEntity {
             getObject().setRecipient(recipient);
             return thisBuilder();
         }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param attentionTo Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withAttentionTo(final String attentionTo) {
+            getObject().setAttentionTo(attentionTo);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param paperTypeCode Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withPaperTypeCode(final String paperTypeCode) {
+            getObject().setPaperTypeCode(paperTypeCode);
+            return thisBuilder();
+        }
+
 
         /**
          * Delegates to the outer instance.

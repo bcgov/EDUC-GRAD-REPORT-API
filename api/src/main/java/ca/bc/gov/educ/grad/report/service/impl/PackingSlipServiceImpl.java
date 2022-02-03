@@ -60,7 +60,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         PostalDeliveryInfo deliveryInfo = getPostalDeliveryInfo();
         OrderType orderType = getOrderType();
 
-        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderNumber, ordered, orderedBy, quantity);
+        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity);
         final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
 
         LOG.exiting(CLASSNAME, _m);
@@ -93,6 +93,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
 
         // Indicate that the packing slip is desinted for a PSI.
         details.setDestinationType(PSI);
+        details.setPaperType(orderType.getPaperType());
 
         final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
 
@@ -123,6 +124,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
 
         try {
             details.setRecipient(address.getName());
+            details.setAttentionTo(address.getAttentionTo());
             details.setDocumentsShipped(quantity);
             details.setOrderDate(ordered);
         } catch (final Exception ex) {
@@ -146,6 +148,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
      */
     private PackingSlipDetails createPackingSlipDetails(
             final PostalDeliveryInfo address,
+            final OrderType orderType,
             final Long orderNumber,
             final Date ordered,
             final String orderedBy,
@@ -156,6 +159,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity);
         details.setOrderNumber(Long.toString(orderNumber));
         details.setOrderedByName(orderedBy);
+        details.setPaperType(orderType.getPaperType());
 
         LOG.exiting(CLASSNAME, _m);
         return details;
