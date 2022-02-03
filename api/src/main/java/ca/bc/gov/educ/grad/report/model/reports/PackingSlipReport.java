@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.model.reports;
 
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
+import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails;
 
 /**
  * Represents information required to generate a packing slip for printed
@@ -17,7 +18,7 @@ public interface PackingSlipReport extends Report {
      *
      * @param details The details to include on the packing slip.
      */
-    void setPackingSlipDetails(ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails details);
+    void setPackingSlipDetails(PackingSlipDetails details);
 
     /**
      * Mandatory call to set the type of packing slip to generate (such as

@@ -11,6 +11,7 @@ public class ReportApiConstants {
     public static final String STUDENT_ACHV_REPORT = "/achvreport";
     public static final String STUDENT_TRANSCRIPT_REPORT = "/transcriptreport";
     public static final String STUDENT_CERTIFICATE = "/certificate";
+    public static final String PACKING_SLIP = "/packingslip";
 
     //Attribute Constants
     public static final String PEN_ATTRIBUTE = "pen";

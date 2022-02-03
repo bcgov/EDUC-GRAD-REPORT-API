@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.service.impl;
 
 import ca.bc.gov.educ.grad.report.dto.impl.PackingSlipDetailsImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.model.DocumentBundleImpl;
@@ -29,7 +30,7 @@ import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
-import ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails;
+import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import org.apache.commons.codec.binary.Base64;
@@ -180,6 +181,17 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
             throws IOException {
         bundle.xpif();
         return bundle;
+    }
+
+    /**
+     * Creates a default paper type that is used for achievements.
+     *
+     * @return A paper type for printing achievements.
+     */
+    @Override
+    @RolesAllowed({Roles.USER_BCMP_ACHIEVEMENT_ORDER_TYPE, FULFILLMENT_SERVICES_USER})
+    public OrderType createAchievementOrderType() {
+        return new AchievementOrderTypeImpl();
     }
 
     /**

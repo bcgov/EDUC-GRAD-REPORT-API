@@ -32,6 +32,8 @@ public class TranscriptOrderTypeImpl extends OrderTypeImpl
 
     private static final long serialVersionUID = 3L;
 
+    private String name;
+
     /**
      * Constructs with paper type YED4.
      */
@@ -47,5 +49,9 @@ public class TranscriptOrderTypeImpl extends OrderTypeImpl
     @Override
     public String getName() {
         return "Transcripts";
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

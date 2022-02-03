@@ -3,8 +3,8 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
-import ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails;
 
 import java.util.Date;
 

@@ -21,7 +21,7 @@ import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
-import ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails;
+import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportExportService;
 
@@ -106,6 +106,13 @@ public interface BCMPBundleService extends ReportExportService, Serializable {
      */
     DocumentBundle enumeratePages(DocumentBundle bundle)
             throws IOException;
+
+    /**
+     * Creates an order type for transcripts.
+     *
+     * @return A non-null instance.
+     */
+    OrderType createAchievementOrderType();
 
     /**
      * Creates an order type for transcripts.

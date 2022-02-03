@@ -1,7 +1,8 @@
-package ca.bc.gov.educ.grad.report.model.reports;
+package ca.bc.gov.educ.grad.report.model.packingslip;
 
 import ca.bc.gov.educ.grad.report.model.common.DomainEntity;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
 
 import java.util.Date;
 

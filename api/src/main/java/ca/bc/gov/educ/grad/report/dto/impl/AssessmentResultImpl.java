@@ -43,7 +43,7 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     private String studentNumber;
     private String assessmentName;
     private String assessmentCode;
-    private Double proficiencyScore;
+    private String proficiencyScore;
     private String sessionDate;
     private String gradReqMet;
     private String specialCase;
@@ -70,7 +70,7 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     }
 
     @Override
-    public Double getProficiencyScore() {
+    public String getProficiencyScore() {
         return proficiencyScore;
     }
 
@@ -114,7 +114,7 @@ public class AssessmentResultImpl extends AbstractDomainEntity
         this.assessmentCode = nullSafe(assessmentCode);
     }
 
-    public void setProficiencyScore(Double proficiencyScore) {
+    public void setProficiencyScore(String proficiencyScore) {
         this.proficiencyScore = proficiencyScore;
     }
 

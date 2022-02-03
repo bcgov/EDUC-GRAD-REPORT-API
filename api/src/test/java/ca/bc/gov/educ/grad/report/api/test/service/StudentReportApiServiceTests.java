@@ -1,17 +1,18 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.service.ReportService;
+import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.impl.PackingSlipDetailsImpl;
-import ca.bc.gov.educ.grad.report.dto.impl.PostalAddressImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
+import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
+import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
-import ca.bc.gov.educ.grad.report.model.reports.PackingSlipReport;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.*;
+import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.E;
 import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
@@ -41,13 +42,13 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
 	@Autowired
-	ReportService apiReportService;
+	GradReportService apiReportService;
 	@Autowired
 	BCMPBundleService bcmpBundleService;
 	@Autowired
 	GradReportSignatureService reportSignatureService;
 	@Autowired
-	ca.bc.gov.educ.grad.report.model.reports.ReportService reportService;
+	PackingSlipService packingSlipService;
 
 	@Before
 	public void init() throws Exception {
@@ -914,106 +915,94 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_OO");
 	}
 
-	//@Test
-	public void testPackingSlipReport() throws NamingException, IOException {
+	@Test
+	public void testPackingSlipReport() throws Exception {
 		LOG.debug("<{}.testPackingSlipReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 
 		OrderType orderType;
 
+		ReportRequest achievementReportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		assertNotNull(achievementReportRequest);
+		assertNotNull(achievementReportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(achievementReportRequest.getData());
+
+		achievementReportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
+		StudentAchievementReport achievementReport = apiReportService.getStudentAchievementReportDocument(achievementReportRequest);
+
+		ReportRequest eCertificateReportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(eCertificateReportRequest);
+		assertNotNull(eCertificateReportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(eCertificateReportRequest.getData());
+
+		eCertificateReportRequest.getOptions().setReportFile("Certificate E Report.pdf");
+		DocumentBundle eCertificateReport = apiReportService.getStudentCertificateReportDocument(eCertificateReportRequest);
+
+		ReportRequest sccpTranscriptReportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN.json");
+
+		assertNotNull(sccpTranscriptReportRequest);
+		assertNotNull(sccpTranscriptReportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(sccpTranscriptReportRequest.getData());
+
+		sccpTranscriptReportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
+		StudentTranscriptReport sccpTranscriptReport = apiReportService.getStudentTranscriptReportDocument(sccpTranscriptReportRequest);
+
+		ReportRequest packingSlipReportRequest = createReportRequest("json/packingSlipReportRequest.json");
+
+		assertNotNull(packingSlipReportRequest);
+		assertNotNull(packingSlipReportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+
+		packingSlipReportRequest.getOptions().setReportFile("Packing Slip Report.pdf");
+
+		List<ReportDocument> rds = new ArrayList<>();
+		rds.add(achievementReport);
+
+		orderType = bcmpBundleService.createAchievementOrderType();
+		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		rds.clear();
+
+		rds.add(eCertificateReport);
 		orderType = bcmpBundleService.createCertificateOrderType(E);
-		testPackingSlipReport(2, orderType, DestinationType.PSI);
-		orderType = bcmpBundleService.createCertificateOrderType(A);
-		testPackingSlipReport(2, orderType, DestinationType.PSI);
-		orderType = bcmpBundleService.createCertificateOrderType(SC);
-		testPackingSlipReport(2, orderType, DestinationType.PSI);
+		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		rds.clear();
 
+		rds.add(sccpTranscriptReport);
 		orderType = bcmpBundleService.createTranscriptOrderType();
-		testPackingSlipReport(2, orderType, DestinationType.PSI);
-
-		orderType = bcmpBundleService.createTranscriptOrderType();
-		testPackingSlipReport(2, orderType, DestinationType.PSI);
+		testPackingSlipReport(rds, orderType, DestinationType.PSI);
 
 		LOG.debug(">testPackingSlipReport");
 	}
 
 	private void testPackingSlipReport(
-			final int quantity,
+			final List<ReportDocument> rds,
 			final OrderType orderType,
 			final DestinationType destinationType)
-			throws NamingException, IOException {
+			throws DomainServiceException, IOException {
 
-		final PackingSlipReport report = reportService.createPackingSlipReport();
+		ReportDocument packingSlip = packingSlipService.createPackingSlipReport(
+			16895L,
+			new Date(),
+			"Test Case",
+			rds.size()
+		);
 
-		// Must set valid details instance prior to calling setOrderType.
-		PackingSlipDetailsImpl packingSlipDetails = new PackingSlipDetailsImpl();
-		packingSlipDetails.setOrderDate(new Date());
-		packingSlipDetails.setDocumentsShipped(quantity);
-		packingSlipDetails.setDestinationType(DestinationType.PSI);
-		packingSlipDetails.setRecipient("Bartholomew Featherstonehaugh");
-		packingSlipDetails.setOrderNumber("A123456");
-
-		PostalAddressImpl address = new PostalAddressImpl();
-		address.setStreetLine1("House 42 Mouton Avenue The Vineyard 43 W");
-		address.setCity("Hope");
-		address.setRegion("BC");
-		address.setCountry("Canada");
-		address.setCode("A1B1B1");
-
-		packingSlipDetails.setAddress(address);
-
-		report.setPackingSlipDetails(packingSlipDetails);
-		report.setDestinationType(destinationType);
-		report.setOrderType(orderType);
-
-		final ReportDocument document = reportService.export(report);
-
-		DocumentBundle documentBundle = createDocumentBundle(quantity, document, orderType);
+		DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
 		byte[] bArrray = (byte[]) documentBundle.asBytes();
-		try (OutputStream out = new FileOutputStream("target/" + orderType.getName() + ".pdf")) {
+		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
 			out.write(bArrray);
 		}
-	}
-
-	/**
-	 * Runs the packing slip report and returns a filled report.
-	 *
-	 * @param quantity Number of orders in the packet.
-	 * @param orderType The type of packing slip to create.
-	 * @return A PDF.
-	 * @throws IOException
-	 */
-	protected ReportDocument createPackingSlipReport(
-			final int quantity,
-			final OrderType orderType)
-			throws IOException {
-
-		PackingSlipDetailsImpl packingSlipDetails = new PackingSlipDetailsImpl();
-		packingSlipDetails.setOrderDate(new Date());
-		packingSlipDetails.setDocumentsShipped(quantity);
-		packingSlipDetails.setDestinationType(DestinationType.PSI);
-		packingSlipDetails.setRecipient("Bartholomew Featherstonehaugh");
-		packingSlipDetails.setOrderNumber("A123456");
-
-		PostalAddressImpl address = new PostalAddressImpl();
-		address.setStreetLine1("House 42 Mouton Avenue The Vineyard 43 W");
-		address.setCity("Hope");
-		address.setRegion("BC");
-		address.setCountry("Canada");
-		address.setCode("A1B1B1");
-
-		packingSlipDetails.setAddress(address);
-
-		final PackingSlipReport report = reportService.createPackingSlipReport();
-		report.setPackingSlipDetails(packingSlipDetails);
-		report.setOrderType(orderType);
-		return reportService.export(report);
 	}
 
 	/**
 	 * Bundles an arbitrary number of transcripts or certificates with a packing
 	 * slip without XPIF information.
 	 *
-	 * @param quantity The number of report documents to bundle.
 	 * @param orderType The type of report document to bundle (transcript or
 	 * certificate).
 	 *
@@ -1021,24 +1010,14 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	 * @throws IOException Could not generate bundle.
 	 */
 	private DocumentBundle createDocumentBundle(
-			final int quantity,
-			final ReportDocument report,
+			final ReportDocument packingSlip,
+			final List<ReportDocument> rds,
 			final OrderType orderType)
-			throws NamingException, IOException {
-		final ReportDocument packingSlip = createPackingSlipReport(quantity, orderType);
+			throws IOException {
 
 		DocumentBundle bundle = bcmpBundleService.createDocumentBundle(orderType);
-
 		bundle = bcmpBundleService.appendReportDocument(bundle, packingSlip);
-
-		final List<ReportDocument> rds = new ArrayList<>();
-
-		for (int i = 0; i < quantity; i++) {
-			rds.add(report);
-		}
-
 		bundle = bcmpBundleService.appendReportDocument(bundle, rds);
-
 		// Once the bundle has been created, decorate the page numbers.
 		return bcmpBundleService.enumeratePages(bundle);
 	}

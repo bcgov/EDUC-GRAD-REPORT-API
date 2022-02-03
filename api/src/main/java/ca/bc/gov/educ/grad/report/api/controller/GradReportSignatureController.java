@@ -51,7 +51,10 @@ public class GradReportSignatureController extends BaseController {
         String _m = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug("<{}.{}", _m, CLASS_NAME);
     	logRequest();
-        GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+        String accessToken = details.getTokenValue();
+        GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode, accessToken);
         return signatureImage.getSignatureContent();
     }
 
@@ -63,7 +66,10 @@ public class GradReportSignatureController extends BaseController {
         String _m = String.format("getSignatureImageByCode(String %s)", signCode);
         logger.debug("<{}.{}", _m, CLASS_NAME);
         logRequest();
-        return gradReportSignatureService.getSignatureImageByCode(signCode);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+        String accessToken = details.getTokenValue();
+        return gradReportSignatureService.getSignatureImageByCode(signCode, accessToken);
     }
 
     @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGES)

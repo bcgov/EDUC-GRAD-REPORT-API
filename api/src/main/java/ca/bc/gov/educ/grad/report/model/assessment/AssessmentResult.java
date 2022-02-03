@@ -29,7 +29,7 @@ public interface AssessmentResult {
 
     public String getAssessmentCode();
 
-    public Double getProficiencyScore();
+    public String getProficiencyScore();
 
     public String getSessionDate();
 

@@ -49,7 +49,7 @@ public final class PackingSlipReportImpl extends ReportImpl
      */
     @Override
     public void setPackingSlipDetails(
-            final ca.bc.gov.educ.grad.report.model.reports.PackingSlipDetails details) {
+            final ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails details) {
         this.packingSlipDetails = BusinessEntityAdapter.adapt(details);
     }
 
