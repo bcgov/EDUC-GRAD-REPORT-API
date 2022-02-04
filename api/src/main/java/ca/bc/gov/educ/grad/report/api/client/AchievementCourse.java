@@ -90,6 +90,7 @@ public class AchievementCourse {
             final String completedCourseLetterGrade,
             final String interimPercent,
             final String equivOrChallenge,
+            final String credits,
             final Integer usedForGrad) {
         this.courseName = nullSafe(crseName);
         this.courseCode = nullSafe(crseCode);
@@ -101,6 +102,7 @@ public class AchievementCourse {
         this.completedCourseLetterGrade = nullSafe(completedCourseLetterGrade);
         this.interimPercent = nullSafe(interimPercent);
         this.equivOrChallenge = nullSafe(equivOrChallenge);
+        this.credits = nullSafe(credits);
         this.usedForGrad = nullSafe(usedForGrad).toString();
     }
 

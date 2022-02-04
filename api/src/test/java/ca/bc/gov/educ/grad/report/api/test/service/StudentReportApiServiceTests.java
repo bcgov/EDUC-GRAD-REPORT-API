@@ -55,7 +55,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	}
 
-	//@Test
+	@Test
 	public void createStudentAchievementReport() throws Exception {
 		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");

@@ -42,6 +42,7 @@ public class AchievementCourseListDeserializer extends StdDeserializer<List<Achi
             String completedCourseLetterGrade = (String) nullSafeString(nextNode.get("completedCourseLetterGrade")).asText("");
             String interimPercent = (String) nullSafeString(nextNode.get("interimPercent")).asText("");
             String equivOrChallenge = (String) nullSafeString(nextNode.get("equivOrChallenge")).asText("");
+            String credits = (String) nullSafeString(nextNode.get("credits")).asText("");
             Integer creditsUsedForGrad = (Integer) nullSafeInteger(nextNode.get("creditsUsedForGrad")).asInt(0);
             AchievementCourse r = new AchievementCourse(
                     courseName,
@@ -53,6 +54,7 @@ public class AchievementCourseListDeserializer extends StdDeserializer<List<Achi
                     completedCourseLetterGrade,
                     interimPercent,
                     equivOrChallenge,
+                    credits,
                     creditsUsedForGrad
             );
             result.add(r);
