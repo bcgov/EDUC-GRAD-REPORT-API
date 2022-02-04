@@ -3,6 +3,7 @@ package ca.bc.gov.educ.grad.report.model.packingslip;
 import ca.bc.gov.educ.grad.report.model.common.DomainEntity;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
+import ca.bc.gov.educ.grad.report.model.reports.PaperType;
 
 import java.util.Date;
 
@@ -23,6 +24,14 @@ public interface PackingSlipDetails extends DomainEntity {
      * @return A non-null String, possibly empty.
      */
     String getRecipient();
+
+    /**
+     * Returns the name of the student who has transcript and certificate
+     * records that comprise the package to which this packing slip applies.
+     *
+     * @return A non-null String, possibly empty.
+     */
+    String getAttentionTo();
 
     /**
      * Returns the delivery address for mailing the transcripts and
@@ -72,5 +81,12 @@ public interface PackingSlipDetails extends DomainEntity {
      * @return PSI or null.
      */
     DestinationType getDestinationType();
+
+    /**
+     * Defines papert type of the enclosed documents
+     *
+     * @return PaperType or null.
+     */
+    PaperType getPaperType();
 }
 

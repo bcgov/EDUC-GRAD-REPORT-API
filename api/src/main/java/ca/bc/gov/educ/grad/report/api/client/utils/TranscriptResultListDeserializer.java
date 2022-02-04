@@ -47,12 +47,12 @@ public class TranscriptResultListDeserializer extends StdDeserializer<List<Trans
 
             JsonNode markNode = nextNode.get("mark");
             Mark mark = new Mark();
-            mark.setSchoolPercent(markNode.get("schoolPercent").asText());
-            mark.setExamPercent(markNode.get("examPercent").asText());
-            mark.setFinalPercent(markNode.get("finalPercent").asText());
-            mark.setFinalLetterGrade(markNode.get("finalLetterGrade").asText());
-            mark.setInterimPercent(markNode.get("interimPercent").asText());
-            mark.setInterimLetterGrade(markNode.get("interimLetterGrade").asText());
+            mark.setSchoolPercent(markNode.get("schoolPercent").asText(""));
+            mark.setExamPercent(markNode.get("examPercent").asText(""));
+            mark.setFinalPercent(markNode.get("finalPercent").asText("---"));
+            mark.setFinalLetterGrade(markNode.get("finalLetterGrade").asText(""));
+            mark.setInterimPercent(markNode.get("interimPercent").asText(""));
+            mark.setInterimLetterGrade(markNode.get("interimLetterGrade").asText(""));
 
             String requirement = (String) nextNode.get("requirement").asText("");
             String requirementName = (String) nextNode.get("requirementName").asText("");

@@ -116,8 +116,11 @@ public class GradDataConvertionBean {
             student.setOtherProgramParticipation(otherPrograms);
         }
 
-        if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
-            student.setEnglishCert("Y");
+        if(StringUtils.trimToNull(student.getEnglishCert()) == null &&
+                StringUtils.trimToNull(student.getFrenchCert()) == null) {
+            student.setEnglishCert("E");
+        } else if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
+            student.setEnglishCert("");
         }
         if(StringUtils.trimToNull(student.getFrenchCert()) == null) {
             student.setFrenchCert("");
