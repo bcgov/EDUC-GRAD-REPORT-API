@@ -108,12 +108,7 @@ public class TranscriptCourseImpl implements TranscriptCourse {
         this.requirement = nullSafe(requirement);
         this.equivalency = nullSafe(specialCase);
         this.courseType = nullSafe(courseType);
-
-        if (finalPercent == null || finalPercent.equals("---")) {
-            this.finalPercent = "";
-        } else {
-            this.finalPercent = finalPercent.trim();
-        }
+        this.finalPercent = nullSafe(finalPercent).trim();
     }
 
     /**

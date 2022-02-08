@@ -46,7 +46,7 @@
 		<fieldDescription><![CDATA[finalLetterGrade]]></fieldDescription>
 	</field>
 	<pageHeader>
-		<band height="40"/>
+		<band height="15"/>
 	</pageHeader>
 	<detail>
 		<band height="12">

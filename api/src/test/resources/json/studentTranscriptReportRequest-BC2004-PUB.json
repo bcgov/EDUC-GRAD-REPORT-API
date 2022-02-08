@@ -323,7 +323,7 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "50",
+            "finalPercent": "---",
             "finalLetterGrade": "C-",
             "interimPercent": "",
             "interimLetterGrade": ""

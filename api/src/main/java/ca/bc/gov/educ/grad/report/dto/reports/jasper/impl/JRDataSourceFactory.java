@@ -670,6 +670,8 @@ public class JRDataSourceFactory {
                 .withDocumentsShipped(2)
                 .withOrderedByName(randomName())
                 .withRecipient(randomName())
+                .withAttentionTo(randomFullName())
+                .withPaperTypeCode("YED4")
                 .withOrderNumber("A123456")
                 .withOrderDate(randomDate())
                 .withOrderTypeName(PackingSlipDetails.CERTIFICATES)

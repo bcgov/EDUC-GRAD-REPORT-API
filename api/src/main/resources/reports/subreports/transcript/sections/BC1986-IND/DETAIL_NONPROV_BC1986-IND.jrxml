@@ -97,7 +97,7 @@
 		</groupFooter>
 	</group>
 	<pageHeader>
-		<band height="31"/>
+		<band height="8"/>
 	</pageHeader>
 	<detail>
 		<band height="12">
