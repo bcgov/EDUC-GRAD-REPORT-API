@@ -172,7 +172,7 @@
 				</textField>
 			</frame>
 			<textField>
-				<reportElement style="Body" x="0" y="251" width="792" height="120" uuid="249c597b-5d68-409a-be37-3448abe5c3ed">
+				<reportElement style="Body" x="0" y="268" width="792" height="120" uuid="249c597b-5d68-409a-be37-3448abe5c3ed">
 					<printWhenExpression><![CDATA["EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage())]]></printWhenExpression>
 				</reportElement>
 				<textFieldExpression><![CDATA[$R{header.issuance}]]></textFieldExpression>
