@@ -167,11 +167,6 @@
 			</frame>
 		</band>
 	</pageHeader>
-	<pageFooter>
-		<band height="261">
-			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
-		</band>
-	</pageFooter>
 	<summary>
 		<band height="793">
 			<printWhenExpression><![CDATA["TRANSCRIPTS".equalsIgnoreCase($F{orderTypeName})]]></printWhenExpression>

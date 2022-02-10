@@ -956,24 +956,28 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(packingSlipReportRequest);
 		assertNotNull(packingSlipReportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
-
 		packingSlipReportRequest.getOptions().setReportFile("Packing Slip Report.pdf");
 
 		List<ReportDocument> rds = new ArrayList<>();
 		rds.add(achievementReport);
 
 		orderType = bcmpBundleService.createAchievementOrderType();
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Achievement");
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
 		testPackingSlipReport(rds, orderType, DestinationType.PSI);
 		rds.clear();
 
 		rds.add(eCertificateReport);
 		orderType = bcmpBundleService.createCertificateOrderType(E);
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Certificate");
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
 		testPackingSlipReport(rds, orderType, DestinationType.PSI);
 		rds.clear();
 
 		rds.add(sccpTranscriptReport);
 		orderType = bcmpBundleService.createTranscriptOrderType();
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Transcript");
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
 		testPackingSlipReport(rds, orderType, DestinationType.PSI);
 
 		LOG.debug(">testPackingSlipReport");
@@ -992,8 +996,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			rds.size()
 		);
 
-		DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
-		byte[] bArrray = (byte[]) documentBundle.asBytes();
+		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
+		byte[] bArrray = (byte[]) packingSlip.asBytes();
 		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
 			out.write(bArrray);
 		}
