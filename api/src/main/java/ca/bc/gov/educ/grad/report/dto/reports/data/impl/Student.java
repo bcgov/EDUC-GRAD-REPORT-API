@@ -202,7 +202,7 @@ public final class Student extends BusinessEntity {
      *
      * @return A string, possibly empty, that contains a student's grade.
      */
-    public synchronized String getGrade() {
+    public  String getGrade() {
         return nullSafe(this.grade);
     }
 
@@ -314,7 +314,7 @@ public final class Student extends BusinessEntity {
      *
      * @param grade Passed in by the builder.
      */
-    protected synchronized void setGrade(final String grade) {
+    protected  void setGrade(final String grade) {
         this.grade = grade;
     }
 
@@ -430,7 +430,7 @@ public final class Student extends BusinessEntity {
      * @return A list of courses and corresponding grades that the student
      * achieved, never null (possibly empty).
      */
-    public synchronized List<AcademicSession> getAcademicSession() {
+    public  List<AcademicSession> getAcademicSession() {
         if (this.academicSession == null) {
             this.academicSession = createEmptyList();
         }
@@ -567,7 +567,7 @@ public final class Student extends BusinessEntity {
      *
      * @param academicSession Student academic session.
      */
-    public synchronized void setAcademicSessions(List<AcademicSession> academicSession) {
+    public  void setAcademicSessions(List<AcademicSession> academicSession) {
         this.academicSession = academicSession;
     }
 
@@ -659,7 +659,7 @@ public final class Student extends BusinessEntity {
         this.status = status;
     }
 
-    public synchronized void setAcademicSession(
+    public  void setAcademicSession(
             final List<AcademicSession> academicSession) {
         this.academicSession = academicSession;
     }

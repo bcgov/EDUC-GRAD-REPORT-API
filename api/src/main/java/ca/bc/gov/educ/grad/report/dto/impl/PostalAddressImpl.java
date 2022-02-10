@@ -44,37 +44,37 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     private String country = "";
 
     @Override
-    public synchronized String getStreetLine1() {
+    public String getStreetLine1() {
         return streetLine1;
     }
 
     @Override
-    public synchronized String getStreetLine2() {
+    public String getStreetLine2() {
         return streetLine2;
     }
 
     @Override
-    public synchronized String getStreetLine3() {
+    public  String getStreetLine3() {
         return streetLine3;
     }
 
     @Override
-    public synchronized String getCity() {
+    public  String getCity() {
         return city;
     }
 
     @Override
-    public synchronized String getRegion() {
+    public  String getRegion() {
         return region;
     }
 
     @Override
-    public synchronized String getPostalCode() {
+    public  String getPostalCode() {
         return this.code;
     }
 
     @Override
-    public synchronized String getCountryCode() {
+    public  String getCountryCode() {
         return country;
     }
 

@@ -210,7 +210,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      * @return "BCMAIL PLANNERS TEST" by default.
      */
     @Override
-    public synchronized String getJobRecipientName() {
+    public  String getJobRecipientName() {
         if (this.jobRecipientName == null) {
             this.jobRecipientName = "BCMP-Service";
         }
@@ -322,7 +322,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      *
      * @return The decorator used to modify the bundle.
      */
-    private synchronized DocumentBundleDecorator getDecorator() {
+    private  DocumentBundleDecorator getDecorator() {
         if (this.decorator == null) {
             this.decorator = createDecorator();
         }

@@ -141,7 +141,7 @@ public class TupleSumScriplet extends JRDefaultScriptlet implements Serializable
      * @return true This is a subreport.
      * @throws JRScriptletException Could not determine report name.
      */
-    private synchronized boolean hasTupleTotals() {
+    private  boolean hasTupleTotals() {
         boolean result;
 
         try {
