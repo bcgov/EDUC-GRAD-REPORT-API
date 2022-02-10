@@ -79,7 +79,7 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Images", description = "Retrieve Signature Objects", tags = { "Signature Images" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<GradReportSignatureImage> getSignatureImages() {
-        String methodName = String.format("getSignatureImages()");
+        String methodName = "getSignatureImages()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -117,7 +117,7 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Block Type", description = "Retrieve Signature Block Type", tags = { "Signature Block Type" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
-        String methodName = String.format("getSignatureBlockTypeCodes()");
+        String methodName = "getSignatureBlockTypeCodes()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         return gradReportCodeService.getSignatureBlockTypeCodes();

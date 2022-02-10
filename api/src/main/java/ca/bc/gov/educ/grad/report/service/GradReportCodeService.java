@@ -47,7 +47,7 @@ public class GradReportCodeService {
     GradReportReportTypeCodeTransformer gradReportReportTypeCodeTransformer;
 
     public List<CertificateTypeCode> getCertificateTypeCodes() {
-        String methodName = String.format("getCertificateTypeCodes()");
+        String methodName = "getCertificateTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<CertificateTypeCode> _result;
@@ -85,7 +85,7 @@ public class GradReportCodeService {
     }
 
     public List<TranscriptTypeCode> getTranscriptTypeCodes() {
-        String methodName = String.format("getTranscriptTypeCodes()");
+        String methodName = "getTranscriptTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<TranscriptTypeCode> _result;
@@ -123,7 +123,7 @@ public class GradReportCodeService {
     }
 
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
-        String methodName = String.format("getSignatureBlockTypeCodes()");
+        String methodName = "getSignatureBlockTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<SignatureBlockTypeCode> _result;
@@ -142,7 +142,7 @@ public class GradReportCodeService {
     }
 
     public Map<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
-        String methodName = String.format("getSignatureBlockTypeCodesMap()");
+        String methodName = "getSignatureBlockTypeCodesMap()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         Map<String, SignatureBlockTypeCode> _result = new HashMap<>();
@@ -197,7 +197,7 @@ public class GradReportCodeService {
     }
 
     public List<DocumentStatusCode> getDocumentStatusCodes() {
-        String methodName = String.format("getDocumentStatusCodes()");
+        String methodName = "getDocumentStatusCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<DocumentStatusCode> _result;
@@ -235,7 +235,7 @@ public class GradReportCodeService {
     }
 
     public List<ReportTypeCode> getReportTypeCodes() {
-        String methodName = String.format("getReportTypeCodes()");
+        String methodName = "getReportTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<ReportTypeCode> _result;

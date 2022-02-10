@@ -31,6 +31,7 @@ import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTER
 public class GradReportService {
 
 	private static final String CLASS_NAME = GradReportService.class.getName();
+	private static final String EXCEPTION_MSG = "Unable to execute {}";
 	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
 	private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
@@ -73,7 +74,7 @@ public class GradReportService {
 				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 			}
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -98,7 +99,7 @@ public class GradReportService {
 					packingSlip.getTotal()
 			);
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
@@ -127,7 +128,7 @@ public class GradReportService {
 				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 			}
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -144,7 +145,7 @@ public class GradReportService {
 		try {
 			return achievementService.buildOfficialAchievementReport();
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
@@ -174,7 +175,7 @@ public class GradReportService {
 			}
 
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -190,7 +191,7 @@ public class GradReportService {
 		try {
 			return transcriptService.buildOfficialTranscriptReport();
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
@@ -220,7 +221,7 @@ public class GradReportService {
 				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 			}
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -245,7 +246,7 @@ public class GradReportService {
 			documentBundle.appendBusinessReport(gradCertificateReports);
 			return documentBundle;
 		} catch (Exception e) {
-			log.error("Unable to execute {}", methodName, e);
+			log.error(EXCEPTION_MSG, methodName, e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
