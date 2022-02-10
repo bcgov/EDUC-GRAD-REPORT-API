@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
+
 @Service
 public class GradReportSignatureService {
 
@@ -38,7 +40,7 @@ public class GradReportSignatureService {
     @Transactional
     public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
         String methodName = String.format("getSignatureImageBySignatureId(String %s)", id);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         Optional<GradReportSignatureImageEntity> entity = signatureImageRepository.findById(UUID.fromString(id));
         if(!entity.isPresent()) {
             try {
@@ -51,14 +53,14 @@ public class GradReportSignatureService {
             }
         }
         GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
-        log.debug(">{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return  signatureImage;
     }
 
     @Transactional
     public List<GradReportSignatureImage> getSignatureImages(String accessToken) {
-        String methodName = String.format("getSignatureImages()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        String methodName = "getSignatureImages()";
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         List<GradReportSignatureImageEntity> entities = signatureImageRepository.findAll();
         List<GradReportSignatureImage> result = new ArrayList();
         for(GradReportSignatureImageEntity entity: entities) {
@@ -68,13 +70,14 @@ public class GradReportSignatureService {
                 signatureImage.setDistrictName(dist.getDistrictName());
             result.add(signatureImage);
         }
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return result;
     }
 
     @Transactional
     public GradReportSignatureImage getSignatureImageByCode(String code, String accessToken) {
         String methodName = String.format("getSignatureImageByCode(String %s)", code);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
         if(entity ==  null) {
             try {
@@ -91,8 +94,8 @@ public class GradReportSignatureService {
         District dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
         if(dist != null)
             signatureImage.setDistrictName(dist.getDistrictName());
-
-        log.debug(">{}.{}", methodName, CLASS_NAME);
+        
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return  signatureImage;
     }
 

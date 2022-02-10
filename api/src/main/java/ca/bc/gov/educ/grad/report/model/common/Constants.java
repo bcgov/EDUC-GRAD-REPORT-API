@@ -150,4 +150,6 @@ public class Constants {
      */
     public static final String XML_DELIM = "/";
 
+    public static final String DEBUG_LOG_PATTERN = "{}.{}";
+
 }

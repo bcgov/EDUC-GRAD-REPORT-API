@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
+
 @Service
 public class GradReportCodeService {
 
@@ -46,7 +48,7 @@ public class GradReportCodeService {
 
     public List<CertificateTypeCode> getCertificateTypeCodes() {
         String methodName = String.format("getCertificateTypeCodes()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<CertificateTypeCode> _result;
 
@@ -65,7 +67,7 @@ public class GradReportCodeService {
 
     public CertificateTypeCode getCertificateTypeCode(String code) {
         String methodName = String.format("getCertificateTypeCode(%s)", code);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         CertificateTypeCode _result;
 
@@ -84,7 +86,7 @@ public class GradReportCodeService {
 
     public List<TranscriptTypeCode> getTranscriptTypeCodes() {
         String methodName = String.format("getTranscriptTypeCodes()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<TranscriptTypeCode> _result;
 
@@ -103,7 +105,7 @@ public class GradReportCodeService {
 
     public TranscriptTypeCode getTranscriptTypeCode(String code) {
         String methodName = String.format("getTranscriptTypeCode(%s)", code);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         TranscriptTypeCode _result;
 
@@ -122,7 +124,7 @@ public class GradReportCodeService {
 
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
         String methodName = String.format("getSignatureBlockTypeCodes()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<SignatureBlockTypeCode> _result;
 
@@ -141,7 +143,7 @@ public class GradReportCodeService {
 
     public Map<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
         String methodName = String.format("getSignatureBlockTypeCodesMap()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         Map<String, SignatureBlockTypeCode> _result = new HashMap<>();
 
@@ -162,7 +164,7 @@ public class GradReportCodeService {
 
     public SignatureBlockTypeCode getSignatureBlockTypeCode(String code) {
         String methodName = String.format("getSignatureBlockTypeCode(%s)", code);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         SignatureBlockTypeCode _result;
 
@@ -196,7 +198,7 @@ public class GradReportCodeService {
 
     public List<DocumentStatusCode> getDocumentStatusCodes() {
         String methodName = String.format("getDocumentStatusCodes()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<DocumentStatusCode> _result;
 
@@ -215,7 +217,7 @@ public class GradReportCodeService {
 
     public DocumentStatusCode getDocumentStatusCode(String code) {
         String methodName = String.format("getDocumentStatusCode(%s)", code);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         DocumentStatusCode _result;
 
@@ -234,7 +236,7 @@ public class GradReportCodeService {
 
     public List<ReportTypeCode> getReportTypeCodes() {
         String methodName = String.format("getReportTypeCodes()");
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         List<ReportTypeCode> _result;
 
@@ -253,7 +255,7 @@ public class GradReportCodeService {
 
     public ReportTypeCode getReportTypeCode(String code) {
         String methodName = String.format("getReportTypeCode(%s)", code);
-        log.debug("<{}.{}", methodName, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
         ReportTypeCode _result;
 

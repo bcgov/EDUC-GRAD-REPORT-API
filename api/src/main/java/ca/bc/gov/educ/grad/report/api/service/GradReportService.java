@@ -25,6 +25,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
+
 @Service
 public class GradReportService {
 
@@ -50,7 +52,7 @@ public class GradReportService {
 
 	public ResponseEntity getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
@@ -74,14 +76,14 @@ public class GradReportService {
 			log.error("Unable to execute {}", methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 
 	}
 
 	public ReportDocument getPackingSlipReportDocument(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReportDocument(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
@@ -98,13 +100,13 @@ public class GradReportService {
 		} catch (Exception e) {
 			log.error("Unable to execute {}", methodName, e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
 	}
 
     public ResponseEntity getStudentAchievementReport(ReportRequest reportRequest) {
     	String methodName = "getStudentAchievementReport(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
@@ -128,14 +130,14 @@ public class GradReportService {
 			log.error("Unable to execute {}", methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
     	
     }
 
 	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) {
 		String methodName = "getStudentAchievementReportDocument(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
@@ -144,13 +146,13 @@ public class GradReportService {
 		} catch (Exception e) {
 			log.error("Unable to execute {}", methodName, e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
 	}
 
 	public ResponseEntity getStudentTranscriptReport(ReportRequest reportRequest) {
 		String methodName = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
@@ -175,13 +177,13 @@ public class GradReportService {
 			log.error("Unable to execute {}", methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
 
 	public StudentTranscriptReport getStudentTranscriptReportDocument(ReportRequest reportRequest) {
 		String methodName = "getStudentTranscriptReportDocument(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
@@ -190,13 +192,13 @@ public class GradReportService {
 		} catch (Exception e) {
 			log.error("Unable to execute {}", methodName, e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
 	}
 	
 	public ResponseEntity getStudentCertificateReport(ReportRequest reportRequest) {
 		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
@@ -221,13 +223,13 @@ public class GradReportService {
 			log.error("Unable to execute {}", methodName, e);
 			response = getInternalServerErrorResponse(e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
 
 	public DocumentBundle getStudentCertificateReportDocument(ReportRequest reportRequest) {
 		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
-		log.debug("<{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
@@ -245,7 +247,7 @@ public class GradReportService {
 		} catch (Exception e) {
 			log.error("Unable to execute {}", methodName, e);
 		}
-		log.debug(">{}.{}", methodName, CLASS_NAME);
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
 	}
 

@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
+
 @CrossOrigin
 @RestController
 @RequestMapping(EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)
@@ -49,7 +51,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public byte[] extractSignatureImageByCode(@PathVariable String signCode) {
         String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
     	logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
@@ -64,7 +66,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode) {
         String methodName = String.format("getSignatureImageByCode(String %s)", signCode);
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
@@ -78,7 +80,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<GradReportSignatureImage> getSignatureImages() {
         String methodName = String.format("getSignatureImages()");
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
@@ -92,7 +94,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public GradReportSignatureImage saveGragReportSignatureImage(@RequestBody GradReportSignatureImage signatureImage) {
         String methodName = String.format("saveGragReportSignatureImage(String %s)", signatureImage.getGradReportSignatureCode());
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         validation.requiredField(signatureImage.getGradReportSignatureCode(), "Signature Code");
         validation.requiredField(signatureImage.getSignatureContent(), "Signature Content");
@@ -105,7 +107,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public SignatureBlockTypeCode getSignatureBlockTypeCode(@PathVariable String signBlockTypeCode) {
         String methodName = String.format("getSignatureBlockTypeCode(%s)", signBlockTypeCode);
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         return gradReportCodeService.getSignatureBlockTypeCode(signBlockTypeCode);
     }
@@ -116,7 +118,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
         String methodName = String.format("getSignatureBlockTypeCodes()");
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         return gradReportCodeService.getSignatureBlockTypeCodes();
     }
@@ -127,7 +129,7 @@ public class GradReportSignatureController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public SignatureBlockTypeCode saveSignatureBlockTypeCode(@RequestBody SignatureBlockTypeCode code) {
         String methodName = String.format("saveSignatureBlockTypeCode(String %s)", code.getSignatureBlockTypeCode());
-        logger.debug("<{}.{}", methodName, CLASS_NAME);
+        logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
         validation.requiredField(code.getSignatureBlockTypeCode(), "Signature Block Type Code");
         validation.requiredField(code.getCode(), "Signature Block Type Code Code");

@@ -333,7 +333,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_PROV_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<subreport overflowType="NoStretch">
-				<reportElement x="0" y="174" width="567" height="225" uuid="470b4271-69be-49ed-8e28-d085e938ce98"/>
+				<reportElement x="0" y="174" width="567" height="190" uuid="470b4271-69be-49ed-8e28-d085e938ce98"/>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
