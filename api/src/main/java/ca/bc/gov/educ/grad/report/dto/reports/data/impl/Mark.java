@@ -317,8 +317,8 @@ public abstract class Mark extends BusinessEntity {
      * @param sessionDate An empty or formatted string, never null.
      */
     private void setFormattedSessionDate(final String sessionDate) {
-        final String _m = "setFormattedSessionDate(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "setFormattedSessionDate(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final String session = getSessionDate();
         this.formattedSessionDate = sessionDate;
@@ -327,7 +327,7 @@ public abstract class Mark extends BusinessEntity {
             this.formattedSessionDate = formatSessionDate(session);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
     }
 
     /**

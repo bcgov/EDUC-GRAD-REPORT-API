@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.ReportDocumentImpl;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
@@ -34,6 +35,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.itextpdf.text.pdf.PdfName.ROTATE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.commons.lang3.StringUtils.replaceEach;
 
@@ -85,8 +87,8 @@ public abstract class DocumentBundleDecorator implements Serializable {
      * @throws IOException Could not append the given document to the bundle.
      */
     public byte[] appendReportDocument(final List<ReportDocument> reports) throws IOException {
-        final String _m = "append(List<ReportDocument>)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "append(List<ReportDocument>)";
+        LOG.entering(CLASSNAME, methodName);
 
         final List<byte[]> pdfs = new ArrayList<>();
         final byte[] bundleContent = getDocumentBundleBytes();
@@ -149,13 +151,13 @@ public abstract class DocumentBundleDecorator implements Serializable {
             throw new IOException(e);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 
     public byte[] appendBusinessReport(final List<BusinessReport> reports) throws IOException {
-        final String _m = "appendBytes(BusinessReport report)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "appendBytes(BusinessReport report)";
+        LOG.entering(CLASSNAME, methodName);
 
         final List<byte[]> pdfs = new ArrayList<>();
         final byte[] bundleContent = getDocumentBundleBytes();
@@ -218,8 +220,70 @@ public abstract class DocumentBundleDecorator implements Serializable {
             throw new IOException(e);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
+    }
+
+    /**
+     * Rotates the given document by 90 degrees.
+     *
+     * @param report The document to be rotated.
+     * @return A rotated version of the given document.
+     * @throws IOException Could not process the report.
+     */
+    protected ReportDocument process(final ReportDocument report)
+            throws IOException {
+        return rotate(report, 90);
+    }
+
+    /**
+     * Rotates a document by a given number of degrees. A certificate only has
+     * one page, but this is a general-purpose method that will process all the
+     * pages in a PDF.
+     *
+     * @see
+     *
+     * @param document The document to process.
+     * @param degrees The number of degrees to process the document by (should
+     * probably be zero or a multiple of 90).
+     * @return The rotated document.
+     * @throws IOException Could not process the document.
+     */
+    private ReportDocument rotate(
+            final ReportDocument document, final int degrees)
+            throws IOException {
+        final byte[] bytes = document.asBytes();
+        final PdfReader reader = new PdfReader(bytes);
+        final int pages = reader.getNumberOfPages();
+
+        for (int i = 1; i <= pages; i++) {
+            final PdfDictionary page = reader.getPageN(i);
+            final PdfNumber rotate = page.getAsNumber(ROTATE);
+
+            // If the PDF page does not have a /Rotate key in the dictionary,
+            // then add one. If the PDF has a /Rotate key, then update the
+            // value to use the new rotation.
+            final int rotation = rotate == null
+                    ? degrees
+                    : (rotate.intValue() + degrees) % 360;
+
+            page.put(ROTATE, new PdfNumber(rotation));
+        }
+
+        // Export the rotated document and save its contents in the result
+        // document.
+        try (final ByteArrayOutputStream baos = createByteArrayOutputStream()) {
+            final PdfStamper stamper = new PdfStamper(reader, baos);
+
+            // Write the rotated document to the stream.
+            stamper.close();
+            reader.close();
+
+            // Extract the bytes for the rotated document.
+            return new ReportDocumentImpl(baos.toByteArray());
+        } catch (final DocumentException de) {
+            throw new IOException(de);
+        }
     }
 
     /**
@@ -229,8 +293,8 @@ public abstract class DocumentBundleDecorator implements Serializable {
      * @throws IOException Could not overlay page numbers.
      */
     public byte[] enumeratePages() throws IOException {
-        final String _m = "enumeratePages()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "enumeratePages()";
+        LOG.entering(CLASSNAME, methodName);
 
         final byte[] pdf = getDocumentBundleBytes();
         final byte[] result;
@@ -260,7 +324,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
             throw new IOException(e);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 
@@ -282,8 +346,8 @@ public abstract class DocumentBundleDecorator implements Serializable {
      * @throws IOException Could not prepend XPIF information.
      */
     public byte[] xpif() throws IOException {
-        final String _m = "xpif()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "xpif()";
+        LOG.entering(CLASSNAME, methodName);
 
         final byte[] result;
 
@@ -301,11 +365,11 @@ public abstract class DocumentBundleDecorator implements Serializable {
 
             result = out.toByteArray();
         } catch (final Exception ex) {
-            LOG.log(Level.SEVERE, _m, ex);
+            LOG.log(Level.SEVERE, methodName, ex);
             throw new IOException(ex);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 
@@ -356,8 +420,8 @@ public abstract class DocumentBundleDecorator implements Serializable {
      * filled with values from this instance.
      */
     protected String fillXpif(final String xml) {
-        final String _m = "fillXpif(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "fillXpif(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final String result = replaceEach(xml, new String[]{
             "${JOB_RECIPIENT_NAME}",
@@ -371,7 +435,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
             getFilename()
         });
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 
@@ -421,18 +485,6 @@ public abstract class DocumentBundleDecorator implements Serializable {
         return getDocumentBundle().getOrderType();
     }
 
-    /**
-     * Subclasses can override this to process the document before it is written
-     * to the bundle packet.
-     *
-     * @param report The document to process.
-     * @return The given report, not rotated.
-     * @throws IOException Could not process the report.
-     */
-    protected ReportDocument process(final ReportDocument report)
-            throws IOException {
-        return report;
-    }
 
     /**
      * Subclasses can override this to process the document before it is written

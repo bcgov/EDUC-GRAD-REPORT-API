@@ -194,13 +194,13 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public Transcript getTranscript() throws DomainServiceException {
-        final String _m = "getTranscript()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getTranscript()";
+        LOG.entering(CLASSNAME, methodName);
 
         final String pen = getStudentPENId();
         final Transcript transcript = getTranscript(pen, false);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return transcript;
     }
 
@@ -209,8 +209,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
     public Transcript getTranscript(
             final String pen,
             final boolean interim) throws DomainServiceException {
-        final String _m = "getTranscript(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getTranscript(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final Transcript transcriptInfo = getTranscriptInformation(pen);
         final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, interim);
@@ -227,15 +227,15 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                 interim
         );
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return transcript;
     }
 
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public Transcript getTranscriptInformation(final String pen) throws DomainServiceException {
-        final String _m = "getTranscriptInformation(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getTranscriptInformation(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final Transcript transcript;
 
@@ -246,7 +246,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                 EntityNotFoundException dse = new EntityNotFoundException(
                         null,
                         "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, _m, dse);
+                LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
 
@@ -255,11 +255,11 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         } catch (Exception ex) {
             String msg = "Failed to access transcript data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
+            LOG.throwing(CLASSNAME, methodName, dex);
             throw dex;
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return transcript;
     }
 
@@ -282,8 +282,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             final ReportFormat format,
             final boolean preview, final boolean interim)
             throws DomainServiceException, IOException, DataException {
-        final String _m = "createTranscript(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createTranscript(ReportFormat, boolean)";
+        LOG.entering(CLASSNAME, methodName);
 
         final PersonalEducationNumber pen = getStudentPEN();
         LOG.log(Level.FINE, "Retrieved studentInfo for pen: {0}.", pen.getValue());
@@ -291,7 +291,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final StudentTranscriptReport report = getStudentTranscriptReport(
                 pen, format, preview, null, interim
         );
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
     }
 
@@ -311,31 +311,31 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             final ReportFormat format,
             final boolean preview, final PersonalEducationNumber pen, final Parameters parameters, final boolean interim)
             throws DomainServiceException, IOException, DataException {
-        final String _m = "createTranscript(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createTranscript(ReportFormat, boolean)";
+        LOG.entering(CLASSNAME, methodName);
         LOG.log(Level.FINE, "Retrieved transcript for pen: {0}.", pen.getValue());
 
         final StudentTranscriptReport report = getStudentTranscriptReport(pen, format, preview, parameters, interim);
         LOG.log(Level.INFO, "Created StudentTranscriptReport for pen: {0}.", pen.getValue());
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
     }
 
     private String getStudentPENId() throws DomainServiceException {
-        final String _m = "getStudentPENId()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getStudentPENId()";
+        LOG.entering(CLASSNAME, methodName);
 
         final PersonalEducationNumber pen = getStudentPEN();
         final String result = pen.getValue();
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 
     private PersonalEducationNumber getStudentPEN() throws DomainServiceException {
-        final String _m = "getStudentPEN()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getStudentPEN()";
+        LOG.entering(CLASSNAME, methodName);
 
         ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
@@ -343,7 +343,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             EntityNotFoundException dse = new EntityNotFoundException(
                     null,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -351,7 +351,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         pen.setPen(reportData.getStudent().getPen().getPen());
 
         LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return pen;
     }
 
@@ -364,8 +364,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      * @return
      */
     private StudentInfo getStudentInfo(final String pen) throws DataException, DomainServiceException {
-        final String _m = "getStudentInfo(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getStudentInfo(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final StudentInfo studentInfo;
 
@@ -377,7 +377,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                 EntityNotFoundException dse = new EntityNotFoundException(
                         null,
                         "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, _m, dse);
+                LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
 
@@ -392,7 +392,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             if (studentInfo == null) {
                 final String msg = "Failed to find transcript results in TRAX for PEN: ".concat(pen);
                 final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, _m, dse);
+                LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             } else {
                 LOG.log(Level.FINEST, "Retrieved student from transcript:");
@@ -403,12 +403,12 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         } catch (Exception ex) {
             String msg = "Failed to access TRAX transcript data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
+            LOG.throwing(CLASSNAME, methodName, dex);
             throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return studentInfo;
     }
 
@@ -478,9 +478,9 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             final PersonalEducationNumber pen,
             final StudentInfo studentInfo) {
 
-        final String _m = "adaptStudent(PersonalEducationNumber, StudentInfo)";
+        final String methodName = "adaptStudent(PersonalEducationNumber, StudentInfo)";
         final Object[] params = {pen, studentInfo};
-        LOG.entering(CLASSNAME, _m, params);
+        LOG.entering(CLASSNAME, methodName, params);
 
         final StudentImpl student = new StudentImpl();
         student.setPen(pen);
@@ -504,7 +504,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         signatureBlockTypes.putAll(signatureBlockTypeCodes);
         student.setSignatureBlockTypes(signatureBlockTypes);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return student;
     }
 
@@ -657,8 +657,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      * NonGradReasons instances.
      */
     private List<NonGradReason> adaptReasons(final StudentInfo studentInfo) {
-        final String _m = "adaptReasons(StudentInfo)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "adaptReasons(StudentInfo)";
+        LOG.entering(CLASSNAME, methodName);
 
         final Map<String, String> nonGradReasons = studentInfo.getNonGradReasons();
         final List<NonGradReason> result = new ArrayList<>();
@@ -672,7 +672,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             result.add(r);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 
@@ -706,8 +706,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             final Date updateDt,
             final Parameters parameters,
             final GraduationData graduationData) throws DomainServiceException, IOException {
-        final String _m = "createReport(...)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createReport(...)";
+        LOG.entering(CLASSNAME, methodName);
 
         final TranscriptTypeCode transcriptTypeCode = transcript.getTranscriptTypeCode();
 
@@ -766,7 +766,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             final String msg = "Failed to create report.";
             LOG.log(Level.SEVERE, msg, ex);
             final DomainServiceException dse = new DomainServiceException(msg, ex);
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
         LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
@@ -777,7 +777,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         if (isEmpty(content)) {
             final String msg = "The generated report output is empty.";
             DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -786,19 +786,19 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         );
         LOG.log(Level.FINE, "Created StudentTranscriptReport {0} for student {1}.", new Object[]{transcriptReport, student.getPen()});
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return transcriptReport;
     }
 
     @Override
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters createParameters() {
-        final String _m = "createParameters()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createParameters()";
+        LOG.entering(CLASSNAME, methodName);
 
         Parameters parameters = reportService.createParameters();
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return parameters;
     }
 
@@ -808,8 +808,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             final boolean preview,
             final Parameters parameters,
             final boolean interim) throws DomainServiceException, IOException {
-        final String _m = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters, boolean)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters, boolean)";
+        LOG.entering(CLASSNAME, methodName);
         final String pen = personalEducationNumber.getValue();
         final StudentInfo studentInfo = getStudentInfo(pen);
 
@@ -843,7 +843,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
                 graduationData
         );
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
     }
 
@@ -863,9 +863,9 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
     private GraduationData adaptGraduationData(
             final StudentInfo studentInfo,
             final Transcript transcript) {
-        final String _m = "adaptGraduationData(StudentInfo, Transcript, String)";
+        final String methodName = "adaptGraduationData(StudentInfo, Transcript, String)";
         final Object[] params = {studentInfo, transcript};
-        LOG.entering(CLASSNAME, _m, params);
+        LOG.entering(CLASSNAME, methodName, params);
 
         final GraduationData graduationData = new GraduationDataImpl();
 
@@ -878,7 +878,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
         final String creditsUsedForGrad = getCreditsUsedForGrad(transcript);
         ((GraduationDataImpl) graduationData).setTotalCreditsUsedForGrad(creditsUsedForGrad);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
 
         return graduationData;
     }
@@ -949,8 +949,8 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
      * @return The parsed value, or 0 if there were no digits present.
      */
     private int parseCredits(final String credits) {
-        final String _m = "parseCredits(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "parseCredits(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         // Strip out any non-digits.
         final String numericCredits = credits.replaceAll("[^\\d.]", "");
@@ -964,7 +964,7 @@ public class StudentTranscriptServiceImpl implements StudentTranscriptService, S
             LOG.log(Level.WARNING, "Could not parse credits: " + credits, ex);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
 
     }

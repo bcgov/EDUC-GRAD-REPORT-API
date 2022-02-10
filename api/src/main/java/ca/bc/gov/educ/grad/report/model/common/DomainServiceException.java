@@ -24,7 +24,7 @@ package ca.bc.gov.educ.grad.report.model.common;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class DomainServiceException extends Exception {
+public class DomainServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 

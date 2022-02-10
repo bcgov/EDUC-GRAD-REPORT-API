@@ -239,8 +239,8 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
     @Override
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public DocumentBundle decorate(DocumentBundle documentBundle) throws IOException {
-        final String _m = "decorate(DocumentBundle)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "decorate(DocumentBundle)";
+        LOG.entering(CLASSNAME, methodName);
 
         // Adorn the finished bundle with page numbers.
         documentBundle = enumeratePages(documentBundle);
@@ -251,7 +251,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
         documentBundle = xpif(documentBundle);
         LOG.log(Level.FINE, "Bundle size: {0} bytes", documentBundle.asBytes().length);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return documentBundle;
     }
 
@@ -265,8 +265,8 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
      * service method.
      */
     private String generateUUID64() {
-        final String _m = "generateUUID64()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "generateUUID64()";
+        LOG.entering(CLASSNAME, methodName);
 
         final UUID uuid = UUID.randomUUID();
         final ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
@@ -278,7 +278,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
 
         assert retValue != null : "Post Condition Failed - Generated a Base 64 encoded UUID, but ended up with NULL!";
 
-        LOG.exiting(CLASSNAME, _m, retValue);
+        LOG.exiting(CLASSNAME, methodName, retValue);
         return retValue;
     }
 }

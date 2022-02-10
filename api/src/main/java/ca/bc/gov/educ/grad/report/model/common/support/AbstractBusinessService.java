@@ -40,8 +40,8 @@ public abstract class AbstractBusinessService {
     public static final String MSG_VERIFICATION_FAILED_INPUT = "Input and pre-condition verification failed.";
 
     protected static Integer lookupEnvInteger(final String envPath, final String name, final Integer defaultValue) {
-        final String _m = "lookupEnvIngeter(String, String)";
-        LOG.exiting(CLASSNAME, _m, new Object[]{envPath, name, defaultValue});
+        final String methodName = "lookupEnvIngeter(String, String)";
+        LOG.exiting(CLASSNAME, methodName, new Object[]{envPath, name, defaultValue});
 
         Integer retValue;
 
@@ -55,13 +55,13 @@ public abstract class AbstractBusinessService {
         }
         LOG.log(Level.FINER, "Using JNDI Environment integer entry {0}", retValue);
 
-        LOG.exiting(CLASSNAME, _m, retValue);
+        LOG.exiting(CLASSNAME, methodName, retValue);
         return retValue;
     }
 
     protected static String lookupEnvParam(final String envPath, final String name, final String defaultValue) {
-        final String _m = "lookupEnvParam(String)";
-        LOG.entering(CLASSNAME, _m, new Object[]{envPath, name, defaultValue});
+        final String methodName = "lookupEnvParam(String)";
+        LOG.entering(CLASSNAME, methodName, new Object[]{envPath, name, defaultValue});
 
         assert name != null : "Environment Parameter name was null.";
         assert !name.isEmpty() : "Environment Parameter name was empty";
@@ -81,7 +81,7 @@ public abstract class AbstractBusinessService {
             LOG.log(Level.WARNING, ne.getMessage());
             retValue = defaultValue;
         }
-        LOG.exiting(CLASSNAME, _m, retValue);
+        LOG.exiting(CLASSNAME, methodName, retValue);
         return retValue;
     }
 

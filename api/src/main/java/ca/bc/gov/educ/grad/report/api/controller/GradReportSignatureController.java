@@ -48,8 +48,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Image binary", description = "Retrieve Signature Image binary by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public byte[] extractSignatureImageByCode(@PathVariable String signCode) {
-        String _m = String.format("extractSignatureImageByCode(String %s)", signCode);
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
     	logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
@@ -63,8 +63,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Image Object", description = "Retrieve Signature Object by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode) {
-        String _m = String.format("getSignatureImageByCode(String %s)", signCode);
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("getSignatureImageByCode(String %s)", signCode);
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
         logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
@@ -77,8 +77,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Images", description = "Retrieve Signature Objects", tags = { "Signature Images" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<GradReportSignatureImage> getSignatureImages() {
-        String _m = String.format("getSignatureImages()");
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("getSignatureImages()");
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
         logRequest();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
@@ -91,8 +91,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Create Signature", description = "Create Signature Image File", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public GradReportSignatureImage saveGragReportSignatureImage(@RequestBody GradReportSignatureImage signatureImage) {
-        String _m = String.format("saveGragReportSignatureImage(String %s)", signatureImage.getGradReportSignatureCode());
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("saveGragReportSignatureImage(String %s)", signatureImage.getGradReportSignatureCode());
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
         logRequest();
         validation.requiredField(signatureImage.getGradReportSignatureCode(), "Signature Code");
         validation.requiredField(signatureImage.getSignatureContent(), "Signature Content");
@@ -104,8 +104,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Block Types", description = "Retrieve Signature Block Types", tags = { "Signature Block Types" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public SignatureBlockTypeCode getSignatureBlockTypeCode(@PathVariable String signBlockTypeCode) {
-        String _m = String.format("getSignatureBlockTypeCode(%s)", signBlockTypeCode);
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("getSignatureBlockTypeCode(%s)", signBlockTypeCode);
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
         logRequest();
         return gradReportCodeService.getSignatureBlockTypeCode(signBlockTypeCode);
     }
@@ -115,8 +115,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Return Signature Block Type", description = "Retrieve Signature Block Type", tags = { "Signature Block Type" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
-        String _m = String.format("getSignatureBlockTypeCodes()");
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("getSignatureBlockTypeCodes()");
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
         logRequest();
         return gradReportCodeService.getSignatureBlockTypeCodes();
     }
@@ -126,8 +126,8 @@ public class GradReportSignatureController extends BaseController {
     @Operation(summary = "Save Signature Block Type Code", description = "Save Signature Block Type Code", tags = { "Signature Block Type" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public SignatureBlockTypeCode saveSignatureBlockTypeCode(@RequestBody SignatureBlockTypeCode code) {
-        String _m = String.format("saveSignatureBlockTypeCode(String %s)", code.getSignatureBlockTypeCode());
-        logger.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("saveSignatureBlockTypeCode(String %s)", code.getSignatureBlockTypeCode());
+        logger.debug("<{}.{}", methodName, CLASS_NAME);
         logRequest();
         validation.requiredField(code.getSignatureBlockTypeCode(), "Signature Block Type Code");
         validation.requiredField(code.getCode(), "Signature Block Type Code Code");

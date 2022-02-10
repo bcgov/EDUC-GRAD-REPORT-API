@@ -48,8 +48,8 @@ public class XmlConverterUtil {
     }
 
     public Element marshalStudentToElement(final Student student) throws JAXBException, ParserConfigurationException, SAXException, IOException {
-        final String _m = "marshalStudentToElement(Student)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "marshalStudentToElement(Student)";
+        LOG.entering(CLASSNAME, methodName);
 
         Element dataSourceRootElement = null;
 
@@ -71,7 +71,7 @@ public class XmlConverterUtil {
             throw ex;
         }
 
-        LOG.entering(CLASSNAME, _m);
+        LOG.entering(CLASSNAME, methodName);
         return dataSourceRootElement;
     }
 }

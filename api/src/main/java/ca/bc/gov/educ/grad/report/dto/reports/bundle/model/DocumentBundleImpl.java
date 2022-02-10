@@ -336,8 +336,8 @@ public class DocumentBundleImpl implements DocumentBundle {
      * @return An appender for the given order type.
      */
     private DocumentBundleDecorator createDecorator() {
-        final String _m = "createDecorator";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createDecorator";
+        LOG.entering(CLASSNAME, methodName);
 
         final DocumentBundleDecorator dbd;
         final OrderType ot = getOrderType();
@@ -352,7 +352,7 @@ public class DocumentBundleImpl implements DocumentBundle {
             throw new IllegalArgumentException("Unexpected order type: " + ot);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return dbd;
     }
 }

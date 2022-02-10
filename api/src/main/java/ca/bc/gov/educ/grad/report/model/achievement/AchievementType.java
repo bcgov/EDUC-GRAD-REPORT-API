@@ -44,7 +44,7 @@ public enum AchievementType {
      *
      * @param reportName Certificate subreport template filename.
      */
-    private AchievementType(final String reportName, final PaperType paperType) {
+    AchievementType(final String reportName, final PaperType paperType) {
         this.reportName = reportName;
         this.paperType = paperType;
     }
@@ -72,11 +72,11 @@ public enum AchievementType {
         return reportName;
     }
 
-    public void setReportName(String reportName) {
+    void setReportName(String reportName) {
         this.reportName = reportName;
     }
 
-    public void setPaperType(PaperType paperType) {
+    void setPaperType(PaperType paperType) {
         this.paperType = paperType;
     }
 

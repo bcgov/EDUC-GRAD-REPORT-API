@@ -83,8 +83,8 @@ public class GradCertificateServiceImpl
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public List<BusinessReport> buildReport() throws DomainServiceException {
-        final String _m = "buildReport()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "buildReport()";
+        LOG.entering(CLASSNAME, methodName);
 
 
         ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
@@ -93,7 +93,7 @@ public class GradCertificateServiceImpl
             EntityNotFoundException dse = new EntityNotFoundException(
                     null,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -108,7 +108,7 @@ public class GradCertificateServiceImpl
         if (certificate == null) {
             final String msg = "Failed to find student certificate";
             final DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -142,7 +142,7 @@ public class GradCertificateServiceImpl
             certificates.add(gradCert);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return certificates;
     }
 
