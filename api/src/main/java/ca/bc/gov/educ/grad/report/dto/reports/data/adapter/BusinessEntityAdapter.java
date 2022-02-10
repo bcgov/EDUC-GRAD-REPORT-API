@@ -555,6 +555,7 @@ public class BusinessEntityAdapter {
         return new PackingSlipDetails.Builder()
                 .withAddress(adapt(details.getAddress()))
                 .withDocumentsShipped(details.getDocumentsShipped())
+                .withTotalShipped(details.getTotalShipped())
                 .withAttentionTo(details.getAttentionTo())
                 .withPaperTypeCode(details.getPaperType().getMediaType())
                 .withRecipient(details.getRecipient())

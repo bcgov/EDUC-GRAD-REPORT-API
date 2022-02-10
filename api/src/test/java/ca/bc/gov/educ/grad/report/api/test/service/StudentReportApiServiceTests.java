@@ -964,21 +964,33 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		orderType = bcmpBundleService.createAchievementOrderType();
 		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Achievement");
 		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
-		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		testPackingSlipReport(
+				rds,
+				orderType,
+				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 		rds.clear();
 
 		rds.add(eCertificateReport);
 		orderType = bcmpBundleService.createCertificateOrderType(E);
 		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Certificate");
 		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
-		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		testPackingSlipReport(
+				rds,
+				orderType,
+				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 		rds.clear();
 
 		rds.add(sccpTranscriptReport);
 		orderType = bcmpBundleService.createTranscriptOrderType();
 		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Transcript");
 		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
-		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		testPackingSlipReport(
+				rds,
+				orderType,
+				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 
 		LOG.debug(">testPackingSlipReport");
 	}
@@ -986,14 +998,16 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	private void testPackingSlipReport(
 			final List<ReportDocument> rds,
 			final OrderType orderType,
-			final DestinationType destinationType)
+			final DestinationType destinationType,
+			final int total)
 			throws DomainServiceException, IOException {
 
 		ReportDocument packingSlip = packingSlipService.createPackingSlipReport(
 			16895L,
 			new Date(),
 			"Test Case",
-			rds.size()
+			rds.size(),
+				total
 		);
 
 		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);

@@ -46,6 +46,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
      * @param orderNumber Order number to include on the packing slip.
      * @param ordered Date the order was made.
      * @param quantity The quantity of items included in the packet.
+     * @param total The quantity of items included in the packet.
      * @return A ReportDocument that can be bundled with transcripts.
      * @throws DomainServiceException Could not create the packing slip report.
      */
@@ -53,14 +54,15 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final Long orderNumber,
             final Date ordered,
             final String orderedBy,
-            final int quantity) throws DomainServiceException {
+            final int quantity,
+            final int total) throws DomainServiceException {
         final String _m = "createStudentPackingSlipReport(Long, String, Date, OrderType, int)";
         LOG.entering(CLASSNAME, _m);
 
         PostalDeliveryInfo deliveryInfo = getPostalDeliveryInfo();
         OrderType orderType = getOrderType();
 
-        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity);
+        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity, total);
         final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
 
         LOG.exiting(CLASSNAME, _m);
@@ -84,12 +86,13 @@ public class PackingSlipServiceImpl implements PackingSlipService {
     private ReportDocument createPSIPackingSlipReport(
             final PostalDeliveryInfo address,
             final OrderType orderType,
-            final int quantity)
+            final int quantity,
+            final int total)
             throws DomainServiceException {
         final String _m = "createPSIPackingSlipReport(PostalDeliveryInfo, OrderType, int)";
         LOG.entering(CLASSNAME, _m);
 
-        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, new Date(), quantity);
+        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, new Date(), quantity, total);
 
         // Indicate that the packing slip is desinted for a PSI.
         details.setDestinationType(PSI);
@@ -115,7 +118,8 @@ public class PackingSlipServiceImpl implements PackingSlipService {
     private PackingSlipDetailsImpl createPackingSlipDetails(
             final PostalDeliveryInfo address,
             final Date ordered,
-            final int quantity)
+            final int quantity,
+            final int total)
             throws DomainServiceException {
         final String _m = "createPackingSlipDetails(PostalDeliveryInfo, Date, int)";
         LOG.entering(CLASSNAME, _m);
@@ -126,6 +130,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             details.setRecipient(address.getName());
             details.setAttentionTo(address.getAttentionTo());
             details.setDocumentsShipped(quantity);
+            details.setTotalShipped(total);
             details.setOrderDate(ordered);
         } catch (final Exception ex) {
             throw new DomainServiceException("Could not create or set packing slip details.", ex);
@@ -152,11 +157,12 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final Long orderNumber,
             final Date ordered,
             final String orderedBy,
-            final int quantity) throws DomainServiceException {
+            final int quantity,
+            final int total) throws DomainServiceException {
         final String _m = "createPackingSlipDetails(PostalDeliveryInfo, Long, String, int)";
         LOG.entering(CLASSNAME, _m);
 
-        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity);
+        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity, total);
         details.setOrderNumber(Long.toString(orderNumber));
         details.setOrderedByName(orderedBy);
         details.setPaperType(orderType.getPaperType());

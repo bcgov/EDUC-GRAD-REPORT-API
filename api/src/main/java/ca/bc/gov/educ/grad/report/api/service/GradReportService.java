@@ -92,7 +92,8 @@ public class GradReportService {
 					packingSlip.getOrderNumber(),
 					packingSlip.getOrderDate(),
 					packingSlip.getOrderedBy(),
-					packingSlip.getQuantity()
+					packingSlip.getQuantity(),
+					packingSlip.getTotal()
 			);
 			return report;
 		} catch (Exception e) {

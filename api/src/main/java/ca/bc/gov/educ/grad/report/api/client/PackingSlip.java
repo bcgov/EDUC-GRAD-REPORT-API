@@ -14,6 +14,7 @@ public class PackingSlip {
     String orderedBy;
     Long orderNumber;
     int quantity;
+    int total;
 
     public String getRecipient() {
         return recipient;
@@ -71,5 +72,13 @@ public class PackingSlip {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

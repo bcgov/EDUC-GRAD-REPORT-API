@@ -668,6 +668,7 @@ public class JRDataSourceFactory {
         return new PackingSlipDetails.Builder()
                 .withAddress(address)
                 .withDocumentsShipped(2)
+                .withTotalShipped(1)
                 .withOrderedByName(randomName())
                 .withRecipient(randomName())
                 .withAttentionTo(randomFullName())
