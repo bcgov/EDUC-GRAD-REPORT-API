@@ -311,10 +311,10 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 	<detail>
 		<band height="399">
 			<frame>
-				<reportElement x="0" y="0" width="567" height="174" isPrintWhenDetailOverflows="true" uuid="02a8019c-b2c9-4c2f-bacb-bd2f6bd2853f"/>
+				<reportElement x="0" y="0" width="567" height="160" isPrintWhenDetailOverflows="true" uuid="02a8019c-b2c9-4c2f-bacb-bd2f6bd2853f"/>
 			</frame>
 			<subreport overflowType="NoStretch">
-				<reportElement x="0" y="0" width="567" height="174" uuid="64a5d6b6-4093-4fac-ba67-f7d41efa8914">
+				<reportElement x="0" y="0" width="567" height="135" uuid="64a5d6b6-4093-4fac-ba67-f7d41efa8914">
 					<printWhenExpression><![CDATA[$F{student.provinciallyExaminableCourses}.size() > 0]]></printWhenExpression>
 				</reportElement>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
@@ -324,7 +324,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_ROWS_PER_PAGE">
-					<subreportParameterExpression><![CDATA[15]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[9]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_ROW_COUNT">
 					<subreportParameterExpression><![CDATA[$F{student.provinciallyExaminableCourses}.size()]]></subreportParameterExpression>
