@@ -57,7 +57,6 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
-import static java.lang.Integer.parseInt;
 import static java.text.NumberFormat.getIntegerInstance;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
@@ -788,35 +787,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             }
         }
         return course;
-
-    }
-
-    /**
-     * The number of credits can be a pure numeric value or adorned with extra
-     * characters (e.g., 2, 2p, (4)). This parses the numeric value regardless
-     * of whether there are non-numeric characters present.
-     *
-     * @param credits The number of credits to parse.
-     * @return The parsed value, or 0 if there were no digits present.
-     */
-    private int parseCredits(final String credits) {
-        final String methodName = "parseCredits(String)";
-        LOG.entering(CLASSNAME, methodName);
-
-        // Strip out any non-digits.
-        final String numericCredits = credits.replaceAll("[^\\d.]", "");
-        int result = 0;
-
-        try {
-            if (!numericCredits.isEmpty()) {
-                result = parseInt(numericCredits);
-            }
-        } catch (final Exception ex) {
-            LOG.log(Level.WARNING, "Could not parse credits: " + credits, ex);
-        }
-
-        LOG.exiting(CLASSNAME, methodName);
-        return result;
 
     }
 

@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static java.lang.Integer.parseInt;
+
 public abstract class GradReportServiceImpl implements Serializable {
 
     private static final long serialVersionUID = 5L;
@@ -181,5 +183,34 @@ public abstract class GradReportServiceImpl implements Serializable {
 
         LOG.exiting(CLASSNAME, m_);
         return school;
+    }
+
+    /**
+     * The number of credits can be a pure numeric value or adorned with extra
+     * characters (e.g., 2, 2p, (4)). This parses the numeric value regardless
+     * of whether there are non-numeric characters present.
+     *
+     * @param credits The number of credits to parse.
+     * @return The parsed value, or 0 if there were no digits present.
+     */
+    int parseCredits(final String credits) {
+        final String methodName = "parseCredits(String)";
+        LOG.entering(CLASSNAME, methodName);
+
+        // Strip out any non-digits.
+        final String numericCredits = credits.replaceAll("[^\\d.]", "");
+        int result = 0;
+
+        try {
+            if (!numericCredits.isEmpty()) {
+                result = parseInt(numericCredits);
+            }
+        } catch (final Exception ex) {
+            LOG.log(Level.WARNING, "Could not parse credits: " + credits, ex);
+        }
+
+        LOG.exiting(CLASSNAME, methodName);
+        return result;
+
     }
 }
