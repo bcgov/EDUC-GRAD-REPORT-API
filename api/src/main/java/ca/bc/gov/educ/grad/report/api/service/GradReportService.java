@@ -62,17 +62,7 @@ public class GradReportService {
 		try {
 			ReportDocument report = getPackingSlipReportDocument(reportRequest);
 			byte[] resultBinary = report.asBytes();
-			if(resultBinary.length > 0) {
-				HttpHeaders headers = new HttpHeaders();
-				headers.add("Content-Disposition", "inline; filename=" + reportFile);
-				response = ResponseEntity
-						.ok()
-						.headers(headers)
-						.contentType(MediaType.APPLICATION_PDF)
-						.body(resultBinary);
-			} else {
-				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			}
+			response = handleBinaryResponse(resultBinary, reportFile);
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
@@ -116,17 +106,7 @@ public class GradReportService {
 		try {
 			StudentAchievementReport report = getStudentAchievementReportDocument(reportRequest);
 			byte[] resultBinary = report.getReportData();
-			if(resultBinary.length > 0) {
-				HttpHeaders headers = new HttpHeaders();
-				headers.add("Content-Disposition", "inline; filename=" + reportFile);
-				response = ResponseEntity
-						.ok()
-						.headers(headers)
-						.contentType(MediaType.APPLICATION_PDF)
-						.body(resultBinary);
-			} else {
-				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			}
+			response = handleBinaryResponse(resultBinary, reportFile);
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
@@ -162,18 +142,7 @@ public class GradReportService {
 		try {
 			StudentTranscriptReport report = getStudentTranscriptReportDocument(reportRequest);
 			byte[] resultBinary = report.getReportData();
-			if(resultBinary.length > 0) {
-				HttpHeaders headers = new HttpHeaders();
-				headers.add("Content-Disposition", "inline; filename=" + reportFile);
-				response = ResponseEntity
-						.ok()
-						.headers(headers)
-						.contentType(MediaType.APPLICATION_PDF)
-						.body(resultBinary);
-			} else {
-				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			}
-
+			response = handleBinaryResponse(resultBinary, reportFile);
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
@@ -208,18 +177,7 @@ public class GradReportService {
 		try {
 			DocumentBundle documentBundle = getStudentCertificateReportDocument(reportRequest);
 			byte[] resultBinary = documentBundle.asBytes();
-
-			if(resultBinary.length > 0) {
-				HttpHeaders headers = new HttpHeaders();
-				headers.add("Content-Disposition", "inline; filename=" + reportFile);
-				response = ResponseEntity
-						.ok()
-						.headers(headers)
-						.contentType(MediaType.APPLICATION_PDF)
-						.body(resultBinary);
-			} else {
-				response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-			}
+			response = handleBinaryResponse(resultBinary, reportFile);
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);
@@ -269,6 +227,23 @@ public class GradReportService {
 
 		result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message);
 		return result;
+	}
+
+	private ResponseEntity handleBinaryResponse(byte[] resultBinary, String reportFile) {
+		ResponseEntity response = null;
+
+		if(resultBinary.length > 0) {
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Disposition", "inline; filename=" + reportFile);
+			response = ResponseEntity
+					.ok()
+					.headers(headers)
+					.contentType(MediaType.APPLICATION_PDF)
+					.body(resultBinary);
+		} else {
+			response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		return response;
 	}
 
 }

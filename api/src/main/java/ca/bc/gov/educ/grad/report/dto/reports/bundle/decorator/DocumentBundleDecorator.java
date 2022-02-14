@@ -116,40 +116,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
             packingSlipPage = false;
         }
 
-        final byte[] result;
-
-        // Create a place to write the new bundle.
-        try (final ByteArrayOutputStream out = createByteArrayOutputStream()) {
-            final Document document = new Document();
-            final PdfCopy copy = new PdfSmartCopy(document, out);
-            document.open();
-
-            byte[] previousPdf = pdfs.get(0);
-            PdfReader reader = new PdfReader(previousPdf);
-
-            // Concatenate the PDF documents.
-            for (final byte[] pdf : pdfs) {
-                // Interpret a PDF only when it is different to the previous one
-                if (previousPdf != pdf) {
-                    previousPdf = pdf;
-                    reader = new PdfReader(pdf);
-                }
-
-                final int pages = reader.getNumberOfPages();
-
-                // Copy all the pages from the list into a new document.
-                for (int i = 1; i <= pages; i++) {
-                    copy.addPage(copy.getImportedPage(reader, i));
-                }
-
-                reader.close();
-            }
-
-            document.close();
-            result = out.toByteArray();
-        } catch (final DocumentException e) {
-            throw new IOException(e);
-        }
+        final byte[] result = writeBundle(pdfs);
 
         LOG.exiting(CLASSNAME, methodName);
         return result;
@@ -185,6 +152,25 @@ public abstract class DocumentBundleDecorator implements Serializable {
             packingSlipPage = false;
         }
 
+        final byte[] result = writeBundle(pdfs);
+
+        LOG.exiting(CLASSNAME, methodName);
+        return result;
+    }
+
+    /**
+     * Rotates the given document by 90 degrees.
+     *
+     * @param report The document to be rotated.
+     * @return A rotated version of the given document.
+     * @throws IOException Could not process the report.
+     */
+    protected ReportDocument process(final ReportDocument report)
+            throws IOException {
+        return rotate(report, 90);
+    }
+
+    private byte[] writeBundle(List<byte[]> pdfs) throws IOException {
         final byte[] result;
 
         // Create a place to write the new bundle.
@@ -219,21 +205,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
         } catch (final DocumentException e) {
             throw new IOException(e);
         }
-
-        LOG.exiting(CLASSNAME, methodName);
         return result;
-    }
-
-    /**
-     * Rotates the given document by 90 degrees.
-     *
-     * @param report The document to be rotated.
-     * @return A rotated version of the given document.
-     * @throws IOException Could not process the report.
-     */
-    protected ReportDocument process(final ReportDocument report)
-            throws IOException {
-        return rotate(report, 90);
     }
 
     /**

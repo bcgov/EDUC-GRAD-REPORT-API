@@ -20,7 +20,6 @@ package ca.bc.gov.educ.grad.report.service.impl;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.impl.ParametersImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
@@ -28,12 +27,9 @@ import ca.bc.gov.educ.grad.report.model.achievement.*;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
-import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.graduation.*;
 import ca.bc.gov.educ.grad.report.model.reports.*;
-import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
-import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
@@ -50,7 +46,6 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
@@ -98,7 +93,7 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
  */
 @Service
 @DeclareRoles({STUDENT_ACHIEVEMENT_REPORT, USER, FULFILLMENT_SERVICES_USER})
-public class StudentAchievementServiceImpl implements StudentAchievementService, Serializable {
+public class StudentAchievementServiceImpl extends GradReportServiceImpl implements StudentAchievementService {
 
     private static final long serialVersionUID = 5L;
 
@@ -257,84 +252,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
 
         LOG.exiting(CLASSNAME, methodName);
         return report;
-    }
-
-    private PersonalEducationNumber getStudentPEN() throws DomainServiceException {
-        final String methodName = "getStudentPEN()";
-        LOG.entering(CLASSNAME, methodName);
-
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
-
-        PersonalEducationNumberObject pen = new PersonalEducationNumberObject();
-        pen.setPen(reportData.getStudent().getPen().getPen());
-
-        LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
-        LOG.exiting(CLASSNAME, methodName);
-        return pen;
-    }
-
-    /**
-     * Read the static student data from TRAX which is needed for the achievement
-     * service.
-     *
-     * @param pen
-     * @return
-     */
-    private StudentInfo getStudentInfo(final String pen) throws DataException, DomainServiceException {
-        final String methodName = "getStudentInfo(String)";
-        LOG.entering(CLASSNAME, methodName);
-
-        final StudentInfo studentInfo;
-
-        try {
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
-            StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
-            final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
-            student.setNonGradReasons(reasons);
-            studentInfo = student;
-
-            LOG.log(Level.FINER,
-                    "Retrieved student info from TRAX for PEN: {0}", pen);
-
-            if (studentInfo == null) {
-                final String msg = "Failed to find achievement results in TRAX for PEN: ".concat(pen);
-                final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            } else {
-                LOG.log(Level.FINEST, "Retrieved student from achievement:");
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
-            }
-
-        } catch (Exception ex) {
-            String msg = "Failed to access TRAX achievement data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
-
-        LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, methodName);
-        return studentInfo;
     }
 
     /**
@@ -609,77 +526,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         LOG.log(Level.FINE, "Completed call to TRAX.");
         LOG.exiting(CLASSNAME, m_);
         return results;
-    }
-
-    /**
-     * Adapt the TRAX data from the data value object into a Student object.
-     *
-     * @param pen
-     * @param studentInfo
-     */
-    private Student adaptStudent(
-            final PersonalEducationNumber pen,
-            final StudentInfo studentInfo) {
-
-        final String methodName = "adaptStudent(PersonalEducationNumber, StudentInfo)";
-        final Object[] params = {pen, studentInfo};
-        LOG.entering(CLASSNAME, methodName, params);
-
-        final StudentImpl student = new StudentImpl();
-        student.setPen(pen);
-        student.setFirstName(studentInfo.getFirstName());
-        student.setMiddleName(studentInfo.getMiddleName());
-        student.setLastName(studentInfo.getLastName());
-        student.setBirthdate(studentInfo.getBirthdate());
-        student.setGrade(studentInfo.getGrade());
-        student.setGender(studentInfo.getGender());
-        student.setHasOtherProgram(studentInfo.getHasOtherProgram());
-        student.setGradProgram(studentInfo.getGradProgram());
-        student.setOtherProgramParticipation(studentInfo.getOtherProgramParticipation());
-
-        final PostalAddressImpl address = new PostalAddressImpl();
-        address.setStreetLine1(studentInfo.getStudentAddress1());
-        address.setStreetLine2(studentInfo.getStudentAddress2());
-        address.setCity(studentInfo.getStudentCity());
-        address.setCode(studentInfo.getStudentPostalCode());
-        address.setRegion(studentInfo.getStudentProv());
-        address.setCountry(studentInfo.getCountryCode());
-        student.setCurrentMailingAddress(address);
-
-        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
-        student.setSignatureBlockTypes(signatureBlockTypes);
-
-        LOG.exiting(CLASSNAME, methodName);
-        return student;
-    }
-
-    /**
-     * Adapt the TRAX data from the data value object into a School object.
-     *
-     * @param studentInfo
-     */
-    private School adaptSchool(final StudentInfo studentInfo) {
-        final String m_ = "adaptSchool(StudentInfo)";
-        LOG.entering(CLASSNAME, m_, studentInfo);
-
-        final SchoolImpl school = new SchoolImpl();
-        school.setMincode(studentInfo.getMincode());
-        school.setName(studentInfo.getSchoolName());
-        school.setTypeIndicator(studentInfo.getSchoolTypeIndicator());
-        school.setTypeBanner(studentInfo.getSchoolTypeBanner());
-
-        final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
-        address.setStreet1(studentInfo.getSchoolStreet());
-        address.setStreet2(studentInfo.getSchoolStreet2());
-        address.setCity(studentInfo.getSchoolCity());
-        address.setPostalCode(studentInfo.getSchoolPostalCode());
-        address.setProvince(studentInfo.getSchoolProv());
-        school.setAddress(address);
-
-        LOG.exiting(CLASSNAME, m_);
-        return school;
     }
 
     /**
