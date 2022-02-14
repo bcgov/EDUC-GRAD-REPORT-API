@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ import java.util.Optional;
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
 @Service
-public class GradReportCodeService {
+public class GradReportCodeService implements Serializable {
 
     private static final String CLASS_NAME = GradReportCodeService.class.getName();
     private static Logger log = LoggerFactory.getLogger(CLASS_NAME);

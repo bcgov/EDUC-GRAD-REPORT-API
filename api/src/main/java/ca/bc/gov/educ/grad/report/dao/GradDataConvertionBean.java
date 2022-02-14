@@ -25,12 +25,13 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Component
-public class GradDataConvertionBean {
+public class GradDataConvertionBean implements Serializable {
 
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);

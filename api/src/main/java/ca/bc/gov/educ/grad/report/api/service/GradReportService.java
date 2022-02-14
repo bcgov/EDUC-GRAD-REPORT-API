@@ -51,13 +51,13 @@ public class GradReportService {
 	@Autowired
 	PackingSlipService packingSlipService;
 
-	public ResponseEntity getPackingSlipReport(ReportRequest reportRequest) {
+	public ResponseEntity<?> getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
-		ResponseEntity response = null;
+		ResponseEntity<?> response = null;
 
 		try {
 			ReportDocument report = getPackingSlipReportDocument(reportRequest);
@@ -95,13 +95,13 @@ public class GradReportService {
 		return null;
 	}
 
-    public ResponseEntity getStudentAchievementReport(ReportRequest reportRequest) {
+    public ResponseEntity<?> getStudentAchievementReport(ReportRequest reportRequest) {
     	String methodName = "getStudentAchievementReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
-		ResponseEntity response = null;
+		ResponseEntity<?> response = null;
 
 		try {
 			StudentAchievementReport report = getStudentAchievementReportDocument(reportRequest);
@@ -131,13 +131,13 @@ public class GradReportService {
 		return null;
 	}
 
-	public ResponseEntity getStudentTranscriptReport(ReportRequest reportRequest) {
+	public ResponseEntity<?> getStudentTranscriptReport(ReportRequest reportRequest) {
 		String methodName = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
-		ResponseEntity response = null;
+		ResponseEntity<?> response = null;
 
 		try {
 			StudentTranscriptReport report = getStudentTranscriptReportDocument(reportRequest);
@@ -166,13 +166,13 @@ public class GradReportService {
 		return null;
 	}
 	
-	public ResponseEntity getStudentCertificateReport(ReportRequest reportRequest) {
+	public ResponseEntity<?> getStudentCertificateReport(ReportRequest reportRequest) {
 		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		String reportFile = reportRequest.getOptions().getReportFile();
 
-		ResponseEntity response = null;
+		ResponseEntity<?> response = null;
 
 		try {
 			DocumentBundle documentBundle = getStudentCertificateReportDocument(reportRequest);
@@ -210,8 +210,8 @@ public class GradReportService {
 		return null;
 	}
 
-	protected ResponseEntity getInternalServerErrorResponse(Throwable t) {
-		ResponseEntity result = null;
+	protected ResponseEntity<?> getInternalServerErrorResponse(Throwable t) {
+		ResponseEntity<?> result = null;
 
 		Throwable tmp = t;
 		String message = null;
@@ -229,8 +229,8 @@ public class GradReportService {
 		return result;
 	}
 
-	private ResponseEntity handleBinaryResponse(byte[] resultBinary, String reportFile) {
-		ResponseEntity response = null;
+	private ResponseEntity<?> handleBinaryResponse(byte[] resultBinary, String reportFile) {
+		ResponseEntity<?> response = null;
 
 		if(resultBinary.length > 0) {
 			HttpHeaders headers = new HttpHeaders();
