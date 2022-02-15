@@ -3,9 +3,10 @@ package ca.bc.gov.educ.grad.report.api.client;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class PackingSlip {
+public class PackingSlip implements Serializable {
 
     String recipient;
     School school;
@@ -14,6 +15,7 @@ public class PackingSlip {
     String orderedBy;
     Long orderNumber;
     int quantity;
+    int total;
 
     public String getRecipient() {
         return recipient;
@@ -71,5 +73,13 @@ public class PackingSlip {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

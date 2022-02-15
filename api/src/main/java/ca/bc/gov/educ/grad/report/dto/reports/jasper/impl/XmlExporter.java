@@ -79,8 +79,8 @@ public class XmlExporter implements Exporter {
      */
     @Override
     public void exportReport() throws JRException {
-        final String _m = "exportReport()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "exportReport()";
+        LOG.entering(CLASSNAME, methodName);
 
         try {
             final Element docRoot = createElement("root");
@@ -113,11 +113,11 @@ public class XmlExporter implements Exporter {
         } catch (final ParserConfigurationException | DOMException | JAXBException | IOException | SAXException ex) {
             final Throwable t = getRootCause(ex.getCause());
             LOG.info(t.getMessage());
-            LOG.throwing(CLASSNAME, _m, ex);
+            LOG.throwing(CLASSNAME, methodName, ex);
             throw new JRException(ex);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
     }
 
     public Throwable getRootCause(Throwable throwable) {
@@ -157,8 +157,8 @@ public class XmlExporter implements Exporter {
     }
 
     private Element createDataSourceElement() throws JAXBException, IOException, SAXException, ParserConfigurationException {
-        final String _m = "createDataSourceElement()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createDataSourceElement()";
+        LOG.entering(CLASSNAME, methodName);
 
         final Student student = getStudentDataSource();
         student.setCreatedOn(new Date());
@@ -203,20 +203,20 @@ public class XmlExporter implements Exporter {
 
     @Override
     public void setConfiguration(final ReportExportConfiguration configuration) {
-        final String _m = "setConfiguration(ReportExportConfiguration)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "setConfiguration(ReportExportConfiguration)";
+        LOG.entering(CLASSNAME, methodName);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
     }
 
     @Override
     public void setConfiguration(final ExporterConfiguration configuration) {
-        final String _m = "setConfiguration(ExporterConfiguration)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "setConfiguration(ExporterConfiguration)";
+        LOG.entering(CLASSNAME, methodName);
 
         this.xmlExporterConfiguration = (XmlExporterConfiguration) configuration;
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
     }
 
     private XmlExporterConfiguration getXmlExporterConfiguration() {

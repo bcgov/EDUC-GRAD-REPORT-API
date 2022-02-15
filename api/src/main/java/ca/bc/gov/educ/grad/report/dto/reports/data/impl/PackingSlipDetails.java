@@ -73,6 +73,11 @@ public final class PackingSlipDetails extends BusinessEntity {
     private Integer documentsShipped;
 
     /**
+     * Number of certificates or transcript sent.
+     */
+    private Integer totalShipped;
+
+    /**
      * The STs order number.
      */
     private String orderNumber;
@@ -326,6 +331,14 @@ public final class PackingSlipDetails extends BusinessEntity {
         this.orderNumber = orderNumber;
     }
 
+    public Integer getTotalShipped() {
+        return totalShipped;
+    }
+
+    public void setTotalShipped(Integer totalShipped) {
+        this.totalShipped = totalShipped;
+    }
+
     /**
      * Used to create instances of the outer class.
      */
@@ -415,6 +428,17 @@ public final class PackingSlipDetails extends BusinessEntity {
          */
         public Builder withDocumentsShipped(final Integer documentsShipped) {
             getObject().setDocumentsShipped(documentsShipped);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param totalShipped Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withTotalShipped(final Integer totalShipped) {
+            getObject().setTotalShipped(totalShipped);
             return thisBuilder();
         }
 

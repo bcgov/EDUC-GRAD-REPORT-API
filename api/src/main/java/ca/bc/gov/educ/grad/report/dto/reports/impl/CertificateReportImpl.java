@@ -136,15 +136,15 @@ public final class CertificateReportImpl extends StudentReportImpl
     public void setSchool(
             final ca.bc.gov.educ.grad.report.model.school.School school,
             final String logoCode) {
-        final String _m = "setSchool";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "setSchool";
+        LOG.entering(CLASSNAME, methodName);
 
         super.setSchool(school, logoCode);
         ensureValidCertificate("setSchool");
         setIndependentSchool(school.isIndependent());
         setSchoolSignatureCode(school.getSignatureCode());
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
     }
 
     /**

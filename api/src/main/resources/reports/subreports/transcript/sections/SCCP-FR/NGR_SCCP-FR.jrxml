@@ -19,7 +19,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Reasons for Non-Graduation]]></text>
+				<text><![CDATA[Reasons for Non-Completion]]></text>
 			</staticText>
 		</band>
 	</pageHeader>

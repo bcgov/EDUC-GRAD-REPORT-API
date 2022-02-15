@@ -22,6 +22,8 @@ import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 
+import java.util.Objects;
+
 /**
  * Contains common behaviours and attributes for all the student reports.
  *
@@ -99,5 +101,19 @@ public class BusinessReportEntity extends AbstractDomainEntity implements Busine
     @Override
     public byte[] asBytes() {
         return getReportData();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        BusinessReportEntity that = (BusinessReportEntity) o;
+        return reportName.equals(that.reportName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), reportName);
     }
 }

@@ -86,7 +86,7 @@ public final class AcademicAward extends BusinessEntity implements Serializable 
      *
      * @return A string, possibly empty, that contains a student's grade.
      */
-    public synchronized String getGraduationDate() {
+    public  String getGraduationDate() {
         return nullSafe(this.graduationDate);
     }
 
@@ -149,7 +149,7 @@ public final class AcademicAward extends BusinessEntity implements Serializable 
      *
      * @param graduationDate Passed in by the builder.
      */
-    protected synchronized void setGraduationDate(final String graduationDate) {
+    protected  void setGraduationDate(final String graduationDate) {
         this.graduationDate = graduationDate;
     }
 

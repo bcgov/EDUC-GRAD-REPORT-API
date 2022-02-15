@@ -72,4 +72,10 @@ public class AchievementOrderTypeImpl extends OrderTypeImpl
         this.setPaperType(this.achievementType.getPaperType());
     }
 
+    @Override
+    public String toString() {
+        return "AchievementOrderTypeImpl{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

@@ -710,7 +710,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<text><![CDATA[NUM CREDITS]]></text>
+								<text><![CDATA[Credits]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
@@ -820,7 +820,7 @@
 							<textField>
 								<reportElement style="GeneratedText" x="0" y="0" width="470" height="30" uuid="5607014f-7304-4fac-81bd-81ea778e0f6e"/>
 								<textElement textAlignment="Left" verticalAlignment="Middle"/>
-								<textFieldExpression><![CDATA["   "+$F{description}]]></textFieldExpression>
+								<textFieldExpression><![CDATA["   " + $F{description}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -834,11 +834,11 @@
 				<textFieldExpression><![CDATA[$P{hasNonGradReasons} == "true"? "NON-GRAD REASONS":""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" positionType="Float" x="5" y="40" width="520" height="25" uuid="259fd849-ef40-446c-b2eb-522107cf0508"/>
+				<reportElement style="GeneratedText" positionType="Float" x="5" y="25" width="520" height="40" uuid="259fd849-ef40-446c-b2eb-522107cf0508"/>
 				<textFieldExpression><![CDATA[$P{gradObj}.getGraduationMessage()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="GeneratedText" x="5" y="21" width="115" height="13" uuid="1977f153-81d8-4270-9a12-6b18b57ea323"/>
+				<reportElement style="GeneratedText" x="5" y="5" width="115" height="13" uuid="1977f153-81d8-4270-9a12-6b18b57ea323"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>

@@ -17,6 +17,7 @@ public interface PackingSlipService {
      * @param orderNumber Order number to include on the packing slip.
      * @param ordered Date the order was made.
      * @param quantity The quantity of items included in the packet.
+     * @param total The quantity of items included in the packet.
      * @return A ReportDocument that can be bundled with transcripts.
      * @throws DomainServiceException Could not create the packing slip report.
      */
@@ -24,7 +25,8 @@ public interface PackingSlipService {
             final Long orderNumber,
             final Date ordered,
             final String orderedBy,
-            final int quantity) throws DomainServiceException;
+            final int quantity,
+            final int total) throws DomainServiceException;
 
 
 }

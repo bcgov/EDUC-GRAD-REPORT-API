@@ -956,25 +956,41 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(packingSlipReportRequest);
 		assertNotNull(packingSlipReportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
-
 		packingSlipReportRequest.getOptions().setReportFile("Packing Slip Report.pdf");
 
 		List<ReportDocument> rds = new ArrayList<>();
 		rds.add(achievementReport);
 
 		orderType = bcmpBundleService.createAchievementOrderType();
-		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Achievement");
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+		testPackingSlipReport(
+				rds,
+				orderType,
+				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 		rds.clear();
 
 		rds.add(eCertificateReport);
 		orderType = bcmpBundleService.createCertificateOrderType(E);
-		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Certificate");
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+		testPackingSlipReport(
+				rds,
+				orderType,
+				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 		rds.clear();
 
 		rds.add(sccpTranscriptReport);
 		orderType = bcmpBundleService.createTranscriptOrderType();
-		testPackingSlipReport(rds, orderType, DestinationType.PSI);
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Transcript");
+		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+		testPackingSlipReport(
+				rds,
+				orderType,
+				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 
 		LOG.debug(">testPackingSlipReport");
 	}
@@ -982,18 +998,20 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	private void testPackingSlipReport(
 			final List<ReportDocument> rds,
 			final OrderType orderType,
-			final DestinationType destinationType)
+			final DestinationType destinationType,
+			final int total)
 			throws DomainServiceException, IOException {
 
 		ReportDocument packingSlip = packingSlipService.createPackingSlipReport(
 			16895L,
 			new Date(),
 			"Test Case",
-			rds.size()
+			rds.size(),
+				total
 		);
 
-		DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
-		byte[] bArrray = (byte[]) documentBundle.asBytes();
+		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
+		byte[] bArrray = (byte[]) packingSlip.asBytes();
 		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
 			out.write(bArrray);
 		}

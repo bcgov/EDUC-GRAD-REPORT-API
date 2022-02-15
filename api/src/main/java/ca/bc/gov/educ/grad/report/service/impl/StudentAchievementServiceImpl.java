@@ -20,7 +20,6 @@ package ca.bc.gov.educ.grad.report.service.impl;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.impl.ParametersImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
@@ -28,12 +27,9 @@ import ca.bc.gov.educ.grad.report.model.achievement.*;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
-import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.graduation.*;
 import ca.bc.gov.educ.grad.report.model.reports.*;
-import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
-import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
@@ -50,7 +46,6 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
@@ -65,7 +60,6 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
-import static java.lang.Integer.parseInt;
 import static java.text.NumberFormat.getIntegerInstance;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
@@ -98,7 +92,7 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
  */
 @Service
 @DeclareRoles({STUDENT_ACHIEVEMENT_REPORT, USER, FULFILLMENT_SERVICES_USER})
-public class StudentAchievementServiceImpl implements StudentAchievementService, Serializable {
+public class StudentAchievementServiceImpl extends GradReportServiceImpl implements StudentAchievementService {
 
     private static final long serialVersionUID = 5L;
 
@@ -219,8 +213,8 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final ReportFormat format,
             final boolean preview, final boolean interim)
             throws DomainServiceException, IOException, DataException {
-        final String _m = "createAchievement(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createAchievement(ReportFormat, boolean)";
+        LOG.entering(CLASSNAME, methodName);
 
         final PersonalEducationNumber pen = getStudentPEN();
         LOG.log(Level.FINE, "Retrieved studentInfo for pen: {0}.", pen.getValue());
@@ -228,7 +222,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final StudentAchievementReport report = getStudentAchievementReport(
                 pen, format, preview, null, interim
         );
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
     }
 
@@ -248,93 +242,15 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final ReportFormat format,
             final boolean preview, final PersonalEducationNumber pen, final Parameters parameters, final boolean interim)
             throws DomainServiceException, IOException, DataException {
-        final String _m = "createAchievement(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createAchievement(ReportFormat, boolean)";
+        LOG.entering(CLASSNAME, methodName);
         LOG.log(Level.FINE, "Retrieved achievement for pen: {0}.", pen.getValue());
 
         final StudentAchievementReport report = getStudentAchievementReport(pen, format, preview, parameters, interim);
         LOG.log(Level.INFO, "Created StudentAchievementReport for pen: {0}.", pen.getValue());
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
-    }
-
-    private PersonalEducationNumber getStudentPEN() throws DomainServiceException {
-        final String _m = "getStudentPEN()";
-        LOG.entering(CLASSNAME, _m);
-
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, _m, dse);
-            throw dse;
-        }
-
-        PersonalEducationNumberObject pen = new PersonalEducationNumberObject();
-        pen.setPen(reportData.getStudent().getPen().getPen());
-
-        LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
-        LOG.exiting(CLASSNAME, _m);
-        return pen;
-    }
-
-    /**
-     * Read the static student data from TRAX which is needed for the achievement
-     * service.
-     *
-     * @param pen
-     * @return
-     */
-    private StudentInfo getStudentInfo(final String pen) throws DataException, DomainServiceException {
-        final String _m = "getStudentInfo(String)";
-        LOG.entering(CLASSNAME, _m);
-
-        final StudentInfo studentInfo;
-
-        try {
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, _m, dse);
-                throw dse;
-            }
-
-            StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
-            final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
-            student.setNonGradReasons(reasons);
-            studentInfo = student;
-
-            LOG.log(Level.FINER,
-                    "Retrieved student info from TRAX for PEN: {0}", pen);
-
-            if (studentInfo == null) {
-                final String msg = "Failed to find achievement results in TRAX for PEN: ".concat(pen);
-                final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, _m, dse);
-                throw dse;
-            } else {
-                LOG.log(Level.FINEST, "Retrieved student from achievement:");
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
-            }
-
-        } catch (Exception ex) {
-            String msg = "Failed to access TRAX achievement data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
-            throw dex;
-        }
-
-        LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, _m);
-        return studentInfo;
     }
 
     /**
@@ -612,77 +528,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     }
 
     /**
-     * Adapt the TRAX data from the data value object into a Student object.
-     *
-     * @param pen
-     * @param studentInfo
-     */
-    private Student adaptStudent(
-            final PersonalEducationNumber pen,
-            final StudentInfo studentInfo) {
-
-        final String _m = "adaptStudent(PersonalEducationNumber, StudentInfo)";
-        final Object[] params = {pen, studentInfo};
-        LOG.entering(CLASSNAME, _m, params);
-
-        final StudentImpl student = new StudentImpl();
-        student.setPen(pen);
-        student.setFirstName(studentInfo.getFirstName());
-        student.setMiddleName(studentInfo.getMiddleName());
-        student.setLastName(studentInfo.getLastName());
-        student.setBirthdate(studentInfo.getBirthdate());
-        student.setGrade(studentInfo.getGrade());
-        student.setGender(studentInfo.getGender());
-        student.setHasOtherProgram(studentInfo.getHasOtherProgram());
-        student.setGradProgram(studentInfo.getGradProgram());
-        student.setOtherProgramParticipation(studentInfo.getOtherProgramParticipation());
-
-        final PostalAddressImpl address = new PostalAddressImpl();
-        address.setStreetLine1(studentInfo.getStudentAddress1());
-        address.setStreetLine2(studentInfo.getStudentAddress2());
-        address.setCity(studentInfo.getStudentCity());
-        address.setCode(studentInfo.getStudentPostalCode());
-        address.setRegion(studentInfo.getStudentProv());
-        address.setCountry(studentInfo.getCountryCode());
-        student.setCurrentMailingAddress(address);
-
-        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
-        student.setSignatureBlockTypes(signatureBlockTypes);
-
-        LOG.exiting(CLASSNAME, _m);
-        return student;
-    }
-
-    /**
-     * Adapt the TRAX data from the data value object into a School object.
-     *
-     * @param studentInfo
-     */
-    private School adaptSchool(final StudentInfo studentInfo) {
-        final String m_ = "adaptSchool(StudentInfo)";
-        LOG.entering(CLASSNAME, m_, studentInfo);
-
-        final SchoolImpl school = new SchoolImpl();
-        school.setMincode(studentInfo.getMincode());
-        school.setName(studentInfo.getSchoolName());
-        school.setTypeIndicator(studentInfo.getSchoolTypeIndicator());
-        school.setTypeBanner(studentInfo.getSchoolTypeBanner());
-
-        final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
-        address.setStreet1(studentInfo.getSchoolStreet());
-        address.setStreet2(studentInfo.getSchoolStreet2());
-        address.setCity(studentInfo.getSchoolCity());
-        address.setPostalCode(studentInfo.getSchoolPostalCode());
-        address.setProvince(studentInfo.getSchoolProv());
-        school.setAddress(address);
-
-        LOG.exiting(CLASSNAME, m_);
-        return school;
-    }
-
-    /**
      * Convert non-graduation reasons from a TRAX map to an STs list.
      *
      * @param student The student instance that has non-grad reasons to
@@ -691,8 +536,8 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
      * NonGradReasons instances.
      */
     private List<NonGradReason> adaptReasons(final StudentInfo student) {
-        final String _m = "adaptReasons(StudentInfo)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "adaptReasons(StudentInfo)";
+        LOG.entering(CLASSNAME, methodName);
 
         final Map<String, String> gradReasons = student.getNonGradReasons();
         final List<NonGradReason> reasons = new ArrayList<>();
@@ -706,7 +551,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             reasons.add(r);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return reasons;
     }
 
@@ -724,8 +569,8 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final Parameters parameters,
             final boolean interim,
             final String gradProgram) throws DomainServiceException, IOException {
-        final String _m = "createReport(...)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createReport(...)";
+        LOG.entering(CLASSNAME, methodName);
 
         final AchievementReport report = reportService.createAchievementReport();
 
@@ -747,7 +592,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final String msg = "Failed to create report.";
             LOG.log(Level.SEVERE, msg, ex);
             final DomainServiceException dse = new DomainServiceException(msg, ex);
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -757,7 +602,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         if (isEmpty(content)) {
             final String msg = "The generated report output is empty.";
             DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -766,19 +611,19 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         );
         LOG.log(Level.FINE, "Created StudentAchievementReport {0}.", new Object[]{achievementReport});
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return achievementReport;
     }
 
     @Override
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters createParameters() {
-        final String _m = "createParameters()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createParameters()";
+        LOG.entering(CLASSNAME, methodName);
 
         Parameters parameters = reportService.createParameters();
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return parameters;
     }
 
@@ -788,8 +633,8 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
             final boolean preview,
             Parameters parameters,
             final boolean interim) throws DomainServiceException, IOException {
-        final String _m = "getStudentAchievementReport(String, ReportFormat, boolean, Parameters, boolean)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getStudentAchievementReport(String, ReportFormat, boolean, Parameters, boolean)";
+        LOG.entering(CLASSNAME, methodName);
 
         if (parameters == null) {
             parameters = new ParametersImpl();
@@ -865,7 +710,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
                 studentInfo.getGradProgram()
         );
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
     }
 
@@ -885,9 +730,9 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     private GraduationData adaptGraduationData(
             final StudentInfo studentInfo,
             final Achievement achievement) {
-        final String _m = "adaptGraduationData(StudentInfo, Achievement, String)";
+        final String methodName = "adaptGraduationData(StudentInfo, Achievement, String)";
         final Object[] params = {studentInfo, achievement};
-        LOG.entering(CLASSNAME, _m, params);
+        LOG.entering(CLASSNAME, methodName, params);
 
         final GraduationData graduationData = new GraduationDataImpl();
 
@@ -900,7 +745,7 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
         final String creditsUsedForGrad = getCreditsUsedForGrad(achievement);
         ((GraduationDataImpl) graduationData).setTotalCreditsUsedForGrad(creditsUsedForGrad);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
 
         return graduationData;
     }
@@ -909,35 +754,6 @@ public class StudentAchievementServiceImpl implements StudentAchievementService,
     @RolesAllowed({STUDENT_ACHIEVEMENT_REPORT, USER})
     public StudentAchievementReport buildAchievementReport(final ReportFormat format, final boolean interim) throws DomainServiceException, IOException, DataException {
         return createAchievementReport(format, true, interim);
-    }
-
-    /**
-     * The number of credits can be a pure numeric value or adorned with extra
-     * characters (e.g., 2, 2p, (4)). This parses the numeric value regardless
-     * of whether there are non-numeric characters present.
-     *
-     * @param credits The number of credits to parse.
-     * @return The parsed value, or 0 if there were no digits present.
-     */
-    private int parseCredits(final String credits) {
-        final String _m = "parseCredits(String)";
-        LOG.entering(CLASSNAME, _m);
-
-        // Strip out any non-digits.
-        final String numericCredits = credits.replaceAll("[^\\d.]", "");
-        int result = 0;
-
-        try {
-            if (!numericCredits.isEmpty()) {
-                result = parseInt(numericCredits);
-            }
-        } catch (final Exception ex) {
-            LOG.log(Level.WARNING, "Could not parse credits: " + credits, ex);
-        }
-
-        LOG.exiting(CLASSNAME, _m);
-        return result;
-
     }
 
     /**

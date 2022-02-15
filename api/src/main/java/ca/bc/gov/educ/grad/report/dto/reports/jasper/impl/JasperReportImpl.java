@@ -70,8 +70,8 @@ public class JasperReportImpl {
     }
 
     public ReportDocument export() throws IOException {
-        final String _m = "export()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "export()";
+        LOG.entering(CLASSNAME, methodName);
 
         final ReportFormat format = getFormat();
         final Exporter exporter = createExporter();
@@ -119,7 +119,7 @@ public class JasperReportImpl {
 
         final ReportDocumentImpl result = new ReportDocumentImpl(bytes);
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return result;
     }
 

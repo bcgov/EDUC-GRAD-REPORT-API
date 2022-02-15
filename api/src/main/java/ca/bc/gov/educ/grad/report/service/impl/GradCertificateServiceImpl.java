@@ -83,8 +83,8 @@ public class GradCertificateServiceImpl
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public List<BusinessReport> buildReport() throws DomainServiceException {
-        final String _m = "buildReport()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "buildReport()";
+        LOG.entering(CLASSNAME, methodName);
 
 
         ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
@@ -93,7 +93,7 @@ public class GradCertificateServiceImpl
             EntityNotFoundException dse = new EntityNotFoundException(
                     null,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -108,7 +108,7 @@ public class GradCertificateServiceImpl
         if (certificate == null) {
             final String msg = "Failed to find student certificate";
             final DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, _m, dse);
+            LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
 
@@ -142,7 +142,7 @@ public class GradCertificateServiceImpl
             certificates.add(gradCert);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return certificates;
     }
 
@@ -161,42 +161,10 @@ public class GradCertificateServiceImpl
             final School school,
             final Certificate certificate) throws DomainServiceException {
 
-        final CertificateType rsRptType;
+        final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
-
-        switch(certType) {
-            case "E":
-                rsRptType = CertificateType.E;
-                break;
-            case "A":
-                rsRptType = CertificateType.A;
-                break;
-            case "EI":
-                rsRptType = CertificateType.EI;
-                break;
-            case "AI":
-                rsRptType = CertificateType.AI;
-                break;
-            case "S":
-                rsRptType = CertificateType.S;
-                break;
-            case "SC":
-                rsRptType = CertificateType.SC;
-                break;
-            case "SCF":
-                rsRptType = CertificateType.SCF;
-                break;
-            case "F":
-                rsRptType = CertificateType.F;
-                break;
-            case "O":
-                rsRptType = CertificateType.O;
-                break;
-            default:
-                rsRptType = CertificateType.E;
-        }
 
         LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
@@ -224,11 +192,23 @@ public class GradCertificateServiceImpl
             final String entityId,
             final Certificate certificate) throws DomainServiceException {
 
-        final CertificateType rsRptType;
+        final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, "Cert Type: {0}", certType);
 
+        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+                new Object[]{rsRptType.toString(), rsRptSubType.toString()});
+
+        final GradCertificateReport gradCert = createReport(
+                student, school, certificate,
+                CANADA_FRENCH, rsRptType, rsRptSubType);
+
+        return gradCert;
+    }
+
+    private CertificateType adaptCertificateType(String certType) {
+        final CertificateType rsRptType;
         switch(certType) {
             case "E":
                 rsRptType = CertificateType.E;
@@ -260,15 +240,7 @@ public class GradCertificateServiceImpl
             default:
                 rsRptType = CertificateType.E;
         }
-
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
-                new Object[]{rsRptType.toString(), rsRptSubType.toString()});
-
-        final GradCertificateReport gradCert = createReport(
-                student, school, certificate,
-                CANADA_FRENCH, rsRptType, rsRptSubType);
-
-        return gradCert;
+        return rsRptType;
     }
 
     /**

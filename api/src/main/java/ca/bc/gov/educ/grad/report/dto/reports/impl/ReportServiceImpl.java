@@ -106,12 +106,12 @@ public class ReportServiceImpl extends AbstractReportService
     @Override
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public ParameterPredicate createParameterPredicate() {
-        final String _m = "createParameterPredicate()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createParameterPredicate()";
+        LOG.entering(CLASSNAME, methodName);
 
         final ParameterPredicate pp = new ParameterPredicateImpl();
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return pp;
     }
 
@@ -121,12 +121,12 @@ public class ReportServiceImpl extends AbstractReportService
     @Override
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public Parameters createParameters() {
-        final String _m = "createParameters()";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createParameters()";
+        LOG.entering(CLASSNAME, methodName);
 
         final Parameters parameters = new LinkedParameters();
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return parameters;
     }
 

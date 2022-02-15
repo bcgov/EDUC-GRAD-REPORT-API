@@ -644,6 +644,222 @@
           "requirementName": "",
           "equivalency": "",
           "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "EXTREAM DRIVING TECHNICS",
+            "code": "DRV",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "RIDING MOTORCYCLE",
+            "code": "MOTO",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "RULES OF THE ROADS",
+            "code": "ROADS",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "DIRT BIKE RIDING",
+            "code": "DIRT",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "OPERATION OF HEAVY VEHICLES",
+            "code": "TRUCKS",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "CLIMATE CHANGE",
+            "code": "CCB",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "10",
+            "finalLetterGrade": "F",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "WOKE CULTURE",
+            "code": "WC",
+            "level": "11",
+            "credits": "2",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "10",
+            "finalLetterGrade": "F",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "COOKING",
+            "code": "COOK",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "90",
+            "finalLetterGrade": "A+",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "COMMY IS OUR FUTURE",
+            "code": "COMMY",
+            "level": "11",
+            "credits": "5",
+            "sessionDate": "200106",
+            "type": "1",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "-10",
+            "finalLetterGrade": "Z",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
         }
       ]
     },
@@ -675,7 +891,7 @@
       ],
       "totalCreditsUsedForGrad": "0"
     },
-    "gradMessage": "Based on the information provided by the school, this student has graduated in the Adult Graduation Program. Graduation date: June 2001.",
+    "gradMessage": "Based on the information provided by the school, this student has graduated in the Adult Graduation Program. \nGraduation date: June 2001.",
     "updateDate": "2001-06-01"
   }
 }

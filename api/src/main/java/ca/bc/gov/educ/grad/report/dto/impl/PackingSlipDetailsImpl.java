@@ -31,6 +31,7 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
     private String attentionTo = "";
     private String orderedByName;
     private Integer documentsShipped;
+    private Integer totalShipped;
     private String orderNumber;
     private Date orderDate;
     private DestinationType destinationType;
@@ -126,6 +127,15 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
 
     public void setAddress(PostalAddress address) {
         this.address = address;
+    }
+
+    @Override
+    public Integer getTotalShipped() {
+        return totalShipped;
+    }
+
+    public void setTotalShipped(Integer totalShipped) {
+        this.totalShipped = totalShipped;
     }
 }
 
