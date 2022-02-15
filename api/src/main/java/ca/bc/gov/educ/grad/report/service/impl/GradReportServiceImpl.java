@@ -206,7 +206,7 @@ public abstract class GradReportServiceImpl implements Serializable {
                 result = parseInt(numericCredits);
             }
         } catch (final Exception ex) {
-            LOG.log(Level.WARNING, "Could not parse credits: " + credits, ex);
+            LOG.log(Level.WARNING, String.format("Could not parse credits: %s", credits), ex);
         }
 
         LOG.exiting(CLASSNAME, methodName);
