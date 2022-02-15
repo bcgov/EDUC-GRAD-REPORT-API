@@ -53,6 +53,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final Date ordered,
             final String orderedBy,
             final int quantity,
+            final int current,
             final int total) throws DomainServiceException {
         final String methodName = "createStudentPackingSlipReport(Long, String, Date, OrderType, int)";
         LOG.entering(CLASSNAME, methodName);
@@ -60,7 +61,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         PostalDeliveryInfo deliveryInfo = getPostalDeliveryInfo();
         OrderType orderType = getOrderType();
 
-        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity, total);
+        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity, current, total);
         final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
 
         LOG.exiting(CLASSNAME, methodName);
@@ -82,6 +83,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final PostalDeliveryInfo address,
             final Date ordered,
             final int quantity,
+            final int current,
             final int total)
             throws DomainServiceException {
         final String methodName = "createPackingSlipDetails(PostalDeliveryInfo, Date, int)";
@@ -93,7 +95,8 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             details.setRecipient(address.getName());
             details.setAttentionTo(address.getAttentionTo());
             details.setDocumentsShipped(quantity);
-            details.setTotalShipped(total);
+            details.setCurrentSlip(current);
+            details.setTotalSlips(total);
             details.setOrderDate(ordered);
         } catch (final Exception ex) {
             throw new DomainServiceException("Could not create or set packing slip details.", ex);
@@ -121,11 +124,13 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final Date ordered,
             final String orderedBy,
             final int quantity,
-            final int total) throws DomainServiceException {
+            final int current,
+            final int total
+    ) throws DomainServiceException {
         final String methodName = "createPackingSlipDetails(PostalDeliveryInfo, Long, String, int)";
         LOG.entering(CLASSNAME, methodName);
 
-        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity, total);
+        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity, current, total);
         details.setOrderNumber(Long.toString(orderNumber));
         details.setOrderedByName(orderedBy);
         details.setPaperType(orderType.getPaperType());

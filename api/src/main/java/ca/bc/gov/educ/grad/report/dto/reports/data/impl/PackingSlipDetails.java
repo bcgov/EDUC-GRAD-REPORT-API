@@ -73,9 +73,14 @@ public final class PackingSlipDetails extends BusinessEntity {
     private Integer documentsShipped;
 
     /**
+     * Number of slips sent.
+     */
+    private Integer currentSlip;
+
+    /**
      * Number of certificates or transcript sent.
      */
-    private Integer totalShipped;
+    private Integer totalSlips;
 
     /**
      * The STs order number.
@@ -242,6 +247,24 @@ public final class PackingSlipDetails extends BusinessEntity {
     }
 
     /**
+     * Gets current slip.
+     *
+     * @return the current slip
+     */
+    public Integer getCurrentSlip() {
+        return currentSlip;
+    }
+
+    /**
+     * Sets current slip.
+     *
+     * @param currentSlip the current slip
+     */
+    public void setCurrentSlip(Integer currentSlip) {
+        this.currentSlip = currentSlip;
+    }
+
+    /**
      * Sets whether this packing slip is for a certificate or transcript. If
      * orderType is null, this will default to TRANSCRIPT.
      *
@@ -331,12 +354,12 @@ public final class PackingSlipDetails extends BusinessEntity {
         this.orderNumber = orderNumber;
     }
 
-    public Integer getTotalShipped() {
-        return totalShipped;
+    public Integer getTotalSlips() {
+        return totalSlips;
     }
 
-    public void setTotalShipped(Integer totalShipped) {
-        this.totalShipped = totalShipped;
+    public void setTotalSlips(Integer totalSlips) {
+        this.totalSlips = totalSlips;
     }
 
     /**
@@ -434,11 +457,22 @@ public final class PackingSlipDetails extends BusinessEntity {
         /**
          * Delegates to the outer instance.
          *
-         * @param totalShipped Passed to the outer instance.
+         * @param currentSlip Passed to the outer instance.
          * @return thisBuilder
          */
-        public Builder withTotalShipped(final Integer totalShipped) {
-            getObject().setTotalShipped(totalShipped);
+        public Builder withCurrentSlip(final Integer currentSlip) {
+            getObject().setCurrentSlip(currentSlip);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param totalSlips Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withTotalSlips(final Integer totalSlips) {
+            getObject().setTotalSlips(totalSlips);
             return thisBuilder();
         }
 

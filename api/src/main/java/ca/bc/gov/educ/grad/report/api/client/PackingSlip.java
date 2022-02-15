@@ -15,6 +15,7 @@ public class PackingSlip implements Serializable {
     String orderedBy;
     Long orderNumber;
     int quantity;
+    int current;
     int total;
 
     public String getRecipient() {
@@ -73,6 +74,14 @@ public class PackingSlip implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(int current) {
+        this.current = current;
     }
 
     public int getTotal() {

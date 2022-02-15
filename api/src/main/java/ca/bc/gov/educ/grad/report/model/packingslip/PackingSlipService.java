@@ -26,6 +26,7 @@ public interface PackingSlipService {
             final Date ordered,
             final String orderedBy,
             final int quantity,
+            final int current,
             final int total) throws DomainServiceException;
 
 

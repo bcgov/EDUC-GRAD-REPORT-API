@@ -32,8 +32,11 @@
 	<field name="documentsShipped" class="java.lang.Integer">
 		<fieldDescription><![CDATA[documentsShipped]]></fieldDescription>
 	</field>
-	<field name="totalShipped" class="java.lang.Integer">
-		<fieldDescription><![CDATA[totalShipped]]></fieldDescription>
+	<field name="currentSlip" class="java.lang.Integer">
+		<fieldDescription><![CDATA[currentSlip]]></fieldDescription>
+	</field>
+	<field name="totalSlips" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalSlips]]></fieldDescription>
 	</field>
 	<field name="orderNumber" class="java.lang.String">
 		<fieldDescription><![CDATA[orderNumber]]></fieldDescription>
@@ -117,11 +120,11 @@
 					</reportElement>
 					<staticText>
 						<reportElement style="OrderFieldName" x="0" y="80" width="160" height="20" uuid="2bc58a09-08ba-4b75-be5c-fe2b49a24ad0"/>
-						<text><![CDATA[Ordered By]]></text>
+						<text><![CDATA[Documents Shipped]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
 						<reportElement style="OrderFieldValue" x="160" y="80" width="340" height="20" uuid="a9d17ecd-2255-4d2b-a7cc-70e32030183d"/>
-						<textFieldExpression><![CDATA[$F{orderedByName}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{documentsShipped}]]></textFieldExpression>
 					</textField>
 					<staticText>
 						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="40" uuid="16c220a5-9c0e-4359-b7a6-7df0c9b23bdf"/>
@@ -147,7 +150,7 @@
 						<reportElement style="OrderFieldValue" x="160" y="40" width="340" height="20" uuid="9048d3f9-261f-4bd0-b4b5-c428e08a9732">
 							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						</reportElement>
-						<textFieldExpression><![CDATA[$F{documentsShipped} + "/" + $F{totalShipped}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{currentSlip} + "/" + $F{totalSlips}]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>

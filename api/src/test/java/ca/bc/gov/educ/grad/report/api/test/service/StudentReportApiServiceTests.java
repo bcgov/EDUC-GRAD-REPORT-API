@@ -968,6 +968,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				rds,
 				orderType,
 				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
+				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 		rds.clear();
 
@@ -979,6 +981,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				rds,
 				orderType,
 				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
+				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 		rds.clear();
 
@@ -990,6 +994,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				rds,
 				orderType,
 				DestinationType.PSI,
+				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
+				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 
 		LOG.debug(">testPackingSlipReport");
@@ -999,6 +1005,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			final List<ReportDocument> rds,
 			final OrderType orderType,
 			final DestinationType destinationType,
+			final int quantity,
+			final int current,
 			final int total)
 			throws DomainServiceException, IOException {
 
@@ -1006,7 +1014,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			16895L,
 			new Date(),
 			"Test Case",
-			rds.size(),
+				quantity,
+				current,
 				total
 		);
 
