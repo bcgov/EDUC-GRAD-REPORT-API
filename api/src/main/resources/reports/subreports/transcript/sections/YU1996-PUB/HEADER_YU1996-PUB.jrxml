@@ -51,7 +51,7 @@
 		<band height="100">
 			<textField evaluationTime="Auto" isBlankWhenNull="true">
 				<reportElement key="PAGE_NUMBERS" style="Title" positionType="Float" x="31" y="0" width="289" height="12" isRemoveLineWhenBlank="true" uuid="67bc99b0-2cab-4157-90d1-8209c90ca07e">
-					<printWhenExpression><![CDATA[$P{P_PAGE_NUMBER} != null]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.FALSE]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Left">
 					<font size="10" isBold="false"/>
