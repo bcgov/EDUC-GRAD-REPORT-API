@@ -86,6 +86,7 @@ public class GradReportService {
 					packingSlip.getOrderDate(),
 					packingSlip.getOrderedBy(),
 					packingSlip.getQuantity(),
+					packingSlip.getCurrent(),
 					packingSlip.getTotal()
 			);
 		} catch (Exception e) {

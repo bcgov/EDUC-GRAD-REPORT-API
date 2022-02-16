@@ -31,7 +31,8 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
     private String attentionTo = "";
     private String orderedByName;
     private Integer documentsShipped;
-    private Integer totalShipped;
+    private Integer currentSlip;
+    private Integer totalSlips;
     private String orderNumber;
     private Date orderDate;
     private DestinationType destinationType;
@@ -93,6 +94,15 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
         return destinationType;
     }
 
+    @Override
+    public Integer getCurrentSlip() {
+        return currentSlip;
+    }
+
+    public void setCurrentSlip(Integer currentSlip) {
+        this.currentSlip = currentSlip;
+    }
+
     public PaperType getPaperType() {
         return paperType;
     }
@@ -130,12 +140,12 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
     }
 
     @Override
-    public Integer getTotalShipped() {
-        return totalShipped;
+    public Integer getTotalSlips() {
+        return totalSlips;
     }
 
-    public void setTotalShipped(Integer totalShipped) {
-        this.totalShipped = totalShipped;
+    public void setTotalSlips(Integer totalSlips) {
+        this.totalSlips = totalSlips;
     }
 }
 

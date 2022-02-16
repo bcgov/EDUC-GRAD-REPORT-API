@@ -58,11 +58,18 @@ public interface PackingSlipDetails extends DomainEntity {
     Integer getDocumentsShipped();
 
     /**
+     * Returns the number of current slip in the package.
+     *
+     * @return A whole number, never null.
+     */
+    Integer getCurrentSlip();
+
+    /**
      * Returns the number of packages sent
      *
      * @return A whole number, never null.
      */
-    Integer getTotalShipped();
+    Integer getTotalSlips();
 
     /**
      * Returns the STs order number.
