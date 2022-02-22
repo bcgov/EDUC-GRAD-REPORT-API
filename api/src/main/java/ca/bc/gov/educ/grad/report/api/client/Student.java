@@ -28,6 +28,9 @@ public class Student {
     private String hasOtherProgram;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
+    @JsonDeserialize(as = GraduationData.class)
+    private GraduationData graduationData;
+
     @JsonDeserialize(as = Pen.class)
     public Pen getPen() {
         return pen;
@@ -158,5 +161,13 @@ public class Student {
 
     public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
         this.otherProgramParticipation = otherProgramParticipation;
+    }
+
+    public GraduationData getGraduationData() {
+        return graduationData;
+    }
+
+    public void setGraduationData(GraduationData graduationData) {
+        this.graduationData = graduationData;
     }
 }

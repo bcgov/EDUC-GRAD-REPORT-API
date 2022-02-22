@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
+import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -63,6 +64,8 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String hasOtherProgram = "";
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
+    private GraduationData graduationData;
+
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
     public PersonalEducationNumber getPen() {
@@ -95,6 +98,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public String getMiddleName() {
         return middleName;
+    }
+
+    @Override
+    public String getFullName() {
+        return getLastName() + "," + getMiddleName() + " " + getFirstName();
     }
 
     @Override
@@ -240,5 +248,13 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
         return new JRBeanCollectionDataSource(otherProgramParticipation, false);
+    }
+
+    public GraduationData getGraduationData() {
+        return graduationData;
+    }
+
+    public void setGraduationData(GraduationData graduationData) {
+        this.graduationData = graduationData;
     }
 }
