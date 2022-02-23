@@ -460,7 +460,7 @@
             "level": "11",
             "credits": "6",
             "sessionDate": "202005",
-            "type": "2",
+            "type": "3",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -484,7 +484,7 @@
             "level": "11",
             "credits": "6",
             "sessionDate": "202005",
-            "type": "2",
+            "type": "1",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -916,7 +916,7 @@
             "level": "12",
             "credits": "4",
             "sessionDate": "200106",
-            "type": "2",
+            "type": "1",
             "relatedCourse": "",
             "relatedLevel": ""
           },

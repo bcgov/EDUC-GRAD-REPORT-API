@@ -210,7 +210,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.schoolPhone = trimSafe(schoolPhone);
         this.schoolTypeIndicator = trimSafe(schlIndType);
 
-        setSchoolTypeBanner();
+        //setSchoolTypeBanner();
 
         this.academicProgram.add(trimSafe(prgmCode));
         this.academicProgram.add(trimSafe(prgmCode2));
