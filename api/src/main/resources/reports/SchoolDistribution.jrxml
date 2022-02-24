@@ -6,6 +6,12 @@
 	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="LiberationSans"/>
 	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
 	<style name="StaticTextGen" fontName="Inconsolata" fontSize="9"/>
+	<style name="Zebra" mode="Transparent" style="GeneratedText">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></conditionExpression>
+			<style backcolor="#F2F2F2"/>
+		</conditionalStyle>
+	</style>
 	<subDataset name="studentDataset" uuid="4816c7e1-6c7c-4be3-97ea-75677761dc8b">
 		<queryString>
 			<![CDATA[]]>
@@ -55,6 +61,15 @@
 	</background>
 	<pageHeader>
 		<band height="168" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="110" width="557" height="31" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="5" y="11" width="100" height="80" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
 				<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
@@ -112,7 +127,7 @@
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement style="GeneratedText" x="493" y="85" width="64" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
-				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format(NOW())]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd").format(NOW())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="160" y="80" width="199" height="15" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
@@ -149,7 +164,7 @@
 		<band height="110">
 			<property name="com.jaspersoft.studio.layout"/>
 			<componentElement>
-				<reportElement positionType="Float" x="0" y="0" width="557" height="60" isRemoveLineWhenBlank="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="557" height="60" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -179,7 +194,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="120" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="120" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a"/>
 								<box padding="0">
 									<pen lineWidth="1.0"/>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -214,7 +229,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="190" height="15" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="190" height="15" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819"/>
 								<box padding="0">
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -248,7 +263,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="60" height="15" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="60" height="15" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a"/>
 								<box padding="0">
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -282,7 +297,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="80" height="15" uuid="7e41a278-95f7-41dd-9b56-fae0ea8fcda5"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="80" height="15" uuid="7e41a278-95f7-41dd-9b56-fae0ea8fcda5"/>
 								<box padding="0">
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -316,7 +331,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="107" height="15" uuid="d13fa151-c4d1-45be-8f60-da3f1da0f232"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="107" height="15" uuid="d13fa151-c4d1-45be-8f60-da3f1da0f232"/>
 								<box padding="0">
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -335,6 +350,6 @@
 		</band>
 	</detail>
 	<summary>
-		<band height="0" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>
