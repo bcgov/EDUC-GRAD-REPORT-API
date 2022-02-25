@@ -34,7 +34,7 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
     @Operation(summary = "Generate Student Achievement Report", description = "Generate Student Achievement Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentAchievementReport(@RequestBody ReportRequest report) {
+    public ResponseEntity<byte[]> getStudentAchievementReport(@RequestBody ReportRequest report) {
         logger.debug("getStudentAchievementReport");
         logRequest();
         return reportService.getStudentAchievementReport(report);
@@ -49,7 +49,7 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.STUDENT_ACHIEVEMENT_REPORT)
     @Operation(summary = "Generate Student Achievement Report", description = "@deprecated -- Generate Student Achievement Report -- @deprecated", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentAchvReport(@RequestBody ReportRequest report) {
+    public ResponseEntity<byte[]> getStudentAchvReport(@RequestBody ReportRequest report) {
         logger.debug("getStudentAchvReport");
         logRequest();
         return reportService.getStudentAchievementReport(report);
@@ -59,7 +59,7 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.STUDENT_TRANSCRIPT_REPORT)
     @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentTranscriptReport(@RequestBody ReportRequest report) {
+    public ResponseEntity<byte[]> getStudentTranscriptReport(@RequestBody ReportRequest report) {
         logger.debug("getStudentTranscriptReport");
         logRequest();
         return reportService.getStudentTranscriptReport(report);
@@ -69,7 +69,7 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.STUDENT_CERTIFICATE)
     @Operation(summary = "Generate Student Certificate", description = "Generate Student Certificate", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getStudentCertificate(@RequestBody ReportRequest report) {
+    public ResponseEntity<byte[]> getStudentCertificate(@RequestBody ReportRequest report) {
         logger.debug("getStudentCertificate");
         logRequest();
         return reportService.getStudentCertificateReport(report);
@@ -79,9 +79,19 @@ public class ReportController extends BaseController {
     @PreAuthorize(PermissionsContants.PACKING_SLIP)
     @Operation(summary = "Generate Packing Slip", description = "Generate Packing Slip", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public ResponseEntity getPackingSlip(@RequestBody ReportRequest report) {
+    public ResponseEntity<byte[]> getPackingSlip(@RequestBody ReportRequest report) {
         logger.debug("getPackingSlip");
         logRequest();
         return reportService.getPackingSlipReport(report);
+    }
+
+    @PostMapping (ReportApiConstants.SCHOOL_DISTRIBUTION)
+    @PreAuthorize(PermissionsContants.SCHOOL_DISTRIBUTION)
+    @Operation(summary = "Generate School Distribution Report", description = "Generate School Distribution Report", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getSchoolDistribution(@RequestBody ReportRequest report) {
+        logger.debug("getSchoolDistribution");
+        logRequest();
+        return reportService.getSchoolDistributionReport(report);
     }
 }

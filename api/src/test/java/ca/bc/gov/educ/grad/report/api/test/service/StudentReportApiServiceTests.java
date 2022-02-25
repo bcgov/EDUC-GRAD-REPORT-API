@@ -918,7 +918,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Test
 	public void createSchoolDistributionReport() throws Exception {
 		LOG.debug("<{}.createSchoolDistributionReport at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/SchoolDistributionReportRequest.json");
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
