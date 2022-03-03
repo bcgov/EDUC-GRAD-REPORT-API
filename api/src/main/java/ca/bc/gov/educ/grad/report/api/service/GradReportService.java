@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
 @Service
@@ -32,6 +33,7 @@ public class GradReportService {
 
 	private static final String CLASS_NAME = GradReportService.class.getName();
 	private static final String EXCEPTION_MSG = "Unable to execute {}";
+
 	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
 	private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
@@ -50,6 +52,7 @@ public class GradReportService {
 
 	@Autowired
 	PackingSlipService packingSlipService;
+
 
 	public ResponseEntity<byte[]> getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
@@ -73,8 +76,10 @@ public class GradReportService {
 	}
 
 	public ReportDocument getPackingSlipReportDocument(ReportRequest reportRequest) {
+
 		String methodName = "getPackingSlipReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
@@ -118,6 +123,7 @@ public class GradReportService {
     }
 
 	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) {
+
 		String methodName = "getStudentAchievementReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 

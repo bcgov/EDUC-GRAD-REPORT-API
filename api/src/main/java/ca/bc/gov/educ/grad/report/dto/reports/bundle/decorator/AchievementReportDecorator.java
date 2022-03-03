@@ -18,7 +18,6 @@
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
-
 /**
  * Responsible for bundling certificate reports.
  *
