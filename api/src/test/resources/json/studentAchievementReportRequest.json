@@ -31,11 +31,14 @@
         "courseLevel": "11",
         "sessionDate": "202001",
         "gradReqMet": "111",
+        "bestSchoolPercent": "60",
+        "bestExamPercent": "40",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
-        "interimPercent": "",
-        "equivOrChallenge": "",
+        "interimPercent": "50",
+        "equivOrChallenge": "10",
         "credits": "4",
+        "metLitNumRequirement": "Y",
         "creditsUsedForGrad": 4
       }
     ],
@@ -49,16 +52,16 @@
           "specialCase": "E",
           "sessionDate": "201806",
           "exceededWriteFlag": null,
-          "proficiencyScore": "4"
+          "proficiencyScore": "AEG"
         },
         {
           "assessmentName": "NUMERACY ASSESSMENT",
           "assessmentCode": "NME",
           "gradReqMet": "116",
-          "specialCase": "",
+          "specialCase": "M",
           "sessionDate": "201806",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "0"
+          "proficiencyScore": "MTE"
         },
         {
           "assessmentName": "Literacy 12 Assessment",
@@ -67,7 +70,7 @@
           "specialCase": "E",
           "sessionDate": "201806",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "0"
+          "proficiencyScore": "AEG"
         },
         {
           "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
@@ -76,7 +79,7 @@
           "specialCase": "E",
           "sessionDate": "201805",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "0"
+          "proficiencyScore": "AEG"
         }
       ]
     },
@@ -89,8 +92,8 @@
         "gradReqMet": "111",
         "completedCoursePercentage": "94",
         "completedCourseLetterGrade": "A",
-        "interimPercent": "",
-        "equivOrChallenge": "",
+        "interimPercent": "50",
+        "equivOrChallenge": "20",
         "credits": "4",
         "creditsUsedForGrad": 4
       },
@@ -128,7 +131,7 @@
         "gradReqMet": "108",
         "completedCoursePercentage": "92",
         "completedCourseLetterGrade": "A",
-        "interimPercent": "",
+        "interimPercent": "80",
         "equivOrChallenge": "",
         "credits": "4",
         "creditsUsedForGrad": 4
@@ -154,8 +157,8 @@
         "gradReqMet": "101",
         "completedCoursePercentage": "87",
         "completedCourseLetterGrade": "A",
-        "interimPercent": "",
-        "equivOrChallenge": "",
+        "interimPercent": "60",
+        "equivOrChallenge": "10",
         "credits": "2",
         "creditsUsedForGrad": 2
       },
@@ -430,7 +433,7 @@
       "schoolAtGrad": null,
       "schoolOfRecord": null,
       "certificates": null,
-      "graduationMessage": "Based on the information provided by the school, this student is projected to not graduate in the Graduation Program 2018. Students with questions should contact their schools immediately.",
+      "graduationMessage": "Upon completion of this student's School Completion Certificate Program, a certificate will be issued from the Ministry of Education for meeting their educational program goals other than graduation, as determined by the board of Education",
       "programName": null
     },
     "orgCode": "BC",

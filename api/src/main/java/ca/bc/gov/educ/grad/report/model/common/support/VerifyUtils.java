@@ -72,34 +72,6 @@ public final class VerifyUtils {
      * Logger)
      * @param methodName Calling Method Name (used in conjunction with the
      * Logger)
-     * @throws DomainServiceException
-     */
-    public static void throwInvalidPreconditions(
-            final Throwable causeEx,
-            final Logger logger,
-            final String className,
-            final String methodName) throws DomainServiceException {
-        if (causeEx != null) {
-            logger.log(Level.WARNING, "Input and pre-condition verification failed for {0}: {1}", new Object[]{className, methodName});
-            final DomainServiceException des = new DomainServiceException(null, AbstractBusinessService.MSG_VERIFICATION_FAILED_INPUT, causeEx);
-            logger.throwing(className, methodName, des);
-            throw des;
-        }
-    }
-
-    /**
-     * Utility to throw exception when parameters on pre-conditions are invalid.
-     *
-     * <b>Implementation Note:</b> This method does not contain constraint
-     * checks.
-     *
-     * @param causeEx The causal exception, if this value is null, then a Domain
-     * service exception is not thrown.
-     * @param logger Logger of the caller.
-     * @param className Class Name of the caller (used in conjunction with the
-     * Logger)
-     * @param methodName Calling Method Name (used in conjunction with the
-     * Logger)
      * @param entity the value of entity
      * @throws DomainServiceException
      */

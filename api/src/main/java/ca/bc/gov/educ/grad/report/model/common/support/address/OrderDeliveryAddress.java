@@ -92,7 +92,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      * @return A string (max length 40 chars) or empty, but never null.
      */
     @Override
-    public synchronized String getStreetLine1() {
+    public  String getStreetLine1() {
         return nullSafe(this.streetLine1);
     }
 
@@ -102,7 +102,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      * @return A string (max length 40 chars) or empty, but never null.
      */
     @Override
-    public synchronized String getStreetLine2() {
+    public  String getStreetLine2() {
         return nullSafe(this.streetLine2);
     }
 
@@ -112,7 +112,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      * @return A string (max length 40 chars) or empty, but never null.
      */
     @Override
-    public synchronized String getStreetLine3() {
+    public  String getStreetLine3() {
         return nullSafe(this.streetLine3);
     }
 
@@ -124,7 +124,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      * @return A non-null city name, possibly empty.
      */
     @Override
-    public synchronized String getCity() {
+    public  String getCity() {
         return nullSafe(this.city);
     }
 
@@ -134,7 +134,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      * @return The region, possibly empty.
      */
     @Override
-    public synchronized String getRegion() {
+    public  String getRegion() {
         return nullSafe(this.region);
     }
 
@@ -145,7 +145,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      * @return The postal code, possibly empty.
      */
     @Override
-    public synchronized String getPostalCode() {
+    public  String getPostalCode() {
         return nullSafe(this.postalCode);
     }
 
@@ -154,7 +154,7 @@ public final class OrderDeliveryAddress extends AbstractDomainEntity implements 
      *
      * @return The country name, possibly empty.
      */
-    public synchronized String getCountryName() {
+    public  String getCountryName() {
         return nullSafe(this.countryCode);
     }
 

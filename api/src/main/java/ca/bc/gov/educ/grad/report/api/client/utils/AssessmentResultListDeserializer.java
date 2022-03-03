@@ -38,7 +38,7 @@ public class AssessmentResultListDeserializer extends StdDeserializer<List<Asses
             String specialCase = (String) nextNode.get("specialCase").asText("");
             String sessionDate = (String) nextNode.get("sessionDate").asText("");
             String exceededWrites = (String) nextNode.get("exceededWriteFlag").asText("");
-            Double proficiencyScore = (Double) nextNode.get("proficiencyScore").asDouble(0.0);
+            String proficiencyScore = (String) nextNode.get("proficiencyScore").asText("");
 
             AssessmentResult r = new AssessmentResult();
 

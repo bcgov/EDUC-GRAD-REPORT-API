@@ -31,17 +31,10 @@ import java.util.Date;
  * @author CGI Information Management Consultants Inc.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public class PostalDeliveryInfoImpl implements PostalDeliveryInfo, Serializable {
+public class PostalDeliveryInfoImpl extends PostalAddressImpl implements PostalDeliveryInfo, Serializable {
 
     private static final long serialVersionUID = 2L;
 
-    private String streetLine1 = "";
-    private String streetLine2 = "";
-    private String streetLine3 = "";
-    private String city = "";
-    private String region = "";
-    private String postalCode = "";
-    private String countryCode = "";
     private String name = "";
     private String attentionTo = "";
 
@@ -66,101 +59,13 @@ public class PostalDeliveryInfoImpl implements PostalDeliveryInfo, Serializable 
     }
 
     @Override
-    public synchronized String getStreetLine1() {
-        return streetLine1;
+    public void setCountryCode(String countryCode) {
+        super.setCountry(countryCode);
     }
 
     @Override
-    public synchronized String getStreetLine2() {
-        return streetLine2;
-    }
-
-    @Override
-    public synchronized String getStreetLine3() {
-        return streetLine3;
-    }
-
-    @Override
-    public synchronized String getCity() {
-        return city;
-    }
-
-    @Override
-    public synchronized String getRegion() {
-        return region;
-    }
-
-    @Override
-    public synchronized String getPostalCode() {
-        return this.postalCode;
-    }
-
-    @Override
-    public synchronized String getCountryCode() {
-        return countryCode;
-    }
-
-    /**
-     * set street.
-     *
-     * @param streetLine1
-     */
-    public void setStreetLine1(final String streetLine1) {
-        this.streetLine1 = streetLine1;
-    }
-
-    /**
-     * set street.
-     *
-     * @param streetLine2
-     */
-    public void setStreetLine2(final String streetLine2) {
-        this.streetLine2 = streetLine2;
-    }
-
-    /**
-     * set street.
-     *
-     * @param streetLine3
-     */
-    public void setStreetLine3(final String streetLine3) {
-        this.streetLine3 = streetLine3;
-    }
-
-    /**
-     * set city name.
-     *
-     * @param city
-     */
-    public void setCity(final String city) {
-        this.city = city;
-    }
-
-    /**
-     * set the Province name.
-     *
-     * @param region
-     */
-    public void setRegion(final String region) {
-        this.region = region;
-    }
-
-    /**
-     * set the country.
-     *
-     * @param countryCode
-     */
-    public void setCountryCode(final String countryCode) {
-        this.countryCode = countryCode;
-    }
-
-    /**
-     * set the code (e.g., post, postal, zip).
-     *
-     * @param postalCode
-     */
-    public void setPostalCode(final String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalCode(String code) {
+        super.setCode(code);
     }
 
     @Override

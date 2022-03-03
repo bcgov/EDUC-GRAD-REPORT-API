@@ -15,10 +15,13 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_FOLD_LINES" class="java.lang.Boolean">
-		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
 	<field name="recipient" class="java.lang.String">
 		<fieldDescription><![CDATA[recipient]]></fieldDescription>
+	</field>
+	<field name="attentionTo" class="java.lang.String">
+		<fieldDescription><![CDATA[attentionTo]]></fieldDescription>
 	</field>
 	<field name="address.formatted" class="java.lang.String">
 		<fieldDescription><![CDATA[address.formatted]]></fieldDescription>
@@ -29,8 +32,17 @@
 	<field name="documentsShipped" class="java.lang.Integer">
 		<fieldDescription><![CDATA[documentsShipped]]></fieldDescription>
 	</field>
+	<field name="currentSlip" class="java.lang.Integer">
+		<fieldDescription><![CDATA[currentSlip]]></fieldDescription>
+	</field>
+	<field name="totalSlips" class="java.lang.Integer">
+		<fieldDescription><![CDATA[totalSlips]]></fieldDescription>
+	</field>
 	<field name="orderNumber" class="java.lang.String">
 		<fieldDescription><![CDATA[orderNumber]]></fieldDescription>
+	</field>
+	<field name="compositeOrderNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[compositeOrderNumber]]></fieldDescription>
 	</field>
 	<field name="orderDate" class="java.util.Date">
 		<fieldDescription><![CDATA[orderDate]]></fieldDescription>
@@ -41,11 +53,14 @@
 	<field name="destinationTypeName" class="java.lang.String">
 		<fieldDescription><![CDATA[destinationTypeName]]></fieldDescription>
 	</field>
+	<field name="paperTypeCode" class="java.lang.String">
+		<fieldDescription><![CDATA[paperTypeCode]]></fieldDescription>
+	</field>
 	<field name="sequenceNumber" class="java.lang.String">
 		<fieldDescription><![CDATA[sequenceNumber]]></fieldDescription>
 	</field>
 	<title>
-		<band height="263">
+		<band height="513">
 			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 			<frame>
 				<reportElement x="42" y="138" width="323" height="79" uuid="460c7736-768d-4aae-a49f-61b2a0751d50">
@@ -66,7 +81,7 @@
 							<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 						</reportElement>
 						<textElement verticalAlignment="Bottom"/>
-						<textFieldExpression><![CDATA[($F{recipient} + "\n" + $F{address.formatted}).toUpperCase()]]></textFieldExpression>
+						<textFieldExpression><![CDATA[($F{recipient} + "\n" + "ATTN:" + $F{attentionTo} + "\n" + $F{address.formatted}).toUpperCase()]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>
@@ -89,13 +104,8 @@
 					<rightPen lineWidth="1.0" lineStyle="Dashed" lineColor="#EEEEEE"/>
 				</box>
 			</frame>
-		</band>
-	</title>
-	<pageHeader>
-		<band height="266">
-			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 			<frame>
-				<reportElement x="59" y="15" width="500" height="80" uuid="dd298765-0702-4358-9dfa-53eaabbc3050">
+				<reportElement x="30" y="263" width="500" height="20" uuid="dd298765-0702-4358-9dfa-53eaabbc3050">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<box>
@@ -105,53 +115,52 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<frame>
-					<reportElement x="0" y="0" width="500" height="40" isRemoveLineWhenBlank="true" uuid="5cf7d91f-2ffb-4fd0-a28e-7958d9243fda">
+					<reportElement x="0" y="0" width="500" height="20" isRemoveLineWhenBlank="true" uuid="5cf7d91f-2ffb-4fd0-a28e-7958d9243fda">
 						<printWhenExpression><![CDATA[!"PSI".equalsIgnoreCase($F{destinationTypeName})]]></printWhenExpression>
 					</reportElement>
 					<staticText>
-						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="20" uuid="2bc58a09-08ba-4b75-be5c-fe2b49a24ad0"/>
-						<text><![CDATA[Ordered By]]></text>
+						<reportElement style="OrderFieldName" x="0" y="80" width="160" height="20" uuid="2bc58a09-08ba-4b75-be5c-fe2b49a24ad0"/>
+						<text><![CDATA[Packing Slip]]></text>
 					</staticText>
 					<textField isBlankWhenNull="true">
-						<reportElement style="OrderFieldValue" x="160" y="0" width="340" height="20" uuid="a9d17ecd-2255-4d2b-a7cc-70e32030183d"/>
-						<textFieldExpression><![CDATA[$F{orderedByName}]]></textFieldExpression>
+						<reportElement style="OrderFieldValue" x="160" y="80" width="340" height="20" uuid="a9d17ecd-2255-4d2b-a7cc-70e32030183d"/>
+						<textFieldExpression><![CDATA[$F{currentSlip} + "/" + $F{totalSlips}]]></textFieldExpression>
 					</textField>
 					<staticText>
-						<reportElement style="OrderFieldName" x="0" y="20" width="160" height="20" uuid="16c220a5-9c0e-4359-b7a6-7df0c9b23bdf"/>
+						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="40" uuid="16c220a5-9c0e-4359-b7a6-7df0c9b23bdf"/>
 						<text><![CDATA[Order #]]></text>
 					</staticText>
-					<textField isBlankWhenNull="true">
-						<reportElement style="OrderFieldValue" x="160" y="20" width="340" height="20" uuid="9828dc8f-1a17-43de-8adb-8d24be5bb796"/>
-						<textFieldExpression><![CDATA[$F{orderNumber}]]></textFieldExpression>
+					<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+						<reportElement style="OrderFieldValue" x="160" y="0" width="340" height="40" uuid="9828dc8f-1a17-43de-8adb-8d24be5bb796"/>
+						<textFieldExpression><![CDATA[$F{compositeOrderNumber}]]></textFieldExpression>
 					</textField>
-				</frame>
-				<frame>
-					<reportElement x="0" y="40" width="500" height="40" isRemoveLineWhenBlank="true" uuid="7dbed5ec-c00c-452e-8600-671835617211">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-					</reportElement>
 					<staticText>
-						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="20" uuid="38b2e528-a430-406c-a65e-cf991653494c"/>
+						<reportElement style="OrderFieldName" x="0" y="60" width="160" height="20" uuid="38b2e528-a430-406c-a65e-cf991653494c"/>
 						<text><![CDATA[Order Date]]></text>
 					</staticText>
 					<textField pattern="MMM d, yyyy" isBlankWhenNull="true">
-						<reportElement style="OrderFieldValue" x="160" y="0" width="340" height="20" uuid="14aa97fc-3adf-490c-8ccd-f19e2f98f042"/>
+						<reportElement style="OrderFieldValue" x="160" y="60" width="340" height="20" uuid="14aa97fc-3adf-490c-8ccd-f19e2f98f042"/>
 						<textFieldExpression><![CDATA[$F{orderDate}]]></textFieldExpression>
 					</textField>
+					<textField>
+						<reportElement style="OrderFieldName" x="0" y="40" width="160" height="20" uuid="6de5468b-bc63-4cd4-8d78-aac9e7d99ee6"/>
+						<textFieldExpression><![CDATA[$F{orderTypeName} + " Quantity (" + $F{paperTypeCode} + ")"]]></textFieldExpression>
+					</textField>
 					<textField isBlankWhenNull="true">
-						<reportElement style="OrderFieldValue" x="160" y="20" width="340" height="20" uuid="9048d3f9-261f-4bd0-b4b5-c428e08a9732">
+						<reportElement style="OrderFieldValue" x="160" y="40" width="340" height="20" uuid="9048d3f9-261f-4bd0-b4b5-c428e08a9732">
 							<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 						</reportElement>
 						<textFieldExpression><![CDATA[$F{documentsShipped}]]></textFieldExpression>
 					</textField>
-					<textField>
-						<reportElement style="OrderFieldName" x="0" y="20" width="160" height="20" uuid="6de5468b-bc63-4cd4-8d78-aac9e7d99ee6"/>
-						<textFieldExpression><![CDATA[$F{orderTypeName} + " Shipped"]]></textFieldExpression>
-					</textField>
 				</frame>
 			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1">
+			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 			<frame>
-				<reportElement x="0" y="265" width="611" height="1" uuid="4805cacc-c919-47f1-9ff5-152907ece0c7">
+				<reportElement x="0" y="0" width="611" height="1" uuid="4805cacc-c919-47f1-9ff5-152907ece0c7">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA[$P{P_FOLD_LINES}]]></printWhenExpression>
 				</reportElement>
@@ -164,11 +173,6 @@
 			</frame>
 		</band>
 	</pageHeader>
-	<pageFooter>
-		<band height="261">
-			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
-		</band>
-	</pageFooter>
 	<summary>
 		<band height="793">
 			<printWhenExpression><![CDATA["TRANSCRIPTS".equalsIgnoreCase($F{orderTypeName})]]></printWhenExpression>

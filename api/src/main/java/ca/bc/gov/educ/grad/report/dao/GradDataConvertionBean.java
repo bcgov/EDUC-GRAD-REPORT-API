@@ -25,12 +25,13 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @Component
-public class GradDataConvertionBean {
+public class GradDataConvertionBean implements Serializable {
 
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);
@@ -116,8 +117,11 @@ public class GradDataConvertionBean {
             student.setOtherProgramParticipation(otherPrograms);
         }
 
-        if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
-            student.setEnglishCert("Y");
+        if(StringUtils.trimToNull(student.getEnglishCert()) == null &&
+                StringUtils.trimToNull(student.getFrenchCert()) == null) {
+            student.setEnglishCert("E");
+        } else if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
+            student.setEnglishCert("");
         }
         if(StringUtils.trimToNull(student.getFrenchCert()) == null) {
             student.setFrenchCert("");

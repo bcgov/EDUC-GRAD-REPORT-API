@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import static ca.bc.gov.educ.grad.report.model.reports.DestinationType.PSI;
-
 @Service
 public class PackingSlipServiceImpl implements PackingSlipService {
 
@@ -37,15 +35,16 @@ public class PackingSlipServiceImpl implements PackingSlipService {
     GradDataConvertionBean gradDataConvertionBean;
 
     /**
-     * Creates and returns a packing slip report for an individual. The report
-     * document returned is typically a PDF that includes a print-ready packing
-     * slip page suitable for bundling with any number of order items (as
-     * tallied by size). This creates the appropriate order type based on the
-     * catalogue item.
+     * Creates and returns a packing slip report for a PSI. The report document
+     * returned is typically a PDF that includes a print-ready packing slip page
+     * suitable for bundling with any number of order items (as tallied by
+     * size). This creates the appropriate order type based on the catalogue
+     * item. The ordered date is set to today.
      *
      * @param orderNumber Order number to include on the packing slip.
      * @param ordered Date the order was made.
      * @param quantity The quantity of items included in the packet.
+     * @param total The quantity of items included in the packet.
      * @return A ReportDocument that can be bundled with transcripts.
      * @throws DomainServiceException Could not create the packing slip report.
      */
@@ -53,50 +52,19 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final Long orderNumber,
             final Date ordered,
             final String orderedBy,
-            final int quantity) throws DomainServiceException {
-        final String _m = "createStudentPackingSlipReport(Long, String, Date, OrderType, int)";
-        LOG.entering(CLASSNAME, _m);
+            final int quantity,
+            final int current,
+            final int total) throws DomainServiceException {
+        final String methodName = "createStudentPackingSlipReport(Long, String, Date, OrderType, int)";
+        LOG.entering(CLASSNAME, methodName);
 
         PostalDeliveryInfo deliveryInfo = getPostalDeliveryInfo();
         OrderType orderType = getOrderType();
 
-        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderNumber, ordered, orderedBy, quantity);
+        final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity, current, total);
         final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
 
-        LOG.exiting(CLASSNAME, _m);
-        return packingSlipReport;
-    }
-
-    /**
-     * Creates and returns a packing slip report for a PSI. The report document
-     * returned is typically a PDF that includes a print-ready packing slip page
-     * suitable for bundling with any number of order items (as tallied by
-     * size). This creates the appropriate order type based on the catalogue
-     * item. The ordered date is set to today.
-     *
-     * @param address The recipient name and address.
-     * @param orderType The order type that, ultimately, determines the paper
-     * type.
-     * @param quantity The quantity of items included in the packet.
-     * @return A ReportDocument that can be bundled with transcripts.
-     * @throws DomainServiceException Could not create the packing slip report.
-     */
-    private ReportDocument createPSIPackingSlipReport(
-            final PostalDeliveryInfo address,
-            final OrderType orderType,
-            final int quantity)
-            throws DomainServiceException {
-        final String _m = "createPSIPackingSlipReport(PostalDeliveryInfo, OrderType, int)";
-        LOG.entering(CLASSNAME, _m);
-
-        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, new Date(), quantity);
-
-        // Indicate that the packing slip is desinted for a PSI.
-        details.setDestinationType(PSI);
-
-        final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
-
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return packingSlipReport;
     }
 
@@ -114,22 +82,27 @@ public class PackingSlipServiceImpl implements PackingSlipService {
     private PackingSlipDetailsImpl createPackingSlipDetails(
             final PostalDeliveryInfo address,
             final Date ordered,
-            final int quantity)
+            final int quantity,
+            final int current,
+            final int total)
             throws DomainServiceException {
-        final String _m = "createPackingSlipDetails(PostalDeliveryInfo, Date, int)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createPackingSlipDetails(PostalDeliveryInfo, Date, int)";
+        LOG.entering(CLASSNAME, methodName);
 
         final PackingSlipDetailsImpl details = new PackingSlipDetailsImpl(address);
 
         try {
             details.setRecipient(address.getName());
+            details.setAttentionTo(address.getAttentionTo());
             details.setDocumentsShipped(quantity);
+            details.setCurrentSlip(current);
+            details.setTotalSlips(total);
             details.setOrderDate(ordered);
         } catch (final Exception ex) {
             throw new DomainServiceException("Could not create or set packing slip details.", ex);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return details;
     }
 
@@ -146,18 +119,23 @@ public class PackingSlipServiceImpl implements PackingSlipService {
      */
     private PackingSlipDetails createPackingSlipDetails(
             final PostalDeliveryInfo address,
+            final OrderType orderType,
             final Long orderNumber,
             final Date ordered,
             final String orderedBy,
-            final int quantity) throws DomainServiceException {
-        final String _m = "createPackingSlipDetails(PostalDeliveryInfo, Long, String, int)";
-        LOG.entering(CLASSNAME, _m);
+            final int quantity,
+            final int current,
+            final int total
+    ) throws DomainServiceException {
+        final String methodName = "createPackingSlipDetails(PostalDeliveryInfo, Long, String, int)";
+        LOG.entering(CLASSNAME, methodName);
 
-        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity);
+        final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity, current, total);
         details.setOrderNumber(Long.toString(orderNumber));
         details.setOrderedByName(orderedBy);
+        details.setPaperType(orderType.getPaperType());
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return details;
     }
 
@@ -165,8 +143,8 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final PackingSlipDetails details,
             final OrderType orderType)
             throws DomainServiceException {
-        final String _m = "createPackingSlipReport(PackingSlipDetails, OrderType)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createPackingSlipReport(PackingSlipDetails, OrderType)";
+        LOG.entering(CLASSNAME, methodName);
 
         final ReportDocument report;
 
@@ -181,13 +159,13 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             throw new DomainServiceException("Could not create packing slip report.", e);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return report;
     }
 
     private PostalDeliveryInfo getPostalDeliveryInfo() throws DomainServiceException {
-        final String _m = "getPostalDeliveryInfo(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getPostalDeliveryInfo(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final PostalDeliveryInfo postalDeliveryInfo;
 
@@ -198,7 +176,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         null,
                         "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, _m, dse);
+                LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
 
@@ -207,17 +185,17 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         } catch (Exception ex) {
             String msg = "Failed to access delivery info data";
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
+            LOG.throwing(CLASSNAME, methodName, dex);
             throw dex;
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return postalDeliveryInfo;
     }
 
     private OrderType getOrderType() throws DomainServiceException {
-        final String _m = "getOrderType(String)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "getOrderType(String)";
+        LOG.entering(CLASSNAME, methodName);
 
         final OrderType orderType;
 
@@ -228,7 +206,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         null,
                         "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, _m, dse);
+                LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
 
@@ -237,11 +215,12 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         } catch (Exception ex) {
             String msg = "Failed to access order type data";
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, _m, dex);
+
+            LOG.throwing(CLASSNAME, methodName, dex);
             throw dex;
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return orderType;
     }
 }

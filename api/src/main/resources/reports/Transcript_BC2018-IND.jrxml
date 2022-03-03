@@ -62,9 +62,6 @@
 		<parameterDescription><![CDATA[Graduation program code]]></parameterDescription>
 		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
 	</parameter>
-	<parameter name="P_TRANSCRIPT_TYPE" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Regular"]]></defaultValueExpression>
-	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
 		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
 		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>

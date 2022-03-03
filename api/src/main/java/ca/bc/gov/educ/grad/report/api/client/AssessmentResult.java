@@ -4,7 +4,7 @@ public class AssessmentResult {
 
     private String assessmentName;
     private String assessmentCode;
-    private double proficiencyScore;
+    private String proficiencyScore;
     private String sessionDate;
     private String gradReqMet;
     private String specialCase;
@@ -26,11 +26,11 @@ public class AssessmentResult {
         this.assessmentCode = assessmentCode;
     }
 
-    public double getProficiencyScore() {
+    public String getProficiencyScore() {
         return proficiencyScore;
     }
 
-    public void setProficiencyScore(double proficiencyScore) {
+    public void setProficiencyScore(String proficiencyScore) {
         this.proficiencyScore = proficiencyScore;
     }
 

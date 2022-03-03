@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.Date;
 
@@ -50,6 +51,11 @@ public final class PackingSlipDetails extends BusinessEntity {
     private String recipient;
 
     /**
+     * e.g., "ADMINISTRATION"
+     */
+    private String attentionTo = "";
+
+    /**
      * Postal mail delivery address.
      */
     private PostalAddress address;
@@ -67,6 +73,16 @@ public final class PackingSlipDetails extends BusinessEntity {
     private Integer documentsShipped;
 
     /**
+     * Number of slips sent.
+     */
+    private Integer currentSlip;
+
+    /**
+     * Number of certificates or transcript sent.
+     */
+    private Integer totalSlips;
+
+    /**
      * The STs order number.
      */
     private String orderNumber;
@@ -75,6 +91,11 @@ public final class PackingSlipDetails extends BusinessEntity {
      * Date the order was placed.
      */
     private Date orderDate;
+
+    /**
+     * The Paper Type Code.
+     */
+    private String paperTypeCode;
 
     /**
      * Transcript or Certificates have minor variations on packing slip.
@@ -118,6 +139,32 @@ public final class PackingSlipDetails extends BusinessEntity {
     }
 
     /**
+     * Returns attention to
+     *
+     * @return A non-null String, possibly empty.
+     */
+    public String getAttentionTo() {
+        return attentionTo;
+    }
+
+    public void setAttentionTo(String attentionTo) {
+        this.attentionTo = attentionTo;
+    }
+
+    /**
+     * Returns paper type code
+     *
+     * @return A non-null String, possibly empty.
+     */
+    public String getPaperTypeCode() {
+        return paperTypeCode;
+    }
+
+    public void setPaperTypeCode(String paperTypeCode) {
+        this.paperTypeCode = paperTypeCode;
+    }
+
+    /**
      * Returns the delivery address for mailing the transcripts and
      * certificates.
      *
@@ -126,6 +173,10 @@ public final class PackingSlipDetails extends BusinessEntity {
      */
     public PostalAddress getAddress() {
         return this.address;
+    }
+
+    public String getCompositeOrderNumber() {
+        return "PS_ID " + StringUtils.substringBefore(nullSafe(this.recipient), " ") + " " + getOrderNumber() + "\n" + nullSafe(this.recipient);
     }
 
     /**
@@ -193,6 +244,24 @@ public final class PackingSlipDetails extends BusinessEntity {
      */
     public String getSequenceNumber() {
         return SEQUENCE_NUMBER;
+    }
+
+    /**
+     * Gets current slip.
+     *
+     * @return the current slip
+     */
+    public Integer getCurrentSlip() {
+        return currentSlip;
+    }
+
+    /**
+     * Sets current slip.
+     *
+     * @param currentSlip the current slip
+     */
+    public void setCurrentSlip(Integer currentSlip) {
+        this.currentSlip = currentSlip;
     }
 
     /**
@@ -285,6 +354,14 @@ public final class PackingSlipDetails extends BusinessEntity {
         this.orderNumber = orderNumber;
     }
 
+    public Integer getTotalSlips() {
+        return totalSlips;
+    }
+
+    public void setTotalSlips(Integer totalSlips) {
+        this.totalSlips = totalSlips;
+    }
+
     /**
      * Used to create instances of the outer class.
      */
@@ -324,6 +401,29 @@ public final class PackingSlipDetails extends BusinessEntity {
         /**
          * Delegates to the outer instance.
          *
+         * @param attentionTo Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withAttentionTo(final String attentionTo) {
+            getObject().setAttentionTo(attentionTo);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param paperTypeCode Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withPaperTypeCode(final String paperTypeCode) {
+            getObject().setPaperTypeCode(paperTypeCode);
+            return thisBuilder();
+        }
+
+
+        /**
+         * Delegates to the outer instance.
+         *
          * @param address Passed to the outer instance.
          * @return thisBuilder
          */
@@ -351,6 +451,28 @@ public final class PackingSlipDetails extends BusinessEntity {
          */
         public Builder withDocumentsShipped(final Integer documentsShipped) {
             getObject().setDocumentsShipped(documentsShipped);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param currentSlip Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withCurrentSlip(final Integer currentSlip) {
+            getObject().setCurrentSlip(currentSlip);
+            return thisBuilder();
+        }
+
+        /**
+         * Delegates to the outer instance.
+         *
+         * @param totalSlips Passed to the outer instance.
+         * @return thisBuilder
+         */
+        public Builder withTotalSlips(final Integer totalSlips) {
+            getObject().setTotalSlips(totalSlips);
             return thisBuilder();
         }
 

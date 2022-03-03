@@ -210,7 +210,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      * @return "BCMAIL PLANNERS TEST" by default.
      */
     @Override
-    public synchronized String getJobRecipientName() {
+    public  String getJobRecipientName() {
         if (this.jobRecipientName == null) {
             this.jobRecipientName = "BCMP-Service";
         }
@@ -322,7 +322,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      *
      * @return The decorator used to modify the bundle.
      */
-    private synchronized DocumentBundleDecorator getDecorator() {
+    private  DocumentBundleDecorator getDecorator() {
         if (this.decorator == null) {
             this.decorator = createDecorator();
         }
@@ -336,8 +336,8 @@ public class DocumentBundleImpl implements DocumentBundle {
      * @return An appender for the given order type.
      */
     private DocumentBundleDecorator createDecorator() {
-        final String _m = "createDecorator";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createDecorator";
+        LOG.entering(CLASSNAME, methodName);
 
         final DocumentBundleDecorator dbd;
         final OrderType ot = getOrderType();
@@ -352,7 +352,7 @@ public class DocumentBundleImpl implements DocumentBundle {
             throw new IllegalArgumentException("Unexpected order type: " + ot);
         }
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
         return dbd;
     }
 }

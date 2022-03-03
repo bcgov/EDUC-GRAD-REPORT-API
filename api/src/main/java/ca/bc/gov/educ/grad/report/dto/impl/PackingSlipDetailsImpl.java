@@ -5,6 +5,8 @@ import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
+import ca.bc.gov.educ.grad.report.model.reports.PaperType;
+
 
 import java.util.Date;
 
@@ -27,12 +29,16 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
 
     private Long id;
     private String recipient;
+    private String attentionTo = "";
     private String orderedByName;
     private Integer documentsShipped;
+    private Integer currentSlip;
+    private Integer totalSlips;
     private String orderNumber;
     private Date orderDate;
     private DestinationType destinationType;
     private PostalAddress address;
+    private PaperType paperType;
 
     public PackingSlipDetailsImpl() {}
 
@@ -48,6 +54,15 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
     @Override
     public String getRecipient() {
         return recipient;
+    }
+
+    @Override
+    public String getAttentionTo() {
+        return attentionTo;
+    }
+
+    public void setAttentionTo(String attentionTo) {
+        this.attentionTo = attentionTo;
     }
 
     @Override
@@ -80,6 +95,23 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
         return destinationType;
     }
 
+    @Override
+    public Integer getCurrentSlip() {
+        return currentSlip;
+    }
+
+    public void setCurrentSlip(Integer currentSlip) {
+        this.currentSlip = currentSlip;
+    }
+
+    public PaperType getPaperType() {
+        return paperType;
+    }
+
+    public void setPaperType(PaperType paperType) {
+        this.paperType = paperType;
+    }
+
     public void setRecipient(String recipient) {
         this.recipient = recipient;
     }
@@ -106,6 +138,15 @@ public class PackingSlipDetailsImpl extends AbstractDomainEntity implements Pack
 
     public void setAddress(PostalAddress address) {
         this.address = address;
+    }
+
+    @Override
+    public Integer getTotalSlips() {
+        return totalSlips;
+    }
+
+    public void setTotalSlips(Integer totalSlips) {
+        this.totalSlips = totalSlips;
     }
 }
 

@@ -4,6 +4,7 @@ import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
 import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
+import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
 import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
 import org.slf4j.Logger;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
 @Service
 public class GradReportSignatureService {
@@ -36,8 +39,8 @@ public class GradReportSignatureService {
 
     @Transactional
     public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
-        String _m = String.format("getSignatureImageBySignatureId(String %s)", id);
-        log.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("getSignatureImageBySignatureId(String %s)", id);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         Optional<GradReportSignatureImageEntity> entity = signatureImageRepository.findById(UUID.fromString(id));
         if(!entity.isPresent()) {
             try {
@@ -50,14 +53,14 @@ public class GradReportSignatureService {
             }
         }
         GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
-        log.debug(">{}.{}", _m, CLASS_NAME);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return  signatureImage;
     }
 
     @Transactional
     public List<GradReportSignatureImage> getSignatureImages(String accessToken) {
-        String _m = String.format("getSignatureImages()");
-        log.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = "getSignatureImages()";
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         List<GradReportSignatureImageEntity> entities = signatureImageRepository.findAll();
         List<GradReportSignatureImage> result = new ArrayList();
         for(GradReportSignatureImageEntity entity: entities) {
@@ -67,13 +70,14 @@ public class GradReportSignatureService {
                 signatureImage.setDistrictName(dist.getDistrictName());
             result.add(signatureImage);
         }
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return result;
     }
 
     @Transactional
     public GradReportSignatureImage getSignatureImageByCode(String code, String accessToken) {
-        String _m = String.format("getSignatureImageByCode(String %s)", code);
-        log.debug("<{}.{}", _m, CLASS_NAME);
+        String methodName = String.format("getSignatureImageByCode(String %s)", code);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
         if(entity ==  null) {
             try {
@@ -83,14 +87,15 @@ public class GradReportSignatureService {
                 entity.setSignatureContent(imageBinary);
             } catch (Exception e) {
                 log.error("Unable to load BLANK image from resources", e);
+                throw new DomainServiceException("Unable to load default blank image");
             }
         }
         GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
         District dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
         if(dist != null)
             signatureImage.setDistrictName(dist.getDistrictName());
-
-        log.debug(">{}.{}", _m, CLASS_NAME);
+        
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return  signatureImage;
     }
 

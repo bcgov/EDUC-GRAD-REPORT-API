@@ -74,8 +74,8 @@ public class XmlBuilder {
      */
     private void toXml(final String key, final String value)
             throws ParserConfigurationException {
-        final String _m = "toXml(final String key, final String value)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "toXml(final String key, final String value)";
+        LOG.entering(CLASSNAME, methodName);
 
         String[] tokens = key.split(XML_DELIM);
         List<String> tokenList = new ArrayList(Arrays.asList(tokens));
@@ -101,7 +101,7 @@ public class XmlBuilder {
         parentElement.appendChild(childElement);
         LOG.fine("Child element added to parent element.");
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
     }
 
     /**
@@ -112,8 +112,8 @@ public class XmlBuilder {
      * @return the parent that has been created.
      */
     private Element createElementHierarchy(final String key) throws ParserConfigurationException {
-        final String _m = "createElementHierarchy(final String key)";
-        LOG.entering(CLASSNAME, _m);
+        final String methodName = "createElementHierarchy(final String key)";
+        LOG.entering(CLASSNAME, methodName);
 
         final String[] tokens = key.split(XML_DELIM);
         final String lastToken = tokens[tokens.length - 1];
@@ -142,7 +142,7 @@ public class XmlBuilder {
         getElementMap().put(key, childElement);
         LOG.fine("Element map updated with created child element.");
 
-        LOG.exiting(CLASSNAME, _m);
+        LOG.exiting(CLASSNAME, methodName);
 
         return childElement;
     }
