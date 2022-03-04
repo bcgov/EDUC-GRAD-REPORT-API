@@ -7,7 +7,7 @@
     <groupId>ca.bc.gov.educ</groupId>
     <artifactId>educ-grad-report-api</artifactId>
     <name>educ-grad-report-api</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <description>Ministry of Education REPORT API</description>
 
     <parent>
