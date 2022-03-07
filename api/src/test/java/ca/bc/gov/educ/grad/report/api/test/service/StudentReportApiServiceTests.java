@@ -947,7 +947,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(achievementReportRequest.getData());
 
 		ReportRequestDataThreadLocal.setGenerateReportData(achievementReportRequest.getData());
-
 		achievementReportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
 		StudentAchievementReport achievementReport = apiReportService.getStudentAchievementReportDocument(achievementReportRequest);
 
