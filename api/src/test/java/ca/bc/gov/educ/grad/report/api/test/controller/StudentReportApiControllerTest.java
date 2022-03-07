@@ -64,6 +64,43 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     private ReportController reportController;
 
     @Test
+    public void getSchoolDistributionReportTest() throws Exception {
+        LOG.debug("<{}.getSchoolDistributionReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+        reportRequest.getOptions().setReportFile("School Distribution Report.pdf");
+
+        byte[] resultBinary = new byte[0];
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+        ResponseEntity response = ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(resultBinary);
+
+        Authentication authentication = Mockito.mock(Authentication.class);
+        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+        // Mockito.whens() for your authorization object
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        //Mockito.when(authentication.getDetails()).thenReturn(details);
+        SecurityContextHolder.setContext(securityContext);
+
+        Mockito.when(reportService.getSchoolDistributionReport(reportRequest)).thenReturn(response);
+        reportController.getSchoolDistribution(reportRequest);
+        Mockito.verify(reportService).getSchoolDistributionReport(reportRequest);
+
+        LOG.debug(">getSchoolDistributionReportTest");
+    }
+
+    @Test
     public void getPackingSlipReportTest() throws Exception {
         LOG.debug("<{}.getPackingSlipReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 

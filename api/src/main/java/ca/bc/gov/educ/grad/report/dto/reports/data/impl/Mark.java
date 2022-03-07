@@ -150,7 +150,6 @@ public abstract class Mark extends BusinessEntity {
      * Used by the exam and transcript reports to get a preformatted session
      * date.
      *
-     * @see Constants.DATE_REPORT_SESSION
      * @return A non-null, possibly empty String.
      */
     public String getFormattedSessionDate() {
@@ -311,8 +310,6 @@ public abstract class Mark extends BusinessEntity {
 
     /**
      * Sets the formatted session date; called by setSessionDate.
-     *
-     * @see setFormattedSessionDate()
      *
      * @param sessionDate An empty or formatted string, never null.
      */

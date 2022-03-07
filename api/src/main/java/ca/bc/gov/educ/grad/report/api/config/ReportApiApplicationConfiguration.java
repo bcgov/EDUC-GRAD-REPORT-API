@@ -12,8 +12,7 @@ import org.springframework.integration.config.EnableIntegration;
 @IntegrationComponentScan
 @EnableIntegration
 @ComponentScans({
-        @ComponentScan("ca.bc.gov.educ.api.report"),
-        @ComponentScan("ca.bc.gov.educ.grad")
+        @ComponentScan("ca.bc.gov.educ.grad.report")
 })
 public class ReportApiApplicationConfiguration {
 

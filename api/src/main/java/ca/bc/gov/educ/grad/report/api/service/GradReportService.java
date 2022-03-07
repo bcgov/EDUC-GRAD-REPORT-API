@@ -12,6 +12,8 @@ import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
+import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import org.slf4j.Logger;
@@ -53,6 +55,8 @@ public class GradReportService {
 	@Autowired
 	PackingSlipService packingSlipService;
 
+	@Autowired
+	SchoolDistributionService schoolDistributionService;
 
 	public ResponseEntity<byte[]> getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
@@ -210,6 +214,41 @@ public class GradReportService {
 			DocumentBundle documentBundle = bcmpBundleService.createDocumentBundle(orderType);
 			documentBundle.appendBusinessReport(gradCertificateReports);
 			return documentBundle;
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return null;
+	}
+
+	public ResponseEntity<byte[]> getSchoolDistributionReport(ReportRequest reportRequest) {
+		String methodName = "getSchoolDistributionReport(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			SchoolDistributionReport schoolDistributionReport = getSchoolDistributionReportDocument(reportRequest);
+			byte[] resultBinary = schoolDistributionReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
+	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) {
+		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		try {
+			return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 		}
