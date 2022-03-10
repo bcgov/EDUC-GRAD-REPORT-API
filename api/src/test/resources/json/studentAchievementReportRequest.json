@@ -333,8 +333,8 @@
         "hasRequirementMet": "The following requirements met",
         "requirementMet": [
           {
-            "code": "202",
-            "description": "Français langue seconde-immersion 10 - French Immersion ",
+            "code": "954",
+            "description": "954 - The school has reported the student participating in Career Program",
             "courseDetails": [
               {
                 "courseCode": "ENST",
