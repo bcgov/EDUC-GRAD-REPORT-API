@@ -570,7 +570,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="40" height="15" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="8"/>
+									<font size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{gradReqMet}]]></textFieldExpression>
 							</textField>
@@ -914,7 +914,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="40" height="15" uuid="1822d469-edcf-4386-b2f2-9e7a8f7a0afd"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="8"/>
+									<font size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
 							</textField>
@@ -1079,7 +1079,7 @@
 							<textField isBlankWhenNull="true">
 								<reportElement style="GeneratedText" x="0" y="0" width="50" height="15" uuid="14f394b0-b967-4f2f-b336-bc433cd19270"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="8"/>
+									<font size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
 							</textField>
@@ -1337,7 +1337,7 @@
 								<textFieldExpression><![CDATA[$F{hasRequirementMet}]]></textFieldExpression>
 							</textField-->
 							<componentElement>
-								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="160" height="42" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
+								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="160" height="80" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
 								<jr:list printOrder="Vertical">
 									<datasetRun subDataset="gradRequirementDataset" uuid="c6a157a1-50ce-4ad4-9425-50df86460a6f">
 										<datasetParameter name="REPORT_DATA_SOURCE">
@@ -1345,13 +1345,13 @@
 										</datasetParameter>
 										<dataSourceExpression><![CDATA[$F{requirementMetdataSource}]]></dataSourceExpression>
 									</datasetRun>
-									<jr:listContents height="42" width="160">
+									<jr:listContents height="80" width="160">
 										<textField>
-											<reportElement style="GeneratedText" x="9" y="0" width="121" height="30" uuid="b28957b1-e52e-4c4b-baed-49ade5d877db"/>
+											<reportElement style="GeneratedText" x="9" y="0" width="130" height="50" uuid="b28957b1-e52e-4c4b-baed-49ade5d877db"/>
 											<textFieldExpression><![CDATA[" * "+$F{code}+" "+$F{description}]]></textFieldExpression>
 										</textField>
 										<componentElement>
-											<reportElement x="20" y="25" width="110" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
+											<reportElement x="20" y="50" width="110" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
 											<jr:list printOrder="Vertical">
 												<datasetRun subDataset="courseDetailsDataset" uuid="38689648-70ad-4cfd-9ec7-a74b6785f9af">
 													<dataSourceExpression><![CDATA[$F{courseDetailsdataSource}]]></dataSourceExpression>
