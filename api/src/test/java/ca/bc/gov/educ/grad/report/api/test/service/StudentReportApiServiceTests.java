@@ -456,6 +456,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createTranscriptReport_NOPROG() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOPROG.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Transcript NOPROG Report.pdf");
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createTranscriptReport_NOPROG");
+	}
+
+	@Test
 	public void createCertificateReport_E() throws Exception {
 		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
