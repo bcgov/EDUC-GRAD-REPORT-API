@@ -28,7 +28,7 @@ public interface AchievementCourse {
     /**
      * get the PEN which the data corresponds to.
      *
-     * @return PEN
+     * @return PEN pen
      */
     String getPen();
 
@@ -56,7 +56,7 @@ public interface AchievementCourse {
     /**
      * get the graduation requirements the course has met.
      *
-     * @return requirement
+     * @return requirement requirement
      */
     String getRequirement();
 
@@ -64,7 +64,7 @@ public interface AchievementCourse {
      * indicates if the course was granted through the equivalency or challenge
      * process. Possible values are E or C.
      *
-     * @return equivalency
+     * @return equivalency equivalency
      */
     String getEquivalency();
 
@@ -121,13 +121,13 @@ public interface AchievementCourse {
     /**
      * get the number of credits the student earned for the course.
      *
-     * @return credits
+     * @return credits credits
      */
     String getCredits();
 
     /**
      * Get the course type used for reporting.
-     *
+     * <p>
      * 1 means examinable course; and 2 means non-examinable course.
      *
      * @return course type
@@ -182,5 +182,12 @@ public interface AchievementCourse {
      * @return the equiv or challenge
      */
     String getEquivOrChallenge();
+
+    /**
+     * Gets projected.
+     *
+     * @return the projected
+     */
+    Boolean getProjected();
 
 }

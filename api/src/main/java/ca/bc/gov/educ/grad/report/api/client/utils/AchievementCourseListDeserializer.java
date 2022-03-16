@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
@@ -44,6 +45,7 @@ public class AchievementCourseListDeserializer extends StdDeserializer<List<Achi
             String equivOrChallenge = (String) nullSafeString(nextNode.get("equivOrChallenge")).asText("");
             String credits = (String) nullSafeString(nextNode.get("credits")).asText("");
             Integer creditsUsedForGrad = (Integer) nullSafeInteger(nextNode.get("creditsUsedForGrad")).asInt(0);
+            Boolean projected = (Boolean) nullSafeBoolean(nextNode.get("projected")).asBoolean(false);
             AchievementCourse r = new AchievementCourse(
                     courseName,
                     courseCode,
@@ -55,7 +57,8 @@ public class AchievementCourseListDeserializer extends StdDeserializer<List<Achi
                     interimPercent,
                     equivOrChallenge,
                     credits,
-                    creditsUsedForGrad
+                    creditsUsedForGrad,
+                    projected
             );
             result.add(r);
         }
@@ -65,7 +68,12 @@ public class AchievementCourseListDeserializer extends StdDeserializer<List<Achi
     private JsonNode nullSafeString(final JsonNode s) {
         return s == null ? new TextNode("") : s;
     }
+
     private JsonNode nullSafeInteger(final JsonNode s) {
         return s == null ? new IntNode(0) : s;
+    }
+
+    private JsonNode nullSafeBoolean(final JsonNode s) {
+        return s == null ? BooleanNode.FALSE : s;
     }
 }

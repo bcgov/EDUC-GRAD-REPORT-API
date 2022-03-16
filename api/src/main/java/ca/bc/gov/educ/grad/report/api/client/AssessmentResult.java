@@ -9,6 +9,7 @@ public class AssessmentResult {
     private String gradReqMet;
     private String specialCase;
     private String exceededWriteFlag;
+    private Boolean projected;
 
     public String getAssessmentName() {
         return assessmentName;
@@ -64,5 +65,13 @@ public class AssessmentResult {
 
     public void setExceededWriteFlag(String exceededWriteFlag) {
         this.exceededWriteFlag = exceededWriteFlag;
+    }
+
+    public Boolean getProjected() {
+        return projected;
+    }
+
+    public void setProjected(Boolean projected) {
+        this.projected = projected;
     }
 }

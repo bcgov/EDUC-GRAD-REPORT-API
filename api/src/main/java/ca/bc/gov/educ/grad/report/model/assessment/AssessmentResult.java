@@ -41,4 +41,6 @@ public interface AssessmentResult {
 
     public String getExceededWriteFlag();
 
+    public Boolean getProjected();
+
 }

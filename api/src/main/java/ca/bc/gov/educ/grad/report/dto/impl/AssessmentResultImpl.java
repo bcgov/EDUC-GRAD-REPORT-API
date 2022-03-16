@@ -48,6 +48,7 @@ public class AssessmentResultImpl extends AbstractDomainEntity
     private String gradReqMet;
     private String specialCase;
     private String exceededWriteFlag;
+    private Boolean projected;
 
     @Override
     public Long getId() {
@@ -74,8 +75,13 @@ public class AssessmentResultImpl extends AbstractDomainEntity
         return proficiencyScore;
     }
 
+    @Override
     public String getAssessmentName() {
         return assessmentName;
+    }
+
+    public Boolean getProjected() {
+        return projected;
     }
 
     public void setAssessmentName(String assessmentName) {
@@ -122,4 +128,7 @@ public class AssessmentResultImpl extends AbstractDomainEntity
         this.sessionDate = nullSafe(sessionDate);
     }
 
+    public void setProjected(Boolean projected) {
+        this.projected = projected;
+    }
 }

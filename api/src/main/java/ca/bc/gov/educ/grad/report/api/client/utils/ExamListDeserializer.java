@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
@@ -38,6 +39,7 @@ public class ExamListDeserializer extends StdDeserializer<List<Exam>> {
             String courseLevel = (String) nullSafeString(nextNode.get("courseLevel")).asText("");
             String sessionDate = (String) nullSafeString(nextNode.get("sessionDate")).asText("");
             String gradReqMet = (String) nullSafeString(nextNode.get("gradReqMet")).asText("");
+            Boolean projected = (Boolean) nullSafeBoolean(nextNode.get("projected")).asBoolean(false);
             String completedCoursePercentage = (String) nullSafeString(nextNode.get("completedCoursePercentage")).asText("");
             String completedCourseLetterGrade = (String) nullSafeString(nextNode.get("completedCourseLetterGrade")).asText("");
             String bestSchoolPercent = (String) nullSafeString(nextNode.get("bestSchoolPercent")).asText("");
@@ -54,6 +56,7 @@ public class ExamListDeserializer extends StdDeserializer<List<Exam>> {
             r.setCourseLevel(courseLevel);
             r.setSessionDate(sessionDate);
             r.setGradReqMet(gradReqMet);
+            r.setProjected(projected);
             r.setCompletedCoursePercentage(completedCoursePercentage);
             r.setCompletedCourseLetterGrade(completedCourseLetterGrade);
             r.setBestSchoolPercent(bestSchoolPercent);
@@ -72,7 +75,12 @@ public class ExamListDeserializer extends StdDeserializer<List<Exam>> {
     private JsonNode nullSafeString(final JsonNode s) {
         return s == null ? new TextNode("") : s;
     }
+
     private JsonNode nullSafeInteger(final JsonNode s) {
         return s == null ? new IntNode(0) : s;
+    }
+
+    private JsonNode nullSafeBoolean(final JsonNode s) {
+        return s == null ? BooleanNode.FALSE : s;
     }
 }
