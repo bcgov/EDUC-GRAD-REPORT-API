@@ -11,6 +11,8 @@ public interface Exam {
 
     String getGradReqMet();
 
+    Boolean getProjected();
+
     String getCompletedCoursePercentage();
 
     String getCompletedCourseLetterGrade();
@@ -38,6 +40,8 @@ public interface Exam {
     void setSessionDate(String sessionDate);
 
     void setGradReqMet(String gradReqMet);
+
+    void setProjected(Boolean projected);
 
     void setCompletedCoursePercentage(String completedCoursePercentage);
 
