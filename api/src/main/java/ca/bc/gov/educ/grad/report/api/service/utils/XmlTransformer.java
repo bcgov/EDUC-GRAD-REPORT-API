@@ -2,8 +2,8 @@ package ca.bc.gov.educ.grad.report.api.service.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -12,12 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 @Component
-public class JsonTransformer extends BaseTransformer {
+public class XmlTransformer extends BaseTransformer {
 
-    private static final Logger log = LoggerFactory.getLogger(JsonTransformer.class);
+    private static final Logger log = LoggerFactory.getLogger(XmlTransformer.class);
 
     static {
-        OBJECT_MAPPER = new ObjectMapper();
+        OBJECT_MAPPER = new XmlMapper();
         OBJECT_MAPPER
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.INDENT_OUTPUT)
