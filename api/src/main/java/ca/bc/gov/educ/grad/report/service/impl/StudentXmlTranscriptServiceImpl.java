@@ -98,7 +98,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
         LOG.entering(CLASSNAME, methodName);
         try
         {
-            return webClient.get().uri(String.format(reportApiConstants.getReadGradStudentRecord(),pen)).headers(h -> h.setBearerAuth(accessToken)).retrieve().bodyToMono(Student.class).block();
+            return webClient.get().uri(String.format(reportApiConstants.getPenStudentApiByPenUrl(),pen)).headers(h -> h.setBearerAuth(accessToken)).retrieve().bodyToMono(Student.class).block();
         } catch (Exception e) {
             LOG.throwing(CLASSNAME, methodName, e);
         }
