@@ -3,25 +3,23 @@ package ca.bc.gov.educ.grad.report.api.service.utils;
 import com.fasterxml.jackson.databind.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.io.InputStream;
 
-@Component
 abstract class BaseTransformer implements Transformer {
 
     private static final Logger log = LoggerFactory.getLogger(BaseTransformer.class);
 
-    static ObjectMapper OBJECT_MAPPER;
+    static ObjectMapper objectMapper;
 
     @Override
     public Object unmarshall(byte[] input, Class<?> clazz) throws TransformerException {
         Object result = null;
         long start = System.currentTimeMillis();
         try {
-            result = OBJECT_MAPPER.readValue(input, clazz);
+            result = objectMapper.readValue(input, clazz);
         } catch (IOException e) {
             throw new TransformerException(e);
         }
@@ -30,7 +28,7 @@ abstract class BaseTransformer implements Transformer {
     }
 
     public Object unmarshallWithWrapper(String input, Class<?> clazz) throws TransformerException {
-        final ObjectReader reader = OBJECT_MAPPER.readerFor(clazz);
+        final ObjectReader reader = objectMapper.readerFor(clazz);
         Object result = null;
         long start = System.currentTimeMillis();
         try {
@@ -46,7 +44,7 @@ abstract class BaseTransformer implements Transformer {
     }
 
     public String marshallWithWrapper(Object input) throws TransformerException {
-        ObjectWriter prettyPrinter = OBJECT_MAPPER.writer();//.writerWithDefaultPrettyPrinter();
+        ObjectWriter prettyPrinter = objectMapper.writer();//.writerWithDefaultPrettyPrinter();
         String result = null;
         try {
             result = prettyPrinter
@@ -64,7 +62,7 @@ abstract class BaseTransformer implements Transformer {
         Object result = null;
         long start = System.currentTimeMillis();
         try {
-            result = OBJECT_MAPPER.readValue(input, clazz);
+            result = objectMapper.readValue(input, clazz);
         } catch (IOException e) {
             throw new TransformerException(e);
         }
@@ -77,7 +75,7 @@ abstract class BaseTransformer implements Transformer {
         Object result = null;
         long start = System.currentTimeMillis();
         try {
-            result = OBJECT_MAPPER.readValue(input, clazz);
+            result = objectMapper.readValue(input, clazz);
         } catch (IOException e) {
             throw new TransformerException(e);
         }
@@ -87,7 +85,7 @@ abstract class BaseTransformer implements Transformer {
 
     @Override
     public String marshall(Object input) throws TransformerException {
-        ObjectWriter prettyPrinter = OBJECT_MAPPER.writerWithDefaultPrettyPrinter();
+        ObjectWriter prettyPrinter = objectMapper.writerWithDefaultPrettyPrinter();
         String result = null;
         try {
             result = prettyPrinter.writeValueAsString(input);

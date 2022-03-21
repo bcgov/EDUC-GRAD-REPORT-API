@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -973,6 +974,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(bArrray);
 		}
 		LOG.debug(">createSchoolDistributionReport");
+	}
+
+	//@Test
+	public void createXmlTranscriptReport() throws Exception {
+		LOG.debug("<{}.createXmlTranscriptReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		XmlReportRequest reportRequest = (XmlReportRequest)createReportRequest("json/xmlTranscriptReportRequest.json", XmlReportRequest.class);
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
+
+		reportRequest.getOptions().setReportFile("Xml Transcript Report.xml");
+		ResponseEntity<byte[]> response = apiReportService.getStudentXmlTranscriptReport(reportRequest);
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createXmlTranscriptReport");
 	}
 
 	@Test

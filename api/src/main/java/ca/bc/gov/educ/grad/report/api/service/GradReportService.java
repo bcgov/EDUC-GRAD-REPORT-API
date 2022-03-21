@@ -192,7 +192,7 @@ public class GradReportService {
 		try {
 			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
 			byte[] resultBinary = transcriptReport.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_XML);
+			response = handleBinaryResponse(resultBinary, String.format(reportFile, transcriptReport.getFilename()), MediaType.APPLICATION_XML);
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 			response = getInternalServerErrorResponse(e);

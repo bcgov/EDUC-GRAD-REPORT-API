@@ -2,7 +2,6 @@ package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
 import ca.bc.gov.educ.grad.report.dto.reports.util.xml.AcademicRecordBatchDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -14,7 +13,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@JacksonXmlRootElement(namespace = "rn:org:pesc:message:AcademicRecordBatch:v1.0.0")
 @JsonDeserialize(using = AcademicRecordBatchDeserializer.class)
 public class AcademicRecordBatch { 
 	private HighSchoolTranscript HighSchoolTranscript;

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class XmlReportData {
 
-    private String pen;
+    private Pen pen;
     private String psis;
     private String organizationName;
     private String addressLine1, addressLine2, addressLine3;

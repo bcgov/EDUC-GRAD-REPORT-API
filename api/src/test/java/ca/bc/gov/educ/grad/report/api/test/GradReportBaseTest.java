@@ -56,10 +56,14 @@ public abstract class GradReportBaseTest {
     }
 
     protected ReportRequest createReportRequest(String jsonPath) throws Exception {
+        return (ReportRequest)createReportRequest(jsonPath, ReportRequest.class);
+    }
+
+    protected Object createReportRequest(String jsonPath, Class clazz) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
         String transcriptJson = readInputStream(inputStream);
-        return (ReportRequest)jsonTransformer.unmarshall(transcriptJson, ReportRequest.class);
+        return jsonTransformer.unmarshall(transcriptJson, clazz);
     }
 
     private String readInputStream(InputStream is) throws Exception {

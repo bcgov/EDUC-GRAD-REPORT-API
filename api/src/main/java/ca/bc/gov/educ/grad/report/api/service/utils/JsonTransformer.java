@@ -4,30 +4,30 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
 @Component
 public class JsonTransformer extends BaseTransformer {
 
-    private static final Logger log = LoggerFactory.getLogger(JsonTransformer.class);
-
-    static {
-        OBJECT_MAPPER = new ObjectMapper();
-        OBJECT_MAPPER
-                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-                .disable(SerializationFeature.INDENT_OUTPUT)
-                .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
-                .enable(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN)
-                .enable(JsonGenerator.Feature.ESCAPE_NON_ASCII)
-                .setDateFormat(new SimpleDateFormat("yyyy-MM-dd h:mm:ss"))
-                .setTimeZone(TimeZone.getDefault())
-        //        .enable(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS)
-        ;
+    @PostConstruct
+    void initMapper() {
+        if(objectMapper == null) {
+            objectMapper = new ObjectMapper();
+            objectMapper
+                    .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                    .disable(SerializationFeature.INDENT_OUTPUT)
+                    .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
+                    .enable(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN)
+                    .enable(JsonGenerator.Feature.ESCAPE_NON_ASCII)
+                    .setDateFormat(new SimpleDateFormat("yyyy-MM-dd h:mm:ss"))
+                    .setTimeZone(TimeZone.getDefault())
+            //        .enable(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS)
+            ;
+        }
     }
 
     @Override
