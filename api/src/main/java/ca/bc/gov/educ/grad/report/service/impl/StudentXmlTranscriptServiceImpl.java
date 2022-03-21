@@ -62,7 +62,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             pen = reportData.getPen();
 
             Student student = getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
-            GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getLocalId(), reportData.getAccessToken());
+            GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi((String)student.getPen().getEntityID(), reportData.getAccessToken());
             AcademicRecordBatch academicRecordBatch = (AcademicRecordBatch)xmlTransformer.unmarshall(graduationStudentRecord.getStudentGradData(), AcademicRecordBatch.class);
             StudentTranscriptReportImpl transcriptReport = new StudentTranscriptReportImpl(
                     xmlTransformer.marshall(academicRecordBatch).getBytes(),
