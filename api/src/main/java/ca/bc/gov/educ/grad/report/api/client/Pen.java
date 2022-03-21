@@ -1,5 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Pen {
 
     private String pen;
@@ -13,6 +15,7 @@ public class Pen {
         this.pen = value;
     }
 
+    @JsonProperty("studentID")
     public Object getEntityID() {
         return entityID;
     }

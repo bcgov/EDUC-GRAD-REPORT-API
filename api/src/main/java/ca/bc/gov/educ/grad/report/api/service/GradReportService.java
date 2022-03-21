@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.service;
 
 import ca.bc.gov.educ.grad.report.api.client.PackingSlip;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
@@ -16,6 +17,7 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
+import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
@@ -57,6 +58,9 @@ public class GradReportService {
 
 	@Autowired
 	SchoolDistributionService schoolDistributionService;
+
+	@Autowired
+	StudentXmlTranscriptService studentXmlTranscriptService;
 
 	public ResponseEntity<byte[]> getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
@@ -176,6 +180,41 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return null;
 	}
+
+	public ResponseEntity<byte[]> getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
+		String methodName = "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
+			byte[] resultBinary = transcriptReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_XML);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
+	public StudentTranscriptReport getStudentXmlTranscriptReportDocument(XmlReportRequest reportRequest) {
+		String methodName = "getStudentXmlTranscriptReportDocument(XmlReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
+
+		try {
+			return studentXmlTranscriptService.buildXmlTranscriptReport();
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return null;
+	}
 	
 	public ResponseEntity<byte[]> getStudentCertificateReport(ReportRequest reportRequest) {
 		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
@@ -256,6 +295,8 @@ public class GradReportService {
 		return null;
 	}
 
+
+
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
 		ResponseEntity<byte[]> result = null;
 
@@ -276,6 +317,10 @@ public class GradReportService {
 	}
 
 	private ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
+		return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_PDF);
+	}
+
+	private ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
 		ResponseEntity<byte[]> response = null;
 
 		if(resultBinary.length > 0) {
@@ -284,7 +329,7 @@ public class GradReportService {
 			response = ResponseEntity
 					.ok()
 					.headers(headers)
-					.contentType(MediaType.APPLICATION_PDF)
+					.contentType(contentType)
 					.body(resultBinary);
 		} else {
 			response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
