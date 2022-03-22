@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AcademicSessionDetail { 
-	private Date SessionDesignator;
-	private Date SessionName;
+	private String SessionDesignator;
+	private String SessionName;
 	private String SessionSchoolYear;
 }

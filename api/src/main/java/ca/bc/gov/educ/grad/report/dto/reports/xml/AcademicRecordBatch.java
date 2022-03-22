@@ -15,10 +15,10 @@ import lombok.NoArgsConstructor;
 @JsonDeserialize(using = AcademicRecordBatchDeserializer.class)
 public class AcademicRecordBatch {
 	private HighSchoolTranscript HighSchoolTranscript;
-	@JacksonXmlProperty
+	@JacksonXmlProperty(isAttribute = true)
 	private String AcRecBat = "urn:org:pesc:message:AcademicRecordBatch:v1.0.0";
-	@JacksonXmlProperty
+	@JacksonXmlProperty(isAttribute = true)
 	private String xsi = "http://www.w3.org/2001/XMLSchema-instance";
-	@JacksonXmlProperty
+	@JacksonXmlProperty(isAttribute = true)
 	private String schemaLocation = "urn:org:pesc:message:AcademicRecordBatch:v1.0.0 AcademicRecordBatch_v1.0.0.xsd";
 }

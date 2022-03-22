@@ -11,6 +11,7 @@ import lombok.Setter;
 public class XmlReportData {
 
     private Pen pen;
+    private String authorizeDate;
     private String psis;
     private String organizationName;
     private String addressLine1, addressLine2, addressLine3;

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRecordBatch> {
 
@@ -97,6 +98,36 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         academicAward.setAcademicCompletionIndicator(academicCompletionIndicator);
         Integer creditHoursEarned = nullSafeInteger(gradStatusNode.get("gpa")).asInt(0);
         academicAward.setAcademicSummary(new AcademicSummary(null, null, new GPA(creditHoursEarned, creditHoursEarned)));
+
+        JsonNode studentCoursesNode = nodeTree.get("studentCourses");
+        if(studentCoursesNode != null) {
+            JsonNode studentCourseListNode = studentCoursesNode.get("studentCourseList");
+            if(studentCourseListNode != null) {
+                Iterator<JsonNode> studentCourseListNodeIterator = studentCourseListNode.iterator();
+                while(studentCourseListNodeIterator.hasNext()) {
+                    JsonNode studentCourseNode = studentCourseListNodeIterator.next();
+                    String courseCreditLevel = nullSafeString(studentCourseNode.get("courseLevel")).asText("");
+                    String sessionName = nullSafeString(studentCourseNode.get("sessionDate")).asText("");
+                    Integer courseCreditValue = nullSafeInteger(studentCourseNode.get("originalCredits")).asInt(0);
+                    String courseAcademicGrade = nullSafeString(studentCourseNode.get("completedCourseLetterGrade")).asText("");
+                    String courseNumber = nullSafeString(studentCourseNode.get("courseCode")).asText("");
+                    String courseTitle = nullSafeString(studentCourseNode.get("courseName")).asText("");
+                    academicRecord.addAcademicSessionCourse(sessionName, new Course(
+                        null, // CourseCreditBasis
+                        courseCreditLevel,
+                        courseCreditValue,
+                        0, //CourseAcademicGradeScaleCode
+                        courseAcademicGrade,
+                        null, //CourseSupplementalAcademicGrade;
+                        null, //CourseAcademicGradeStatusCode;
+                        null, //CourseSubjectAbbreviation;
+                        courseNumber, //CourseNumber;
+                        courseTitle,
+                        null //Requirement;
+                    ));
+                }
+            }
+        }
 
         Student student = new Student();
         HighSchoolTranscript transcript = new HighSchoolTranscript();
