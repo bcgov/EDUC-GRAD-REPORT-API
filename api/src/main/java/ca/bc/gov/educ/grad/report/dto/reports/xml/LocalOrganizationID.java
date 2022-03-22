@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LocalOrganizationID { 
-	private int LocalOrganizationIDCode;
+	private String LocalOrganizationIDCode;
 	private String LocalOrganizationIDQualifier;
 }

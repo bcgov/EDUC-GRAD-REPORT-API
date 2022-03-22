@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AgencyIdentifier { 
-	private int AgencyAssignedID;
+	private String AgencyAssignedID;
 	private String AgencyCode;
 	private String StateProvinceCode;
 }

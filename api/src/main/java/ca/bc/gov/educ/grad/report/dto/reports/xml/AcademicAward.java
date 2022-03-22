@@ -4,17 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AcademicAward { 
 	private String AcademicAwardLevel;
-	private Date AcademicAwardDate;
+	private String AcademicAwardDate;
 	private String AcademicAwardTitle;
 	private AcademicHonors AcademicHonors;
-	private boolean AcademicCompletionIndicator;
-	private Date AcademicCompletionDate;
+	private String AcademicCompletionIndicator;
+	private String AcademicCompletionDate;
 	private AcademicSummary AcademicSummary;
 }

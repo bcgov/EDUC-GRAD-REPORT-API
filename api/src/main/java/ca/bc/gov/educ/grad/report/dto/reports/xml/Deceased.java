@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Deceased { 
-	private boolean DeceasedIndicator;
+	private String DeceasedIndicator;
 }
