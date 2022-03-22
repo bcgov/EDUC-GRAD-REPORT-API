@@ -113,7 +113,6 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
                     String courseNumber = nullSafeString(studentCourseNode.get("courseCode")).asText("");
                     String courseTitle = nullSafeString(studentCourseNode.get("courseName")).asText("");
                     academicRecord.addAcademicSessionCourse(sessionName, new Course(
-                        null, // CourseCreditBasis
                         courseCreditLevel,
                         courseCreditValue,
                         0, //CourseAcademicGradeScaleCode

@@ -1,5 +1,8 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +19,14 @@ public class AcademicRecord {
 		if(session == null) {
 			session = new AcademicSession();
 			session.getAcademicSessionDetail().setSessionName(sessionName);
+			session.getAcademicSessionDetail().setSessionDesignator(sessionName);
+			session.getAcademicSessionDetail().setSessionSchoolYear(StringUtils.substringBefore(sessionName, "/"));
 			academicSessionMap.put(sessionName, session);
 		}
 		session.getCourse().add(course);
 	}
 
+	@JacksonXmlElementWrapper(useWrapping = false)
 	public List<AcademicSession> getAcademicSession() {
 		List<AcademicSession> academicSession = new ArrayList<>();
 		for(String key: academicSessionMap.keySet()) {
