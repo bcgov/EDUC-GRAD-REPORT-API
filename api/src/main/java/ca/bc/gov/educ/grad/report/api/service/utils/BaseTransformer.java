@@ -12,7 +12,7 @@ abstract class BaseTransformer implements Transformer {
 
     private static final Logger log = LoggerFactory.getLogger(BaseTransformer.class);
 
-    static ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @Override
     public Object unmarshall(byte[] input, Class<?> clazz) throws TransformerException {
