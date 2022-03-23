@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class AcademicSummary { 
 	private String AcademicSummaryType;
 	private String AcademicSummaryLevel;
+	private String NoteMessage;
 	@JacksonXmlProperty(localName = "GPA")
 	private GPA GPA;
 }

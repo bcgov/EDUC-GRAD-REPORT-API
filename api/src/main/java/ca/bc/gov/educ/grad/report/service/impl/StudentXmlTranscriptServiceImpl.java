@@ -14,6 +14,8 @@ import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
+import ca.bc.gov.educ.grad.report.utils.MessageHelper;
+import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,8 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
     @Autowired
     JsonTransformer jsonTransformer;
 
+    @Autowired
+    MessageHelper messageHelper;
 
     @Override
     public StudentTranscriptReport buildXmlTranscriptReport() {
@@ -99,6 +103,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
                 throw dse;
             }
             AcademicRecordBatch academicRecordBatch = (AcademicRecordBatch)jsonTransformer.unmarshall(graduationStudentRecord.getStudentGradData(), AcademicRecordBatch.class);
+            setDefaultValues(academicRecordBatch);
             StudentTranscriptReportImpl transcriptReport = new StudentTranscriptReportImpl(
                     xmlTransformer.marshall(academicRecordBatch).getBytes(),
                     ReportFormat.XML,
@@ -140,5 +145,10 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             LOG.throwing(CLASSNAME, methodName, e);
         }
         return null;
+    }
+
+    private void setDefaultValues(AcademicRecordBatch academicRecordBatch) {
+        String courseCreditBasis = messageHelper.getDefaultValue("xml.transcript.HighSchoolTranscript.Student.AcademicRecord.AcademicSession.Course.CourseCreditBasis");
+        Log.debug(courseCreditBasis);
     }
 }

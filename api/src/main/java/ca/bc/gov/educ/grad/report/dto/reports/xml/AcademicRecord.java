@@ -10,21 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 public class AcademicRecord {
-	@JacksonXmlProperty(localName = "School")
+
 	private School School;
-	@JacksonXmlProperty(localName = "StudentLevel")
 	private StudentLevel StudentLevel;
-	@JacksonXmlProperty(localName = "AcademicAward")
 	private AcademicAward AcademicAward;
 	private Map<String, AcademicSession> academicSessionMap = new HashMap<>();
 
-	public void addAcademicSessionCourse(String sessionName, Course course) {
+	public void addAcademicSessionCourse(String sessionDate, Course course) {
+		Integer sessionMonth = Integer.parseInt(StringUtils.substringAfter(sessionDate, "/"));
+		Integer sessionYear = Integer.parseInt(StringUtils.substringBefore(sessionDate, "/"));
+		String sessionName = sessionYear + "-" + sessionMonth;
+		String sessionSchoolYear = sessionMonth < 9 ? (sessionYear - 1 + "-" + sessionYear) : (sessionYear + "-" + sessionYear + 1);
 		AcademicSession session = academicSessionMap.get(sessionName);
 		if(session == null) {
 			session = new AcademicSession();
 			session.getAcademicSessionDetail().setSessionName(sessionName);
 			session.getAcademicSessionDetail().setSessionDesignator(sessionName);
-			session.getAcademicSessionDetail().setSessionSchoolYear(StringUtils.substringBefore(sessionName, "/"));
+			session.getAcademicSessionDetail().setSessionSchoolYear(sessionSchoolYear);
 			academicSessionMap.put(sessionName, session);
 		}
 		session.getCourse().add(course);
@@ -40,6 +42,7 @@ public class AcademicRecord {
 		return academicSession;
 	}
 
+	@JacksonXmlProperty(localName = "School")
 	public School getSchool() {
 		return School;
 	}
@@ -48,6 +51,7 @@ public class AcademicRecord {
 		School = school;
 	}
 
+	@JacksonXmlProperty(localName = "StudentLevel")
 	public StudentLevel getStudentLevel() {
 		return StudentLevel;
 	}
@@ -56,6 +60,7 @@ public class AcademicRecord {
 		StudentLevel = studentLevel;
 	}
 
+	@JacksonXmlProperty(localName = "AcademicAward")
 	public AcademicAward getAcademicAward() {
 		return AcademicAward;
 	}

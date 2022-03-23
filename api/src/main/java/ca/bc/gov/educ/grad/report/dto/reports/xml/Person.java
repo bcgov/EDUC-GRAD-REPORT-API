@@ -15,6 +15,8 @@ public class Person {
 	private Birth Birth;
 	@JacksonXmlProperty(localName = "Name")
 	private Name Name;
+	@JacksonXmlProperty(localName = "Contacts")
+	private Contacts contacts;
 	@JacksonXmlProperty(localName = "Gender")
 	private Gender Gender;
 	@JacksonXmlProperty(localName = "Deceased")

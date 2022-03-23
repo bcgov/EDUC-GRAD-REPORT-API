@@ -34,6 +34,8 @@ spring:
     user: GRAD_REPORT_API
     password: grad_report_api
     locations: classpath:db/migration
+  messages:
+    basename: messages
 
 #Logging properties
 logging:

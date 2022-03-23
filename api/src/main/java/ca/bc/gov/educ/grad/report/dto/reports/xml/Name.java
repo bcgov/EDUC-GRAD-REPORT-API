@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Name {
 	private String FirstName;
+	private String MiddleName;
 	private String LastName;
 }

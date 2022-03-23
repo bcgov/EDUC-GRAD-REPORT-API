@@ -1,6 +1,7 @@
-package ca.bc.gov.educ.grad.report.dto.reports.util.xml;
+package ca.bc.gov.educ.grad.report.utils;
 
 import ca.bc.gov.educ.grad.report.dto.reports.xml.*;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.TextNode;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -32,8 +34,9 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         Person person = new Person();
 
         String firstName = nullSafeString(root.get("legalFirstName")).asText("");
+        String middleName = nullSafeString(root.get("legalMiddleName")).asText("");
         String lastName = nullSafeString(root.get("legalLastName")).asText("");
-        person.setName(new Name(firstName, lastName));
+        person.setName(new Name(firstName, middleName, lastName));
 
         String agencyAssignedID = nullSafeString(root.get("pen")).asText("");
         person.setAgencyIdentifier(new AgencyIdentifier(
@@ -48,7 +51,7 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         String gender = nullSafeString(root.get("genderCode")).asText("");
         person.setGender(new Gender(gender));
 
-        String deceased = root.get("deceasedDate") == null ? "false" : "true";
+        String deceased = root.get("deceasedDate") == null ? "FALSE" : "TRUE";
         person.setDeceased(new Deceased(deceased));
 
         AcademicRecord academicRecord = new AcademicRecord();
@@ -80,7 +83,29 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         academicRecord.setSchool(school);
 
         String studentLevelCode = nullSafeString(root.get("studentGrade")).asText("");
-        academicRecord.setStudentLevel(new StudentLevel(studentLevelCode));
+        switch(studentLevelCode) {
+            case "8":
+                academicRecord.setStudentLevel(new StudentLevel("EighthGrade"));
+                break;
+            case "9":
+                academicRecord.setStudentLevel(new StudentLevel("NinthGrade"));
+                break;
+            case "10":
+                academicRecord.setStudentLevel(new StudentLevel("TenthGrade"));
+                break;
+            case "11":
+                academicRecord.setStudentLevel(new StudentLevel("EleventhGrade"));
+                break;
+            case "12":
+                academicRecord.setStudentLevel(new StudentLevel("TwelfthGrade"));
+                break;
+            case "AD":
+                academicRecord.setStudentLevel(new StudentLevel("TwelfthGrade"));
+                break;
+            default:
+                academicRecord.setStudentLevel(new StudentLevel("Ungraded"));
+                break;
+        }
 
         AcademicAward academicAward = new AcademicAward();
 
@@ -91,13 +116,25 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         String academicCompletionDate = nullSafeString(gradStatusNode.get("programCompletionDate")).asText("");
         academicAward.setAcademicCompletionDate(academicCompletionDate);
         String academicAwardTitle = nullSafeString(gradStatusNode.get("program")).asText("");
-        academicAward.setAcademicAwardTitle(academicAwardTitle);
+        Integer creditHoursRequired = 0;
+        for (GraduationProgramCode graduationProgramCode : GraduationProgramCode.values()) {
+            if (StringUtils.contains(academicAwardTitle, graduationProgramCode.getCode())) {
+                creditHoursRequired = graduationProgramCode.getCredits();
+                academicAward.setAcademicAwardTitle(graduationProgramCode.getDescription());
+                break;
+            }
+        }
+
         String honorsTitle = nullSafeString(gradStatusNode.get("honoursStanding")).asText("");
-        academicAward.setAcademicHonors(new AcademicHonors(honorsTitle));
+        academicAward.setAcademicHonors(new AcademicHonors(honorsTitle.equalsIgnoreCase("Y") ? "true" : null));
+
+        String academinCompletionDate = nullSafeString(gradStatusNode.get("programCompletionDate")).asText("");
+        academicAward.setAcademicCompletionDate(academinCompletionDate);
+
         String academicCompletionIndicator = nullSafeString(root.get("graduated")).asText("");
         academicAward.setAcademicCompletionIndicator(academicCompletionIndicator);
-        Integer creditHoursEarned = nullSafeInteger(gradStatusNode.get("gpa")).asInt(0);
-        academicAward.setAcademicSummary(new AcademicSummary(null, null, new GPA(creditHoursEarned, creditHoursEarned)));
+
+        Integer creditHoursEarned = 0;
 
         JsonNode studentCoursesNode = nodeTree.get("studentCourses");
         if(studentCoursesNode != null) {
@@ -109,10 +146,12 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
                     String courseCreditLevel = nullSafeString(studentCourseNode.get("courseLevel")).asText("");
                     String sessionName = nullSafeString(studentCourseNode.get("sessionDate")).asText("");
                     Integer courseCreditValue = nullSafeInteger(studentCourseNode.get("originalCredits")).asInt(0);
+                    creditHoursEarned = creditHoursEarned + nullSafeInteger(studentCourseNode.get("creditsUsedForGrad")).asInt(0);
                     String courseAcademicGrade = nullSafeString(studentCourseNode.get("completedCourseLetterGrade")).asText("");
                     String courseNumber = nullSafeString(studentCourseNode.get("courseCode")).asText("");
                     String courseTitle = nullSafeString(studentCourseNode.get("courseName")).asText("");
                     academicRecord.addAcademicSessionCourse(sessionName, new Course(
+                        "Regular",
                         courseCreditLevel,
                         courseCreditValue,
                         0, //CourseAcademicGradeScaleCode
@@ -127,6 +166,21 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
                 }
             }
         }
+
+        JsonNode nonGradReasonsNode = nodeTree.get("nonGradReasons");
+        StringBuilder noteMessage = new StringBuilder("BC: Reason not graduated:");
+        if(nonGradReasonsNode != null) {
+            Iterator<JsonNode> nonGradReasonsNodeIterator = nonGradReasonsNode.iterator();
+            while(nonGradReasonsNodeIterator.hasNext()) {
+                JsonNode nonGradReasonNode = nonGradReasonsNodeIterator.next();
+                String rule = nullSafeString(nonGradReasonNode.get("rule")).asText("");
+                String description = nullSafeString(nonGradReasonNode.get("description")).asText("");
+                noteMessage.append("[").append(rule).append("]").append(" ").append(description).append(";");
+            }
+        }
+
+
+        academicAward.setAcademicSummary(new AcademicSummary(null, null, noteMessage.toString(), new GPA(creditHoursEarned, creditHoursRequired)));
 
         Student student = new Student();
         HighSchoolTranscript transcript = new HighSchoolTranscript();

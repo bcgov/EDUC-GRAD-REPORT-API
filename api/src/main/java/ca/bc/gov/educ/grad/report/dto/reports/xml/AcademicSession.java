@@ -15,6 +15,7 @@ import java.util.List;
 public class AcademicSession {
 	@JacksonXmlProperty(localName = "AcademicSessionDetail")
 	private AcademicSessionDetail AcademicSessionDetail = new AcademicSessionDetail();
+	@JacksonXmlProperty(localName = "Course")
 	private List<Course> Course = new ArrayList<>();
 
 	public AcademicSessionDetail getAcademicSessionDetail() {

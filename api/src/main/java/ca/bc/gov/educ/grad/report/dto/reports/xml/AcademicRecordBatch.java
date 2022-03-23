@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
-import ca.bc.gov.educ.grad.report.dto.reports.util.xml.AcademicRecordBatchDeserializer;
+import ca.bc.gov.educ.grad.report.utils.AcademicRecordBatchDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;

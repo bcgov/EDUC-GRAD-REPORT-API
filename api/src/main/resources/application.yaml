@@ -37,6 +37,8 @@ spring:
     user: ${USERNAME}
     password: ${PASSWORD}
     locations: classpath:db/migration
+  messages:
+    basename: messages
 #Logging properties
 logging:
   file:
