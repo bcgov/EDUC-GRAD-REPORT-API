@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GPA { 
+public class GPA {
 	private int CreditHoursEarned;
 	private int CreditHoursRequired;
 }

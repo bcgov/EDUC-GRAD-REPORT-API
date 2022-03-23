@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Organization { 
+public class Organization {
 	private String MutuallyDefined;
 	private String OrganizationName;
+	@JacksonXmlProperty(localName = "Contacts")
 	private Contacts Contacts;
-	private int PSIS;
+	private String PSIS;
 }

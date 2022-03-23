@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseSupplementalGrade { 
+public class CourseSupplementalGrade {
 	private String SupplementalGradeCode;
 	private int CourseAcademicSupplementalGradeScaleCode;
 	private String CourseAcademicSupplementalGradeStatusCode;

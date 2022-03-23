@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Requirement { 
-	private int RAPCode;
+public class Requirement {
+	private String RAPCode;
 	private String RAPName;
 	private String ConditionsMetCode;
 }

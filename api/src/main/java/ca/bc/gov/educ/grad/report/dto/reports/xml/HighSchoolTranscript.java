@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HighSchoolTranscript { 
+public class HighSchoolTranscript {
+	@JacksonXmlProperty(localName = "TransmissionData")
 	private TransmissionData TransmissionData;
+	@JacksonXmlProperty(localName = "Student")
 	private Student Student;
 	@JacksonXmlProperty(isAttribute = true, localName = "HSTrn")
 	private String HSTrn = "urn:org:pesc:message:HighSchoolTranscript:v1.5.0";

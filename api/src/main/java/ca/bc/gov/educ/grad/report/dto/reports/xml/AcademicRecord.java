@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
@@ -9,8 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 public class AcademicRecord {
+	@JacksonXmlProperty(localName = "School")
 	private School School;
+	@JacksonXmlProperty(localName = "StudentLevel")
 	private StudentLevel StudentLevel;
+	@JacksonXmlProperty(localName = "AcademicAward")
 	private AcademicAward AcademicAward;
 	private Map<String, AcademicSession> academicSessionMap = new HashMap<>();
 

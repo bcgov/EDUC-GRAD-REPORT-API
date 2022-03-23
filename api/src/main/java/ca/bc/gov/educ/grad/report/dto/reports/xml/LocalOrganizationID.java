@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LocalOrganizationID { 
+public class LocalOrganizationID {
 	private String LocalOrganizationIDCode;
 	private String LocalOrganizationIDQualifier;
 }

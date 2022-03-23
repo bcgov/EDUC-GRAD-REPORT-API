@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import org.springframework.beans.factory.annotation.Value;
 
 public class Course {
@@ -9,11 +10,13 @@ public class Course {
 	private int CourseCreditValue;
 	private int CourseAcademicGradeScaleCode;
 	private String CourseAcademicGrade;
+	@JacksonXmlProperty(localName = "CourseSupplementalAcademicGrade")
 	private CourseSupplementalAcademicGrade CourseSupplementalAcademicGrade;
 	private String CourseAcademicGradeStatusCode;
 	private String CourseSubjectAbbreviation;
 	private String CourseNumber;
 	private String CourseTitle;
+	@JacksonXmlProperty(localName = "Requirement")
 	private Requirement Requirement;
 
 	public Course(String courseCreditLevel, int courseCreditValue, int courseAcademicGradeScaleCode, String courseAcademicGrade, CourseSupplementalAcademicGrade courseSupplementalAcademicGrade, String courseAcademicGradeStatusCode, String courseSubjectAbbreviation, String courseNumber, String courseTitle, Requirement requirement) {

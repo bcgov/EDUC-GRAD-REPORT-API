@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.service.utils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
@@ -26,7 +27,7 @@ public class XmlTransformer extends BaseTransformer {
                     .disable(SerializationFeature.INDENT_OUTPUT)
                     .enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING)
                     .enable(JsonGenerator.Feature.WRITE_BIGDECIMAL_AS_PLAIN)
-                    .enable(JsonGenerator.Feature.ESCAPE_NON_ASCII)
+                    .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
                     .setDateFormat(new SimpleDateFormat("yyyy-MM-dd h:mm:ss"))
                     .setTimeZone(TimeZone.getDefault())
             //        .enable(JsonGenerator.Feature.WRITE_NUMBERS_AS_STRINGS)

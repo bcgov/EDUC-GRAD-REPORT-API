@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Deceased { 
+public class Deceased {
 	private String DeceasedIndicator;
 }

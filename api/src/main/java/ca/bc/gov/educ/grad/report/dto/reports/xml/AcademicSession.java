@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AcademicSession { 
+public class AcademicSession {
+	@JacksonXmlProperty(localName = "AcademicSessionDetail")
 	private AcademicSessionDetail AcademicSessionDetail = new AcademicSessionDetail();
 	private List<Course> Course = new ArrayList<>();
 
