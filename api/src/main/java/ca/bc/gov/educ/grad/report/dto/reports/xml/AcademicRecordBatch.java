@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @JsonDeserialize(using = AcademicRecordBatchDeserializer.class)
 @JacksonXmlRootElement(localName = "AcademicRecordBatch")
 public class AcademicRecordBatch {
+	@JacksonXmlProperty(localName = "HighSchoolTranscript")
 	private HighSchoolTranscript HighSchoolTranscript;
 	@JacksonXmlProperty(isAttribute = true)
 	private String AcRecBat = "urn:org:pesc:message:AcademicRecordBatch:v1.0.0";

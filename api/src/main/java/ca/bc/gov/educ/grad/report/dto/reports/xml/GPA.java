@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GPA {
+	@JacksonXmlProperty(localName = "CreditHoursEarned")
 	private int CreditHoursEarned;
+	@JacksonXmlProperty(localName = "CreditHoursRequired")
 	private int CreditHoursRequired;
 }

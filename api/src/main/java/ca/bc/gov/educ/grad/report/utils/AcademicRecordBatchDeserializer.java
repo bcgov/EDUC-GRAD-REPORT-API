@@ -51,7 +51,7 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         String gender = nullSafeString(root.get("genderCode")).asText("");
         person.setGender(new Gender(gender));
 
-        String deceased = root.get("deceasedDate") == null ? "FALSE" : "TRUE";
+        String deceased = "".equals(nullSafeString(root.get("deceasedDate")).asText("")) ? "FALSE" : "TRUE";
         person.setDeceased(new Deceased(deceased));
 
         AcademicRecord academicRecord = new AcademicRecord();
@@ -126,7 +126,7 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         }
 
         String honorsTitle = nullSafeString(gradStatusNode.get("honoursStanding")).asText("");
-        academicAward.setAcademicHonors(new AcademicHonors(honorsTitle.equalsIgnoreCase("Y") ? "true" : null));
+        academicAward.setAcademicHonors(new AcademicHonors(honorsTitle.equalsIgnoreCase("Y") ? "honours" : null));
 
         String academinCompletionDate = nullSafeString(gradStatusNode.get("programCompletionDate")).asText("");
         academicAward.setAcademicCompletionDate(academinCompletionDate);
@@ -236,7 +236,7 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         }
 
 
-        academicAward.setAcademicSummary(new AcademicSummary(null, null, noteMessage.toString(), new GPA(creditHoursEarned, creditHoursRequired)));
+        academicAward.setAcademicSummary(new AcademicSummary("All", "Secondary", noteMessage.toString(), new GPA(creditHoursEarned, creditHoursRequired)));
 
         Student student = new Student();
         HighSchoolTranscript transcript = new HighSchoolTranscript();

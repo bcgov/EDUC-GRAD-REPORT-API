@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentLevel {
-	@JacksonXmlProperty(localName = "StudentLevelCode")
-	private String StudentLevelCode;
+public class AcademicAwardProgram {
+    @JacksonXmlProperty(localName = "AcademicProgramName")
+    private String AcademicProgramName;
 }

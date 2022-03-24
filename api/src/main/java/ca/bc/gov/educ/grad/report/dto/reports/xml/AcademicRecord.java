@@ -33,6 +33,7 @@ public class AcademicRecord {
 	}
 
 	@JacksonXmlElementWrapper(useWrapping = false)
+	@JacksonXmlProperty(localName = "AcademicSession")
 	public List<AcademicSession> getAcademicSession() {
 		List<AcademicSession> academicSession = new ArrayList<>();
 		for(String key: academicSessionMap.keySet()) {

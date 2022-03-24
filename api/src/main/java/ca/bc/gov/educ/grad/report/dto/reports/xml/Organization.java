@@ -9,9 +9,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Organization {
+	@JacksonXmlProperty(localName = "MutuallyDefined")
 	private String MutuallyDefined;
+	@JacksonXmlProperty(localName = "OrganizationName")
 	private String OrganizationName;
 	@JacksonXmlProperty(localName = "Contacts")
 	private Contacts Contacts;
+	@JacksonXmlProperty(localName = "PSIS")
 	private String PSIS;
 }

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class School {
+	@JacksonXmlProperty(localName = "OrganizationName")
 	private String OrganizationName;
 	@JacksonXmlProperty(localName = "LocalOrganizationID")
 	private LocalOrganizationID LocalOrganizationID;

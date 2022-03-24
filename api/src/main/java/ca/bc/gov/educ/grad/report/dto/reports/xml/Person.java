@@ -21,5 +21,6 @@ public class Person {
 	private Gender Gender;
 	@JacksonXmlProperty(localName = "Deceased")
 	private Deceased Deceased;
+	@JacksonXmlProperty(localName = "NoteMessage")
 	private String NoteMessage;
 }

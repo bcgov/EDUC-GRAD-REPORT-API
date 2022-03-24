@@ -148,6 +148,17 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
     }
 
     private void setDefaultValues(AcademicRecordBatch academicRecordBatch) {
+        final String methodName = "setDefaultValues(AcademicRecordBatch academicRecordBatch)";
+        XmlReportData reportData = ReportRequestDataThreadLocal.getXmlReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Xml Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+        academicRecordBatch.getHighSchoolTranscript().getStudent().getPerson().setNoteMessage("BC: Auth " + reportData.getAuthorizeDate());
         String courseCreditBasis = messageHelper.getDefaultValue("xml.transcript.HighSchoolTranscript.Student.AcademicRecord.AcademicSession.Course.CourseCreditBasis");
         Log.debug(courseCreditBasis);
     }

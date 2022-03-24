@@ -8,14 +8,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AcademicAward { 
+public class AcademicAward {
+	@JacksonXmlProperty(localName = "AcademicAwardLevel")
 	private String AcademicAwardLevel;
+	@JacksonXmlProperty(localName = "AcademicAwardDate")
 	private String AcademicAwardDate;
+	@JacksonXmlProperty(localName = "AcademicAwardTitle")
 	private String AcademicAwardTitle;
 	@JacksonXmlProperty(localName = "AcademicHonors")
 	private AcademicHonors AcademicHonors;
+	@JacksonXmlProperty(localName = "AcademicCompletionIndicator")
 	private String AcademicCompletionIndicator;
+	@JacksonXmlProperty(localName = "AcademicCompletionDate")
 	private String AcademicCompletionDate;
+	@JacksonXmlProperty(localName = "AcademicAwardProgram")
+	private AcademicAwardProgram AcademicAwardProgram;
 	@JacksonXmlProperty(localName = "AcademicSummary")
 	private AcademicSummary AcademicSummary;
 }
