@@ -143,25 +143,81 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
                 Iterator<JsonNode> studentCourseListNodeIterator = studentCourseListNode.iterator();
                 while(studentCourseListNodeIterator.hasNext()) {
                     JsonNode studentCourseNode = studentCourseListNodeIterator.next();
-                    String courseCreditLevel = nullSafeString(studentCourseNode.get("courseLevel")).asText("");
+
+                    String courseCode = nullSafeString(studentCourseNode.get("courseCode")).asText("");
+                    String courseLevel = nullSafeString(studentCourseNode.get("courseLevel")).asText("");
+                    String originalCourseID = courseCode + " " + courseLevel;
+
+                    String courseCreditLevel = "Ungraded";
+                    String courseNumber = courseLevel;
+                    if(StringUtils.contains("GT;GTF;PORT;PORTF", courseCode)) {
+                        courseCreditLevel = "Ungraded";
+                        courseNumber = "";
+                    } else {
+                        switch(StringUtils.substring(courseLevel, 0, 2)) {
+                            case "10":
+                                courseCreditLevel = "TenthGrade";
+                                break;
+                            case "11":
+                                courseCreditLevel = "EleventhGrade";
+                                break;
+                            case "12":
+                                courseCreditLevel = "TwelfthGrade";
+                                break;
+                        }
+                    }
+
                     String sessionName = nullSafeString(studentCourseNode.get("sessionDate")).asText("");
                     Integer courseCreditValue = nullSafeInteger(studentCourseNode.get("originalCredits")).asInt(0);
+                    Integer courseCreditEarned = courseCreditValue;
                     creditHoursEarned = creditHoursEarned + nullSafeInteger(studentCourseNode.get("creditsUsedForGrad")).asInt(0);
-                    String courseAcademicGrade = nullSafeString(studentCourseNode.get("completedCourseLetterGrade")).asText("");
-                    String courseNumber = nullSafeString(studentCourseNode.get("courseCode")).asText("");
+                    String finalLetterGrade = nullSafeString(studentCourseNode.get("completedCourseLetterGrade")).asText("");
+                    String bestExampPersent = nullSafeString(studentCourseNode.get("bestExamPercent")).asText("");
+                    String bestSchoolpPersent = nullSafeString(studentCourseNode.get("bestSchoolPercent")).asText("");
+                    String courseAcademicGrade = nullSafeString(studentCourseNode.get("completedCourseLetterGrade"), studentCourseNode.get("interimLetterGrade")).asText("");
+                    String courseSubjectAbbreviation = nullSafeString(studentCourseNode.get("courseCode")).asText("");
                     String courseTitle = nullSafeString(studentCourseNode.get("courseName")).asText("");
+
+                    String rapCode = nullSafeString(studentCourseNode.get("gradReqMet")).asText("");
+                    String rapName = nullSafeString(studentCourseNode.get("gradReqMetDetail")).asText("");
+                    String conditionMetCode = nullSafeString(studentCourseNode.get("creditsUsedForGrad")).asText("");
+
                     academicRecord.addAcademicSessionCourse(sessionName, new Course(
                         "Regular",
                         courseCreditLevel,
                         courseCreditValue,
-                        0, //CourseAcademicGradeScaleCode
+                        courseCreditEarned,
+                        53, //CourseAcademicGradeScaleCode
                         courseAcademicGrade,
-                        null, //CourseSupplementalAcademicGrade;
-                        null, //CourseAcademicGradeStatusCode;
-                        null, //CourseSubjectAbbreviation;
+                        new CourseSupplementalAcademicGrade(new CourseSupplementalGrade(
+                                "ExamGrade",
+                                "89",
+                                !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
+                                bestExampPersent
+                            ),
+                            new CourseSupplementalGrade(
+                                    "InstructorAssignedGrade",
+                                    "89",
+                                    !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
+                                    bestSchoolpPersent
+                            ),
+                            new CourseSupplementalGrade(
+                                    "BlendedFinalGrade",
+                                    "89",
+                                    !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
+                                    !"".equals(finalLetterGrade) ? "FINAL_PCT" : "INTERIM_PCT"
+                                )
+                        ), //CourseSupplementalAcademicGrade;
+                        !"".equals(finalLetterGrade) ? "Completed" : "In Progress", //CourseAcademicGradeStatusCode;
+                        courseSubjectAbbreviation, //CourseSubjectAbbreviation;
                         courseNumber, //CourseNumber;
                         courseTitle,
-                        null //Requirement;
+                        originalCourseID,
+                        new Requirement(
+                                rapCode,
+                                rapName,
+                                !"".equals(conditionMetCode) ? "Yes" : "No"
+                        ) //Requirement;
                     ));
                 }
             }
@@ -196,16 +252,20 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         return result;
     }
 
-    private JsonNode nullSafeString(final JsonNode s) {
-        return s == null ? new TextNode("") : s;
+    private JsonNode nullSafeString(final JsonNode currentNode, final JsonNode alternateNode) {
+        return currentNode == null ? (alternateNode == null ? new TextNode("") : alternateNode) : currentNode;
     }
 
-    private JsonNode nullSafeInteger(final JsonNode s) {
-        return s == null ? new IntNode(0) : s;
+    private JsonNode nullSafeString(final JsonNode currentNode) {
+        return currentNode == null ? new TextNode("") : currentNode;
     }
 
-    private JsonNode nullSafeBoolean(final JsonNode s) {
-        return s == null ? BooleanNode.FALSE : s;
+    private JsonNode nullSafeInteger(final JsonNode currentNode) {
+        return currentNode == null ? new IntNode(0) : currentNode;
+    }
+
+    private JsonNode nullSafeBoolean(final JsonNode currentNode) {
+        return currentNode == null ? BooleanNode.FALSE : currentNode;
     }
 
 }

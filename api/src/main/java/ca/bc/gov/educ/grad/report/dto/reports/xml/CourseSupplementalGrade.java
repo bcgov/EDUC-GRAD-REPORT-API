@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CourseSupplementalGrade {
 	private String SupplementalGradeCode;
-	private int CourseAcademicSupplementalGradeScaleCode;
+	private String CourseAcademicSupplementalGradeScaleCode;
 	private String CourseAcademicSupplementalGradeStatusCode;
-	private int CourseAcademicSupplementalGrade;
+	private String CourseAcademicSupplementalGrade;
 }

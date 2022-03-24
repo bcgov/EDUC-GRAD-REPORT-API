@@ -13,6 +13,8 @@ public class Course {
 	private String CourseCreditLevel;
 	@JacksonXmlProperty(localName = "CourseCreditValue")
 	private int CourseCreditValue;
+	@JacksonXmlProperty(localName = "CourseCreditEarned")
+	private int CourseCreditEarned;
 	@JacksonXmlProperty(localName = "CourseAcademicGradeScaleCode")
 	private int CourseAcademicGradeScaleCode;
 	@JacksonXmlProperty(localName = "CourseAcademicGrade")
@@ -27,6 +29,8 @@ public class Course {
 	private String CourseNumber;
 	@JacksonXmlProperty(localName = "CourseTitle")
 	private String CourseTitle;
+	@JacksonXmlProperty(localName = "OriginalCourseID")
+	private String OriginalCourseID;
 	@JacksonXmlProperty(localName = "Requirement")
 	private Requirement Requirement;
 }
