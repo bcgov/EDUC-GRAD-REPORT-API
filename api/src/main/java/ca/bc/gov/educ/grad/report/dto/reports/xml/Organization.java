@@ -14,7 +14,7 @@ public class Organization {
 	@JacksonXmlProperty(localName = "OrganizationName")
 	private String OrganizationName;
 	@JacksonXmlProperty(localName = "Contacts")
-	private Contacts Contacts;
+	private Contacts Contacts = new Contacts();
 	@JacksonXmlProperty(localName = "PSIS")
 	private String PSIS;
 }

@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class XmlReportData {
 
+    private String requestTrackId;
     private Pen pen;
     private String authorizeDate;
     private String psis;

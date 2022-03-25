@@ -15,7 +15,6 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
-import org.jfree.util.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -158,8 +157,42 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setRequestTrackingID(reportData.getRequestTrackId());
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setTransmissionType(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.TransmissionType")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setDocumentTypeCode(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.DocumentTypeCode")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setDocumentProcessCode(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.DocumentProcessCode")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setDocumentOfficialCode(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.DocumentOfficialCode")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setDocumentCompleteCode(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.DocumentCompleteCode")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().setOrganizationName(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.OrganizationName")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().setMutuallyDefined(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.MutuallyDefined")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().getContacts().getAddress().setAddressLine(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.Contacts.Address.AddressLine")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().getContacts().getAddress().setCity(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.Contacts.Address.City")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().getContacts().getAddress().setStateProvinceCode(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.Contacts.Address.StateProvinceCode")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().getContacts().getAddress().setPostalCode(
+                messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.Contacts.Address.PostalCode")
+        );
+        academicRecordBatch.getHighSchoolTranscript().getStudent().getPerson().setSchoolAssignedPersonID(reportData.getPen().getEntityID());
         academicRecordBatch.getHighSchoolTranscript().getStudent().getPerson().setNoteMessage("BC: Auth " + reportData.getAuthorizeDate());
-        String courseCreditBasis = messageHelper.getDefaultValue("xml.transcript.HighSchoolTranscript.Student.AcademicRecord.AcademicSession.Course.CourseCreditBasis");
-        Log.debug(courseCreditBasis);
+
     }
 }

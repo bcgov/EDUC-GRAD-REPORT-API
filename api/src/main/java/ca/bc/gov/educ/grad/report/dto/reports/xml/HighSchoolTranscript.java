@@ -1,16 +1,12 @@
 package ca.bc.gov.educ.grad.report.dto.reports.xml;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class HighSchoolTranscript {
 	@JacksonXmlProperty(localName = "TransmissionData")
-	private TransmissionData TransmissionData;
+	private TransmissionData TransmissionData = new TransmissionData();
 	@JacksonXmlProperty(localName = "Student")
 	private Student Student;
 	@JacksonXmlProperty(isAttribute = true, localName = "HSTrn")
@@ -19,4 +15,8 @@ public class HighSchoolTranscript {
 	private String xsi = "http://www.w3.org/2001/XMLSchema";
 	@JacksonXmlProperty(isAttribute = true)
 	private String core = "urn:org:pesc:core:CoreMain:v1.14.0";
+
+	public HighSchoolTranscript(Student student) {
+		Student = student;
+	}
 }

@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Destination {
 	@JacksonXmlProperty(localName = "Organization")
-	private Organization Organization;
+	private Organization Organization = new Organization();
 }

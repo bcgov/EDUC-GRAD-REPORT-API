@@ -10,7 +10,6 @@ import java.io.Serializable;
 @JsonPropertyOrder({ "options", "data"})
 public class XmlReportRequest implements Serializable {
 
-	private String requestTrackId;
 	private XmlReportData data;
 	private XmlReportOptions options;
 
@@ -30,11 +29,4 @@ public class XmlReportRequest implements Serializable {
 		this.options = options;
 	}
 
-	public String getRequestTrackId() {
-		return requestTrackId;
-	}
-
-	public void setRequestTrackId(String requestTrackId) {
-		this.requestTrackId = requestTrackId;
-	}
 }

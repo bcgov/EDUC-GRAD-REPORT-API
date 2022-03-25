@@ -28,60 +28,32 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
     @Override
     public AcademicRecordBatch deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         JsonNode nodeTree = jp.getCodec().readTree(jp);
+        return parseAcademicRecordBatch(nodeTree);
+    }
+
+    private AcademicRecordBatch parseAcademicRecordBatch(JsonNode nodeTree) {
+        Student student = parseStudent(nodeTree);
+        HighSchoolTranscript transcript = new HighSchoolTranscript(student);
+        return new AcademicRecordBatch(transcript);
+    }
+
+    private Student parseStudent(JsonNode nodeTree) {
         JsonNode root = nodeTree.get("gradStudent");
 
-        //Person
-        Person person = new Person();
-
-        String firstName = nullSafeString(root.get("legalFirstName")).asText("");
-        String middleName = nullSafeString(root.get("legalMiddleName")).asText("");
-        String lastName = nullSafeString(root.get("legalLastName")).asText("");
-        person.setName(new Name(firstName, middleName, lastName));
-
-        String agencyAssignedID = nullSafeString(root.get("pen")).asText("");
-        person.setAgencyIdentifier(new AgencyIdentifier(
-                agencyAssignedID,
-                "State",
-                "BC"
-        ));
-
-        String birthDate = nullSafeString(root.get("dob")).asText("");
-        person.setBirth(new Birth(birthDate));
-
-        String gender = nullSafeString(root.get("genderCode")).asText("");
-        person.setGender(new Gender(gender));
-
-        String deceased = "".equals(nullSafeString(root.get("deceasedDate")).asText("")) ? "FALSE" : "TRUE";
-        person.setDeceased(new Deceased(deceased));
-
-        AcademicRecord academicRecord = new AcademicRecord();
-
-        //School
+        AcademicRecord academicRecord = parseAcademicRecord(root);
         JsonNode schoolNode = nodeTree.get("school");
-
-        School school = new School();
-
-        String localOrganizationIDCode = nullSafeString(schoolNode.get("minCode")).asText("");
-        String organizationName = nullSafeString(schoolNode.get("schoolName")).asText("");
-        String localOrganizationIDQualifier = nullSafeString(schoolNode.get("provCode")).asText("");
-
-        String addressLine = nullSafeString(schoolNode.get("address1")).asText("");
-        String city = nullSafeString(schoolNode.get("city")).asText("");
-        String stateProvinceCode = nullSafeString(schoolNode.get("provCode")).asText("");
-        String postalCode = nullSafeString(schoolNode.get("postal")).asText("");
-
-        school.setOrganizationName(organizationName);
-        school.setLocalOrganizationID(new LocalOrganizationID(localOrganizationIDCode, localOrganizationIDQualifier));
-        school.setContacts(new Contacts(new Address(
-                addressLine,
-                city,
-                stateProvinceCode,
-                postalCode
-            ))
-        );
-
+        School school = parseSchool(schoolNode);
         academicRecord.setSchool(school);
 
+        Integer creditHoursEarned = parseCourses(nodeTree.get("studentCourses"), academicRecord);
+        AcademicAward academicAward = parseAcademicAward(root, nodeTree.get("gradStatus"), nodeTree.get("nonGradReasons"), creditHoursEarned);
+        academicRecord.setAcademicAward(academicAward);
+
+        return new Student(parsePerson(root), academicRecord);
+    }
+
+    private AcademicRecord parseAcademicRecord(JsonNode root) {
+        AcademicRecord academicRecord = new AcademicRecord();
         String studentLevelCode = nullSafeString(root.get("studentGrade")).asText("");
         switch(studentLevelCode) {
             case "8":
@@ -106,13 +78,15 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
                 academicRecord.setStudentLevel(new StudentLevel("Ungraded"));
                 break;
         }
+        return academicRecord;
+    }
+
+    private AcademicAward parseAcademicAward(JsonNode root, JsonNode gradStatusNode, JsonNode nonGradReasonsNode, Integer creditHoursEarned) {
 
         AcademicAward academicAward = new AcademicAward();
-
         String academicAwardLevel = nullSafeString(root.get("gradeCode")).asText("");
         academicAward.setAcademicAwardLevel(academicAwardLevel);
 
-        JsonNode gradStatusNode = nodeTree.get("gradStatus");
         String academicCompletionDate = nullSafeString(gradStatusNode.get("programCompletionDate")).asText("");
         academicAward.setAcademicCompletionDate(academicCompletionDate);
         String academicAwardTitle = nullSafeString(gradStatusNode.get("program")).asText("");
@@ -134,9 +108,49 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
         String academicCompletionIndicator = nullSafeString(root.get("graduated")).asText("");
         academicAward.setAcademicCompletionIndicator(academicCompletionIndicator);
 
-        Integer creditHoursEarned = 0;
+        StringBuilder noteMessage = new StringBuilder("BC: Reason not graduated:");
+        if(nonGradReasonsNode != null) {
+            Iterator<JsonNode> nonGradReasonsNodeIterator = nonGradReasonsNode.iterator();
+            while(nonGradReasonsNodeIterator.hasNext()) {
+                JsonNode nonGradReasonNode = nonGradReasonsNodeIterator.next();
+                String rule = nullSafeString(nonGradReasonNode.get("rule")).asText("");
+                String description = nullSafeString(nonGradReasonNode.get("description")).asText("");
+                noteMessage.append("[").append(rule).append("]").append(" ").append(description).append(";");
+            }
+        }
 
-        JsonNode studentCoursesNode = nodeTree.get("studentCourses");
+        academicAward.setAcademicSummary(new AcademicSummary("All", "Secondary", noteMessage.toString(), new GPA(creditHoursEarned, creditHoursRequired)));
+
+        return academicAward;
+    }
+
+    private Person parsePerson(JsonNode root) {
+        Person person = new Person();
+        String firstName = nullSafeString(root.get("legalFirstName")).asText("");
+        String middleName = nullSafeString(root.get("legalMiddleName")).asText("");
+        String lastName = nullSafeString(root.get("legalLastName")).asText("");
+        person.setName(new Name(firstName, middleName, lastName));
+
+        String agencyAssignedID = nullSafeString(root.get("pen")).asText("");
+        person.setAgencyIdentifier(new AgencyIdentifier(
+                agencyAssignedID,
+                "State",
+                "BC"
+        ));
+
+        String birthDate = nullSafeString(root.get("dob")).asText("");
+        person.setBirth(new Birth(birthDate));
+
+        String gender = nullSafeString(root.get("genderCode")).asText("");
+        person.setGender(new Gender(gender));
+
+        String deceased = "".equals(nullSafeString(root.get("deceasedDate")).asText("")) ? "FALSE" : "TRUE";
+        person.setDeceased(new Deceased(deceased));
+        return person;
+    }
+
+    private Integer parseCourses(JsonNode studentCoursesNode, AcademicRecord academicRecord) {
+        Integer creditHoursEarned = 0;
         if(studentCoursesNode != null) {
             JsonNode studentCourseListNode = studentCoursesNode.get("studentCourseList");
             if(studentCourseListNode != null) {
@@ -183,73 +197,70 @@ public class AcademicRecordBatchDeserializer extends StdDeserializer<AcademicRec
                     String conditionMetCode = nullSafeString(studentCourseNode.get("creditsUsedForGrad")).asText("");
 
                     academicRecord.addAcademicSessionCourse(sessionName, new Course(
-                        "Regular",
-                        courseCreditLevel,
-                        courseCreditValue,
-                        courseCreditEarned,
-                        53, //CourseAcademicGradeScaleCode
-                        courseAcademicGrade,
-                        new CourseSupplementalAcademicGrade(new CourseSupplementalGrade(
-                                "ExamGrade",
-                                "89",
-                                !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
-                                bestExampPersent
-                            ),
-                            new CourseSupplementalGrade(
-                                    "InstructorAssignedGrade",
+                            "Regular",
+                            courseCreditLevel,
+                            courseCreditValue,
+                            courseCreditEarned,
+                            53, //CourseAcademicGradeScaleCode
+                            courseAcademicGrade,
+                            new CourseSupplementalAcademicGrade(new CourseSupplementalGrade(
+                                    "ExamGrade",
                                     "89",
                                     !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
-                                    bestSchoolpPersent
+                                    bestExampPersent
                             ),
-                            new CourseSupplementalGrade(
-                                    "BlendedFinalGrade",
-                                    "89",
-                                    !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
-                                    !"".equals(finalLetterGrade) ? "FINAL_PCT" : "INTERIM_PCT"
-                                )
-                        ), //CourseSupplementalAcademicGrade;
-                        !"".equals(finalLetterGrade) ? "Completed" : "In Progress", //CourseAcademicGradeStatusCode;
-                        courseSubjectAbbreviation, //CourseSubjectAbbreviation;
-                        courseNumber, //CourseNumber;
-                        courseTitle,
-                        originalCourseID,
-                        new Requirement(
-                                rapCode,
-                                rapName,
-                                !"".equals(conditionMetCode) ? "Yes" : "No"
-                        ) //Requirement;
+                                    new CourseSupplementalGrade(
+                                            "InstructorAssignedGrade",
+                                            "89",
+                                            !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
+                                            bestSchoolpPersent
+                                    ),
+                                    new CourseSupplementalGrade(
+                                            "BlendedFinalGrade",
+                                            "89",
+                                            !"".equals(finalLetterGrade) ? "Completed" : "In Progress",
+                                            !"".equals(finalLetterGrade) ? "FINAL_PCT" : "INTERIM_PCT"
+                                    )
+                            ), //CourseSupplementalAcademicGrade;
+                            !"".equals(finalLetterGrade) ? "Completed" : "In Progress", //CourseAcademicGradeStatusCode;
+                            courseSubjectAbbreviation, //CourseSubjectAbbreviation;
+                            courseNumber, //CourseNumber;
+                            courseTitle,
+                            originalCourseID,
+                            new Requirement(
+                                    rapCode,
+                                    rapName,
+                                    !"".equals(conditionMetCode) ? "Yes" : "No"
+                            ) //Requirement;
                     ));
                 }
             }
         }
+        return creditHoursEarned;
+    }
 
-        JsonNode nonGradReasonsNode = nodeTree.get("nonGradReasons");
-        StringBuilder noteMessage = new StringBuilder("BC: Reason not graduated:");
-        if(nonGradReasonsNode != null) {
-            Iterator<JsonNode> nonGradReasonsNodeIterator = nonGradReasonsNode.iterator();
-            while(nonGradReasonsNodeIterator.hasNext()) {
-                JsonNode nonGradReasonNode = nonGradReasonsNodeIterator.next();
-                String rule = nullSafeString(nonGradReasonNode.get("rule")).asText("");
-                String description = nullSafeString(nonGradReasonNode.get("description")).asText("");
-                noteMessage.append("[").append(rule).append("]").append(" ").append(description).append(";");
-            }
-        }
+    private School parseSchool(JsonNode schoolNode ) {
+        School school = new School();
 
+        String localOrganizationIDCode = nullSafeString(schoolNode.get("minCode")).asText("");
+        String organizationName = nullSafeString(schoolNode.get("schoolName")).asText("");
+        String localOrganizationIDQualifier = nullSafeString(schoolNode.get("provCode")).asText("");
 
-        academicAward.setAcademicSummary(new AcademicSummary("All", "Secondary", noteMessage.toString(), new GPA(creditHoursEarned, creditHoursRequired)));
+        String addressLine = nullSafeString(schoolNode.get("address1")).asText("");
+        String city = nullSafeString(schoolNode.get("city")).asText("");
+        String stateProvinceCode = nullSafeString(schoolNode.get("provCode")).asText("");
+        String postalCode = nullSafeString(schoolNode.get("postal")).asText("");
 
-        Student student = new Student();
-        HighSchoolTranscript transcript = new HighSchoolTranscript();
-        AcademicRecordBatch result = new AcademicRecordBatch();
-
-        //set objects tree
-        academicRecord.setAcademicAward(academicAward);
-        student.setAcademicRecord(academicRecord);
-        student.setPerson(person);
-        transcript.setStudent(student);
-        result.setHighSchoolTranscript(transcript);
-
-        return result;
+        school.setOrganizationName(organizationName);
+        school.setLocalOrganizationID(new LocalOrganizationID(localOrganizationIDCode, localOrganizationIDQualifier));
+        school.setContacts(new Contacts(new Address(
+                        addressLine,
+                        city,
+                        stateProvinceCode,
+                        postalCode
+                ))
+        );
+        return school;
     }
 
     private JsonNode nullSafeString(final JsonNode currentNode, final JsonNode alternateNode) {

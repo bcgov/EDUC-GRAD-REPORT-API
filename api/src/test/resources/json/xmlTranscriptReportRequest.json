@@ -1,5 +1,4 @@
 {
-  "requestTrackId": "AB0001",
   "options": {
     "cacheReport": false,
     "convertTo": "xml",
@@ -8,11 +7,12 @@
     "reportFile": "%s - XML Transcript Report.xml"
   },
   "data": {
+    "requestTrackId": "AB0001",
     "pen": {
       "pen": "126929710",
-      "entityId": null
+      "studentID": "f10ca501fe8a"
     },
-    "authorizeDate": "yyyy-MM-dd",
+    "authorizeDate": "2022-02-22",
     "psis": "59001000",
     "organizationName": "University of British Columbia",
     "addressLine1": "2016-1874 East Mall",

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Pen {
 
     private String pen;
-    private Object entityID;
+    private String entityID;
 
     public String getPen() {
         return pen;
@@ -16,11 +16,11 @@ public class Pen {
     }
 
     @JsonProperty("studentID")
-    public Object getEntityID() {
+    public String getEntityID() {
         return entityID;
     }
 
-    public void setEntityID(Object value) {
+    public void setEntityID(String value) {
         this.entityID = value;
     }
 }

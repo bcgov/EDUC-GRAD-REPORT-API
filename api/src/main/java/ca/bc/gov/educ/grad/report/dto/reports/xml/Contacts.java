@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Contacts {
 	@JacksonXmlProperty(localName = "Address")
-	private Address Address;
+	private Address Address = new Address();
 }
