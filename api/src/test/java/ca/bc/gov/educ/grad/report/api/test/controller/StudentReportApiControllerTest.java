@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.test.controller;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
@@ -62,6 +63,44 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
 
     @InjectMocks
     private ReportController reportController;
+
+    @Test
+    public void getStudentXmlTranscriptReportTest() throws Exception {
+        LOG.debug("<{}.getStudentXmlTranscriptReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
+
+        reportRequest.getOptions().setReportFile("XML Transcript Report (Controller).xml");
+
+        byte[] resultBinary = new byte[0];
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+        ResponseEntity response = ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_XML)
+                .body(resultBinary);
+
+        Authentication authentication = Mockito.mock(Authentication.class);
+        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
+        // Mockito.whens() for your authorization object
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        Mockito.when(authentication.getDetails()).thenReturn(details);
+        SecurityContextHolder.setContext(securityContext);
+        reportRequest.getData().setAccessToken(details.getTokenValue());
+
+        Mockito.when(reportService.getStudentXmlTranscriptReport(reportRequest)).thenReturn(response);
+        reportController.getStudentXmlTranscriptReport(reportRequest);
+        Mockito.verify(reportService).getStudentXmlTranscriptReport(reportRequest);
+
+        LOG.debug(">getStudentXmlTranscriptReportTest");
+    }
 
     @Test
     public void getSchoolDistributionReportTest() throws Exception {

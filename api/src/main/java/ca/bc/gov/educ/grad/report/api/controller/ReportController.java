@@ -69,7 +69,7 @@ public class ReportController extends BaseController {
     }
 
     @PostMapping (ReportApiConstants.STUDENT_XML_TRANSCRIPT_REPORT)
-    @PreAuthorize(PermissionsContants.STUDENT_TRANSCRIPT_REPORT)
+    @PreAuthorize(PermissionsContants.STUDENT_XML_TRANSCRIPT_REPORT)
     @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentXmlTranscriptReport(@RequestBody XmlReportRequest report) {
