@@ -1077,6 +1077,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		graduationStudentRecord.setStudentID(UUID.fromString(gradSearchStudent.getStudentID()));
 
 		String studentGradData = readFile("data/student_grad_data.json");
+		assertNotNull(studentGradData);
 		graduationStudentRecord.setStudentGradData(studentGradData);
 
 		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
