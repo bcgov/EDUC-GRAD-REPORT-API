@@ -15,6 +15,7 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
@@ -191,6 +192,17 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
         academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getSource().getOrganization().getContacts().getAddress().setPostalCode(
                 messageHelper.getDefaultValue("xml.transcript.TransmissionData.Source.Organization.Contacts.Address.PostalCode")
         );
+
+        academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getDestination().getOrganization().setPSIS(reportData.getPsis());
+
+        if(StringUtils.trimToNull(reportData.getOrganizationName())  != null) {
+            academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getDestination().getOrganization().setOrganizationName(reportData.getOrganizationName());
+            academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getDestination().getOrganization().getContacts().getAddress().setAddressLine(reportData.getAddressLine1());
+            academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getDestination().getOrganization().getContacts().getAddress().setCity(reportData.getCity());
+            academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getDestination().getOrganization().getContacts().getAddress().setStateProvinceCode(reportData.getStateProvince());
+            academicRecordBatch.getHighSchoolTranscript().getTransmissionData().getDestination().getOrganization().getContacts().getAddress().setPostalCode(reportData.getPostalCode());
+        }
+
         academicRecordBatch.getHighSchoolTranscript().getStudent().getPerson().setSchoolAssignedPersonID(reportData.getPen().getEntityID());
         academicRecordBatch.getHighSchoolTranscript().getStudent().getPerson().setNoteMessage("BC: Auth " + reportData.getAuthorizeDate());
 
