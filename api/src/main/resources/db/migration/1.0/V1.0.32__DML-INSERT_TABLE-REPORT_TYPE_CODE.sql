@@ -1,0 +1,2 @@
+Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('TRANIP','Transcript In Progress','Transcript In Progress (students'' completed and passed courses and assessments as well as in progress courses and assessments)',40,to_date('21-07-19','RR-MM-DD'));
+Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('CERT','Certificate','Certificate / Dogwood',50,to_date('21-07-19','RR-MM-DD'));
