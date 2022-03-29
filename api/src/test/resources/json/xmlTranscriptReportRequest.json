@@ -1,9 +1,7 @@
 {
   "options": {
-    "cacheReport": false,
     "convertTo": "xml",
-    "overwrite": false,
-    "reportName": "xmltranscript",
+    "reportName": "xmltranscript-xml",
     "reportFile": "%s - XML Transcript Report.xml"
   },
   "data": {
