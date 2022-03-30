@@ -65,8 +65,8 @@
       "interim": false,
       "issueDate": "2021-04-26",
       "code": {
-        "code": "BC2018-PUB",
-        "description": "2018 Public School Transcript BC"
+        "code": "NOPROG",
+        "description": "No Program Specified"
       },
       "results": [
         {
@@ -1204,7 +1204,7 @@
       "code": {
         "code": "NOPROG",
         "description": "No Program Specified",
-        "credits": 80
+        "credits": 0
       }
     },
     "graduationData": {
