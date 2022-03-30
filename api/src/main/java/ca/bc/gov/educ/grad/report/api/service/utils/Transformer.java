@@ -15,5 +15,7 @@ public interface Transformer {
 
     public String getAccept();
 
+    public String getFormat();
+
     public String getContentType();
 }

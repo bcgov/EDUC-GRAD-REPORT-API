@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.util.PermissionsContants;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
@@ -15,7 +16,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -63,6 +66,19 @@ public class ReportController extends BaseController {
         logger.debug("getStudentTranscriptReport");
         logRequest();
         return reportService.getStudentTranscriptReport(report);
+    }
+
+    @PostMapping (ReportApiConstants.STUDENT_XML_TRANSCRIPT_REPORT)
+    @PreAuthorize(PermissionsContants.STUDENT_XML_TRANSCRIPT_REPORT)
+    @Operation(summary = "Generate Student Transcript Report", description = "Generate Student Transcript Report", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getStudentXmlTranscriptReport(@RequestBody XmlReportRequest report) {
+        logger.debug("getStudentTranscriptReport");
+        logRequest();
+        OAuth2AuthenticationDetails auth = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
+        String accessToken = auth.getTokenValue();
+        report.getData().setAccessToken(accessToken);
+        return reportService.getStudentXmlTranscriptReport(report);
     }
     
     @PostMapping (ReportApiConstants.STUDENT_CERTIFICATE)

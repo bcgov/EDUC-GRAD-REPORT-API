@@ -1,0 +1,692 @@
+{
+  "AcademicRecordBatch": {
+    "HighSchoolTranscript": {
+      "TransmissionData": {
+        "DocumentID": "Fw_u7C2xTsCfEENUkjscvw",
+        "CreatedDateTime": "2020-12-09T15:10:28",
+        "DocumentTypeCode": "StudentRequest",
+        "TransmissionType": "Original",
+        "Source": {
+          "Organization": {
+            "MutuallyDefined": "BCMinistryofEducationTEST",
+            "OrganizationName": "BC Ministry of Education",
+            "Contacts": {
+              "Address": {
+                "AddressLine": "620 Superior Street",
+                "City": "Victoria",
+                "StateProvinceCode": "BC",
+                "PostalCode": "V8V 1V2"
+              }
+            }
+          }
+        },
+        "Destination": {
+          "Organization": {
+            "PSIS": "10000010",
+            "OrganizationName": "EPBC TEST INSTITUTION 1",
+            "Contacts": {
+              "Address": {
+                "AddressLine": "620 SUPERIOR STREET",
+                "City": "VICTORIA",
+                "StateProvinceCode": "BC",
+                "PostalCode": "V9A 3M5"
+              }
+            }
+          }
+        },
+        "DocumentProcessCode": "PRODUCTION",
+        "DocumentOfficialCode": "Official",
+        "DocumentCompleteCode": "Complete"
+      },
+      "Student": {
+        "Person": {
+          "AgencyIdentifier": {
+            "AgencyAssignedID": "124583642",
+            "AgencyCode": "State",
+            "StateProvinceCode": "BC"
+          },
+          "Birth": {
+            "BirthDate": "2000-12-07"
+          },
+          "Name": {
+            "FirstName": "HAZEL",
+            "LastName": "HUDSON"
+          },
+          "Gender": {
+            "GenderCode": "Female"
+          },
+          "Deceased": {
+            "DeceasedIndicator": "false"
+          },
+          "NoteMessage": "BC: Auth 2021-06-25"
+        },
+        "AcademicRecord": {
+          "School": {
+            "OrganizationName": "WALNUT GROVE SECONDARY",
+            "LocalOrganizationID": {
+              "LocalOrganizationIDCode": "03535050",
+              "LocalOrganizationIDQualifier": "BC"
+            },
+            "Contacts": {
+              "Address": {
+                "AddressLine": "8919 WALNUT GROVE DRIVE",
+                "City": "LANGLEY",
+                "StateProvinceCode": "BC",
+                "PostalCode": "V1M2N7"
+              }
+            }
+          },
+          "StudentLevel": {
+            "StudentLevelCode": "TwelfthGrade"
+          },
+          "AcademicAward": {
+            "AcademicAwardLevel": "B18",
+            "AcademicAwardDate": "2019-06-01",
+            "AcademicAwardTitle": "Graduation Program 2018",
+            "AcademicHonors": {
+              "HonorsTitle": "Honours"
+            },
+            "AcademicCompletionIndicator": "true",
+            "AcademicCompletionDate": "2019-06-01",
+            "AcademicSummary": {
+              "AcademicSummaryType": "All",
+              "AcademicSummaryLevel": "Secondary",
+              "GPA": {
+                "CreditHoursEarned": "80",
+                "CreditHoursRequired": "80"
+              }
+            }
+          },
+          "AcademicSession": [
+            {
+              "AcademicSessionDetail": {
+                "SessionDesignator": "2019-06",
+                "SessionName": "2019-06",
+                "SessionSchoolYear": "2018-2019"
+              },
+              "Course": [
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "EleventhGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "92"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "FOM",
+                  "CourseNumber": "11",
+                  "CourseTitle": "FOUNDATIONS OF MATHEMATICS 11",
+                  "Requirement": {
+                    "RAPCode": "7",
+                    "RAPName": "Mathematics 11 or 12 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "B",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "80"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "APBIO",
+                  "CourseNumber": "12",
+                  "CourseTitle": "AP BIOLOGY 12"
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "89"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "BI",
+                  "CourseNumber": "12",
+                  "CourseTitle": "BIOLOGY 12"
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "95"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "CH",
+                  "CourseNumber": "12",
+                  "CourseTitle": "CHEMISTRY 12",
+                  "Requirement": {
+                    "RAPCode": "9",
+                    "RAPName": "Science 11 or 12 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "94"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "EC",
+                  "CourseNumber": "12",
+                  "CourseTitle": "ECONOMICS 12",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "B",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": [
+                      {
+                        "SupplementalGradeCode": "BlendedFinalGrade",
+                        "CourseAcademicSupplementalGradeScaleCode": "89",
+                        "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                        "CourseAcademicSupplementalGrade": "76"
+                      },
+                      {
+                        "SupplementalGradeCode": "ExamGrade",
+                        "CourseAcademicSupplementalGradeScaleCode": "89",
+                        "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                        "CourseAcademicSupplementalGrade": "86"
+                      },
+                      {
+                        "SupplementalGradeCode": "InstructorAssignedGrade",
+                        "CourseAcademicSupplementalGradeScaleCode": "89",
+                        "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                        "CourseAcademicSupplementalGrade": "70"
+                      }
+                    ]
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "EN",
+                  "CourseNumber": "12",
+                  "CourseTitle": "ENGLISH 12",
+                  "Requirement": {
+                    "RAPCode": "3",
+                    "RAPName": "Language Arts 12 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "86"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "LAW",
+                  "CourseNumber": "12",
+                  "CourseTitle": "LAW 12",
+                  "Requirement": {
+                    "RAPCode": "5",
+                    "RAPName": "Social Studies 11 or 12 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "Ungraded",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "RM",
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "GT",
+                  "CourseTitle": "GRADUATION TRANSITIONS",
+                  "Requirement": {
+                    "RAPCode": "13",
+                    "RAPName": "Career Life Connections (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "AcademicSessionDetail": {
+                "SessionDesignator": "2018-06",
+                "SessionName": "2018-06",
+                "SessionSchoolYear": "2017-2018"
+              },
+              "Course": [
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "EleventhGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "89"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "BI",
+                  "CourseNumber": "11",
+                  "CourseTitle": "BIOLOGY 11",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "EleventhGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "88"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "FR",
+                  "CourseNumber": "11",
+                  "CourseTitle": "CORE FRENCH 11"
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "EleventhGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "86"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "EN",
+                  "CourseNumber": "11",
+                  "CourseTitle": "ENGLISH 11",
+                  "Requirement": {
+                    "RAPCode": "2",
+                    "RAPName": "Language Arts 11 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TwelfthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "97"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "YPSYC",
+                  "CourseNumber": "12A",
+                  "CourseTitle": "PSYCHOLOGY 12",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "CreditByExam",
+                  "CourseCreditLevel": "Ungraded",
+                  "CourseAcademicGradeScaleCode": "82",
+                  "CourseAcademicGrade": "3",
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "NME",
+                  "CourseTitle": "NUMERACY ASSESSMENT",
+                  "Requirement": {
+                    "RAPCode": "16",
+                    "RAPName": "Numeracy Graduation Assessment",
+                    "ConditionsMetCode": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "AcademicSessionDetail": {
+                "SessionDesignator": "2017-06",
+                "SessionName": "2017-06",
+                "SessionSchoolYear": "2016-2017"
+              },
+              "Course": [
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "89"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "FR",
+                  "CourseNumber": "10",
+                  "CourseTitle": "CORE FRENCH 10",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "88"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "EN",
+                  "CourseNumber": "10",
+                  "CourseTitle": "ENGLISH 10",
+                  "Requirement": {
+                    "RAPCode": "1",
+                    "RAPName": "Language Arts 10 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "87"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "FMP",
+                  "CourseNumber": "10",
+                  "CourseTitle": "FOUNDATIONS OF MATH AND PRE-CALCULUS 10",
+                  "Requirement": {
+                    "RAPCode": "6",
+                    "RAPName": "Mathematics 10 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "86"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "PE",
+                  "CourseNumber": "10",
+                  "CourseTitle": "PHYSICAL EDUCATION 10",
+                  "Requirement": {
+                    "RAPCode": "10",
+                    "RAPName": "Physical and Health Education 10 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "96"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "PLAN",
+                  "CourseNumber": "10",
+                  "CourseTitle": "PLANNING 10",
+                  "Requirement": {
+                    "RAPCode": "12",
+                    "RAPName": "Career Life Education (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "96"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "SS",
+                  "CourseNumber": "10",
+                  "CourseTitle": "SOCIAL STUDIES 10",
+                  "Requirement": {
+                    "RAPCode": "4",
+                    "RAPName": "Social Studies 10 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "EleventhGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "89"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "CH",
+                  "CourseNumber": "11",
+                  "CourseTitle": "CHEMISTRY 11",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "EleventhGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "94"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "SADP",
+                  "CourseNumber": "11",
+                  "CourseTitle": "STUDIO ARTS 11: DRAWING AND PAINTING",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                }
+              ]
+            },
+            {
+              "AcademicSessionDetail": {
+                "SessionDesignator": "2016-06",
+                "SessionName": "2016-06",
+                "SessionSchoolYear": "2015-2016"
+              },
+              "Course": [
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "94"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "FDN",
+                  "CourseNumber": "10",
+                  "CourseTitle": "FOODS AND NUTRITION 10",
+                  "Requirement": {
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "97"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "SC",
+                  "CourseNumber": "10",
+                  "CourseTitle": "SCIENCE 10",
+                  "Requirement": {
+                    "RAPCode": "8",
+                    "RAPName": "Science 10 (4 credits)",
+                    "ConditionsMetCode": "Yes"
+                  }
+                },
+                {
+                  "CourseCreditBasis": "Regular",
+                  "CourseCreditLevel": "TenthGrade",
+                  "CourseCreditValue": "4",
+                  "CourseAcademicGradeScaleCode": "53",
+                  "CourseAcademicGrade": "A",
+                  "CourseSupplementalAcademicGrade": {
+                    "CourseSupplementalGrade": {
+                      "SupplementalGradeCode": "BlendedFinalGrade",
+                      "CourseAcademicSupplementalGradeScaleCode": "89",
+                      "CourseAcademicSupplementalGradeStatusCode": "Completed",
+                      "CourseAcademicSupplementalGrade": "96"
+                    }
+                  },
+                  "CourseAcademicGradeStatusCode": "Completed",
+                  "CourseSubjectAbbreviation": "VAG",
+                  "CourseNumber": "10",
+                  "CourseTitle": "VISUAL ARTS 10: GENERAL",
+                  "Requirement": {
+                    "RAPCode": "11",
+                    "RAPName": "Arts Educ/Applied Design, Skills and Technologies (4 credits",
+                    "ConditionsMetCode": "Yes"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "_xmlns:HSTrn": "urn:org:pesc:message:HighSchoolTranscript:v1.5.0",
+      "_xmlns:xsi": "http://www.w3.org/2001/XMLSchema",
+      "_xmlns:core": "urn:org:pesc:core:CoreMain:v1.14.0",
+      "__prefix": "HSTrn"
+    },
+    "_xmlns:AcRecBat": "urn:org:pesc:message:AcademicRecordBatch:v1.0.0",
+    "_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "_xsi:schemaLocation": "urn:org:pesc:message:AcademicRecordBatch:v1.0.0 AcademicRecordBatch_v1.0.0.xsd",
+    "__prefix": "AcRecBat"
+  }
+}

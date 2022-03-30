@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.test;
 
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -56,10 +57,22 @@ public abstract class GradReportBaseTest {
     }
 
     protected ReportRequest createReportRequest(String jsonPath) throws Exception {
+        return (ReportRequest)createReportRequest(jsonPath, ReportRequest.class);
+    }
+
+    protected XmlReportRequest createXmlReportRequest(String jsonPath) throws Exception {
+        return (XmlReportRequest)createReportRequest(jsonPath, XmlReportRequest.class);
+    }
+
+    protected Object createReportRequest(String jsonPath, Class clazz) throws Exception {
+        String transcriptJson = readFile(jsonPath);
+        return jsonTransformer.unmarshall(transcriptJson, clazz);
+    }
+
+    protected String readFile(String path) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream(jsonPath);
-        String transcriptJson = readInputStream(inputStream);
-        return (ReportRequest)jsonTransformer.unmarshall(transcriptJson, ReportRequest.class);
+        InputStream inputStream = classLoader.getResourceAsStream(path);
+        return readInputStream(inputStream);
     }
 
     private String readInputStream(InputStream is) throws Exception {

@@ -34,6 +34,8 @@ spring:
     user: GRAD_REPORT_API
     password: grad_report_api
     locations: classpath:db/migration
+  messages:
+    basename: messages
 
 #Logging properties
 logging:
@@ -80,3 +82,12 @@ endpoint:
   educ-grad-trax-api:
     get-district-details:
       url: https://educ-grad-trax-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/district/%s
+  grad-student-api:
+    read-grad-student-record: https://educ-grad-student-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/student/studentid/%s/algorithm
+  pen-student-api:
+    by-studentid:
+      url: https://student-api-75e61b-tools.apps.silver.devops.gov.bc.ca/api/v1/student/%s
+    search:
+      url: https://student-api-75e61b-tools.apps.silver.devops.gov.bc.ca/api/v1/student/paginated
+    by-pen:
+      url: https://student-api-75e61b-tools.apps.silver.devops.gov.bc.ca/api/v1/student?pen=%s

@@ -134,7 +134,11 @@ public enum TranscriptTypeCode implements Serializable {
 
     @XmlEnumValue("BC2018-PF")
     @JsonProperty("BC2018-PF")
-    BC2018_PF("BC2018-PF", "2018 Programme Francophone Transcript");
+    BC2018_PF("BC2018-PF", "2018 Programme Francophone Transcript"),
+
+    @XmlEnumValue("NOPROG")
+    @JsonProperty("NOPROG")
+    NOPROG("NOPROG", "No Program Specified");
 
     private String code;
     private String description;
