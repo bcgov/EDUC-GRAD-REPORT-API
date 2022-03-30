@@ -1342,7 +1342,7 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="70" uuid="ae939607-2706-49b4-98e5-1215e08568cd">
+					<!--jr:column width="70" uuid="ae939607-2706-49b4-98e5-1215e08568cd">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:columnHeader style="Table_CH" height="35" rowSpan="1">
 							<staticText>
@@ -1360,12 +1360,12 @@
 								<textFieldExpression><![CDATA[$F{programCompletionDate} == null ? "" : $F{programCompletionDate}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
-					</jr:column>
-					<jr:column width="160" uuid="5f153e35-62d6-4fa5-960e-c757e1fe069d">
+					</jr:column-->
+					<jr:column width="195" uuid="5f153e35-62d6-4fa5-960e-c757e1fe069d">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 						<jr:columnHeader style="Table_CH" height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="160" height="35" uuid="ad8d1556-495b-42d2-826e-b03afdff6224"/>
+								<reportElement style="StaticText" x="0" y="0" width="195" height="35" uuid="ad8d1556-495b-42d2-826e-b03afdff6224"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -1379,7 +1379,7 @@
 								<textFieldExpression><![CDATA[$F{hasRequirementMet}]]></textFieldExpression>
 							</textField-->
 							<componentElement>
-								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="160" height="80" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
+								<reportElement style="GeneratedText" positionType="Float" x="0" y="0" width="195" height="80" isRemoveLineWhenBlank="true" uuid="eabf62cd-a13a-4e79-bb8c-089bac3ec79c"/>
 								<jr:list printOrder="Vertical">
 									<datasetRun subDataset="gradRequirementDataset" uuid="c6a157a1-50ce-4ad4-9425-50df86460a6f">
 										<datasetParameter name="REPORT_DATA_SOURCE">
@@ -1387,20 +1387,20 @@
 										</datasetParameter>
 										<dataSourceExpression><![CDATA[$F{requirementMetdataSource}]]></dataSourceExpression>
 									</datasetRun>
-									<jr:listContents height="80" width="160">
+									<jr:listContents height="80" width="195">
 										<textField>
-											<reportElement style="GeneratedText" x="9" y="0" width="130" height="50" uuid="b28957b1-e52e-4c4b-baed-49ade5d877db"/>
+											<reportElement style="GeneratedText" x="9" y="0" width="165" height="50" uuid="b28957b1-e52e-4c4b-baed-49ade5d877db"/>
 											<textFieldExpression><![CDATA[" * "+$F{code}+" "+$F{description}]]></textFieldExpression>
 										</textField>
 										<componentElement>
-											<reportElement x="20" y="50" width="110" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
+											<reportElement x="20" y="50" width="145" height="15" isRemoveLineWhenBlank="true" uuid="b84ef6ca-c330-4ec5-bf3b-85a563dafb1e"/>
 											<jr:list printOrder="Vertical">
 												<datasetRun subDataset="courseDetailsDataset" uuid="38689648-70ad-4cfd-9ec7-a74b6785f9af">
 													<dataSourceExpression><![CDATA[$F{courseDetailsdataSource}]]></dataSourceExpression>
 												</datasetRun>
-												<jr:listContents height="15" width="110">
+												<jr:listContents height="15" width="145">
 													<textField>
-														<reportElement style="GeneratedText" x="0" y="0" width="110" height="15" uuid="def7000b-46c1-4fac-981d-684251fee284"/>
+														<reportElement style="GeneratedText" x="0" y="0" width="145" height="15" uuid="def7000b-46c1-4fac-981d-684251fee284"/>
 														<textFieldExpression><![CDATA[$F{courseCode}+" "+$F{courseLevel}+" "+$F{sessionDate}]]></textFieldExpression>
 													</textField>
 												</jr:listContents>
@@ -1411,11 +1411,11 @@
 							</componentElement>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="150" uuid="871b72f6-1ebf-4b94-8d97-6b003e4897e0">
+					<jr:column width="185" uuid="871b72f6-1ebf-4b94-8d97-6b003e4897e0">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
 						<jr:columnHeader style="Table_CH" height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="150" height="35" uuid="4bf5bd07-4e8c-4fd0-ba40-e6d67a01dbe8"/>
+								<reportElement style="StaticText" x="0" y="0" width="185" height="35" uuid="4bf5bd07-4e8c-4fd0-ba40-e6d67a01dbe8"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -1424,7 +1424,7 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="85">
 							<componentElement>
-								<reportElement style="GeneratedText" x="0" y="0" width="150" height="30" uuid="cedfa5bc-2f49-437b-bd3e-81c2f17120c4">
+								<reportElement style="GeneratedText" x="0" y="0" width="185" height="30" uuid="cedfa5bc-2f49-437b-bd3e-81c2f17120c4">
 									<property name="com.jaspersoft.studio.unit.height" value="px"/>
 								</reportElement>
 								<jr:list printOrder="Vertical">
@@ -1434,9 +1434,9 @@
 										</datasetParameter>
 										<dataSourceExpression><![CDATA[$F{nonGradReasonsdataSource}]]></dataSourceExpression>
 									</datasetRun>
-									<jr:listContents height="40" width="150">
+									<jr:listContents height="40" width="185">
 										<textField>
-											<reportElement style="GeneratedText" x="9" y="0" width="130" height="40" isRemoveLineWhenBlank="true" uuid="76290008-ca46-45de-a0cd-22b8f9078f40"/>
+											<reportElement style="GeneratedText" x="9" y="0" width="160" height="40" isRemoveLineWhenBlank="true" uuid="76290008-ca46-45de-a0cd-22b8f9078f40"/>
 											<textElement textAlignment="Justified"/>
 											<textFieldExpression><![CDATA[" * "+$F{code}+" "+$F{description}]]></textFieldExpression>
 										</textField>
