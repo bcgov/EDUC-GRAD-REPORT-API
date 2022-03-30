@@ -441,7 +441,7 @@
 				<textFieldExpression><![CDATA[$P{studentObj}.getGrade()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="GeneratedText" x="388" y="10" width="50" height="15" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
+				<reportElement style="GeneratedText" x="408" y="10" width="50" height="15" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
@@ -450,7 +450,7 @@
 				<text><![CDATA[Gender :]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="440" y="10" width="110" height="15" uuid="4dab781f-fd3c-478c-9bdc-d416d380f047"/>
+				<reportElement style="GeneratedText" x="465" y="10" width="110" height="15" uuid="4dab781f-fd3c-478c-9bdc-d416d380f047"/>
 				<textFieldExpression><![CDATA[$P{studentObj}.getGender()]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -467,7 +467,7 @@
 				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthdate())]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="GeneratedText" x="388" y="43" width="50" height="15" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
+				<reportElement style="GeneratedText" x="408" y="43" width="50" height="15" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
@@ -476,7 +476,7 @@
 				<text><![CDATA[Local Id:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="445" y="43" width="110" height="15" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
+				<reportElement style="GeneratedText" x="465" y="43" width="110" height="15" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
 				<textFieldExpression><![CDATA[$P{studentObj}.getLocalId()]]></textFieldExpression>
 			</textField>
 			<componentElement>
