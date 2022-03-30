@@ -1,0 +1,743 @@
+// Welcome2.java
+
+package io.codebeautify;
+
+public class Welcome2 {
+    private AcademicRecordBatch academicRecordBatch;
+
+    public AcademicRecordBatch getAcademicRecordBatch() { return academicRecordBatch; }
+    public void setAcademicRecordBatch(AcademicRecordBatch value) { this.academicRecordBatch = value; }
+}
+
+// AcademicRecordBatch.java
+
+package io.codebeautify;
+
+public class AcademicRecordBatch {
+    private HighSchoolTranscript highSchoolTranscript;
+    private String xmlnsACRecBat;
+    private String xmlnsXsi;
+    private String xsiSchemaLocation;
+    private String prefix;
+
+    public HighSchoolTranscript getHighSchoolTranscript() { return highSchoolTranscript; }
+    public void setHighSchoolTranscript(HighSchoolTranscript value) { this.highSchoolTranscript = value; }
+
+    public String getXmlnsACRecBat() { return xmlnsACRecBat; }
+    public void setXmlnsACRecBat(String value) { this.xmlnsACRecBat = value; }
+
+    public String getXmlnsXsi() { return xmlnsXsi; }
+    public void setXmlnsXsi(String value) { this.xmlnsXsi = value; }
+
+    public String getXsiSchemaLocation() { return xsiSchemaLocation; }
+    public void setXsiSchemaLocation(String value) { this.xsiSchemaLocation = value; }
+
+    public String getPrefix() { return prefix; }
+    public void setPrefix(String value) { this.prefix = value; }
+}
+
+// HighSchoolTranscript.java
+
+package io.codebeautify;
+
+public class HighSchoolTranscript {
+    private TransmissionData transmissionData;
+    private Student student;
+    private String xmlnsHSTrn;
+    private String xmlnsXsi;
+    private String xmlnsCore;
+    private String prefix;
+
+    public TransmissionData getTransmissionData() { return transmissionData; }
+    public void setTransmissionData(TransmissionData value) { this.transmissionData = value; }
+
+    public Student getStudent() { return student; }
+    public void setStudent(Student value) { this.student = value; }
+
+    public String getXmlnsHSTrn() { return xmlnsHSTrn; }
+    public void setXmlnsHSTrn(String value) { this.xmlnsHSTrn = value; }
+
+    public String getXmlnsXsi() { return xmlnsXsi; }
+    public void setXmlnsXsi(String value) { this.xmlnsXsi = value; }
+
+    public String getXmlnsCore() { return xmlnsCore; }
+    public void setXmlnsCore(String value) { this.xmlnsCore = value; }
+
+    public String getPrefix() { return prefix; }
+    public void setPrefix(String value) { this.prefix = value; }
+}
+
+// Student.java
+
+package io.codebeautify;
+
+public class Student {
+    private Person person;
+    private AcademicRecord academicRecord;
+
+    public Person getPerson() { return person; }
+    public void setPerson(Person value) { this.person = value; }
+
+    public AcademicRecord getAcademicRecord() { return academicRecord; }
+    public void setAcademicRecord(AcademicRecord value) { this.academicRecord = value; }
+}
+
+// AcademicRecord.java
+
+package io.codebeautify;
+
+public class AcademicRecord {
+    private School school;
+    private StudentLevel studentLevel;
+    private AcademicAward academicAward;
+    private AcademicSession[] academicSession;
+
+    public School getSchool() { return school; }
+    public void setSchool(School value) { this.school = value; }
+
+    public StudentLevel getStudentLevel() { return studentLevel; }
+    public void setStudentLevel(StudentLevel value) { this.studentLevel = value; }
+
+    public AcademicAward getAcademicAward() { return academicAward; }
+    public void setAcademicAward(AcademicAward value) { this.academicAward = value; }
+
+    public AcademicSession[] getAcademicSession() { return academicSession; }
+    public void setAcademicSession(AcademicSession[] value) { this.academicSession = value; }
+}
+
+// AcademicAward.java
+
+package io.codebeautify;
+
+import java.time.LocalDate;
+
+public class AcademicAward {
+    private String academicAwardLevel;
+    private LocalDate academicAwardDate;
+    private String academicAwardTitle;
+    private AcademicHonors academicHonors;
+    private String academicCompletionIndicator;
+    private LocalDate academicCompletionDate;
+    private AcademicSummary academicSummary;
+
+    public String getAcademicAwardLevel() { return academicAwardLevel; }
+    public void setAcademicAwardLevel(String value) { this.academicAwardLevel = value; }
+
+    public LocalDate getAcademicAwardDate() { return academicAwardDate; }
+    public void setAcademicAwardDate(LocalDate value) { this.academicAwardDate = value; }
+
+    public String getAcademicAwardTitle() { return academicAwardTitle; }
+    public void setAcademicAwardTitle(String value) { this.academicAwardTitle = value; }
+
+    public AcademicHonors getAcademicHonors() { return academicHonors; }
+    public void setAcademicHonors(AcademicHonors value) { this.academicHonors = value; }
+
+    public String getAcademicCompletionIndicator() { return academicCompletionIndicator; }
+    public void setAcademicCompletionIndicator(String value) { this.academicCompletionIndicator = value; }
+
+    public LocalDate getAcademicCompletionDate() { return academicCompletionDate; }
+    public void setAcademicCompletionDate(LocalDate value) { this.academicCompletionDate = value; }
+
+    public AcademicSummary getAcademicSummary() { return academicSummary; }
+    public void setAcademicSummary(AcademicSummary value) { this.academicSummary = value; }
+}
+
+// AcademicHonors.java
+
+package io.codebeautify;
+
+public class AcademicHonors {
+    private String honorsTitle;
+
+    public String getHonorsTitle() { return honorsTitle; }
+    public void setHonorsTitle(String value) { this.honorsTitle = value; }
+}
+
+// AcademicSummary.java
+
+package io.codebeautify;
+
+public class AcademicSummary {
+    private String academicSummaryType;
+    private String academicSummaryLevel;
+    private Gpa gpa;
+
+    public String getAcademicSummaryType() { return academicSummaryType; }
+    public void setAcademicSummaryType(String value) { this.academicSummaryType = value; }
+
+    public String getAcademicSummaryLevel() { return academicSummaryLevel; }
+    public void setAcademicSummaryLevel(String value) { this.academicSummaryLevel = value; }
+
+    public Gpa getGpa() { return gpa; }
+    public void setGpa(Gpa value) { this.gpa = value; }
+}
+
+// Gpa.java
+
+package io.codebeautify;
+
+public class Gpa {
+    private String creditHoursEarned;
+    private String creditHoursRequired;
+
+    public String getCreditHoursEarned() { return creditHoursEarned; }
+    public void setCreditHoursEarned(String value) { this.creditHoursEarned = value; }
+
+    public String getCreditHoursRequired() { return creditHoursRequired; }
+    public void setCreditHoursRequired(String value) { this.creditHoursRequired = value; }
+}
+
+// AcademicSession.java
+
+package io.codebeautify;
+
+public class AcademicSession {
+    private AcademicSessionDetail academicSessionDetail;
+    private Course[] course;
+
+    public AcademicSessionDetail getAcademicSessionDetail() { return academicSessionDetail; }
+    public void setAcademicSessionDetail(AcademicSessionDetail value) { this.academicSessionDetail = value; }
+
+    public Course[] getCourse() { return course; }
+    public void setCourse(Course[] value) { this.course = value; }
+}
+
+// AcademicSessionDetail.java
+
+package io.codebeautify;
+
+public class AcademicSessionDetail {
+    private String sessionDesignator;
+    private String sessionName;
+    private String sessionSchoolYear;
+
+    public String getSessionDesignator() { return sessionDesignator; }
+    public void setSessionDesignator(String value) { this.sessionDesignator = value; }
+
+    public String getSessionName() { return sessionName; }
+    public void setSessionName(String value) { this.sessionName = value; }
+
+    public String getSessionSchoolYear() { return sessionSchoolYear; }
+    public void setSessionSchoolYear(String value) { this.sessionSchoolYear = value; }
+}
+
+// Course.java
+
+package io.codebeautify;
+
+public class Course {
+    private CourseCreditBasis courseCreditBasis;
+    private StudentLevelCode courseCreditLevel;
+    private String courseCreditValue;
+    private String courseAcademicGradeScaleCode;
+    private String courseAcademicGrade;
+    private CourseSupplementalAcademicGrade courseSupplementalAcademicGrade;
+    private CourseAcademicGradeStatusCode courseAcademicGradeStatusCode;
+    private String courseSubjectAbbreviation;
+    private String courseNumber;
+    private String courseTitle;
+    private Requirement requirement;
+
+    public CourseCreditBasis getCourseCreditBasis() { return courseCreditBasis; }
+    public void setCourseCreditBasis(CourseCreditBasis value) { this.courseCreditBasis = value; }
+
+    public StudentLevelCode getCourseCreditLevel() { return courseCreditLevel; }
+    public void setCourseCreditLevel(StudentLevelCode value) { this.courseCreditLevel = value; }
+
+    public String getCourseCreditValue() { return courseCreditValue; }
+    public void setCourseCreditValue(String value) { this.courseCreditValue = value; }
+
+    public String getCourseAcademicGradeScaleCode() { return courseAcademicGradeScaleCode; }
+    public void setCourseAcademicGradeScaleCode(String value) { this.courseAcademicGradeScaleCode = value; }
+
+    public String getCourseAcademicGrade() { return courseAcademicGrade; }
+    public void setCourseAcademicGrade(String value) { this.courseAcademicGrade = value; }
+
+    public CourseSupplementalAcademicGrade getCourseSupplementalAcademicGrade() { return courseSupplementalAcademicGrade; }
+    public void setCourseSupplementalAcademicGrade(CourseSupplementalAcademicGrade value) { this.courseSupplementalAcademicGrade = value; }
+
+    public CourseAcademicGradeStatusCode getCourseAcademicGradeStatusCode() { return courseAcademicGradeStatusCode; }
+    public void setCourseAcademicGradeStatusCode(CourseAcademicGradeStatusCode value) { this.courseAcademicGradeStatusCode = value; }
+
+    public String getCourseSubjectAbbreviation() { return courseSubjectAbbreviation; }
+    public void setCourseSubjectAbbreviation(String value) { this.courseSubjectAbbreviation = value; }
+
+    public String getCourseNumber() { return courseNumber; }
+    public void setCourseNumber(String value) { this.courseNumber = value; }
+
+    public String getCourseTitle() { return courseTitle; }
+    public void setCourseTitle(String value) { this.courseTitle = value; }
+
+    public Requirement getRequirement() { return requirement; }
+    public void setRequirement(Requirement value) { this.requirement = value; }
+}
+
+// CourseAcademicGradeStatusCode.java
+
+package io.codebeautify;
+
+import java.io.IOException;
+
+public enum CourseAcademicGradeStatusCode {
+    COMPLETED;
+
+    public String toValue() {
+        switch (this) {
+            case COMPLETED: return "Completed";
+        }
+        return null;
+    }
+
+    public static CourseAcademicGradeStatusCode forValue(String value) throws IOException {
+        if (value.equals("Completed")) return COMPLETED;
+        throw new IOException("Cannot deserialize CourseAcademicGradeStatusCode");
+    }
+}
+
+// CourseCreditBasis.java
+
+package io.codebeautify;
+
+import java.io.IOException;
+
+public enum CourseCreditBasis {
+    CREDIT_BY_EXAM, REGULAR;
+
+    public String toValue() {
+        switch (this) {
+            case CREDIT_BY_EXAM: return "CreditByExam";
+            case REGULAR: return "Regular";
+        }
+        return null;
+    }
+
+    public static CourseCreditBasis forValue(String value) throws IOException {
+        if (value.equals("CreditByExam")) return CREDIT_BY_EXAM;
+        if (value.equals("Regular")) return REGULAR;
+        throw new IOException("Cannot deserialize CourseCreditBasis");
+    }
+}
+
+// StudentLevelCode.java
+
+package io.codebeautify;
+
+import java.io.IOException;
+
+public enum StudentLevelCode {
+    ELEVENTH_GRADE, TENTH_GRADE, TWELFTH_GRADE, UNGRADED;
+
+    public String toValue() {
+        switch (this) {
+            case ELEVENTH_GRADE: return "EleventhGrade";
+            case TENTH_GRADE: return "TenthGrade";
+            case TWELFTH_GRADE: return "TwelfthGrade";
+            case UNGRADED: return "Ungraded";
+        }
+        return null;
+    }
+
+    public static StudentLevelCode forValue(String value) throws IOException {
+        if (value.equals("EleventhGrade")) return ELEVENTH_GRADE;
+        if (value.equals("TenthGrade")) return TENTH_GRADE;
+        if (value.equals("TwelfthGrade")) return TWELFTH_GRADE;
+        if (value.equals("Ungraded")) return UNGRADED;
+        throw new IOException("Cannot deserialize StudentLevelCode");
+    }
+}
+
+// CourseSupplementalAcademicGrade.java
+
+package io.codebeautify;
+
+public class CourseSupplementalAcademicGrade {
+    private CourseSupplementalGradeUnion courseSupplementalGrade;
+
+    public CourseSupplementalGradeUnion getCourseSupplementalGrade() { return courseSupplementalGrade; }
+    public void setCourseSupplementalGrade(CourseSupplementalGradeUnion value) { this.courseSupplementalGrade = value; }
+}
+
+// CourseSupplementalGradeUnion.java
+
+package io.codebeautify;
+
+import java.io.IOException;
+
+public class CourseSupplementalGradeUnion {
+    public CourseSupplementalGradeElement courseSupplementalGradeElementValue;
+    public CourseSupplementalGradeElement[] courseSupplementalGradeElementArrayValue;
+}
+
+// CourseSupplementalGradeElement.java
+
+package io.codebeautify;
+
+public class CourseSupplementalGradeElement {
+    private SupplementalGradeCode supplementalGradeCode;
+    private String courseAcademicSupplementalGradeScaleCode;
+    private CourseAcademicGradeStatusCode courseAcademicSupplementalGradeStatusCode;
+    private String courseAcademicSupplementalGrade;
+
+    public SupplementalGradeCode getSupplementalGradeCode() { return supplementalGradeCode; }
+    public void setSupplementalGradeCode(SupplementalGradeCode value) { this.supplementalGradeCode = value; }
+
+    public String getCourseAcademicSupplementalGradeScaleCode() { return courseAcademicSupplementalGradeScaleCode; }
+    public void setCourseAcademicSupplementalGradeScaleCode(String value) { this.courseAcademicSupplementalGradeScaleCode = value; }
+
+    public CourseAcademicGradeStatusCode getCourseAcademicSupplementalGradeStatusCode() { return courseAcademicSupplementalGradeStatusCode; }
+    public void setCourseAcademicSupplementalGradeStatusCode(CourseAcademicGradeStatusCode value) { this.courseAcademicSupplementalGradeStatusCode = value; }
+
+    public String getCourseAcademicSupplementalGrade() { return courseAcademicSupplementalGrade; }
+    public void setCourseAcademicSupplementalGrade(String value) { this.courseAcademicSupplementalGrade = value; }
+}
+
+// SupplementalGradeCode.java
+
+package io.codebeautify;
+
+import java.io.IOException;
+
+public enum SupplementalGradeCode {
+    BLENDED_FINAL_GRADE, EXAM_GRADE, INSTRUCTOR_ASSIGNED_GRADE;
+
+    public String toValue() {
+        switch (this) {
+            case BLENDED_FINAL_GRADE: return "BlendedFinalGrade";
+            case EXAM_GRADE: return "ExamGrade";
+            case INSTRUCTOR_ASSIGNED_GRADE: return "InstructorAssignedGrade";
+        }
+        return null;
+    }
+
+    public static SupplementalGradeCode forValue(String value) throws IOException {
+        if (value.equals("BlendedFinalGrade")) return BLENDED_FINAL_GRADE;
+        if (value.equals("ExamGrade")) return EXAM_GRADE;
+        if (value.equals("InstructorAssignedGrade")) return INSTRUCTOR_ASSIGNED_GRADE;
+        throw new IOException("Cannot deserialize SupplementalGradeCode");
+    }
+}
+
+// Requirement.java
+
+package io.codebeautify;
+
+public class Requirement {
+    private String rapCode;
+    private String rapName;
+    private ConditionsMetCode conditionsMetCode;
+
+    public String getRapCode() { return rapCode; }
+    public void setRapCode(String value) { this.rapCode = value; }
+
+    public String getRapName() { return rapName; }
+    public void setRapName(String value) { this.rapName = value; }
+
+    public ConditionsMetCode getConditionsMetCode() { return conditionsMetCode; }
+    public void setConditionsMetCode(ConditionsMetCode value) { this.conditionsMetCode = value; }
+}
+
+// ConditionsMetCode.java
+
+package io.codebeautify;
+
+import java.io.IOException;
+
+public enum ConditionsMetCode {
+    YES;
+
+    public String toValue() {
+        switch (this) {
+            case YES: return "Yes";
+        }
+        return null;
+    }
+
+    public static ConditionsMetCode forValue(String value) throws IOException {
+        if (value.equals("Yes")) return YES;
+        throw new IOException("Cannot deserialize ConditionsMetCode");
+    }
+}
+
+// School.java
+
+package io.codebeautify;
+
+public class School {
+    private String organizationName;
+    private LocalOrganizationID localOrganizationID;
+    private Contacts contacts;
+
+    public String getOrganizationName() { return organizationName; }
+    public void setOrganizationName(String value) { this.organizationName = value; }
+
+    public LocalOrganizationID getLocalOrganizationID() { return localOrganizationID; }
+    public void setLocalOrganizationID(LocalOrganizationID value) { this.localOrganizationID = value; }
+
+    public Contacts getContacts() { return contacts; }
+    public void setContacts(Contacts value) { this.contacts = value; }
+}
+
+// Contacts.java
+
+package io.codebeautify;
+
+public class Contacts {
+    private Address address;
+
+    public Address getAddress() { return address; }
+    public void setAddress(Address value) { this.address = value; }
+}
+
+// Address.java
+
+package io.codebeautify;
+
+public class Address {
+    private String addressLine;
+    private String city;
+    private String stateProvinceCode;
+    private String postalCode;
+
+    public String getAddressLine() { return addressLine; }
+    public void setAddressLine(String value) { this.addressLine = value; }
+
+    public String getCity() { return city; }
+    public void setCity(String value) { this.city = value; }
+
+    public String getStateProvinceCode() { return stateProvinceCode; }
+    public void setStateProvinceCode(String value) { this.stateProvinceCode = value; }
+
+    public String getPostalCode() { return postalCode; }
+    public void setPostalCode(String value) { this.postalCode = value; }
+}
+
+// LocalOrganizationID.java
+
+package io.codebeautify;
+
+public class LocalOrganizationID {
+    private String localOrganizationIDCode;
+    private String localOrganizationIDQualifier;
+
+    public String getLocalOrganizationIDCode() { return localOrganizationIDCode; }
+    public void setLocalOrganizationIDCode(String value) { this.localOrganizationIDCode = value; }
+
+    public String getLocalOrganizationIDQualifier() { return localOrganizationIDQualifier; }
+    public void setLocalOrganizationIDQualifier(String value) { this.localOrganizationIDQualifier = value; }
+}
+
+// StudentLevel.java
+
+package io.codebeautify;
+
+public class StudentLevel {
+    private StudentLevelCode studentLevelCode;
+
+    public StudentLevelCode getStudentLevelCode() { return studentLevelCode; }
+    public void setStudentLevelCode(StudentLevelCode value) { this.studentLevelCode = value; }
+}
+
+// Person.java
+
+package io.codebeautify;
+
+public class Person {
+    private AgencyIdentifier agencyIdentifier;
+    private Birth birth;
+    private Name name;
+    private Gender gender;
+    private Deceased deceased;
+    private String noteMessage;
+
+    public AgencyIdentifier getAgencyIdentifier() { return agencyIdentifier; }
+    public void setAgencyIdentifier(AgencyIdentifier value) { this.agencyIdentifier = value; }
+
+    public Birth getBirth() { return birth; }
+    public void setBirth(Birth value) { this.birth = value; }
+
+    public Name getName() { return name; }
+    public void setName(Name value) { this.name = value; }
+
+    public Gender getGender() { return gender; }
+    public void setGender(Gender value) { this.gender = value; }
+
+    public Deceased getDeceased() { return deceased; }
+    public void setDeceased(Deceased value) { this.deceased = value; }
+
+    public String getNoteMessage() { return noteMessage; }
+    public void setNoteMessage(String value) { this.noteMessage = value; }
+}
+
+// AgencyIdentifier.java
+
+package io.codebeautify;
+
+public class AgencyIdentifier {
+    private String agencyAssignedID;
+    private String agencyCode;
+    private String stateProvinceCode;
+
+    public String getAgencyAssignedID() { return agencyAssignedID; }
+    public void setAgencyAssignedID(String value) { this.agencyAssignedID = value; }
+
+    public String getAgencyCode() { return agencyCode; }
+    public void setAgencyCode(String value) { this.agencyCode = value; }
+
+    public String getStateProvinceCode() { return stateProvinceCode; }
+    public void setStateProvinceCode(String value) { this.stateProvinceCode = value; }
+}
+
+// Birth.java
+
+package io.codebeautify;
+
+import java.time.LocalDate;
+
+public class Birth {
+    private LocalDate birthDate;
+
+    public LocalDate getBirthDate() { return birthDate; }
+    public void setBirthDate(LocalDate value) { this.birthDate = value; }
+}
+
+// Deceased.java
+
+package io.codebeautify;
+
+public class Deceased {
+    private String deceasedIndicator;
+
+    public String getDeceasedIndicator() { return deceasedIndicator; }
+    public void setDeceasedIndicator(String value) { this.deceasedIndicator = value; }
+}
+
+// Gender.java
+
+package io.codebeautify;
+
+public class Gender {
+    private String genderCode;
+
+    public String getGenderCode() { return genderCode; }
+    public void setGenderCode(String value) { this.genderCode = value; }
+}
+
+// Name.java
+
+package io.codebeautify;
+
+public class Name {
+    private String firstName;
+    private String lastName;
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String value) { this.firstName = value; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String value) { this.lastName = value; }
+}
+
+// TransmissionData.java
+
+package io.codebeautify;
+
+import java.time.OffsetDateTime;
+
+public class TransmissionData {
+    private String documentID;
+    private OffsetDateTime createdDateTime;
+    private String documentTypeCode;
+    private String transmissionType;
+    private Source source;
+    private Destination destination;
+    private String documentProcessCode;
+    private String documentOfficialCode;
+    private String documentCompleteCode;
+
+    public String getDocumentID() { return documentID; }
+    public void setDocumentID(String value) { this.documentID = value; }
+
+    public OffsetDateTime getCreatedDateTime() { return createdDateTime; }
+    public void setCreatedDateTime(OffsetDateTime value) { this.createdDateTime = value; }
+
+    public String getDocumentTypeCode() { return documentTypeCode; }
+    public void setDocumentTypeCode(String value) { this.documentTypeCode = value; }
+
+    public String getTransmissionType() { return transmissionType; }
+    public void setTransmissionType(String value) { this.transmissionType = value; }
+
+    public Source getSource() { return source; }
+    public void setSource(Source value) { this.source = value; }
+
+    public Destination getDestination() { return destination; }
+    public void setDestination(Destination value) { this.destination = value; }
+
+    public String getDocumentProcessCode() { return documentProcessCode; }
+    public void setDocumentProcessCode(String value) { this.documentProcessCode = value; }
+
+    public String getDocumentOfficialCode() { return documentOfficialCode; }
+    public void setDocumentOfficialCode(String value) { this.documentOfficialCode = value; }
+
+    public String getDocumentCompleteCode() { return documentCompleteCode; }
+    public void setDocumentCompleteCode(String value) { this.documentCompleteCode = value; }
+}
+
+// Destination.java
+
+package io.codebeautify;
+
+public class Destination {
+    private DestinationOrganization organization;
+
+    public DestinationOrganization getOrganization() { return organization; }
+    public void setOrganization(DestinationOrganization value) { this.organization = value; }
+}
+
+// DestinationOrganization.java
+
+package io.codebeautify;
+
+public class DestinationOrganization {
+    private String psis;
+    private String organizationName;
+    private Contacts contacts;
+
+    public String getPsis() { return psis; }
+    public void setPsis(String value) { this.psis = value; }
+
+    public String getOrganizationName() { return organizationName; }
+    public void setOrganizationName(String value) { this.organizationName = value; }
+
+    public Contacts getContacts() { return contacts; }
+    public void setContacts(Contacts value) { this.contacts = value; }
+}
+
+// Source.java
+
+package io.codebeautify;
+
+public class Source {
+    private SourceOrganization organization;
+
+    public SourceOrganization getOrganization() { return organization; }
+    public void setOrganization(SourceOrganization value) { this.organization = value; }
+}
+
+// SourceOrganization.java
+
+package io.codebeautify;
+
+public class SourceOrganization {
+    private String mutuallyDefined;
+    private String organizationName;
+    private Contacts contacts;
+
+    public String getMutuallyDefined() { return mutuallyDefined; }
+    public void setMutuallyDefined(String value) { this.mutuallyDefined = value; }
+
+    public String getOrganizationName() { return organizationName; }
+    public void setOrganizationName(String value) { this.organizationName = value; }
+
+    public Contacts getContacts() { return contacts; }
+    public void setContacts(Contacts value) { this.contacts = value; }
+}

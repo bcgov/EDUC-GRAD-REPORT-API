@@ -56,7 +56,6 @@ public class ReportData implements Serializable {
 	private Student student;
 	@JsonDeserialize(as = School.class)
 	private School school;
-	private String logo;
 	@JsonDeserialize(as = Transcript.class)
 	private Transcript transcript;
 	@JsonDeserialize(as = Assessment.class)
@@ -65,18 +64,21 @@ public class ReportData implements Serializable {
 	private GradProgram gradProgram;
 	@JsonDeserialize(as = GraduationData.class)
 	private GraduationData graduationData;
-	private String gradMessage;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private String updateDate;
 	@JsonDeserialize(as = Certificate.class)
 	private Certificate certificate;
 	@JsonDeserialize(as = GraduationStatus.class)
 	private GraduationStatus graduationStatus;
-	private String orgCode;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date issueDate;
 	@JsonDeserialize(as = PackingSlip.class)
 	private PackingSlip packingSlip;
+
+	private String logo;
+	private String orgCode;
+	private String gradMessage;
+	private String reportNumber;
 
 	@JsonDeserialize(using = NonGradReasonListDeserializer.class)
 	private List<NonGradReason> nonGradReasons;

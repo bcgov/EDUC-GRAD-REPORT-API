@@ -47,6 +47,7 @@ public class AchievementCourseImpl implements AchievementCourse {
     private String relatedCourse = "";
     private String relatedLevel = "";
     private String usedForGrad = "";
+    private Boolean projected;
 
     private String gradReqMet;
     private String completedCoursePercentage;
@@ -178,6 +179,15 @@ public class AchievementCourseImpl implements AchievementCourse {
     @Override
     public String getRelatedLevel() {
         return relatedLevel;
+    }
+
+    @Override
+    public Boolean getProjected() {
+        return projected;
+    }
+
+    public void setProjected(Boolean projected) {
+        this.projected = projected;
     }
 
     /**

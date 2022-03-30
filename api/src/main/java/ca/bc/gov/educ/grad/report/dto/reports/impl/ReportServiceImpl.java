@@ -52,6 +52,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
     USER_REPORTS_SCHOLARSHIPS,
     USER_REPORTS_TRANSCRIPT,
     USER_REPORTS_PACKINGSLIP,
+    USER_REPORTS_SCHOOL_DISTRIBUTION,
     USER_REPORTS_CERTIFICATES,
     FULFILLMENT_SERVICES_USER})
 public class ReportServiceImpl extends AbstractReportService
@@ -89,6 +90,15 @@ public class ReportServiceImpl extends AbstractReportService
     @RolesAllowed({USER_REPORTS_CERTIFICATES, FULFILLMENT_SERVICES_USER})
     public CertificateReport createCertificateReport() {
         return new CertificateReportImpl();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @RolesAllowed({USER_REPORTS_SCHOOL_DISTRIBUTION})
+    public DistributionReport createSchoolDistributionReport() {
+        return new DistributionReportImpl();
     }
 
     /**

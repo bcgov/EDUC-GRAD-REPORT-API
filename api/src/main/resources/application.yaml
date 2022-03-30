@@ -37,6 +37,8 @@ spring:
     user: ${USERNAME}
     password: ${PASSWORD}
     locations: classpath:db/migration
+  messages:
+    basename: messages
 #Logging properties
 logging:
   file:
@@ -88,3 +90,10 @@ endpoint:
   educ-grad-trax-api:
     get-district-details:
       url: ${GRAD_TRAX_API}api/v1/district/%s
+  grad-student-api:
+    read-grad-student-record: ${GRAD_STUDENT_API}api/v1/student/studentid/%s/algorithm
+  pen-student-api:
+    by-studentid:
+      url: ${PEN_API}api/v1/student/%s
+    by-pen:
+      url: ${PEN_API}api/v1/student?pen=%s

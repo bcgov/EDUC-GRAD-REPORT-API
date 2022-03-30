@@ -21,7 +21,6 @@ import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
-import ca.bc.gov.educ.grad.report.dto.reports.impl.ParametersImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.achievement.*;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
@@ -35,7 +34,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,6 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.concurrent.Future;
@@ -111,7 +109,6 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
     private final String FORMAT_COURSE_CODE = "%-5s";
     private final String FORMAT_COURSE_LEVEL = "%-3s";
-    private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 
     @Autowired
     private ReportService reportService;
@@ -165,7 +162,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
      * @throws DataException
      */
     @Override
-    @RolesAllowed({FULFILLMENT_SERVICES_USER})
+    @RolesAllowed({STUDENT_ACHIEVEMENT_REPORT})
     public StudentAchievementReport buildAchievementReport(
             final ReportFormat format, final PersonalEducationNumber pen, final Parameters parameters, final boolean interim)
             throws DomainServiceException, IOException, DataException {
@@ -568,7 +565,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final boolean preview,
             final Parameters parameters,
             final boolean interim,
-            final String gradProgram) throws DomainServiceException, IOException {
+            final String gradProgram) throws DomainServiceException {
         final String methodName = "createReport(...)";
         LOG.entering(CLASSNAME, methodName);
 
@@ -615,18 +612,6 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         return achievementReport;
     }
 
-    @Override
-    @RolesAllowed({FULFILLMENT_SERVICES_USER})
-    public Parameters createParameters() {
-        final String methodName = "createParameters()";
-        LOG.entering(CLASSNAME, methodName);
-
-        Parameters parameters = reportService.createParameters();
-
-        LOG.exiting(CLASSNAME, methodName);
-        return parameters;
-    }
-
     private StudentAchievementReport getStudentAchievementReport(
             final PersonalEducationNumber personalEducationNumber,
             final ReportFormat format,
@@ -637,7 +622,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         LOG.entering(CLASSNAME, methodName);
 
         if (parameters == null) {
-            parameters = new ParametersImpl();
+            parameters = createParameters();
         }
 
         String pen = personalEducationNumber.getPen();
@@ -988,11 +973,5 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         final String code = c == null ? "" : c.getCode();
 
         return nullSafe(code);
-    }
-
-    private InputStream openImageResource(final String resource) throws IOException {
-        //final URL url = getReportResource(resource);
-        URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
-        return url.openStream();
     }
 }

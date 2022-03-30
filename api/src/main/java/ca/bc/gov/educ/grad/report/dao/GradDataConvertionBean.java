@@ -21,7 +21,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -359,5 +359,27 @@ public class GradDataConvertionBean implements Serializable {
                 rsRptType = CertificateType.E;
         }
         return rsRptType;
+    }
+
+    public List<Student> getStudents(ReportData reportData) {
+        List<Student> result = new ArrayList<>();
+        ca.bc.gov.educ.grad.report.api.client.School school = reportData.getSchool();
+        List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
+        for(ca.bc.gov.educ.grad.report.api.client.Student st: students) {
+            StudentImpl student = new StudentImpl();
+            BeanUtils.copyProperties(st, student);
+            student.setPen(new PersonalEducationNumberObject(st.getPen().getPen()));
+            if(st.getAddress() != null) {
+                PostalAddressImpl address = new PostalAddressImpl();
+                BeanUtils.copyProperties(st.getAddress(), address);
+                student.setCurrentMailingAddress(address);
+            }
+            GraduationDataImpl gradData = new GraduationDataImpl();
+            GraduationData graduationData = st.getGraduationData();
+            BeanUtils.copyProperties(graduationData, gradData);
+            student.setGraduationData(gradData);
+            result.add(student);
+        }
+        return result;
     }
 }

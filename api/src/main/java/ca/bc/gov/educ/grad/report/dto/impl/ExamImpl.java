@@ -9,6 +9,7 @@ public class ExamImpl implements Exam {
     private String courseLevel;
     private String sessionDate;
     private String gradReqMet;
+    private Boolean projected;
     private String completedCoursePercentage;
     private String completedCourseLetterGrade;
     private String bestSchoolPercent;
@@ -67,6 +68,16 @@ public class ExamImpl implements Exam {
     @Override
     public void setGradReqMet(String gradReqMet) {
         this.gradReqMet = gradReqMet;
+    }
+
+    @Override
+    public Boolean getProjected() {
+        return projected;
+    }
+
+    @Override
+    public void setProjected(Boolean projected) {
+        this.projected = projected;
     }
 
     @Override

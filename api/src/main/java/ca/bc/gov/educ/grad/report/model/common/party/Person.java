@@ -25,4 +25,6 @@ public interface Person extends Party {
     String getFirstName();
 
     String getMiddleName();
+
+    String getFullName();
 }
