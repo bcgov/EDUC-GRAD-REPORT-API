@@ -22,7 +22,15 @@
       "localId": null,
       "gradProgram": "2018-PF",
       "otherProgramParticipation": null,
-      "hasOtherProgram": "Other Program Participation"
+      "hasOtherProgram": "Other Program Participation",
+      "address": {
+        "streetLine1": "HISPANIOLA",
+        "streetLine2": "",
+        "city": "SHOONER",
+        "region": "BOAT",
+        "country": "VESSEL",
+        "code": "PAC SEA"
+      }
     },
     "studentExams": [
       {
