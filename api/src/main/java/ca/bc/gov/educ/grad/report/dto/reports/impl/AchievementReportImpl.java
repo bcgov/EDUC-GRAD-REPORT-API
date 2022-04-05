@@ -46,11 +46,8 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
     public static final String SUFFIX_HTML = "_HTML";
     public static final String SUFFIX_INTERIM = "_interim";
 
-    /**
-     * Only used for creating the transcripts; summary pages (backs of
-     * transcripts) use SUMMARY_REPORT_NAME_PREFIX.
-     */
     public static final String ACHIEVEMENT_REPORT_NAME = "Achievement";
+    public static final String ACHIEVEMENT_DRAFT_REPORT_NAME = "AchievementDraft";
 
     private Assessment assessment;
 
@@ -70,7 +67,14 @@ public class AchievementReportImpl extends StudentReportImpl implements Achievem
      * Constructs a new report using the default report template.
      */
     public AchievementReportImpl() {
-        super(ACHIEVEMENT_REPORT_NAME);
+        this(ACHIEVEMENT_REPORT_NAME);
+    }
+
+    /**
+     * Constructs a new report using the named report template.
+     */
+    public AchievementReportImpl(String reportName) {
+        super(reportName);
 
         // Prevent two HTML header/footers from being added to the
         // HTML version of transcripts.

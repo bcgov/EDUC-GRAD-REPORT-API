@@ -301,6 +301,10 @@ public class StudentInfoImpl implements StudentInfo {
         return this.gradProgram;
     }
 
+    public void setGradProgram(String gradProgram) {
+        this.gradProgram = gradProgram;
+    }
+
     @Override
     public String getLocalId() {
         return localId;

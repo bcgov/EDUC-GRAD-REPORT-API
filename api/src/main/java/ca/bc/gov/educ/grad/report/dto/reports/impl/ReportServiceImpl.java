@@ -55,8 +55,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
     USER_REPORTS_SCHOOL_DISTRIBUTION,
     USER_REPORTS_CERTIFICATES,
     FULFILLMENT_SERVICES_USER})
-public class ReportServiceImpl extends AbstractReportService
-        implements ReportService {
+public class ReportServiceImpl extends AbstractReportService implements ReportService {
 
     private static final String CLASSNAME = ReportServiceImpl.class.getName();
     private static transient final Logger LOG = Logger.getLogger(CLASSNAME);
@@ -146,6 +145,11 @@ public class ReportServiceImpl extends AbstractReportService
         return new AchievementReportImpl();
     }
 
+    @Override
+    @RolesAllowed({USER_REPORTS_TRANSCRIPT, FULFILLMENT_SERVICES_USER})
+    public AchievementReport createAchievementReport(String reportName) {
+        return new AchievementReportImpl(reportName);
+    }
 
     /**
      * Based on the type of report, this will return an internal representation
