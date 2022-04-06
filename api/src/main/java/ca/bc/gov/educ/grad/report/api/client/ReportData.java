@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.api.client.utils.ExamListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.OptionalProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
@@ -89,5 +90,6 @@ public class ReportData implements Serializable {
 	@JsonDeserialize(using = OptionalProgramListDeserializer.class)
 	private List<OptionalProgram> optionalPrograms;
 
+	@JsonIgnore
 	private Map<String, String> parameters;
 }
