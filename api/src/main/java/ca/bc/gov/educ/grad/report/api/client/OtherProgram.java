@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class OtherProgram {
+import java.io.Serializable;
+
+
+public class OtherProgram implements Serializable {
 
     private String programCode;
     private String programName;

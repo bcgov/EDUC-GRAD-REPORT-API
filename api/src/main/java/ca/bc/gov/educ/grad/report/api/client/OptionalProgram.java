@@ -4,9 +4,11 @@ import ca.bc.gov.educ.grad.report.api.client.utils.GradRequirementListDeserializ
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OptionalProgram {
+
+public class OptionalProgram implements Serializable {
 
     private String optionalProgramCode;
     private String optionalProgramName;

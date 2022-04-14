@@ -18,7 +18,6 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -30,7 +29,7 @@ import java.util.Date;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class PostalDeliveryInfoImpl extends PostalAddressImpl implements PostalDeliveryInfo, Serializable {
 
     private static final long serialVersionUID = 2L;

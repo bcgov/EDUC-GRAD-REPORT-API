@@ -18,13 +18,12 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class PersonalEducationNumberObject implements PersonalEducationNumber {
 
     private String pen;

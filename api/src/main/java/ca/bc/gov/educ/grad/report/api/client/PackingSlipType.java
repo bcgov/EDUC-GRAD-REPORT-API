@@ -2,7 +2,10 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-public class PackingSlipType {
+import java.io.Serializable;
+
+
+public class PackingSlipType implements Serializable {
 
     private String name;
     private PaperType paperType;

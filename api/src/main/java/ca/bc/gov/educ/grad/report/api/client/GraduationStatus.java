@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class GraduationStatus {
+import java.io.Serializable;
+
+
+public class GraduationStatus implements Serializable {
 
     private String programCompletionDate = "";
     private String honours = "";

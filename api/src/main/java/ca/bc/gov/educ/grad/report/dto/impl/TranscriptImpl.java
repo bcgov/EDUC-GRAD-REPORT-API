@@ -24,7 +24,6 @@ import ca.bc.gov.educ.grad.report.model.transcript.TranscriptResult;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ import java.util.List;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class TranscriptImpl extends AbstractDomainEntity
         implements Transcript, Serializable {
 

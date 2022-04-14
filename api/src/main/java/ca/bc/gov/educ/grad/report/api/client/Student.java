@@ -4,11 +4,13 @@ import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Student {
+
+public class Student implements Serializable {
 
     private Pen pen;
     private String firstName;

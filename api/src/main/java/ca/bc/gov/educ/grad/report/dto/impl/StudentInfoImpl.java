@@ -22,7 +22,6 @@ import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,7 +40,7 @@ import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class StudentInfoImpl implements StudentInfo {
 
     private static final long serialVersionUID = 5L;

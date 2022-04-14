@@ -18,7 +18,6 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Contains a graduation program code. The description is transcribed on the
@@ -26,7 +25,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public final class GradProgramImpl extends AbstractDomainEntity
         implements GradProgram {
 

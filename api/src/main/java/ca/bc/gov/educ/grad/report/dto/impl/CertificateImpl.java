@@ -25,7 +25,6 @@ import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -36,7 +35,7 @@ import java.util.Map;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class CertificateImpl implements Certificate, Serializable {
 
     private static final long serialVersionUID = 2L;

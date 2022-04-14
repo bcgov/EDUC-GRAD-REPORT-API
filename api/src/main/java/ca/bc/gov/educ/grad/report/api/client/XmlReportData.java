@@ -5,10 +5,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Data
 @Getter
 @Setter
-public class XmlReportData {
+
+public class XmlReportData implements Serializable {
 
     private String requestTrackId;
     private Pen pen;
