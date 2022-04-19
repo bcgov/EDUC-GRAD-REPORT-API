@@ -99,7 +99,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createStudentAchievementReport");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1950_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1950_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-PUB.json");
@@ -120,7 +120,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1950_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1950_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1950_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND.json");
@@ -141,7 +141,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1950_IND");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_YU1950_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU1950_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1950-PUB.json");
@@ -162,7 +162,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU1950_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1986_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-PUB.json");
@@ -183,7 +183,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1986_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1986_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1986_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-IND.json");
@@ -204,7 +204,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1986_IND");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_YU1986_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1986-PUB.json");
@@ -225,7 +225,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU1986_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1996_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1996_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-PUB.json");
@@ -246,7 +246,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1996_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1996_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1996_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-IND.json");
@@ -267,7 +267,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1996_IND");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_YU1996_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU1996_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1996-PUB.json");
@@ -288,7 +288,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU1996_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC2004_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC2004_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-IND.json");
@@ -309,7 +309,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2004_IND");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC2004_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC2004_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-PUB.json");
@@ -330,7 +330,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2004_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_YU2004_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU2004_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2004-PUB.json");
@@ -351,7 +351,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU2004_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC2018_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PUB.json");
@@ -372,7 +372,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2018_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC2018_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC2018_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
@@ -393,7 +393,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2018_IND");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC2018_OFF() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC2018_OFF at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-OFF.json");
@@ -414,7 +414,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2018_OFF");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC2018_PF() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC2018_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PF.json");
@@ -435,7 +435,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2018_PF");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_YU2018_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2018-PUB.json");
@@ -456,7 +456,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU2018_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_SCCP_EN() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_SCCP_EN at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN.json");
@@ -477,7 +477,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_SCCP_EN");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_SCCP_PF() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_SCCP_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF.json");
@@ -498,7 +498,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_SCCP_PF");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_NOPROG() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOPROG.json");
@@ -519,7 +519,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_NOPROG");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_E() throws Exception {
 		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
@@ -540,7 +540,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_E");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_EO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
@@ -561,7 +561,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_EO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_EB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EB.json");
@@ -582,7 +582,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_EB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_A() throws Exception {
 		LOG.debug("<{}.createCertificateReport_A at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
@@ -603,7 +603,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_A");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_AB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_AB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AB.json");
@@ -624,7 +624,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_AB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_AIB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_AIB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AIB.json");
@@ -645,7 +645,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_AIB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_EI() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EI at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EI.json");
@@ -666,7 +666,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_EI");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_EIB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EIB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIB.json");
@@ -687,7 +687,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_EIB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_EIO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_EIO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
@@ -708,7 +708,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_EIO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_AI() throws Exception {
 		LOG.debug("<{}.createCertificateReport_AI at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AI.json");
@@ -729,7 +729,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_AI");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SC() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SC at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SC.json");
@@ -750,7 +750,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SC");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SCB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCB.json");
@@ -771,7 +771,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SCB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SCO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCO.json");
@@ -792,7 +792,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SCO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_S() throws Exception {
 		LOG.debug("<{}.createCertificateReport_S at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-S.json");
@@ -813,7 +813,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_S");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SB.json");
@@ -834,7 +834,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
@@ -855,7 +855,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_F() throws Exception {
 		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
@@ -876,7 +876,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_F");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_FB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_FB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FB.json");
@@ -897,7 +897,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_FB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_FO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_FO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
@@ -918,7 +918,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_FO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SCF() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCF at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
@@ -939,7 +939,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SCF");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_SCFO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCFO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFO.json");
@@ -960,7 +960,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_SCFO");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_O() throws Exception {
 		LOG.debug("<{}.createCertificateReport_O at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-O.json");
@@ -981,7 +981,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_O");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_OB() throws Exception {
 		LOG.debug("<{}.createCertificateReport_OB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OB.json");
@@ -1002,7 +1002,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_OB");
 	}
 
-	//@Test
+	@Test
 	public void createCertificateReport_OO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_OO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OO.json");
@@ -1023,7 +1023,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReport_OO");
 	}
 
-	//@Test
+	@Test
 	public void createSchoolDistributionReport() throws Exception {
 		LOG.debug("<{}.createSchoolDistributionReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
@@ -1044,7 +1044,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createSchoolDistributionReport");
 	}
 
-	//@Test
+	@Test
 	public void createXmlTranscriptReport() throws Exception {
 		LOG.debug("<{}.createXmlTranscriptReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
@@ -1096,7 +1096,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createXmlTranscriptReport");
 	}
 
-	//@Test
+	@Test
 	public void testPackingSlipReport() throws Exception {
 		LOG.debug("<{}.testPackingSlipReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 
