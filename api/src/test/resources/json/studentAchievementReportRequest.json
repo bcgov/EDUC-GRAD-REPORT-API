@@ -338,6 +338,10 @@
       {
         "code": "000",
         "description": "Student is too dumb to complete the graduation. Wearing a mask all day impacts brain activity"
+      },
+      {
+        "code": "001",
+        "description": "Computer Science - A degree in computer science may sound like you’re on the right track for a successful career after graduation. However, like many of the most useless college degrees, computer science is a difficult degree to use after you graduate."
       }
     ],
     "optionalPrograms": [
