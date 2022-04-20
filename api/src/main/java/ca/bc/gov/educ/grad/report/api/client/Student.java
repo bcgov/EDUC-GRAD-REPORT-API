@@ -14,6 +14,7 @@ public class Student implements Serializable {
 
     private Pen pen;
     private String firstName;
+    private String middleName;
     private String lastName;
     private String gender;
     private Date birthdate;
@@ -48,6 +49,14 @@ public class Student implements Serializable {
 
     public void setFirstName(String value) {
         this.firstName = value;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getLastName() {
