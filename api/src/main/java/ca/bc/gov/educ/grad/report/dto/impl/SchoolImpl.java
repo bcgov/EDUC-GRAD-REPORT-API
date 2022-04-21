@@ -22,14 +22,13 @@ import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Represents information about a school that is used on a report.
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class SchoolImpl extends AbstractDomainEntity implements School {
 
     private static final long serialVersionUID = 4L;

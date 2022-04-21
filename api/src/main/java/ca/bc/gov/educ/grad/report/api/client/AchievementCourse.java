@@ -17,11 +17,13 @@
  */
 package ca.bc.gov.educ.grad.report.api.client;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 
-public class AchievementCourse {
+
+public class AchievementCourse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

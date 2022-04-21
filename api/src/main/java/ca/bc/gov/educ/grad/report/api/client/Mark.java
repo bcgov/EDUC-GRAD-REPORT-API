@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class Mark {
+import java.io.Serializable;
+
+
+public class Mark implements Serializable {
     private String schoolPercent;
     private String examPercent;
     private String finalPercent;

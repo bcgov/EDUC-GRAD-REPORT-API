@@ -2,9 +2,11 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Certificate {
+
+public class Certificate implements Serializable {
     private Date issued;
     private String certStyle;
     private OrderType orderType;

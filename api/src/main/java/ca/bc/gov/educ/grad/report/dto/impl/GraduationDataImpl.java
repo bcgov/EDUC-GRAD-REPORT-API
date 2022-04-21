@@ -20,7 +20,6 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -36,7 +35,7 @@ import static java.lang.Boolean.FALSE;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class GraduationDataImpl extends AbstractDomainEntity
         implements GraduationData, Serializable {
 

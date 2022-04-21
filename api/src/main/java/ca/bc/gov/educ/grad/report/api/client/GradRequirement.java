@@ -3,9 +3,11 @@ package ca.bc.gov.educ.grad.report.api.client;
 import ca.bc.gov.educ.grad.report.api.client.utils.AchievementCourseListDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GradRequirement {
+
+public class GradRequirement implements Serializable {
     private String code;
     private String description;
     private List<AchievementCourse> courseDetails;

@@ -19,7 +19,6 @@ import ca.bc.gov.educ.grad.report.model.reports.PaperType;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Represents the classifications of certificates. This is used in combination
@@ -28,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  * @author CGI Information Management Consultants Inc.
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public enum CertificateType {
 
     A("A", PaperType.CERTIFICATE_A),

@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -49,7 +48,7 @@ import java.io.Serializable;
 @XmlType
 @XmlEnum(String.class)
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public enum TranscriptTypeCode implements Serializable {
 
     @XmlEnumValue("BC1950-PUB")
