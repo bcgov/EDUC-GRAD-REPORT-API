@@ -339,7 +339,7 @@
 					<textElement>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{studentObj}.getGradProgram()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="GeneratedText" x="359" y="95" width="40" height="13" uuid="54510e7a-767e-4139-bbb3-b57aca137b0d">
