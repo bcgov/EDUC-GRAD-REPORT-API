@@ -67,6 +67,7 @@ public class StudentInfoImpl implements StudentInfo {
     private String grade = "";
     private Date gradDate = new Date(0L);
     private String gradProgram = "";
+    private String gradProgramDescription = "";
     private final List<String> academicProgram = new ArrayList<>();
     private Map<String, String> nonGradReasons = new HashMap<>();
     private String gradMessage = "";
@@ -305,6 +306,15 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
+    public String getGradProgramDescription() {
+        return gradProgramDescription;
+    }
+
+    public void setGradProgramDescription(String gradProgramDescription) {
+        this.gradProgramDescription = gradProgramDescription;
+    }
+
+    @Override
     public String getLocalId() {
         return localId;
     }
@@ -321,7 +331,7 @@ public class StudentInfoImpl implements StudentInfo {
 
     @Override
     public GraduationProgramCode getGraduationProgramCode() {
-        final GraduationProgramCode result = valueFrom(getGradProgram());
+        final GraduationProgramCode result = valueFrom(getGradProgram(), getGradProgramDescription());
         return result;
     }
 

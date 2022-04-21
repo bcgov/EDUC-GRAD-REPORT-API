@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -144,9 +145,12 @@ public enum GraduationProgramCode implements Serializable {
      * @param code The code to find the value of.
      * @return The graduation program code for the given code.
      */
-    public static GraduationProgramCode valueFrom(final String code) {
+    public static GraduationProgramCode valueFrom(final String code, final String description) {
         for (final GraduationProgramCode gpc : values()) {
             if (gpc.isCode(code)) {
+                if(StringUtils.trimToNull(description) != null) {
+                    gpc.setDescription(description);
+                }
                 return gpc;
             }
         }
@@ -181,6 +185,10 @@ public enum GraduationProgramCode implements Serializable {
     @JsonValue
     public String getDescription() {
         return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

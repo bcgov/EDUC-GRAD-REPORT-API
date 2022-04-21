@@ -223,7 +223,7 @@ public class JRDataSourceFactory {
      */
     public static GraduationProgram createGraduationProgram(final String code) {
         return new GraduationProgram.Builder()
-                .withCode(code)
+                .withCode(code, null)
                 .build();
     }
 

@@ -167,6 +167,8 @@ public interface StudentInfo {
      */
     String getGradProgram();
 
+    String getGradProgramDescription();
+
     /**
      * Returns the graduation program code enumeration for this student's
      * graduation program.
