@@ -116,6 +116,8 @@ public interface Student extends Person {
      */
     String getGradProgram();
 
+    String getGradProgramDescription();
+
     /**
      * Gets local id.
      *

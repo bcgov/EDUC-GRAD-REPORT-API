@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 public class Student implements Serializable {
 
     private Pen pen;
@@ -21,6 +20,7 @@ public class Student implements Serializable {
     private Address address;
     private String grade;
     private String gradProgram;
+    private String gradProgramDescription;
     private String studStatus;
     private String sccDate;
     private String mincodeGrad;
@@ -147,6 +147,14 @@ public class Student implements Serializable {
 
     public void setGradProgram(String gradProgram) {
         this.gradProgram = gradProgram;
+    }
+
+    public String getGradProgramDescription() {
+        return gradProgramDescription;
+    }
+
+    public void setGradProgramDescription(String gradProgramDescription) {
+        this.gradProgramDescription = gradProgramDescription;
     }
 
     public String getLocalId() {

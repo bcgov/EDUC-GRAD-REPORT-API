@@ -77,7 +77,7 @@ public class GradDataConvertionBean implements Serializable {
             school.getPhoneNumber(),// String schoolPhone,
             school.getTypeIndicator()// Character schlIndType
         );
-        result.setGradProgramDescription(reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getDescription() : null);
+        result.setGradProgramDescription(reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getDescription() : student.getGradProgramDescription());
         result.setNonGradReasons(this.getNongradReasons(reportData));
         result.setHasOtherProgram(student.getHasOtherProgram());
         result.setOtherProgramParticipation(student.getOtherProgramParticipation());

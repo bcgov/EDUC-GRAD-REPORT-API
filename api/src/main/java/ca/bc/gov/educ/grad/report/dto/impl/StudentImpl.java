@@ -57,6 +57,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String frenchCert;
     private String studStatus = "";
     private String gradProgram = "";
+    private String gradProgramDescription = "";
     private Map<String, SignatureBlockType> signatureBlockTypes;
 
     private String localId = "";
@@ -117,6 +118,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public String getGradProgram() {
         return gradProgram;
+    }
+
+    @Override
+    public String getGradProgramDescription() {
+        return gradProgramDescription;
     }
 
     @Override
@@ -201,6 +207,10 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setGradProgram(String gradProgram) {
         this.gradProgram = gradProgram;
+    }
+
+    public void setGradProgramDescription(String gradProgramDescription) {
+        this.gradProgramDescription = gradProgramDescription;
     }
 
     public void setHasOtherProgram(String hasOtherProgram) {
