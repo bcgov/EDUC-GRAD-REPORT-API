@@ -424,7 +424,7 @@
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[Grad Req Year:]]></text>
+					<text><![CDATA[Program:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="399" y="81" width="151" height="13" uuid="210efc20-4437-4ad1-bb23-54a90a0e7b6c">

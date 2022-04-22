@@ -17,7 +17,6 @@
  */
 package ca.bc.gov.educ.grad.report.model.student;
 
-import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
@@ -166,15 +165,6 @@ public interface StudentInfo {
      * @return graduation requirements year
      */
     String getGradProgram();
-
-    /**
-     * Returns the graduation program code enumeration for this student's
-     * graduation program.
-     *
-     * @return A non-null instance.
-     * @throws IllegalArgumentException The gradProgram is not represented by GraduationProgramCode.
-     */
-    GraduationProgramCode getGraduationProgramCode();
 
     /**
      * get the code reference for the student's secondary school.
