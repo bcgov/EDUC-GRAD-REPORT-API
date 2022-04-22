@@ -54,63 +54,63 @@ public enum GraduationProgramCode implements Serializable {
 
     @XmlEnumValue("1950")
     @JsonProperty("1950")
-    PROGRAM_1950("1950", "Adult Graduation Program", 20),
+    PROGRAM_1950("1950", "Legacy - Adult Graduation Program", 20),
 
     @XmlEnumValue("1986")
     @JsonProperty("1986")
-    PROGRAM_1986("1986", "Course-Based Graduation Program", 52),
+    PROGRAM_1986("1986", "Legacy - Course-Based Graduation Program", 52),
 
     @XmlEnumValue("1986-EN")
     @JsonProperty("1986-EN")
-    PROGRAM_1986_EN("1986-EN", "Course-Based Graduation Program", 52),
+    PROGRAM_1986_EN("1986-EN", "Legacy - Course-Based Graduation Program", 52),
 
     @XmlEnumValue("1996")
     @JsonProperty("1996")
-    PROGRAM_1996("1996", "Graduation Program 1995", 52),
+    PROGRAM_1996("1996", "Legacy - Graduation Program 1995", 52),
 
     @XmlEnumValue("1996-EN")
     @JsonProperty("1996-EN")
-    PROGRAM_1996_EN("1996-EN", "Graduation Program 1995", 52),
+    PROGRAM_1996_EN("1996-EN", "Legacy - Graduation Program 1995", 52),
 
     @XmlEnumValue("1996-PF")
     @JsonProperty("1996-PF")
-    PROGRAM_1996_PF("1996-PF", "1995 Programme Francophone", 52),
+    PROGRAM_1996_PF("1996-PF", "Legacy - 1995 Programme Francophone", 52),
 
     @XmlEnumValue("2004")
     @JsonProperty("2004")
-    PROGRAM_2004("2004", "Graduation Program 2004", 80),
+    PROGRAM_2004("2004", "Legacy - Graduation Program 2004", 80),
 
     @XmlEnumValue("2018")
     @JsonProperty("2018")
-    PROGRAM_2018("2018", "Graduation Program 2018", 80),
+    PROGRAM_2018("2018", "Legacy - Graduation Program 2018", 80),
 
     @XmlEnumValue("2018-EN")
     @JsonProperty("2018-EN")
-    PROGRAM_2018_EN("2018-EN", "Graduation Program 2018", 80),
+    PROGRAM_2018_EN("2018-EN", "Legacy - Graduation Program 2018", 80),
 
     @XmlEnumValue("SCCP")
     @JsonProperty("SCCP")
-    PROGRAM_SCCP("SCCP", "School Completion Certificate Program", 0),
+    PROGRAM_SCCP("SCCP", "Legacy - School Completion Certificate Program", 0),
 
     @XmlEnumValue("SCCP-PF")
     @JsonProperty("SCCP-PF")
-    PROGRAM_SCCP_PF("SCCP-PF", "School Completion Certificate Program French", 0),
+    PROGRAM_SCCP_PF("SCCP-PF", "Legacy - School Completion Certificate Program French", 0),
 
     @XmlEnumValue("2004-PF")
     @JsonProperty("2004-PF")
-    PROGRAM_2004_PF("2004-PF", "2004 Programme Francophone", 80),
+    PROGRAM_2004_PF("2004-PF", "Legacy - 2004 Programme Francophone", 80),
 
     @XmlEnumValue("2004-EN")
     @JsonProperty("2004-EN")
-    PROGRAM_2004_EN("2004-EN", "Graduation Program 2004", 80),
+    PROGRAM_2004_EN("2004-EN", "Legacy - Graduation Program 2004", 80),
 
     @XmlEnumValue("NOPROG")
     @JsonProperty("NOPROG")
-    PROGRAM_NOPROG("NOPROG", "No Program Specified", 0),
+    PROGRAM_NOPROG("NOPROG", "Legacy - No Program Specified", 0),
 
     @XmlEnumValue("2018-PF")
     @JsonProperty("2018-PF")
-    PROGRAM_2018_PF("2018-PF", "2018 Programme Francophone", 80);
+    PROGRAM_2018_PF("2018-PF", "Legacy - 2018 Programme Francophone", 80);
 
     private String code;
     private String description;
