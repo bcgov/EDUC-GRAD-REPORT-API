@@ -206,11 +206,17 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             throw dse;
         }
 
-        StudentInfo studentInfo = this.gradDataConvertionBean.getStudentInfo(reportData);
+        if (reportData.getGradProgram() == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Graduation Program not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
 
         return new GradProgramImpl(GraduationProgramCode.valueFrom(
                 code,
-                studentInfo.getGradProgramDescription()));
+                reportData.getGradProgram().getCode().getDescription()));
     }
 
     /**
