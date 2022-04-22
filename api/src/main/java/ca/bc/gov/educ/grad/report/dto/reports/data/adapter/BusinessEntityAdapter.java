@@ -369,7 +369,7 @@ public class BusinessEntityAdapter {
         validate(gradProgram, "graduation program");
 
         return new GraduationProgram.Builder()
-                .withCode(gradProgram.getCode().toString())
+                .withCode(gradProgram.getCode().toString(), gradProgram.getCode().getDescription())
                 .build();
     }
 

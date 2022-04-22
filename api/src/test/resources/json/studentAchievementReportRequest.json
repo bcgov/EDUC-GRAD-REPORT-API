@@ -451,6 +451,14 @@
         ]
       }
     ],
+    "gradProgram": {
+      "description": null,
+      "code": {
+        "code": "2018-PF",
+        "description": "Graduation Program 2018",
+        "credits": 80
+      }
+    },
     "graduationStatus": {
       "programCompletionDate": null,
       "honours": null,

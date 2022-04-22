@@ -433,7 +433,7 @@
 					<textElement>
 						<paragraph leftIndent="5"/>
 					</textElement>
-					<textFieldExpression><![CDATA[LEFT($P{studentObj}.getGradProgram(), 4)]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{studentObj}.getGradProgram()]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="GeneratedText" x="81" y="161" width="80" height="15" uuid="acde9bb7-7f6f-4b61-95e0-1d79c811b9b7">
@@ -513,10 +513,10 @@
 					<reportElement key="IMAGE_LOGO_SVG" x="13" y="11" width="55" height="41" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
 					<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
 				</image>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="400" y="30" width="100" height="12" uuid="d9659fba-a4ae-4ad9-8cf5-a96e79762869"/>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-dd", Locale.CANADA).format($P{issueDateObj})]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-dd").format($P{issueDateObj})]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Master" isBlankWhenNull="true">
 					<reportElement style="GeneratedText" isPrintRepeatedValues="false" x="420" y="46" width="120" height="17" uuid="84476dc6-bda8-4f10-b978-8c55c49af453">

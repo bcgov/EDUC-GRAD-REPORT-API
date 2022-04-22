@@ -321,7 +321,7 @@ public class StudentInfoImpl implements StudentInfo {
 
     @Override
     public GraduationProgramCode getGraduationProgramCode() {
-        final GraduationProgramCode result = valueFrom(getGradProgram());
+        final GraduationProgramCode result = valueFrom(getGradProgram(), null);
         return result;
     }
 
