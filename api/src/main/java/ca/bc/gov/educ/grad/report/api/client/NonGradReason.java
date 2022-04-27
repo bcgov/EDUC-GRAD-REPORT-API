@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class NonGradReason {
+import java.io.Serializable;
+
+
+public class NonGradReason implements Serializable {
     private String code;
     private String description;
 

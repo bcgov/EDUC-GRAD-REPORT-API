@@ -19,7 +19,6 @@ package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.report.model.cert.CertificateOrderType;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Responsible for creating order types that can print certificates on the
@@ -27,7 +26,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class CertificateOrderTypeImpl extends OrderTypeImpl
         implements CertificateOrderType {
 

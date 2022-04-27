@@ -189,10 +189,34 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
     }
 
     private GradProgram createGradProgram(String code) {
+        final String methodName = "createGradProgram(String code)";
+        LOG.entering(CLASSNAME, methodName);
+
         if (StringUtils.trimToNull(code) == null) {
             code = GraduationProgramCode.PROGRAM_2018.getCode();
         }
-        return new GradProgramImpl(GraduationProgramCode.valueFrom(code));
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+
+        if (reportData.getGradProgram() == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    null,
+                    "Graduation Program not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+
+        return new GradProgramImpl(GraduationProgramCode.valueFrom(
+                code,
+                reportData.getGradProgram().getCode().getDescription()));
     }
 
     /**
@@ -628,6 +652,10 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         String pen = personalEducationNumber.getPen();
         StudentInfo studentInfo = getStudentInfo(personalEducationNumber.getPen());
 
+        String gradProgram = studentInfo.getGradProgram();
+        StudentInfoImpl studentInfoImpl = (StudentInfoImpl)studentInfo;
+        studentInfoImpl.setGradProgram(createGradProgram(gradProgram).getCode().getDescription());
+
         List<Exam> sExamObjList = getStudentExamList(pen);
         parameters.put("hasStudentExam", "false");
         if (!sExamObjList.isEmpty()) {
@@ -668,6 +696,10 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             parameters.put("hasOptionalPrograms", "true");
         }
 
+        Date issueDate = getIssueDate();
+        if (issueDate != null) {
+            parameters.put("issueDateObj", issueDate);
+        }
 
         ca.bc.gov.educ.grad.report.model.school.School schoolObj = adaptSchool(studentInfo);
         if (schoolObj != null) {
@@ -692,7 +724,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 preview,
                 parameters,
                 interim,
-                studentInfo.getGradProgram()
+                gradProgram
         );
 
         LOG.exiting(CLASSNAME, methodName);

@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class PaperType {
+import java.io.Serializable;
+
+
+public class PaperType implements Serializable {
 
     private String code;
 

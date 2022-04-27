@@ -2,7 +2,10 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-public class TranscriptResult {
+import java.io.Serializable;
+
+
+public class TranscriptResult implements Serializable {
 
     private TranscriptCourse course;
     private Mark mark;

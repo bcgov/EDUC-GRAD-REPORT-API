@@ -20,7 +20,6 @@ package ca.bc.gov.educ.grad.report.model.reports;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Represents the type of paper to use for printing transcripts and
@@ -29,7 +28,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  * @author CGI Information Management Consultants Inc.
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public enum PaperType {
 
     CERTIFICATE_SC("YED2"),

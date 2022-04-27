@@ -2,7 +2,10 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-public class CertificateType {
+import java.io.Serializable;
+
+
+public class CertificateType implements Serializable {
 
     private String reportName;
     private PaperType paperType;

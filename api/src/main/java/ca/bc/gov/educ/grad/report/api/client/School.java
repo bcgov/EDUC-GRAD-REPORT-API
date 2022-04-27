@@ -2,9 +2,11 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class School {
+
+public class School implements Serializable {
 
     private String mincode;
     private String name;

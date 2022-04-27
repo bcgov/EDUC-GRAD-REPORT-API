@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -84,6 +85,40 @@ public abstract class GradReportServiceImpl implements Serializable {
         LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
         LOG.exiting(CLASSNAME, methodName);
         return pen;
+    }
+
+    Date getIssueDate() throws DataException, DomainServiceException {
+        final String methodName = "getIssueDate()";
+        LOG.entering(CLASSNAME, methodName);
+
+        final Date issueDate;
+
+        try {
+
+            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+            if (reportData == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        null,
+                        "Report Data not exists for the current report generation");
+                LOG.throwing(CLASSNAME, methodName, dse);
+                throw dse;
+            }
+
+            LOG.log(Level.FINER,
+                    "Retrieved issue date: {0}", reportData.getIssueDate());
+
+            issueDate = reportData.getIssueDate();
+
+        } catch (Exception ex) {
+            String msg = "Failed to obtain issue date: ".concat(ex.getMessage());
+            final DataException dex = new DataException(null, null, msg, ex);
+            LOG.throwing(CLASSNAME, methodName, dex);
+            throw dex;
+        }
+
+        LOG.exiting(CLASSNAME, methodName);
+        return issueDate;
     }
 
     /**
