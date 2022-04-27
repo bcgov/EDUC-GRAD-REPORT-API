@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class Code {
+import java.io.Serializable;
+
+
+public class Code implements Serializable {
     private String code;
     private String description;
     private int credits;

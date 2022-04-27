@@ -4,14 +4,16 @@ import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Student {
+public class Student implements Serializable {
 
     private Pen pen;
     private String firstName;
+    private String middleName;
     private String lastName;
     private String gender;
     private Date birthdate;
@@ -28,6 +30,9 @@ public class Student {
     private String hasOtherProgram;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
 
+    @JsonDeserialize(as = GraduationData.class)
+    private GraduationData graduationData;
+
     @JsonDeserialize(as = Pen.class)
     public Pen getPen() {
         return pen;
@@ -43,6 +48,14 @@ public class Student {
 
     public void setFirstName(String value) {
         this.firstName = value;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -158,5 +171,13 @@ public class Student {
 
     public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
         this.otherProgramParticipation = otherProgramParticipation;
+    }
+
+    public GraduationData getGraduationData() {
+        return graduationData;
+    }
+
+    public void setGraduationData(GraduationData graduationData) {
+        this.graduationData = graduationData;
     }
 }

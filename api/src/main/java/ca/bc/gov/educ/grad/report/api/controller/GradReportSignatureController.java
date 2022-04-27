@@ -1,12 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
+import ca.bc.gov.educ.grad.report.api.util.PermissionsContants;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
 import ca.bc.gov.educ.grad.report.utils.GradValidation;
-import ca.bc.gov.educ.grad.report.utils.PermissionsContants;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.info.Info;

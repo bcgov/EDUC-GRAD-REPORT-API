@@ -1,9 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.integration.config.EnableIntegration;
@@ -12,13 +9,16 @@ import org.springframework.integration.config.EnableIntegration;
 @IntegrationComponentScan
 @EnableIntegration
 @ComponentScans({
-        @ComponentScan("ca.bc.gov.educ.api.report"),
-        @ComponentScan("ca.bc.gov.educ.grad")
+        @ComponentScan("ca.bc.gov.educ.grad.report")
 })
+@PropertySource("classpath:messages.properties")
 public class ReportApiApplicationConfiguration {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-        return new PropertySourcesPlaceholderConfigurer();
+        PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
+        configurer.setIgnoreUnresolvablePlaceholders(false);
+        configurer.setIgnoreResourceNotFound(false);
+        return configurer;
     }
 }

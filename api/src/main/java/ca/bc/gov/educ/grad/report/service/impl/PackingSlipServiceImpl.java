@@ -35,11 +35,11 @@ public class PackingSlipServiceImpl implements PackingSlipService {
     GradDataConvertionBean gradDataConvertionBean;
 
     /**
-     * Creates and returns a packing slip report for an individual. The report
-     * document returned is typically a PDF that includes a print-ready packing
-     * slip page suitable for bundling with any number of order items (as
-     * tallied by size). This creates the appropriate order type based on the
-     * catalogue item.
+     * Creates and returns a packing slip report for a PSI. The report document
+     * returned is typically a PDF that includes a print-ready packing slip page
+     * suitable for bundling with any number of order items (as tallied by
+     * size). This creates the appropriate order type based on the catalogue
+     * item. The ordered date is set to today.
      *
      * @param orderNumber Order number to include on the packing slip.
      * @param ordered Date the order was made.
@@ -215,6 +215,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         } catch (Exception ex) {
             String msg = "Failed to access order type data";
             final DataException dex = new DataException(null, null, msg, ex);
+
             LOG.throwing(CLASSNAME, methodName, dex);
             throw dex;
         }

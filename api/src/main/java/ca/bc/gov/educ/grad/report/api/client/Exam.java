@@ -1,12 +1,16 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class Exam {
+import java.io.Serializable;
+
+
+public class Exam implements Serializable {
 
     private String courseCode;
     private String courseName;
     private String courseLevel;
     private String sessionDate;
     private String gradReqMet;
+    private Boolean projected;
     private String completedCoursePercentage;
     private String completedCourseLetterGrade;
     private String bestSchoolPercent;
@@ -55,6 +59,14 @@ public class Exam {
 
     public void setGradReqMet(String gradReqMet) {
         this.gradReqMet = gradReqMet;
+    }
+
+    public Boolean getProjected() {
+        return projected;
+    }
+
+    public void setProjected(Boolean projected) {
+        this.projected = projected;
     }
 
     public String getCompletedCoursePercentage() {

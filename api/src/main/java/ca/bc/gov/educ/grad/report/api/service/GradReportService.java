@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.service;
 
 import ca.bc.gov.educ.grad.report.api.client.PackingSlip;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
@@ -12,8 +13,11 @@ import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
+import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
+import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +36,7 @@ public class GradReportService {
 
 	private static final String CLASS_NAME = GradReportService.class.getName();
 	private static final String EXCEPTION_MSG = "Unable to execute {}";
+
 	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
 	private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
@@ -50,6 +55,12 @@ public class GradReportService {
 
 	@Autowired
 	PackingSlipService packingSlipService;
+
+	@Autowired
+	SchoolDistributionService schoolDistributionService;
+
+	@Autowired
+	StudentXmlTranscriptService studentXmlTranscriptService;
 
 	public ResponseEntity<byte[]> getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
@@ -73,8 +84,10 @@ public class GradReportService {
 	}
 
 	public ReportDocument getPackingSlipReportDocument(ReportRequest reportRequest) {
+
 		String methodName = "getPackingSlipReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
@@ -118,6 +131,7 @@ public class GradReportService {
     }
 
 	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) {
+
 		String methodName = "getStudentAchievementReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
@@ -160,6 +174,41 @@ public class GradReportService {
 
 		try {
 			return transcriptService.buildOfficialTranscriptReport();
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return null;
+	}
+
+	public ResponseEntity<byte[]> getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
+		String methodName = "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
+			byte[] resultBinary = transcriptReport.asBytes();
+			response = handleBinaryResponse(resultBinary, String.format(reportFile, transcriptReport.getFilename()), MediaType.APPLICATION_XML);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
+	public StudentTranscriptReport getStudentXmlTranscriptReportDocument(XmlReportRequest reportRequest) {
+		String methodName = "getStudentXmlTranscriptReportDocument(XmlReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
+
+		try {
+			return studentXmlTranscriptService.buildXmlTranscriptReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
 		}
@@ -211,6 +260,43 @@ public class GradReportService {
 		return null;
 	}
 
+	public ResponseEntity<byte[]> getSchoolDistributionReport(ReportRequest reportRequest) {
+		String methodName = "getSchoolDistributionReport(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			SchoolDistributionReport schoolDistributionReport = getSchoolDistributionReportDocument(reportRequest);
+			byte[] resultBinary = schoolDistributionReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
+	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) {
+		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		try {
+			return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return null;
+	}
+
+
+
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
 		ResponseEntity<byte[]> result = null;
 
@@ -231,6 +317,10 @@ public class GradReportService {
 	}
 
 	private ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
+		return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_PDF);
+	}
+
+	private ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
 		ResponseEntity<byte[]> response = null;
 
 		if(resultBinary.length > 0) {
@@ -239,7 +329,7 @@ public class GradReportService {
 			response = ResponseEntity
 					.ok()
 					.headers(headers)
-					.contentType(MediaType.APPLICATION_PDF)
+					.contentType(contentType)
 					.body(resultBinary);
 		} else {
 			response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();

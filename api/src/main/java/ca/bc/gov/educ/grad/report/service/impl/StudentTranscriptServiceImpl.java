@@ -260,7 +260,42 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     }
 
     private GradProgram createGradProgram(String code) {
-        return new GradProgramImpl(GraduationProgramCode.valueFrom(code));
+        final String methodName = "createGradProgram(String)";
+        LOG.entering(CLASSNAME, methodName);
+
+        final GradProgram gradProgram;
+
+        try {
+            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+            if (reportData == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        null,
+                        "Report Data not exists for the current report generation");
+                LOG.throwing(CLASSNAME, methodName, dse);
+                throw dse;
+            }
+
+            if (reportData.getGradProgram() == null || reportData.getGradProgram().getCode() == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        null,
+                        "Grad Program or Grad Program Code is null");
+                LOG.throwing(CLASSNAME, methodName, dse);
+                throw dse;
+            }
+
+            gradProgram = new GradProgramImpl(GraduationProgramCode.valueFrom(
+                    code,
+                    reportData.getGradProgram().getCode().getDescription()));
+
+        } catch (Exception ex) {
+            String msg = "Failed to get grad program : ".concat(code);
+            final DataException dex = new DataException(null, null, msg, ex);
+            LOG.throwing(CLASSNAME, methodName, dex);
+            throw dex;
+        }
+
+        return gradProgram;
     }
 
     /**
@@ -671,7 +706,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
         final School school = adaptSchool(studentInfo);
 
-        // FIXME: Replace with GraduationProgramCode enum.
         final GradProgram program = createGradProgram(programCode);
         final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);
 

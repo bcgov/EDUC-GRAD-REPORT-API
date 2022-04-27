@@ -2,7 +2,10 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-public class PackingSlipOrderType {
+import java.io.Serializable;
+
+
+public class PackingSlipOrderType implements Serializable {
 
     private String name;
     private PackingSlipType packingSlipType;

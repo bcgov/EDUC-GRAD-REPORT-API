@@ -19,7 +19,6 @@ import ca.bc.gov.educ.grad.report.model.reports.PaperType;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Represents the classifications of certificates. This is used in combination
@@ -28,7 +27,7 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  * @author CGI Information Management Consultants Inc.
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public enum AchievementType {
 
     DEFAULT("Default", PaperType.ACHIEVEMENT);
@@ -45,6 +44,7 @@ public enum AchievementType {
      * @param reportName Certificate subreport template filename.
      */
     AchievementType(final String reportName, final PaperType paperType) {
+
         this.reportName = reportName;
         this.paperType = paperType;
     }
@@ -71,7 +71,7 @@ public enum AchievementType {
     public String getReportName() {
         return reportName;
     }
-
+  
     void setReportName(String reportName) {
         this.reportName = reportName;
     }

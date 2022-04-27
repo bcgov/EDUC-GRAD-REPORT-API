@@ -815,8 +815,8 @@
         },
         {
           "course": {
-            "name": "YACHTMASTER OCEAN",
-            "code": "YMO",
+            "name": "YACHTMASTER COSTAL",
+            "code": "YMC",
             "level": "12",
             "credits": "4",
             "sessionDate": "200106",
@@ -1227,7 +1227,7 @@
       ],
       "totalCreditsUsedForGrad": "0"
     },
-    "gradMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 1995. Graduation date: September 2020.",
+    "gradMessage": "Based on the information provided by the school, this student has not yet graduated in the Graduation Program 2018. Students with questions should contact their schools immediately. This student is participating in Carrier Program(s): Career Program TRADES and TECHNOLOGY",
     "updateDate": "2021-04-26"
   }
 }

@@ -23,11 +23,11 @@ import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
+import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,7 +38,7 @@ import java.util.Map;
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class StudentImpl extends AbstractDomainEntity implements Student {
 
     private static final long serialVersionUID = 3L;
@@ -62,6 +62,8 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String localId = "";
     private String hasOtherProgram = "";
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
+
+    private GraduationData graduationData;
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -95,6 +97,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public String getMiddleName() {
         return middleName;
+    }
+
+    @Override
+    public String getFullName() {
+        return getLastName() + "," + getMiddleName() + " " + getFirstName();
     }
 
     @Override
@@ -240,5 +247,13 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
         return new JRBeanCollectionDataSource(otherProgramParticipation, false);
+    }
+
+    public GraduationData getGraduationData() {
+        return graduationData;
+    }
+
+    public void setGraduationData(GraduationData graduationData) {
+        this.graduationData = graduationData;
     }
 }

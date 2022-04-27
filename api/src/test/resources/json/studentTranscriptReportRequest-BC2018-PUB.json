@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-PUB",
@@ -85,8 +85,8 @@
             "examPercent": "",
             "finalPercent": "52",
             "finalLetterGrade": "C-",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "interimPercent": "99",
+            "interimLetterGrade": "F-"
           },
           "requirement": "1",
           "requirementName": "",
@@ -109,8 +109,8 @@
             "examPercent": "",
             "finalPercent": "50",
             "finalLetterGrade": "C-",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "interimPercent": "49",
+            "interimLetterGrade": "A+"
           },
           "requirement": "6",
           "requirementName": "",
@@ -460,7 +460,7 @@
             "level": "11",
             "credits": "6",
             "sessionDate": "202005",
-            "type": "2",
+            "type": "3",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -484,7 +484,7 @@
             "level": "11",
             "credits": "6",
             "sessionDate": "202005",
-            "type": "2",
+            "type": "1",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -916,7 +916,7 @@
             "level": "12",
             "credits": "4",
             "sessionDate": "200106",
-            "type": "2",
+            "type": "1",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -1227,7 +1227,7 @@
       ],
       "totalCreditsUsedForGrad": "0"
     },
-    "gradMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 1995. Graduation date: September 2020.",
+    "gradMessage": "Based on the information provided by the school, this student has not yet graduated in the Graduation Program 2018. Students with questions should contact their schools immediately. This student is participating in Carrier Program(s): Career Program TRADES and TECHNOLOGY",
     "updateDate": "2021-04-26"
   }
 }

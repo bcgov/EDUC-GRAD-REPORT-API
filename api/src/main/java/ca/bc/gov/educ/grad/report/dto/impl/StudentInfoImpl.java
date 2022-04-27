@@ -17,12 +17,10 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
-import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +31,6 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_TRAX_YMD;
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.asBoolean;
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.trimSafe;
-import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.valueFrom;
 
 /**
  * A TRAX data object containing data from the TRAX database for the given
@@ -41,7 +38,7 @@ import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.
  *
  * @author CGI Information Management Consultants Inc.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
 public class StudentInfoImpl implements StudentInfo {
 
     private static final long serialVersionUID = 5L;
@@ -210,7 +207,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.schoolPhone = trimSafe(schoolPhone);
         this.schoolTypeIndicator = trimSafe(schlIndType);
 
-        setSchoolTypeBanner();
+        //setSchoolTypeBanner();
 
         this.academicProgram.add(trimSafe(prgmCode));
         this.academicProgram.add(trimSafe(prgmCode2));
@@ -301,6 +298,10 @@ public class StudentInfoImpl implements StudentInfo {
         return this.gradProgram;
     }
 
+    public void setGradProgram(String gradProgram) {
+        this.gradProgram = gradProgram;
+    }
+
     @Override
     public String getLocalId() {
         return localId;
@@ -314,12 +315,6 @@ public class StudentInfoImpl implements StudentInfo {
     @Override
     public String getHasOtherProgram() {
         return this.hasOtherProgram;
-    }
-
-    @Override
-    public GraduationProgramCode getGraduationProgramCode() {
-        final GraduationProgramCode result = valueFrom(getGradProgram());
-        return result;
     }
 
     @Override

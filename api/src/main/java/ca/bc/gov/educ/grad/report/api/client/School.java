@@ -2,7 +2,11 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-public class School {
+import java.io.Serializable;
+import java.util.List;
+
+
+public class School implements Serializable {
 
     private String mincode;
     private String name;
@@ -15,6 +19,8 @@ public class School {
     private Address address;
     private String phoneNumber = "";
     private String dogwoodElig = "";
+
+    private List<Student> students;
 
     public String getMincode() {
         return mincode;
@@ -103,5 +109,13 @@ public class School {
 
     public void setDogwoodElig(String dogwoodElig) {
         this.dogwoodElig = dogwoodElig;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

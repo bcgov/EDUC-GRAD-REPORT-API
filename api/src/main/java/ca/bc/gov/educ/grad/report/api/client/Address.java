@@ -1,6 +1,9 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-public class Address {
+import java.io.Serializable;
+
+
+public class Address implements Serializable {
     private String streetLine1;
     private String streetLine2;
     private String city;

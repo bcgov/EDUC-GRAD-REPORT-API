@@ -19,13 +19,15 @@ package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import java.io.Serializable;
 
-import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.*;
+import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.PROGRAM_1996;
+import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.valueFrom;
 
 /**
  * Represents information about a student's graduation program.
@@ -63,8 +65,8 @@ public class GraduationProgram extends BusinessEntity implements Serializable {
      *
      * @param code The graduation program code.
      */
-    protected void setCode(final String code) {
-        this.code = valueFrom(code);
+    protected void setCode(final String code, final String description) {
+        this.code = valueFrom(code, description);
 
         // Forces TRAX graduation program codes of 1996 to be 1995 so that
         // the transcript description is correct.
@@ -72,7 +74,7 @@ public class GraduationProgram extends BusinessEntity implements Serializable {
             this.code = PROGRAM_1996;
         }
 
-        this.description = this.code.getDescription();
+        this.description = StringUtils.trimToNull(description) == null ? this.code.getDescription() : description;
     }
 
     /**
@@ -156,8 +158,8 @@ public class GraduationProgram extends BusinessEntity implements Serializable {
          * @param code Code that uniquely identifies this graduation program.
          * @return thisBuilder
          */
-        public Builder withCode(final String code) {
-            getObject().setCode(code);
+        public Builder withCode(final String code, final String description) {
+            getObject().setCode(code, description);
             return thisBuilder();
         }
     }

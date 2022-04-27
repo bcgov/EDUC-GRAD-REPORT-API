@@ -17,11 +17,13 @@
  */
 package ca.bc.gov.educ.grad.report.api.client;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 
-public class AchievementCourse {
+
+public class AchievementCourse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -43,6 +45,7 @@ public class AchievementCourse {
     private String relatedCourse = "";
     private String relatedLevel = "";
     private String usedForGrad = "";
+    private Boolean projected;
 
     private String gradReqMet;
     private String completedCoursePercentage;
@@ -91,7 +94,8 @@ public class AchievementCourse {
             final String interimPercent,
             final String equivOrChallenge,
             final String credits,
-            final Integer usedForGrad) {
+            final Integer usedForGrad,
+            final Boolean projected) {
         this.courseName = nullSafe(crseName);
         this.courseCode = nullSafe(crseCode);
         this.courseLevel = nullSafe(crseLevel);
@@ -104,6 +108,7 @@ public class AchievementCourse {
         this.equivOrChallenge = nullSafe(equivOrChallenge);
         this.credits = nullSafe(credits);
         this.usedForGrad = nullSafe(usedForGrad).toString();
+        this.projected = nullSafe(projected);
     }
 
     /**
@@ -334,7 +339,10 @@ public class AchievementCourse {
         return Integer.valueOf(getUsedForGrad());
     }
 
-    
+    public Boolean getProjected() {
+        return projected;
+    }
+
     public boolean courseEquals(final ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse compareCourse) {
 
         boolean isEqual = ((!this.equals(compareCourse))
@@ -425,6 +433,15 @@ public class AchievementCourse {
         return c == null ? " " : c.toString();
     }
 
+    /**
+     * Returns a trimmed version of the given string.
+     *
+     * @param s The string to trim.
+     * @return The empty string if s is null, otherwise s.trim().
+     */
+    private Boolean nullSafe(final Boolean s) {
+        return s != null && s;
+    }
     
     public boolean equals(Object obj) {
         if (obj == null) {

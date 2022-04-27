@@ -9,6 +9,8 @@ import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.reports.Parameters;
+import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
@@ -16,12 +18,18 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.security.RolesAllowed;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URL;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static java.lang.Integer.parseInt;
 
 public abstract class GradReportServiceImpl implements Serializable {
@@ -31,10 +39,31 @@ public abstract class GradReportServiceImpl implements Serializable {
     private static final String CLASSNAME = StudentAchievementServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
+    private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
+
+    @Autowired
+    private ReportService reportService;
     @Autowired
     GradReportCodeService codeService;
     @Autowired
     GradDataConvertionBean gradDataConvertionBean;
+
+    @RolesAllowed({FULFILLMENT_SERVICES_USER})
+    public Parameters createParameters() {
+        final String methodName = "createParameters()";
+        LOG.entering(CLASSNAME, methodName);
+
+        Parameters parameters = reportService.createParameters();
+
+        LOG.exiting(CLASSNAME, methodName);
+        return parameters;
+    }
+
+    InputStream openImageResource(final String resource) throws IOException {
+        //final URL url = getReportResource(resource);
+        URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
+        return url.openStream();
+    }
 
     PersonalEducationNumber getStudentPEN() throws DomainServiceException {
         final String methodName = "getStudentPEN()";
@@ -56,6 +85,40 @@ public abstract class GradReportServiceImpl implements Serializable {
         LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
         LOG.exiting(CLASSNAME, methodName);
         return pen;
+    }
+
+    Date getIssueDate() throws DataException, DomainServiceException {
+        final String methodName = "getIssueDate()";
+        LOG.entering(CLASSNAME, methodName);
+
+        final Date issueDate;
+
+        try {
+
+            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+            if (reportData == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        null,
+                        "Report Data not exists for the current report generation");
+                LOG.throwing(CLASSNAME, methodName, dse);
+                throw dse;
+            }
+
+            LOG.log(Level.FINER,
+                    "Retrieved issue date: {0}", reportData.getIssueDate());
+
+            issueDate = reportData.getIssueDate();
+
+        } catch (Exception ex) {
+            String msg = "Failed to obtain issue date: ".concat(ex.getMessage());
+            final DataException dex = new DataException(null, null, msg, ex);
+            LOG.throwing(CLASSNAME, methodName, dex);
+            throw dex;
+        }
+
+        LOG.exiting(CLASSNAME, methodName);
+        return issueDate;
     }
 
     /**

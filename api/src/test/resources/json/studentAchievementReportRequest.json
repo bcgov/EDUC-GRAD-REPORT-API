@@ -13,16 +13,24 @@
         "pen": "129382610",
         "entityId": null
       },
-      "firstName": "CAYMAN",
-      "middleName": "",
-      "lastName": "HILL",
+      "firstName": "JACK",
+      "middleName": "CAPTAIN",
+      "lastName": "SPARROW",
       "grade": "11",
       "gender": "M",
       "birthdate": "2010-01-01",
       "localId": null,
       "gradProgram": "2018-PF",
       "otherProgramParticipation": null,
-      "hasOtherProgram": "Other Program Participation"
+      "hasOtherProgram": "Other Program Participation",
+      "address": {
+        "streetLine1": "BLACK PEARL",
+        "streetLine2": "",
+        "city": "MAN-O-WAR",
+        "region": "FRIGATE",
+        "country": "VESSEL",
+        "code": "CAR SEA"
+      }
     },
     "studentExams": [
       {
@@ -39,7 +47,8 @@
         "equivOrChallenge": "10",
         "credits": "4",
         "metLitNumRequirement": "Y",
-        "creditsUsedForGrad": 4
+        "creditsUsedForGrad": 4,
+        "projected": true
       }
     ],
     "assessment": {
@@ -52,7 +61,8 @@
           "specialCase": "E",
           "sessionDate": "201806",
           "exceededWriteFlag": null,
-          "proficiencyScore": "AEG"
+          "proficiencyScore": "AEG",
+          "projected": true
         },
         {
           "assessmentName": "NUMERACY ASSESSMENT",
@@ -70,7 +80,8 @@
           "specialCase": "E",
           "sessionDate": "201806",
           "exceededWriteFlag": "N",
-          "proficiencyScore": "AEG"
+          "proficiencyScore": "AEG",
+          "projected": true
         },
         {
           "assessmentName": "Evaluation de Litteratie  10 - Premiere - Programme francophone",
@@ -95,7 +106,8 @@
         "interimPercent": "50",
         "equivOrChallenge": "20",
         "credits": "4",
-        "creditsUsedForGrad": 4
+        "creditsUsedForGrad": 4,
+        "projected": true
       },
       {
         "courseCode": "FMP",
@@ -134,7 +146,8 @@
         "interimPercent": "80",
         "equivOrChallenge": "",
         "credits": "4",
-        "creditsUsedForGrad": 4
+        "creditsUsedForGrad": 4,
+        "projected": true
       },
       {
         "courseCode": "PHED",
@@ -225,7 +238,8 @@
         "interimPercent": "",
         "equivOrChallenge": "",
         "credits": "4",
-        "creditsUsedForGrad": 4
+        "creditsUsedForGrad": 4,
+        "projected": true
       },
       {
         "courseCode": "SS",
@@ -316,13 +330,18 @@
         "interimPercent": "90",
         "equivOrChallenge": "",
         "credits": "4",
-        "creditsUsedForGrad": 0
+        "creditsUsedForGrad": 0,
+        "projected": true
       }
     ],
     "nonGradReasons": [
       {
         "code": "000",
         "description": "Student is too dumb to complete the graduation. Wearing a mask all day impacts brain activity"
+      },
+      {
+        "code": "001",
+        "description": "Computer Science - A degree in computer science may sound like you’re on the right track for a successful career after graduation. However, like many of the most useless college degrees, computer science is a difficult degree to use after you graduate."
       }
     ],
     "optionalPrograms": [
@@ -333,8 +352,8 @@
         "hasRequirementMet": "The following requirements met",
         "requirementMet": [
           {
-            "code": "202",
-            "description": "Français langue seconde-immersion 10 - French Immersion ",
+            "code": "954",
+            "description": "The school has reported the student participating in Career Program",
             "courseDetails": [
               {
                 "courseCode": "ENST",
@@ -395,22 +414,27 @@
                 "courseCode": "FRAL",
                 "courseLevel": "10",
                 "sessionDate": "202001"
+              },
+              {
+                "courseCode": "RSPH",
+                "courseLevel": "12",
+                "sessionDate": "202001"
               }
             ]
           }
         ],
         "nonGradReasons": [
           {
-            "code": "200",
-            "description": "No Français langue seconde-immersion 12 "
+            "code": "600",
+            "description": "Less than 3 credits of Work Experience Courses"
           },
           {
             "code": "201",
             "description": "No Français langue seconde-immersion 11 "
           },
           {
-            "code": "203",
-            "description": "No Evaluation de Litteratie 12 - Immersion "
+            "code": "957",
+            "description": "Student has not completed their main program "
           },
           {
             "code": "204",
@@ -419,10 +443,22 @@
           {
             "code": "205",
             "description": "Fewer than 4 Gr 11 or 12 French Other credits"
+          },
+          {
+            "code": "206",
+            "description": "Fewer than 10 Grade Student has not completed their main program"
           }
         ]
       }
     ],
+    "gradProgram": {
+      "description": null,
+      "code": {
+        "code": "2018-PF",
+        "description": "Graduation Program 2018",
+        "credits": 80
+      }
+    },
     "graduationStatus": {
       "programCompletionDate": null,
       "honours": null,
