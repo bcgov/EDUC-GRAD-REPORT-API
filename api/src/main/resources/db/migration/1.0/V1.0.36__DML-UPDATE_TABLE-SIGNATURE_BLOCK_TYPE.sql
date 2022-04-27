@@ -1,0 +1,2 @@
+UPDATE SIGNATURE_BLOCK_TYPE SET LABEL = 'Minister of Education and Child Care', DESCRIPTION = 'Minister of Education and Child Care', UPDATE_DATE = SYSDATE WHERE SIGNATURE_BLOCK_TYPE = 'MOE';
+UPDATE SIGNATURE_BLOCK_TYPE SET LABEL = 'Ministre de l’Éducation et des Services à la petite enfance',DESCRIPTION = 'Ministre de l’Éducation et des Services à la petite enfance',UPDATE_DATE = SYSDATE WHERE SIGNATURE_BLOCK_TYPE = 'MOEF';

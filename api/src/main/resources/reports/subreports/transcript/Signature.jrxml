@@ -42,7 +42,7 @@
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement verticalAlignment="Top"/>
-					<text><![CDATA[CERTIFIED A TRUE COPY OF THE ORIGINAL RECORD WHICH IS RETAINED AT THE MINISTRY OF EDUCATION]]></text>
+					<text><![CDATA[CERTIFIED A TRUE COPY OF THE ORIGINAL RECORD WHICH IS RETAINED AT THE MINISTRY OF EDUCATION AND CHILD CARE]]></text>
 				</staticText>
 				<image vAlign="Bottom" onErrorType="Blank">
 					<reportElement x="0" y="45" width="144" height="49" uuid="110444bf-1492-4879-aefc-050341f3818a">

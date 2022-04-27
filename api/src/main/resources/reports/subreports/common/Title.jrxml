@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Title" pageWidth="567" pageHeight="66" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="b43f8564-f5a0-4fca-a3c6-9c5fc90458db">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\StudentAdapter.xml"/>
 	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
@@ -21,7 +21,7 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_TITLE" class="java.lang.String">
-		<defaultValueExpression><![CDATA["Ministry of Education"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["Ministry of Education and Child Care"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_SUBTITLE" class="java.lang.String"/>
 	<parameter name="P_REPORT_DATE" class="java.util.Date"/>
@@ -54,12 +54,12 @@
 				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="172" y="0" width="223" height="15" uuid="999805d4-d9b4-4389-a8d9-eacfb014b12b"/>
+				<reportElement style="Title" x="172" y="0" width="300" height="15" uuid="999805d4-d9b4-4389-a8d9-eacfb014b12b"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{P_REPORT_TITLE}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Title" x="172" y="16" width="223" height="15" isRemoveLineWhenBlank="true" uuid="a6d2646f-7db0-484b-addd-97b683955e69"/>
+				<reportElement style="Title" x="172" y="16" width="300" height="15" isRemoveLineWhenBlank="true" uuid="a6d2646f-7db0-484b-addd-97b683955e69"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{P_REPORT_SUBTITLE}]]></textFieldExpression>
 			</textField>
