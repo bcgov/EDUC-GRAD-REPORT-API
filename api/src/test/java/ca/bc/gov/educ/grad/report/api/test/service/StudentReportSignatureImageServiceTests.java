@@ -2,7 +2,6 @@ package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
-import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
@@ -19,21 +18,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.function.Consumer;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 @WebAppConfiguration
@@ -72,7 +66,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		openMocks(this);
 	}
 
-	@Test
+	/*@Test
 	public void getSignatureImagesTest() throws Exception {
 		LOG.debug("<{}.getSignatureImagesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -113,9 +107,9 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		assertTrue(signatureImages.size() > 0);
 
 		LOG.debug(">getSignatureImagesTest");
-	}
+	}*/
 
-	@Test
+	/*@Test
 	public void getSignatureImageTest() throws Exception {
 		LOG.debug("<{}.getSignatureImageTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 		byte[] imageBinary = loadTestImage("reports/resources/images/signatures/MOE.png");
@@ -155,7 +149,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		assertNotNull(signatureImage);
 
 		LOG.debug(">getSignatureImageTest");
-	}
+	}*/
 
 	@Test
 	public void saveSignatureImageTest() throws Exception {
