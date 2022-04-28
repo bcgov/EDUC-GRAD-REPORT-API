@@ -1,7 +1,7 @@
 {
   "options": {
-    "reportName": "schooldistribution",
-    "reportFile": "School Distribution Report.pdf"
+    "reportName": "studentnongrad",
+    "reportFile": "Student Non Graduated Requirements Report.pdf"
   },
   "data": {
     "school": {

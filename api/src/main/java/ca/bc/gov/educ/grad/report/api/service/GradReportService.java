@@ -15,6 +15,8 @@ import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
+import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
+import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
@@ -58,6 +60,9 @@ public class GradReportService {
 
 	@Autowired
 	SchoolDistributionService schoolDistributionService;
+
+	@Autowired
+	StudentNonGradService studentNonGradService;
 
 	@Autowired
 	StudentXmlTranscriptService studentXmlTranscriptService;
@@ -280,6 +285,26 @@ public class GradReportService {
 		return response;
 	}
 
+	public ResponseEntity<byte[]> getStudentNonGradReport(ReportRequest reportRequest) {
+		String methodName = "getStudentNonGradReport(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			StudentNonGradReport studentNonGradReport = getStudentNonGradReportDocument(reportRequest);
+			byte[] resultBinary = studentNonGradReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) {
 		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -295,7 +320,20 @@ public class GradReportService {
 		return null;
 	}
 
+	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) {
+		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		try {
+			return (StudentNonGradReport)studentNonGradService.buildStudentNonGradReport();
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return null;
+	}
 
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
 		ResponseEntity<byte[]> result = null;

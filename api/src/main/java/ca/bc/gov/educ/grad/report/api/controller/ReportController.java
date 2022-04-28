@@ -89,4 +89,14 @@ public class ReportController extends BaseController {
         logRequest();
         return reportService.getSchoolDistributionReport(report);
     }
+
+    @PostMapping (ReportApiConstants.STUDENT_NON_GRAD)
+    @PreAuthorize(PermissionsContants.STUDENT_NON_GRAD)
+    @Operation(summary = "Generate Student NonGraduate Requirements Report", description = "Generate Student NonGraduate Requirements Report", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getStudentNonGrad(@RequestBody ReportRequest report) {
+        logger.debug("getStudentNonGrad");
+        logRequest();
+        return reportService.getStudentNonGradReport(report);
+    }
 }
