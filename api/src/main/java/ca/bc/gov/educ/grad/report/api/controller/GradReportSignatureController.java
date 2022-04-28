@@ -17,10 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +26,6 @@ import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTER
 @CrossOrigin
 @RestController
 @RequestMapping(EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)
-@EnableResourceServer
 @OpenAPIDefinition(info = @Info(title = "API for Certificate Signatures endpoints.", description = "This API is for Certificate Signatures endpoints.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_UNGRAD_REASONS_DATA","READ_GRAD_STUDENT_CAREER_DATA"})})
 public class GradReportSignatureController extends BaseController {
 
@@ -49,13 +44,10 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image binary", description = "Retrieve Signature Image binary by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public byte[] extractSignatureImageByCode(@PathVariable String signCode) {
+    public byte[] extractSignatureImageByCode(@PathVariable String signCode, @RequestHeader(name="Authorization") String accessToken) {
         String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
     	logRequest();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-        String accessToken = details.getTokenValue();
         GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode, accessToken);
         return signatureImage.getSignatureContent();
     }
@@ -64,13 +56,10 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image Object", description = "Retrieve Signature Object by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode) {
+    public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode, @RequestHeader(name="Authorization") String accessToken) {
         String methodName = String.format("getSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-        String accessToken = details.getTokenValue();
         return gradReportSignatureService.getSignatureImageByCode(signCode, accessToken);
     }
 
@@ -78,13 +67,10 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Images", description = "Retrieve Signature Objects", tags = { "Signature Images" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public List<GradReportSignatureImage> getSignatureImages() {
+    public List<GradReportSignatureImage> getSignatureImages(@RequestHeader(name="Authorization") String accessToken) {
         String methodName = "getSignatureImages()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         logRequest();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
-        String accessToken = details.getTokenValue();
         return gradReportSignatureService.getSignatureImages(accessToken);
     }
 
