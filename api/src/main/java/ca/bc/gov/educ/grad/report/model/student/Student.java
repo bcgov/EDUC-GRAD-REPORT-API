@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.model.student;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.Person;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
@@ -136,6 +137,13 @@ public interface Student extends Person {
      * @return the other program participation
      */
     List<OtherProgram> getOtherProgramParticipation();
+
+    /**
+     * Gets non grad reasons.
+     *
+     * @return non grad reasons
+     */
+    List<NonGradReason> getNonGradReasons();
 
     /**
      * Gets other program participationdata source.

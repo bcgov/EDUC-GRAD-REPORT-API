@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
@@ -62,6 +63,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String localId = "";
     private String hasOtherProgram = "";
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
+    private List<NonGradReason> nonGradReasons = new ArrayList<>();
 
     private GraduationData graduationData;
 
@@ -132,6 +134,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public List<OtherProgram> getOtherProgramParticipation() {
         return otherProgramParticipation;
+    }
+
+    @Override
+    public List<NonGradReason> getNonGradReasons() {
+        return nonGradReasons;
     }
 
     public void setGender(String gender) {
@@ -209,6 +216,10 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
         this.otherProgramParticipation = otherProgramParticipation;
+    }
+
+    public void setNonGradReasons(List<NonGradReason> nonGradReasons) {
+        this.nonGradReasons = nonGradReasons;
     }
 
     @Override
