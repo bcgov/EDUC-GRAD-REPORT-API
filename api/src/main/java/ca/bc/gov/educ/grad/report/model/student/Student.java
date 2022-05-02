@@ -146,6 +146,13 @@ public interface Student extends Person {
     List<NonGradReason> getNonGradReasons();
 
     /**
+     * Gets non grad reasons as string.
+     *
+     * @return non grad reasons
+     */
+    String getNonGradReasonsString();
+
+    /**
      * Gets other program participationdata source.
      *
      * @return the other program participationdata source

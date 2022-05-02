@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -98,12 +99,12 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     public String getMiddleName() {
-        return middleName;
+        return middleName == null ? "" : middleName;
     }
 
     @Override
     public String getFullName() {
-        return getLastName() + "," + getMiddleName() + " " + getFirstName();
+        return getLastName() + "," + getFirstName() + " " + getMiddleName();
     }
 
     @Override
@@ -139,6 +140,13 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public List<NonGradReason> getNonGradReasons() {
         return nonGradReasons;
+    }
+
+    @Override
+    public String getNonGradReasonsString() {
+        return nonGradReasons.stream()
+                .map(n -> String.valueOf(n.toString()))
+                .collect(Collectors.joining("\n", "", ""));
     }
 
     public void setGender(String gender) {

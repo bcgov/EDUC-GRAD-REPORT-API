@@ -220,6 +220,278 @@
               "description": "Fewer than 28 Elective credits"
             }
           ]
+        },
+        {
+          "pen": {
+            "pen": "123456789",
+            "entityId": null
+          },
+          "firstName": "TEST",
+          "middelName": "NEXT",
+          "lastName": "PAGE",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ]
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityId": null
+          },
+          "firstName": "GARRY",
+          "middelName": null,
+          "lastName": "TRUMAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ]
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityId": null
+          },
+          "firstName": "GARRY",
+          "middelName": null,
+          "lastName": "TRUMAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ]
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityId": null
+          },
+          "firstName": "GARRY",
+          "middelName": null,
+          "lastName": "TRUMAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ]
         }
       ]
     },
