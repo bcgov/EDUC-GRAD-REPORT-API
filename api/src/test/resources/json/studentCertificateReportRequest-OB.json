@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report O.pdf"
+    "reportFile": "Certificate Report OB.pdf"
   },
   "data": {
     "student": {

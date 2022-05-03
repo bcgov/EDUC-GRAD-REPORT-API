@@ -88,7 +88,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentAchievementReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -109,7 +108,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC1950-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -130,7 +128,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC1950-IND Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -151,7 +148,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript YU1950-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -172,7 +168,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC1986-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -193,7 +188,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC1986-IND Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -214,7 +208,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript YU1986-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -235,7 +228,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC1996-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -256,7 +248,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC1996-IND Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -277,7 +268,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript YU1996-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -298,7 +288,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC2004-IND Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -319,7 +308,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC2004-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -340,7 +328,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript YU2004-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -361,7 +348,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC2018-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -382,7 +368,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC2018-IND Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -403,7 +388,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC2018-OFF Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -424,7 +408,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript BC2018-PF Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -445,7 +428,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript YU2018-PUB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -466,7 +448,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -487,7 +468,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript SCCP-PF Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -508,7 +488,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Transcript NOPROG Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -529,7 +508,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate E Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -550,7 +528,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate EO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -571,7 +548,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate EB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -592,7 +568,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate A Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -613,7 +588,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate AB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -634,7 +608,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate AIB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -655,7 +628,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate EI Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -676,7 +648,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate EIB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -697,7 +668,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate EIO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -718,7 +688,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate AI Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -739,7 +708,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SC Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -760,7 +728,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SCB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -781,7 +748,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SCO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -802,7 +768,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate S Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -823,7 +788,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -844,7 +808,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -865,7 +828,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate F Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -886,7 +848,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate FB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -907,7 +868,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate FO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -928,7 +888,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SCF Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -949,7 +908,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate SCFO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -970,7 +928,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate O Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -991,7 +948,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate OB Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -1012,7 +968,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Certificate OO Report.pdf");
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -1033,7 +988,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile(reportRequest.getOptions().getReportFile());
 		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -1054,7 +1008,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile(reportRequest.getOptions().getReportFile());
 		ResponseEntity<byte[]> response = apiReportService.getStudentNonGradReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -1077,9 +1030,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
 
-		reportRequest.getOptions().setReportFile("Xml Transcript Report (Service).xml");
-
 		String pen = reportRequest.getData().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
 		GradSearchStudent gradSearchStudent = new GradSearchStudent();
 		gradSearchStudent.setPen(pen);
 		gradSearchStudent.setStudentID(UUID.randomUUID().toString());
