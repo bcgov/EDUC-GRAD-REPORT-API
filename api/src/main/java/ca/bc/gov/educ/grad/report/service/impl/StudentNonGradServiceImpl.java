@@ -113,6 +113,8 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
         parameters.put("orgImage", inputLogo);
 
         parameters.put("reportNumber", reportData.getReportNumber());
+        parameters.put("reportTitle", reportData.getReportTitle());
+        parameters.put("reportSubTitle", reportData.getReportSubTitle());
 
         final StudentNonGradReport report = createReport(
                 students, school, parameters, CANADA);

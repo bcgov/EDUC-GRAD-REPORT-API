@@ -79,6 +79,8 @@ public class ReportData implements Serializable {
 	private String orgCode;
 	private String gradMessage;
 	private String reportNumber;
+	private String reportTitle;
+	private String reportSubTitle;
 
 	@JsonDeserialize(using = NonGradReasonListDeserializer.class)
 	private List<NonGradReason> nonGradReasons;

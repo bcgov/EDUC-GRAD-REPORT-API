@@ -45,6 +45,8 @@
 	<parameter name="orgCode" class="java.lang.String"/>
 	<parameter name="orgImage" class="java.io.InputStream"/>
 	<parameter name="reportNumber" class="java.lang.String"/>
+	<parameter name="reportTitle" class="java.lang.String"/>
+	<parameter name="reportSubTitle" class="java.lang.String"/>
 	<parameter name="school" class="ca.bc.gov.educ.grad.report.model.school.School"/>
 	<parameter name="students" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasStudents" class="java.lang.String" isForPrompting="false"/>
@@ -95,25 +97,24 @@
 					<reportElement style="GeneratedText" x="489" y="15" width="64" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd").format(NOW())]]></textFieldExpression>
 				</textField>
-				<staticText>
+				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="159" y="0" width="184" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
 						<font isBold="false"/>
 					</textElement>
-					<text><![CDATA[Grade 12 Examinations and Transcripts]]></text>
-				</staticText>
-				<staticText>
+					<textFieldExpression><![CDATA[$P{reportTitle}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="105" y="13" width="325" height="14" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
 						<font isBold="false"/>
 					</textElement>
-					<text><![CDATA[Grade 12 and Adult Students Not Able to Graduate on 2018 Grad Requirments
-]]></text>
-				</staticText>
+					<textFieldExpression><![CDATA[$P{reportSubTitle}]]></textFieldExpression>
+				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="40" y="0" width="78" height="15" uuid="571563c1-f0c4-4b6e-92cc-9f9dba9fbf6e"/>
 					<textElement textAlignment="Left"/>
