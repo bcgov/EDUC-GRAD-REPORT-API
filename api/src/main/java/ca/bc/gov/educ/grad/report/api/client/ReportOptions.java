@@ -1,11 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
-
+@NoArgsConstructor
 public class ReportOptions implements Serializable {
 
 	private boolean cacheReport;
@@ -14,31 +15,4 @@ public class ReportOptions implements Serializable {
 	private String reportName;
 	private String reportFile;
 
-	public ReportOptions() {
-	}
-
-	public ReportOptions(String reportName) {
-		switch(reportName) {
-			case "achievement":
-				this.cacheReport = false;
-				this.convertTo = "pdf";
-				this.overwrite = true;
-				this.reportFile = "studentAchievementReport.pdf";
-				break;
-			case "transcript":
-				this.cacheReport = false;
-				this.convertTo = "pdf";
-				this.overwrite = true;
-				this.reportFile = "studentTranscriptReport.pdf";
-				break;
-			case "certificate":
-				this.cacheReport = false;
-				this.convertTo = "pdf";
-				this.overwrite = true;
-				this.reportFile = "studentCertificate.pdf";
-				break;
-			default:
-				throw new RuntimeException("Unknown Report");
-		}
-	}
 }

@@ -1,7 +1,7 @@
 {
   "options": {
-    "reportName": "schoolDistribution",
-    "reportFile": "EDGRAD.R.324W.MMM.DD.YYYY.hh.mm.ss.pdf"
+    "reportName": "schooldistribution",
+    "reportFile": "School Distribution Report.pdf"
   },
   "data": {
     "school": {

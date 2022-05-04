@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -29,6 +30,7 @@ public class Student implements Serializable {
     private String localId;
     private String hasOtherProgram;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
+    private List<NonGradReason> nonGradReasons = new ArrayList<>();
 
     @JsonDeserialize(as = GraduationData.class)
     private GraduationData graduationData;
@@ -171,6 +173,15 @@ public class Student implements Serializable {
 
     public void setOtherProgramParticipation(List<OtherProgram> otherProgramParticipation) {
         this.otherProgramParticipation = otherProgramParticipation;
+    }
+
+    @JsonDeserialize(using = NonGradReasonListDeserializer.class)
+    public List<NonGradReason> getNonGradReasons() {
+        return nonGradReasons;
+    }
+
+    public void setNonGradReasons(List<NonGradReason> nonGradReasons) {
+        this.nonGradReasons = nonGradReasons;
     }
 
     public GraduationData getGraduationData() {
