@@ -96,12 +96,12 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     public String getMiddleName() {
-        return middleName;
+        return middleName == null ? "" : middleName;
     }
 
     @Override
     public String getFullName() {
-        return getLastName() + "," + getMiddleName() + " " + getFirstName();
+        return getLastName() + "," + getFirstName() + " " + getMiddleName();
     }
 
     @Override

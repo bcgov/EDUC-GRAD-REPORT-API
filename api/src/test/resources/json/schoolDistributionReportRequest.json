@@ -1,7 +1,7 @@
 {
   "options": {
-    "reportName": "achievement",
-    "reportFile": "Student Achievement Report.pdf"
+    "reportName": "schoolDistribution",
+    "reportFile": "EDGRAD.R.324W.MMM.DD.YYYY.hh.mm.ss.pdf"
   },
   "data": {
     "school": {
