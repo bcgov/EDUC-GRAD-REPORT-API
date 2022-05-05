@@ -61,4 +61,9 @@ public class NonGradReasonImpl extends AbstractDomainEntity
     public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public String toString() {
+        return getDescription();
+    }
 }

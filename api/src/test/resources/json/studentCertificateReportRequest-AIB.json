@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report AI.pdf"
+    "reportFile": "Certificate Report AIB.pdf"
   },
   "data": {
     "student": {

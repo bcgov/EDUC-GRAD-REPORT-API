@@ -378,6 +378,11 @@ public class GradDataConvertionBean implements Serializable {
             GraduationData graduationData = st.getGraduationData();
             BeanUtils.copyProperties(graduationData, gradData);
             student.setGraduationData(gradData);
+            for(ca.bc.gov.educ.grad.report.api.client.NonGradReason rsn: st.getNonGradReasons()) {
+                NonGradReasonImpl reason = new NonGradReasonImpl();
+                BeanUtils.copyProperties(rsn, reason);
+                student.getNonGradReasons().add(reason);
+            }
             result.add(student);
         }
         return result;
