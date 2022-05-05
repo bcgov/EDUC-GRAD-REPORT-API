@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-PUB",
@@ -467,10 +467,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "90",
-            "finalLetterGrade": "A",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "90",
+            "interimLetterGrade": "A"
           },
           "requirement": "",
           "requirementName": "",
