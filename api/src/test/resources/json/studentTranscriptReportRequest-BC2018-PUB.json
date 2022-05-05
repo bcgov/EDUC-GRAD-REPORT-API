@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": true,
+      "interim": false,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-PUB",
@@ -83,8 +83,8 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "52",
-            "finalLetterGrade": "C-",
+            "finalPercent": "",
+            "finalLetterGrade": "",
             "interimPercent": "99",
             "interimLetterGrade": "F-"
           },
@@ -107,8 +107,8 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "50",
-            "finalLetterGrade": "C-",
+            "finalPercent": "",
+            "finalLetterGrade": "",
             "interimPercent": "49",
             "interimLetterGrade": "A+"
           },
@@ -179,10 +179,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "78",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "90",
+            "interimLetterGrade": "D-"
           },
           "requirement": "10",
           "requirementName": "",

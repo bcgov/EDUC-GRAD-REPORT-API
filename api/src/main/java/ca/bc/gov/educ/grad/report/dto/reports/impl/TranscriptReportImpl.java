@@ -47,7 +47,6 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
 
     public static final String SUFFIX_PREVIEW = "-bw";
     public static final String SUFFIX_HTML = "_HTML";
-    public static final String SUFFIX_INTERIM = "_interim";
 
     /**
      * Only used for creating the transcripts; summary pages (backs of
@@ -273,6 +272,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     protected void preprocessParameters() {
         super.preprocessParameters();
         setParameter("P_REPORT_PREVIEW", isPreview());
+        setParameter("P_REPORT_INTERIM", isInterim());
 
         if (!isFormat(XML)) {
             setParameter(P_REPORT_TYPE, getReportType());
@@ -302,10 +302,6 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
 
         if (isFormat(HTML)) {
             suffix.append(SUFFIX_HTML);
-        }
-
-        if (isInterim()) {
-            suffix.append(SUFFIX_INTERIM);
         }
 
         // Could return the empty string.
