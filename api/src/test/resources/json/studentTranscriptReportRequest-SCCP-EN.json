@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "transcript",
-    "reportFile": "Transcript Report.pdf"
+    "reportFile": "Transcript Report SCCP-EN.pdf"
   },
   "data": {
     "student": {

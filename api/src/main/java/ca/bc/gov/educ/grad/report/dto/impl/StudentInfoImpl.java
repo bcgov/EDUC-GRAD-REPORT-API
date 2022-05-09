@@ -229,7 +229,7 @@ public class StudentInfoImpl implements StudentInfo {
 
     @Override
     public String getMiddleName() {
-        return this.middleName;
+        return this.middleName == null ? "" : this.middleName;
     }
 
     @Override

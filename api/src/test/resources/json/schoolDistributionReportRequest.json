@@ -1,7 +1,7 @@
 {
   "options": {
-    "reportName": "achievement",
-    "reportFile": "Student Achievement Report.pdf"
+    "reportName": "schooldistribution",
+    "reportFile": "School Distribution Report.pdf"
   },
   "data": {
     "school": {

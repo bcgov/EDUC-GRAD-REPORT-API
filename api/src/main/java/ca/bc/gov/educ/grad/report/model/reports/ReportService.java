@@ -54,6 +54,15 @@ public interface ReportService extends ReportExportService {
     DistributionReport createSchoolDistributionReport();
 
     /**
+     * Creates a non grad requirements instance that can be exported into a final
+     * report document. The calling class is responsible for setting the
+     * required fields on the report instance returned from this method.
+     *
+     * @return A non-null report instance that must be populated with data.
+     */
+    NonGradReport createNonGradReport();
+
+    /**
      * Creates a ReportDocument initialized with the contents of the passed byte
      * array.
      *
