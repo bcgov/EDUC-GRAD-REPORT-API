@@ -118,7 +118,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1950_PUB");
 	}
 
-	@Test
+	//@Test
 	public void createTranscriptReport_BC1950_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1950_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND.json");
@@ -158,7 +158,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU1950_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1986_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-PUB.json");
@@ -178,7 +178,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC1986_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_BC1986_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1986_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-IND.json");
@@ -438,7 +438,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_YU2018_PUB");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_SCCP_EN() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_SCCP_EN at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN.json");
@@ -458,7 +458,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_SCCP_EN");
 	}
 
-	//@Test
+	@Test
 	public void createTranscriptReport_SCCP_PF() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_SCCP_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF.json");

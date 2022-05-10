@@ -145,22 +145,22 @@ GRADE]]></text>
 					<textFieldExpression><![CDATA[$R{text.header.separator.nonprovincial}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<frame>
-					<reportElement style="TabularRowBackground" x="0" y="32" width="220" height="193" uuid="8d4d6453-53c6-48e2-bdb9-9af10e447212"/>
+					<reportElement style="TabularRowBackground" x="0" y="32" width="213" height="193" uuid="8d4d6453-53c6-48e2-bdb9-9af10e447212"/>
 				</frame>
 				<frame>
-					<reportElement style="TabularRowBackground" x="220" y="32" width="100" height="193" uuid="3a627dbf-61a7-4e74-a55d-734bee5aae63"/>
+					<reportElement style="TabularRowBackground" x="213" y="32" width="80" height="193" uuid="3a627dbf-61a7-4e74-a55d-734bee5aae63"/>
 				</frame>
 				<frame>
-					<reportElement style="TabularRowBackground" x="320" y="32" width="40" height="193" uuid="57ae3b80-d51c-4e51-9172-901eb65d9393"/>
+					<reportElement style="TabularRowBackground" x="293" y="32" width="40" height="193" uuid="57ae3b80-d51c-4e51-9172-901eb65d9393"/>
 				</frame>
 				<frame>
-					<reportElement style="TabularRowBackground" x="360" y="32" width="41" height="193" uuid="25989b09-e0ab-4d69-a634-934ab0b9ad56"/>
+					<reportElement style="TabularRowBackground" x="333" y="32" width="40" height="193" uuid="25989b09-e0ab-4d69-a634-934ab0b9ad56"/>
 				</frame>
 				<frame>
-					<reportElement style="TabularRowBackground" x="401" y="32" width="57" height="193" uuid="57ae3b80-d51c-4e51-9172-901eb65d9393"/>
+					<reportElement style="TabularRowBackground" x="373" y="32" width="50" height="193" uuid="57ae3b80-d51c-4e51-9172-901eb65d9393"/>
 				</frame>
 				<frame>
-					<reportElement style="TabularRowBackground" x="458" y="32" width="37" height="193" uuid="25989b09-e0ab-4d69-a634-934ab0b9ad56"/>
+					<reportElement style="TabularRowBackground" x="423" y="32" width="72" height="193" uuid="25989b09-e0ab-4d69-a634-934ab0b9ad56"/>
 				</frame>
 				<frame>
 					<reportElement style="TabularRowBackground" x="495" y="32" width="72" height="193" uuid="e176085a-9ca2-4b4e-9499-782b60d9af5d">
@@ -172,27 +172,27 @@ GRADE]]></text>
 					</box>
 				</frame>
 				<textField>
-					<reportElement style="CourseHeader" x="0" y="12" width="220" height="20" uuid="4371e55d-e865-4e14-9c04-e8551704a712"/>
+					<reportElement style="CourseHeader" x="0" y="12" width="213" height="20" uuid="4371e55d-e865-4e14-9c04-e8551704a712"/>
 					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="CourseHeader" x="220" y="12" width="100" height="20" uuid="955bfd3e-b7cf-490a-a795-42d37d2f191b"/>
+					<reportElement style="CourseHeader" x="213" y="12" width="80" height="20" uuid="955bfd3e-b7cf-490a-a795-42d37d2f191b"/>
 					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.code}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="CourseHeader" x="320" y="12" width="40" height="20" uuid="64a441a0-6fd8-48dc-a1a1-9ad91aa7d50a"/>
+					<reportElement style="CourseHeader" x="293" y="12" width="40" height="20" uuid="64a441a0-6fd8-48dc-a1a1-9ad91aa7d50a"/>
 					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.session}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="CourseHeader" x="360" y="12" width="41" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
+					<reportElement style="CourseHeader" x="333" y="12" width="40" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
 					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.interm.percent}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="CourseHeader" x="401" y="12" width="57" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
+					<reportElement style="CourseHeader" x="373" y="12" width="50" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
 					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.interm.grade}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="CourseHeader" x="458" y="12" width="37" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
+					<reportElement style="CourseHeader" x="423" y="12" width="72" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
 					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.percent}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>

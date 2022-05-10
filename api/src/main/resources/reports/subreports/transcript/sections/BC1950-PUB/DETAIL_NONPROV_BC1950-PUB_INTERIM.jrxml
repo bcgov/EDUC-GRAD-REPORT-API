@@ -110,34 +110,34 @@
 			<frame>
 				<reportElement x="0" y="0" width="567" height="12" uuid="6e76e21b-69d4-43b6-93ce-8faf345c03e2"/>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseNameAdult" x="0" y="0" width="220" height="12" uuid="84d9bbd0-9931-4f9d-a4f5-82d4271198c5"/>
+					<reportElement style="CourseNameAdult" x="0" y="0" width="213" height="12" uuid="84d9bbd0-9931-4f9d-a4f5-82d4271198c5"/>
 					<textFieldExpression><![CDATA[$F{transcriptResult.courseName}.trim().toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseCodeAdult" x="220" y="0" width="100" height="12" uuid="7f70dc1d-e5ea-46e9-8e7b-d1154c387ed3"/>
+					<reportElement style="CourseCodeAdult" x="213" y="0" width="80" height="12" uuid="7f70dc1d-e5ea-46e9-8e7b-d1154c387ed3"/>
 					<textFieldExpression><![CDATA[($F{transcriptResult.courseCode}.trim() + " " + $F{transcriptResult.courseLevel}.trim()).toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="320" y="0" width="40" height="12" uuid="965d5dad-2dc7-4a02-aac8-bd90870c7656"/>
+					<reportElement style="CourseRow" x="293" y="0" width="40" height="12" uuid="965d5dad-2dc7-4a02-aac8-bd90870c7656"/>
 					<textElement textAlignment="Center">
 						<paragraph leftIndent="0"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{transcriptResult.formattedSessionDate}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="360" y="0" width="41" height="12" uuid="b93659ef-0067-41af-b009-cc4c83168fde"/>
+					<reportElement style="CourseRow" x="333" y="0" width="40" height="12" uuid="b93659ef-0067-41af-b009-cc4c83168fde"/>
 					<box rightPadding="8"/>
 					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA[$F{transcriptResult.interimPercent}.trim().toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="401" y="0" width="57" height="12" uuid="26d2ac96-7831-4a2d-b42f-f07aad912237"/>
+					<reportElement style="CourseRow" x="373" y="0" width="50" height="12" uuid="26d2ac96-7831-4a2d-b42f-f07aad912237"/>
 					<box leftPadding="12" rightPadding="8"/>
 					<textElement textAlignment="Left"/>
 					<textFieldExpression><![CDATA[$F{transcriptResult.interimLetterGrade}.trim().toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="458" y="0" width="37" height="12" uuid="b93659ef-0067-41af-b009-cc4c83168fde"/>
+					<reportElement style="CourseRow" x="423" y="0" width="72" height="12" uuid="b93659ef-0067-41af-b009-cc4c83168fde"/>
 					<box rightPadding="8"/>
 					<textElement textAlignment="Right"/>
 					<textFieldExpression><![CDATA[$F{transcriptResult.finalPercent}.trim().toUpperCase()]]></textFieldExpression>

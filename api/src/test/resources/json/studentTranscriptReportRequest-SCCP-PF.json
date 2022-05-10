@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2021-04-26",
       "code": {
         "code": "SCCP-FR",
@@ -155,10 +155,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "60",
-            "finalLetterGrade": "C",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "60",
+            "interimLetterGrade": "C"
           },
           "requirement": "",
           "requirementName": "",
@@ -227,10 +227,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "75",
+            "interimLetterGrade": "B"
           },
           "requirement": "",
           "requirementName": "",
