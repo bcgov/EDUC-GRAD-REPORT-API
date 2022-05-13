@@ -65,6 +65,13 @@ public interface Transcript extends DomainEntity {
     boolean isEmpty();
 
     /**
+     * Convenience method that answers whether the transcript is interim.
+     *
+     * @return true iff getResults().isEmpty() == true.
+     */
+    boolean getInterim();
+
+    /**
      * Returns the type of the transcript
      *
      * @return transcript type

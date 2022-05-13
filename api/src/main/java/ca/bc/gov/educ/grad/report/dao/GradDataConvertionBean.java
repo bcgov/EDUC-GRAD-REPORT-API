@@ -87,6 +87,7 @@ public class GradDataConvertionBean implements Serializable {
         ca.bc.gov.educ.grad.report.api.client.Transcript clientTranscript = reportData.getTranscript();
         TranscriptImpl transcript = new TranscriptImpl();
         BeanUtils.copyProperties(clientTranscript, transcript);
+        transcript.setInterim("true".equalsIgnoreCase(clientTranscript.getInterim()));
         Code clientTranscriptTypeCode = clientTranscript.getTranscriptTypeCode();
         TranscriptTypeCode transcriptTypeCode = TranscriptTypeCode.valueFrom(clientTranscriptTypeCode.getCode());
         transcript.setTranscriptTypeCode(transcriptTypeCode);
@@ -163,6 +164,7 @@ public class GradDataConvertionBean implements Serializable {
 	                    r.getMark().getFinalPercent(), //String finalPercent,
 	                    r.getMark().getFinalLetterGrade(), //String finalLetterGrade,
 	                    r.getMark().getInterimPercent(), //String interimMark,
+                        r.getMark().getInterimLetterGrade(), //String interimLetterGrade,
 	                    r.getRequirement(), //String requirement,
 	          null, //String specialCase,
 	                    r.getCourse().getType() //Character courseType

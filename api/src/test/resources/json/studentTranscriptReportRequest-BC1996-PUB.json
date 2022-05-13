@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC1996-PUB",

@@ -220,7 +220,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 program.getCode(),
                 transcriptCourses,
                 reportDate,
-                interim
+                transcriptInfo.getInterim()
         );
 
         LOG.exiting(CLASSNAME, methodName);

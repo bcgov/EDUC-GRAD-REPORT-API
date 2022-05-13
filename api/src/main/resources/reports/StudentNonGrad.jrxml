@@ -72,11 +72,11 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="489" y="0" width="64" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
+					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="462" y="0" width="27" height="15" uuid="779a2a57-a8d9-466d-b28a-cf0b8e7de1ba">
+					<reportElement style="GeneratedText" x="446" y="0" width="27" height="15" uuid="779a2a57-a8d9-466d-b28a-cf0b8e7de1ba">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
@@ -85,7 +85,7 @@
 					<text><![CDATA[Page:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="GeneratedText" x="462" y="15" width="27" height="15" uuid="53e9d34f-3e5e-4846-b8b0-c81e613e795d">
+					<reportElement style="GeneratedText" x="446" y="15" width="27" height="15" uuid="53e9d34f-3e5e-4846-b8b0-c81e613e795d">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
@@ -94,8 +94,8 @@
 					<text><![CDATA[Date:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="489" y="15" width="64" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd").format(NOW())]]></textFieldExpression>
+					<reportElement style="GeneratedText" x="473" y="15" width="82" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="159" y="0" width="184" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
