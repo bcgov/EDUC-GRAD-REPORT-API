@@ -44,7 +44,7 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image binary", description = "Retrieve Signature Image binary by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public byte[] extractSignatureImageByCode(@PathVariable String signCode, @RequestHeader(name="Authorization") String accessToken) {
+    public byte[] extractSignatureImageByCode(@PathVariable String signCode, @RequestParam(name="access_token") String accessToken) {
         String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
     	logRequest();
