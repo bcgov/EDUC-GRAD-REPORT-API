@@ -75,8 +75,8 @@ public class GradReportSignatureService {
     }
 
     @Transactional
-    public GradReportSignatureImage getSignatureImageByCode(String code, String accessToken) {
-        String methodName = String.format("getSignatureImageByCode(String %s)", code);
+    public GradReportSignatureImage getSignatureImageByCode(String code) {
+        String methodName = String.format("getSignatureImageBinaryByCode(String %s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
         if(entity ==  null) {
@@ -90,11 +90,18 @@ public class GradReportSignatureService {
                 throw new DomainServiceException("Unable to load default blank image");
             }
         }
-        GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
-        District dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+        return gradReportSignatureTransformer.transformToDTO(entity);
+    }
+
+    @Transactional
+    public GradReportSignatureImage getSignatureImageByCode(String code, String accessToken) {
+        String methodName = String.format("getSignatureImageByCode(String %s)", code);
+        log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+        GradReportSignatureImage signatureImage = getSignatureImageByCode(code);
+        District dist = getDistrictInfo(signatureImage.getGradReportSignatureCode(),accessToken);
         if(dist != null)
             signatureImage.setDistrictName(dist.getDistrictName());
-        
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         return  signatureImage;
     }
