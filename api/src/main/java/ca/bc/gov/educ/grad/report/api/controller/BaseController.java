@@ -4,8 +4,8 @@ import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
 import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +35,8 @@ public abstract class BaseController {
             AuditingUtils.setCurrentUserId(username);
         }
 
-        String tokenKey = RandomStringUtils.random(256, true, false);
+        RandomStringGenerator generator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+        String tokenKey = generator.generate(256);
         JwtTokenUtil jwtTokenUtil = new JwtTokenUtil(tokenKey);
         String accessToken = tokenKey + jwtTokenUtil.generateToken(new GradReportSignatureUser(username));
         String signatureImageUrl = "";
