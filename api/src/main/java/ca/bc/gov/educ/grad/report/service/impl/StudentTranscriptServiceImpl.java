@@ -240,7 +240,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "REPORT_DATA_MISSING",
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -270,7 +271,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "REPORT_DATA_MISSING",
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -278,7 +280,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData.getGradProgram() == null || reportData.getGradProgram().getCode() == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "GRAD_PROGRAM_MISSING",
                         "Grad Program or Grad Program Code is null");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -386,7 +389,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "REPORT_DATA_MISSING",
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;

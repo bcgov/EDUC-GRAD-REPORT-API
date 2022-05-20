@@ -35,7 +35,14 @@ public abstract class BaseController {
             AuditingUtils.setCurrentUserId(username);
         }
 
-        RandomStringGenerator generator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+        String contentPath = httpServletRequest.getRequestURI();
+        if(StringUtils.contains(contentPath, EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
+            return;
+        }
+
+        RandomStringGenerator generator = new RandomStringGenerator.Builder()
+                .withinRange('a', 'z')
+                .build();
         String tokenKey = generator.generate(256);
         JwtTokenUtil jwtTokenUtil = new JwtTokenUtil(tokenKey);
         String accessToken = tokenKey + jwtTokenUtil.generateToken(new GradReportSignatureUser(username));

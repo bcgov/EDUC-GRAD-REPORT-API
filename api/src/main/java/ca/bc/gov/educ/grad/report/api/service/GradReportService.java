@@ -29,6 +29,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
@@ -109,9 +110,8 @@ public class GradReportService {
 			);
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 
     public ResponseEntity<byte[]> getStudentAchievementReport(ReportRequest reportRequest) {
@@ -135,7 +135,7 @@ public class GradReportService {
     	
     }
 
-	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) {
+	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) throws IOException {
 
 		String methodName = "getStudentAchievementReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -146,9 +146,8 @@ public class GradReportService {
 			return achievementService.buildOfficialAchievementReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 
 	public ResponseEntity<byte[]> getStudentTranscriptReport(ReportRequest reportRequest) {
@@ -171,7 +170,7 @@ public class GradReportService {
 		return response;
 	}
 
-	public StudentTranscriptReport getStudentTranscriptReportDocument(ReportRequest reportRequest) {
+	public StudentTranscriptReport getStudentTranscriptReportDocument(ReportRequest reportRequest) throws IOException {
 		String methodName = "getStudentTranscriptReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
@@ -181,9 +180,8 @@ public class GradReportService {
 			return transcriptService.buildOfficialTranscriptReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 
 	public ResponseEntity<byte[]> getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
@@ -216,9 +214,8 @@ public class GradReportService {
 			return studentXmlTranscriptService.buildXmlTranscriptReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 	
 	public ResponseEntity<byte[]> getStudentCertificateReport(ReportRequest reportRequest) {
@@ -241,7 +238,7 @@ public class GradReportService {
 		return response;
 	}
 
-	public DocumentBundle getStudentCertificateReportDocument(ReportRequest reportRequest) {
+	public DocumentBundle getStudentCertificateReportDocument(ReportRequest reportRequest) throws IOException {
 		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
@@ -260,9 +257,8 @@ public class GradReportService {
 			return documentBundle;
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 
 	public ResponseEntity<byte[]> getSchoolDistributionReport(ReportRequest reportRequest) {
@@ -305,7 +301,7 @@ public class GradReportService {
 		return response;
 	}
 
-	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) {
+	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) throws IOException {
 		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
@@ -315,12 +311,11 @@ public class GradReportService {
 			return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 
-	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) {
+	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
 		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
@@ -330,9 +325,8 @@ public class GradReportService {
 			return (StudentNonGradReport)studentNonGradService.buildStudentNonGradReport();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
+			throw e;
 		}
-		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-		return null;
 	}
 
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {

@@ -73,7 +73,8 @@ public abstract class GradReportServiceImpl implements Serializable {
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
+                    getClass(),
+                    "REPORT_DATA_MISSING",
                     "Report Data not exists for the current report generation");
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
@@ -99,7 +100,8 @@ public abstract class GradReportServiceImpl implements Serializable {
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "REPORT_DATA_MISSING",
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -140,7 +142,8 @@ public abstract class GradReportServiceImpl implements Serializable {
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "REPORT_DATA_MISSING",
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;

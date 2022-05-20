@@ -47,7 +47,6 @@ public class GradReportSignatureController extends BaseController {
     public byte[] extractSignatureImageByCode(@PathVariable String signCode) {
         String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-    	logRequest();
         GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
         return signatureImage.getSignatureContent();
     }
@@ -59,7 +58,6 @@ public class GradReportSignatureController extends BaseController {
     public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode, @RequestHeader(name="Authorization") String accessToken) {
         String methodName = String.format("getSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
         return gradReportSignatureService.getSignatureImageByCode(signCode, accessToken.replace("Bearer ", ""));
     }
 
@@ -70,7 +68,6 @@ public class GradReportSignatureController extends BaseController {
     public List<GradReportSignatureImage> getSignatureImages(@RequestHeader(name="Authorization") String accessToken) {
         String methodName = "getSignatureImages()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
         return gradReportSignatureService.getSignatureImages(accessToken.replace("Bearer ", ""));
     }
 
@@ -94,7 +91,6 @@ public class GradReportSignatureController extends BaseController {
     public SignatureBlockTypeCode getSignatureBlockTypeCode(@PathVariable String signBlockTypeCode) {
         String methodName = String.format("getSignatureBlockTypeCode(%s)", signBlockTypeCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
         return gradReportCodeService.getSignatureBlockTypeCode(signBlockTypeCode);
     }
 
@@ -105,7 +101,6 @@ public class GradReportSignatureController extends BaseController {
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
         String methodName = "getSignatureBlockTypeCodes()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
         return gradReportCodeService.getSignatureBlockTypeCodes();
     }
 
