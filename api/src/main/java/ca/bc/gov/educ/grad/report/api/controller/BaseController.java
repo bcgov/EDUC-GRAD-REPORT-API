@@ -51,11 +51,11 @@ public abstract class BaseController {
             int port = httpServletRequest.getServerPort();
             String path = EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
             String method = httpServletRequest.getMethod();
-            String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
+            String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
             System.out.println(username + ": " + method + "->" + signatureImageUrl);
         } else {
-            String accessTokenParam = accessToken == null ? "" : ("?access_token=" + accessToken);
+            String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = signatureImageUrlProperty + "/#signatureCode#" + accessTokenParam;
             System.out.println(signatureImageUrl);
         }
