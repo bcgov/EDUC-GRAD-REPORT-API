@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2001-06-01",
       "code": {
         "code": "BC1950-IND",
@@ -131,10 +131,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "91",
-            "finalLetterGrade": "A",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "90",
+            "interimLetterGrade": "A"
           },
           "requirement": "",
           "requirementName": "",
