@@ -96,6 +96,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
     private static final String CLASSNAME = StudentAchievementServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     /**
      * Sort order for ungraded courses (to bottom, above assessments).
@@ -201,7 +202,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
                     getClass(),
-                    "REPORT_DATA_MISSING",
+                    REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
@@ -298,7 +299,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;
@@ -357,7 +358,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;
@@ -416,7 +417,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;
@@ -462,7 +463,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;
@@ -521,7 +522,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;

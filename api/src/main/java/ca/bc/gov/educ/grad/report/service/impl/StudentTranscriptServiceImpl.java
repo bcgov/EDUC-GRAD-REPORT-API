@@ -95,6 +95,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     private static final String CLASSNAME = StudentTranscriptServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     /**
      * Sort order for ungraded courses (to bottom, above assessments).
@@ -241,7 +242,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -272,7 +273,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -390,7 +391,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;

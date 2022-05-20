@@ -35,6 +35,8 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
 
     private static final String CLASSNAME = StudentXmlTranscriptServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
+    private static final String STUDENT_MISSING = "STUDENT_MISSING";
 
     @Autowired
     WebClient webClient;
@@ -64,7 +66,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "REPORT_DATA_MISSING",
+                        REPORT_DATA_MISSING,
                         "Xml Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -85,7 +87,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             if(student == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "STUDENT_MISSING",
+                        STUDENT_MISSING,
                         "Student with PEN " + pen + " value not exists in PEN system");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -94,7 +96,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             if(graduationStudentRecord == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "STUDENT_MISSING",
+                        STUDENT_MISSING,
                         "Student with PEN " + pen + " value not exists in GRAD Student system");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -102,7 +104,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             if(graduationStudentRecord.getStudentGradData() == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
-                        "STUDENT_MISSING",
+                        STUDENT_MISSING,
                         "Student with PEN " + pen + " doesn't have graduation data in GRAD Student system");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -159,7 +161,7 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
                     getClass(),
-                    "REPORT_DATA_MISSING",
+                    REPORT_DATA_MISSING,
                     "Xml Report Data not exists for the current report generation");
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;

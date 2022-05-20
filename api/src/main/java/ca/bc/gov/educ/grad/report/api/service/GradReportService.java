@@ -99,19 +99,14 @@ public class GradReportService {
 
 		PackingSlip packingSlip = reportRequest.getData().getPackingSlip();
 
-		try {
-			return packingSlipService.createPackingSlipReport(
-					packingSlip.getOrderNumber(),
-					packingSlip.getOrderDate(),
-					packingSlip.getOrderedBy(),
-					packingSlip.getQuantity(),
-					packingSlip.getCurrent(),
-					packingSlip.getTotal()
-			);
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		return packingSlipService.createPackingSlipReport(
+				packingSlip.getOrderNumber(),
+				packingSlip.getOrderDate(),
+				packingSlip.getOrderedBy(),
+				packingSlip.getQuantity(),
+				packingSlip.getCurrent(),
+				packingSlip.getTotal()
+		);
 	}
 
     public ResponseEntity<byte[]> getStudentAchievementReport(ReportRequest reportRequest) {
@@ -142,12 +137,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		try {
-			return achievementService.buildOfficialAchievementReport();
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		return achievementService.buildOfficialAchievementReport();
 	}
 
 	public ResponseEntity<byte[]> getStudentTranscriptReport(ReportRequest reportRequest) {
@@ -176,12 +166,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		try {
-			return transcriptService.buildOfficialTranscriptReport();
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		return transcriptService.buildOfficialTranscriptReport();
 	}
 
 	public ResponseEntity<byte[]> getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
@@ -210,12 +195,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
 
-		try {
-			return studentXmlTranscriptService.buildXmlTranscriptReport();
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		return studentXmlTranscriptService.buildXmlTranscriptReport();
 	}
 	
 	public ResponseEntity<byte[]> getStudentCertificateReport(ReportRequest reportRequest) {
@@ -244,21 +224,16 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		try {
-			List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
-			ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
-				@Override
-				public String getName() {
-					return reportRequest.getData().getCertificate().getOrderType().getName();
-				}
-			};
-			DocumentBundle documentBundle = bcmpBundleService.createDocumentBundle(orderType);
-			documentBundle.appendBusinessReport(gradCertificateReports);
-			return documentBundle;
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
+		ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
+			@Override
+			public String getName() {
+				return reportRequest.getData().getCertificate().getOrderType().getName();
+			}
+		};
+		DocumentBundle documentBundle = bcmpBundleService.createDocumentBundle(orderType);
+		documentBundle.appendBusinessReport(gradCertificateReports);
+		return documentBundle;
 	}
 
 	public ResponseEntity<byte[]> getSchoolDistributionReport(ReportRequest reportRequest) {
@@ -307,12 +282,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		try {
-			return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
@@ -321,12 +291,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		try {
-			return (StudentNonGradReport)studentNonGradService.buildStudentNonGradReport();
-		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
-		}
+		return (StudentNonGradReport)studentNonGradService.buildStudentNonGradReport();
 	}
 
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
