@@ -16,12 +16,7 @@ public class GradReportSignatureUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        GrantedAuthority authority = new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "SCOPE_READ_SIGNATURE_IMAGE_BY_CODE";
-            }
-        };
+        GrantedAuthority authority = () -> "SCOPE_READ_SIGNATURE_IMAGE_BY_CODE";
         return List.of(authority);
     }
 
