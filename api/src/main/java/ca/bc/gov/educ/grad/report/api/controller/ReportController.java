@@ -56,7 +56,7 @@ public class ReportController extends BaseController {
     public ResponseEntity<byte[]> getStudentXmlTranscriptReport(@RequestBody XmlReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getStudentTranscriptReport");
         logRequest();
-        report.getData().setAccessToken(accessToken.replaceAll("Bearer ", ""));
+        report.getData().setAccessToken(accessToken.replace("Bearer ", ""));
         return reportService.getStudentXmlTranscriptReport(report);
     }
     

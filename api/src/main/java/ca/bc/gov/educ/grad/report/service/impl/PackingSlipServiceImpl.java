@@ -26,6 +26,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
 
     private static final String CLASSNAME = PackingSlipServiceImpl.class.getName();
     private static transient final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     private static final long serialVersionUID = 5L;
 
@@ -174,7 +175,8 @@ public class PackingSlipServiceImpl implements PackingSlipService {
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -204,7 +206,8 @@ public class PackingSlipServiceImpl implements PackingSlipService {
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
