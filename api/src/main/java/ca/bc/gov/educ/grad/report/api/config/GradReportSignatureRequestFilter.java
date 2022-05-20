@@ -41,14 +41,14 @@ public class GradReportSignatureRequestFilter extends OncePerRequestFilter {
             return;
         }
 
-        String accessToken = httpServletRequest.getParameter("access_token");
-        if (isEmpty(accessToken)) {
+        String contentPath = httpServletRequest.getRequestURI();
+        if(!StringUtils.contains(contentPath, EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
 
-        String contentPath = httpServletRequest.getRequestURI();
-        if(!StringUtils.contains(contentPath, EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
+        String accessToken = httpServletRequest.getParameter("access_token");
+        if (isEmpty(accessToken)) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
