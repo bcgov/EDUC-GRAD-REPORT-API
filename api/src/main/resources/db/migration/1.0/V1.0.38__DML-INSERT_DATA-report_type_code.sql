@@ -1,4 +1,4 @@
 Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('GRAD','Students Satisfying Grad Requirements','School Report of Students who have Graduated - produced as part of Monthly and Year End Distribution Run',20,to_date('21-07-19','RR-MM-DD'));
 Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('NONGRAD','Students Not Satisfying Grad Requirements','School Report of Students who have not Graduated - produced as part of Monthly and Year End Distribution Run',30,to_date('21-07-19','RR-MM-DD'));
 Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('NONGRADPRJ','Students Not Projected to Meet Grad Requirements ','School Report of Students who are not Projected to Graduated - produced as part of TVR Batch Run',40,to_date('21-07-19','RR-MM-DD'));
-UPDATE REPORT_TYPE_CODE SET DISPALY_ORDER = 10 WHERE REPORT_TYPE_CODE='ACHV';
+UPDATE REPORT_TYPE_CODE SET DISPLAY_ORDER = 10 WHERE REPORT_TYPE_CODE='ACHV';
