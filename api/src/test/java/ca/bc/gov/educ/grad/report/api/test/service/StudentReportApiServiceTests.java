@@ -899,6 +899,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReport_SCFB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCFB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArrray = (byte[]) response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArrray);
+		}
+		LOG.debug(">createCertificateReport_SCF");
+	}
+
+	@Test
 	public void createCertificateReport_SCFO() throws Exception {
 		LOG.debug("<{}.createCertificateReport_SCFO at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFO.json");
