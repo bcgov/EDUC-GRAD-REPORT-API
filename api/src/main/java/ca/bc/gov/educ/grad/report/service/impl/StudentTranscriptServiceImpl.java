@@ -94,6 +94,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     private static final String CLASSNAME = StudentTranscriptServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     /**
      * Sort order for ungraded courses (to bottom, above assessments).
@@ -219,7 +220,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 program.getCode(),
                 transcriptCourses,
                 reportDate,
-                interim
+                transcriptInfo.getInterim()
         );
 
         LOG.exiting(CLASSNAME, methodName);
@@ -239,7 +240,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -269,7 +271,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -277,7 +280,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData.getGradProgram() == null || reportData.getGradProgram().getCode() == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        "GRAD_PROGRAM_MISSING",
                         "Grad Program or Grad Program Code is null");
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
@@ -385,7 +389,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
-                        null,
+                        getClass(),
+                        REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
                 LOG.throwing(CLASSNAME, m_, dse);
                 throw dse;

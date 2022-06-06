@@ -120,7 +120,8 @@ public final class CertificateReportImpl extends StudentReportImpl
     @Override
     public void setCertificate(
             final ca.bc.gov.educ.grad.report.model.cert.Certificate certificate) {
-        ensureValidStudent("setCertificate");
+        if(!certificate.getCertStyle().equalsIgnoreCase("Blank"))
+            ensureValidStudent("setCertificate");
 
         this.certificate = BusinessEntityAdapter.adapt(certificate);
         this.certificate.setStudent(getStudent());

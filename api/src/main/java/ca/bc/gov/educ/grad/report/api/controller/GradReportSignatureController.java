@@ -44,11 +44,10 @@ public class GradReportSignatureController extends BaseController {
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image binary", description = "Retrieve Signature Image binary by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
-    public byte[] extractSignatureImageByCode(@PathVariable String signCode, @RequestHeader(name="Authorization") String accessToken) {
+    public byte[] extractSignatureImageByCode(@PathVariable String signCode) {
         String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-    	logRequest();
-        GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode, accessToken.replaceAll("Bearer ", ""));
+        GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
         return signatureImage.getSignatureContent();
     }
 
@@ -59,8 +58,7 @@ public class GradReportSignatureController extends BaseController {
     public GradReportSignatureImage getSignatureImageByCode(@PathVariable String signCode, @RequestHeader(name="Authorization") String accessToken) {
         String methodName = String.format("getSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
-        return gradReportSignatureService.getSignatureImageByCode(signCode, accessToken.replaceAll("Bearer ", ""));
+        return gradReportSignatureService.getSignatureImageByCode(signCode, accessToken.replace("Bearer ", ""));
     }
 
     @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGES)
@@ -70,8 +68,7 @@ public class GradReportSignatureController extends BaseController {
     public List<GradReportSignatureImage> getSignatureImages(@RequestHeader(name="Authorization") String accessToken) {
         String methodName = "getSignatureImages()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
-        return gradReportSignatureService.getSignatureImages(accessToken.replaceAll("Bearer ", ""));
+        return gradReportSignatureService.getSignatureImages(accessToken.replace("Bearer ", ""));
     }
 
     @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_IMAGE)
@@ -94,7 +91,6 @@ public class GradReportSignatureController extends BaseController {
     public SignatureBlockTypeCode getSignatureBlockTypeCode(@PathVariable String signBlockTypeCode) {
         String methodName = String.format("getSignatureBlockTypeCode(%s)", signBlockTypeCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
         return gradReportCodeService.getSignatureBlockTypeCode(signBlockTypeCode);
     }
 
@@ -105,7 +101,6 @@ public class GradReportSignatureController extends BaseController {
     public List<SignatureBlockTypeCode> getSignatureBlockTypeCodes() {
         String methodName = "getSignatureBlockTypeCodes()";
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
         return gradReportCodeService.getSignatureBlockTypeCodes();
     }
 

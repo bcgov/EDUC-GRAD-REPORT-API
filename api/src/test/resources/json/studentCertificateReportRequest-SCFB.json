@@ -1,0 +1,27 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "Certificate",
+    "reportFile": "Certificate Report SCFB.pdf"
+  },
+  "data": {
+    "student": {
+      "frenchCert": "F"
+    },
+    "certificate": {
+      "issued": "2020-04-01",
+      "certStyle": "Blank",
+      "orderType": {
+        "name": "Certificate",
+        "certificateType": {
+          "reportName": "SCF",
+          "paperType": {
+            "code": "YEDR"
+          }
+        }
+      }
+    }
+  }
+}

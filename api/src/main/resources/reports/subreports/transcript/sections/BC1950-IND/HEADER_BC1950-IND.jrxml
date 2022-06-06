@@ -49,7 +49,7 @@
 	</variable>
 	<pageHeader>
 		<band height="100">
-			<textField evaluationTime="Auto" isBlankWhenNull="true">
+			<!--textField evaluationTime="Auto" isBlankWhenNull="true">
 				<reportElement key="PAGE_NUMBERS" style="Title" positionType="Float" x="31" y="0" width="289" height="12" isRemoveLineWhenBlank="true" uuid="67bc99b0-2cab-4157-90d1-8209c90ca07e">
 					<printWhenExpression><![CDATA[$P{P_PAGE_NUMBER} != null]]></printWhenExpression>
 				</reportElement>
@@ -57,7 +57,7 @@
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[msg("Page:    {0}", $P{P_PAGE_NUMBER})]]></textFieldExpression>
-			</textField>
+			</textField-->
 			<frame>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="355" y="0" width="212" height="97" uuid="a1a35bc2-f8ae-4bc2-96e7-6c240e2df8a1"/>
 				<box>
