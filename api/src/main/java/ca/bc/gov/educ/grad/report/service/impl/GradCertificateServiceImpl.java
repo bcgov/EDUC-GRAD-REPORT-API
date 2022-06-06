@@ -71,15 +71,13 @@ public class GradCertificateServiceImpl
     private static final String CLASSNAME = GradCertificateServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
+    private static final String CERTIFICATE_TYPE = "Cert Type: {0}";
+    private static final String TYPE_SUB_TYPE = "Type: {0}; Subtype: {1}";
 
-    @Autowired
-    private ReportService reportService;
+    @Autowired ReportService reportService;
+    @Autowired GradReportCodeService codeService;
 
-    @Autowired
-    private GradReportCodeService codeService;
-
-    @Autowired
-    GradDataConvertionBean gradDataConvertionBean;
+    @Autowired GradDataConvertionBean gradDataConvertionBean;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
@@ -115,8 +113,7 @@ public class GradCertificateServiceImpl
         }
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         certificate.setSignatureBlockTypes(signatureBlockTypes);
 
         final List<BusinessReport> certificates = new ArrayList<>();
@@ -178,8 +175,7 @@ public class GradCertificateServiceImpl
         }
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         certificate.setSignatureBlockTypes(signatureBlockTypes);
 
         final List<BusinessReport> certificates = new ArrayList<>();
@@ -229,16 +225,12 @@ public class GradCertificateServiceImpl
         final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
-        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
-        final GradCertificateReport gradCert = createReport(
-                student, school, certificate,
-                CANADA, rsRptType, rsRptSubType);
-
-        return gradCert;
+        return createReport(student, school, certificate,CANADA, rsRptType, rsRptSubType);
     }
 
     private GradCertificateReport blankEnglishCertificate(
@@ -248,16 +240,11 @@ public class GradCertificateServiceImpl
         final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
-        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
-                new Object[]{rsRptType.toString(), rsRptSubType.toString()});
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,new Object[]{rsRptType, rsRptSubType});
 
-        final GradCertificateReport gradCert = createBlankReport(
-                certificate,
-                CANADA, rsRptType, rsRptSubType);
-
-        return gradCert;
+        return createBlankReport(certificate,CANADA, rsRptType, rsRptSubType);
     }
 
     /**
@@ -279,16 +266,12 @@ public class GradCertificateServiceImpl
         final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
-        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
-        final GradCertificateReport gradCert = createReport(
-                student, school, certificate,
-                CANADA_FRENCH, rsRptType, rsRptSubType);
-
-        return gradCert;
+        return createReport(student, school, certificate,CANADA_FRENCH, rsRptType, rsRptSubType);
     }
 
     private GradCertificateReport blankFrenchCertificate(
@@ -298,15 +281,11 @@ public class GradCertificateServiceImpl
         final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
-        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
-                new Object[]{rsRptType.toString(), rsRptSubType.toString()});
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,new Object[]{rsRptType, rsRptSubType});
 
-        final GradCertificateReport gradCert = createBlankReport(certificate,
-                CANADA_FRENCH, rsRptType, rsRptSubType);
-
-        return gradCert;
+        return createBlankReport(certificate,CANADA_FRENCH, rsRptType, rsRptSubType);
     }
 
     private CertificateType adaptCertificateType(String certType) {
@@ -462,12 +441,6 @@ public class GradCertificateServiceImpl
             final CertificateType type,
             final CertificateSubType subtype,
             final Locale locale) {
-        final String reportTypeName
-                = type.toString()
-                + " "
-                + subtype.toString()
-                + " "
-                + locale.getISO3Language();
-        return reportTypeName;
+        return type.toString() + " " + subtype.toString() + " " + locale.getISO3Language();
     }
 }
