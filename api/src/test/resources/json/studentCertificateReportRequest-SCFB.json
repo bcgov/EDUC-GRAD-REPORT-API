@@ -4,11 +4,10 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "Certificate",
-    "reportFile": "Certificate Report AIB.pdf"
+    "reportFile": "Certificate Report SCFB.pdf"
   },
   "data": {
     "student": {
-      "englishCert": "E",
       "frenchCert": "F"
     },
     "certificate": {
@@ -17,9 +16,9 @@
       "orderType": {
         "name": "Certificate",
         "certificateType": {
-          "reportName": "AI",
+          "reportName": "SCF",
           "paperType": {
-            "code": "YEDB"
+            "code": "YEDR"
           }
         }
       }

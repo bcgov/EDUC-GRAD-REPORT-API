@@ -223,8 +223,13 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		List<BusinessReport> gradCertificateReports;
+		if(reportRequest.getData().getCertificate().getCertStyle().equalsIgnoreCase("Blank")) {
+			gradCertificateReports = gradCertificateService.buildBlankReport();
+		}else {
+			gradCertificateReports = gradCertificateService.buildReport();
+		}
 
-		List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
 		ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
 			@Override
 			public String getName() {
