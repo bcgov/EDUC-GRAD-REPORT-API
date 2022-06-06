@@ -238,8 +238,9 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType = adaptCertificateType(certType);
-        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
-
+        CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : null;
+        if(rsRptSubType == null)
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
         LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
         LOG.log(Level.FINE, TYPE_SUB_TYPE,new Object[]{rsRptType, rsRptSubType});
@@ -264,7 +265,9 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType = adaptCertificateType(certType);
-        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
+        CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : null;
+        if(rsRptSubType == null)
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
@@ -279,7 +282,9 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType = adaptCertificateType(certType);
-        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
+        CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : null;
+        if(rsRptSubType == null)
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
