@@ -141,7 +141,7 @@
 				<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="StaticText" x="138" y="35" width="126" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
+				<reportElement style="StaticText" x="138" y="35" width="222" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
