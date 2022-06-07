@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2017, Ministry of Education, BC.
+ *  Copyright (c) 2017, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -43,7 +43,6 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
@@ -626,31 +625,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         try {
             ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
-
-            System.out.println("student.pen = " + stu.getPEN());
-            System.out.println("student.firstName = " + stu.getFirstName());
-            System.out.println("student.lastName = " + stu.getLastName());
-            System.out.println("student.middleNames = " + stu.getMiddleNames());
-            System.out.println("student.birthdate = " + new SimpleDateFormat( "yy/MM/dd" ).format(stu.getBirthdate()));
-            System.out.println("student.graduationProgram.description = " + stu.getGraduationProgram().getDescription());
-            System.out.println("report date = " + new SimpleDateFormat( "d-MMM-yyyy").format( new Date()).toUpperCase());
-            System.out.println("student.school.name = " + stu.getSchool().getName().toUpperCase());
-            System.out.println("student.school.districtOrganisation.name = " + stu.getSchool().getDistrictOrganisation().getName());
-            System.out.println("student.school.districtOrganisation.logoCode = " + stu.getSchool().getDistrictOrganisation().getLogoCode());
-            System.out.println("student.school.address.formattedStreet = " + stu.getSchool().getAddress().getFormattedStreet());
-            System.out.println("student.school.address.city = " + stu.getSchool().getAddress().getCity() + stu.getSchool().getAddress().getRegion());
-            System.out.println("student.school.address.region = " + stu.getSchool().getAddress().getRegion());
-            System.out.println("student.school.address.postalCode = " + stu.getSchool().getAddress().getPostalCode());
-            System.out.println("student.school.typeBanner = " + stu.getSchool().getTypeBanner().toUpperCase());
-            System.out.println("student.school.ministryCode = " + stu.getSchool().getMinistryCode().toUpperCase());
-            System.out.println("student.transcriptResults = " + stu.getTranscriptResults().size());
-            System.out.println("student.assessments = " + stu.getAssessments().size());
-            System.out.println("student.provinciallyExaminableCourses = " + stu.getProvinciallyExaminableCourses().size());
-            System.out.println("student.nonProvinciallyExaminableCourses = " + stu.getNonProvinciallyExaminableCourses().size());
-            System.out.println("student.signatureBlockTypes = " + stu.getSignatureBlockTypes().size());
-            System.out.println("student.status.graduationMessage = " + stu.getStatus().getGraduationMessage());
-            System.out.println("student.status.graduated = " + stu.getStatus().getGraduated());
-
             document = reportService.export(report);
         } catch (final Exception ex) {
             final String msg = "Failed to create report.";

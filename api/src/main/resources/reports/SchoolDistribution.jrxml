@@ -84,11 +84,11 @@
 				<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="StaticText" x="205" y="35" width="126" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
+				<reportElement style="StaticText" x="150" y="26" width="220" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ministry of Education"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="175" y="70" width="165" height="15" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">

@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2016, Ministry of Education, BC.
+ *  Copyright (c) 2016, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -118,7 +118,7 @@ public final class School extends BusinessEntity {
 
     /**
      * Returns the school's operational district. This is typically either the
-     * Ministry of Education ("BC") or Department of Education ("YU").
+     * Ministry of Education and Child Care ("BC") or Department of Education ("YU").
      *
      * @return A district responsible for managing the school.
      */
@@ -309,7 +309,7 @@ public final class School extends BusinessEntity {
 
         /**
          * Sets the district organisation responsible for managing the school
-         * (e.g., Ministry of Education, BC).
+         * (e.g., Ministry of Education and Child Care, BC).
          *
          * @param districtOrganisation
          * @return thisBuilder

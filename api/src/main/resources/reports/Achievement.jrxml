@@ -481,11 +481,11 @@
 					<textFieldExpression><![CDATA["Cdn or Perm Res"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="StaticText" x="135" y="18" width="182" height="29" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
+					<reportElement style="StaticText" x="71" y="18" width="300" height="29" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
 					<textElement textAlignment="Center">
 						<font size="16" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Ministry of Education"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="54" y="68" width="262" height="13" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
@@ -510,7 +510,7 @@
 					<text><![CDATA[School:]]></text>
 				</staticText>
 				<image scaleImage="RetainShape" onErrorType="Blank">
-					<reportElement key="IMAGE_LOGO_SVG" x="13" y="11" width="55" height="41" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
+					<reportElement key="IMAGE_LOGO_SVG" x="13" y="11" width="47" height="41" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
 					<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
 				</image>
 				<textField isBlankWhenNull="true">
@@ -529,7 +529,7 @@
 				</textField>
 			</frame>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="354" y="0" width="199" height="20" uuid="fdb6be60-69c7-4119-9273-f97a50883b40"/>
+				<reportElement style="Title" x="375" y="0" width="178" height="20" uuid="fdb6be60-69c7-4119-9273-f97a50883b40"/>
 				<textElement textAlignment="Center">
 					<font size="10.5"/>
 				</textElement>

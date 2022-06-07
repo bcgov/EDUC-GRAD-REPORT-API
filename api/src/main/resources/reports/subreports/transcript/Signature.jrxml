@@ -36,25 +36,26 @@
 		<band height="110">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<frame>
-				<reportElement x="0" y="0" width="144" height="110" uuid="827355ec-3b08-4dc7-89e4-d9e6b4a743ce"/>
+				<reportElement x="0" y="0" width="150" height="110" uuid="827355ec-3b08-4dc7-89e4-d9e6b4a743ce"/>
 				<staticText>
-					<reportElement style="SummaryBody" x="0" y="0" width="144" height="44" uuid="df6d3994-8319-4e92-8e60-17b34c512299">
+					<reportElement style="SummaryBody" x="0" y="0" width="150" height="44" uuid="df6d3994-8319-4e92-8e60-17b34c512299">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<textElement verticalAlignment="Top"/>
-					<text><![CDATA[CERTIFIED A TRUE COPY OF THE ORIGINAL RECORD WHICH IS RETAINED AT THE MINISTRY OF EDUCATION]]></text>
+					<text><![CDATA[CERTIFIED A TRUE COPY OF THE ORIGINAL RECORD WHICH IS RETAINED AT THE MINISTRY OF EDUCATION AND CHILD CARE]]></text>
 				</staticText>
 				<image vAlign="Bottom" onErrorType="Blank">
-					<reportElement x="0" y="45" width="144" height="49" uuid="110444bf-1492-4879-aefc-050341f3818a">
+					<reportElement x="0" y="45" width="150" height="49" uuid="110444bf-1492-4879-aefc-050341f3818a">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","MOE_ADM" + "")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SummaryBody" x="0" y="96" width="144" height="14" uuid="d51041c9-3107-40e0-ae91-589b3901fca6"/>
+					<reportElement style="SummaryBody" x="0" y="96" width="150" height="14" uuid="d51041c9-3107-40e0-ae91-589b3901fca6"/>
 					<box>
 						<topPen lineWidth="0.75" lineStyle="Dashed"/>
 					</box>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP} != null ? $F{F_LABEL_MAP}.get("MOE_ADM").toString() : "Assistant Deputy Minister"]]></textFieldExpression>
 				</textField>
 			</frame>

@@ -141,11 +141,11 @@
 				<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="StaticText" x="138" y="35" width="126" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
+				<reportElement style="StaticText" x="138" y="35" width="222" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Ministry of Education"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="0" y="150" width="50" height="15" uuid="7eb76d6f-c6b2-4f09-a728-e736e02edc8c">

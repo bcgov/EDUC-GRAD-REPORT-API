@@ -80,11 +80,11 @@
 				<textFieldExpression><![CDATA[$R{header.title.issuer.S}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="0" y="117" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
+				<reportElement style="Body" x="0" y="137" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
 				<textFieldExpression><![CDATA[$R{header.certify.prefix}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Awardee" x="0" y="150" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
+				<reportElement style="Awardee" x="0" y="165" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
