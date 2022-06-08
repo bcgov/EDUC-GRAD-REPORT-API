@@ -876,7 +876,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 final String code2 = getCourseCode(tr2);
 
                 return new CompareToBuilder()
-                        .append(reportCourseType1, reportCourseType2)
+                        //.append(reportCourseType1, reportCourseType2)
                         .append(code1, code2)
                         .toComparison();
             }
