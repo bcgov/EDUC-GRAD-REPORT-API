@@ -1,5 +1,5 @@
 /* *********************************************************************
- *  Copyright (c) 2016, Ministry of Education, BC.
+ *  Copyright (c) 2016, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -44,5 +44,15 @@ public interface GradCertificateService extends BusinessService {
      * @throws DomainServiceException
      */
     List<BusinessReport> buildReport() throws DomainServiceException;
+
+    /**
+     * Generate the blank grad certificate report. Grad Certificates are
+     * generated as PDF for the current user when certificates are ordered.
+     * <p>
+     * @return Report data for consumption by the GUI.
+     * <p>
+     * @throws DomainServiceException
+     */
+    List<BusinessReport> buildBlankReport() throws DomainServiceException;
 
 }

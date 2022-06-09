@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2016, Ministry of Education, BC.
+ *  Copyright (c) 2016, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -63,6 +63,13 @@ public interface Transcript extends DomainEntity {
      * @return true iff getResults().isEmpty() == true.
      */
     boolean isEmpty();
+
+    /**
+     * Convenience method that answers whether the transcript is interim.
+     *
+     * @return true iff getResults().isEmpty() == true.
+     */
+    boolean getInterim();
 
     /**
      * Returns the type of the transcript

@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-IND",
@@ -299,10 +299,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "51",
-            "finalLetterGrade": "C-",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "51",
+            "interimLetterGrade": "C-"
           },
           "requirement": "2",
           "requirementName": "",
@@ -323,10 +323,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "50",
-            "finalLetterGrade": "C-",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
           },
           "requirement": "7",
           "requirementName": "",
@@ -347,10 +347,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "82",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "82",
+            "interimLetterGrade": "B"
           },
           "requirement": "",
           "requirementName": "",
@@ -1115,10 +1115,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "65",
+            "interimLetterGrade": "B"
           },
           "requirement": "",
           "requirementName": "",
@@ -1139,10 +1139,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "75",
+            "interimLetterGrade": "B+"
           },
           "requirement": "",
           "requirementName": "",

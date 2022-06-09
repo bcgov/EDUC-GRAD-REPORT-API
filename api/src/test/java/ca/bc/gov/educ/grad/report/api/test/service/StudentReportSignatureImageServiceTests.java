@@ -2,7 +2,6 @@ package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
-import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
@@ -21,15 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.function.Consumer;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 @WebAppConfiguration

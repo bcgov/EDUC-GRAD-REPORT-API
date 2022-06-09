@@ -1,39 +1,25 @@
 package ca.bc.gov.educ.grad.report.api.test.controller;
 
-import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
-import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
-import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
 @ExtendWith(MockitoExtension.class)

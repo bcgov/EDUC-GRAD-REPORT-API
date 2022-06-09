@@ -1,6 +1,6 @@
 /*
  * ***********************************************************************
- *  Copyright (c) 2018, Ministry of Education, BC.
+ *  Copyright (c) 2018, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole

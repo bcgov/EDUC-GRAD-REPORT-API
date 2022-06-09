@@ -70,7 +70,7 @@
 	<title>
 		<band height="542">
 			<frame>
-				<reportElement x="140" y="157" width="513" height="40" uuid="a8bd5589-c1c6-4663-a57a-64f0f167230b">
+				<reportElement x="140" y="137" width="513" height="40" uuid="a8bd5589-c1c6-4663-a57a-64f0f167230b">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<staticText>
@@ -126,21 +126,21 @@
 				</staticText>
 			</frame>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="0" y="210" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
+				<reportElement style="Body" x="0" y="190" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
 				<textFieldExpression><![CDATA[$R{header.certify.prefix}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Awardee" x="0" y="255" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
+				<reportElement style="Awardee" x="0" y="235" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="77" y="299" width="639" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
+				<reportElement style="Body" x="77" y="279" width="639" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$R{header.certify.suffix.SC}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement x="95" y="379" width="194" height="82" uuid="78987025-a306-40ff-b600-bdf0febe0081"/>
+				<reportElement x="95" y="380" width="194" height="82" uuid="78987025-a306-40ff-b600-bdf0febe0081"/>
 				<image onErrorType="Blank">
 					<reportElement x="0" y="-35" width="194" height="66" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>

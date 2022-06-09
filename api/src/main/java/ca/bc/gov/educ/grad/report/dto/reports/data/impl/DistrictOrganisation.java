@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2016, Ministry of Education, BC.
+ *  Copyright (c) 2016, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -29,7 +29,7 @@ public final class DistrictOrganisation extends BusinessEntity {
     private static final long serialVersionUID = -6769620495960490377L;
 
     private static final String NAME_SUFFIX = " of Education";
-    private static final String NAME_BC = "Ministry" + NAME_SUFFIX;
+    private static final String NAME_BC = "Ministry" + NAME_SUFFIX + " and Child Care";
     private static final String NAME_YU = "Department" + NAME_SUFFIX;
 
     private static final String DEFAULT_LOGO_CODE = "BC";
@@ -85,7 +85,7 @@ public final class DistrictOrganisation extends BusinessEntity {
     /**
      * Returns the full name for the organisation that operates the district.
      *
-     * @return "Ministry of Education" by default.
+     * @return "Ministry of Education and Child Care" by default.
      */
     public String getName() {
         // TODO: Get this from a code set.

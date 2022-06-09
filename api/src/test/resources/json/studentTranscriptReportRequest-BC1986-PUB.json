@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2001-06-01",
       "code": {
         "code": "BC1986-PUB",

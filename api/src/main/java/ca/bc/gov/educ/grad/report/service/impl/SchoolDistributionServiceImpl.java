@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2017, Ministry of Education, BC.
+ *  Copyright (c) 2017, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -66,6 +66,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     @Autowired
     private ReportService reportService;
@@ -84,7 +85,8 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
+                    getClass(),
+                    REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;

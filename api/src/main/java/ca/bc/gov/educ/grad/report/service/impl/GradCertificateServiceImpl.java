@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2017, Ministry of Education, BC.
+ *  Copyright (c) 2017, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -70,15 +70,14 @@ public class GradCertificateServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = GradCertificateServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
+    private static final String CERTIFICATE_TYPE = "Cert Type: {0}";
+    private static final String TYPE_SUB_TYPE = "Type: {0}; Subtype: {1}";
 
-    @Autowired
-    private ReportService reportService;
+    @Autowired ReportService reportService;
+    @Autowired GradReportCodeService codeService;
 
-    @Autowired
-    private GradReportCodeService codeService;
-
-    @Autowired
-    GradDataConvertionBean gradDataConvertionBean;
+    @Autowired GradDataConvertionBean gradDataConvertionBean;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
@@ -91,7 +90,8 @@ public class GradCertificateServiceImpl
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
-                    null,
+                    getClass(),
+                    REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
@@ -113,8 +113,7 @@ public class GradCertificateServiceImpl
         }
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         certificate.setSignatureBlockTypes(signatureBlockTypes);
 
         final List<BusinessReport> certificates = new ArrayList<>();
@@ -146,6 +145,68 @@ public class GradCertificateServiceImpl
         return certificates;
     }
 
+    @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
+    @Override
+    public List<BusinessReport> buildBlankReport() throws DomainServiceException {
+        final String methodName = "buildBlankReport()";
+        LOG.entering(CLASSNAME, methodName);
+
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+
+        LOG.log(Level.FINE,
+                "Confirmed the user is a student and retrieved the PEN.");
+
+        final CertificateImpl certificate = (CertificateImpl)gradDataConvertionBean.getCertificate(reportData.getCertificate());
+        if (certificate == null) {
+            final String msg = "Failed to find student certificate";
+            final DomainServiceException dse = new DomainServiceException(msg);
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+
+        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
+        certificate.setSignatureBlockTypes(signatureBlockTypes);
+
+        final List<BusinessReport> certificates = new ArrayList<>();
+        final String englishCert = reportData.getStudent().getEnglishCert() != null? reportData.getStudent().getEnglishCert().trim():"";
+        final String frenchCert = reportData.getStudent().getFrenchCert() != null ?reportData.getStudent().getFrenchCert().trim():"";
+
+        LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
+        LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
+
+        if (!englishCert.isEmpty()) {
+            final String certType = certificate.getCertificateType().getReportName();
+
+            final GradCertificateReport gradCert = blankEnglishCertificate(
+                    certType,certificate);
+
+            certificates.add(gradCert);
+        }
+
+        if (!frenchCert.isEmpty()) {
+            final String certType = certificate.getCertificateType().getReportName();
+
+            final GradCertificateReport gradCert = blankFrenchCertificate(
+                    certType,certificate);
+
+            certificates.add(gradCert);
+        }
+
+        LOG.exiting(CLASSNAME, methodName);
+        return certificates;
+    }
+
     /**
      * @param certType
      * @param student
@@ -164,16 +225,27 @@ public class GradCertificateServiceImpl
         final CertificateType rsRptType = adaptCertificateType(certType);
         final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
-        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
-        final GradCertificateReport gradCert = createReport(
-                student, school, certificate,
-                CANADA, rsRptType, rsRptSubType);
+        return createReport(student, school, certificate,CANADA, rsRptType, rsRptSubType);
+    }
 
-        return gradCert;
+    private GradCertificateReport blankEnglishCertificate(
+            final String certType,
+            final Certificate certificate) throws DomainServiceException {
+
+        final CertificateType rsRptType = adaptCertificateType(certType);
+        CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : null;
+        if(rsRptSubType == null)
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
+
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,new Object[]{rsRptType, rsRptSubType});
+
+        return createBlankReport(certificate,CANADA, rsRptType, rsRptSubType);
     }
 
     /**
@@ -193,26 +265,37 @@ public class GradCertificateServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType = adaptCertificateType(certType);
-        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
+        CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : null;
+        if(rsRptSubType == null)
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
-        LOG.log(Level.FINE, "Cert Type: {0}", certType);
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
-        LOG.log(Level.FINE, "Type: {0}; Subtype: {1}",
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
-        final GradCertificateReport gradCert = createReport(
-                student, school, certificate,
-                CANADA_FRENCH, rsRptType, rsRptSubType);
+        return createReport(student, school, certificate,CANADA_FRENCH, rsRptType, rsRptSubType);
+    }
 
-        return gradCert;
+    private GradCertificateReport blankFrenchCertificate(
+            final String certType,
+            final Certificate certificate) throws DomainServiceException {
+
+        final CertificateType rsRptType = adaptCertificateType(certType);
+        CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : null;
+        if(rsRptSubType == null)
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
+
+        LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
+
+        LOG.log(Level.FINE, TYPE_SUB_TYPE,new Object[]{rsRptType, rsRptSubType});
+
+        return createBlankReport(certificate,CANADA_FRENCH, rsRptType, rsRptSubType);
     }
 
     private CertificateType adaptCertificateType(String certType) {
         final CertificateType rsRptType;
         switch(certType) {
-            case "E":
-                rsRptType = CertificateType.E;
-                break;
             case "A":
                 rsRptType = CertificateType.A;
                 break;
@@ -308,16 +391,61 @@ public class GradCertificateServiceImpl
         return report;
     }
 
+    private GradCertificateReport createBlankReport(
+            final Certificate certificate,
+            final Locale location,
+            final CertificateType rsRptType,
+            final CertificateSubType rsRptSubType) throws DomainServiceException {
+
+        final String methodName = "createBlankReport(String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
+        LOG.entering(CLASSNAME, methodName);
+
+        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
+
+        CertificateReport certificateReport = reportService.createCertificateReport();
+        certificateReport.setReportType(rsRptType);
+        certificateReport.setReportSubtype(rsRptSubType);
+        certificateReport.setLocale(location);
+        certificateReport.setCertificate(certificate);
+
+        GradCertificateReport report = null;
+        try {
+            final ReportDocument rptDoc = reportService.export(certificateReport);
+
+            StringBuilder sb = new StringBuilder("certificate_");
+            sb.append(location.toLanguageTag());
+            sb.append("_");
+            sb.append(timestamp);
+            sb.append(".");
+            sb.append(PDF.getFilenameExtension());
+            final String filename = certificateReport.getFilename();
+
+            byte[] inData = rptDoc.asBytes();
+            inData = ArrayUtils.nullToEmpty(inData);
+            if (ArrayUtils.isEmpty(inData)) {
+                String msg = "The generated report output is empty.";
+                DomainServiceException dse = new DomainServiceException(null,
+                        msg);
+                LOG.throwing(CLASSNAME, methodName, dse);
+                throw dse;
+            }
+            byte[] rptData = inData;
+
+            // TODO: Use a constant for the name.
+            report = new GradCertificateReportImpl(rptData, PDF, filename, createReportTypeName(rsRptType, rsRptSubType, location));
+        } catch (final IOException ex) {
+            LOG.log(Level.SEVERE,
+                    "Failed to generate the provincial examination report.", ex);
+        }
+
+        LOG.exiting(CLASSNAME, methodName);
+        return report;
+    }
+
     private String createReportTypeName(
             final CertificateType type,
             final CertificateSubType subtype,
             final Locale locale) {
-        final String reportTypeName
-                = type.toString()
-                + " "
-                + subtype.toString()
-                + " "
-                + locale.getISO3Language();
-        return reportTypeName;
+        return type.toString() + " " + subtype.toString() + " " + locale.getISO3Language();
     }
 }

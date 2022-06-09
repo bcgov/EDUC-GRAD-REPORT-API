@@ -1,6 +1,6 @@
 /*
  * *********************************************************************
- *  Copyright (c) 2017, Ministry of Education, BC.
+ *  Copyright (c) 2017, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -92,6 +92,7 @@ public class TranscriptCourseImpl implements TranscriptCourse {
             final String finalPercent,
             final String finalLetterGrade,
             final String interimMark,
+            final String interimLetterGrade,
             final String requirement,
             final String specialCase,
             final String courseType) {
@@ -105,35 +106,11 @@ public class TranscriptCourseImpl implements TranscriptCourse {
         this.schoolPercent = nullSafe(schoolPercent);
         this.finalLetterGrade = nullSafe(finalLetterGrade);
         this.interimMark = nullSafe(interimMark);
+        this.interimLetterGrade = nullSafe(interimLetterGrade);
         this.requirement = nullSafe(requirement);
         this.equivalency = nullSafe(specialCase);
         this.courseType = nullSafe(courseType);
         this.finalPercent = nullSafe(finalPercent).trim();
-    }
-
-    /**
-     * Constructor method. Used by the JPQL to create an object from the
-     * database entities.
-     *
-     * @param studNo
-     * @param courseName
-     * @param crseCode
-     * @param crseLevel
-     * @param courseSession
-     * @param numCredits
-     * @param examPct
-     * @param schoolPct
-     * @param finalPct
-     * @param finalLg
-     * @param interimMark
-     * @param foundationReq
-     * @param specialCase
-     * @param rptCrsType
-     * @param interimLetterGrade
-     */
-    public TranscriptCourseImpl(String studNo, String courseName, String crseCode, String crseLevel, String courseSession, String numCredits, String examPct, String schoolPct, String finalPct, String finalLg, String interimMark, String foundationReq, String specialCase, String rptCrsType, String interimLetterGrade) {
-        this(studNo, courseName, crseCode, crseLevel, courseSession, numCredits, examPct, schoolPct, finalPct, finalLg, interimMark, foundationReq, specialCase, rptCrsType);
-        this.interimLetterGrade = (interimLetterGrade == null ? "" : interimLetterGrade.trim());
     }
 
     @Override

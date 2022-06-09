@@ -1,5 +1,5 @@
 /* *********************************************************************
- *  Copyright (c) 2016, Ministry of Education, BC.
+ *  Copyright (c) 2016, Ministry of Education and Child Care, BC.
  *
  *  All rights reserved.
  *    This information contained herein may not be used in whole
@@ -120,7 +120,8 @@ public final class CertificateReportImpl extends StudentReportImpl
     @Override
     public void setCertificate(
             final ca.bc.gov.educ.grad.report.model.cert.Certificate certificate) {
-        ensureValidStudent("setCertificate");
+        if(!certificate.getCertStyle().equalsIgnoreCase("Blank"))
+            ensureValidStudent("setCertificate");
 
         this.certificate = BusinessEntityAdapter.adapt(certificate);
         this.certificate.setStudent(getStudent());

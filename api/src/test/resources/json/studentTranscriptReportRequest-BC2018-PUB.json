@@ -83,8 +83,8 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "52",
-            "finalLetterGrade": "C-",
+            "finalPercent": "",
+            "finalLetterGrade": "",
             "interimPercent": "99",
             "interimLetterGrade": "F-"
           },
@@ -107,8 +107,8 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "50",
-            "finalLetterGrade": "C-",
+            "finalPercent": "",
+            "finalLetterGrade": "",
             "interimPercent": "49",
             "interimLetterGrade": "A+"
           },
@@ -179,10 +179,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "78",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "90",
+            "interimLetterGrade": "D-"
           },
           "requirement": "10",
           "requirementName": "",
@@ -467,10 +467,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "90",
-            "finalLetterGrade": "A",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "90",
+            "interimLetterGrade": "A"
           },
           "requirement": "",
           "requirementName": "",
