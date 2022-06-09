@@ -132,9 +132,9 @@ public class Status extends BusinessEntity {
         Queue<Integer> blankPos = new LinkedList<Integer>();
         for(IncompletionReason incompleteReason: incompletionReasons) {
             String desc = incompleteReason.getDescription();
-            if(desc != null && desc.length() > 36) {
+            if(desc != null && desc.length() > 48) {
                 ArrayList<Integer> blankPositions = findPositions(desc,' ');
-                desc = new StringBuilder(desc).insert(nearestValue(36, blankPositions), '\n').toString();
+                desc = new StringBuilder(desc).insert(nearestValue(48, blankPositions), '\n').toString();
                 String[] parts = StringUtils.split(desc, '\n');
 
                 IncompletionReason r1 = new IncompletionReason();
