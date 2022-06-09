@@ -117,6 +117,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createTranscriptReport_BC1950_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_IND_BLANK");
+	}
+
+	@Test
 	public void createTranscriptReport_BC1950_IND() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_BC1950_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND.json");

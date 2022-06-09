@@ -5,14 +5,14 @@ import java.io.Serializable;
 
 public class TranscriptCourse implements Serializable {
 
-    private String name;
-    private String code;
-    private String level;
-    private String credits;
-    private String sessionDate;
-    private String type;
-    private String relatedCourse;
-    private String relatedLevel;
+    private String name = "";
+    private String code = "";
+    private String level = "";
+    private String credits = "";
+    private String sessionDate = "";
+    private String type = "";
+    private String relatedCourse = "";
+    private String relatedLevel = "";
 
     public String getName() {
         return name;

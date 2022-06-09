@@ -5,20 +5,20 @@ import java.io.Serializable;
 
 public class Exam implements Serializable {
 
-    private String courseCode;
-    private String courseName;
-    private String courseLevel;
-    private String sessionDate;
-    private String gradReqMet;
+    private String courseCode = "";
+    private String courseName = "";
+    private String courseLevel = "";
+    private String sessionDate = "";
+    private String gradReqMet = "";
     private Boolean projected;
-    private String completedCoursePercentage;
-    private String completedCourseLetterGrade;
-    private String bestSchoolPercent;
-    private String bestExamPercent;
-    private String interimPercent;
-    private String equivOrChallenge;
-    private String metLitNumRequirement;
-    private String credits;
+    private String completedCoursePercentage = "";
+    private String completedCourseLetterGrade = "";
+    private String bestSchoolPercent = "";
+    private String bestExamPercent = "";
+    private String interimPercent = "";
+    private String equivOrChallenge = "";
+    private String metLitNumRequirement = "";
+    private String credits = "";
     private Integer creditsUsedForGrad;
 
     public String getCourseCode() {

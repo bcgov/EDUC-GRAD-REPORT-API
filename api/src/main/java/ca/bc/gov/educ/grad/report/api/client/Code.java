@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 
 public class Code implements Serializable {
-    private String code;
-    private String description;
+    private String code = "";
+    private String description = "";
     private int credits;
-    private String name;
+    private String name = "";
 
     public String getCode() {
         return code;

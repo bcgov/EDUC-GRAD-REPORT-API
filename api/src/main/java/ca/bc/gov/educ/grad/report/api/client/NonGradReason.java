@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 
 public class NonGradReason implements Serializable {
-    private String code;
-    private String description;
+    private String code = "";
+    private String description = "";
 
     public String getCode() {
         return code;

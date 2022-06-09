@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 
 public class Mark implements Serializable {
-    private String schoolPercent;
-    private String examPercent;
-    private String finalPercent;
-    private String finalLetterGrade;
-    private String interimPercent;
-    private String interimLetterGrade;
+    private String schoolPercent = "";
+    private String examPercent = "";
+    private String finalPercent = "";
+    private String finalLetterGrade = "";
+    private String interimPercent = "";
+    private String interimLetterGrade = "";
 
     public String getSchoolPercent() {
         return schoolPercent;

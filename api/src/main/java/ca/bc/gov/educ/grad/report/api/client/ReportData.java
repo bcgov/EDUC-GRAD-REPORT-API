@@ -8,19 +8,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-@Data
 @Component
 @XmlType(name = "")
 @XmlRootElement(name = "generateReport")
@@ -32,10 +27,6 @@ import java.util.Map;
 		NonGradReason.class,
 		Certificate.class
 })
-@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
-//@JsonPropertyOrder(alphabetic = true)
-//@JsonRootName("generateReport")
-
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Student.class),
 		@JsonSubTypes.Type(value = School.class),
@@ -53,27 +44,27 @@ import java.util.Map;
 public class ReportData implements Serializable {
 
 	@JsonDeserialize(as = Student.class)
-	private Student student;
+	private Student student = new Student();
 	@JsonDeserialize(as = School.class)
-	private School school;
+	private School school = new School();
 	@JsonDeserialize(as = Transcript.class)
-	private Transcript transcript;
+	private Transcript transcript = new Transcript();
 	@JsonDeserialize(as = Assessment.class)
-	private Assessment assessment;
+	private Assessment assessment = new Assessment();
 	@JsonDeserialize(as = GradProgram.class)
-	private GradProgram gradProgram;
+	private GradProgram gradProgram = new GradProgram();
 	@JsonDeserialize(as = GraduationData.class)
-	private GraduationData graduationData;
+	private GraduationData graduationData = new GraduationData();
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private String updateDate;
 	@JsonDeserialize(as = Certificate.class)
-	private Certificate certificate;
+	private Certificate certificate = new Certificate();
 	@JsonDeserialize(as = GraduationStatus.class)
-	private GraduationStatus graduationStatus;
+	private GraduationStatus graduationStatus = new GraduationStatus();
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date issueDate;
 	@JsonDeserialize(as = PackingSlip.class)
-	private PackingSlip packingSlip;
+	private PackingSlip packingSlip = new PackingSlip();
 
 	private String logo;
 	private String orgCode;
@@ -83,14 +74,190 @@ public class ReportData implements Serializable {
 	private String reportSubTitle;
 
 	@JsonDeserialize(using = NonGradReasonListDeserializer.class)
-	private List<NonGradReason> nonGradReasons;
+	private List<NonGradReason> nonGradReasons = new ArrayList<>();
 	@JsonDeserialize(using = AchievementCourseListDeserializer.class)
-	private List<AchievementCourse> studentCourses;
+	private List<AchievementCourse> studentCourses = new ArrayList<>();
 	@JsonDeserialize(using = ExamListDeserializer.class)
-	private List<Exam> studentExams;
+	private List<Exam> studentExams = new ArrayList<>();
 	@JsonDeserialize(using = OptionalProgramListDeserializer.class)
-	private List<OptionalProgram> optionalPrograms;
+	private List<OptionalProgram> optionalPrograms = new ArrayList<>();
 
 	@JsonIgnore
-	private Map<String, String> parameters;
+	private Map<String, String> parameters = new HashMap<>();
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public School getSchool() {
+		return school;
+	}
+
+	public void setSchool(School school) {
+		this.school = school;
+	}
+
+	public Transcript getTranscript() {
+		return transcript;
+	}
+
+	public void setTranscript(Transcript transcript) {
+		this.transcript = transcript;
+	}
+
+	public Assessment getAssessment() {
+		return assessment;
+	}
+
+	public void setAssessment(Assessment assessment) {
+		this.assessment = assessment;
+	}
+
+	public GradProgram getGradProgram() {
+		return gradProgram;
+	}
+
+	public void setGradProgram(GradProgram gradProgram) {
+		this.gradProgram = gradProgram;
+	}
+
+	public GraduationData getGraduationData() {
+		return graduationData;
+	}
+
+	public void setGraduationData(GraduationData graduationData) {
+		this.graduationData = graduationData;
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public Certificate getCertificate() {
+		return certificate;
+	}
+
+	public void setCertificate(Certificate certificate) {
+		this.certificate = certificate;
+	}
+
+	public GraduationStatus getGraduationStatus() {
+		return graduationStatus;
+	}
+
+	public void setGraduationStatus(GraduationStatus graduationStatus) {
+		this.graduationStatus = graduationStatus;
+	}
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+
+	public PackingSlip getPackingSlip() {
+		return packingSlip;
+	}
+
+	public void setPackingSlip(PackingSlip packingSlip) {
+		this.packingSlip = packingSlip;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getGradMessage() {
+		return gradMessage;
+	}
+
+	public void setGradMessage(String gradMessage) {
+		this.gradMessage = gradMessage;
+	}
+
+	public String getReportNumber() {
+		return reportNumber;
+	}
+
+	public void setReportNumber(String reportNumber) {
+		this.reportNumber = reportNumber;
+	}
+
+	public String getReportTitle() {
+		return reportTitle;
+	}
+
+	public void setReportTitle(String reportTitle) {
+		this.reportTitle = reportTitle;
+	}
+
+	public String getReportSubTitle() {
+		return reportSubTitle;
+	}
+
+	public void setReportSubTitle(String reportSubTitle) {
+		this.reportSubTitle = reportSubTitle;
+	}
+
+	public List<NonGradReason> getNonGradReasons() {
+		return nonGradReasons;
+	}
+
+	public void setNonGradReasons(List<NonGradReason> nonGradReasons) {
+		this.nonGradReasons = nonGradReasons;
+	}
+
+	public List<AchievementCourse> getStudentCourses() {
+		return studentCourses;
+	}
+
+	public void setStudentCourses(List<AchievementCourse> studentCourses) {
+		this.studentCourses = studentCourses;
+	}
+
+	public List<Exam> getStudentExams() {
+		return studentExams;
+	}
+
+	public void setStudentExams(List<Exam> studentExams) {
+		this.studentExams = studentExams;
+	}
+
+	public List<OptionalProgram> getOptionalPrograms() {
+		return optionalPrograms;
+	}
+
+	public void setOptionalPrograms(List<OptionalProgram> optionalPrograms) {
+		this.optionalPrograms = optionalPrograms;
+	}
+
+	public Map<String, String> getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(Map<String, String> parameters) {
+		this.parameters = parameters;
+	}
 }

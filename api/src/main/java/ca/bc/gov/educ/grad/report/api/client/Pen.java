@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 public class Pen implements Serializable {
 
-    private String pen;
-    private String entityID;
+    private String pen = "";
+    private String entityID = "";
 
     public String getPen() {
         return pen;
