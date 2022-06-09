@@ -1,0 +1,27 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "transcript",
+    "reportFile": "Transcript Report BC1950-IND BLANK.pdf"
+  },
+  "data": {
+    "student": null,
+    "school": null,
+    "logo": "BC",
+    "nonGradReasons" : null,
+    "transcript": {
+      "interim": true,
+      "code": {
+        "code": "BC1950-IND",
+        "description": "Adult Independent School Transcript"
+      },
+      "results": null
+    },
+    "gradProgram": null,
+    "graduationData": null,
+    "gradMessage": null,
+    "updateDate": "2001-06-01"
+  }
+}

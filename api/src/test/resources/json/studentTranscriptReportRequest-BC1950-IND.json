@@ -69,6 +69,10 @@
         "description" : "Fewer than 2 level 12 courses (or fewer than 1 level 12 courses)"
       },
       {
+        "code": "104",
+        "description" : "Fewer than 1 level 12 courses (or fewer than 0 level 12 courses)"
+      },
+      {
         "code": "108",
         "description" : "Fewer than 3 courses after 18th birthday"
       }
