@@ -59,6 +59,18 @@
       {
         "code": "107",
         "description" : "No Mathematics 11 or 12"
+      },
+      {
+        "code": "102",
+        "description" : "Fewer than 3 level 12 courses (or fewer than 2 level 12 courses)"
+      },
+      {
+        "code": "103",
+        "description" : "Fewer than 2 level 12 courses (or fewer than 1 level 12 courses)"
+      },
+      {
+        "code": "108",
+        "description" : "Fewer than 3 courses after 18th birthday"
       }
     ],
     "transcript": {

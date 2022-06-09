@@ -18,11 +18,15 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import java.util.List;
+import java.util.*;
+
+import static ca.bc.gov.educ.grad.report.model.common.support.StringUtils.findPositions;
+import static ca.bc.gov.educ.grad.report.model.common.support.StringUtils.nearestValue;
 
 /**
  * Responsible for answering questions about a Student, including:
@@ -123,7 +127,46 @@ public class Status extends BusinessEntity {
      * @param incompletionReasons The text to display in the summary of reports.
      */
     public void setIncompletionReasons(final List<IncompletionReason> incompletionReasons) {
-        this.incompletionReasons = incompletionReasons;
+        //add new line if length > 30 chars
+        List<IncompletionReason> incompletionReasonsResult = new ArrayList<IncompletionReason>();
+        Queue<Integer> blankPos = new LinkedList<Integer>();
+        for(IncompletionReason incompleteReason: incompletionReasons) {
+            String desc = incompleteReason.getDescription();
+            if(desc != null && desc.length() > 30) {
+                ArrayList<Integer> blankPositions = findPositions(desc,' ');
+                desc = new StringBuilder(desc).insert(nearestValue(30, blankPositions), '\n').toString();
+                String[] parts = StringUtils.split(desc, '\n');
+
+                IncompletionReason r1 = new IncompletionReason();
+                r1.setCode(incompleteReason.getCode());
+                r1.setDescription(parts[0]);
+                incompletionReasonsResult.add(r1);
+
+                IncompletionReason blank = new IncompletionReason();
+                blank.setCode(UUID.randomUUID().toString());
+                incompletionReasonsResult.add(blank);
+                blankPos.add(incompletionReasonsResult.indexOf(blank));
+
+                IncompletionReason r2 = new IncompletionReason();
+                r2.setCode(incompleteReason.getCode());
+                r2.setDescription(parts[1]);
+                incompletionReasonsResult.add(r2);
+
+            }
+        }
+        for(IncompletionReason incompleteReason: incompletionReasons) {
+            if(!incompletionReasonsResult.contains(incompleteReason)) {
+                int pos = incompletionReasonsResult.size();
+                if(!blankPos.isEmpty()) {
+                    pos = blankPos.poll();
+                    incompletionReasonsResult.set(pos, incompleteReason);
+                } else {
+                    incompletionReasonsResult.add(pos, incompleteReason);
+                }
+            }
+        }
+        //incompletionReasonsResult.removeIf(r -> StringUtils.trimToNull(r.getCode()) == null);
+        this.incompletionReasons = incompletionReasonsResult;
     }
 
     /**
