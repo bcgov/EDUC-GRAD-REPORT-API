@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.model.common.support;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.nullSafe;
 
@@ -47,8 +48,8 @@ public class StringUtils {
         }
     }
 
-    public static ArrayList<Integer> findPositions(String string, char character) {
-        ArrayList<Integer> positions = new ArrayList<>();
+    public static List<Integer> findPositions(String string, char character) {
+        List<Integer> positions = new ArrayList<>();
         for (int i = 0; i < string.length(); i++) {
             if (string.charAt(i) == character) {
                 positions.add(i);
@@ -57,7 +58,7 @@ public class StringUtils {
         return positions;
     }
 
-    public static int nearestValue(int value, ArrayList<Integer> List) {
+    public static int nearestValue(int value, List<Integer> List) {
         int lo = 0;
         int hi = List.size() - 1;
         int lastValue = 0;

@@ -128,12 +128,12 @@ public class Status extends BusinessEntity {
      */
     public void setIncompletionReasons(final List<IncompletionReason> incompletionReasons) {
         //add new line if length > 30 chars
-        List<IncompletionReason> incompletionReasonsResult = new ArrayList<IncompletionReason>();
-        Queue<Integer> blankPos = new LinkedList<Integer>();
+        List<IncompletionReason> incompletionReasonsResult = new ArrayList<>();
+        Queue<Integer> blankPos = new LinkedList<>();
         for(IncompletionReason incompleteReason: incompletionReasons) {
             String desc = incompleteReason.getDescription();
             if(desc != null && desc.length() > 48) {
-                ArrayList<Integer> blankPositions = findPositions(desc,' ');
+                List<Integer> blankPositions = findPositions(desc,' ');
                 desc = new StringBuilder(desc).insert(nearestValue(48, blankPositions), '\n').toString();
                 String[] parts = StringUtils.split(desc, '\n');
 
@@ -165,7 +165,6 @@ public class Status extends BusinessEntity {
                 }
             }
         }
-        //incompletionReasonsResult.removeIf(r -> StringUtils.trimToNull(r.getCode()) == null);
         this.incompletionReasons = incompletionReasonsResult;
     }
 
