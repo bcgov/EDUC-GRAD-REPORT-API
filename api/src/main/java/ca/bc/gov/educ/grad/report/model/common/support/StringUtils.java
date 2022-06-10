@@ -58,14 +58,14 @@ public class StringUtils {
         return positions;
     }
 
-    public static int nearestValue(int value, List<Integer> List) {
+    public static int nearestValue(int value, List<Integer> source) {
         int lo = 0;
-        int hi = List.size() - 1;
+        int hi = source.size() - 1;
         int lastValue = 0;
 
         while (lo <= hi) {
             int mid = (lo + hi) / 2;
-            lastValue = List.get(mid);
+            lastValue = source.get(mid);
             if (value < lastValue) {
                 hi = mid - 1;
             } else if (value > lastValue) {
