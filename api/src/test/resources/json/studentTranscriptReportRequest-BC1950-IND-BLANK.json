@@ -9,7 +9,7 @@
   "data": {
     "logo": "BC",
     "transcript": {
-      "interim": false,
+      "interim": true,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC1950-IND",

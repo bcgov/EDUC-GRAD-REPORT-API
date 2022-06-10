@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.common.support.StringUtils;
 
 import javax.xml.bind.annotation.*;
 import java.util.*;
@@ -187,6 +188,10 @@ public final class Student extends BusinessEntity {
      */
     public String getMiddleNames() {
         return nullSafe(this.middleNames);
+    }
+
+    public String getFullName() {
+        return (getLastName().trim() + (isBlank() ? "" : ", " ) + getFirstName().trim() + " " + getMiddleNames().trim()).toUpperCase();
     }
 
     public String getGender() {
@@ -1000,6 +1005,10 @@ public final class Student extends BusinessEntity {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" + "pen=" + pen + ", firstName=" + firstName + ", lastName=" + lastName + ", middleNames=" + middleNames + ", grade=" + grade + ", birthdate=" + birthdate + ", school=" + school + ", address=" + address + ", graduationProgram=" + graduationProgram + ", status=" + status + ", examinationResults=" + examinationResults + ", transcriptResults=" + transcriptResults + ", certificates=" + certificates + ", academicSession=" + academicSession + ", academicAward=" + academicAward + '}';
+    }
+
+    private boolean isBlank() {
+        return !StringUtils.StringUtilsIsNotBlank(getFirstName() + getLastName());
     }
 
 }
