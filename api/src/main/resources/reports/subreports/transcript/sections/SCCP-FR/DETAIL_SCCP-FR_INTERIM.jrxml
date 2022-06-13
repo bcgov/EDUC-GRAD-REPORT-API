@@ -12,6 +12,7 @@
 	<parameter name="P_SHORT_PAGE_ROWS" class="java.lang.Integer"/>
 	<parameter name="P_LONG_PAGE_ROWS" class="java.lang.Integer"/>
 	<parameter name="P_REPORT_INTERIM" class="java.lang.String"/>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
 	<field name="transcriptResult.courseName" class="java.lang.String">
 		<fieldDescription><![CDATA[courseName]]></fieldDescription>
 	</field>
@@ -201,7 +202,7 @@
 			</frame>
 		</band>
 		<band height="12">
-			<printWhenExpression><![CDATA[$V{PAGE_COUNT} >= $V{V_PAGE_BREAK}]]></printWhenExpression>
+			<printWhenExpression><![CDATA[$V{PAGE_COUNT} >= $V{V_PAGE_BREAK} && !$P{P_REPORT_BLANK}]]></printWhenExpression>
 			<textField>
 				<reportElement style="CourseRow" positionType="Float" x="0" y="0" width="251" height="12" uuid="e68e2cc0-4a89-4e25-98f5-fa31f6b763f7"/>
 				<textElement textAlignment="Left">
@@ -216,6 +217,7 @@
 	</detail>
 	<lastPageFooter>
 		<band height="12">
+			<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK}]]></printWhenExpression>
 			<textField>
 				<reportElement style="CourseRow" positionType="Float" x="0" y="0" width="251" height="12" uuid="533a5764-5c46-4db0-8fe7-e034e2251f1a"/>
 				<textElement textAlignment="Left">

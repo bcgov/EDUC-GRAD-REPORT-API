@@ -14,6 +14,7 @@
 	<parameter name="P_REPORT_DATE" class="java.lang.String"/>
 	<parameter name="P_STUDENT_FULL_NAME" class="java.lang.String"/>
 	<parameter name="P_PAGE_NUMBER" class="java.lang.Integer"/>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
 	<field name="student.PEN" class="java.lang.String">
 		<fieldDescription><![CDATA[student.PEN]]></fieldDescription>
 	</field>
@@ -80,7 +81,7 @@
 						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$P{P_REPORT_DATE}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[!$P{P_REPORT_BLANK} ? $P{P_REPORT_DATE} : ""]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="true">
 					<reportElement style="InfoBoxContent" isPrintRepeatedValues="false" x="74" y="12" width="54" height="13" uuid="b4ad2d0e-a2f5-4861-872d-ab7f98313277">
@@ -94,7 +95,7 @@
 					<textElement textAlignment="Center">
 						<paragraph leftIndent="0" rightIndent="0"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{V_BIRTHDATE}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[!$P{P_REPORT_BLANK} ? $V{V_BIRTHDATE} : ""]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="InfoBoxContent" isPrintRepeatedValues="false" x="0" y="60" width="212" height="13" uuid="58094311-097e-4c51-82d8-2e0bacfe3a19"/>
@@ -119,7 +120,7 @@
 					<box>
 						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textFieldExpression><![CDATA[($F{student.school.address.city} + ", " + $F{student.school.address.region}).toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[!$P{P_REPORT_BLANK} ? ($F{student.school.address.city} + ", " + $F{student.school.address.region}).toUpperCase() : ""]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="InfoBoxContent" isPrintRepeatedValues="false" x="157" y="84" width="55" height="13" uuid="e4740a10-7d40-4706-8e3e-5775abd973e6"/>

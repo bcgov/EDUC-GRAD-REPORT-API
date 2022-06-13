@@ -17,6 +17,7 @@
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
 	<field name="student.provinciallyExaminableCourses" class="java.util.List">
 		<fieldDescription><![CDATA[student.provinciallyExaminableCourses]]></fieldDescription>
 	</field>

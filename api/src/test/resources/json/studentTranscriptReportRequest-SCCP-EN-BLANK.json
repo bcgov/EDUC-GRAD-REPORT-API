@@ -1,0 +1,27 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "transcript",
+    "reportFile": "Transcript Report SCCP-EN BLANK.pdf"
+  },
+  "data": {
+    "logo": "BC",
+    "transcript": {
+      "interim": true,
+      "issueDate": "2021-04-26",
+      "code": {
+        "code": "SCCP-EN",
+        "description": "School Completion Certificate Program Transcript"
+      }
+    },
+    "gradProgram": {
+      "code": {
+        "code": "BLANK",
+        "description": "",
+        "credits": 0
+      }
+    }
+  }
+}

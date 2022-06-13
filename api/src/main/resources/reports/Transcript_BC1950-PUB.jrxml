@@ -72,6 +72,9 @@
 	<parameter name="P_REPORT_INTERIM" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+	</parameter>
 	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
@@ -89,6 +92,9 @@
 	</field>
 	<field name="student.middleNames" class="java.lang.String">
 		<fieldDescription><![CDATA[student.middleNames]]></fieldDescription>
+	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
 	</field>
 	<field name="student.birthdate" class="java.util.Date">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
@@ -133,8 +139,8 @@
 		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "Unofficial " : "") + "Transcript of Grades").toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_FULL_NAME" class="java.lang.String">
-		<variableExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></variableExpression>
-		<initialValueExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></initialValueExpression>
+		<variableExpression><![CDATA[$F{student.fullName}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.fullName}]]></initialValueExpression>
 	</variable>
 	<variable name="V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE" class="java.lang.String">
 		<initialValueExpression><![CDATA[$F{student.school.address.postalCode}.replaceAll("\\s","").toUpperCase()]]></initialValueExpression>
@@ -226,14 +232,14 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<reportElement x="0" y="254" width="567" height="357" uuid="e257ccaa-ab74-472b-8460-3afc9740edce"/>
 				<textField>
 					<reportElement style="CourseNameAdult" x="0" y="0" width="275" height="12" isRemoveLineWhenBlank="true" uuid="e62763d4-0bb5-4a5a-b5fd-8591195d7b2e">
-						<printWhenExpression><![CDATA[($V{PAGE_NUMBER} > Math.ceil( $F{student.provinciallyExaminableCourses}.size() / (double)10) || $F{student.provinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
+						<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK} && ($V{PAGE_NUMBER} > Math.ceil( $F{student.provinciallyExaminableCourses}.size() / (double)10) || $F{student.provinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
 					</reportElement>
 					<textFieldExpression><![CDATA[$R{text.footer.end}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="CourseNameAdult" x="0" y="177" width="275" height="12" isRemoveLineWhenBlank="true" uuid="6c6555e8-e594-4e49-a39c-96cf45015d9b">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-						<printWhenExpression><![CDATA[($V{PAGE_NUMBER} > Math.ceil( ($F{student.nonProvinciallyExaminableCourses}.size() + $V{V_GROUP_COUNT}) / (double)15)) || ($F{student.nonProvinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
+						<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK} && ($V{PAGE_NUMBER} > Math.ceil( ($F{student.nonProvinciallyExaminableCourses}.size() + $V{V_GROUP_COUNT}) / (double)15)) || ($F{student.nonProvinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
 					</reportElement>
 					<textFieldExpression><![CDATA[$R{text.footer.end}]]></textFieldExpression>
 				</textField>
@@ -300,6 +306,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_INTERIM">
 					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -342,6 +351,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_INTERIM">
 					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.provinciallyExaminableCourses})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_PROV_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -361,6 +373,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_INTERIM">
 					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.nonProvinciallyExaminableCourses})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_NONPROV_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
