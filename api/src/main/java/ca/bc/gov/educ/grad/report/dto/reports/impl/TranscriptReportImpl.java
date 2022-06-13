@@ -265,6 +265,15 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     }
 
     /**
+     * Returns true if the report is blank report.
+     *
+     * @return true The report is blank.
+     */
+    public final boolean isBlank() {
+        return this.graduationProgramCode != null && GraduationProgramCode.PROGRAM_BLANK.getCode().equalsIgnoreCase(this.graduationProgramCode.getCode());
+    }
+
+    /**
      * Inject the P_REPORT_PREVIEW parameter. Not used by certificate reports
      * but passed into the report anyway.
      */
@@ -273,6 +282,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
         super.preprocessParameters();
         setParameter("P_REPORT_PREVIEW", isPreview());
         setParameter("P_REPORT_INTERIM", isInterim());
+        setParameter("P_REPORT_BLANK", isBlank());
 
         if (!isFormat(XML)) {
             setParameter(P_REPORT_TYPE, getReportType());

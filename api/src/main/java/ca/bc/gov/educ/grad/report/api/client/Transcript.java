@@ -4,18 +4,20 @@ import ca.bc.gov.educ.grad.report.api.client.utils.TranscriptResultListDeseriali
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
 public class Transcript implements Serializable {
 
-    private String interim;
+    private String interim = "";
     private Date issueDate;
     private Code transcriptTypeCode;
-    private List<TranscriptResult> results;
+    private List<TranscriptResult> results = new ArrayList<>();
 
     public String getInterim() {
         return interim;
@@ -50,7 +52,7 @@ public class Transcript implements Serializable {
         return transcriptTypeCode;
     }
 
-    public void setTranscriptTypeCode(Code transcriptTypeCode) {
+    public void setTranscriptTypeCode(@NotNull Code transcriptTypeCode) {
         this.transcriptTypeCode = transcriptTypeCode;
     }
 }

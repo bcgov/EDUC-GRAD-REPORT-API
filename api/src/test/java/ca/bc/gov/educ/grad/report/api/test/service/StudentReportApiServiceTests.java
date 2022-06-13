@@ -14,7 +14,6 @@ import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
-import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
@@ -31,7 +30,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import javax.naming.NamingException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -74,7 +72,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Mock WebClient.ResponseSpec responseMock;
 
 	@Before
-	public void init() throws Exception {
+	public void init() {
 
 	}
 
@@ -91,9 +89,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentAchievementReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createStudentAchievementReport");
 	}
@@ -111,11 +109,31 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1950_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1950_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_IND_BLANK");
 	}
 
 	@Test
@@ -131,9 +149,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1950_IND");
 	}
@@ -151,9 +169,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU1950_PUB");
 	}
@@ -171,9 +189,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1986_PUB");
 	}
@@ -191,9 +209,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1986_IND");
 	}
@@ -211,9 +229,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU1986_PUB");
 	}
@@ -231,9 +249,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1996_PUB");
 	}
@@ -251,9 +269,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1996_IND");
 	}
@@ -271,9 +289,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU1996_PUB");
 	}
@@ -291,9 +309,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2004_IND");
 	}
@@ -311,9 +329,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2004_PUB");
 	}
@@ -331,9 +349,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU2004_PUB");
 	}
@@ -351,9 +369,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_PUB");
 	}
@@ -371,9 +389,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_IND");
 	}
@@ -391,9 +409,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_OFF");
 	}
@@ -411,9 +429,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_PF");
 	}
@@ -431,9 +449,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU2018_PUB");
 	}
@@ -451,9 +469,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_SCCP_EN");
 	}
@@ -471,9 +489,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_SCCP_PF");
 	}
@@ -491,9 +509,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_NOPROG");
 	}
@@ -511,9 +529,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_E");
 	}
@@ -531,9 +549,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EO");
 	}
@@ -551,9 +569,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EB");
 	}
@@ -571,9 +589,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_A");
 	}
@@ -591,9 +609,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_AB");
 	}
@@ -611,9 +629,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_AIB");
 	}
@@ -631,9 +649,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EI");
 	}
@@ -651,9 +669,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EIB");
 	}
@@ -671,9 +689,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EIO");
 	}
@@ -691,9 +709,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_AI");
 	}
@@ -711,9 +729,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SC");
 	}
@@ -731,9 +749,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCB");
 	}
@@ -751,9 +769,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCO");
 	}
@@ -771,9 +789,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_S");
 	}
@@ -791,9 +809,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SB");
 	}
@@ -811,9 +829,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SO");
 	}
@@ -831,9 +849,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_F");
 	}
@@ -851,9 +869,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_FB");
 	}
@@ -871,9 +889,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_FO");
 	}
@@ -891,9 +909,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCF");
 	}
@@ -911,9 +929,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCF");
 	}
@@ -931,9 +949,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCFO");
 	}
@@ -951,9 +969,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_O");
 	}
@@ -971,9 +989,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_OB");
 	}
@@ -991,9 +1009,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_OO");
 	}
@@ -1011,9 +1029,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createSchoolDistributionReport");
 	}
@@ -1031,9 +1049,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentNonGradReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createStudentNonGradReport");
 	}
@@ -1083,9 +1101,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentXmlTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createXmlTranscriptReport");
 	}
@@ -1141,7 +1159,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		testPackingSlipReport(
 				rds,
 				orderType,
-				DestinationType.PSI,
 				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
 				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
@@ -1154,7 +1171,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		testPackingSlipReport(
 				rds,
 				orderType,
-				DestinationType.PSI,
 				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
 				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
@@ -1167,7 +1183,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		testPackingSlipReport(
 				rds,
 				orderType,
-				DestinationType.PSI,
 				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
 				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
@@ -1178,7 +1193,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	private void testPackingSlipReport(
 			final List<ReportDocument> rds,
 			final OrderType orderType,
-			final DestinationType destinationType,
 			final int quantity,
 			final int current,
 			final int total)
@@ -1194,9 +1208,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		);
 
 		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
-		byte[] bArrray = (byte[]) packingSlip.asBytes();
+		byte[] bArray = packingSlip.asBytes();
 		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 	}
 
@@ -1207,7 +1221,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	 * @param orderType The type of report document to bundle (transcript or
 	 * certificate).
 	 *
-	 * @throws NamingException Could not find service.
 	 * @throws IOException Could not generate bundle.
 	 */
 	private DocumentBundle createDocumentBundle(

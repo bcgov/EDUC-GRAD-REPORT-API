@@ -12,28 +12,28 @@ import java.util.List;
 
 public class Student implements Serializable {
 
-    private Pen pen;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String gender;
+    private Pen pen = new Pen();
+    private String firstName = "";
+    private String middleName = "";
+    private String lastName = "";
+    private String gender = "";
     private Date birthdate;
-    private Address address;
-    private String grade;
-    private String gradProgram;
-    private String studStatus;
-    private String sccDate;
-    private String mincodeGrad;
-    private String englishCert;
-    private String frenchCert;
+    private Address address = new Address();
+    private String grade = "";
+    private String gradProgram = "";
+    private String studStatus = "";
+    private String sccDate = "";
+    private String mincodeGrad = "";
+    private String englishCert = "";
+    private String frenchCert = "";
 
-    private String localId;
-    private String hasOtherProgram;
+    private String localId = "";
+    private String hasOtherProgram = "";
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
     private List<NonGradReason> nonGradReasons = new ArrayList<>();
 
     @JsonDeserialize(as = GraduationData.class)
-    private GraduationData graduationData;
+    private GraduationData graduationData = new GraduationData();
 
     @JsonDeserialize(as = Pen.class)
     public Pen getPen() {

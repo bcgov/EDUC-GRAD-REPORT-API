@@ -3,24 +3,24 @@ package ca.bc.gov.educ.grad.report.api.client;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-
 
 public class School implements Serializable {
 
-    private String mincode;
-    private String name;
-    private String typeIndicator;
-    private String typeBanner;
-    private String signatureCode;
-    private String distno;
-    private String schlno;
-    private String schoolCategoryCode;
-    private Address address;
+    private String mincode = "";
+    private String name = "";
+    private String typeIndicator = "";
+    private String typeBanner = "";
+    private String signatureCode = "";
+    private String distno = "";
+    private String schlno = "";
+    private String schoolCategoryCode = "";
+    private Address address = new Address();
     private String phoneNumber = "";
     private String dogwoodElig = "";
 
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();
 
     public String getMincode() {
         return mincode;

@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 
 public class Address implements Serializable {
-    private String streetLine1;
-    private String streetLine2;
-    private String city;
-    private String region;
-    private String country;
-    private String code;
+    private String streetLine1 = "";
+    private String streetLine2 = "";
+    private String city = "";
+    private String region = "";
+    private String country = "";
+    private String code = "";
 
     public String getStreetLine1() {
         return streetLine1;

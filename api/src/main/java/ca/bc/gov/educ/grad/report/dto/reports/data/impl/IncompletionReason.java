@@ -22,6 +22,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import java.util.Objects;
 
 /**
  * Represents a reason a student did not meet graduation requirements.
@@ -84,6 +85,19 @@ public class IncompletionReason extends BusinessEntity {
      */
     public String getDescription() {
         return nullSafe(this.description);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        IncompletionReason that = (IncompletionReason) o;
+        return Objects.equals(code, that.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code);
     }
 
     /**

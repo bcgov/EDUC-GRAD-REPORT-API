@@ -5,13 +5,13 @@ import java.io.Serializable;
 
 public class AssessmentResult implements Serializable {
 
-    private String assessmentName;
-    private String assessmentCode;
-    private String proficiencyScore;
-    private String sessionDate;
-    private String gradReqMet;
-    private String specialCase;
-    private String exceededWriteFlag;
+    private String assessmentName = "";
+    private String assessmentCode = "";
+    private String proficiencyScore = "";
+    private String sessionDate = "";
+    private String gradReqMet = "";
+    private String specialCase = "";
+    private String exceededWriteFlag = "";
     private Boolean projected;
 
     public String getAssessmentName() {
