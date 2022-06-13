@@ -15,7 +15,7 @@ public class EducGradSignatureImageApiConstants {
     public static final String API_ROOT_MAPPING = "";
     public static final String API_VERSION = "v1";
     public static final String API_ROOT_CONTEXT_MAPPING = "/api/" + API_VERSION;
-    public static final String GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING = API_ROOT_CONTEXT_MAPPING + "/signatures" ;
+    public static final String GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING = API_ROOT_CONTEXT_MAPPING + "/reports/signatures" ;
     public static final String GET_SIGNATURE_IMAGE_BY_CODE = "/{signCode}";
     public static final String SAVE_SIGNATURE_IMAGE = "/save";
     public static final String SAVE_SIGNATURE_BLOCK_TYPE_CODE = "/saveSignatureBlockTypeCode";
