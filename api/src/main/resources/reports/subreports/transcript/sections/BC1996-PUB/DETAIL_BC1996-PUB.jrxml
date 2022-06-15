@@ -11,6 +11,7 @@
 	<parameter name="P_TOTAL_ROWS" class="java.lang.Integer"/>
 	<parameter name="P_SHORT_PAGE_ROWS" class="java.lang.Integer"/>
 	<parameter name="P_LONG_PAGE_ROWS" class="java.lang.Integer"/>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
 	<field name="transcriptResult.courseName" class="java.lang.String">
 		<fieldDescription><![CDATA[courseName]]></fieldDescription>
 	</field>

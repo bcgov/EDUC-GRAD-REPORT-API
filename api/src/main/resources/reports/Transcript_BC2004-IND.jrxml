@@ -75,6 +75,9 @@
 	<parameter name="P_REPORT_INTERIM" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
 	</parameter>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+	</parameter>
 	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
 	</field>
@@ -92,6 +95,9 @@
 	</field>
 	<field name="student.middleNames" class="java.lang.String">
 		<fieldDescription><![CDATA[student.middleNames]]></fieldDescription>
+	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
 	</field>
 	<field name="student.birthdate" class="java.util.Date">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
@@ -136,8 +142,8 @@
 		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "Unofficial " : "") + "Transcript of Grades").toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_FULL_NAME" class="java.lang.String">
-		<variableExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></variableExpression>
-		<initialValueExpression><![CDATA[($F{student.lastName}.trim() + ", " + $F{student.firstName}.trim() + " " + $F{student.middleNames}.trim()).toUpperCase()]]></initialValueExpression>
+		<variableExpression><![CDATA[$F{student.fullName}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.fullName}]]></initialValueExpression>
 	</variable>
 	<variable name="V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE" class="java.lang.String">
 		<initialValueExpression><![CDATA[$F{student.school.address.postalCode}.replaceAll("\\s","").toUpperCase()]]></initialValueExpression>
@@ -313,6 +319,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_PAGE_NUMBER">
 					<subreportParameterExpression><![CDATA[(($F{student.provinciallyExaminableCourses}.size() >= 11) || ($F{student.nonProvinciallyExaminableCourses}.size() >= 15)) ?  $V{PAGE_NUMBER} : null]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -383,6 +392,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_INTERIM">
 					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource("Regular".equals( $P{P_TRANSCRIPT_TYPE} ) ? $F{student.transcriptResults} : java.util.Arrays.asList( $F{student} ))]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -417,6 +429,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_INTERIM">
 					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.transcriptResults})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
