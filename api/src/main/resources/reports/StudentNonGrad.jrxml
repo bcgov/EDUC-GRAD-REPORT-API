@@ -417,7 +417,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{gradProgram}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{gradProgram} != null ? $F{gradProgram}.substring(0, 4) : ""]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
