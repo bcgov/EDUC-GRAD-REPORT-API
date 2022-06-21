@@ -53,9 +53,9 @@ public abstract class GradReportServiceImpl implements Serializable {
     @Autowired
     private GradDataConvertionBean gradDataConvertionBean;
     @Autowired
-    private WebClient webClient;
+    private transient WebClient webClient;
     @Autowired
-    private EducGradReportApiConstants constants;
+    private transient EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters createParameters() {
@@ -352,9 +352,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         try {
             return webClient.get()
                     .uri(String.format(constants.getSchoolDetails(), minCode))
-                    .headers(h -> {
-                        h.setBearerAuth(accessToken);
-                    })
+                    .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(TraxSchool.class)
                     .block();
