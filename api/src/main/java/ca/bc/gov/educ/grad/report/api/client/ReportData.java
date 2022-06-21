@@ -84,6 +84,8 @@ public class ReportData implements Serializable {
 
 	@JsonIgnore
 	private Map<String, String> parameters = new HashMap<>();
+	@JsonIgnore
+	private String accessToken = "accessToken";
 
 	public Student getStudent() {
 		return student;
@@ -259,5 +261,13 @@ public class ReportData implements Serializable {
 
 	public void setParameters(Map<String, String> parameters) {
 		this.parameters = parameters;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
 }

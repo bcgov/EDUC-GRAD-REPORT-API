@@ -33,7 +33,6 @@ import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
-import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -111,11 +110,9 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     @Autowired
     private ReportService reportService;
-    @Autowired
-    private GradReportCodeService codeService;
 
     @Autowired
-    GradDataConvertionBean gradDataConvertionBean;
+    private GradDataConvertionBean gradDataConvertionBean;
 
     /**
      * Creates the student's official transcript as a PDF (no other formats are
@@ -683,7 +680,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Transcript transcript = getTranscript(pen, interim);
 
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
-        final School school = adaptSchool(studentInfo);
+        final School school = adaptSchool(studentInfo, getAccessToken(), true);
 
         final GradProgram program = createGradProgram(programCode);
         final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);

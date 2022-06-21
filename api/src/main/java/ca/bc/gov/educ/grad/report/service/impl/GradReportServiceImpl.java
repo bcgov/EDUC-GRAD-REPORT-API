@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
@@ -16,7 +17,9 @@ import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
@@ -39,15 +42,20 @@ public abstract class GradReportServiceImpl implements Serializable {
     private static final String CLASSNAME = StudentAchievementServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
+    private static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
 
     private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 
     @Autowired
     private ReportService reportService;
     @Autowired
-    GradReportCodeService codeService;
+    private GradReportCodeService codeService;
     @Autowired
-    GradDataConvertionBean gradDataConvertionBean;
+    private GradDataConvertionBean gradDataConvertionBean;
+    @Autowired
+    private WebClient webClient;
+    @Autowired
+    private EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters createParameters() {
@@ -64,6 +72,27 @@ public abstract class GradReportServiceImpl implements Serializable {
         //final URL url = getReportResource(resource);
         URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
         return url.openStream();
+    }
+
+    String getAccessToken() throws DomainServiceException {
+        final String methodName = "getAccessToken()";
+        LOG.entering(CLASSNAME, methodName);
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+
+        String accessToken = reportData.getAccessToken();
+        assert accessToken != null;
+        LOG.exiting(CLASSNAME, methodName);
+        return accessToken;
     }
 
     PersonalEducationNumber getStudentPEN() throws DomainServiceException {
@@ -230,13 +259,40 @@ public abstract class GradReportServiceImpl implements Serializable {
      *
      * @param studentInfo
      */
-    School adaptSchool(final StudentInfo studentInfo) {
+    School adaptSchool(final StudentInfo studentInfo, String accessToken, boolean checkEligibility) {
         final String m_ = "adaptSchool(StudentInfo)";
         LOG.entering(CLASSNAME, m_, studentInfo);
 
-        final SchoolImpl school = new SchoolImpl();
+        SchoolImpl school = new SchoolImpl();
+        if(checkEligibility) {
+            TraxSchool traxSchool = getSchool(studentInfo.getMincode(), accessToken);
+            if (traxSchool != null && "N".equalsIgnoreCase(traxSchool.getTranscriptEligibility())) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        getClass(),
+                        REPORT_DATA_VALIDATION,
+                        "School is not eligible for transcripts");
+                LOG.throwing(CLASSNAME, m_, dse);
+                throw dse;
+            }
+            if (traxSchool != null) {
+                populateSchoolFromTraxSchool(school, traxSchool);
+                school.setTypeIndicator(studentInfo.getSchoolTypeIndicator());
+                school.setTypeBanner(studentInfo.getSchoolTypeBanner());
+            } else {
+                populateSchoolFromStudentInfo(school, studentInfo);
+            }
+        } else {
+            populateSchoolFromStudentInfo(school, studentInfo);
+        }
+
+        LOG.exiting(CLASSNAME, m_);
+        return school;
+    }
+
+    void populateSchoolFromStudentInfo(SchoolImpl school, StudentInfo studentInfo) {
         school.setMincode(studentInfo.getMincode());
         school.setName(studentInfo.getSchoolName());
+
         school.setTypeIndicator(studentInfo.getSchoolTypeIndicator());
         school.setTypeBanner(studentInfo.getSchoolTypeBanner());
 
@@ -246,10 +302,21 @@ public abstract class GradReportServiceImpl implements Serializable {
         address.setCity(studentInfo.getSchoolCity());
         address.setPostalCode(studentInfo.getSchoolPostalCode());
         address.setProvince(studentInfo.getSchoolProv());
+        address.setCountry(studentInfo.getCountryCode());
         school.setAddress(address);
+    }
 
-        LOG.exiting(CLASSNAME, m_);
-        return school;
+    void populateSchoolFromTraxSchool(SchoolImpl school, TraxSchool traxSchool) {
+        school.setMincode(traxSchool.getMinCode());
+        school.setName(traxSchool.getSchoolName());
+        final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
+        address.setStreetLine1(traxSchool.getAddress1());
+        address.setStreetLine2(traxSchool.getAddress2());
+        address.setCity(traxSchool.getCity());
+        address.setPostalCode(traxSchool.getPostal());
+        address.setProvince(traxSchool.getProvCode());
+        address.setCountry(traxSchool.getCountryCode());
+        school.setAddress(address);
     }
 
     /**
@@ -279,5 +346,21 @@ public abstract class GradReportServiceImpl implements Serializable {
         LOG.exiting(CLASSNAME, methodName);
         return result;
 
+    }
+
+    TraxSchool getSchool(String minCode, String accessToken) {
+        try {
+            return webClient.get()
+                    .uri(String.format(constants.getSchoolDetails(), minCode))
+                    .headers(h -> {
+                        h.setBearerAuth(accessToken);
+                    })
+                    .retrieve()
+                    .bodyToMono(TraxSchool.class)
+                    .block();
+        } catch (Exception ex) {
+            LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
+            return null;
+        }
     }
 }

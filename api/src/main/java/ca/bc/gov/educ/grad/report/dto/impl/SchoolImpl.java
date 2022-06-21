@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
@@ -28,7 +29,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  *
  * @author CGI Information Management Consultants Inc.
  */
-
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PostalAddressImpl.class)
+})
 public class SchoolImpl extends AbstractDomainEntity implements School {
 
     private static final long serialVersionUID = 4L;
@@ -45,6 +48,9 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     private String phoneNumber = "";
     private String dogwoodElig = "";
 
+    private String transcriptElig = "";
+    private String certificateElig = "";
+
     public void setAddress(final PostalAddress address) {
         this.address = address;
     }
@@ -57,6 +63,7 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
         return address;
     }
 
+    @JsonProperty("minCode")
     public String getMincode() {
         return mincode;
     }
@@ -107,12 +114,12 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     }
 
     @Override
+    @JsonProperty("schoolName")
     public String getName() {
         return this.name;
     }
 
     @Override
-    @JsonProperty("address")
     @JsonDeserialize(as = PostalAddressImpl.class)
     public PostalAddress getPostalAddress() {
         return this.address;
@@ -158,6 +165,24 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @JsonProperty("transcriptEligibility")
+    public String getTranscriptElig() {
+        return transcriptElig;
+    }
+
+    public void setTranscriptElig(String transcriptElig) {
+        this.transcriptElig = transcriptElig;
+    }
+
+    @JsonProperty("certificateEligibility")
+    public String getCertificateElig() {
+        return certificateElig;
+    }
+
+    public void setCertificateElig(String certificateElig) {
+        this.certificateElig = certificateElig;
     }
 
     @Override

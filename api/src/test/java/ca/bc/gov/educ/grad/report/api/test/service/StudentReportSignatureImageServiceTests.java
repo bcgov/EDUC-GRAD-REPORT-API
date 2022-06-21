@@ -7,7 +7,7 @@ import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
-import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -43,7 +43,8 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 	@MockBean SignatureImageRepository signatureImageRepository;
 
 	@MockBean WebClient webClient;
-	@Autowired	EducGradSignatureImageApiConstants constants;
+	@Autowired
+    EducGradReportApiConstants constants;
 
 	@Mock WebClient.RequestHeadersSpec requestHeadersMock;
 	@Mock WebClient.RequestHeadersUriSpec requestHeadersUriMock;

@@ -3,7 +3,7 @@ package ca.bc.gov.educ.grad.report.api.config;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
-import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,7 +42,7 @@ public class GradReportSignatureRequestFilter extends OncePerRequestFilter {
         }
 
         String contentPath = httpServletRequest.getRequestURI();
-        if(!StringUtils.contains(contentPath, EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
+        if(!StringUtils.contains(contentPath, EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
@@ -53,7 +53,7 @@ public class GradReportSignatureRequestFilter extends OncePerRequestFilter {
             return;
         }
 
-        String signatureCode = StringUtils.substringAfter(contentPath, EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/");
+        String signatureCode = StringUtils.substringAfter(contentPath, EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/");
         GradReportSignatureImageEntity signatureImage = signatureImageRepository.findBySignatureCode(signatureCode);
         if(signatureImage == null) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);

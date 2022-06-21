@@ -17,7 +17,7 @@ public class EntityNotFoundException extends RuntimeException {
 
     private static String generateMessage(String entity, Map<String, String> searchParams) {
         return StringUtils.capitalize(entity) +
-                " was not found for parameters " +
+                " throws error for conditions " +
                 searchParams;
     }
 

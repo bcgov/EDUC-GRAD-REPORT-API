@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 @Getter
 @Setter
-public class EducGradSignatureImageApiConstants {
+public class EducGradReportApiConstants {
     //API end-point Mapping constants
     public static final String API_ROOT_MAPPING = "";
     public static final String API_VERSION = "v1";
@@ -35,5 +35,8 @@ public class EducGradSignatureImageApiConstants {
 
     @Value("${endpoint.educ-grad-trax-api.get-district-details.url}")
     private String districtDetails;
+
+    @Value("${endpoint.educ-grad-trax-api.school-by-min-code.url}")
+    private String schoolDetails;
 
 }
