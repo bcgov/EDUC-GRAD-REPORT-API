@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
@@ -64,7 +65,7 @@ import static java.util.Locale.CANADA_FRENCH;
  */
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
-public class GradCertificateServiceImpl
+public class GradCertificateServiceImpl extends GradReportServiceImpl
         implements GradCertificateService, Serializable {
 
     private static final long serialVersionUID = 2L;
@@ -100,9 +101,21 @@ public class GradCertificateServiceImpl
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
+        String accessToken = reportData.getAccessToken();
+
         // validate incoming data for reporting
         final Student student = gradDataConvertionBean.getStudent(reportData); //validated
         final School school = gradDataConvertionBean.getSchool(reportData); //validated
+
+        TraxSchool traxSchool = getSchool(school.getMinistryCode(), accessToken);
+        if (traxSchool != null && "N".equalsIgnoreCase(traxSchool.getCertificateEligibility())) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_VALIDATION,
+                    "School is not eligible for certificates");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
 
         final CertificateImpl certificate = (CertificateImpl)gradDataConvertionBean.getCertificate(reportData.getCertificate());
         if (certificate == null) {

@@ -682,6 +682,28 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReport_NOTELIG_E() throws Exception {
+		LOG.debug("<{}.createCertificateReport_NOTELIG_E at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
+		school.setCertificateEligibility("N");
+		mockTraxSchool(school);
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
+		assertEquals(500, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		String bodyResponse = new String(response.getBody());
+		LOG.debug(bodyResponse);
+		assertTrue(StringUtils.contains(bodyResponse, "School is not eligible for certificates"));
+		LOG.debug(">createCertificateReport_NOTELIG_E");
+	}
+
+	@Test
 	public void createCertificateReport_E() throws Exception {
 		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
@@ -689,6 +711,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -709,6 +732,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -729,6 +753,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -749,6 +774,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -769,6 +795,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -789,6 +816,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -809,6 +837,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -829,6 +858,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -849,6 +879,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -869,6 +900,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -889,6 +921,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -909,6 +942,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -929,6 +963,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -949,6 +984,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -969,6 +1005,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -989,6 +1026,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1009,6 +1047,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1029,6 +1068,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1049,6 +1089,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1069,6 +1110,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1089,6 +1131,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1109,6 +1152,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1129,6 +1173,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1149,6 +1194,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1169,6 +1215,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
@@ -1189,6 +1236,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);
@@ -1209,6 +1257,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentNonGradReport(reportRequest);
@@ -1293,6 +1342,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(eCertificateReportRequest);
 		assertNotNull(eCertificateReportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(eCertificateReportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(eCertificateReportRequest.getData());
 
 		eCertificateReportRequest.getOptions().setReportFile("Certificate E Report.pdf");
@@ -1303,8 +1353,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(sccpTranscriptReportRequest);
 		assertNotNull(sccpTranscriptReportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(sccpTranscriptReportRequest.getData());
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(sccpTranscriptReportRequest.getData())));
+		ReportRequestDataThreadLocal.setGenerateReportData(sccpTranscriptReportRequest.getData());
 
 		sccpTranscriptReportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
 		StudentTranscriptReport sccpTranscriptReport = apiReportService.getStudentTranscriptReportDocument(sccpTranscriptReportRequest);

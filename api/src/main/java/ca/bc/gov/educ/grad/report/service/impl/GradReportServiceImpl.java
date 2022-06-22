@@ -41,10 +41,10 @@ public abstract class GradReportServiceImpl implements Serializable {
 
     private static final String CLASSNAME = StudentAchievementServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
-    private static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
-
     private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
+
+    static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
+    static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
 
     @Autowired
     private ReportService reportService;
