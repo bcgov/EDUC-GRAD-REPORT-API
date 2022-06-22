@@ -3,7 +3,7 @@ package ca.bc.gov.educ.grad.report.api.controller;
 import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
-import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
@@ -36,7 +36,7 @@ public abstract class BaseController {
         }
 
         String contentPath = httpServletRequest.getRequestURI();
-        if(StringUtils.contains(contentPath, EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
+        if(StringUtils.contains(contentPath, EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
             return;
         }
 
@@ -57,7 +57,7 @@ public abstract class BaseController {
                 log.error("Unable to determine hostname for the request", e);
             }
             int port = httpServletRequest.getServerPort();
-            String path = EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
+            String path = EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/#signatureCode#";
             String method = httpServletRequest.getMethod();
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;

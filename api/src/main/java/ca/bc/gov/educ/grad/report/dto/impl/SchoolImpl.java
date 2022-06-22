@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
@@ -28,7 +29,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  *
  * @author CGI Information Management Consultants Inc.
  */
-
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PostalAddressImpl.class)
+})
 public class SchoolImpl extends AbstractDomainEntity implements School {
 
     private static final long serialVersionUID = 4L;
@@ -57,6 +60,7 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
         return address;
     }
 
+    @JsonProperty("minCode")
     public String getMincode() {
         return mincode;
     }
@@ -107,12 +111,12 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     }
 
     @Override
+    @JsonProperty("schoolName")
     public String getName() {
         return this.name;
     }
 
     @Override
-    @JsonProperty("address")
     @JsonDeserialize(as = PostalAddressImpl.class)
     public PostalAddress getPostalAddress() {
         return this.address;

@@ -6,7 +6,7 @@ import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
-import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,9 @@ public class GradReportSignatureService {
     GradReportSignatureTransformer gradReportSignatureTransformer;
 
     @Autowired WebClient webClient;
-    @Autowired EducGradSignatureImageApiConstants constants;
+
+    @Autowired
+    EducGradReportApiConstants constants;
 
     @Transactional
     public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
