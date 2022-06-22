@@ -48,9 +48,6 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     private String phoneNumber = "";
     private String dogwoodElig = "";
 
-    private String transcriptElig = "";
-    private String certificateElig = "";
-
     public void setAddress(final PostalAddress address) {
         this.address = address;
     }
@@ -165,24 +162,6 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @JsonProperty("transcriptEligibility")
-    public String getTranscriptElig() {
-        return transcriptElig;
-    }
-
-    public void setTranscriptElig(String transcriptElig) {
-        this.transcriptElig = transcriptElig;
-    }
-
-    @JsonProperty("certificateEligibility")
-    public String getCertificateElig() {
-        return certificateElig;
-    }
-
-    public void setCertificateElig(String certificateElig) {
-        this.certificateElig = certificateElig;
     }
 
     @Override
