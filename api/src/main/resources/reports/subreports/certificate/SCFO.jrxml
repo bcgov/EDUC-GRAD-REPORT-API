@@ -107,6 +107,7 @@
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="9" y="67" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -125,6 +126,7 @@
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
 				</textField>
 				<frame>
@@ -157,6 +159,7 @@
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="235" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.school}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -168,6 +171,7 @@
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="45" width="235" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.date}]]></textFieldExpression>
 				</textField>
 			</frame>

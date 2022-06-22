@@ -151,6 +151,7 @@
 					<reportElement style="SignatoryTitle" x="0" y="32" width="194" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -168,6 +169,7 @@
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -194,10 +196,12 @@
 					<reportElement style="OrgDate" x="0" y="28" width="241" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="241" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.school}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -209,12 +213,14 @@
 					<reportElement style="OrgDate" x="0" y="30" width="241" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}.format( $F{issued} ).toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="45" width="241" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.date}]]></textFieldExpression>
 				</textField>
 			</frame>
