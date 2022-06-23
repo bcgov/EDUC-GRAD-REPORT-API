@@ -122,7 +122,7 @@
 					<imageExpression><![CDATA[""]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="0" y="54" width="264" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
+					<reportElement style="SignatoryTitle" x="0" y="54" width="278" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
@@ -149,6 +149,7 @@
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="241" height="16" uuid="5b07d5d0-b45a-440a-b89d-47eec90e43d5"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.principal.school}]]></textFieldExpression>
 				</textField>
 			</frame>

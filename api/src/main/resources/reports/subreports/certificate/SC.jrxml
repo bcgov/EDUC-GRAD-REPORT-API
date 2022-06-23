@@ -137,6 +137,7 @@
 				<reportElement style="Body" x="77" y="279" width="639" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$R{header.certify.suffix.SC}]]></textFieldExpression>
 			</textField>
 			<frame>

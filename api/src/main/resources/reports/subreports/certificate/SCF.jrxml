@@ -122,7 +122,7 @@
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + "")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="0" y="54" width="264" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
+					<reportElement style="SignatoryTitle" x="0" y="54" width="278" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
@@ -140,6 +140,7 @@
 				<reportElement x="505" y="399" width="235" height="56" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="28" width="235" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -152,6 +153,7 @@
 				<reportElement x="505" y="496" width="235" height="61" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="33" width="235" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}.format( $F{issued} ).toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
