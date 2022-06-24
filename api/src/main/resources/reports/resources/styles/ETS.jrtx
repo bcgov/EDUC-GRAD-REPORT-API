@@ -36,7 +36,6 @@
 		<paragraph lineSpacing="Proportional" lineSpacingSize="1.2"/>
 	</style>
 	<style name="SummaryBody" style="StaticText" fontSize="9"/>
-	<style name="SummaryBody2018" style="StaticText" fontSize="8.5"/>
 	<style name="SummaryTitle" style="Title" fontSize="10"/>
 	<style name="InfoHeader" style="StaticText" vTextAlign="Top" isBold="true"/>
 	<style name="InfoContent" style="StaticText" vTextAlign="Top"/>
