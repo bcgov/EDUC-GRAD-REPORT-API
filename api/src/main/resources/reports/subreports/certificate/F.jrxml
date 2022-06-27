@@ -105,7 +105,7 @@
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + "")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="9" y="67" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
+					<reportElement style="SignatoryTitle" x="9" y="67" width="225" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
 				</textField>
