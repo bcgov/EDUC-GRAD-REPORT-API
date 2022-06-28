@@ -15,6 +15,8 @@ import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
+import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
+import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
@@ -61,6 +63,9 @@ public class GradReportService {
 
 	@Autowired
 	SchoolDistributionService schoolDistributionService;
+
+	@Autowired
+	SchoolGraduationService schoolGraduationService;
 
 	@Autowired
 	StudentNonGradService studentNonGradService;
@@ -261,6 +266,26 @@ public class GradReportService {
 		return response;
 	}
 
+	public ResponseEntity<byte[]> getSchoolGraduationReport(ReportRequest reportRequest) {
+		String methodName = "getSchoolGraduationReport(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			SchoolGraduationReport schoolGraduationReport = getSchoolGraduationReportDocument(reportRequest);
+			byte[] resultBinary = schoolGraduationReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public ResponseEntity<byte[]> getStudentNonGradReport(ReportRequest reportRequest) {
 		String methodName = "getStudentNonGradReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -288,6 +313,15 @@ public class GradReportService {
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
+	}
+
+	public SchoolGraduationReport getSchoolGraduationReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getSchoolGraduationReportDocument(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		return (SchoolGraduationReport)schoolGraduationService.buildSchoolGraduationReport();
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {

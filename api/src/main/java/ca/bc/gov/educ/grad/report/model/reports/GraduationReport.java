@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface DistributionReport extends SchoolReport {
+public interface GraduationReport extends SchoolReport {
 
     /**
      * Sets the student to use for populating the reports.
