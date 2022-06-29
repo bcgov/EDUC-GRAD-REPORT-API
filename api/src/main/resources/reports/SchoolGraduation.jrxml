@@ -186,11 +186,11 @@
 					<datasetRun subDataset="studentDataset" uuid="5614a4c2-839f-425f-99e6-f6099ccb7441">
 						<dataSourceExpression><![CDATA[$P{students}]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
+					<jr:column width="70" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
 						<jr:columnHeader height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="90" height="35" uuid="24558155-c79d-4600-bb78-8880dd2a00b9"/>
+								<reportElement style="StaticText" x="0" y="0" width="70" height="35" uuid="24558155-c79d-4600-bb78-8880dd2a00b9"/>
 								<box padding="1">
 									<pen lineWidth="1.0" lineStyle="Dashed"/>
 									<topPen lineWidth="1.0" lineStyle="Dashed" lineColor="#000000"/>
@@ -206,7 +206,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="90" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="70" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a"/>
 								<box padding="0">
 									<pen lineWidth="1.0"/>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -221,11 +221,11 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="180" uuid="bfe45a7a-0be1-47e4-9a3b-17e33a46ee10">
+					<jr:column width="160" uuid="bfe45a7a-0be1-47e4-9a3b-17e33a46ee10">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:columnHeader height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="180" height="35" uuid="cd69d97c-aad2-4549-8f44-f2efb463d8d1"/>
+								<reportElement style="StaticText" x="0" y="0" width="160" height="35" uuid="cd69d97c-aad2-4549-8f44-f2efb463d8d1"/>
 								<box padding="1">
 									<pen lineWidth="1.0" lineStyle="Dashed"/>
 									<topPen lineWidth="1.0" lineStyle="Dashed" lineColor="#000000"/>
@@ -241,7 +241,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="180" height="15" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="160" height="15" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819"/>
 								<box padding="0">
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -357,11 +357,11 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="70" uuid="82519cae-1684-4862-a789-0a893638e98e">
+					<jr:column width="103" uuid="82519cae-1684-4862-a789-0a893638e98e">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
 						<jr:columnHeader height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="70" height="35" uuid="1f8fa017-2f86-4fc4-915e-dba37658b235"/>
+								<reportElement style="StaticText" x="0" y="0" width="103" height="35" uuid="1f8fa017-2f86-4fc4-915e-dba37658b235"/>
 								<box padding="1">
 									<pen lineWidth="1.0" lineStyle="Dashed"/>
 									<topPen lineWidth="1.0" lineStyle="Dashed" lineColor="#000000"/>
@@ -377,7 +377,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="70" height="15" uuid="d13fa151-c4d1-45be-8f60-da3f1da0f232"/>
+								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="103" height="15" uuid="d13fa151-c4d1-45be-8f60-da3f1da0f232"/>
 								<box padding="0">
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -387,7 +387,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd").format($F{lastUpdateDate})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/YYYY KK:mm:ss a").format($F{lastUpdateDate})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

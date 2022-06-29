@@ -193,7 +193,7 @@ public class Student implements Serializable {
         this.graduationData = graduationData;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getLastUpdateDate() {
         return lastUpdateDate;
     }
