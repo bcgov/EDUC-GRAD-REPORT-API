@@ -99,7 +99,7 @@ public interface ReportService extends ReportExportService {
      *
      * @return How are parameters used?
      */
-    Parameters createParameters();
+    Parameters<String, Object> createParameters();
 
     /**
      * Creates an achievement  instance that can be exported into

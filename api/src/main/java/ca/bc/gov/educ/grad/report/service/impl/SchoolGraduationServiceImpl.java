@@ -95,7 +95,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
-        Parameters parameters = createParameters();
+        Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
@@ -134,7 +134,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
     private synchronized SchoolGraduationReport createSchoolGraduationReport(
             final List<Student> students,
             final School school,
-            final Parameters parameters,
+            final Parameters<String, Object> parameters,
             final Locale location) throws DomainServiceException {
 
         final String methodName = "createSchoolGraduationReport(Student, School, Locale)";
@@ -174,7 +174,6 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
             }
             byte[] rptData = inData;
 
-            // TODO: Use a constant for the name.
             report = new SchoolGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Graduation Report", location));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,

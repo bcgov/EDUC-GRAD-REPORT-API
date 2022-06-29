@@ -23,6 +23,11 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
     }
 
     @Override
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    @Override
     public void setStudents(List<Student> students) {
         this.students = students;
     }
@@ -34,12 +39,12 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
 
     @Override
     public void setSchool(School school, String logoCode) {
-
+        // Do nothing
     }
 
     @Override
     public void setReportDate(Date date) {
-
+        // Do nothing
     }
 
     /**

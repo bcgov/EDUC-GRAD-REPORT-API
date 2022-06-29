@@ -59,11 +59,11 @@ public abstract class GradReportServiceImpl implements Serializable {
     private transient EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
-    public Parameters createParameters() {
+    public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
         LOG.entering(CLASSNAME, methodName);
 
-        Parameters parameters = reportService.createParameters();
+        Parameters<String, Object> parameters = reportService.createParameters();
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;
@@ -366,10 +366,8 @@ public abstract class GradReportServiceImpl implements Serializable {
     String createReportTypeName(
             final String reportName,
             final Locale locale) {
-        final String reportTypeName
-                = reportName
+        return reportName
                 + " "
                 + locale.getISO3Language();
-        return reportTypeName;
     }
 }

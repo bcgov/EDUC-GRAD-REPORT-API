@@ -32,4 +32,9 @@ public interface GraduationReport extends SchoolReport {
      * @param students The list of student instance with data used for filling reports.
      */
     void setStudents(List<Student> students);
+
+    /**
+     * Get students
+     */
+    List<Student> getStudents();
 }

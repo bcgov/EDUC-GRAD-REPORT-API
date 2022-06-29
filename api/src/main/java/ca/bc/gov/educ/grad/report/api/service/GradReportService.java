@@ -312,7 +312,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		return (SchoolDistributionReport)schoolDistributionService.buildSchoolDistributionReport();
+		return schoolDistributionService.buildSchoolDistributionReport();
 	}
 
 	public SchoolGraduationReport getSchoolGraduationReportDocument(ReportRequest reportRequest) throws IOException {
@@ -321,7 +321,7 @@ public class GradReportService {
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		return (SchoolGraduationReport)schoolGraduationService.buildSchoolGraduationReport();
+		return schoolGraduationService.buildSchoolGraduationReport();
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
