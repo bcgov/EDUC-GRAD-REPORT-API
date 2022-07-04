@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Student implements Comparable<Student>, Serializable {
 
@@ -207,5 +208,18 @@ public class Student implements Comparable<Student>, Serializable {
         String lastNameSt
                 = student.lastName;
         return this.lastName.compareTo(lastNameSt);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return getPen().equals(student.getPen()) && getFirstName().equals(student.getFirstName()) && getMiddleName().equals(student.getMiddleName()) && getLastName().equals(student.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPen(), getFirstName(), getMiddleName(), getLastName());
     }
 }
