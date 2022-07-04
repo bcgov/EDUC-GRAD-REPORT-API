@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,11 +59,11 @@ public abstract class GradReportServiceImpl implements Serializable {
     private transient EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
-    public Parameters createParameters() {
+    public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
         LOG.entering(CLASSNAME, methodName);
 
-        Parameters parameters = reportService.createParameters();
+        Parameters<String, Object> parameters = reportService.createParameters();
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;
@@ -360,5 +361,13 @@ public abstract class GradReportServiceImpl implements Serializable {
             LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
             return null;
         }
+    }
+
+    String createReportTypeName(
+            final String reportName,
+            final Locale locale) {
+        return reportName
+                + " "
+                + locale.getISO3Language();
     }
 }

@@ -51,7 +51,16 @@ public interface ReportService extends ReportExportService {
      *
      * @return A non-null report instance that must be populated with data.
      */
-    DistributionReport createSchoolDistributionReport();
+    GraduationReport createSchoolDistributionReport();
+
+    /**
+     * Creates a school graduation report instance that can be exported into a final
+     * report document. The calling class is responsible for setting the
+     * required fields on the report instance returned from this method.
+     *
+     * @return A non-null report instance that must be populated with data.
+     */
+    GraduationReport createSchoolGraduationReport();
 
     /**
      * Creates a non grad requirements instance that can be exported into a final
@@ -90,7 +99,7 @@ public interface ReportService extends ReportExportService {
      *
      * @return How are parameters used?
      */
-    Parameters createParameters();
+    Parameters<String, Object> createParameters();
 
     /**
      * Creates an achievement  instance that can be exported into

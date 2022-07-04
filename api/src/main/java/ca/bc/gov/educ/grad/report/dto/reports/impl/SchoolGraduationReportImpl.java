@@ -1,29 +1,30 @@
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.ReportImpl;
-import ca.bc.gov.educ.grad.report.model.reports.DistributionReport;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 
 import java.util.Date;
 import java.util.List;
 
-public class DistributionReportImpl extends ReportImpl implements DistributionReport {
+public class SchoolGraduationReportImpl extends ReportImpl implements GraduationReport {
 
     private List<Student> students;
     private School school;
-
-    public DistributionReportImpl() {
-        this("SchoolDistribution");
-    }
 
     /**
      * Constructs a report implementation based with a report template name.
      *
      * @param name Report template name to run.
      */
-    public DistributionReportImpl(String name) {
+    public SchoolGraduationReportImpl(String name) {
         super(name);
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        return students;
     }
 
     @Override
@@ -38,12 +39,12 @@ public class DistributionReportImpl extends ReportImpl implements DistributionRe
 
     @Override
     public void setSchool(School school, String logoCode) {
-
+        // Do nothing
     }
 
     @Override
     public void setReportDate(Date date) {
-
+        // Do nothing
     }
 
     /**

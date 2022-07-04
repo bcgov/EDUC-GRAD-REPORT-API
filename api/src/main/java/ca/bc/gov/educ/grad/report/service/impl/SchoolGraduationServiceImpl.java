@@ -20,7 +20,7 @@ package ca.bc.gov.educ.grad.report.service.impl;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.impl.SchoolDistributionReportImpl;
+import ca.bc.gov.educ.grad.report.dto.impl.SchoolGraduationReportImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
@@ -28,8 +28,8 @@ import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
-import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
-import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
+import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
+import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.ArrayUtils;
@@ -60,11 +60,11 @@ import static java.util.Locale.CANADA;
  */
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
-public class SchoolDistributionServiceImpl extends GradReportServiceImpl
-        implements SchoolDistributionService, Serializable {
+public class SchoolGraduationServiceImpl extends GradReportServiceImpl
+        implements SchoolGraduationService, Serializable {
 
     private static final long serialVersionUID = 2L;
-    private static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
+    private static final String CLASSNAME = SchoolGraduationServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
@@ -76,7 +76,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
-    public SchoolDistributionReport buildSchoolDistributionReport() throws DomainServiceException, IOException {
+    public SchoolGraduationReport buildSchoolGraduationReport() throws DomainServiceException, IOException {
         final String methodName = "buildReport()";
         LOG.entering(CLASSNAME, methodName);
 
@@ -95,7 +95,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
-        Parameters parameters = createParameters();
+        Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
@@ -116,7 +116,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
 
         parameters.put("reportNumber", reportData.getReportNumber());
 
-        final SchoolDistributionReport report = createSchoolDistributionReport(
+        final SchoolGraduationReport report = createSchoolGraduationReport(
                 students, school, parameters, CANADA);
 
 
@@ -131,18 +131,18 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
      * @return GradCertificateReport
      * @throws DomainServiceException
      */
-    private synchronized SchoolDistributionReport createSchoolDistributionReport(
+    private synchronized SchoolGraduationReport createSchoolGraduationReport(
             final List<Student> students,
             final School school,
-            final Parameters parameters,
+            final Parameters<String, Object> parameters,
             final Locale location) throws DomainServiceException {
 
-        final String methodName = "createSchoolDistributionReport(Student, School, Locale)";
+        final String methodName = "createSchoolGraduationReport(Student, School, Locale)";
         LOG.entering(CLASSNAME, methodName);
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
-        GraduationReport graduationReport = reportService.createSchoolDistributionReport();
+        GraduationReport graduationReport = reportService.createSchoolGraduationReport();
         graduationReport.setLocale(location);
         graduationReport.setStudents(students);
         graduationReport.setSchool(school);
@@ -151,11 +151,11 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
             graduationReport.setParameters(parameters);
         }
 
-        SchoolDistributionReport report = null;
+        SchoolGraduationReport report = null;
         try {
             final ReportDocument rptDoc = reportService.export(graduationReport);
 
-            StringBuilder sb = new StringBuilder("school_distribution_");
+            StringBuilder sb = new StringBuilder("school_graduation_");
             sb.append(location.toLanguageTag());
             sb.append("_");
             sb.append(timestamp);
@@ -174,8 +174,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
             }
             byte[] rptData = inData;
 
-            // TODO: Use a constant for the name.
-            report = new SchoolDistributionReportImpl(rptData, PDF, filename, createReportTypeName("School Distribution Report", location));
+            report = new SchoolGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Graduation Report", location));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the provincial examination report.", ex);
@@ -184,5 +183,4 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
         LOG.exiting(CLASSNAME, methodName);
         return report;
     }
-
 }

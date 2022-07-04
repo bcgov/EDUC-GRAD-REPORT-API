@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface DistributionReport extends SchoolReport {
+public interface GraduationReport extends SchoolReport {
 
     /**
      * Sets the student to use for populating the reports.
@@ -32,4 +32,9 @@ public interface DistributionReport extends SchoolReport {
      * @param students The list of student instance with data used for filling reports.
      */
     void setStudents(List<Student> students);
+
+    /**
+     * Get students
+     */
+    List<Student> getStudents();
 }
