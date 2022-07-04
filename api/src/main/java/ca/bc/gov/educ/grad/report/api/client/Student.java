@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Student implements Serializable {
+public class Student implements Comparable<Student>, Serializable {
 
     private Pen pen = new Pen();
     private String firstName = "";
@@ -200,5 +200,12 @@ public class Student implements Serializable {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    @Override
+    public int compareTo(Student student) {
+        String lastNameSt
+                = student.lastName;
+        return this.lastName.compareTo(lastNameSt);
     }
 }
