@@ -1,0 +1,1 @@
+UPDATE SIGNATURE_BLOCK_TYPE SET LABEL = 'Direction générale du conseil scolaire', DESCRIPTION = 'Direction générale du conseil scolaire', UPDATE_DATE = SYSDATE WHERE SIGNATURE_BLOCK_TYPE = 'DISTRICT_PF';
