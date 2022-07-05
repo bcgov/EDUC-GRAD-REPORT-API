@@ -99,7 +99,7 @@
 					<textFieldExpression><![CDATA["Graduation Records and Achievement Data"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="155" y="15" width="191" height="14" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
+					<reportElement style="GeneratedText" x="150" y="15" width="200" height="14" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -161,7 +161,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Double" leftIndent="5"/>
 								</textElement>
-								<text><![CDATA[Student Number]]></text>
+								<text><![CDATA[PEN]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
@@ -227,7 +227,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Double" leftIndent="5"/>
 								</textElement>
-								<text><![CDATA[GRAD DATE]]></text>
+								<text><![CDATA[Grad Date]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
@@ -260,7 +260,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Double" leftIndent="5"/>
 								</textElement>
-								<text><![CDATA[HONORS]]></text>
+								<text><![CDATA[Honours]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
@@ -293,7 +293,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Double" leftIndent="5"/>
 								</textElement>
-								<text><![CDATA[GRAD REQT YEAR]]></text>
+								<text><![CDATA[Program]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
