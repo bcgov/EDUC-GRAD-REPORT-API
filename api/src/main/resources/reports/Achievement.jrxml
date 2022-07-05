@@ -318,21 +318,21 @@
 	<pageHeader>
 		<band height="210" splitType="Stretch">
 			<frame>
-				<reportElement mode="Transparent" x="5" y="-8" width="550" height="208" uuid="23edf4cc-118f-4745-9b89-1745b96af412"/>
+				<reportElement mode="Transparent" x="5" y="-8" width="550" height="188" uuid="23edf4cc-118f-4745-9b89-1745b96af412"/>
 				<box>
 					<pen lineWidth="1.25"/>
 				</box>
 				<staticText>
-					<reportElement style="GeneratedText" x="354" y="137" width="45" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
+					<reportElement style="GeneratedText" x="359" y="133" width="40" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[CP Pgm:]]></text>
+					<text><![CDATA[CP PGM:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="399" y="137" width="151" height="13" uuid="6b02265f-b055-4dcf-9052-dee6d0fb3c3e">
+					<reportElement style="GeneratedText" x="399" y="133" width="151" height="13" uuid="6b02265f-b055-4dcf-9052-dee6d0fb3c3e">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
@@ -342,16 +342,16 @@
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="359" y="95" width="40" height="13" uuid="54510e7a-767e-4139-bbb3-b57aca137b0d">
+					<reportElement style="GeneratedText" x="359" y="94" width="40" height="13" uuid="54510e7a-767e-4139-bbb3-b57aca137b0d">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[Grade:]]></text>
+					<text><![CDATA[GRADE:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="399" y="95" width="151" height="13" uuid="9a33e978-2354-4d0d-a97e-f54d04e6ae6e">
+					<reportElement style="GeneratedText" x="399" y="94" width="151" height="13" uuid="9a33e978-2354-4d0d-a97e-f54d04e6ae6e">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement>
@@ -359,24 +359,35 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{studentObj}.getGrade()]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="14" y="95" width="238" height="14" uuid="35d7da73-7ca1-4a07-b05e-482327809e3b">
+				<staticText>
+					<reportElement style="GeneratedText" x="15" y="106" width="45" height="13" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[NAME:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement style="GeneratedText" x="60" y="106" width="192" height="13" uuid="35d7da73-7ca1-4a07-b05e-482327809e3b">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Bottom"/>
 					<textFieldExpression><![CDATA[$P{studentObj}.getLastName()+","+$P{studentObj}.getMiddleName()+" "+$P{studentObj}.getFirstName()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="359" y="109" width="40" height="13" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
+					<reportElement style="GeneratedText" x="359" y="107" width="40" height="13" uuid="b306e84e-8355-4101-81f3-fcf24eb492ac">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[Gender:]]></text>
+					<text><![CDATA[GENDER:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="399" y="109" width="151" height="13" uuid="4dab781f-fd3c-478c-9bdc-d416d380f047">
+					<reportElement style="GeneratedText" x="399" y="107" width="151" height="13" uuid="4dab781f-fd3c-478c-9bdc-d416d380f047">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement>
@@ -385,14 +396,14 @@
 					<textFieldExpression><![CDATA[$P{studentObj}.getGender()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="14" y="109" width="238" height="41" uuid="66c24db6-3a35-416a-8dcf-e5ce5f0a6426">
+					<reportElement style="GeneratedText" x="15" y="121" width="237" height="41" uuid="66c24db6-3a35-416a-8dcf-e5ce5f0a6426">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{studentObj}.getCurrentMailingAddress().getStreetLine1()+"\n"+$P{studentObj}.getCurrentMailingAddress().getCity()+"\n"+$P{studentObj}.getCurrentMailingAddress().getRegion() + "  " + $P{studentObj}.getCurrentMailingAddress().getPostalCode()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="15" y="81" width="25" height="13" uuid="ae812dde-a045-41c9-963a-9950496d45d7">
+					<reportElement style="GeneratedText" x="15" y="81" width="25" height="12" uuid="ae812dde-a045-41c9-963a-9950496d45d7">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Left">
@@ -401,30 +412,30 @@
 					<text><![CDATA[PEN:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="41" y="81" width="56" height="13" uuid="571563c1-f0c4-4b6e-92cc-9f9dba9fbf6e"/>
+					<reportElement style="GeneratedText" x="60" y="81" width="119" height="12" uuid="571563c1-f0c4-4b6e-92cc-9f9dba9fbf6e"/>
 					<textFieldExpression><![CDATA[$P{studentObj}.getPen().toString()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="98" y="81" width="50" height="13" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
+					<reportElement style="GeneratedText" x="15" y="93" width="45" height="13" uuid="1d0879be-1bcc-43c1-8b66-07aca6de4d09">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[LOCAL ID:]]></text>
+					<text><![CDATA[LOCAL:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="149" y="81" width="80" height="13" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
+					<reportElement style="GeneratedText" x="60" y="93" width="119" height="13" uuid="2661cc1f-e61c-4717-88f4-32ddbdd46957"/>
 					<textFieldExpression><![CDATA[$P{studentObj}.getLocalId()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="330" y="81" width="69" height="13" uuid="60992b58-514a-433c-8be4-e040a8de6e6f">
+					<reportElement style="GeneratedText" x="346" y="81" width="53" height="13" uuid="60992b58-514a-433c-8be4-e040a8de6e6f">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[Program:]]></text>
+					<text><![CDATA[PROGRAM:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="399" y="81" width="151" height="13" uuid="210efc20-4437-4ad1-bb23-54a90a0e7b6c">
@@ -436,43 +447,16 @@
 					<textFieldExpression><![CDATA[$P{studentObj}.getGradProgram()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="81" y="161" width="80" height="15" uuid="acde9bb7-7f6f-4b61-95e0-1d79c811b9b7">
+					<reportElement style="GeneratedText" x="359" y="120" width="40" height="13" uuid="25cf5a36-840d-49e3-95b0-75d8f97117a1">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Right">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[REVIEWED BY:]]></text>
-				</staticText>
-				<frame>
-					<reportElement x="164" y="176" width="199" height="2" uuid="bf6a58b6-a7f8-4654-9b72-e911432e5d55">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					</reportElement>
-					<box>
-						<topPen lineWidth="1.0"/>
-					</box>
-				</frame>
-				<textField>
-					<reportElement style="StaticText" x="197" y="180" width="88" height="10" uuid="add0a4eb-88a4-4c70-9641-40eb535738b5">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					</reportElement>
-					<textElement>
-						<font size="7"/>
-					</textElement>
-					<textFieldExpression><![CDATA["(STUDENT SIGNATURE)"]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement style="GeneratedText" x="359" y="123" width="40" height="13" uuid="25cf5a36-840d-49e3-95b0-75d8f97117a1">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Right">
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Citiz:]]></text>
+					<text><![CDATA[CITIZ:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="399" y="123" width="151" height="13" uuid="30d1f248-c6d2-4496-b383-1e161c1a761d">
+					<reportElement style="GeneratedText" x="399" y="120" width="151" height="13" uuid="30d1f248-c6d2-4496-b383-1e161c1a761d">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement>
@@ -488,7 +472,7 @@
 					<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="54" y="68" width="262" height="13" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+					<reportElement style="GeneratedText" x="60" y="68" width="256" height="13" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
 					<textFieldExpression><![CDATA[$P{schoolObj}.getMinistryCode() +"  "+$P{schoolObj}.getName()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
@@ -501,13 +485,13 @@
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy-MMM-d").format($P{studentObj}.getBirthdate())]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="15" y="68" width="38" height="13" uuid="7eb76d6f-c6b2-4f09-a728-e736e02edc8c">
+					<reportElement style="GeneratedText" x="15" y="68" width="45" height="13" uuid="7eb76d6f-c6b2-4f09-a728-e736e02edc8c">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Left">
 						<font isBold="true"/>
 					</textElement>
-					<text><![CDATA[School:]]></text>
+					<text><![CDATA[SCHOOL:]]></text>
 				</staticText>
 				<image scaleImage="RetainShape" onErrorType="Blank">
 					<reportElement key="IMAGE_LOGO_SVG" x="13" y="11" width="47" height="41" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
@@ -527,14 +511,14 @@
 					</textElement>
 					<textFieldExpression><![CDATA[msg("Page {0} of {1}", $V{MASTER_CURRENT_PAGE}, $V{MASTER_TOTAL_PAGES})]]></textFieldExpression>
 				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Title" x="326" y="1" width="224" height="15" uuid="fdb6be60-69c7-4119-9273-f97a50883b40"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="10.5"/>
+					</textElement>
+					<textFieldExpression><![CDATA["STUDENT ACHIEVEMENT REPORT (TVR)"]]></textFieldExpression>
+				</textField>
 			</frame>
-			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="375" y="0" width="178" height="20" uuid="fdb6be60-69c7-4119-9273-f97a50883b40"/>
-				<textElement textAlignment="Center">
-					<font size="10.5"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Transcript Verification Report"]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement style="GeneratedText" x="351" y="60" width="53" height="13" uuid="53e9d34f-3e5e-4846-b8b0-c81e613e795d">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
@@ -542,7 +526,7 @@
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Birthdate:]]></text>
+				<text><![CDATA[BIRTHDATE:]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
