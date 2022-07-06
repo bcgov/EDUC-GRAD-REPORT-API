@@ -583,11 +583,11 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="460" uuid="13f84e09-340f-4eb7-8253-a550b7a3c795">
+					<jr:column width="450" uuid="13f84e09-340f-4eb7-8253-a550b7a3c795">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="460" height="30" uuid="bb3e36ce-6b89-4baa-917e-e31bf8d2911d"/>
+								<reportElement style="StaticText" x="0" y="0" width="450" height="30" uuid="bb3e36ce-6b89-4baa-917e-e31bf8d2911d"/>
 								<textElement textAlignment="Left">
 									<font size="8"/>
 								</textElement>
@@ -596,7 +596,7 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField textAdjust="StretchHeight">
-								<reportElement style="GeneratedText" positionType="Float" stretchType="ContainerHeight" x="0" y="0" width="450" height="30" uuid="5607014f-7304-4fac-81bd-81ea778e0f6e"/>
+								<reportElement style="GeneratedText" positionType="Float" stretchType="ContainerHeight" x="0" y="0" width="440" height="30" uuid="5607014f-7304-4fac-81bd-81ea778e0f6e"/>
 								<textElement textAlignment="Left" verticalAlignment="Middle"/>
 								<textFieldExpression><![CDATA["   " + $F{description}]]></textFieldExpression>
 							</textField>
