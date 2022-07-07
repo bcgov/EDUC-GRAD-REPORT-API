@@ -379,7 +379,7 @@
         <dependency>
             <groupId>javax.security.jacc</groupId>
             <artifactId>javax.security.jacc-api</artifactId>
-            <version>1.5</version>
+            <version>1.6</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.resource/javax.resource-api -->
         <dependency>
