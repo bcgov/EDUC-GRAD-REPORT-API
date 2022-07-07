@@ -11,10 +11,10 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="inch"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="inch"/>
-	<style name="GeneratedText" fontName="Inconsolata" fontSize="9"/>
-	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="LiberationSans"/>
+	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
+	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
 	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
-	<style name="StaticTextGen" fontName="Inconsolata" fontSize="9"/>
+	<style name="StaticTextGen" fontName="BCSans" fontSize="9"/>
 	<style name="Zebra" style="GeneratedText" mode="Transparent">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></conditionExpression>
