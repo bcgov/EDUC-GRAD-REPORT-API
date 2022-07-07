@@ -33,6 +33,15 @@
 		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
+	<fontFamily name="BCSans">
+		<normal><![CDATA[fonts/BCSans/BCSans-Regular.ttf]]></normal>
+		<bold><![CDATA[fonts/BCSans/BCSans-Bold.ttf]]></bold>
+		<italic><![CDATA[fonts/BCSans/BCSans-Italic.ttf]]></italic>
+		<boldItalic><![CDATA[fonts/BCSans/BCSans-BoldItalic.ttf]]></boldItalic>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+		<exportFonts/>
+	</fontFamily>
 	<fontFamily name="TexGyreSchola">
 		<normal><![CDATA[fonts/TexGyreSchola/texgyreschola-regular.otf]]></normal>
 		<bold><![CDATA[fonts/TexGyreSchola/texgyreschola-bold.otf]]></bold>

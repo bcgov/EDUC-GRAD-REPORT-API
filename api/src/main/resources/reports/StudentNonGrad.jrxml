@@ -2,10 +2,10 @@
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentAchievementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<style name="GeneratedText" fontName="Inconsolata" fontSize="9"/>
-	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="LiberationSans"/>
+	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
+	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
 	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
-	<style name="StaticTextGen" fontName="Inconsolata" fontSize="9"/>
+	<style name="StaticTextGen" fontName="BCSans" fontSize="9"/>
 	<style name="Zebra" style="GeneratedText" mode="Transparent">
 		<conditionalStyle>
 			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 1]]></conditionExpression>
@@ -118,9 +118,9 @@
 				<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="StaticText" x="137" y="48" width="222" height="20" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
+				<reportElement style="StaticText" x="137" y="40" width="283" height="28" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
 				<textElement textAlignment="Center">
-					<font size="12"/>
+					<font size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>

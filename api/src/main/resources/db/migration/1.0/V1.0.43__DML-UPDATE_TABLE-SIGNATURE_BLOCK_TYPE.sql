@@ -1,0 +1,2 @@
+UPDATE SIGNATURE_BLOCK_TYPE SET LABEL = 'Direction générale du conseil scolaire', DESCRIPTION = 'Direction générale du conseil scolaire', UPDATE_DATE = SYSDATE WHERE SIGNATURE_BLOCK_TYPE = 'DISTRICT_PF';
+Insert into SIGNATURE_BLOCK_TYPE (SIGNATURE_BLOCK_TYPE,LABEL,DESCRIPTION,CREATE_USER,CREATE_DATE,UPDATE_USER,UPDATE_DATE) values ('DISTRICT_F','Direction générale du conseil scolaire','Superintendent of Schools','GRAD_REPORT_API',to_date('22-07-05','RR-MM-DD'),'GRAD_REPORT_API',to_date('22-07-05','RR-MM-DD'));
