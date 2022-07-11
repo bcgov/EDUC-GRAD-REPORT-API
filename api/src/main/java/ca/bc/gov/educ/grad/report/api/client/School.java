@@ -117,7 +117,9 @@ public class School implements Serializable {
     }
 
     public void setStudents(List<Student> students) {
-        Collections.sort(students);
-        this.students = students;
+        if(students != null) {
+            Collections.sort(students);
+            this.students = students;
+        }
     }
 }

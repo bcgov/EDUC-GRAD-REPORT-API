@@ -14,7 +14,6 @@
             "entityId": null
           },
           "firstName": "CAYMAN",
-          "middleName": "",
           "lastName": "HILL",
           "grade": "11",
           "gender": "T",
@@ -67,7 +66,6 @@
             "entityId": null
           },
           "firstName": "TRAVIS",
-          "middelName": "",
           "lastName": "AYA",
           "grade": "12",
           "gender": "M",
@@ -224,7 +222,6 @@
           },
           "firstName": "TEST",
           "middelName": "NEXT",
-          "lastName": "PAGE",
           "grade": "12",
           "gender": "M",
           "birthdate": "2002-08-05",
