@@ -477,7 +477,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.1.0</version>
+            <version>4.6.1</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
@@ -553,7 +553,7 @@
         <dependency>
             <groupId>com.tngtech.java</groupId>
             <artifactId>junit-dataprovider</artifactId>
-            <version>1.10.2</version>
+            <version>1.13.1</version>
             <!--scope>test</scope-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
@@ -797,7 +797,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.1</version>
                 <configuration>
                     <descriptors>
                         <descriptor>src/main/assembly/client.xml</descriptor>
