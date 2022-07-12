@@ -1142,131 +1142,6 @@
 				<textFieldExpression><![CDATA[$P{hasStudentCourse} == "true"? "NON-PROVINCIALLY EXAMINABLE COURSES":""]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="144">
-			<frame>
-				<reportElement x="5" y="4" width="550" height="130" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c"/>
-				<staticText>
-					<reportElement x="0" y="0" width="230" height="13" uuid="71f0dfdc-3fc6-48d9-a7bb-2b4e7d68c074"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true" isItalic="true"/>
-					</textElement>
-					<text><![CDATA[Assessment Legend - Proficiency Score
-]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="20" width="20" height="12" uuid="f6670c82-c608-4d7f-84f9-6357206701de"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[MET]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="20" y="20" width="530" height="12" uuid="2f85a60f-0b85-42b5-9e9b-e35afcbcbe63">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[ Numeracy 10 or Literacy 12 Assessment requirement met by a provincial exam.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="32" width="20" height="12" uuid="9d470357-e94b-4b09-8103-258138b9669c"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[XMT]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="20" y="32" width="530" height="12" uuid="87eff3b9-b375-42fc-89fd-83fec6e323fd">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[Assessment requirement exempt.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="44" width="20" height="12" uuid="e5c2d00c-3c33-4291-ac7c-7ef0f9c23c0f"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[AEG]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="20" y="44" width="380" height="23" uuid="2528489c-78e2-4a5b-9767-1703d66fbc70">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[Student exempted from writing a Graduation Assessment due to illness or special circumstance.  No score will appear on the transcript, simply an AEG notation.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="67" width="20" height="12" uuid="896deb28-a583-41ae-ab82-06440fd7dec8"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[NC]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="20" y="67" width="530" height="12" uuid="1f9ef6f4-97c8-4920-84e5-f22cba73ffd5">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[Not Completed]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="79" width="20" height="12" uuid="ff7672f8-eaab-4420-a303-f46e8f9a5229"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[DSQ]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="20" y="79" width="530" height="12" uuid="3aa5c266-237e-4ac2-b0f8-99ab7732468b">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[Disqualified]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="91" width="20" height="12" uuid="3f7cef54-7338-41d0-afe6-aba7f0aa5683"/>
-					<textElement verticalAlignment="Top">
-						<font size="9" isBold="true"/>
-					</textElement>
-					<text><![CDATA[RP]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="20" y="91" width="530" height="12" uuid="5f54d541-83fe-4a09-bc48-78da2623ffd1">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[Results Pending]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="107" width="550" height="30" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="0"/>
-					</textElement>
-					<text><![CDATA[Note: LTE10 assessments will have RM (Requirement met by completion of the Literacy 10 Assessment) on transcript in place of the students score.]]></text>
-				</staticText>
-			</frame>
-		</band>
 		<band height="90">
 			<componentElement>
 				<reportElement positionType="Float" x="5" y="20" width="550" height="60" isRemoveLineWhenBlank="true" uuid="cc00a62c-c948-40c8-9ef7-9e2080661cb1">
@@ -1275,6 +1150,7 @@
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="studentAssessmentDataset" uuid="3bbd4e55-3f69-4c97-a477-c2010380973f">
@@ -1445,6 +1321,132 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{hasStudentAssessment} == "true"? "PROVINCIAL GRADUATION ASSESSMENTS":""]]></textFieldExpression>
 			</textField>
+		</band>
+		<band height="144">
+			<frame>
+				<reportElement x="5" y="4" width="550" height="130" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c"/>
+				<staticText>
+					<reportElement x="0" y="0" width="230" height="13" uuid="71f0dfdc-3fc6-48d9-a7bb-2b4e7d68c074">
+						<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Proficiency Score Legend]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="20" height="12" uuid="f6670c82-c608-4d7f-84f9-6357206701de"/>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MET]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="20" width="530" height="12" uuid="2f85a60f-0b85-42b5-9e9b-e35afcbcbe63">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[ Numeracy 10 or Literacy 12 Assessment requirement met by a provincial exam.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="32" width="20" height="12" uuid="9d470357-e94b-4b09-8103-258138b9669c"/>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[XMT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="32" width="530" height="12" uuid="87eff3b9-b375-42fc-89fd-83fec6e323fd">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[Assessment requirement exempt.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="44" width="20" height="12" uuid="e5c2d00c-3c33-4291-ac7c-7ef0f9c23c0f"/>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[AEG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="44" width="380" height="23" uuid="2528489c-78e2-4a5b-9767-1703d66fbc70">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[Student exempted from writing a Graduation Assessment due to illness or special circumstance.  No score will appear on the transcript, simply an AEG notation.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="67" width="20" height="12" uuid="896deb28-a583-41ae-ab82-06440fd7dec8"/>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="67" width="530" height="12" uuid="1f9ef6f4-97c8-4920-84e5-f22cba73ffd5">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[Not Completed]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="79" width="20" height="12" uuid="ff7672f8-eaab-4420-a303-f46e8f9a5229"/>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DSQ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="79" width="530" height="12" uuid="3aa5c266-237e-4ac2-b0f8-99ab7732468b">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[Disqualified]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="91" width="20" height="12" uuid="3f7cef54-7338-41d0-afe6-aba7f0aa5683"/>
+					<textElement verticalAlignment="Top">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RP]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="91" width="530" height="12" uuid="5f54d541-83fe-4a09-bc48-78da2623ffd1">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[Results Pending]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="107" width="550" height="30" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<font size="9" isItalic="true"/>
+						<paragraph leftIndent="0"/>
+					</textElement>
+					<text><![CDATA[Note: LTE10 assessments will have RM (Requirement met by completion of the Literacy 10 Assessment) on transcript in place of the students score.]]></text>
+				</staticText>
+			</frame>
 		</band>
 	</detail>
 	<summary>
