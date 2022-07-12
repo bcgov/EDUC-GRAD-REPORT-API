@@ -59,7 +59,7 @@ public class Student implements Comparable<Student>, Serializable {
     }
 
     public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+        this.middleName = middleName==null?"":middleName;
     }
 
     public String getLastName() {
