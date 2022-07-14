@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2017-02-09T13:06:24 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="E" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\CertificateAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -138,6 +137,7 @@
 				<reportElement x="505" y="399" width="235" height="56" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="28" width="235" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -149,6 +149,7 @@
 				<reportElement x="505" y="496" width="235" height="61" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="33" width="235" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}.format( $F{issued} ).toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">

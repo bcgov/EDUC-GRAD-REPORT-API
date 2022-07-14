@@ -106,7 +106,8 @@
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + "")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="9" y="67" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
+					<reportElement style="SignatoryTitle" x="9" y="67" width="225" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -121,10 +122,11 @@
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + "")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="0" y="54" width="264" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
+					<reportElement style="SignatoryTitle" x="0" y="54" width="278" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
 				</textField>
 				<frame>
@@ -142,10 +144,12 @@
 					<reportElement style="OrgDate" x="0" y="28" width="241" height="12" uuid="11d6f836-dae5-4b8a-8444-93eb425bdfe1">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="241" height="16" uuid="5b07d5d0-b45a-440a-b89d-47eec90e43d5"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.principal.school}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -153,10 +157,12 @@
 				<reportElement x="505" y="446" width="235" height="56" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="28" width="235" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="235" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.school}]]></textFieldExpression>
 				</textField>
 			</frame>
@@ -164,10 +170,12 @@
 				<reportElement x="505" y="496" width="235" height="61" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="33" width="235" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}.format( $F{issued} ).toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="45" width="235" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a"/>
+					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.date}]]></textFieldExpression>
 				</textField>
 			</frame>

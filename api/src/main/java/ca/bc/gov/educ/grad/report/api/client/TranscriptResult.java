@@ -7,12 +7,12 @@ import java.io.Serializable;
 
 public class TranscriptResult implements Serializable {
 
-    private TranscriptCourse course;
-    private Mark mark;
-    private String requirement;
-    private String requirementName;
-    private String equivalency;
-    private String usedForGrad;
+    private TranscriptCourse course = new TranscriptCourse();
+    private Mark mark = new Mark();
+    private String requirement = "";
+    private String requirementName = "";
+    private String equivalency = "";
+    private String usedForGrad = "";
 
     @JsonDeserialize(as = TranscriptCourse.class)
     public TranscriptCourse getCourse() {

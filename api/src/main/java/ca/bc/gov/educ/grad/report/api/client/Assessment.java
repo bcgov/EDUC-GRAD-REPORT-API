@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class Assessment implements Serializable {
 
     private Date issueDate;
-    private List<AssessmentResult> results;
+    private List<AssessmentResult> results = new ArrayList<>();
 
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getIssueDate() {

@@ -5,17 +5,18 @@ import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class OptionalProgram implements Serializable {
 
-    private String optionalProgramCode;
-    private String optionalProgramName;
-    private String programCompletionDate;
-    private String hasRequirementMet;
-    private List<GradRequirement> requirementMet;
-    private List<NonGradReason> nonGradReasons;
+    private String optionalProgramCode = "";
+    private String optionalProgramName = "";
+    private String programCompletionDate = "";
+    private String hasRequirementMet = "";
+    private List<GradRequirement> requirementMet = new ArrayList<>();
+    private List<NonGradReason> nonGradReasons = new ArrayList<>();
 
     public String getOptionalProgramCode() {
         return optionalProgramCode;

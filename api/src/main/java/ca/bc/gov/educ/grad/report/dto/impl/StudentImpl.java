@@ -63,6 +63,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     private String localId = "";
     private String hasOtherProgram = "";
+    private Date lastUpdateDate;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
     private List<NonGradReason> nonGradReasons = new ArrayList<>();
 
@@ -274,5 +275,14 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setGraduationData(GraduationData graduationData) {
         this.graduationData = graduationData;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    public Date getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(Date lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 }

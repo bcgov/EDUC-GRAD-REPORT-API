@@ -14,7 +14,7 @@
 		<band height="12">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<staticText>
-				<reportElement style="GraduationStatus" x="0" y="0" width="547" height="12" uuid="2eb12ade-6467-47d9-ae13-8891a642a6d6">
+				<reportElement style="GraduationStatus" x="0" y="0" width="500" height="12" uuid="2eb12ade-6467-47d9-ae13-8891a642a6d6">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
@@ -26,7 +26,7 @@
 	<detail>
 		<band height="12">
 			<textField>
-				<reportElement style="GraduationStatus" x="0" y="0" width="273" height="12" uuid="ff25fc5a-3cdf-42b0-8109-7489bf3b261d">
+				<reportElement style="GraduationStatus" x="0" y="0" width="250" height="12" uuid="ff25fc5a-3cdf-42b0-8109-7489bf3b261d">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>

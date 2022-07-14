@@ -339,88 +339,88 @@
 				<text><![CDATA[Career Life Connections (4 credits)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="231" y="476" width="336" height="33" uuid="23000d53-d76b-4f76-9c59-ad3d4b161379"/>
+				<reportElement style="SummaryBody" x="231" y="487" width="336" height="33" uuid="23000d53-d76b-4f76-9c59-ad3d4b161379"/>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<paragraph firstLineIndent="0"/>
 				</textElement>
 				<text><![CDATA[If more than one course is designated as meeting requirement 1, then 2 credits from each course are being counted toward the requirement.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="103" y="497" width="20" height="20" uuid="49ce87c7-8365-4ae6-9bde-fad708b645f9"/>
+				<reportElement style="SummaryBody" x="103" y="508" width="20" height="20" uuid="49ce87c7-8365-4ae6-9bde-fad708b645f9"/>
 				<textElement textAlignment="Center">
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[•]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="137" y="501" width="430" height="30" uuid="889dafa7-69f3-4fbe-ba13-1aeed97c3420"/>
+				<reportElement style="SummaryBody" x="137" y="512" width="430" height="30" uuid="889dafa7-69f3-4fbe-ba13-1aeed97c3420"/>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[In addition to the above 15 requirements, students need 28 credits for Elective Courses. Minimum 16 of 80 credits, including Language Arts 12, must be at the Grade 12 level.]]></text>
+				<text><![CDATA[In addition to the above 16 requirements, students need 28 credits for Elective Courses. Minimum 16 of 80 credits, including Language Arts 12, must be at the Grade 12 level.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryTitle" x="0" y="530" width="567" height="20" uuid="f3fd2419-7547-4d10-9826-4401b55314e3"/>
+				<reportElement style="SummaryTitle" x="0" y="540" width="567" height="20" uuid="f3fd2419-7547-4d10-9826-4401b55314e3"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[ABBREVIATIONS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="548" width="29" height="11" uuid="36a1a4f9-dedc-4f43-9928-b4e737fedf6d"/>
+				<reportElement style="SummaryBody" x="18" y="558" width="29" height="11" uuid="36a1a4f9-dedc-4f43-9928-b4e737fedf6d"/>
 				<text><![CDATA[AEG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="548" width="434" height="21" uuid="a3c9cfe3-04ba-4563-8d32-0b698053c818"/>
+				<reportElement style="SummaryBody" x="48" y="558" width="434" height="21" uuid="a3c9cfe3-04ba-4563-8d32-0b698053c818"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[Student exempted from writing a Graduation Assessment due to illness or special circumstance. No score will appear on the transcript, simply an AEG notation.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="569" width="29" height="11" uuid="e36ad5be-e073-4b70-8531-4e8892964200"/>
+				<reportElement style="SummaryBody" x="18" y="579" width="29" height="11" uuid="e36ad5be-e073-4b70-8531-4e8892964200"/>
 				<text><![CDATA[AP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="569" width="434" height="11" uuid="d52d0d73-c57a-4710-b3c8-81ceaad523ef"/>
+				<reportElement style="SummaryBody" x="48" y="579" width="434" height="11" uuid="d52d0d73-c57a-4710-b3c8-81ceaad523ef"/>
 				<text><![CDATA[Advanced Placement Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="579" width="434" height="11" uuid="f0e59679-5c13-4882-9428-a5b75dc49d1d"/>
+				<reportElement style="SummaryBody" x="48" y="589" width="434" height="11" uuid="f0e59679-5c13-4882-9428-a5b75dc49d1d"/>
 				<text><![CDATA[Board/Authority-Authorized Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="579" width="29" height="11" uuid="9d8b3964-79aa-46c2-81f9-aad6a51c3546"/>
+				<reportElement style="SummaryBody" x="18" y="589" width="29" height="11" uuid="9d8b3964-79aa-46c2-81f9-aad6a51c3546"/>
 				<text><![CDATA[BA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="590" width="29" height="11" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
+				<reportElement style="SummaryBody" x="18" y="600" width="29" height="11" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
 				<text><![CDATA[LD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="601" width="434" height="11" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
+				<reportElement style="SummaryBody" x="48" y="611" width="434" height="11" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
 				<text><![CDATA[International Baccalaureate Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="590" width="434" height="11" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
+				<reportElement style="SummaryBody" x="48" y="600" width="434" height="11" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
 				<text><![CDATA[Locally Developed Course (non-credit course)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="612" width="434" height="11" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
+				<reportElement style="SummaryBody" x="48" y="622" width="434" height="11" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
 				<text><![CDATA[Independent Directed Studies]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="612" width="29" height="11" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
+				<reportElement style="SummaryBody" x="18" y="622" width="29" height="11" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
 				<text><![CDATA[IDS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="601" width="29" height="11" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
+				<reportElement style="SummaryBody" x="18" y="611" width="29" height="11" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
 				<text><![CDATA[IB]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="628" width="470" height="15" uuid="0fcb74d5-f71a-478a-b937-ffe76c5468bc"/>
+				<reportElement style="SummaryBody" x="18" y="638" width="470" height="15" uuid="0fcb74d5-f71a-478a-b937-ffe76c5468bc"/>
 				<text><![CDATA[For post-secondary courses (PSI) see post-secondary transcript for additional course details.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="225" y="476" width="5" height="12" uuid="3fc79247-b44e-447a-a088-153a637199d1"/>
+				<reportElement style="SummaryBody" x="225" y="487" width="5" height="12" uuid="3fc79247-b44e-447a-a088-153a637199d1"/>
 				<text><![CDATA[*]]></text>
 			</staticText>
 			<subreport>
-				<reportElement key="SIGNATURE" x="18" y="333" width="144" height="110" uuid="2b4c0a6b-d883-4ef4-afeb-f22297c921a3">
+				<reportElement key="SIGNATURE" x="18" y="321" width="144" height="122" uuid="2b4c0a6b-d883-4ef4-afeb-f22297c921a3">
 					<printWhenExpression><![CDATA[!$P{P_REPORT_PREVIEW}]]></printWhenExpression>
 				</reportElement>
 				<subreportParameter name="P_REPORT_STYLE_FILE">
@@ -495,6 +495,20 @@
 				<reportElement style="SummaryBody" x="255" y="464" width="230" height="12" uuid="0edce04b-cb68-4ecc-b31f-7bdbe5286ab1"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Numeracy 10 Graduation Assessment]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="225" y="475" width="16" height="12" uuid="1687f7f6-5040-4c29-88a4-b56bf41c087a"/>
+				<text><![CDATA[18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="240" y="475" width="10" height="12" uuid="4b8f641f-c451-4451-8c92-e67da58e2203"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="255" y="475" width="230" height="12" uuid="0edce04b-cb68-4ecc-b31f-7bdbe5286ab1"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Literacy 12 Graduation Assessment]]></text>
 			</staticText>
 		</band>
 	</summary>

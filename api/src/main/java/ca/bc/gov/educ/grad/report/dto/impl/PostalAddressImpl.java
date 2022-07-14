@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -43,11 +44,13 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     private String country = "";
 
     @Override
+    @JsonProperty("address1")
     public String getStreetLine1() {
         return streetLine1;
     }
 
     @Override
+    @JsonProperty("address2")
     public String getStreetLine2() {
         return streetLine2;
     }
@@ -58,21 +61,25 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     }
 
     @Override
+    @JsonProperty("city")
     public  String getCity() {
         return city;
     }
 
     @Override
+    @JsonProperty("provinceName")
     public  String getRegion() {
         return region;
     }
 
     @Override
+    @JsonProperty("postal")
     public  String getPostalCode() {
         return this.code;
     }
 
     @Override
+    @JsonProperty("countryCode")
     public  String getCountryCode() {
         return country;
     }

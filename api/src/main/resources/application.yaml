@@ -86,10 +86,12 @@ springdoc:
 endpoint:
   educ-grad-report-api:
     get-signature-by-code:
-      url: ${GRAD_REPORT_API}api/v1/signatures
+      url: ${GRAD_REPORT_API}api/v1/reports/signatures
   educ-grad-trax-api:
     get-district-details:
-      url: ${GRAD_TRAX_API}api/v1/district/%s
+      url: ${GRAD_TRAX_API}api/v1/trax/district/%s
+    school-by-min-code:
+      url: ${GRAD_TRAX_API}api/v1/trax/school/%s
   grad-student-api:
     read-grad-student-record: ${GRAD_STUDENT_API}api/v1/student/studentid/%s/algorithm
   pen-student-api:

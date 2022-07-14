@@ -85,10 +85,12 @@ springdoc:
 endpoint:
   educ-grad-report-api:
     get-signature-by-code:
-      url: https://educ-grad-report-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/signatures
+      url: https://educ-grad-report-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/reports/signatures
   educ-grad-trax-api:
     get-district-details:
-      url: https://educ-grad-trax-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/district/%s
+      url: https://educ-grad-trax-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/trax/district/%s
+    school-by-min-code:
+      url: https://educ-grad-trax-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/trax/school/%s
   grad-student-api:
     read-grad-student-record: https://educ-grad-student-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/student/studentid/%s/algorithm
   pen-student-api:

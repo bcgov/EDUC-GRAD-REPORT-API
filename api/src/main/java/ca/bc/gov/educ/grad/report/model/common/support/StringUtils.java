@@ -17,10 +17,12 @@
  */
 package ca.bc.gov.educ.grad.report.model.common.support;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.nullSafe;
 
 /**
- *
  * @author CGI Information Management Consultants Inc.
  */
 public class StringUtils {
@@ -44,6 +46,35 @@ public class StringUtils {
         if (StringUtilsIsNotBlank(info)) {
             builder.append(delimiter).append(info);
         }
+    }
+
+    public static List<Integer> findPositions(String string, char character) {
+        List<Integer> positions = new ArrayList<>();
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == character) {
+                positions.add(i);
+            }
+        }
+        return positions;
+    }
+
+    public static int nearestValue(int value, List<Integer> source) {
+        int lo = 0;
+        int hi = source.size() - 1;
+        int lastValue = 0;
+
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            lastValue = source.get(mid);
+            if (value < lastValue) {
+                hi = mid - 1;
+            } else if (value > lastValue) {
+                lo = mid + 1;
+            } else {
+                return lastValue;
+            }
+        }
+        return lastValue;
     }
 
 }

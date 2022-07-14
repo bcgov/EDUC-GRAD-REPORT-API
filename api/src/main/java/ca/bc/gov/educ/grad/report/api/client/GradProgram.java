@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 public class GradProgram implements Serializable {
-    private Code code;
+    private Code code = new Code();
 
     public Code getCode() {
         return code;

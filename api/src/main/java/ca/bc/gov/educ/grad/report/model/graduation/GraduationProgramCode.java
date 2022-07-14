@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -51,6 +50,10 @@ import java.io.Serializable;
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 
 public enum GraduationProgramCode implements Serializable {
+
+    @XmlEnumValue("BLANK")
+    @JsonProperty("BLANK")
+    PROGRAM_BLANK("BLANK", "Used for blank transcript", 0),
 
     @XmlEnumValue("1950")
     @JsonProperty("1950")
@@ -148,7 +151,7 @@ public enum GraduationProgramCode implements Serializable {
     public static GraduationProgramCode valueFrom(final String code, final String description) {
         for (final GraduationProgramCode gpc : values()) {
             if (gpc.isCode(code)) {
-                if(StringUtils.trimToNull(description) != null) {
+                if(description != null) {
                     gpc.setDescription(description);
                 }
                 return gpc;

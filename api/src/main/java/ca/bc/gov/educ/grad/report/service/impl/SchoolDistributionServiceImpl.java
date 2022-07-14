@@ -23,7 +23,7 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolDistributionReportImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
-import ca.bc.gov.educ.grad.report.model.reports.DistributionReport;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
@@ -116,7 +116,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
 
         parameters.put("reportNumber", reportData.getReportNumber());
 
-        final SchoolDistributionReport report = createReport(
+        final SchoolDistributionReport report = createSchoolDistributionReport(
                 students, school, parameters, CANADA);
 
 
@@ -131,29 +131,29 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
      * @return GradCertificateReport
      * @throws DomainServiceException
      */
-    private synchronized SchoolDistributionReport createReport(
+    private synchronized SchoolDistributionReport createSchoolDistributionReport(
             final List<Student> students,
             final School school,
             final Parameters parameters,
             final Locale location) throws DomainServiceException {
 
-        final String methodName = "createReport(Student, School, Locale)";
+        final String methodName = "createSchoolDistributionReport(Student, School, Locale)";
         LOG.entering(CLASSNAME, methodName);
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
-        DistributionReport distributionReport = reportService.createSchoolDistributionReport();
-        distributionReport.setLocale(location);
-        distributionReport.setStudents(students);
-        distributionReport.setSchool(school);
+        GraduationReport graduationReport = reportService.createSchoolDistributionReport();
+        graduationReport.setLocale(location);
+        graduationReport.setStudents(students);
+        graduationReport.setSchool(school);
 
         if (parameters != null) {
-            distributionReport.setParameters(parameters);
+            graduationReport.setParameters(parameters);
         }
 
         SchoolDistributionReport report = null;
         try {
-            final ReportDocument rptDoc = reportService.export(distributionReport);
+            final ReportDocument rptDoc = reportService.export(graduationReport);
 
             StringBuilder sb = new StringBuilder("school_distribution_");
             sb.append(location.toLanguageTag());
@@ -161,7 +161,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
             sb.append(timestamp);
             sb.append(".");
             sb.append(PDF.getFilenameExtension());
-            final String filename = distributionReport.getFilename();
+            final String filename = graduationReport.getFilename();
 
             byte[] inData = rptDoc.asBytes();
             inData = ArrayUtils.nullToEmpty(inData);
@@ -175,7 +175,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
             byte[] rptData = inData;
 
             // TODO: Use a constant for the name.
-            report = new SchoolDistributionReportImpl(rptData, PDF, filename, createReportTypeName(location));
+            report = new SchoolDistributionReportImpl(rptData, PDF, filename, createReportTypeName("School Distribution Report", location));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the provincial examination report.", ex);
@@ -185,12 +185,4 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
         return report;
     }
 
-    private String createReportTypeName(
-            final Locale locale) {
-        final String reportTypeName
-                = "School Distribution Report"
-                + " "
-                + locale.getISO3Language();
-        return reportTypeName;
-    }
 }

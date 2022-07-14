@@ -52,7 +52,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
     USER_REPORTS_SCHOLARSHIPS,
     USER_REPORTS_TRANSCRIPT,
     USER_REPORTS_PACKINGSLIP,
-    USER_REPORTS_SCHOOL_DISTRIBUTION,
+        USER_REPORTS_SCHOOL_GRADUATION,
     USER_REPORTS_CERTIFICATES,
     FULFILLMENT_SERVICES_USER})
 public class ReportServiceImpl extends AbstractReportService implements ReportService {
@@ -95,9 +95,18 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
      * @inheritDoc
      */
     @Override
-    @RolesAllowed({USER_REPORTS_SCHOOL_DISTRIBUTION})
-    public DistributionReport createSchoolDistributionReport() {
-        return new DistributionReportImpl();
+    @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
+    public GraduationReport createSchoolDistributionReport() {
+        return new SchoolGraduationReportImpl("SchoolDistribution");
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
+    public GraduationReport createSchoolGraduationReport() {
+        return new SchoolGraduationReportImpl("SchoolGraduation");
     }
 
     @Override

@@ -1,0 +1,2 @@
+Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('GRADREG','Students Satisfying Grad Requirements Batch Grad','School Report of Students who have Graduated - produced as part of the Batch Graduation Algorithm Run',25,to_date('21-07-19','RR-MM-DD'));
+UPDATE REPORT_TYPE_CODE SET LABEL = 'Students Satisfying Grad Requirements Year-End' WHERE REPORT_TYPE_CODE='GRAD';

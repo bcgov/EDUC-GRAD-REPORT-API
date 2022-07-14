@@ -5,7 +5,7 @@ import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
-import ca.bc.gov.educ.grad.report.utils.EducGradSignatureImageApiConstants;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import ca.bc.gov.educ.grad.report.utils.GradValidation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +25,7 @@ import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTER
 
 @CrossOrigin
 @RestController
-@RequestMapping(EducGradSignatureImageApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)
+@RequestMapping(EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)
 @OpenAPIDefinition(info = @Info(title = "API for Certificate Signatures endpoints.", description = "This API is for Certificate Signatures endpoints.", version = "1"), security = {@SecurityRequirement(name = "OAUTH2", scopes = {"READ_GRAD_STUDENT_UNGRAD_REASONS_DATA","READ_GRAD_STUDENT_CAREER_DATA"})})
 public class GradReportSignatureController extends BaseController {
 
@@ -40,7 +40,7 @@ public class GradReportSignatureController extends BaseController {
     @Autowired
     GradValidation validation;
     
-    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGE_BY_CODE)
+    @GetMapping(EducGradReportApiConstants.GET_SIGNATURE_IMAGE_BY_CODE)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image binary", description = "Retrieve Signature Image binary by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
@@ -51,7 +51,7 @@ public class GradReportSignatureController extends BaseController {
         return signatureImage.getSignatureContent();
     }
 
-    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGE)
+    @GetMapping(EducGradReportApiConstants.GET_SIGNATURE_IMAGE)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Image Object", description = "Retrieve Signature Object by signature code", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
@@ -61,7 +61,7 @@ public class GradReportSignatureController extends BaseController {
         return gradReportSignatureService.getSignatureImageByCode(signCode, accessToken.replace("Bearer ", ""));
     }
 
-    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_IMAGES)
+    @GetMapping(EducGradReportApiConstants.GET_SIGNATURE_IMAGES)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_IMAGE_BY_CODE)
     @Operation(summary = "Return Signature Images", description = "Retrieve Signature Objects", tags = { "Signature Images" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
@@ -71,7 +71,7 @@ public class GradReportSignatureController extends BaseController {
         return gradReportSignatureService.getSignatureImages(accessToken.replace("Bearer ", ""));
     }
 
-    @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_IMAGE)
+    @PostMapping (EducGradReportApiConstants.SAVE_SIGNATURE_IMAGE)
     @PreAuthorize(PermissionsContants.CREATE_OR_UPDATE_SIGNATURE_IMAGE)
     @Operation(summary = "Create Signature", description = "Create Signature Image File", tags = { "Signature Image" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
@@ -84,7 +84,7 @@ public class GradReportSignatureController extends BaseController {
         return gradReportSignatureService.saveSignatureImage(signatureImage);
     }
 
-    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODE)
+    @GetMapping(EducGradReportApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODE)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_BLOCK_TYPE_CODE)
     @Operation(summary = "Return Signature Block Types", description = "Retrieve Signature Block Types", tags = { "Signature Block Types" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
@@ -94,7 +94,7 @@ public class GradReportSignatureController extends BaseController {
         return gradReportCodeService.getSignatureBlockTypeCode(signBlockTypeCode);
     }
 
-    @GetMapping(EducGradSignatureImageApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODES)
+    @GetMapping(EducGradReportApiConstants.GET_SIGNATURE_BLOCK_TYPE_CODES)
     @PreAuthorize(PermissionsContants.READ_SIGNATURE_BLOCK_TYPE_CODE)
     @Operation(summary = "Return Signature Block Type", description = "Retrieve Signature Block Type", tags = { "Signature Block Type" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
@@ -104,7 +104,7 @@ public class GradReportSignatureController extends BaseController {
         return gradReportCodeService.getSignatureBlockTypeCodes();
     }
 
-    @PostMapping (EducGradSignatureImageApiConstants.SAVE_SIGNATURE_BLOCK_TYPE_CODE)
+    @PostMapping (EducGradReportApiConstants.SAVE_SIGNATURE_BLOCK_TYPE_CODE)
     @PreAuthorize(PermissionsContants.CREATE_OR_UPDATE_SIGNATURE_BLOCK_TYPE_CODE)
     @Operation(summary = "Save Signature Block Type Code", description = "Save Signature Block Type Code", tags = { "Signature Block Type" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})

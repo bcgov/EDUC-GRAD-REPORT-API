@@ -1,23 +1,22 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
-import ca.bc.gov.educ.grad.report.api.client.GradSearchStudent;
-import ca.bc.gov.educ.grad.report.api.client.GraduationStudentRecord;
-import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.*;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
-import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -31,7 +30,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import javax.naming.NamingException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,8 +41,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.E;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -73,8 +70,11 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	@Mock WebClient.RequestBodyUriSpec requestBodyUriMock;
 	@Mock WebClient.ResponseSpec responseMock;
 
+	@Autowired
+	EducGradReportApiConstants constants;
+
 	@Before
-	public void init() throws Exception {
+	public void init() {
 
 	}
 
@@ -86,14 +86,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentAchievementReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createStudentAchievementReport");
 	}
@@ -106,16 +107,37 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1950_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1950_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_IND_BLANK");
 	}
 
 	@Test
@@ -126,14 +148,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1950_IND");
 	}
@@ -146,14 +169,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU1950_PUB");
 	}
@@ -166,14 +190,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1986_PUB");
 	}
@@ -186,16 +211,37 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1986_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1986_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1986_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC1986_IND_BLANK");
 	}
 
 	@Test
@@ -206,14 +252,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU1986_PUB");
 	}
@@ -226,14 +273,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1996_PUB");
 	}
@@ -246,16 +294,37 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC1996_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1996_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1996_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC1996_IND_BLANK");
 	}
 
 	@Test
@@ -266,14 +335,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU1996_PUB");
 	}
@@ -286,16 +356,37 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2004_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2004_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2004_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC2004_IND_BLANK");
 	}
 
 	@Test
@@ -306,14 +397,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2004_PUB");
 	}
@@ -326,14 +418,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU2004_PUB");
 	}
@@ -346,14 +439,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_PUB");
 	}
@@ -366,16 +460,37 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_IND_BLANK");
 	}
 
 	@Test
@@ -386,14 +501,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_OFF");
 	}
@@ -406,14 +522,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_BC2018_PF");
 	}
@@ -426,14 +543,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_YU2018_PUB");
 	}
@@ -446,16 +564,37 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_SCCP_EN");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_EN_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_EN_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_EN_BLANK");
 	}
 
 	@Test
@@ -466,14 +605,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_SCCP_PF");
 	}
@@ -486,16 +626,81 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createTranscriptReport_NOPROG");
+	}
+
+	@Test
+	public void createTranscriptReport_NOPROG_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOPROG-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createTranscriptReport_NOPROG");
+	}
+
+	@Test
+	public void createTranscriptReport_NOTELIG_NOPROG() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_NOTELIG_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOTELIG_NOPROG.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
+		school.setTranscriptEligibility("N");
+		mockTraxSchool(school);
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+		assertEquals(500, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		String bodyResponse = new String(response.getBody());
+		LOG.debug(bodyResponse);
+		assertTrue(StringUtils.contains(bodyResponse, "School is not eligible for transcripts"));
+		LOG.debug(">createTranscriptReport_NOTELIG_NOPROG");
+	}
+
+	@Test
+	public void createCertificateReport_NOTELIG_E() throws Exception {
+		LOG.debug("<{}.createCertificateReport_NOTELIG_E at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
+		school.setCertificateEligibility("N");
+		mockTraxSchool(school);
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
+		assertEquals(500, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		String bodyResponse = new String(response.getBody());
+		LOG.debug(bodyResponse);
+		assertTrue(StringUtils.contains(bodyResponse, "School is not eligible for certificates"));
+		LOG.debug(">createCertificateReport_NOTELIG_E");
 	}
 
 	@Test
@@ -506,14 +711,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_E");
 	}
@@ -526,14 +732,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EO");
 	}
@@ -546,14 +753,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EB");
 	}
@@ -566,14 +774,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_A");
 	}
@@ -586,14 +795,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_AB");
 	}
@@ -606,14 +816,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_AIB");
 	}
@@ -626,14 +837,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EI");
 	}
@@ -646,14 +858,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EIB");
 	}
@@ -666,14 +879,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_EIO");
 	}
@@ -686,14 +900,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_AI");
 	}
@@ -706,14 +921,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SC");
 	}
@@ -726,14 +942,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCB");
 	}
@@ -746,14 +963,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCO");
 	}
@@ -766,14 +984,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_S");
 	}
@@ -786,14 +1005,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SB");
 	}
@@ -806,14 +1026,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SO");
 	}
@@ -826,14 +1047,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_F");
 	}
@@ -846,14 +1068,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_FB");
 	}
@@ -866,14 +1089,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_FO");
 	}
@@ -886,14 +1110,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCF");
 	}
@@ -906,14 +1131,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCF");
 	}
@@ -926,14 +1152,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_SCFO");
 	}
@@ -946,14 +1173,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_O");
 	}
@@ -966,14 +1194,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_OB");
 	}
@@ -986,14 +1215,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentCertificateReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createCertificateReport_OO");
 	}
@@ -1006,16 +1236,38 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createSchoolDistributionReport");
+	}
+
+	@Test
+	public void createSchoolGraduationReport() throws Exception {
+		LOG.debug("<{}.createSchoolGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getSchoolGraduationReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createSchoolGraduationReport");
 	}
 
 	@Test
@@ -1026,14 +1278,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentNonGradReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createStudentNonGradReport");
 	}
@@ -1083,9 +1336,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		ResponseEntity<byte[]> response = apiReportService.getStudentXmlTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
-		byte[] bArrray = (byte[]) response.getBody();
+		byte[] bArray = response.getBody();
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 		LOG.debug(">createXmlTranscriptReport");
 	}
@@ -1110,6 +1363,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(eCertificateReportRequest);
 		assertNotNull(eCertificateReportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(eCertificateReportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(eCertificateReportRequest.getData());
 
 		eCertificateReportRequest.getOptions().setReportFile("Certificate E Report.pdf");
@@ -1120,6 +1374,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(sccpTranscriptReportRequest);
 		assertNotNull(sccpTranscriptReportRequest.getData());
 
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(sccpTranscriptReportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(sccpTranscriptReportRequest.getData());
 
 		sccpTranscriptReportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
@@ -1141,7 +1396,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		testPackingSlipReport(
 				rds,
 				orderType,
-				DestinationType.PSI,
 				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
 				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
@@ -1154,7 +1408,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		testPackingSlipReport(
 				rds,
 				orderType,
-				DestinationType.PSI,
 				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
 				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
@@ -1167,7 +1420,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		testPackingSlipReport(
 				rds,
 				orderType,
-				DestinationType.PSI,
 				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
 				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
@@ -1178,7 +1430,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	private void testPackingSlipReport(
 			final List<ReportDocument> rds,
 			final OrderType orderType,
-			final DestinationType destinationType,
 			final int quantity,
 			final int current,
 			final int total)
@@ -1194,9 +1445,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		);
 
 		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
-		byte[] bArrray = (byte[]) packingSlip.asBytes();
+		byte[] bArray = packingSlip.asBytes();
 		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
-			out.write(bArrray);
+			out.write(bArray);
 		}
 	}
 
@@ -1207,7 +1458,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	 * @param orderType The type of report document to bundle (transcript or
 	 * certificate).
 	 *
-	 * @throws NamingException Could not find service.
 	 * @throws IOException Could not generate bundle.
 	 */
 	private DocumentBundle createDocumentBundle(
@@ -1221,6 +1471,36 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		bundle = bcmpBundleService.appendReportDocument(bundle, rds);
 		// Once the bundle has been created, decorate the page numbers.
 		return bcmpBundleService.enumeratePages(bundle);
+	}
+
+	private School getReportDataSchool(ReportData reportData) {
+		reportData.setAccessToken("accessToken");
+		if(reportData.getSchool() == null || reportData.getSchool().getMincode() == null) {
+			throw new InvalidParameterException("School and mincode can't be NULL");
+		}
+		return reportData.getSchool();
+	}
+
+	private TraxSchool adaptTraxSchool(School school) {
+		TraxSchool traxSchool = new TraxSchool();
+		traxSchool.setMinCode(school.getMincode());
+		traxSchool.setSchoolName(school.getName());
+		traxSchool.setAddress1(school.getAddress().getStreetLine1());
+		traxSchool.setAddress2(school.getAddress().getStreetLine2());
+		traxSchool.setCity(school.getAddress().getCity());
+		traxSchool.setProvCode(school.getAddress().getRegion());
+		traxSchool.setPostal(school.getAddress().getCode());
+		traxSchool.setCountryCode(school.getAddress().getCountry());
+		return traxSchool;
+	}
+	
+	private void mockTraxSchool(TraxSchool traxSchool) {
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(constants.getSchoolDetails(),traxSchool.getMinCode()))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(TraxSchool.class)).thenReturn(Mono.just(traxSchool));
+
 	}
 
 }

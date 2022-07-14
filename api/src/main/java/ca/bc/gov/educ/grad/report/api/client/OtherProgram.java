@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 public class OtherProgram implements Serializable {
 
-    private String programCode;
-    private String programName;
+    private String programCode = "";
+    private String programName = "";
 
     public String getProgramCode() {
         return programCode;
