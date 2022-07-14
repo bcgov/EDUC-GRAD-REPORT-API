@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Assessments" pageWidth="567" pageHeight="108" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="392d526e-f07c-4b21-84aa-abb41f56c8af">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -36,24 +36,24 @@
 	<summary>
 		<band height="108">
 			<staticText>
-				<reportElement style="SummaryTitle" x="0" y="0" width="567" height="20" uuid="737954ce-f357-4c59-81bb-da7d7f8a0105"/>
+				<reportElement style="SummaryTitle" x="0" y="0" width="567" height="14" uuid="737954ce-f357-4c59-81bb-da7d7f8a0105"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[GRADUATION ASSESSMENTS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="65" width="25" height="12" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
+				<reportElement style="SummaryBody" x="18" y="59" width="25" height="12" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
 				<textElement verticalAlignment="Top" markup="none"/>
 				<text><![CDATA[MET]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="48" y="65" width="519" height="12" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae"/>
+				<reportElement style="SummaryBody" x="48" y="59" width="519" height="12" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae"/>
 				<textElement verticalAlignment="Top" markup="none">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Numeracy 10 Assessment requirement met by a Mathematics 10 provincial exam.]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="0" y="20" width="567" height="45" uuid="8bc60f6c-022e-4868-9bef-f972ed6039ce">
+				<reportElement x="0" y="14" width="567" height="45" uuid="8bc60f6c-022e-4868-9bef-f972ed6039ce">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<subreportParameter name="P_REPORT_STYLE_FILE">
@@ -68,28 +68,40 @@
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_SCORE_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="86" width="25" height="12" uuid="57aa749f-cdf3-475d-81f8-f6dc378a042e"/>
+				<reportElement style="SummaryBody" x="18" y="80" width="25" height="12" uuid="57aa749f-cdf3-475d-81f8-f6dc378a042e"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[XMT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" stretchType="RelativeToTallestObject" x="48" y="86" width="503" height="12" uuid="c796c886-be7f-4b3c-83c7-bdf44df6bfc4"/>
+				<reportElement style="SummaryBody" stretchType="RelativeToTallestObject" x="48" y="80" width="503" height="12" uuid="c796c886-be7f-4b3c-83c7-bdf44df6bfc4"/>
 				<textElement verticalAlignment="Middle">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Assessment requirement exempt.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" stretchType="RelativeToTallestObject" x="48" y="75" width="503" height="12" uuid="d45d1fbd-a711-44ee-b345-5771240bf6bd"/>
+				<reportElement style="SummaryBody" stretchType="RelativeToTallestObject" x="48" y="69" width="503" height="12" uuid="d45d1fbd-a711-44ee-b345-5771240bf6bd"/>
 				<textElement verticalAlignment="Middle">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Requirement met by completion of the Literacy 10 Assessment.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="75" width="25" height="12" uuid="6fa3077a-8179-4055-aef9-7595c5e12103"/>
+				<reportElement style="SummaryBody" x="18" y="69" width="25" height="12" uuid="6fa3077a-8179-4055-aef9-7595c5e12103"/>
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="18" y="92" width="25" height="12" uuid="9ceee741-3ed3-43ad-8da7-19a3657e5a6b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[AEG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" stretchType="ContainerHeight" x="48" y="92" width="503" height="16" uuid="19326fcf-71ce-4b9f-ba44-cfb3a985d14d"/>
+				<textElement verticalAlignment="Top">
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[Aegrotat Standing means the student has been granted exemption from writing a Provincial Graduation Assessment due to unpredictable circumstances that render a student unable to write an assessment, even at a future session.]]></text>
 			</staticText>
 		</band>
 	</summary>

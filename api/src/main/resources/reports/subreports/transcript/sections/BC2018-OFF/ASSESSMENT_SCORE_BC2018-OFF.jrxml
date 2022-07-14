@@ -51,28 +51,28 @@
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Emerging]]></text>
+				<text><![CDATA[(Emerging)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="11" width="56" height="12" uuid="20a82cae-5bd7-4eea-bc54-ee513f664185"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Developing]]></text>
+				<text><![CDATA[(Developing)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="22" width="56" height="12" uuid="0c292e4e-185e-4b5c-86ab-016679d310bf"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Proficient]]></text>
+				<text><![CDATA[(Proficient)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="33" width="56" height="12" uuid="73aef594-a393-4545-82b0-5b4e40cdb3b6"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Extending]]></text>
+				<text><![CDATA[(Extending)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="0" width="471" height="12" uuid="f0955af7-4bc4-4a55-b0ec-f17891c475c6"/>
