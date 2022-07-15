@@ -162,8 +162,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase() + ($P{P_REPORT_PREVIEW} ? "" : "_bw")]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_DATE" class="java.lang.String">
-		<variableExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
-		<initialValueExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
+		<variableExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
+		<initialValueExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_BIRTHDATE" class="java.lang.String">
 		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
@@ -353,7 +353,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{V_REPORT_DATE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Issue Date: " + $V{V_REPORT_DATE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
