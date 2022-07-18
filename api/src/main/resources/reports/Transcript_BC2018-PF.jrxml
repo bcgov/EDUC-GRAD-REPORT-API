@@ -25,8 +25,8 @@
 	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
 	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.TranscriptCalculator"/>
+	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
 	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.EmbeddedImageTranscoder"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<import value="net.sf.jasperreports.engine.util.JRLoader"/>
@@ -61,9 +61,6 @@
 	<parameter name="P_REPORT_TYPE" class="java.lang.String">
 		<parameterDescription><![CDATA[Graduation program code]]></parameterDescription>
 		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
-	</parameter>
-	<parameter name="P_TRANSCRIPT_TYPE" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Regular"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
 		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
@@ -165,8 +162,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase() + ($P{P_REPORT_PREVIEW} ? "" : "_bw")]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_DATE" class="java.lang.String">
-		<variableExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
-		<initialValueExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
+		<variableExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
+		<initialValueExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_BIRTHDATE" class="java.lang.String">
 		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
@@ -333,7 +330,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["The face of this transcript has a coloured background - not a white background - the transcript has a watermark of the B.C. flag - hold up to a light to view".toUpperCase()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW."]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement positionType="Float" x="0" y="214" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
@@ -351,12 +348,11 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 			<textField evaluationTime="Master" isBlankWhenNull="true">
 				<reportElement style="Title" isPrintRepeatedValues="false" x="337" y="32" width="230" height="12" uuid="9b55f08f-c74f-49d6-83db-f71392a58533">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<printWhenExpression><![CDATA[$V{V_TOTAL_PAGES} > 1]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[msg("Page   {0}   of   {1}", $V{MASTER_CURRENT_PAGE}, $V{MASTER_TOTAL_PAGES})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Issue Date: " + $V{V_REPORT_DATE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -441,11 +437,11 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 	<pageFooter>
 		<band height="25">
 			<textField>
-				<reportElement style="GeneratedText" stretchType="ContainerHeight" positionType="FixRelativeToBottom" x="113" y="5" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
-				<textElement textAlignment="Left" verticalAlignment="Top">
+				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" stretchType="ContainerHeight" x="113" y="2" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$R{text.footer.contact}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["QUESTIONS? STUDENTS SHOULD CONTACT THEIR SCHOOL OF RECORD IMMEDIATELY."]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
