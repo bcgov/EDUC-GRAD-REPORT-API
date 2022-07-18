@@ -36,7 +36,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="9.5" isBold="true"/>
 				</textElement>
-				<text><![CDATA[STUDENT POST-SECONDARY INSTITUTIONS SELECTIONS IN STUDENTTRANSCRIPTS SERVICE (STS)]]></text>
+				<text><![CDATA[STUDENT'S POST-SECONDARY INSTITUTION SELECTIONS IN STUDENTTRANSCRIPTS SERVICE (STS)]]></text>
 			</staticText>
 		</band>
 	</summary>
