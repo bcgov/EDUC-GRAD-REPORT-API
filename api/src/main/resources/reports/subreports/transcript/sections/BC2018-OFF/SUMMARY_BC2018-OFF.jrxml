@@ -146,12 +146,12 @@
 			<staticText>
 				<reportElement style="SummaryBody" x="18" y="264" width="549" height="36" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd"/>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[In order to meet graduation requirements and be awarded a British Columbia Certificate of Graduation (Dogwood Diploma), students must earn a minimum of 80 credits and write the Grade 10 Numeracy Assessment and Grades 10 and 12 Literacy Assessments. The 80 credits must include 52 credits for required courses (including 8 credits of Career Education courses) and a minimum of 28 elective credits.]]></text>
+				<text><![CDATA[Students must earn a min. of 80 credits and write provincial assessments of numeracy and literacy. The 80 credits include 52 credits for required courses (including 8 credits of Career Education courses) and a min. of 28 elective credits. Students must complete a min. of 16 credits at the Grade 12 level, including a required Language Arts 12 and Career Life Connections.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="45" y="300" width="465" height="11" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d"/>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[The graduation requirements below are designated by a code number in the REQ column:]]></text>
+				<text><![CDATA[The graduation requirements below are designated by a code number in the REQ column]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="45" y="311" width="16" height="11" uuid="9fbb88c4-e848-4e28-b424-92a7b9579a45"/>
@@ -165,7 +165,7 @@
 			<staticText>
 				<reportElement style="SummaryBody" x="75" y="311" width="160" height="11" uuid="536db2bf-3bcd-4b1a-a5a6-efb0bbb940f4"/>
 				<textElement textAlignment="Left"/>
-				<text><![CDATA[Language Arts 10 (4 credits)*]]></text>
+				<text><![CDATA[Language Arts 10 (4 credits)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="45" y="333" width="16" height="11" uuid="1b5a060d-fbc7-4b90-9c00-deb4b82388cb"/>
@@ -289,50 +289,50 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="411" width="200" height="12" uuid="234c1e0a-9374-4456-bf3f-14a0062991c5"/>
+				<reportElement style="SummaryBody" x="75" y="411" width="194" height="12" uuid="234c1e0a-9374-4456-bf3f-14a0062991c5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Physical and Health Education 10 (4 credits)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="311" width="16" height="23" uuid="24727812-4954-4e98-bc1c-600cd7c21489"/>
+				<reportElement style="SummaryBody" x="269" y="311" width="16" height="22" uuid="24727812-4954-4e98-bc1c-600cd7c21489"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="311" width="10" height="23" uuid="498aefdb-b921-499b-b9e4-2130717d73c8"/>
+				<reportElement style="SummaryBody" x="285" y="311" width="10" height="22" uuid="498aefdb-b921-499b-b9e4-2130717d73c8"/>
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="311" width="190" height="23" uuid="ba1224db-9ef2-41b8-8354-a66a2d847180"/>
+				<reportElement style="SummaryBody" x="299" y="311" width="190" height="22" uuid="ba1224db-9ef2-41b8-8354-a66a2d847180"/>
 				<textElement textAlignment="Left" verticalAlignment="Top"/>
 				<text><![CDATA[Arts Education and/or Applied Design, Skills and Technology 10, 11 or 12 (4 credits)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="334" width="16" height="11" uuid="2ea1d17d-dfd3-4988-bddf-92e8aa321040"/>
+				<reportElement style="SummaryBody" x="269" y="333" width="16" height="11" uuid="2ea1d17d-dfd3-4988-bddf-92e8aa321040"/>
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="334" width="10" height="11" uuid="2e2700f1-759b-4961-850f-ccf43ca5c9fb"/>
+				<reportElement style="SummaryBody" x="285" y="333" width="10" height="11" uuid="2e2700f1-759b-4961-850f-ccf43ca5c9fb"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="334" width="211" height="11" uuid="817e6757-07cf-45cf-9f3d-7c7a6b8134a6"/>
+				<reportElement style="SummaryBody" x="299" y="333" width="211" height="11" uuid="817e6757-07cf-45cf-9f3d-7c7a6b8134a6"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Career Life Education (4 credits)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="345" width="16" height="11" uuid="6b457b45-2f61-46fb-a62e-1b22d1c61f17"/>
+				<reportElement style="SummaryBody" x="269" y="344" width="16" height="11" uuid="6b457b45-2f61-46fb-a62e-1b22d1c61f17"/>
 				<text><![CDATA[13]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="345" width="10" height="11" uuid="21fd1af3-58eb-467f-85ad-ed60a0730bd7"/>
+				<reportElement style="SummaryBody" x="285" y="344" width="10" height="11" uuid="21fd1af3-58eb-467f-85ad-ed60a0730bd7"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="345" width="211" height="11" uuid="f8e61441-d51d-47e5-91fc-5f62f167dc09"/>
+				<reportElement style="SummaryBody" x="299" y="344" width="211" height="11" uuid="f8e61441-d51d-47e5-91fc-5f62f167dc09"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Career Life Connections (4 credits)]]></text>
 			</staticText>
@@ -342,43 +342,47 @@
 				<text><![CDATA[COURSE TYPE ABBREVIATIONS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="510" width="29" height="11" uuid="e36ad5be-e073-4b70-8531-4e8892964200"/>
+				<reportElement style="SummaryBody" x="220" y="510" width="29" height="12" uuid="e36ad5be-e073-4b70-8531-4e8892964200">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<text><![CDATA[AP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="510" width="247" height="11" uuid="d52d0d73-c57a-4710-b3c8-81ceaad523ef"/>
+				<reportElement style="SummaryBody" x="260" y="510" width="247" height="12" uuid="d52d0d73-c57a-4710-b3c8-81ceaad523ef"/>
 				<text><![CDATA[Advanced Placement Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="521" width="247" height="11" uuid="f0e59679-5c13-4882-9428-a5b75dc49d1d"/>
+				<reportElement style="SummaryBody" x="260" y="520" width="247" height="12" uuid="f0e59679-5c13-4882-9428-a5b75dc49d1d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<text><![CDATA[Board/Authority-Authorized Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="520" width="29" height="11" uuid="9d8b3964-79aa-46c2-81f9-aad6a51c3546"/>
+				<reportElement style="SummaryBody" x="220" y="520" width="29" height="12" uuid="9d8b3964-79aa-46c2-81f9-aad6a51c3546"/>
 				<text><![CDATA[BA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="531" width="29" height="11" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
+				<reportElement style="SummaryBody" x="220" y="550" width="29" height="12" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
 				<text><![CDATA[LD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="542" width="247" height="11" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
+				<reportElement style="SummaryBody" x="260" y="560" width="247" height="12" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
 				<text><![CDATA[International Baccalaureate Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="531" width="247" height="11" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
+				<reportElement style="SummaryBody" x="260" y="550" width="247" height="12" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
 				<text><![CDATA[Locally Developed Course (non-credit course)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="553" width="247" height="11" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
+				<reportElement style="SummaryBody" x="260" y="570" width="247" height="12" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
 				<text><![CDATA[Independent Directed Studies]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="553" width="29" height="11" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
+				<reportElement style="SummaryBody" x="220" y="570" width="29" height="12" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
 				<text><![CDATA[IDS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="542" width="29" height="11" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
+				<reportElement style="SummaryBody" x="220" y="560" width="29" height="12" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
 				<text><![CDATA[IB]]></text>
 			</staticText>
 			<subreport>
@@ -431,44 +435,44 @@
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="356" width="16" height="11" uuid="b089dfde-7193-4f05-9493-60aa12cb5d0e"/>
+				<reportElement style="SummaryBody" x="269" y="355" width="16" height="11" uuid="b089dfde-7193-4f05-9493-60aa12cb5d0e"/>
 				<text><![CDATA[15]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="356" width="10" height="11" uuid="877301d1-601f-4fd3-be30-71110c1b33f4"/>
+				<reportElement style="SummaryBody" x="285" y="355" width="10" height="11" uuid="877301d1-601f-4fd3-be30-71110c1b33f4"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="356" width="211" height="11" uuid="d9830991-c37f-4bb3-8a90-818020de8d3f"/>
+				<reportElement style="SummaryBody" x="299" y="355" width="211" height="11" uuid="d9830991-c37f-4bb3-8a90-818020de8d3f"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Literacy 10 Graduation Assessment]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="367" width="16" height="11" uuid="1687f7f6-5040-4c29-88a4-b56bf41c087a"/>
+				<reportElement style="SummaryBody" x="269" y="366" width="16" height="11" uuid="1687f7f6-5040-4c29-88a4-b56bf41c087a"/>
 				<text><![CDATA[16]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="367" width="10" height="11" uuid="4b8f641f-c451-4451-8c92-e67da58e2203"/>
+				<reportElement style="SummaryBody" x="285" y="366" width="10" height="11" uuid="4b8f641f-c451-4451-8c92-e67da58e2203"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="367" width="211" height="11" uuid="0edce04b-cb68-4ecc-b31f-7bdbe5286ab1"/>
+				<reportElement style="SummaryBody" x="299" y="366" width="211" height="11" uuid="0edce04b-cb68-4ecc-b31f-7bdbe5286ab1"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Numeracy 10 Graduation Assessment]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="378" width="16" height="12" uuid="1687f7f6-5040-4c29-88a4-b56bf41c087a"/>
+				<reportElement style="SummaryBody" x="269" y="388" width="16" height="12" uuid="1687f7f6-5040-4c29-88a4-b56bf41c087a"/>
 				<text><![CDATA[18]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="378" width="10" height="12" uuid="4b8f641f-c451-4451-8c92-e67da58e2203"/>
+				<reportElement style="SummaryBody" x="285" y="388" width="10" height="12" uuid="4b8f641f-c451-4451-8c92-e67da58e2203"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="378" width="211" height="12" uuid="0edce04b-cb68-4ecc-b31f-7bdbe5286ab1"/>
+				<reportElement style="SummaryBody" x="299" y="388" width="211" height="12" uuid="0edce04b-cb68-4ecc-b31f-7bdbe5286ab1"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Literacy 12 Graduation Assessment]]></text>
 			</staticText>
@@ -502,18 +506,48 @@
 				<text><![CDATA[• A list of all courses that may be used to satisfy requirements is found in the Ministry of Education Course Registry.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="269" y="390" width="16" height="12" uuid="d598a73c-be3d-43f5-a7c6-4b075dd32780"/>
+				<reportElement style="SummaryBody" x="269" y="400" width="16" height="12" uuid="d598a73c-be3d-43f5-a7c6-4b075dd32780"/>
 				<text><![CDATA[19]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="390" width="10" height="12" uuid="13fe03e1-c2ae-4269-88bb-491aa090ab53"/>
+				<reportElement style="SummaryBody" x="285" y="400" width="10" height="12" uuid="13fe03e1-c2ae-4269-88bb-491aa090ab53"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="299" y="390" width="211" height="12" uuid="fa0eaca2-10e3-46cb-9d55-a76ec9ec21e9"/>
+				<reportElement style="SummaryBody" x="299" y="400" width="211" height="12" uuid="fa0eaca2-10e3-46cb-9d55-a76ec9ec21e9"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Minimum Grade 12 Credits (16 credits)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="269" y="377" width="16" height="11" uuid="0605ee4c-7768-4729-b9e9-10bcaf4e4515"/>
+				<text><![CDATA[17]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="285" y="377" width="10" height="11" uuid="efbfaf5e-2d83-4e42-bb7a-95af4730baa5"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="299" y="377" width="211" height="11" uuid="9de1699e-341d-472d-83db-c5d157fc30e2"/>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Elective requirement (28 credits)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="220" y="530" width="29" height="12" uuid="4d119432-f78f-4e10-ad96-9c76be6d26d2"/>
+				<text><![CDATA[C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="260" y="530" width="247" height="12" uuid="65ac9406-38e6-40d8-8ed1-c64911f0c390"/>
+				<text><![CDATA[Course credit earned through challenge process]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="260" y="540" width="247" height="12" uuid="6ecd4a2e-fd89-416f-9ab4-87f8623cea74"/>
+				<text><![CDATA[Course credit earned through equivalency review]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="220" y="540" width="29" height="12" uuid="0f1d759a-4103-426a-a7f3-06e6dfdf4b91"/>
+				<text><![CDATA[E]]></text>
 			</staticText>
 		</band>
 	</summary>
