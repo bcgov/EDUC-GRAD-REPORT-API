@@ -23,7 +23,10 @@ import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.support.StringUtils;
 
 import javax.xml.bind.annotation.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import static ca.bc.gov.educ.grad.report.dto.reports.data.impl.TranscriptResult.*;
 
@@ -217,9 +220,7 @@ public final class Student extends BusinessEntity {
      * @return The student's birthdate, or Jan 1, 1900, never null.
      */
     public Date getBirthdate() {
-        return this.birthdate == null
-                ? createBirthdate()
-                : new Date(this.birthdate.getTime());
+        return this.birthdate;
     }
 
     /**
@@ -250,19 +251,6 @@ public final class Student extends BusinessEntity {
      */
     public Status getStatus() {
         return this.status == null ? createStatus() : this.status;
-    }
-
-    /**
-     * Returns the default birthdate for a student. This is used to ensure the
-     * birthdate is always filled, in the unlikely event that there is no data
-     * set by the calling code.
-     *
-     * @return A date instance set to January 1, 1900.
-     */
-    protected Date createBirthdate() {
-        final Calendar calendar = Calendar.getInstance();
-        calendar.set(1900, Calendar.JANUARY, 1);
-        return calendar.getTime();
     }
 
     /**
