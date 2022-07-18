@@ -7,7 +7,7 @@
     <groupId>ca.bc.gov.educ</groupId>
     <artifactId>educ-grad-report-api</artifactId>
     <name>educ-grad-report-api</name>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <description>Ministry of Education and Child Care REPORT API</description>
 
     <parent>
@@ -313,13 +313,13 @@
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.ant</artifactId>
-            <version>0.8.8</version>
+            <version>0.7.7.201606060606</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core -->
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.core</artifactId>
-            <version>0.8.8</version>
+            <version>0.7.7.201606060606</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.report -->
         <dependency>
@@ -331,7 +331,7 @@
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
-            <version>5.5.13.3</version>
+            <version>5.5.13.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
         <dependency>
@@ -477,7 +477,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.6.1</version>
+            <version>4.1.0</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
@@ -567,7 +567,7 @@
         <dependency>
             <groupId>com.tngtech.java</groupId>
             <artifactId>junit-dataprovider</artifactId>
-            <version>1.13.1</version>
+            <version>1.10.2</version>
             <!--scope>test</scope-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
@@ -738,7 +738,7 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
+                <version>3.6.0.1398</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -765,7 +765,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
+                <version>2.5</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>
