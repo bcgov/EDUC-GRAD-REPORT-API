@@ -844,9 +844,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         switch (code) {
             case PROGRAM_1950:
             case PROGRAM_1986:
-                //result = createAdultComparator();
-                //break;
-
             // 1995, 2004, 2018, etc.
             default:
                 result = createRegularComparator();
