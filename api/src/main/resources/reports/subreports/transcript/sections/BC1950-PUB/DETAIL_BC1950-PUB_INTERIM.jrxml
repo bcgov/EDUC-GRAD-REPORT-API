@@ -1,32 +1,230 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-30T13:54:57 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Detail 1950, 1986" pageWidth="567" pageHeight="399" whenNoDataType="BlankPage" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c0036d4f-8c7c-4d4d-8580-00a67cc9ef1b">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\StudentAdapter.xml"/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
-	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<import value="net.sf.jasperreports.engine.data.*"/>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Detail Regular" pageWidth="567" pageHeight="48" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" whenResourceMissingType="Empty" uuid="c0036d4f-8c7c-4d4d-8580-00a67cc9ef1b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.TranscriptCalculator"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
-	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
-	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
+	<parameter name="P_TOTAL_ROWS" class="java.lang.Integer"/>
+	<parameter name="P_SHORT_PAGE_ROWS" class="java.lang.Integer"/>
+	<parameter name="P_LONG_PAGE_ROWS" class="java.lang.Integer"/>
+	<parameter name="P_REPORT_INTERIM" class="java.lang.String"/>
 	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
-	<field name="student.provinciallyExaminableCourses" class="java.util.List">
-		<fieldDescription><![CDATA[student.provinciallyExaminableCourses]]></fieldDescription>
+	<field name="transcriptResult.courseName" class="java.lang.String">
+		<fieldDescription><![CDATA[courseName]]></fieldDescription>
 	</field>
-	<field name="student.nonProvinciallyExaminableCourses" class="java.util.List">
-		<fieldDescription><![CDATA[student.nonProvinciallyExaminableCourses]]></fieldDescription>
+	<field name="transcriptResult.courseCode" class="java.lang.String">
+		<fieldDescription><![CDATA[courseCode]]></fieldDescription>
 	</field>
-	<variable name="V_EOT" class="java.lang.Boolean"/>
+	<field name="transcriptResult.courseLevel" class="java.lang.String">
+		<fieldDescription><![CDATA[courseLevel]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.reportCourseType" class="java.lang.String">
+		<fieldDescription><![CDATA[reportCourseType]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.courseLevelGroup" class="java.lang.String">
+		<fieldDescription><![CDATA[courseLevelGroup]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.requirementMet" class="java.lang.String">
+		<fieldDescription><![CDATA[requirementMet]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.equivalencyChallenge" class="java.lang.String">
+		<fieldDescription><![CDATA[equivalencyChallenge]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.schoolPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[schoolPercent]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.examPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[examPercent]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.sessionDate" class="java.lang.String">
+		<fieldDescription><![CDATA[sessionDate]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.formattedSessionDate" class="java.lang.String">
+		<fieldDescription><![CDATA[formattedSessionDate]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.finalPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[finalPercent]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.finalLetterGrade" class="java.lang.String">
+		<fieldDescription><![CDATA[finalLetterGrade]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.interimPercent" class="java.lang.String">
+		<fieldDescription><![CDATA[interimPercent]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.interimLetterGrade" class="java.lang.String">
+		<fieldDescription><![CDATA[interimLetterGrade]]></fieldDescription>
+	</field>
+	<field name="transcriptResult.credits" class="java.lang.String">
+		<fieldDescription><![CDATA[credits]]></fieldDescription>
+	</field>
+	<variable name="V_CREDITS" class="java.lang.String">
+		<variableExpression><![CDATA[$F{transcriptResult.credits}.length() < 3 ? " " + $F{transcriptResult.credits} : $F{transcriptResult.credits}]]></variableExpression>
+	</variable>
+	<variable name="V_END_TEXT" class="java.lang.String">
+		<variableExpression><![CDATA[$R{text.footer.end}]]></variableExpression>
+	</variable>
+	<variable name="V_PAGE_BREAK" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[TranscriptCalculator.calcPageBreak($P{P_TOTAL_ROWS}, $V{PAGE_NUMBER}, $P{P_SHORT_PAGE_ROWS}, $P{P_LONG_PAGE_ROWS})]]></variableExpression>
+		<initialValueExpression><![CDATA[TranscriptCalculator.calcPageBreak($P{P_TOTAL_ROWS}, $V{PAGE_NUMBER}, $P{P_SHORT_PAGE_ROWS}, $P{P_LONG_PAGE_ROWS})]]></initialValueExpression>
+	</variable>
+	<group name="CourseLevelGroup">
+		<groupExpression><![CDATA[$F{transcriptResult.courseLevelGroup}]]></groupExpression>
+		<groupFooter>
+			<band height="12">
+				<frame>
+					<reportElement positionType="Float" x="0" y="0" width="200" height="12" uuid="d2449f5c-6e6a-470f-89c7-299f2299041b"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="200" y="0" width="49" height="12" uuid="ef790b2d-d321-4f1c-b46a-13ae36587391"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="249" y="0" width="46" height="12" uuid="8d6b16bd-b642-4c39-9ac2-225a88212837"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="295" y="0" width="18" height="12" uuid="d811c77c-6cf6-4f53-a81f-4b0423c5efff"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="313" y="0" width="46" height="12" uuid="60fb5b27-1e5a-4561-910b-73318d05d9a7"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="359" y="0" width="30" height="12" uuid="fbb2bbdb-a2ae-45a5-bba9-8847e9300e9d"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="389" y="0" width="30" height="12" uuid="0cf473a5-4c1d-4a89-a520-b55a17748430"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="419" y="0" width="30" height="12" uuid="c305244a-099d-47cc-a40f-4977bcbd7fa6"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="449" y="0" width="26" height="12" uuid="4bd9d978-d544-44b7-9453-c9ba9ccf974b"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="475" y="0" width="31" height="12" uuid="33c12f77-d444-4317-b478-13f725839ca9"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="506" y="0" width="28" height="12" uuid="33c12f77-d444-4317-b478-13f725839cb9"/>
+				</frame>
+				<frame>
+					<reportElement positionType="Float" x="534" y="0" width="33" height="12" uuid="33c12f77-d444-4317-b478-13f725839cc9"/>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
 	<detail>
-		<band height="174"/>
-		<band height="225"/>
+		<band height="12">
+			<frame>
+				<reportElement positionType="Float" x="0" y="0" width="567" height="12" uuid="625ddbca-2ef0-49a1-b549-7cce8c83a33c"/>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="0" y="0" width="200" height="12" uuid="85e5e2b1-a1a7-409b-8113-0407afd8050a">
+						<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.courseName}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="200" y="0" width="49" height="12" uuid="6ff863c9-bcc2-4331-aa52-d9cb4e2654ff"/>
+					<textElement verticalAlignment="Middle">
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{transcriptResult.courseCode}.trim() + " " + $F{transcriptResult.courseLevel}.trim()).toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="249" y="0" width="46" height="12" uuid="875238cf-e944-4943-9c51-f4862ea47b10"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<paragraph rightIndent="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.requirementMet}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="295" y="0" width="18" height="12" uuid="5abbc5b6-6cf6-4f48-8eb5-7f95cfde2f9f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{transcriptResult.equivalencyChallenge}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="313" y="0" width="46" height="12" uuid="ae2b778c-a156-46ad-b3a9-6ef0f0c04c5d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.formattedSessionDate}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="359" y="0" width="30" height="12" uuid="545d6c4f-0ba9-41b4-b90c-4d75e5e4e3d9"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<paragraph rightIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.schoolPercent}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="389" y="0" width="30" height="12" uuid="5e8b3315-f1de-4861-a2c2-1203eaff32bb"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<paragraph rightIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.examPercent}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="419" y="0" width="30" height="12" uuid="2647f7c3-f26c-484b-b61a-9ddd63c63246"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<paragraph rightIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.interimPercent}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="449" y="0" width="26" height="12" uuid="b3906865-dca4-47d6-a83d-cc323cb687fa"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<paragraph leftIndent="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.interimLetterGrade}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="475" y="0" width="31" height="12" uuid="2647f7c3-f26c-484b-b61a-9ddd63c63245"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<paragraph rightIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.finalPercent}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseRow" x="506" y="0" width="28" height="12" uuid="b3906865-dca4-47d6-a83d-cc323cc687fa"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<paragraph leftIndent="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transcriptResult.finalLetterGrade}.trim().toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="CourseCredits" x="534" y="0" width="33" height="12" uuid="44c003ae-ad41-40c9-b3ca-1ea0850a819c"/>
+					<textFieldExpression><![CDATA[$V{V_CREDITS}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="12">
+			<printWhenExpression><![CDATA[$V{PAGE_COUNT} >= $V{V_PAGE_BREAK} && !$P{P_REPORT_BLANK}]]></printWhenExpression>
+			<textField>
+				<reportElement style="CourseRow" positionType="Float" x="0" y="0" width="251" height="12" uuid="e68e2cc0-4a89-4e25-98f5-fa31f6b763f7"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.footer.continue}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement positionType="Float" x="0" y="11" width="100" height="1" uuid="34797fe1-1b47-4a53-8fb4-028842ef4334"/>
+			</break>
+		</band>
 	</detail>
+	<lastPageFooter>
+		<band height="12">
+			<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK}]]></printWhenExpression>
+			<textField>
+				<reportElement style="CourseRow" positionType="Float" x="0" y="0" width="251" height="12" uuid="533a5764-5c46-4db0-8fe7-e034e2251f1a"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_END_TEXT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
 </jasperReport>

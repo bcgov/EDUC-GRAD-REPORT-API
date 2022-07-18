@@ -26,6 +26,9 @@
 	<field name="student.lastName" class="java.lang.String">
 		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
 	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
+	</field>
 	<field name="student.birthdate" class="java.util.Date">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
 	</field>
@@ -79,7 +82,7 @@
 					<textElement verticalAlignment="Middle">
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Name: " + $F{student.lastName} + ", " + $F{student.firstName} + " " + $F{student.middleName}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Name: " + $F{student.fullName}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="CourseRow" x="0" y="38" width="102" height="19" uuid="ea5d85df-a0f4-40fc-8883-86d01d318ac5">
