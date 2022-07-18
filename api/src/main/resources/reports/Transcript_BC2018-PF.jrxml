@@ -348,7 +348,6 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 			<textField evaluationTime="Master" isBlankWhenNull="true">
 				<reportElement style="Title" isPrintRepeatedValues="false" x="337" y="32" width="230" height="12" uuid="9b55f08f-c74f-49d6-83db-f71392a58533">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<printWhenExpression><![CDATA[$V{V_TOTAL_PAGES} > 1]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
