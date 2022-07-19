@@ -212,8 +212,9 @@ public class Student implements Comparable<Student>, Serializable {
         String middleNameSt
                 = student.middleName;
         String gradProgramSt = student.gradProgram;
-        return "".concat(gradProgramSt).concat(getLastName()).concat(getFirstName()).concat(getMiddleName())
-                .compareTo("".concat(getGradProgram()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt));
+        String lastUpdateDateSt = "" + student.lastUpdateDate;
+        return "".concat(gradProgramSt).concat(getLastName()).concat(getFirstName()).concat(getMiddleName()).concat(lastUpdateDateSt)
+                .compareTo("".concat(getGradProgram()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt).concat("" + getLastUpdateDate()));
     }
 
     @Override
