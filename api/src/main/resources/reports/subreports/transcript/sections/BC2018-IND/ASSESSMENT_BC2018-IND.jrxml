@@ -54,7 +54,7 @@
 				<textElement verticalAlignment="Top" markup="none">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Numeracy 10 Assessment requirement met by a Mathematics 10 provincial exam.]]></text>
+				<text><![CDATA[Numeracy 10 Assessment requirement met by a Mathematics 10 provincial exam]]></text>
 			</staticText>
 			<subreport>
 				<reportElement x="0" y="12" width="567" height="45" uuid="8bc60f6c-022e-4868-9bef-f972ed6039ce">
@@ -81,14 +81,14 @@
 				<textElement verticalAlignment="Middle">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Assessment requirement exempt.]]></text>
+				<text><![CDATA[Assessment requirement exempt]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" stretchType="RelativeToTallestObject" x="47" y="67" width="503" height="11" uuid="d45d1fbd-a711-44ee-b345-5771240bf6bd"/>
 				<textElement verticalAlignment="Middle">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Requirement met by completion of the Literacy 10 Assessment.]]></text>
+				<text><![CDATA[Requirement met by completion of the Literacy 10 Assessment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="17" y="67" width="25" height="11" uuid="6fa3077a-8179-4055-aef9-7595c5e12103"/>
@@ -105,7 +105,7 @@
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Aegrotat Standing means the student has been granted exemption from writing a Provincial Graduation Assessment due to unpredictable circumstances that render a student unable to write an assessment, even at a future session.]]></text>
+				<text><![CDATA[Aegrotat Standing means the student has been granted exemption from writing a Provincial Graduation Assessment due to unpredictable circumstances that render a student unable to write an assessment, even at a future session]]></text>
 			</staticText>
 		</band>
 	</summary>

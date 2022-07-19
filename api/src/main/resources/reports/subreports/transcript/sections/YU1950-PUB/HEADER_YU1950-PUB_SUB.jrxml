@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2017-12-07T14:15:06 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Header Regular" pageWidth="567" pageHeight="24" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="392d526e-f07c-4b21-84aa-abb41f56c8af">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
+	<pageHeader>
+		<band height="24">
+			<staticText>
+				<reportElement style="CourseHeader" x="294" y="0" width="57" height="24" uuid="f6396a2d-fabd-4ef0-b460-ce3f52c48371"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[REQ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="351" y="0" width="18" height="24" uuid="8f6d3703-2cdc-4294-81bf-5e661f1dbf68"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[EQU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="369" y="0" width="46" height="24" uuid="f88e6ccd-eb8f-4feb-bd24-09f24d8bfd4c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[SESSION
+DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="415" y="0" width="30" height="24" uuid="874ed976-7bcf-45ad-9e79-746aeb6d68a5"/>
+				<box topPadding="0" bottomPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[GR 12
+SCHOOL
+%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="445" y="0" width="30" height="24" uuid="fa3ac64f-45c8-4cfd-b4ab-4c567b0b7281"/>
+				<box topPadding="0" bottomPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[GR 12
+EXAM
+%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="506" y="0" width="28" height="24" uuid="789b8fd1-967e-4e22-bf13-624cdb2668fd"/>
+				<box topPadding="0" bottomPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[FINAL
+LETTER
+GRADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="CourseHeader" x="534" y="0" width="33" height="24" uuid="b3d94dfe-2de0-4a8c-96c3-3a4cfab09b72"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[CREDITS]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="CourseHeader" x="0" y="0" width="231" height="24" uuid="969ac295-214a-4acc-9246-be68133d1f6a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.header.column.course.name}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="CourseHeader" x="231" y="0" width="63" height="24" uuid="ca16aa99-5594-4075-8ba2-6829f51ca02a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.header.column.course.code}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="CourseHeader" x="475" y="0" width="31" height="24" uuid="9702a618-c875-49f2-a1a1-7a1b8477dd7b"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.header.column.course.grade.final}.toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

@@ -26,6 +26,9 @@
 	<field name="student.lastName" class="java.lang.String">
 		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
 	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
+	</field>
 	<field name="student.birthdate" class="java.util.Date">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
 	</field>
@@ -59,7 +62,7 @@
 	<pageHeader>
 		<band height="100">
 			<frame>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="355" y="0" width="212" height="76" uuid="a1a35bc2-f8ae-4bc2-96e7-6c240e2df8a1"/>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="355" y="0" width="212" height="57" uuid="a1a35bc2-f8ae-4bc2-96e7-6c240e2df8a1"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -76,28 +79,13 @@
 						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{student.lastName}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Name: " + $F{student.fullName}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="0" y="38" width="212" height="19" uuid="7cc166f3-6b48-4bac-ad5f-ca097d5a8b72">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<box>
-						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					</box>
-					<textElement>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{student.firstName} + ("".equalsIgnoreCase($F{student.middleName}) ? "" : ", " + $F{student.middleName})]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="0" y="57" width="101" height="19" uuid="ea5d85df-a0f4-40fc-8883-86d01d318ac5">
+					<reportElement style="CourseRow" x="0" y="38" width="102" height="19" uuid="ea5d85df-a0f4-40fc-8883-86d01d318ac5">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<box>
@@ -106,13 +94,13 @@
 						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{student.PEN}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["PEN: " + $F{student.PEN}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="101" y="57" width="111" height="19" uuid="f3ac979c-046b-45c0-8b1d-1a1a28cc3832">
+					<reportElement style="CourseRow" x="102" y="38" width="110" height="19" uuid="f3ac979c-046b-45c0-8b1d-1a1a28cc3832">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<box>
@@ -121,10 +109,10 @@
 						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement>
+					<textElement verticalAlignment="Middle">
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$V{V_BIRTHDATE}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["DOB: " + $V{V_BIRTHDATE}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="Title" x="0" y="0" width="160" height="21" uuid="32a04914-543a-48f9-af02-b17423bc20b6">

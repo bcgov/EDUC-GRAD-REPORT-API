@@ -136,7 +136,7 @@
 				<textElement verticalAlignment="Top" markup="html">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>.]]></text>
+				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryTitle" x="18" y="250" width="549" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
@@ -498,12 +498,12 @@
 			<staticText>
 				<reportElement x="10" y="431" width="523" height="19" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>
 				<textElement verticalAlignment="Bottom"/>
-				<text><![CDATA[• Multiple courses can be designated as meeting a requirement where partial credits are used.]]></text>
+				<text><![CDATA[• Multiple courses can be designated as meeting a requirement where partial credits are used]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="450" width="523" height="20" uuid="29384896-6ce9-4323-9e2a-125a2e8e04d4"/>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[• A list of all courses that may be used to satisfy requirements is found in the Ministry of Education Course Registry.]]></text>
+				<text><![CDATA[• A list of all courses that may be used to satisfy requirements is found in the Ministry of Education Course Registry]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="269" y="400" width="16" height="12" uuid="d598a73c-be3d-43f5-a7c6-4b075dd32780"/>
