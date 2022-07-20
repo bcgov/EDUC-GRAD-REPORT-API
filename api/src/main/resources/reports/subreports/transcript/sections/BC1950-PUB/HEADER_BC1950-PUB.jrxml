@@ -150,10 +150,10 @@
 					<textElement>
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["".equalsIgnoreCase($F{student.school.ministryCode}) ? "" : $F{student.school.name} + "(" + $F{student.school.ministryCode} + ")"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["".equalsIgnoreCase($F{student.school.ministryCode}) ? "" : $F{student.school.name} + "  (" + $F{student.school.ministryCode} + ")"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="0" y="38" width="150" height="14" uuid="c1613b45-60c9-4f4c-8192-6f33b574ee1b">
+					<reportElement style="CourseRow" x="0" y="38" width="212" height="14" uuid="c1613b45-60c9-4f4c-8192-6f33b574ee1b">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -163,7 +163,7 @@
 					<textFieldExpression><![CDATA[$F{student.address.formatted}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="0" y="52" width="150" height="14" uuid="5aefaa25-6419-432b-aa28-732e2f379b54">
+					<reportElement style="CourseRow" x="0" y="52" width="212" height="14" uuid="5aefaa25-6419-432b-aa28-732e2f379b54">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement>
@@ -172,7 +172,7 @@
 					<textFieldExpression><![CDATA["".equalsIgnoreCase($F{student.school.address.city}) ? "" : $F{student.school.address.city} + ", " + $F{student.school.address.region}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="0" y="66" width="150" height="14" uuid="7d52bf99-3fed-4a92-afe8-1c1215992666">
+					<reportElement style="CourseRow" x="0" y="66" width="212" height="14" uuid="7d52bf99-3fed-4a92-afe8-1c1215992666">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>

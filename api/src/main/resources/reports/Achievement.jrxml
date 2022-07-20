@@ -316,9 +316,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="210" splitType="Stretch">
+		<band height="168" splitType="Stretch">
 			<frame>
-				<reportElement mode="Transparent" x="5" y="-8" width="550" height="188" uuid="23edf4cc-118f-4745-9b89-1745b96af412"/>
+				<reportElement mode="Transparent" x="5" y="-8" width="550" height="168" uuid="23edf4cc-118f-4745-9b89-1745b96af412"/>
 				<box>
 					<pen lineWidth="1.25"/>
 				</box>
@@ -531,7 +531,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="90" splitType="Stretch">
+		<band height="81" splitType="Stretch">
 			<frame>
 				<reportElement x="5" y="6" width="550" height="66" uuid="dfa58583-67fe-4125-a964-81787a2318d4"/>
 				<box>
@@ -550,7 +550,7 @@
 				</staticText>
 			</frame>
 		</band>
-		<band height="100">
+		<band height="90">
 			<componentElement>
 				<reportElement positionType="Float" x="5" y="20" width="550" height="60" isRemoveLineWhenBlank="true" uuid="62979d49-6e8a-4115-b35a-4ff1f68ed266">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
@@ -612,7 +612,7 @@
 				<textFieldExpression><![CDATA[$P{hasNonGradReasons} == "true"? "REASONS FOR NON-GRADUATION":""]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="90">
+		<band height="86">
 			<componentElement>
 				<reportElement positionType="Float" x="5" y="20" width="550" height="60" isRemoveLineWhenBlank="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
@@ -1142,7 +1142,7 @@
 				<textFieldExpression><![CDATA[$P{hasStudentCourse} == "true"? "NON-PROVINCIALLY EXAMINABLE COURSES":""]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="90">
+		<band height="83">
 			<componentElement>
 				<reportElement positionType="Float" x="5" y="20" width="550" height="60" isRemoveLineWhenBlank="true" uuid="cc00a62c-c948-40c8-9ef7-9e2080661cb1">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
@@ -1324,11 +1324,11 @@
 		</band>
 		<band height="144">
 			<frame>
-				<reportElement x="5" y="4" width="550" height="130" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c"/>
+				<reportElement x="5" y="4" width="550" height="130" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c">
+					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
+				</reportElement>
 				<staticText>
-					<reportElement x="0" y="0" width="230" height="13" uuid="71f0dfdc-3fc6-48d9-a7bb-2b4e7d68c074">
-						<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
-					</reportElement>
+					<reportElement x="0" y="0" width="230" height="13" uuid="71f0dfdc-3fc6-48d9-a7bb-2b4e7d68c074"/>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true" isItalic="true"/>
 					</textElement>
