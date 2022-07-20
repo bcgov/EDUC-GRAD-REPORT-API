@@ -484,7 +484,7 @@
         <dependency>
             <groupId>org.picketbox</groupId>
             <artifactId>picketbox</artifactId>
-            <version>4.0.19.SP2</version>
+            <version>5.1.0.Final</version>
             <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
