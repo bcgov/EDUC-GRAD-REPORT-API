@@ -144,11 +144,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
      */
     @Override
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
-    public Parameters createParameters() {
+    public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
         LOG.entering(CLASSNAME, methodName);
 
-        final Parameters parameters = new LinkedParameters();
+        final Parameters<String, Object> parameters = new LinkedParameters<>();
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;

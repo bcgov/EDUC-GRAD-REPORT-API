@@ -304,7 +304,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private StudentTranscriptReport createTranscriptReport(
             final ReportFormat format,
-            final boolean preview, final PersonalEducationNumber pen, final Parameters parameters)
+            final boolean preview, final PersonalEducationNumber pen, final Parameters<String, Object> parameters)
             throws DomainServiceException, IOException, DataException {
         final String methodName = "createTranscript(ReportFormat, boolean)";
         LOG.entering(CLASSNAME, methodName);
@@ -558,7 +558,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final List<NonGradReason> nonGradReasons,
             final String gradMessage,
             final Date updateDt,
-            final Parameters parameters,
+            final Parameters<String, Object> parameters,
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
         LOG.entering(CLASSNAME, methodName);
@@ -621,11 +621,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     @Override
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
-    public Parameters createParameters() {
+    public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
         LOG.entering(CLASSNAME, methodName);
 
-        Parameters parameters = reportService.createParameters();
+        Parameters<String, Object> parameters = reportService.createParameters();
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;
@@ -635,7 +635,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final PersonalEducationNumber personalEducationNumber,
             final ReportFormat format,
             final boolean preview,
-            final Parameters parameters) throws DomainServiceException, IOException {
+            final Parameters<String, Object> parameters) throws DomainServiceException, IOException {
         final String methodName = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters)";
         LOG.entering(CLASSNAME, methodName);
         final String pen = personalEducationNumber.getValue();
