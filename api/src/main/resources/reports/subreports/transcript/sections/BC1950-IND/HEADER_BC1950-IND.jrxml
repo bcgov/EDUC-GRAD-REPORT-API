@@ -112,7 +112,7 @@
 					<textElement verticalAlignment="Middle">
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["DOB: " + $V{V_BIRTHDATE}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["DOB: " + ($V{V_BIRTHDATE} == null ? "" : $V{V_BIRTHDATE})]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="Title" x="0" y="0" width="160" height="21" uuid="32a04914-543a-48f9-af02-b17423bc20b6">
