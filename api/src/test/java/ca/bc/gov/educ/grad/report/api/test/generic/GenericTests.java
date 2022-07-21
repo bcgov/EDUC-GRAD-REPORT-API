@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.grad.report.api.test.fake;
+package ca.bc.gov.educ.grad.report.api.test.generic;
 
 import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.impl.ReportServiceImpl;
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class FakeTests {
+public class GenericTests {
 
     @Test
     public void reportServiceImplTest() {
