@@ -42,7 +42,6 @@ public abstract class GradReportBaseTest {
 
     @Before
     public void init() throws Exception {
-
     }
 
     @Test
