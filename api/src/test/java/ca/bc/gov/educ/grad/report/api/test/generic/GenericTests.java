@@ -31,5 +31,7 @@ public class GenericTests {
         assertNotNull(achievementReport);
         PackingSlipReport packingSlipReport = service.createPackingSlipReport();
         assertNotNull(packingSlipReport);
+        Parameters<String, Object> parameters = service.createParameters();
+        assertNotNull(parameters);
     }
 }
