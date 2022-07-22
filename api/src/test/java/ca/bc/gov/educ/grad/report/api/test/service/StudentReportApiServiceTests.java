@@ -4,6 +4,7 @@ import ca.bc.gov.educ.grad.report.api.client.*;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
+import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
@@ -14,6 +15,8 @@ import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
+import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.apache.commons.lang3.StringUtils;
@@ -62,6 +65,11 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	GradReportSignatureService reportSignatureService;
 	@Autowired
 	PackingSlipService packingSlipService;
+
+	@Autowired
+	StudentTranscriptService transcriptService;
+	@Autowired
+	GradDataConvertionBean gradDataConvertionBean;
 
 	@MockBean WebClient webClient;
 	@Mock WebClient.RequestHeadersSpec requestHeadersMock;
@@ -1425,6 +1433,24 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				packingSlipReportRequest.getData().getPackingSlip().getTotal());
 
 		LOG.debug(">testPackingSlipReport");
+	}
+
+	@Test
+	public void createTranscriptReportDuplicateInterimCourses_BC2018_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReportDuplicateInterimCourses_BC2018_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ca.bc.gov.educ.grad.report.model.transcript.Transcript filteredTranscript = transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
+		List<TranscriptCourse> originalCourses = gradDataConvertionBean.getTranscriptCourses(reportRequest.getData());
+
+		assertTrue(originalCourses.size() > filteredTranscript.getResults().size());
+
+		LOG.debug(">createTranscriptReportDuplicateInterimCourses_BC2018_IND");
 	}
 
 	private void testPackingSlipReport(

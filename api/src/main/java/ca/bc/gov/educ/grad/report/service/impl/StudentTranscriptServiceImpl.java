@@ -127,42 +127,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public StudentTranscriptReport buildOfficialTranscriptReport()
             throws DomainServiceException, IOException, DataException {
-        return createTranscriptReport(PDF, false, false);
-    }
-
-    /**
-     * Builds an unofficial transcript report.
-     *
-     * @param format PDF, HTML, etc.
-     * @return
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    @Override
-    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
-    public StudentTranscriptReport buildTranscriptReport(
-            final ReportFormat format)
-            throws DomainServiceException, IOException, DataException {
-        return buildTranscriptReport(format, false);
-    }
-
-    /**
-     * Builds an unofficial transcript report.
-     *
-     * @param format PDF, HTML, etc.
-     * @param pen student identifier.
-     * @return
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    @Override
-    @RolesAllowed({FULFILLMENT_SERVICES_USER})
-    public StudentTranscriptReport buildTranscriptReport(
-            final ReportFormat format, final PersonalEducationNumber pen, final Parameters parameters, final boolean interim)
-            throws DomainServiceException, IOException, DataException {
-        return createTranscriptReport(format, true, pen, parameters, interim);
+        return createTranscriptReport(PDF, false);
     }
 
     /**
@@ -181,7 +146,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     public Future<StudentTranscriptReport> buildTranscriptReportAsync(
             final ReportFormat format)
             throws DomainServiceException, IOException, DataException {
-        return new AsyncResult<>(createTranscriptReport(format, true, false));
+        return new AsyncResult<>(createTranscriptReport(format, true));
     }
 
     @Override
@@ -191,7 +156,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         LOG.entering(CLASSNAME, methodName);
 
         final String pen = getStudentPENId();
-        final Transcript transcript = getTranscript(pen, false);
+        final Transcript transcript = getTranscript(pen);
 
         LOG.exiting(CLASSNAME, methodName);
         return transcript;
@@ -200,13 +165,12 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public Transcript getTranscript(
-            final String pen,
-            final boolean interim) throws DomainServiceException {
+            final String pen) throws DomainServiceException {
         final String methodName = "getTranscript(String)";
         LOG.entering(CLASSNAME, methodName);
 
         final Transcript transcriptInfo = getTranscriptInformation(pen);
-        final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, interim);
+        final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, transcriptInfo.getInterim());
         final StudentInfo studentInfo = getStudentInfo(pen);
         final TranscriptTypeCode transcriptTypeCode = transcriptInfo.getTranscriptTypeCode();
         final GradProgram program = createGradProgram(studentInfo.getGradProgram());
@@ -311,7 +275,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private StudentTranscriptReport createTranscriptReport(
             final ReportFormat format,
-            final boolean preview, final boolean interim)
+            final boolean preview)
             throws DomainServiceException, IOException, DataException {
         final String methodName = "createTranscript(ReportFormat, boolean)";
         LOG.entering(CLASSNAME, methodName);
@@ -320,7 +284,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         LOG.log(Level.FINE, "Retrieved studentInfo for pen: {0}.", pen.getValue());
 
         final StudentTranscriptReport report = getStudentTranscriptReport(
-                pen, format, preview, null, interim
+                pen, format, preview, null
         );
         LOG.exiting(CLASSNAME, methodName);
         return report;
@@ -340,13 +304,13 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private StudentTranscriptReport createTranscriptReport(
             final ReportFormat format,
-            final boolean preview, final PersonalEducationNumber pen, final Parameters parameters, final boolean interim)
+            final boolean preview, final PersonalEducationNumber pen, final Parameters<String, Object> parameters)
             throws DomainServiceException, IOException, DataException {
         final String methodName = "createTranscript(ReportFormat, boolean)";
         LOG.entering(CLASSNAME, methodName);
         LOG.log(Level.FINE, "Retrieved transcript for pen: {0}.", pen.getValue());
 
-        final StudentTranscriptReport report = getStudentTranscriptReport(pen, format, preview, parameters, interim);
+        final StudentTranscriptReport report = getStudentTranscriptReport(pen, format, preview, parameters);
         LOG.log(Level.INFO, "Created StudentTranscriptReport for pen: {0}.", pen.getValue());
 
         LOG.exiting(CLASSNAME, methodName);
@@ -393,7 +357,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 throw dse;
             }
 
-            results = gradDataConvertionBean.getTranscriptCourses(reportData);
+            if(interim) {
+                results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
+            } else {
+                results = gradDataConvertionBean.getTranscriptCourses(reportData);
+            }
 
             LOG.log(Level.INFO,
                     "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
@@ -590,7 +558,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final List<NonGradReason> nonGradReasons,
             final String gradMessage,
             final Date updateDt,
-            final Parameters parameters,
+            final Parameters<String, Object> parameters,
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
         LOG.entering(CLASSNAME, methodName);
@@ -653,11 +621,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     @Override
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
-    public Parameters createParameters() {
+    public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
         LOG.entering(CLASSNAME, methodName);
 
-        Parameters parameters = reportService.createParameters();
+        Parameters<String, Object> parameters = reportService.createParameters();
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;
@@ -667,9 +635,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final PersonalEducationNumber personalEducationNumber,
             final ReportFormat format,
             final boolean preview,
-            final Parameters parameters,
-            final boolean interim) throws DomainServiceException, IOException {
-        final String methodName = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters, boolean)";
+            final Parameters<String, Object> parameters) throws DomainServiceException, IOException {
+        final String methodName = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters)";
         LOG.entering(CLASSNAME, methodName);
         final String pen = personalEducationNumber.getValue();
         final StudentInfo studentInfo = getStudentInfo(pen);
@@ -677,7 +644,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         // Adapt TRAX data to other objects for reporting.
         final String programCode = studentInfo.getGradProgram();
         final String logo = studentInfo.getLogo();
-        final Transcript transcript = getTranscript(pen, interim);
+        final Transcript transcript = getTranscript(pen);
 
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
         final School school = adaptSchool(studentInfo, getAccessToken(), true);
@@ -741,12 +708,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         LOG.exiting(CLASSNAME, methodName);
 
         return graduationData;
-    }
-
-    @Override
-    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
-    public StudentTranscriptReport buildTranscriptReport(final ReportFormat format, final boolean interim) throws DomainServiceException, IOException, DataException {
-        return createTranscriptReport(format, true, interim);
     }
 
     /**
