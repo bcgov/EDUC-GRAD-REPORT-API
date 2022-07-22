@@ -20,8 +20,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.language>java</sonar.language>
         <sonar.exclusions>
-            src/main/resources/**,src/main/java/ca/bc/gov/educ/api/program/exception/**,src/main/java/ca/bc/gov/educ/api/program/model/**
+            src/main/resources/**,
+            src/main/java/ca/bc/gov/educ/api/program/exception/**,
+            src/main/java/ca/bc/gov/educ/api/program/model/**
         </sonar.exclusions>
+        <sonar.coverage.exclusions>
+            src/main/resources/**,
+            src/main/java/ca/bc/gov/educ/api/business/model/**,
+            src/main/java/ca/bc/gov/educ/api/business/util/**
+        </sonar.coverage.exclusions>
         <java.version>11</java.version>
         <dollar>$</dollar>
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -304,23 +311,23 @@
             <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.agent -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.agent</artifactId>
             <version>0.7.7.201606060606</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.ant -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.jacoco/org.jacoco.ant &ndash;&gt;
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.ant</artifactId>
             <version>0.7.7.201606060606</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core &ndash;&gt;
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.core</artifactId>
             <version>0.7.7.201606060606</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.report -->
         <dependency>
             <groupId>org.jacoco</groupId>
@@ -979,7 +986,7 @@
                             </annotationProcessorPaths>
                         </configuration>
                     </plugin>
-                    <!--plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <executions>
@@ -1010,7 +1017,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin-->
+                    </plugin>
                 </plugins>
             </build>
         </profile>
