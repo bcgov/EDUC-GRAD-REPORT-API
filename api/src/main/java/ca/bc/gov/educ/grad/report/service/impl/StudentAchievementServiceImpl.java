@@ -724,7 +724,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             parameters.put("gradObj", graduationStatus);
         }
 
-        InputStream inputLogo = openImageResource("logo_" + studentInfo.getLogo().toLowerCase(Locale.ROOT) + ".svg");
+        InputStream inputLogo = openImageResource("logo_" + studentInfo.getLogo().toLowerCase(Locale.ROOT) + "_bw.svg");
         parameters.put("orgImage", inputLogo);
 
         final StudentAchievementReport report = createReport(
