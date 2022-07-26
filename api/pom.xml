@@ -21,14 +21,18 @@
         <sonar.language>java</sonar.language>
         <sonar.exclusions>
             src/main/resources/**,
-            src/main/java/ca/bc/gov/educ/api/program/exception/**,
-            src/main/java/ca/bc/gov/educ/api/program/model/**
+            src/main/java/ca/bc/gov/educ/grad/report/api/ReportApiApplication.java,
+            src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
+            src/main/java/ca/bc/gov/educ/grad/report/config/**,
+            src/main/java/ca/bc/gov/educ/grad/report/dao/**,
+            src/main/java/ca/bc/gov/educ/grad/report/dto/**,
+            src/main/java/ca/bc/gov/educ/grad/report/entity/**,
+            src/main/java/ca/bc/gov/educ/grad/report/exception/**,
+            src/main/java/ca/bc/gov/educ/grad/report/task/**,
+            src/main/java/ca/bc/gov/educ/grad/report/transformer/**,
+            src/main/java/ca/bc/gov/educ/grad/report/utils/**,
         </sonar.exclusions>
-        <sonar.coverage.exclusions>
-            src/main/resources/**,
-            src/main/java/ca/bc/gov/educ/api/business/model/**,
-            src/main/java/ca/bc/gov/educ/api/business/util/**
-        </sonar.coverage.exclusions>
         <java.version>11</java.version>
         <dollar>$</dollar>
         <maven.compiler.version>3.8.1</maven.compiler.version>
