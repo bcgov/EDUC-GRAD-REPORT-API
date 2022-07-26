@@ -22,6 +22,7 @@ public class GradReportClientHttpRequestInterceptor implements ClientHttpRequest
         logRequestDetails(request);
         return execution.execute(request, body);
     }
+
     private void logRequestDetails(HttpRequest request) {
         LOG.log(Level.INFO, "Headers: {}", request.getHeaders());
         LOG.log(Level.INFO, "Request Method: {}", request.getMethod());
