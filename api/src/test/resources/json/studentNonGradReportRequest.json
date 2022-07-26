@@ -280,7 +280,8 @@
               "code": "012",
               "description": "Fewer than 28 Elective credits"
             }
-          ]
+          ],
+          "lastUpdateDate": "2021-01-01 13:00:05"
         },
         {
           "pen": {
@@ -348,7 +349,8 @@
               "code": "012",
               "description": "Fewer than 28 Elective credits"
             }
-          ]
+          ],
+          "lastUpdateDate": "2020-05-01 13:00:05"
         },
         {
           "pen": {
@@ -416,7 +418,8 @@
               "code": "012",
               "description": "Fewer than 28 Elective credits"
             }
-          ]
+          ],
+          "lastUpdateDate": "2020-12-01 13:00:05"
         },
         {
           "pen": {
@@ -484,7 +487,8 @@
               "code": "012",
               "description": "Fewer than 28 Elective credits"
             }
-          ]
+          ],
+          "lastUpdateDate": "2020-01-01 15:00:05"
         }
       ]
     },

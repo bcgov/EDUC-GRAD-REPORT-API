@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2018-04-19T09:54:45 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Assessment Scores" pageWidth="567" pageHeight="45" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="392d526e-f07c-4b21-84aa-abb41f56c8af">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -51,56 +50,56 @@
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Emerging]]></text>
+				<text><![CDATA[(Emerging)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="11" width="56" height="12" uuid="20a82cae-5bd7-4eea-bc54-ee513f664185"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Developing]]></text>
+				<text><![CDATA[(Developing)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="22" width="56" height="12" uuid="0c292e4e-185e-4b5c-86ab-016679d310bf"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Proficient]]></text>
+				<text><![CDATA[(Proficient)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="33" width="56" height="12" uuid="73aef594-a393-4545-82b0-5b4e40cdb3b6"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Extending]]></text>
+				<text><![CDATA[(Extending)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="0" width="471" height="12" uuid="f0955af7-4bc4-4a55-b0ec-f17891c475c6"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="11" width="471" height="12" uuid="b4440168-3d26-47f2-bfe3-1237d263fbe4"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates a partial understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates a partial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="22" width="471" height="12" uuid="70613607-cdac-4d71-90d9-805df4d5254e"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates a complete understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates a complete understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="33" width="471" height="12" uuid="27986fed-c86e-4c04-9880-f0f6a753c1ca"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates a sophisticated understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates a sophisticated understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 		</band>
 	</summary>

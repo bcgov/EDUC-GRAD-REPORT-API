@@ -61,7 +61,13 @@ objects:
                     name: educ-grad-report-api-config-map
                 - secretRef:
                     name: api-grad-report-db-secret
-              resources: {}
+              resources:
+                requests:
+                  cpu: "50m"
+                  #memory: "50Mi"
+                limits:
+                  cpu: "100m"
+                  #memory: "100Mi"
       test: false
   - apiVersion: v1
     kind: Service

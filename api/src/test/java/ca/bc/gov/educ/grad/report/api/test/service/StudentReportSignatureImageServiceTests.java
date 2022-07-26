@@ -179,7 +179,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug(">saveSignatureImageTest");
 	}
 
-	@Test
+	//@Test
 	public void getSignatureBlockTypesTest() {
 		LOG.debug("<{}.getSignatureBlockTypesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -190,7 +190,7 @@ public class StudentReportSignatureImageServiceTests extends GradReportBaseTest 
 		LOG.debug(">getSignatureBlockTypesTest");
 	}
 
-	@Test
+	//@Test
 	public void saveSignatureBlockTypesTest() {
 		LOG.debug("<{}.saveSignatureBlockTypesTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 

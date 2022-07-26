@@ -78,28 +78,28 @@
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="11" width="471" height="12" uuid="b4440168-3d26-47f2-bfe3-1237d263fbe4"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates a partial understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates a partial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="22" width="471" height="12" uuid="70613607-cdac-4d71-90d9-805df4d5254e"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates a complete understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates a complete understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="96" y="33" width="471" height="12" uuid="27986fed-c86e-4c04-9880-f0f6a753c1ca"/>
 				<textElement>
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[- Demonstrates a sophisticated understanding of the concepts and competencies relevant to the expected learning.]]></text>
+				<text><![CDATA[- Demonstrates a sophisticated understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 		</band>
 	</summary>

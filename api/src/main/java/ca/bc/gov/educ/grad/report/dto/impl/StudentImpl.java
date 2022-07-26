@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.common.support.StringUtils;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
@@ -90,12 +91,12 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     public String getFirstName() {
-        return firstName;
+        return firstName == null ? "" : firstName;
     }
 
     @Override
     public String getLastName() {
-        return lastName;
+        return lastName == null ? "" : lastName;
     }
 
     @Override
@@ -105,7 +106,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     public String getFullName() {
-        return getLastName() + "," + getFirstName() + " " + getMiddleName();
+        return (getLastName().trim() + (isBlank() ? "" : ", " ) + getFirstName().trim() + " " + getMiddleName().trim()).toUpperCase();
     }
 
     @Override
@@ -284,5 +285,9 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    private boolean isBlank() {
+        return !StringUtils.StringUtilsIsNotBlank(getFirstName() + getLastName());
     }
 }

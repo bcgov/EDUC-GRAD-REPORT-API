@@ -1187,10 +1187,34 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "80",
+            "finalPercent": "78",
             "finalLetterGrade": "A",
             "interimPercent": "",
             "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "MARINE TRAFFIC RULES AND REGULATIONS",
+            "code": "MTR",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "200106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "82",
+            "interimLetterGrade": "A"
           },
           "requirement": "",
           "requirementName": "",

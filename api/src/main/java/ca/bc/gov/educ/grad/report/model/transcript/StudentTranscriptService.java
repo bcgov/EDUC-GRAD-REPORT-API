@@ -21,7 +21,6 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
-import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,77 +33,6 @@ import java.util.concurrent.Future;
  * @author CGI Information Management Consultants Inc.
  */
 public interface StudentTranscriptService extends BusinessService {
-
-    /**
-     * FIXME: Rename this to buildReport and make method shared between this
-     * interface and StudentExamService via a common super-interface.
-     *
-     * Generate the student transcripts report. Reports can be generated for
-     * different MIME types such as HTML or PDF. If the current user does not
-     * have an entry in the Student XRef or if the current user is not a student
-     * (no PEN) then a DomainServiceExcepton is thrown. If the current user is a
-     * student but has no exam results in TRAX then a DomainServiceException is
-     * thrown. If there is an error generating the report then a
-     * DomainServiceException is thrown.
-     *
-     * @param format The final format for the filled report.
-     *
-     * @return Report data for consumption by the GUI.
-     *
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    StudentTranscriptReport buildTranscriptReport(ReportFormat format)
-            throws DomainServiceException, IOException, DataException;
-
-    /**
-     * Generate the student transcripts report. Reports can be generated for
-     * different MIME types such as HTML or PDF. If the current user does not
-     * have an entry in the Student XRef or if the current user is not a student
-     * (no PEN) then a DomainServiceExcepton is thrown. If the current user is a
-     * student but has no exam results in TRAX then a DomainServiceException is
-     * thrown. If there is an error generating the report then a
-     * DomainServiceException is thrown.
-     *
-     * @param format The final format for the filled report.
-     * @param interim true Indicates extra columns to display on the report
-     * showing the student's mid-course marks.
-     *
-     * @return Report data for consumption by the GUI.
-     *
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    StudentTranscriptReport buildTranscriptReport(ReportFormat format, boolean interim)
-            throws DomainServiceException, IOException, DataException;
-
-    /**
-     * Generate the student transcripts report. Reports can be generated for
-     * different MIME types such as HTML or PDF. This is to be called by
-     * services that require reports for different students. If the current user
-     * does not have an entry in the Student XRef or if the current user is not
-     * a student (no PEN) then a DomainServiceExcepton is thrown. If the current
-     * user is a student but has no exam results in TRAX then a
-     * DomainServiceException is thrown. If there is an error generating the
-     * report then a DomainServiceException is thrown.
-     *
-     * @param format The final format for the filled report.
-     * @param pen The Personal Education Number of the student to build the
-     * report.
-     * @param parameters The transmission header data to be included if
-     * required.
-     * @param interim The courses are being read from the in progress table.
-     *
-     * @return Report data for consumption by the PESCTransmissionService.
-     *
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    StudentTranscriptReport buildTranscriptReport(ReportFormat format, PersonalEducationNumber pen, Parameters parameters, boolean interim)
-            throws DomainServiceException, IOException, DataException;
 
     /**
      * Performs an asynchronous call to
@@ -145,11 +73,10 @@ public interface StudentTranscriptService extends BusinessService {
      * Retrieves a transcript that contains course results and the report date.
      *
      * @param pen The PEN of the student of which transcript to fetch.
-     * @param interim Should the transcript include interim marks.
      * @return A transcript for the queried user.
      * @throws DomainServiceException Could not read data from TRAX.
      */
-    Transcript getTranscript(String pen, boolean interim) throws DomainServiceException;
+    Transcript getTranscript(String pen) throws DomainServiceException;
 
     /**
      * Retrieves basic transcript information for the given PEN. This is for

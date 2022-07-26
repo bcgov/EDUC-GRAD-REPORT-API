@@ -10,45 +10,56 @@
     <version>1.5.0</version>
     <description>Ministry of Education and Child Care REPORT API</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.4</version>
-    </parent>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.language>java</sonar.language>
         <sonar.exclusions>
-            src/main/resources/**,src/main/java/ca/bc/gov/educ/api/program/exception/**,src/main/java/ca/bc/gov/educ/api/program/model/**
+            src/main/resources/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/ReportApiApplication.java,
+            src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
+            src/main/java/ca/bc/gov/educ/grad/report/config/**,
+            src/main/java/ca/bc/gov/educ/grad/report/dao/**,
+            src/main/java/ca/bc/gov/educ/grad/report/dto/**,
+            src/main/java/ca/bc/gov/educ/grad/report/entity/**,
+            src/main/java/ca/bc/gov/educ/grad/report/exception/**,
+            src/main/java/ca/bc/gov/educ/grad/report/task/**,
+            src/main/java/ca/bc/gov/educ/grad/report/transformer/**,
+            src/main/java/ca/bc/gov/educ/grad/report/utils/**
         </sonar.exclusions>
         <java.version>11</java.version>
-        <dollar>$</dollar>
-        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <maven.compiler.version>3.10.1</maven.compiler.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
+        <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
         <springdoc.version>1.6.9</springdoc.version>
+        <junit>4.12</junit>
         <log4j.version>2.18.0</log4j.version>
         <maven.test.skip>false</maven.test.skip>
         <start-class>ca.bc.gov.educ.grad.report.api.ReportApiApplication</start-class>
     </properties>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.1</version>
+    </parent>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--exclusions>
+            <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
-            </exclusions-->
+            </exclusions>
         </dependency>
-        <!--dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency-->
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
@@ -85,6 +96,18 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>${log4j.version}</version>
@@ -119,18 +142,6 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
         <!-- Micrometer core dependency  -->
         <dependency>
             <groupId>io.micrometer</groupId>
@@ -153,7 +164,7 @@
         <dependency>
             <groupId>org.docx4j</groupId>
             <artifactId>docx4j</artifactId>
-            <version>3.3.1</version>
+            <version>6.1.2</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -245,7 +256,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version>3.12.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
         <dependency>
@@ -304,23 +315,23 @@
             <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.agent -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.agent</artifactId>
             <version>0.7.7.201606060606</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.ant -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.jacoco/org.jacoco.ant &ndash;&gt;
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.ant</artifactId>
             <version>0.7.7.201606060606</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core -->
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.jacoco/org.jacoco.core &ndash;&gt;
         <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.core</artifactId>
             <version>0.7.7.201606060606</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.jacoco/org.jacoco.report -->
         <dependency>
             <groupId>org.jacoco</groupId>
@@ -337,7 +348,7 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>6.19.1</version>
+            <version>6.20.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.lowagie</groupId>
@@ -349,13 +360,13 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-fonts</artifactId>
-            <version>6.19.1</version>
+            <version>6.20.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-functions -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-functions</artifactId>
-            <version>6.19.1</version>
+            <version>6.20.0</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.lowagie</groupId>
@@ -367,7 +378,7 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-metadata</artifactId>
-            <version>6.19.1</version>
+            <version>6.20.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-javaflow -->
         <!--dependency>
@@ -431,7 +442,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.2</version>
+            <version>2.13.3</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-parameter-names -->
         <dependency>
@@ -459,7 +470,7 @@
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.21.0-GA</version>
+            <version>3.29.0-GA</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
         <dependency>
@@ -477,32 +488,14 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.1.0</version>
+            <version>4.5.1</version>
             <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <version>1.12.12</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent -->
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy-agent</artifactId>
-            <version>1.12.12</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.picketbox/picketbox -->
         <dependency>
             <groupId>org.picketbox</groupId>
             <artifactId>picketbox</artifactId>
-            <version>4.0.19.SP2</version>
+            <version>5.1.0.Final</version>
             <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
@@ -565,7 +558,7 @@
         <dependency>
             <groupId>com.tngtech.java</groupId>
             <artifactId>junit-dataprovider</artifactId>
-            <version>1.10.2</version>
+            <version>1.13.1</version>
             <!--scope>test</scope-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
@@ -736,12 +729,17 @@
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.6.0.1398</version>
+                <version>3.9.1.2184</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
+                <version>0.8.8</version>
+                <configuration>
+                    <excludes>
+                        <exclude>oracle/jdbc/**/*.class</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -757,6 +755,11 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.hibernate.orm.tooling</groupId>
+                <artifactId>hibernate-enhance-maven-plugin</artifactId>
+                <version>6.1.1.Final</version>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -767,7 +770,7 @@
                 <inherited>false</inherited>
                 <executions>
                     <execution>
-                        <id>1</id>
+                        <id>2</id>
                         <phase>initialize</phase>
                         <goals>
                             <goal>install-file</goal>
@@ -775,9 +778,23 @@
                         <configuration>
                             <groupId>com.lowagie</groupId>
                             <artifactId>itext</artifactId>
-                            <version>2.1.7.js7</version>
+                            <version>2.1.8.js8</version>
                             <packaging>jar</packaging>
-                            <file>${basedir}/lib/itext-2.1.7.js7.jar</file>
+                            <file>${basedir}/lib/itext-4.2.1.jar</file>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>3</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>com.lowagie</groupId>
+                            <artifactId>itext</artifactId>
+                            <version>2.1.7.js8</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/lib/itext-4.2.1.jar</file>
                         </configuration>
                     </execution>
                 </executions>
@@ -785,7 +802,7 @@
             <plugin>
                 <groupId>com.alexnederlof</groupId>
                 <artifactId>jasperreports-plugin</artifactId>
-                <version>2.7</version>
+                <version>2.8</version>
                 <executions>
                     <execution>
                         <phase>compile</phase>
@@ -809,7 +826,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.4.1</version>
                 <configuration>
                     <descriptors>
                         <descriptor>src/main/assembly/client.xml</descriptor>
@@ -824,98 +841,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5</version>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <id>2</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jasper.fonts</groupId>
-                            <artifactId>report-fonts-arimo</artifactId>
-                            <version>2.0</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/lib/report-font-2.0/arimo.jar</file>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>3</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jasper.fonts</groupId>
-                            <artifactId>report-fonts-carlito</artifactId>
-                            <version>2.0</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/lib/report-font-2.0/carlito.jar</file>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>4</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jasper.fonts</groupId>
-                            <artifactId>report-fonts-inconsolata</artifactId>
-                            <version>2.0</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/lib/report-font-2.0/inconsolata.jar</file>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>5</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jasper.fonts</groupId>
-                            <artifactId>report-fonts-liberationsans</artifactId>
-                            <version>2.0</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/lib/report-font-2.0/liberationsans.jar</file>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>6</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jasper.fonts</groupId>
-                            <artifactId>report-fonts-texgyreschola</artifactId>
-                            <version>2.0</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/lib/report-font-2.0/texgyreschola.jar</file>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>7</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jasper.fonts</groupId>
-                            <artifactId>report-fonts-tinos</artifactId>
-                            <version>2.0</version>
-                            <packaging>jar</packaging>
-                            <file>${basedir}/lib/report-font-2.0/tinos.jar</file>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin-->
         </plugins>
     </build>
     <repositories>
@@ -969,7 +894,27 @@
                             </annotationProcessorPaths>
                         </configuration>
                     </plugin>
-                    <!--plugin>
+                    <plugin>
+                        <groupId>org.hibernate.orm.tooling</groupId>
+                        <artifactId>hibernate-enhance-maven-plugin</artifactId>
+                        <version>6.1.1.Final</version>
+                        <executions>
+                            <execution>
+                                <configuration>
+                                    <failOnError>true</failOnError>
+                                    <enableLazyInitialization>true</enableLazyInitialization>
+                                </configuration>
+                                <goals>
+                                    <goal>enhance</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <executions>
@@ -1000,10 +945,9 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin-->
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-
 </project>
