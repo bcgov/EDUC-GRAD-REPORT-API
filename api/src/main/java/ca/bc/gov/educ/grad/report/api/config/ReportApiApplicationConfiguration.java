@@ -33,4 +33,9 @@ public class ReportApiApplicationConfiguration {
                 .timeZone(TimeZone.getDefault())
                 .build();
     }
+
+    @Bean
+    Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
+        return new Jackson2ObjectMapperBuilder();
+    }
 }
