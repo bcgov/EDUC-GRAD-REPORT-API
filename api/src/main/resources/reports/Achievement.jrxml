@@ -1150,7 +1150,8 @@
 				<textFieldExpression><![CDATA[$P{hasStudentCourse} == "true"? "NON-PROVINCIALLY EXAMINABLE COURSES":""]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="83">
+		<band height="85">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<componentElement>
 				<reportElement positionType="Float" x="5" y="20" width="550" height="60" isRemoveLineWhenBlank="true" uuid="cc00a62c-c948-40c8-9ef7-9e2080661cb1">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
@@ -1330,28 +1331,31 @@
 				<textFieldExpression><![CDATA[$P{hasStudentAssessment} == "true"? "PROVINCIAL GRADUATION ASSESSMENTS":""]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="144">
+		<band height="156">
 			<frame>
 				<reportElement x="5" y="4" width="550" height="130" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c">
 					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
 				</reportElement>
 				<staticText>
-					<reportElement x="0" y="0" width="230" height="13" uuid="71f0dfdc-3fc6-48d9-a7bb-2b4e7d68c074"/>
+					<reportElement x="0" y="0" width="230" height="15" uuid="71f0dfdc-3fc6-48d9-a7bb-2b4e7d68c074"/>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true" isItalic="true"/>
 					</textElement>
 					<text><![CDATA[Proficiency Score Legend]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="20" width="20" height="12" uuid="f6670c82-c608-4d7f-84f9-6357206701de"/>
+					<reportElement x="0" y="16" width="20" height="14" uuid="f6670c82-c608-4d7f-84f9-6357206701de">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[MET]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="20" width="530" height="12" uuid="2f85a60f-0b85-42b5-9e9b-e35afcbcbe63">
+					<reportElement x="20" y="16" width="530" height="14" uuid="2f85a60f-0b85-42b5-9e9b-e35afcbcbe63">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isItalic="true"/>
@@ -1360,15 +1364,18 @@
 					<text><![CDATA[ Numeracy 10 or Literacy 12 Assessment requirement met by a provincial exam.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="32" width="20" height="12" uuid="9d470357-e94b-4b09-8103-258138b9669c"/>
+					<reportElement x="0" y="30" width="20" height="14" uuid="9d470357-e94b-4b09-8103-258138b9669c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[XMT]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="32" width="530" height="12" uuid="87eff3b9-b375-42fc-89fd-83fec6e323fd">
+					<reportElement x="20" y="30" width="530" height="14" uuid="87eff3b9-b375-42fc-89fd-83fec6e323fd">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isItalic="true"/>
@@ -1377,15 +1384,18 @@
 					<text><![CDATA[Assessment requirement exempt.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="44" width="20" height="12" uuid="e5c2d00c-3c33-4291-ac7c-7ef0f9c23c0f"/>
+					<reportElement x="0" y="44" width="20" height="14" uuid="e5c2d00c-3c33-4291-ac7c-7ef0f9c23c0f">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[AEG]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="44" width="380" height="23" uuid="2528489c-78e2-4a5b-9767-1703d66fbc70">
+					<reportElement x="20" y="44" width="380" height="28" uuid="2528489c-78e2-4a5b-9767-1703d66fbc70">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isItalic="true"/>
@@ -1394,15 +1404,18 @@
 					<text><![CDATA[Student exempted from writing a Graduation Assessment due to illness or special circumstance.  No score will appear on the transcript, simply an AEG notation.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="67" width="20" height="12" uuid="896deb28-a583-41ae-ab82-06440fd7dec8"/>
+					<reportElement x="0" y="72" width="20" height="14" uuid="896deb28-a583-41ae-ab82-06440fd7dec8">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[NC]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="67" width="530" height="12" uuid="1f9ef6f4-97c8-4920-84e5-f22cba73ffd5">
+					<reportElement x="20" y="72" width="530" height="14" uuid="1f9ef6f4-97c8-4920-84e5-f22cba73ffd5">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isItalic="true"/>
@@ -1411,15 +1424,18 @@
 					<text><![CDATA[Not Completed]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="79" width="20" height="12" uuid="ff7672f8-eaab-4420-a303-f46e8f9a5229"/>
+					<reportElement x="0" y="86" width="20" height="14" uuid="ff7672f8-eaab-4420-a303-f46e8f9a5229">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DSQ]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="79" width="530" height="12" uuid="3aa5c266-237e-4ac2-b0f8-99ab7732468b">
+					<reportElement x="20" y="86" width="530" height="14" uuid="3aa5c266-237e-4ac2-b0f8-99ab7732468b">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isItalic="true"/>
@@ -1428,15 +1444,18 @@
 					<text><![CDATA[Disqualified]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="91" width="20" height="12" uuid="3f7cef54-7338-41d0-afe6-aba7f0aa5683"/>
+					<reportElement x="0" y="100" width="20" height="14" uuid="3f7cef54-7338-41d0-afe6-aba7f0aa5683">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isBold="true"/>
 					</textElement>
 					<text><![CDATA[RP]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="20" y="91" width="530" height="12" uuid="5f54d541-83fe-4a09-bc48-78da2623ffd1">
+					<reportElement x="20" y="100" width="530" height="14" uuid="5f54d541-83fe-4a09-bc48-78da2623ffd1">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<font size="9" isItalic="true"/>
@@ -1445,7 +1464,7 @@
 					<text><![CDATA[Results Pending]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="107" width="550" height="30" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
+					<reportElement x="0" y="117" width="550" height="32" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
