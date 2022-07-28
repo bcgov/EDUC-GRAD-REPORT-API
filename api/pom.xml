@@ -224,9 +224,9 @@
         </dependency>
         <!-- ORACLE database driver -->
         <dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc10</artifactId>
-            <version>19.12.0.0</version>
+            <groupId>com.oracle.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>12.2.0.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
         <dependency>
@@ -262,7 +262,7 @@
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>1.2</version>
+            <version>99.0-does-not-exist</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.databene/contiperf -->
         <dependency>
@@ -735,11 +735,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.8</version>
-                <configuration>
-                    <excludes>
-                        <exclude>oracle/jdbc/**/*.class</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
