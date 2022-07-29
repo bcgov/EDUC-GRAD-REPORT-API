@@ -27,10 +27,7 @@
 				</reportElement>
 			</frame>
 			<frame>
-				<reportElement style="TabularRowBackground" x="200" y="24" width="49" height="531" uuid="0166b0b9-cdd2-4dba-87de-0a89c715f4b7"/>
-			</frame>
-			<frame>
-				<reportElement style="TabularRowBackground" x="249" y="24" width="46" height="531" uuid="0166b0b9-cdd2-4dba-87de-0a89c715f4b7"/>
+				<reportElement style="TabularRowBackground" x="200" y="24" width="95" height="531" uuid="0166b0b9-cdd2-4dba-87de-0a89c715f4b7"/>
 			</frame>
 			<frame>
 				<reportElement style="TabularRowBackground" x="295" y="24" width="18" height="531" uuid="0166b0b9-cdd2-4dba-87de-0a89c715f4b7"/>

@@ -128,18 +128,11 @@
 					<textFieldExpression><![CDATA[$F{transcriptResult.courseName}.trim().toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="200" y="0" width="49" height="12" uuid="6ff863c9-bcc2-4331-aa52-d9cb4e2654ff"/>
+					<reportElement style="CourseRow" x="200" y="0" width="95" height="12" uuid="6ff863c9-bcc2-4331-aa52-d9cb4e2654ff"/>
 					<textElement verticalAlignment="Middle">
-						<paragraph leftIndent="5"/>
+						<paragraph leftIndent="15"/>
 					</textElement>
 					<textFieldExpression><![CDATA[($F{transcriptResult.courseCode}.trim() + " " + $F{transcriptResult.courseLevel}.trim()).toUpperCase()]]></textFieldExpression>
-				</textField>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="249" y="0" width="46" height="12" uuid="875238cf-e944-4943-9c51-f4862ea47b10"/>
-					<textElement textAlignment="Right" verticalAlignment="Middle">
-						<paragraph rightIndent="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{transcriptResult.requirementMet}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="CourseRow" x="295" y="0" width="18" height="12" uuid="5abbc5b6-6cf6-4f48-8eb5-7f95cfde2f9f"/>
