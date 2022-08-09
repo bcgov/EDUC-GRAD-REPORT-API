@@ -2,6 +2,9 @@
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentAchievementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
+	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
+	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -29,12 +32,8 @@
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
-	<style name="GeneratedText" fontName="Inconsolata" fontSize="9"/>
-	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="LiberationSans"/>
-	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
-	<style name="StaticTextGen" fontName="Inconsolata" fontSize="9"/>
 	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
+		<box leftPadding="5" rightPadding="5">
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
 			<leftPen lineWidth="0.5" lineColor="#000000"/>
@@ -296,6 +295,7 @@
 	<parameter name="studentCourse" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasStudentAssessment" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="studentAssessment" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="issueDateObj" class="java.util.Date"/>
 	<parameter name="schoolObj" class="ca.bc.gov.educ.grad.report.model.school.School"/>
 	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.model.student.Student"/>
 	<parameter name="gradObj" class="ca.bc.gov.educ.grad.report.dto.impl.GraduationStatusImpl"/>
