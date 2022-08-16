@@ -118,6 +118,13 @@ public interface Student extends Person {
     String getGradProgram();
 
     /**
+     * Gets grad req year.
+     *
+     * @return the grad req year
+     */
+    String getGradReqYear();
+
+    /**
      * Gets local id.
      *
      * @return the local id
