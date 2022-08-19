@@ -1383,9 +1383,9 @@
 				<text><![CDATA[(Student Signature)]]></text>
 			</staticText>
 		</band>
-		<band height="187">
+		<band height="125">
 			<frame>
-				<reportElement x="5" y="4" width="550" height="130" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c">
+				<reportElement x="5" y="4" width="550" height="114" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c">
 					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
 				</reportElement>
 				<staticText>
@@ -1516,19 +1516,6 @@
 					<text><![CDATA[Invalid (Exceeded Writes)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement stretchType="ContainerHeight" x="0" y="117" width="550" height="63" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement verticalAlignment="Top">
-						<font size="9" isItalic="true"/>
-						<paragraph leftIndent="0"/>
-					</textElement>
-					<text><![CDATA[If the score is blank, the student has been registered but not yet written, or session results have not yet been released.
- 
-Only successfully completed assessments (including Aegrotat and Exempt) will appear on a student’s transcript.
-For the Literacy 10 Assessment, RM (Requirement Met) is used on transcripts, not the proficiency score.]]></text>
-				</staticText>
-				<staticText>
 					<reportElement x="0" y="58" width="20" height="14" uuid="7370f48d-45c5-47f5-a836-6821ce4f1091">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -1552,6 +1539,21 @@ For the Literacy 10 Assessment, RM (Requirement Met) is used on transcripts, not
 		</band>
 	</detail>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="ContainerHeight" x="4" y="6" width="550" height="70" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="9" isItalic="true"/>
+					<paragraph lineSpacingSize="0.0" leftIndent="0" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[If the score is blank, the student has been registered but not yet written, or session results have not yet been released.
+ 
+Only successfully completed assessments (including Aegrotat and Exempt) will appear on a student’s transcript.
+For the Literacy 10 Assessment, RM (Requirement Met) is used on transcripts, not the proficiency score.]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>
