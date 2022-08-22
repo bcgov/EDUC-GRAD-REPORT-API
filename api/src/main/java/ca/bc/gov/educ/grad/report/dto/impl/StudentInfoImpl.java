@@ -65,6 +65,7 @@ public class StudentInfoImpl implements StudentInfo {
     private String grade = "";
     private Date gradDate = new Date(0L);
     private String gradProgram = "";
+    private String gradReqYear = "";
     private final List<String> academicProgram = new ArrayList<>();
     private Map<String, String> nonGradReasons = new HashMap<>();
     private String gradMessage = "";
@@ -147,7 +148,8 @@ public class StudentInfoImpl implements StudentInfo {
             final String mincode,
             final String studGrade,
             final Date gradDate,
-            final String gradReqtYear,
+            final String gradProgram,
+            final String gradReqYear,
             final String gradMessage,
             final Date updateDt,
             final String logoType,
@@ -184,7 +186,8 @@ public class StudentInfoImpl implements StudentInfo {
         this.mincode = trimSafe(mincode);
         this.grade = trimSafe(studGrade);
         this.gradDate = gradDate;
-        this.gradProgram = trimSafe(gradReqtYear);
+        this.gradProgram = trimSafe(gradProgram);
+        this.gradReqYear = trimSafe(gradReqYear);
         this.gradMessage = trimSafe(gradMessage);
         this.reportDate = updateDt;
         this.logo = trimSafe(logoType);
@@ -537,5 +540,10 @@ public class StudentInfoImpl implements StudentInfo {
 
     public JRBeanCollectionDataSource getOtherProgramParticipationdataSource() {
         return new JRBeanCollectionDataSource(otherProgramParticipation, false);
+    }
+
+    @Override
+    public String getGradReqYear() {
+        return this.gradReqYear;
     }
 }

@@ -22,6 +22,7 @@ public class Student implements Comparable<Student>, Serializable {
     private Address address = new Address();
     private String grade = "";
     private String gradProgram = "";
+    private String gradReqYear = "";
     private String studStatus = "";
     private String sccDate = "";
     private String mincodeGrad = "";
@@ -150,6 +151,14 @@ public class Student implements Comparable<Student>, Serializable {
 
     public void setGradProgram(String gradProgram) {
         this.gradProgram = gradProgram;
+    }
+
+    public String getGradReqYear() {
+        return gradReqYear;
+    }
+
+    public void setGradReqYear(String gradReqYear) {
+        this.gradReqYear = gradReqYear;
     }
 
     public String getLocalId() {

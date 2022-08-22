@@ -173,7 +173,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, transcriptInfo.getInterim());
         final StudentInfo studentInfo = getStudentInfo(pen);
         final TranscriptTypeCode transcriptTypeCode = transcriptInfo.getTranscriptTypeCode();
-        final GradProgram program = createGradProgram(studentInfo.getGradProgram());
+        final GradProgram program = createGradProgram(studentInfo.getGradReqYear());
         final Date reportDate = transcriptInfo.getIssueDate();
 
         final Transcript transcript = adapt(
@@ -642,7 +642,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final StudentInfo studentInfo = getStudentInfo(pen);
 
         // Adapt TRAX data to other objects for reporting.
-        final String programCode = studentInfo.getGradProgram();
+        final String programCode = studentInfo.getGradReqYear();
         final String logo = studentInfo.getLogo();
         final Transcript transcript = getTranscript(pen);
 
