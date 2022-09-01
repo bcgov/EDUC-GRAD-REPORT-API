@@ -20,7 +20,6 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
-import ca.bc.gov.educ.grad.report.model.common.support.StringUtils;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
@@ -30,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -123,6 +123,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public String getGradProgram() {
         return gradProgram;
+    }
+
+    @Override
+    public String getGradProgramYear() {
+        return StringUtils.substringBefore(getGradReqYear(), "-");
     }
 
     @Override
@@ -298,6 +303,6 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     private boolean isBlank() {
-        return !StringUtils.StringUtilsIsNotBlank(getFirstName() + getLastName());
+        return !ca.bc.gov.educ.grad.report.model.common.support.StringUtils.StringUtilsIsNotBlank(getFirstName() + getLastName());
     }
 }

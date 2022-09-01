@@ -118,6 +118,13 @@ public interface Student extends Person {
     String getGradProgram();
 
     /**
+     * Gets grad program year.
+     *
+     * @return the grad program year
+     */
+    String getGradProgramYear();
+
+    /**
      * Gets grad req year.
      *
      * @return the grad req year
