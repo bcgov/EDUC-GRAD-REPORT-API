@@ -124,7 +124,7 @@
 					<box>
 						<topPen lineWidth="0.0"/>
 					</box>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "999" : "999F").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "INDEP" : "INDEPF").toString()]]></textFieldExpression>
 				</textField>
 				<frame>
 					<reportElement x="10" y="54" width="245" height="2" uuid="e1bc4c56-f185-4c13-ba71-fc39f0141cfa"/>

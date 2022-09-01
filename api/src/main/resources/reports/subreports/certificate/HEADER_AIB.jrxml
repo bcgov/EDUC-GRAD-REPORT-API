@@ -79,7 +79,7 @@
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="50" y="60" width="245" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "999" : "999F").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "INDEP" : "INDEPF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
