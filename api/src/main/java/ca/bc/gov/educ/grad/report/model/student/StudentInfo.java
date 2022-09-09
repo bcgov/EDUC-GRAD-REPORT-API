@@ -307,4 +307,10 @@ public interface StudentInfo {
      */
     JRBeanCollectionDataSource getOtherProgramParticipationdataSource();
 
+    /**
+     * Gets grad req year.
+     *
+     * @return the grad req year
+     */
+    String getGradReqYear();
 }

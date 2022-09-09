@@ -118,6 +118,20 @@ public interface Student extends Person {
     String getGradProgram();
 
     /**
+     * Gets grad program year.
+     *
+     * @return the grad program year
+     */
+    String getGradProgramYear();
+
+    /**
+     * Gets grad req year.
+     *
+     * @return the grad req year
+     */
+    String getGradReqYear();
+
+    /**
      * Gets local id.
      *
      * @return the local id
@@ -158,6 +172,13 @@ public interface Student extends Person {
      * @return the other program participationdata source
      */
     JRBeanCollectionDataSource getOtherProgramParticipationdataSource();
+
+    /**
+     * Gets last update date
+     *
+     * @return last update date
+     */
+    Date getLastUpdateDate();
 
 
 }

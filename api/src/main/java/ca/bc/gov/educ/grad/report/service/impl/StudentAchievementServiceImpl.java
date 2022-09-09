@@ -660,9 +660,9 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         String pen = personalEducationNumber.getPen();
         StudentInfo studentInfo = getStudentInfo(personalEducationNumber.getPen());
 
-        String gradProgram = studentInfo.getGradProgram();
+        String gradReqYear = studentInfo.getGradReqYear();
         StudentInfoImpl studentInfoImpl = (StudentInfoImpl)studentInfo;
-        studentInfoImpl.setGradProgram(createGradProgram(gradProgram).getCode().getDescription());
+        studentInfoImpl.setGradProgram(createGradProgram(gradReqYear).getCode().getDescription());
 
         List<Exam> sExamObjList = getStudentExamList(pen);
         parameters.put("hasStudentExam", "false");
@@ -732,7 +732,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 preview,
                 parameters,
                 interim,
-                gradProgram
+                gradReqYear
         );
 
         LOG.exiting(CLASSNAME, methodName);

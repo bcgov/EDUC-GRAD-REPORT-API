@@ -156,6 +156,12 @@ public enum GraduationProgramCode implements Serializable {
                 }
                 return gpc;
             }
+            if (gpc.isCode(description)) {
+                if(code != null) {
+                    gpc.setDescription(code);
+                }
+                return gpc;
+            }
         }
 
         throw new IllegalArgumentException("No such program code <" + code + ">.");

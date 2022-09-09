@@ -235,6 +235,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         student.setGender(studentInfo.getGender());
         student.setHasOtherProgram(studentInfo.getHasOtherProgram());
         student.setGradProgram(studentInfo.getGradProgram());
+        student.setGradReqYear(studentInfo.getGradReqYear());
         student.setOtherProgramParticipation(studentInfo.getOtherProgramParticipation());
 
         final PostalAddressImpl address = new PostalAddressImpl();
