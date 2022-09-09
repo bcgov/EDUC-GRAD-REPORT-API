@@ -173,5 +173,12 @@ public interface Student extends Person {
      */
     JRBeanCollectionDataSource getOtherProgramParticipationdataSource();
 
+    /**
+     * Gets last update date
+     *
+     * @return last update date
+     */
+    Date getLastUpdateDate();
+
 
 }
