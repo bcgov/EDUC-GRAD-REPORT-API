@@ -1,9 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import ca.bc.gov.educ.grad.report.api.client.utils.AchievementCourseListDeserializer;
-import ca.bc.gov.educ.grad.report.api.client.utils.ExamListDeserializer;
-import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
-import ca.bc.gov.educ.grad.report.api.client.utils.OptionalProgramListDeserializer;
+import ca.bc.gov.educ.grad.report.api.client.utils.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -81,6 +78,8 @@ public class ReportData implements Serializable {
 	private List<Exam> studentExams = new ArrayList<>();
 	@JsonDeserialize(using = OptionalProgramListDeserializer.class)
 	private List<OptionalProgram> optionalPrograms = new ArrayList<>();
+	@JsonDeserialize(using = CarrierProgramListDeserializer.class)
+	private List<CareerProgram> carrierPrograms = new ArrayList<>();
 
 	@JsonIgnore
 	private Map<String, String> parameters = new HashMap<>();
@@ -253,6 +252,14 @@ public class ReportData implements Serializable {
 
 	public void setOptionalPrograms(List<OptionalProgram> optionalPrograms) {
 		this.optionalPrograms = optionalPrograms;
+	}
+
+	public List<CareerProgram> getCarrierPrograms() {
+		return carrierPrograms;
+	}
+
+	public void setCarrierPrograms(List<CareerProgram> carrierPrograms) {
+		this.carrierPrograms = carrierPrograms;
 	}
 
 	public Map<String, String> getParameters() {

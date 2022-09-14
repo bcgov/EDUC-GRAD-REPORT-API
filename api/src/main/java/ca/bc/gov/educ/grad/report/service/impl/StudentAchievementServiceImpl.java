@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
+import ca.bc.gov.educ.grad.report.api.client.CareerProgram;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -556,6 +557,54 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         return results;
     }
 
+    private List<CareerProgram> getCareerProgramList(
+            final String pen)
+            throws DataException, DomainServiceException {
+        final String m_ = "getCareerProgramList(String)";
+        LOG.entering(CLASSNAME, m_);
+
+        final List<CareerProgram> results;
+
+        try {
+            LOG.log(Level.INFO,
+                    "Retrieved the collection of career program results from TRAX for PEN: {0}",
+                    new Object[]{pen});
+
+            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+            if (reportData == null) {
+                EntityNotFoundException dse = new EntityNotFoundException(
+                        getClass(),
+                        REPORT_DATA_MISSING,
+                        "Report Data not exists for the current report generation");
+                LOG.throwing(CLASSNAME, m_, dse);
+                throw dse;
+            }
+
+            results = reportData.getCarrierPrograms();
+
+            if (results != null && !results.isEmpty()) {
+                LOG.log(Level.INFO,
+                        "Total carrier programs {0} retrieved  for PEN: {1}",
+                        new Object[]{results.size(), pen});
+                LOG.log(Level.FINEST, "Retrieved student exam results:");
+                for (CareerProgram result : results) {
+                    LOG.log(Level.FINEST, "{0} {1}",
+                            new Object[]{result.getCareerProgramCode(), result.getCareerProgramName()});
+                }
+            }
+        } catch (final Exception ex) {
+            String msg = "Failed to access Career Program data for student with PEN: ".concat(pen);
+            final DataException dex = new DataException(null, null, msg, ex);
+            LOG.throwing(CLASSNAME, m_, dex);
+            throw dex;
+        }
+
+        LOG.log(Level.FINE, "Completed call to TRAX.");
+        LOG.exiting(CLASSNAME, m_);
+        return results;
+    }
+
     /**
      * Convert non-graduation reasons from a TRAX map to an STs list.
      *
@@ -702,6 +751,14 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);
             parameters.put("optionalProgram", jrBeanCollectionDataSource);
             parameters.put("hasOptionalPrograms", "true");
+        }
+
+        List<CareerProgram> careerProgramList = this.getCareerProgramList(pen);
+        parameters.put("hasCareerPrograms", "false");
+        if (!careerProgramList.isEmpty()) {
+            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(careerProgramList);
+            parameters.put("careerProgram", jrBeanCollectionDataSource);
+            parameters.put("hasCareerPrograms", "true");
         }
 
         Date issueDate = getIssueDate();
