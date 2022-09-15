@@ -17,7 +17,6 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
-import ca.bc.gov.educ.grad.report.api.client.CareerProgram;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -51,6 +50,7 @@ import java.util.*;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_ACHIEVEMENT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.nullSafe;
@@ -557,13 +557,13 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         return results;
     }
 
-    private List<CareerProgram> getCareerProgramList(
+    private List<String> getCareerProgramList(
             final String pen)
             throws DataException, DomainServiceException {
         final String m_ = "getCareerProgramList(String)";
         LOG.entering(CLASSNAME, m_);
 
-        final List<CareerProgram> results;
+        final List<String> results;
 
         try {
             LOG.log(Level.INFO,
@@ -581,16 +581,15 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 throw dse;
             }
 
-            results = reportData.getCarrierPrograms();
+            results = this.gradDataConvertionBean.getCarrierPrograms(reportData);
 
             if (results != null && !results.isEmpty()) {
                 LOG.log(Level.INFO,
                         "Total carrier programs {0} retrieved  for PEN: {1}",
                         new Object[]{results.size(), pen});
                 LOG.log(Level.FINEST, "Retrieved student exam results:");
-                for (CareerProgram result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getCareerProgramCode(), result.getCareerProgramName()});
+                for (String result : results) {
+                    LOG.log(Level.FINEST, "{0}", new Object[]{result});
                 }
             }
         } catch (final Exception ex) {
@@ -753,12 +752,10 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             parameters.put("hasOptionalPrograms", "true");
         }
 
-        List<CareerProgram> careerProgramList = this.getCareerProgramList(pen);
-        parameters.put("hasCareerPrograms", "false");
-        if (!careerProgramList.isEmpty()) {
-            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(careerProgramList);
-            parameters.put("careerProgram", jrBeanCollectionDataSource);
-            parameters.put("hasCareerPrograms", "true");
+        List<String> careerProgramCodes = this.getCareerProgramList(pen);
+        if(careerProgramCodes != null) {
+            String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(","));
+            parameters.put("careerProgramsObj", careerPrograms);
         }
 
         Date issueDate = getIssueDate();

@@ -390,4 +390,12 @@ public class GradDataConvertionBean implements Serializable {
         }
         return result;
     }
+
+    public List<String> getCarrierPrograms(ReportData reportData) {
+        GraduationData graduationData = reportData.getGraduationData();
+        if(graduationData != null) {
+            return graduationData.getProgramCodes();
+        }
+        return null;
+    }
 }
