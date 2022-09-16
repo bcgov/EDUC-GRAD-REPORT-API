@@ -194,6 +194,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		reportRequest.setData(null);
 
+		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+		assertNull(reportData);
+
 		assertThrows(EntityNotFoundException.class, () -> {
 			apiReportService.getStudentAchievementReportDocument(reportRequest);
 		});
