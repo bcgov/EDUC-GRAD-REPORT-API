@@ -396,10 +396,14 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     public List<String> getCarrierPrograms(ReportData reportData) {
         List<String> result = new ArrayList<>();
         Student student = getStudent(reportData);
-        GraduationStudentRecord graduationStudentRecord = this.getGraduationStudentRecordFromGradStudentApi(student.getPen().getPen(), reportData.getAccessToken());
-        List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
-        if(careerPrograms != null) {
-            result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
+        String pen = student.getPen().getPen();
+        GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
+        if(gradSearchStudent != null) {
+            GraduationStudentRecord graduationStudentRecord = this.getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
+            List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
+            if (careerPrograms != null) {
+                result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
+            }
         }
         return result;
     }
