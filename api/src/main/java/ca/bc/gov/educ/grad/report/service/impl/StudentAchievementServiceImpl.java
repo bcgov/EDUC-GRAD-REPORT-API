@@ -539,7 +539,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 LOG.log(Level.INFO,
                         "Total exam {0} retrieved  for PEN: {1}",
                         new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student exam results:");
+                LOG.log(Level.FINEST, "Retrieved student optional program results:");
                 for (OptionalProgram result : results) {
                     LOG.log(Level.FINEST, "{0} {1}",
                             new Object[]{result.getOptionalProgramCode(), result.getOptionalProgramName()});
@@ -587,7 +587,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 LOG.log(Level.INFO,
                         "Total carrier programs {0} retrieved  for PEN: {1}",
                         new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student exam results:");
+                LOG.log(Level.FINEST, "Retrieved student career program results:");
                 for (String result : results) {
                     LOG.log(Level.FINEST, "{0}", new Object[]{result});
                 }
@@ -753,7 +753,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         List<String> careerProgramCodes = this.getCareerProgramList(pen);
-        if(!careerProgramCodes.isEmpty()) {
+        if(careerProgramCodes != null && !careerProgramCodes.isEmpty()) {
             String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(","));
             parameters.put("careerProgramsObj", careerPrograms);
         }
