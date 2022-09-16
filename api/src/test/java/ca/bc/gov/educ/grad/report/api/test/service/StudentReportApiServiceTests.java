@@ -8,6 +8,7 @@ import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
@@ -18,11 +19,13 @@ import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import ca.bc.gov.educ.grad.report.service.impl.StudentAchievementServiceImpl;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1601,10 +1604,14 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void reportRequestDataThreadLocalTests() throws Exception {
+	public void reportRequestDataThreadLocalTests() {
 		ReportRequestDataThreadLocal.setGenerateReportData(null);
 		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 		assertNull(reportData);
+		Mockito.doThrow(new EntityNotFoundException(
+				StudentAchievementServiceImpl.class,
+				REPORT_DATA_MISSING,
+				"Report Data not exists for the current report generation"));
 	}
 
 	private void testPackingSlipReport(
