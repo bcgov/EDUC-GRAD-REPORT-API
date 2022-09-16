@@ -1542,6 +1542,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
+		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+		assertNotNull(reportData);
+
 		GradSearchStudent gradSearchStudent = new GradSearchStudent();
 		gradSearchStudent.setPen(pen);
 		gradSearchStudent.setStudentID(UUID.randomUUID().toString());
@@ -1575,7 +1578,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
 		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
 
-		List <String> careerPrograms = gradDataConvertionBean.getCarrierPrograms(reportRequest.getData());
+		List <String> careerPrograms = gradDataConvertionBean.getCarrierPrograms(reportData);
 		assertNotNull(careerPrograms);
 		assertFalse(careerPrograms.isEmpty());
 
@@ -1591,11 +1594,19 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
 		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(null);
 
-		careerPrograms = gradDataConvertionBean.getCarrierPrograms(reportRequest.getData());
+		careerPrograms = gradDataConvertionBean.getCarrierPrograms(reportData);
 		assertNotNull(careerPrograms);
 		assertTrue(careerPrograms.isEmpty());
 
 	}
+
+	@Test
+	public void reportRequestDataThreadLocalTests() throws Exception {
+		ReportRequestDataThreadLocal.setGenerateReportData(null);
+		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+		assertNull(reportData);
+	}
+
 	private void testPackingSlipReport(
 			final List<ReportDocument> rds,
 			final OrderType orderType,
