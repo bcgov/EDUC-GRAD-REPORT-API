@@ -19,13 +19,11 @@ import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
-import ca.bc.gov.educ.grad.report.service.impl.StudentAchievementServiceImpl;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,6 +143,62 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(bArray);
 		}
 		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test
+	public void createStudentAchievementReportError() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReportError at {}", CLASS_NAME, dateFormat.format(new Date()));
+		String pen = "12345678";
+		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GradSearchStudent gradSearchStudent = new GradSearchStudent();
+		gradSearchStudent.setPen(pen);
+		gradSearchStudent.setStudentID(UUID.randomUUID().toString());
+
+		final ParameterizedTypeReference<List<GradSearchStudent>> gradSearchStudentResponseType = new ParameterizedTypeReference<>() {
+		};
+
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getPenStudentApiByPenUrl(),pen))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(gradSearchStudentResponseType)).thenReturn(Mono.just(List.of(gradSearchStudent)));
+
+		GraduationStudentRecord graduationStudentRecord = new GraduationStudentRecord();
+		graduationStudentRecord.setPen(pen);
+		graduationStudentRecord.setStudentID(UUID.fromString(gradSearchStudent.getStudentID()));
+
+		CareerProgram careerProgram = new CareerProgram();
+		careerProgram.setCareerProgramCode("XE");
+		careerProgram.setCareerProgramName("XE");
+
+		graduationStudentRecord.setCareerPrograms(List.of(careerProgram));
+
+		String studentGradData = readFile("data/student_grad_data.json");
+		assertNotNull(studentGradData);
+		graduationStudentRecord.setStudentGradData(studentGradData);
+
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getReadGradStudentRecord(),graduationStudentRecord.getStudentID().toString()))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
+
+		reportRequest.setData(null);
+
+		assertThrows(EntityNotFoundException.class, () -> {
+			apiReportService.getStudentAchievementReportDocument(reportRequest);
+		});
+
+		LOG.debug(">createStudentAchievementReportError");
 	}
 
 	@Test
@@ -1531,87 +1585,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertTrue(originalCourses.size() > filteredTranscript.getResults().size());
 
 		LOG.debug(">createTranscriptReportDuplicateInterimCourses_BC2018_IND");
-	}
-
-	@Test
-	public void baseServiceTests() throws Exception {
-		LOG.debug("<{}.baseServiceTests at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-		String pen = reportRequest.getData().getStudent().getPen().getPen();
-		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
-
-		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-		assertNotNull(reportData);
-
-		GradSearchStudent gradSearchStudent = new GradSearchStudent();
-		gradSearchStudent.setPen(pen);
-		gradSearchStudent.setStudentID(UUID.randomUUID().toString());
-
-		final ParameterizedTypeReference<List<GradSearchStudent>> gradSearchStudentResponseType = new ParameterizedTypeReference<>() {
-		};
-
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getPenStudentApiByPenUrl(),pen))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(gradSearchStudentResponseType)).thenReturn(Mono.just(List.of(gradSearchStudent)));
-
-		GraduationStudentRecord graduationStudentRecord = new GraduationStudentRecord();
-		graduationStudentRecord.setPen(pen);
-		graduationStudentRecord.setStudentID(UUID.fromString(gradSearchStudent.getStudentID()));
-
-		CareerProgram careerProgram = new CareerProgram();
-		careerProgram.setCareerProgramCode("XE");
-		careerProgram.setCareerProgramName("XE");
-
-		graduationStudentRecord.setCareerPrograms(List.of(careerProgram));
-
-		String studentGradData = readFile("data/student_grad_data.json");
-		assertNotNull(studentGradData);
-		graduationStudentRecord.setStudentGradData(studentGradData);
-
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getReadGradStudentRecord(),graduationStudentRecord.getStudentID().toString()))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
-
-		List <String> careerPrograms = gradDataConvertionBean.getCarrierPrograms(reportData);
-		assertNotNull(careerPrograms);
-		assertFalse(careerPrograms.isEmpty());
-
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getPenStudentApiByPenUrl(),pen))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(gradSearchStudentResponseType)).thenReturn(Mono.just(List.of()));
-
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getReadGradStudentRecord(),graduationStudentRecord.getStudentID().toString()))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(null);
-
-		careerPrograms = gradDataConvertionBean.getCarrierPrograms(reportData);
-		assertNotNull(careerPrograms);
-		assertTrue(careerPrograms.isEmpty());
-
-	}
-
-	@Test
-	public void reportRequestDataThreadLocalTests() {
-		ReportRequestDataThreadLocal.setGenerateReportData(null);
-		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-		assertNull(reportData);
-		Mockito.doThrow(new EntityNotFoundException(
-				StudentAchievementServiceImpl.class,
-				REPORT_DATA_MISSING,
-				"Report Data not exists for the current report generation"));
 	}
 
 	private void testPackingSlipReport(
