@@ -16,7 +16,7 @@
         <sonar.exclusions>
             src/main/resources/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/ReportApiApplication.java,
-            src/main/java/ca/bc/gov/educ/grad/report/service/impl/BaseServiceImpl.java
+            src/main/java/ca/bc/gov/educ/grad/report/service/impl/BaseServiceImpl.java,
             src/main/java/ca/bc/gov/educ/grad/report/api/client/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
@@ -33,7 +33,7 @@
         <sonar.junit.exclusions>
             src/main/resources/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/ReportApiApplication.java,
-            src/main/java/ca/bc/gov/educ/grad/report/service/impl/BaseServiceImpl.java
+            src/main/java/ca/bc/gov/educ/grad/report/service/impl/BaseServiceImpl.java,
             src/main/java/ca/bc/gov/educ/grad/report/api/client/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
