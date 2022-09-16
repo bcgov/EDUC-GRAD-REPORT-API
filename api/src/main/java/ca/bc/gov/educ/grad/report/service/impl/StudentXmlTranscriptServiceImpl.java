@@ -17,12 +17,10 @@ import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.security.DeclareRoles;
-import java.util.List;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
@@ -31,7 +29,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 
 @Service
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER, FULFILLMENT_SERVICES_USER})
-public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptService {
+public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements StudentXmlTranscriptService {
 
     private static final String CLASSNAME = StudentXmlTranscriptServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
@@ -126,32 +124,6 @@ public class StudentXmlTranscriptServiceImpl implements StudentXmlTranscriptServ
             throw dex;
         }
 
-    }
-
-    private GraduationStudentRecord getGradStatusFromGradStudentApi(String studentID, String accessToken) {
-        final String methodName = "getGradStatusFromGradStudentApi(String studentID, String accessToken)";
-        LOG.entering(CLASSNAME, methodName);
-        try
-        {
-            return webClient.get().uri(String.format(reportApiConstants.getReadGradStudentRecord(),studentID)).headers(h -> h.setBearerAuth(accessToken)).retrieve().bodyToMono(GraduationStudentRecord.class).block();
-        } catch (Exception e) {
-            LOG.throwing(CLASSNAME, methodName, e);
-        }
-        return null;
-    }
-
-    private GradSearchStudent getStudentByPenFromStudentApi(String pen, String accessToken) {
-        final String methodName = "getStudentByPenFromStudentApi(String pen, String accessToken)";
-        LOG.entering(CLASSNAME, methodName);
-        try {
-            List<GradSearchStudent> stuDataList = webClient.get().uri(String.format(reportApiConstants.getPenStudentApiByPenUrl(),pen)).headers(h -> h.setBearerAuth(accessToken)).retrieve().bodyToMono(new ParameterizedTypeReference<List<GradSearchStudent>>() {}).block();
-            if(stuDataList != null && !stuDataList.isEmpty()) {
-                return stuDataList.get(0);
-            }
-        } catch (Exception e) {
-            LOG.throwing(CLASSNAME, methodName, e);
-        }
-        return null;
     }
 
     private void setDefaultValues(AcademicRecordBatch academicRecordBatch) {

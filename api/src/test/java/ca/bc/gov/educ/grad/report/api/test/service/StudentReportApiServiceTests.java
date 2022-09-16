@@ -94,8 +94,33 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
+		reportRequest.getData().setAccessToken("accessToken");
+
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = new GraduationStudentRecord();
+		graduationStudentRecord.setPen(pen);
+		graduationStudentRecord.setStudentID(UUID.randomUUID());
+
+		CareerProgram careerProgram = new CareerProgram();
+		careerProgram.setCareerProgramCode("XE");
+		careerProgram.setCareerProgramName("XE");
+
+		graduationStudentRecord.setCareerPrograms(List.of(careerProgram));
+
+		String studentGradData = readFile("data/student_grad_data.json");
+		assertNotNull(studentGradData);
+		graduationStudentRecord.setStudentGradData(studentGradData);
+
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getReadGradStudentRecordPen(),pen))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentAchievementReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -1362,8 +1387,35 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(achievementReportRequest);
 		assertNotNull(achievementReportRequest.getData());
 
+		achievementReportRequest.getData().setAccessToken("accessToken");
+
 		ReportRequestDataThreadLocal.setGenerateReportData(achievementReportRequest.getData());
 		achievementReportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
+
+		String pen = achievementReportRequest.getData().getStudent().getPen().getPen();
+		achievementReportRequest.getOptions().setReportFile(String.format(achievementReportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = new GraduationStudentRecord();
+		graduationStudentRecord.setPen(pen);
+		graduationStudentRecord.setStudentID(UUID.randomUUID());
+
+		CareerProgram careerProgram = new CareerProgram();
+		careerProgram.setCareerProgramCode("XE");
+		careerProgram.setCareerProgramName("XE");
+
+		graduationStudentRecord.setCareerPrograms(List.of(careerProgram));
+
+		String studentGradData = readFile("data/student_grad_data.json");
+		assertNotNull(studentGradData);
+		graduationStudentRecord.setStudentGradData(studentGradData);
+
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getReadGradStudentRecordPen(),pen))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
+
+
 		StudentAchievementReport achievementReport = apiReportService.getStudentAchievementReportDocument(achievementReportRequest);
 
 		ReportRequest eCertificateReportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
