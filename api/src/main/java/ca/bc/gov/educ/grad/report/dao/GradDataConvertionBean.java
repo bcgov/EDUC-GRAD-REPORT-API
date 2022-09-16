@@ -400,9 +400,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
         if(gradSearchStudent != null) {
             GraduationStudentRecord graduationStudentRecord = this.getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
-            List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
-            if (careerPrograms != null) {
-                result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
+            if(graduationStudentRecord != null) {
+                List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
+                if (careerPrograms != null) {
+                    result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
+                }
             }
         }
         return result;
