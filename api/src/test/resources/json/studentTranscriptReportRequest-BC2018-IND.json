@@ -1236,16 +1236,10 @@
       "honorsFlag": false,
       "dogwoodFlag": false,
       "programCodes": [
-        "",
-        "",
-        "",
-        "",
-        ""
+        "XE",
+        "XP"
       ],
       "programNames": [
-        "",
-        "",
-        "",
         "",
         ""
       ],

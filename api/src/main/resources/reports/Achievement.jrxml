@@ -302,6 +302,7 @@
 	<parameter name="hasStudentAssessment" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="studentAssessment" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="issueDateObj" class="java.util.Date"/>
+	<parameter name="careerProgramsObj" class="java.lang.String"/>
 	<parameter name="schoolObj" class="ca.bc.gov.educ.grad.report.model.school.School"/>
 	<parameter name="studentObj" class="ca.bc.gov.educ.grad.report.model.student.Student"/>
 	<parameter name="gradObj" class="ca.bc.gov.educ.grad.report.dto.impl.GraduationStatusImpl"/>
@@ -356,9 +357,9 @@
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement>
-						<paragraph leftIndent="5"/>
+						<paragraph leftIndent="0"/>
 					</textElement>
-					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{careerProgramsObj}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="GeneratedText" x="164" y="176" width="46" height="14" uuid="54510e7a-767e-4139-bbb3-b57aca137b0d">
@@ -1383,12 +1384,12 @@
 				<text><![CDATA[Reviewed by: ]]></text>
 			</staticText>
 			<line>
-				<reportElement x="90" y="27" width="226" height="1" uuid="efd25813-6af7-4961-b334-32eb16025fd9">
+				<reportElement x="80" y="28" width="400" height="1" uuid="efd25813-6af7-4961-b334-32eb16025fd9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
 			<staticText>
-				<reportElement x="150" y="27" width="100" height="20" uuid="d4dc50a6-fa82-44a0-b2a6-d73f643afd43"/>
+				<reportElement x="227" y="27" width="100" height="20" uuid="d4dc50a6-fa82-44a0-b2a6-d73f643afd43"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="9"/>
 				</textElement>

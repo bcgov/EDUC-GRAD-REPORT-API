@@ -93,7 +93,10 @@ endpoint:
     school-by-min-code:
       url: ${GRAD_TRAX_API}api/v1/trax/school/%s
   grad-student-api:
-    read-grad-student-record: ${GRAD_STUDENT_API}api/v1/student/studentid/%s/algorithm
+    read-grad-student-record:
+      url: ${GRAD_STUDENT_API}api/v1/student/studentid/%s
+    read-grad-student-record-pen:
+        url: ${GRAD_STUDENT_API}api/v1/student/pen/%s
   pen-student-api:
     by-studentid:
       url: ${PEN_API}api/v1/student/%s

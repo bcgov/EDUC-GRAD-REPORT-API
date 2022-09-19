@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
+import ca.bc.gov.educ.grad.report.service.impl.BaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -29,9 +30,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
-public class GradDataConvertionBean implements Serializable {
+public class GradDataConvertionBean extends BaseServiceImpl implements Serializable {
 
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);
@@ -387,6 +389,23 @@ public class GradDataConvertionBean implements Serializable {
                 student.getNonGradReasons().add(reason);
             }
             result.add(student);
+        }
+        return result;
+    }
+
+    public List<String> getCarrierPrograms(ReportData reportData) {
+        List<String> result = new ArrayList<>();
+        Student student = getStudent(reportData);
+        String pen = student.getPen().getPen();
+        GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
+        if(gradSearchStudent != null) {
+            GraduationStudentRecord graduationStudentRecord = this.getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
+            if(graduationStudentRecord != null) {
+                List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
+                if (careerPrograms != null) {
+                    result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
+                }
+            }
         }
         return result;
     }

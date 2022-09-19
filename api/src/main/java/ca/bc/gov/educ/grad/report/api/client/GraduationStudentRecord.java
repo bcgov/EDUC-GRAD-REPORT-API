@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -14,5 +15,7 @@ public class GraduationStudentRecord implements Serializable {
     private String studentGradData;
     private String pen;
     private UUID studentID;
+
+    private List<CareerProgram> careerPrograms;
 
 }
