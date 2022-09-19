@@ -192,12 +192,17 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
 		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
 
+		reportRequest.getData().setGradProgram(null);
+		assertThrows("Graduation Program not exists for the current report generation", EntityNotFoundException.class, () -> {
+			apiReportService.getStudentAchievementReportDocument(reportRequest);
+		});
+
 		reportRequest.setData(null);
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 		assertNull(reportData);
 
-		assertThrows(EntityNotFoundException.class, () -> {
+		assertThrows("Report Data not exists for the current report generation", EntityNotFoundException.class, () -> {
 			apiReportService.getStudentAchievementReportDocument(reportRequest);
 		});
 
