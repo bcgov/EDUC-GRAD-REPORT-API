@@ -50,6 +50,7 @@ import java.util.*;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_ACHIEVEMENT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.nullSafe;
@@ -292,40 +293,32 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<AchievementCourse> results;
 
-        try {
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, m_, dse);
+            throw dse;
+        }
 
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
-            }
+        results = gradDataConvertionBean.getAchievementCourses(reportData);
 
-            results = gradDataConvertionBean.getAchievementCourses(reportData);
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results from TRAX for PEN: {0} INTERIM: {1}",
+                new Object[]{pen, interim});
 
+        if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results from TRAX for PEN: {0} INTERIM: {1}",
-                    new Object[]{pen, interim});
-
-            if (results != null && !results.isEmpty()) {
-                LOG.log(Level.INFO,
-                        "Total courses {0} retrieved  for PEN: {1}",
-                        new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student achievement course results:");
-                for (AchievementCourse result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
-                }
+                    "Total courses {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student achievement course results:");
+            for (AchievementCourse result : results) {
+                LOG.log(Level.FINEST, "{0} {1}",
+                        new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
             }
-        } catch (final Exception ex) {
-            String msg = "Failed to access TRAX achievement course data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
@@ -348,43 +341,36 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<AssessmentResult> results;
 
-        try {
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results from TRAX for PEN: {0}",
+                new Object[]{pen});
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, m_, dse);
+            throw dse;
+        }
+
+        List<AssessmentResult> resultsList = gradDataConvertionBean.getAssessmentCourses(reportData);
+        results = new ArrayList<>();
+        for (AssessmentResult course : resultsList) {
+            results.add(course);
+        }
+
+        if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results from TRAX for PEN: {0}",
-                    new Object[]{pen});
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
+                    "Total courses {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student achievement course results:");
+            for (AssessmentResult result : results) {
+                LOG.log(Level.FINEST, "{0} {1}",
+                        new Object[]{result.getAssessmentCode(), result.getProficiencyScore()});
             }
-
-            List<AssessmentResult> resultsList = gradDataConvertionBean.getAssessmentCourses(reportData);
-            results = new ArrayList<>();
-            for (AssessmentResult course : resultsList) {
-                results.add(course);
-            }
-
-            if (results != null && !results.isEmpty()) {
-                LOG.log(Level.INFO,
-                        "Total courses {0} retrieved  for PEN: {1}",
-                        new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student achievement course results:");
-                for (AssessmentResult result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getAssessmentCode(), result.getProficiencyScore()});
-                }
-            }
-        } catch (final Exception ex) {
-            String msg = "Failed to access TRAX achievement course data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
@@ -407,31 +393,23 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final GraduationStatus result;
 
-        try {
-            LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results from TRAX for PEN: {0}",
-                    new Object[]{pen});
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results from TRAX for PEN: {0}",
+                new Object[]{pen});
 
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
-            }
-
-            result = new GraduationStatusImpl();
-            BeanUtils.copyProperties(reportData.getGraduationStatus(), result);
-
-        } catch (final Exception ex) {
-            String msg = "Failed to access TRAX achievement course data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, m_, dse);
+            throw dse;
         }
+
+        result = new GraduationStatusImpl();
+        BeanUtils.copyProperties(reportData.getGraduationStatus(), result);
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
         LOG.exiting(CLASSNAME, m_);
@@ -453,43 +431,36 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<Exam> results;
 
-        try {
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results from TRAX for PEN: {0}",
+                new Object[]{pen});
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, m_, dse);
+            throw dse;
+        }
+
+        List<Exam> resultsList = gradDataConvertionBean.getStudentExams(reportData);
+        results = new ArrayList<>();
+        for (Exam exam : resultsList) {
+            results.add(exam);
+        }
+
+        if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results from TRAX for PEN: {0}",
-                    new Object[]{pen});
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
+                    "Total exam {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student exam results:");
+            for (Exam result : results) {
+                LOG.log(Level.FINEST, "{0} {1}",
+                        new Object[]{result.getCourseCode(), result.getBestExamPercent()});
             }
-
-            List<Exam> resultsList = gradDataConvertionBean.getStudentExams(reportData);
-            results = new ArrayList<>();
-            for (Exam exam : resultsList) {
-                results.add(exam);
-            }
-
-            if (results != null && !results.isEmpty()) {
-                LOG.log(Level.INFO,
-                        "Total exam {0} retrieved  for PEN: {1}",
-                        new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student exam results:");
-                for (Exam result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getCourseCode(), result.getBestExamPercent()});
-                }
-            }
-        } catch (final Exception ex) {
-            String msg = "Failed to access exam data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
@@ -512,43 +483,76 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<OptionalProgram> results;
 
-        try {
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results from TRAX for PEN: {0}",
+                new Object[]{pen});
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, m_, dse);
+            throw dse;
+        }
+
+        List<OptionalProgram> resultsList = gradDataConvertionBean.getOptionalPrograms(reportData);
+        results = new ArrayList<>();
+        for (OptionalProgram exam : resultsList) {
+            results.add(exam);
+        }
+
+        if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results from TRAX for PEN: {0}",
-                    new Object[]{pen});
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
+                    "Total exam {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student optional program results:");
+            for (OptionalProgram result : results) {
+                LOG.log(Level.FINEST, "{0} {1}",
+                        new Object[]{result.getOptionalProgramCode(), result.getOptionalProgramName()});
             }
+        }
 
-            List<OptionalProgram> resultsList = gradDataConvertionBean.getOptionalPrograms(reportData);
-            results = new ArrayList<>();
-            for (OptionalProgram exam : resultsList) {
-                results.add(exam);
-            }
+        LOG.log(Level.FINE, "Completed call to TRAX.");
+        LOG.exiting(CLASSNAME, m_);
+        return results;
+    }
 
-            if (results != null && !results.isEmpty()) {
-                LOG.log(Level.INFO,
-                        "Total exam {0} retrieved  for PEN: {1}",
-                        new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student exam results:");
-                for (OptionalProgram result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getOptionalProgramCode(), result.getOptionalProgramName()});
-                }
+    private List<String> getCareerProgramList(
+            final String pen)
+            throws DataException, DomainServiceException {
+        final String m_ = "getCareerProgramList(String)";
+        LOG.entering(CLASSNAME, m_);
+
+        final List<String> results;
+
+        LOG.log(Level.INFO,
+                "Retrieved the collection of career program results from TRAX for PEN: {0}",
+                new Object[]{pen});
+
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, m_, dse);
+            throw dse;
+        }
+
+        results = this.gradDataConvertionBean.getCareerPrograms(reportData);
+
+        if (results != null && !results.isEmpty()) {
+            LOG.log(Level.INFO,
+                    "Total carrier programs {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student career program results:");
+            for (String result : results) {
+                LOG.log(Level.FINEST, "{0}", new Object[]{result});
             }
-        } catch (final Exception ex) {
-            String msg = "Failed to access optional Program data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
@@ -661,7 +665,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         StudentInfo studentInfo = getStudentInfo(personalEducationNumber.getPen());
 
         String gradReqYear = studentInfo.getGradReqYear();
-        StudentInfoImpl studentInfoImpl = (StudentInfoImpl)studentInfo;
+        StudentInfoImpl studentInfoImpl = (StudentInfoImpl) studentInfo;
         studentInfoImpl.setGradProgram(createGradProgram(gradReqYear).getCode().getDescription());
 
         List<Exam> sExamObjList = getStudentExamList(pen);
@@ -702,6 +706,12 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);
             parameters.put("optionalProgram", jrBeanCollectionDataSource);
             parameters.put("hasOptionalPrograms", "true");
+        }
+
+        List<String> careerProgramCodes = this.getCareerProgramList(pen);
+        if (careerProgramCodes != null && !careerProgramCodes.isEmpty()) {
+            String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(","));
+            parameters.put("careerProgramsObj", careerPrograms);
         }
 
         Date issueDate = getIssueDate();
