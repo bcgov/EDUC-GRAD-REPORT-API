@@ -415,7 +415,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         return null;
     }
 
-    public List<String> getCarrierPrograms(ReportData reportData) {
+    public List<String> getCareerPrograms(ReportData reportData) {
         List<String> result = new ArrayList<>();
         GraduationStudentRecord graduationStudentRecord = getGraduationStudentRecord(reportData);
         if(graduationStudentRecord != null) {
