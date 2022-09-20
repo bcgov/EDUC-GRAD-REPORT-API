@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
+import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
@@ -24,6 +25,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import ca.bc.gov.educ.grad.report.service.impl.BaseServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -34,6 +36,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class GradDataConvertionBean extends BaseServiceImpl implements Serializable {
+
+    @Autowired
+    StudentTranscriptRepository studentTranscriptRepository;
 
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);
@@ -94,6 +99,13 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         Code clientTranscriptTypeCode = clientTranscript.getTranscriptTypeCode();
         TranscriptTypeCode transcriptTypeCode = TranscriptTypeCode.valueFrom(clientTranscriptTypeCode.getCode());
         transcript.setTranscriptTypeCode(transcriptTypeCode);
+        GraduationStudentRecord graduationStudentRecord = this.getGraduationStudentRecord(reportData);
+        if(graduationStudentRecord != null) {
+            StudentTranscriptEntity studentTranscriptEntity = studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID());
+            if(studentTranscriptEntity != null && studentTranscriptEntity.getUpdateDate() != null) {
+                transcript.setIssueDate(studentTranscriptEntity.getUpdateDate());
+            }
+        }
         return transcript;
     }
 
@@ -393,18 +405,23 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         return result;
     }
 
-    public List<String> getCarrierPrograms(ReportData reportData) {
-        List<String> result = new ArrayList<>();
+    public GraduationStudentRecord getGraduationStudentRecord(ReportData reportData) {
         Student student = getStudent(reportData);
         String pen = student.getPen().getPen();
         GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
         if(gradSearchStudent != null) {
-            GraduationStudentRecord graduationStudentRecord = this.getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
-            if(graduationStudentRecord != null) {
-                List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
-                if (careerPrograms != null) {
-                    result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
-                }
+            return getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
+        }
+        return null;
+    }
+
+    public List<String> getCareerPrograms(ReportData reportData) {
+        List<String> result = new ArrayList<>();
+        GraduationStudentRecord graduationStudentRecord = getGraduationStudentRecord(reportData);
+        if(graduationStudentRecord != null) {
+            List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
+            if (careerPrograms != null) {
+                result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));
             }
         }
         return result;

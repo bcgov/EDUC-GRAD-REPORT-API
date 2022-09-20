@@ -543,7 +543,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             throw dse;
         }
 
-        results = this.gradDataConvertionBean.getCarrierPrograms(reportData);
+        results = this.gradDataConvertionBean.getCareerPrograms(reportData);
 
         if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
