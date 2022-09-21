@@ -101,6 +101,8 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
         final School school = gradDataConvertionBean.getSchool(reportData); //validated
 
+        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
+
         if(!students.isEmpty()) {
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
             parameters.put("students", jrBeanCollectionDataSource);
