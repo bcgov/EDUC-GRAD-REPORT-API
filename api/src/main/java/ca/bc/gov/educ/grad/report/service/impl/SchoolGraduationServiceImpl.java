@@ -100,6 +100,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
 
         // validate incoming data for reporting
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
+        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
         sortStudentsByLastUpdateDateAndNames(students);
         final School school = gradDataConvertionBean.getSchool(reportData); //validated
 
