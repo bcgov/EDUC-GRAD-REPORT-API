@@ -19,7 +19,6 @@ SET REPORT_TYPE_CODE = 'GRADDIST' WHERE REPORT_TYPE_CODE = 'GRAD';
 
 -- 4. UPDATE PARENT TABLE REPORT_TYPE_CODE FROM 'GRAD' to new value 'GRADDIST' for this primary key change
 -- also update the label and description for this key
--- then delete the old primary code "NONGRAD"
 ALTER TABLE REPORT_TYPE_CODE
 DISABLE CONSTRAINT REPORT_TYPE_CODE_PK;
 
