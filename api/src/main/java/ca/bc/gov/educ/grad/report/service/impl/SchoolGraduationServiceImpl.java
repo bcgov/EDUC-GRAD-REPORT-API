@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -99,6 +100,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
 
         // validate incoming data for reporting
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
+        sortStudentsByLastUpdateDateAndNames(students);
         final School school = gradDataConvertionBean.getSchool(reportData); //validated
 
         if(!students.isEmpty()) {
@@ -122,6 +124,14 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
 
         LOG.exiting(CLASSNAME, methodName);
         return report;
+    }
+
+    private void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
     /**

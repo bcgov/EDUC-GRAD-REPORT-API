@@ -5,7 +5,7 @@
   },
   "data": {
     "school": {
-      "name": "MOUNT BAKER SECONDARY",
+      "name": "VANCOUVER SCHOOL BOARD ADULT EDUCATION",
       "mincode": "00502001"
     },
     "student": {
@@ -458,6 +458,20 @@
         "description": "Graduation Program 2018",
         "credits": 80
       }
+    },
+    "graduationData": {
+      "graduationDate": "2020-09-01",
+      "honorsFlag": false,
+      "dogwoodFlag": false,
+      "programCodes": [
+        "XE",
+        "XP"
+      ],
+      "programNames": [
+        "",
+        ""
+      ],
+      "totalCreditsUsedForGrad": "0"
     },
     "graduationStatus": {
       "programCompletionDate": null,

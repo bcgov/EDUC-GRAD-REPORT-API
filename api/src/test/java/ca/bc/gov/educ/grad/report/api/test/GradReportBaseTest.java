@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 public abstract class GradReportBaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(GradReportBaseTest.class);
+    public static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     @Autowired
     JsonTransformer jsonTransformer;
