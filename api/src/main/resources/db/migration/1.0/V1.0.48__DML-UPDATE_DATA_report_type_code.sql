@@ -14,11 +14,8 @@ UPDATE SCHOOL_REPORT
 SET REPORT_TYPE_CODE = 'GRADDIST' WHERE REPORT_TYPE_CODE = 'GRAD';
 
 -- 3, delete all child records linked to the old primary code "NONGRAD"
-DELETE FROM STUDENT_REPORT
-WHERE REPORT_TYPE_CODE = 'NONGRAD';
+-- this part is no longer valid, see detail in GRAD2-1464
 
-DELETE FROM SCHOOL_REPORT
-WHERE REPORT_TYPE_CODE = 'NONGRAD';
 
 -- 4. UPDATE PARENT TABLE REPORT_TYPE_CODE FROM 'GRAD' to new value 'GRADDIST' for this primary key change
 -- also update the label and description for this key
