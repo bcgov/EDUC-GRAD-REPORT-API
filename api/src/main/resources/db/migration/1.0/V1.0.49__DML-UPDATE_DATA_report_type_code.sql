@@ -71,7 +71,7 @@ values (
 'NONGRADREG',
 'Not-Yet Graduated Students (MM YY to MM YY)',
 'A daily, cumulative list of student in the current cycle who have not-yet graduated, based on the latest information submitted by the school.  Produced as part of the Batch Graduation Algorithm Run.',
-25,
+50,
 to_date('21-07-19','RR-MM-DD'));
 
 Insert into REPORT_TYPE_CODE
@@ -81,7 +81,7 @@ values (
 'XML Preview',
 'A PDF display of what is currently available to a Post-Secondary institution that has been authorized by a student to receive transcript updates via XML data transfer.
 Shows the completed course and assessment data along with the in progress course and assessment data.',
-50,
+55,
 to_date('21-07-19','RR-MM-DD'));
 
 Insert into REPORT_TYPE_CODE
@@ -90,7 +90,7 @@ values (
 'TRAN',
 'Student Transcript',
 'An official report of a students'' completed course and assessment data.',
-55,
+60,
 to_date('21-07-19','RR-MM-DD'));
 
 
