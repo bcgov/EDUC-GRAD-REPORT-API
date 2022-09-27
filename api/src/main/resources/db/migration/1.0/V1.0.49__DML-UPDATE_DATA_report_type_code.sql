@@ -30,9 +30,6 @@ DESCRIPTION = 'Printed report run that lists students who have been issued trans
 EFFECTIVE_DATE = to_date('21-07-19','RR-MM-DD')
 WHERE REPORT_TYPE_CODE = 'GRAD';
 
-DELETE FROM REPORT_TYPE_CODE
-WHERE REPORT_TYPE_CODE = 'NONGRAD';
-
 -- 5. update label and description for existing keys and new keys
 UPDATE REPORT_TYPE_CODE
 SET LABEL = 'TVRs for Projected Graduating Students',
