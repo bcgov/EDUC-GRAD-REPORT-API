@@ -1396,7 +1396,7 @@
 				<text><![CDATA[(Student Signature)]]></text>
 			</staticText>
 		</band>
-		<band height="189">
+		<band height="250">
 			<frame>
 				<reportElement x="5" y="4" width="550" height="179" uuid="c8b0a201-7978-41d6-b5ef-83caaaf8a50c">
 					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudentAssessment})]]></printWhenExpression>
@@ -1554,21 +1554,21 @@
 					</textElement>
 					<text><![CDATA[Numeracy 10 or Literacy 12 Assessment requirement met by writing a Math 10 or Language Arts 12 provincial exam]]></text>
 				</staticText>
-			</frame>
-			<staticText>
-				<reportElement stretchType="ContainerHeight" x="5" y="122" width="550" height="61" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
-					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font size="9" isItalic="false"/>
-					<paragraph lineSpacingSize="0.0" leftIndent="10" tabStopWidth="0"/>
-				</textElement>
-				<text><![CDATA[If the score is blank, the student has been registered but not yet written, or session results have not yet been released.
+				<staticText>
+					<reportElement stretchType="ContainerHeight" x="0" y="122" width="550" height="57" uuid="0b63b6fe-56b4-4ba2-917c-73310a0f0f24">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="9" isItalic="false"/>
+						<paragraph lineSpacingSize="0.0" leftIndent="10" tabStopWidth="0"/>
+					</textElement>
+					<text><![CDATA[If the score is blank, the student has been registered but not yet written, or session results have not yet been released.
  
 Only successfully completed assessments (including Aegrotat and Exempt) will appear on a student’s transcript.
 For the Literacy 10 Assessment, RM (Requirement Met) is used on transcripts, not the proficiency score.]]></text>
-			</staticText>
+				</staticText>
+			</frame>
 		</band>
 	</detail>
 	<summary>
