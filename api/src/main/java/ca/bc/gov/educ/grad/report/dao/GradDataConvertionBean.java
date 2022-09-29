@@ -93,6 +93,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     public Transcript getTranscript(ReportData reportData) {
         ca.bc.gov.educ.grad.report.api.client.Transcript clientTranscript = reportData.getTranscript();
+        if(clientTranscript == null) {
+            reportData.setTranscript(new ca.bc.gov.educ.grad.report.api.client.Transcript());
+        }
         TranscriptImpl transcript = new TranscriptImpl();
         BeanUtils.copyProperties(clientTranscript, transcript);
         transcript.setInterim("true".equalsIgnoreCase(clientTranscript.getInterim()));
@@ -266,24 +269,27 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public List<AssessmentResult> getAssessmentCourses(ReportData reportData) {
-        StudentInfo studentInfo = getStudentInfo(reportData);
         List<AssessmentResult> result = new ArrayList<>();
         ca.bc.gov.educ.grad.report.api.client.Assessment assessment = reportData.getAssessment();
-        for (ca.bc.gov.educ.grad.report.api.client.AssessmentResult r : assessment.getResults()) {
-            AssessmentResultImpl assessmentResult = new AssessmentResultImpl();
-            BeanUtils.copyProperties(r, assessmentResult);
-            result.add(assessmentResult);
+        if(assessment.getResults() != null) {
+            for (ca.bc.gov.educ.grad.report.api.client.AssessmentResult r : assessment.getResults()) {
+                AssessmentResultImpl assessmentResult = new AssessmentResultImpl();
+                BeanUtils.copyProperties(r, assessmentResult);
+                result.add(assessmentResult);
+            }
         }
         return result;
     }
 
     public Certificate getCertificate(ca.bc.gov.educ.grad.report.api.client.Certificate certificate) {
         CertificateImpl result = new CertificateImpl();
-        BeanUtils.copyProperties(certificate, result);
-        final CertificateType rsRptType = getCertificateType(certificate.getOrderType().getCertificateType().getReportName());
-        CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl(rsRptType);
-        orderType.setName(certificate.getOrderType().getName());
-        result.setOrderType(orderType);
+        if(certificate != null) {
+            BeanUtils.copyProperties(certificate, result);
+            final CertificateType rsRptType = getCertificateType(certificate.getOrderType().getCertificateType().getReportName());
+            CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl(rsRptType);
+            orderType.setName(certificate.getOrderType().getName());
+            result.setOrderType(orderType);
+        }
         return result;
     }
 
