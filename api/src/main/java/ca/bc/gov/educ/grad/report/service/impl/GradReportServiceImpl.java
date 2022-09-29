@@ -18,6 +18,7 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -111,12 +112,9 @@ public abstract class GradReportServiceImpl implements Serializable {
             throw dse;
         }
 
-        PersonalEducationNumberObject pen = new PersonalEducationNumberObject();
-        pen.setPen(reportData.getStudent().getPen().getPen());
-
-        LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
         LOG.exiting(CLASSNAME, methodName);
-        return pen;
+
+        return gradDataConvertionBean.getStudent(reportData).getPen();
     }
 
     Date getIssueDate() throws DataException, DomainServiceException {
@@ -351,17 +349,20 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     TraxSchool getSchool(String minCode, String accessToken) {
-        try {
-            return webClient.get()
-                    .uri(String.format(constants.getSchoolDetails(), minCode))
-                    .headers(h -> h.setBearerAuth(accessToken))
-                    .retrieve()
-                    .bodyToMono(TraxSchool.class)
-                    .block();
-        } catch (Exception ex) {
-            LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
-            return null;
+        if(!StringUtils.isBlank(minCode)) {
+            try {
+                return webClient.get()
+                        .uri(String.format(constants.getSchoolDetails(), minCode))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(TraxSchool.class)
+                        .block();
+            } catch (Exception ex) {
+                LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
+                return null;
+            }
         }
+        return null;
     }
 
     String createReportTypeName(
