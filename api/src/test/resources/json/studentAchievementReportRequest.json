@@ -459,6 +459,20 @@
         "credits": 80
       }
     },
+    "graduationData": {
+      "graduationDate": "2020-09-01",
+      "honorsFlag": false,
+      "dogwoodFlag": false,
+      "programCodes": [
+        "XE",
+        "XP"
+      ],
+      "programNames": [
+        "",
+        ""
+      ],
+      "totalCreditsUsedForGrad": "0"
+    },
     "graduationStatus": {
       "programCompletionDate": null,
       "honours": null,

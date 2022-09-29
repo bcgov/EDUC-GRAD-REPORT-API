@@ -36,8 +36,11 @@ public class ReportApiConstants {
     //Default Date format constants
     public static final String DEFAULT_DATE_FORMAT = "yyyyMMdd";
 
-    @Value("${endpoint.grad-student-api.read-grad-student-record}")
+    @Value("${endpoint.grad-student-api.read-grad-student-record.url}")
     private String readGradStudentRecord;
+
+    @Value("${endpoint.grad-student-api.read-grad-student-record-pen.url}")
+    private String readGradStudentRecordPen;
 
     @Value("${endpoint.pen-student-api.by-pen.url}")
     private String penStudentApiByPenUrl;

@@ -158,7 +158,7 @@
           "grade": "12",
           "gender": "M",
           "birthdate": "2002-08-05",
-          "gradProgram": "2018-PF",
+          "gradProgram": "SCCP",
           "graduationData": {
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
@@ -432,7 +432,7 @@
           "grade": "12",
           "gender": "M",
           "birthdate": "2002-08-05",
-          "gradProgram": "2004-EN",
+          "gradProgram": "SCCP",
           "graduationData": {
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
