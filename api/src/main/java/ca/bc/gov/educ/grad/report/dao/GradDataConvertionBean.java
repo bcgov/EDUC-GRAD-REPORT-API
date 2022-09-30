@@ -47,43 +47,43 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         List<String> programCodes = gradData == null ? new ArrayList<>() : gradData.getProgramCodes();
         ca.bc.gov.educ.grad.report.api.client.Transcript transcript = reportData.getTranscript();
         StudentInfoImpl result = new StudentInfoImpl(
-            student.getPen().getValue(),// String studNo,
-            student.getFirstName(),// String firstName,
-            student.getMiddleName(),// String middleName,
-            student.getLastName(),// String lastName,
-            student.getBirthdate() != null ? student.getBirthdate() : null,// Long birthdate,
-            student.getEntityId(),// String localId,
-            student.getGender(),// Character studGender,
-            school.getMinistryCode(),// String mincode,
-            student.getGrade(),// String studGrade,
-            gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
-            reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getDescription() : student.getGradProgram(),// String gradProgram,
-            reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : student.getGradReqYear(),// String gradReqYear,
-            reportData.getGradMessage(),// String gradMessage,
-            reportData.getIssueDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getIssueDate(),// String updateDt,
-            reportData.getLogo() == null ? reportData.getOrgCode() : reportData.getLogo(),// String logoType,
-            student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine1() : "",// String studentAddress1,
-            student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine2() : "",// String studentAddress2,
-            student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCity() : "",// String studentCity,
-            student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getRegion() : "",// String studentProv,
-            student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getPostalCode() : "",// String studentPostalCode,
-            student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCountryCode() : "",// String traxStudentCountry,
-            student.getStudStatus(),// Character studStatus,
-            gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
-            gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag
-            programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,
-            programCodes != null && programCodes.size() >= 2 ? programCodes.get(1) : null, //String prgmCode2,
-            programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
-            programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
-            programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
-            school.getName(),// String schoolName,
-            school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine1() : "",// String schoolStreet,
-            school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine2() : "",// String schoolStreet2,
-            school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "",// String schoolCity,
-            school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "",// String schoolProv,
-            school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "",// String schoolPostalCode,
-            school.getPhoneNumber(),// String schoolPhone,
-            school.getTypeIndicator()// Character schlIndType
+                student.getPen().getValue(),// String studNo,
+                student.getFirstName(),// String firstName,
+                student.getMiddleName(),// String middleName,
+                student.getLastName(),// String lastName,
+                student.getBirthdate() != null ? student.getBirthdate() : null,// Long birthdate,
+                student.getEntityId(),// String localId,
+                student.getGender(),// Character studGender,
+                school.getMinistryCode(),// String mincode,
+                student.getGrade(),// String studGrade,
+                gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
+                reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getDescription() : student.getGradProgram(),// String gradProgram,
+                reportData.getGradProgram() != null ? reportData.getGradProgram().getCode().getCode() : student.getGradReqYear(),// String gradReqYear,
+                reportData.getGradMessage(),// String gradMessage,
+                reportData.getIssueDate() == null ? transcript != null ? transcript.getIssueDate() : null : reportData.getIssueDate(),// String updateDt,
+                reportData.getLogo() == null ? reportData.getOrgCode() : reportData.getLogo(),// String logoType,
+                student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine1() : "",// String studentAddress1,
+                student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getStreetLine2() : "",// String studentAddress2,
+                student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCity() : "",// String studentCity,
+                student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getRegion() : "",// String studentProv,
+                student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getPostalCode() : "",// String studentPostalCode,
+                student.getCurrentMailingAddress() != null ? student.getCurrentMailingAddress().getCountryCode() : "",// String traxStudentCountry,
+                student.getStudStatus(),// Character studStatus,
+                gradData != null && gradData.getHonorsFlag() ? 'Y' : 'N', //Character honourFlag,
+                gradData != null && gradData.getDogwoodFlag() ? 'Y' : 'N', //Character dogwoodFlag
+                programCodes != null && programCodes.size() >= 1 ? programCodes.get(0) : null, //String prgmCode,
+                programCodes != null && programCodes.size() >= 2 ? programCodes.get(1) : null, //String prgmCode2,
+                programCodes != null && programCodes.size() >= 3 ? programCodes.get(2) : null, //String prgmCode3,
+                programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
+                programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
+                school.getName(),// String schoolName,
+                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine1() : "",// String schoolStreet,
+                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine2() : "",// String schoolStreet2,
+                school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "",// String schoolCity,
+                school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "",// String schoolProv,
+                school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "",// String schoolPostalCode,
+                school.getPhoneNumber(),// String schoolPhone,
+                school.getTypeIndicator()// Character schlIndType
         );
         result.setNonGradReasons(this.getNongradReasons(reportData));
         result.setHasOtherProgram(student.getHasOtherProgram());
@@ -93,6 +93,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     public Transcript getTranscript(ReportData reportData) {
         ca.bc.gov.educ.grad.report.api.client.Transcript clientTranscript = reportData.getTranscript();
+        if(clientTranscript == null) {
+            reportData.setTranscript(new ca.bc.gov.educ.grad.report.api.client.Transcript());
+        }
         TranscriptImpl transcript = new TranscriptImpl();
         BeanUtils.copyProperties(clientTranscript, transcript);
         transcript.setInterim("true".equalsIgnoreCase(clientTranscript.getInterim()));
@@ -100,9 +103,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         TranscriptTypeCode transcriptTypeCode = TranscriptTypeCode.valueFrom(clientTranscriptTypeCode.getCode());
         transcript.setTranscriptTypeCode(transcriptTypeCode);
         GraduationStudentRecord graduationStudentRecord = this.getGraduationStudentRecord(reportData);
-        if(graduationStudentRecord != null) {
+        if (graduationStudentRecord != null) {
             StudentTranscriptEntity studentTranscriptEntity = studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID());
-            if(studentTranscriptEntity != null && studentTranscriptEntity.getUpdateDate() != null) {
+            if (studentTranscriptEntity != null && studentTranscriptEntity.getUpdateDate() != null) {
                 transcript.setIssueDate(studentTranscriptEntity.getUpdateDate());
             }
         }
@@ -110,20 +113,20 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public Student getStudent(ReportData reportData) {
-        if(reportData.getStudent() == null || reportData.getStudent().getPen() == null) {
-            throw new InvalidParameterException("Student and PEN can't be NULL");
+        if (reportData.getStudent() == null || reportData.getStudent().getPen() == null) {
+            reportData.setStudent(new ca.bc.gov.educ.grad.report.api.client.Student());
         }
         StudentImpl student = new StudentImpl();
         BeanUtils.copyProperties(reportData.getStudent(), student);
         student.setPen(new PersonalEducationNumberObject(reportData.getStudent().getPen().getPen()));
-        if(reportData.getStudent().getAddress() != null) {
+        if (reportData.getStudent().getAddress() != null) {
             PostalAddressImpl address = new PostalAddressImpl();
             BeanUtils.copyProperties(reportData.getStudent().getAddress(), address);
             student.setCurrentMailingAddress(address);
         }
 
         List<ca.bc.gov.educ.grad.report.model.graduation.OtherProgram> otherPrograms = new ArrayList<>();
-        if(reportData.getStudent().getOtherProgramParticipation() != null) {
+        if (reportData.getStudent().getOtherProgramParticipation() != null) {
             for (OtherProgram p : reportData.getStudent().getOtherProgramParticipation()) {
                 OtherProgramImpl otherProgram = new OtherProgramImpl();
                 otherProgram.setProgramCode(p.getProgramCode());
@@ -133,25 +136,25 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             student.setOtherProgramParticipation(otherPrograms);
         }
 
-        if(StringUtils.trimToNull(student.getEnglishCert()) == null &&
+        if (StringUtils.trimToNull(student.getEnglishCert()) == null &&
                 StringUtils.trimToNull(student.getFrenchCert()) == null) {
             student.setEnglishCert("E");
-        } else if(StringUtils.trimToNull(student.getEnglishCert()) == null) {
+        } else if (StringUtils.trimToNull(student.getEnglishCert()) == null) {
             student.setEnglishCert("");
         }
-        if(StringUtils.trimToNull(student.getFrenchCert()) == null) {
+        if (StringUtils.trimToNull(student.getFrenchCert()) == null) {
             student.setFrenchCert("");
         }
         return student;
     }
 
     public School getSchool(ReportData reportData) {
-        if(reportData.getSchool() == null || reportData.getSchool().getMincode() == null) {
-            throw new InvalidParameterException("School and mincode can't be NULL");
+        if (reportData.getSchool() == null || reportData.getSchool().getMincode() == null) {
+            reportData.setSchool(new ca.bc.gov.educ.grad.report.api.client.School());
         }
         SchoolImpl school = new SchoolImpl();
         BeanUtils.copyProperties(reportData.getSchool(), school);
-        if(reportData.getSchool().getAddress() != null) {
+        if (reportData.getSchool().getAddress() != null) {
             PostalAddressImpl address = new PostalAddressImpl();
             BeanUtils.copyProperties(reportData.getSchool().getAddress(), address);
             school.setAddress(address);
@@ -162,30 +165,30 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     public List<TranscriptCourse> getTranscriptCourses(ReportData reportData) {
         Student student = getStudent(reportData);
         List<TranscriptCourse> result = new ArrayList<>();
-        if(reportData.getTranscript() != null) {
-	        for(ca.bc.gov.educ.grad.report.api.client.TranscriptResult r: reportData.getTranscript().getResults()) {
-	            if(r.getCourse() == null || r.getMark() == null) {
-	                throw new InvalidParameterException("Transcript Result Course and Mark can't be NULL");
-	            }
-	            TranscriptCourseImpl course = new TranscriptCourseImpl(
-	                    student.getPen().getValue(), //String pen,
-	                    r.getCourse().getName(), //String courseName,
-	                    r.getCourse().getCode(), //String crseCode,
-	                    r.getCourse().getLevel(), //String crseLevel,
-	                    r.getCourse().getSessionDate(), //String sessionDate,
-	                    r.getCourse().getCredits(), //String credits,
-	                    r.getMark().getExamPercent(), //String examPercent,
-	                    r.getMark().getSchoolPercent(), //String schoolPercent,
-	                    r.getMark().getFinalPercent(), //String finalPercent,
-	                    r.getMark().getFinalLetterGrade(), //String finalLetterGrade,
-	                    r.getMark().getInterimPercent(), //String interimMark,
+        if (reportData.getTranscript() != null && reportData.getTranscript().getResults() != null) {
+            for (ca.bc.gov.educ.grad.report.api.client.TranscriptResult r : reportData.getTranscript().getResults()) {
+                if (r.getCourse() == null || r.getMark() == null) {
+                    throw new InvalidParameterException("Transcript Result Course and Mark can't be NULL");
+                }
+                TranscriptCourseImpl course = new TranscriptCourseImpl(
+                        student.getPen().getValue(), //String pen,
+                        r.getCourse().getName(), //String courseName,
+                        r.getCourse().getCode(), //String crseCode,
+                        r.getCourse().getLevel(), //String crseLevel,
+                        r.getCourse().getSessionDate(), //String sessionDate,
+                        r.getCourse().getCredits(), //String credits,
+                        r.getMark().getExamPercent(), //String examPercent,
+                        r.getMark().getSchoolPercent(), //String schoolPercent,
+                        r.getMark().getFinalPercent(), //String finalPercent,
+                        r.getMark().getFinalLetterGrade(), //String finalLetterGrade,
+                        r.getMark().getInterimPercent(), //String interimMark,
                         r.getMark().getInterimLetterGrade(), //String interimLetterGrade,
-	                    r.getRequirement(), //String requirement,
-	          null, //String specialCase,
-	                    r.getCourse().getType() //Character courseType
-	            );
-	            result.add(course);
-	        }
+                        r.getRequirement(), //String requirement,
+                        null, //String specialCase,
+                        r.getCourse().getType() //Character courseType
+                );
+                result.add(course);
+            }
         }
         return result;
     }
@@ -193,19 +196,21 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     public List<AchievementCourse> getAchievementCourses(ReportData reportData) {
         Student student = getStudent(reportData);
         List<AchievementCourse> result = new ArrayList<>();
-            for(ca.bc.gov.educ.grad.report.api.client.AchievementCourse r: reportData.getStudentCourses()) {
+        if(reportData.getStudentCourses() != null) {
+            for (ca.bc.gov.educ.grad.report.api.client.AchievementCourse r : reportData.getStudentCourses()) {
                 AchievementCourseImpl course = new AchievementCourseImpl();
                 BeanUtils.copyProperties(r, course);
                 result.add(course);
+            }
         }
         return result;
     }
 
     public List<Exam> getStudentExams(ReportData reportData) {
         List<Exam> result = new ArrayList<>();
-        if(reportData.getStudentExams() != null) {
-            for(ca.bc.gov.educ.grad.report.api.client.Exam r: reportData.getStudentExams()) {
-                if(r.getCourseCode() == null || r.getSessionDate() == null) {
+        if (reportData.getStudentExams() != null) {
+            for (ca.bc.gov.educ.grad.report.api.client.Exam r : reportData.getStudentExams()) {
+                if (r.getCourseCode() == null || r.getSessionDate() == null) {
                     throw new InvalidParameterException("Exam code and Session date can't be NULL");
                 }
                 ExamImpl exam = new ExamImpl();
@@ -219,17 +224,17 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     public List<OptionalProgram> getOptionalPrograms(ReportData reportData) {
         Student student = getStudent(reportData);
         List<OptionalProgram> result = new ArrayList<>();
-        if(reportData.getOptionalPrograms() != null) {
-            for(ca.bc.gov.educ.grad.report.api.client.OptionalProgram r: reportData.getOptionalPrograms()) {
-                if(r.getOptionalProgramCode() == null || r.getOptionalProgramName() == null) {
+        if (reportData.getOptionalPrograms() != null) {
+            for (ca.bc.gov.educ.grad.report.api.client.OptionalProgram r : reportData.getOptionalPrograms()) {
+                if (r.getOptionalProgramCode() == null || r.getOptionalProgramName() == null) {
                     throw new InvalidParameterException("Optional Program code and name can't be NULL");
                 }
                 List<ca.bc.gov.educ.grad.report.model.graduation.GradRequirement> requirementMet = new ArrayList();
-                for(GradRequirement gr: r.getRequirementMet()) {
+                for (GradRequirement gr : r.getRequirementMet()) {
                     ca.bc.gov.educ.grad.report.model.graduation.GradRequirement data = new GradRequirementImpl();
                     BeanUtils.copyProperties(gr, data);
                     List<AchievementCourse> acrs = new ArrayList<>();
-                    for(ca.bc.gov.educ.grad.report.api.client.AchievementCourse ac: gr.getCourseDetails()) {
+                    for (ca.bc.gov.educ.grad.report.api.client.AchievementCourse ac : gr.getCourseDetails()) {
                         AchievementCourseImpl course = new AchievementCourseImpl();
                         BeanUtils.copyProperties(ac, course);
                         acrs.add(course);
@@ -238,7 +243,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                     requirementMet.add(data);
                 }
                 List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons = new ArrayList();
-                for(ca.bc.gov.educ.grad.report.api.client.NonGradReason gr: r.getNonGradReasons()) {
+                for (ca.bc.gov.educ.grad.report.api.client.NonGradReason gr : r.getNonGradReasons()) {
                     ca.bc.gov.educ.grad.report.model.graduation.NonGradReason data = new NonGradReasonImpl();
                     BeanUtils.copyProperties(gr, data);
                     nonGradReasons.add(data);
@@ -255,7 +260,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     public HashMap<String, String> getNongradReasons(ReportData reportData) {
         final HashMap<String, String> reasons = new HashMap<>();
-        if(reportData.getNonGradReasons() != null) {
+        if (reportData.getNonGradReasons() != null) {
             for (ca.bc.gov.educ.grad.report.api.client.NonGradReason reason : reportData.getNonGradReasons()) {
                 reasons.put(reason.getCode(), reason.getDescription());
             }
@@ -264,33 +269,36 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public List<AssessmentResult> getAssessmentCourses(ReportData reportData) {
-        StudentInfo studentInfo = getStudentInfo(reportData);
         List<AssessmentResult> result = new ArrayList<>();
         ca.bc.gov.educ.grad.report.api.client.Assessment assessment = reportData.getAssessment();
-        for(ca.bc.gov.educ.grad.report.api.client.AssessmentResult r: assessment.getResults()) {
-            AssessmentResultImpl assessmentResult = new AssessmentResultImpl();
-            BeanUtils.copyProperties(r, assessmentResult);
-            result.add(assessmentResult);
+        if(assessment.getResults() != null) {
+            for (ca.bc.gov.educ.grad.report.api.client.AssessmentResult r : assessment.getResults()) {
+                AssessmentResultImpl assessmentResult = new AssessmentResultImpl();
+                BeanUtils.copyProperties(r, assessmentResult);
+                result.add(assessmentResult);
+            }
         }
         return result;
     }
 
     public Certificate getCertificate(ca.bc.gov.educ.grad.report.api.client.Certificate certificate) {
         CertificateImpl result = new CertificateImpl();
-        BeanUtils.copyProperties(certificate, result);
-        final CertificateType rsRptType = getCertificateType(certificate.getOrderType().getCertificateType().getReportName());
-        CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl(rsRptType);
-        orderType.setName(certificate.getOrderType().getName());
-        result.setOrderType(orderType);
+        if(certificate != null) {
+            BeanUtils.copyProperties(certificate, result);
+            final CertificateType rsRptType = getCertificateType(certificate.getOrderType().getCertificateType().getReportName());
+            CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl(rsRptType);
+            orderType.setName(certificate.getOrderType().getName());
+            result.setOrderType(orderType);
+        }
         return result;
     }
 
     public PostalDeliveryInfo getPostalDeliveryInfo(ReportData reportData) {
         PackingSlip packingSlip = reportData.getPackingSlip();
-        if(packingSlip == null || packingSlip.getSchool() == null) {
+        if (packingSlip == null || packingSlip.getSchool() == null) {
             throw new InvalidParameterException("Packing Slip and School can't be NULL");
         }
-        if(packingSlip.getSchool().getAddress() == null) {
+        if (packingSlip.getSchool().getAddress() == null) {
             throw new InvalidParameterException("School Address can't be NULL");
         }
         PostalDeliveryInfo deliveryInfo = new PostalDeliveryInfoImpl();
@@ -308,43 +316,43 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     public OrderType getPackingSlipOrderType(ReportData reportData) {
         PackingSlip packingSlip = reportData.getPackingSlip();
-        if(packingSlip == null || packingSlip.getOrderType() == null) {
+        if (packingSlip == null || packingSlip.getOrderType() == null) {
             throw new InvalidParameterException("Packing Slip can't be NULL");
         }
         OrderType result;
-         switch(packingSlip.getOrderType().getName()) {
-             case "Certificate" : {
-                 CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl();
-                 orderType.setName(packingSlip.getOrderType().getName());
-                 CertificateType certificateType = CertificateType.forValue(packingSlip.getOrderType().getPackingSlipType().getName());
-                 certificateType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
-                 orderType.setCertificateType(certificateType);
-                 result = orderType;
-             }
-                break;
-             case "Transcript" : {
-                 TranscriptOrderTypeImpl orderType = new TranscriptOrderTypeImpl();
-                 orderType.setName(packingSlip.getOrderType().getName());
-                 orderType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
-                 result = orderType;
-             }
-                 break;
-             case "Achievement" : {
-                 AchievementOrderTypeImpl orderType = new AchievementOrderTypeImpl();
-                 orderType.setName(packingSlip.getOrderType().getName());
-                 orderType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
-                 result = orderType;
-             }
-                 break;
-             default:
-                 throw new InvalidParameterException("Order Type is not valid");
-         }
+        switch (packingSlip.getOrderType().getName()) {
+            case "Certificate": {
+                CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl();
+                orderType.setName(packingSlip.getOrderType().getName());
+                CertificateType certificateType = CertificateType.forValue(packingSlip.getOrderType().getPackingSlipType().getName());
+                certificateType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
+                orderType.setCertificateType(certificateType);
+                result = orderType;
+            }
+            break;
+            case "Transcript": {
+                TranscriptOrderTypeImpl orderType = new TranscriptOrderTypeImpl();
+                orderType.setName(packingSlip.getOrderType().getName());
+                orderType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
+                result = orderType;
+            }
+            break;
+            case "Achievement": {
+                AchievementOrderTypeImpl orderType = new AchievementOrderTypeImpl();
+                orderType.setName(packingSlip.getOrderType().getName());
+                orderType.setPaperType(PaperType.forValue(packingSlip.getOrderType().getPackingSlipType().getPaperType().getCode()));
+                result = orderType;
+            }
+            break;
+            default:
+                throw new InvalidParameterException("Order Type is not valid");
+        }
         return result;
     }
 
     private CertificateType getCertificateType(String reportName) {
         final CertificateType rsRptType;
-        switch(reportName) {
+        switch (reportName) {
             case "E":
                 rsRptType = CertificateType.E;
                 break;
@@ -382,11 +390,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         List<Student> result = new ArrayList<>();
         ca.bc.gov.educ.grad.report.api.client.School school = reportData.getSchool();
         List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
-        for(ca.bc.gov.educ.grad.report.api.client.Student st: students) {
+        for (ca.bc.gov.educ.grad.report.api.client.Student st : students) {
             StudentImpl student = new StudentImpl();
             BeanUtils.copyProperties(st, student);
             student.setPen(new PersonalEducationNumberObject(st.getPen().getPen()));
-            if(st.getAddress() != null) {
+            if (st.getAddress() != null) {
                 PostalAddressImpl address = new PostalAddressImpl();
                 BeanUtils.copyProperties(st.getAddress(), address);
                 student.setCurrentMailingAddress(address);
@@ -395,7 +403,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             GraduationData graduationData = st.getGraduationData();
             BeanUtils.copyProperties(graduationData, gradData);
             student.setGraduationData(gradData);
-            for(ca.bc.gov.educ.grad.report.api.client.NonGradReason rsn: st.getNonGradReasons()) {
+            for (ca.bc.gov.educ.grad.report.api.client.NonGradReason rsn : st.getNonGradReasons()) {
                 NonGradReasonImpl reason = new NonGradReasonImpl();
                 BeanUtils.copyProperties(rsn, reason);
                 student.getNonGradReasons().add(reason);
@@ -409,7 +417,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         Student student = getStudent(reportData);
         String pen = student.getPen().getPen();
         GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
-        if(gradSearchStudent != null) {
+        if (gradSearchStudent != null) {
             return getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
         }
         return null;
@@ -418,7 +426,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     public List<String> getCareerPrograms(ReportData reportData) {
         List<String> result = new ArrayList<>();
         GraduationStudentRecord graduationStudentRecord = getGraduationStudentRecord(reportData);
-        if(graduationStudentRecord != null) {
+        if (graduationStudentRecord != null) {
             List<CareerProgram> careerPrograms = graduationStudentRecord.getCareerPrograms();
             if (careerPrograms != null) {
                 result.addAll(careerPrograms.stream().map(CareerProgram::getCareerProgramCode).collect(Collectors.toList()));

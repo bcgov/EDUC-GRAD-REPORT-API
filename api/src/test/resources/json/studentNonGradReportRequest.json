@@ -42,7 +42,7 @@
             "entityId": null
           },
           "firstName": "JOHN",
-          "middelName": "PIRATE",
+          "middleName": "PIRATE",
           "lastName": "SILVER",
           "grade": "11",
           "gender": "M",
@@ -105,7 +105,7 @@
             "entityId": null
           },
           "firstName": "CARLOS",
-          "middelName": "LYNN",
+          "middleName": "LYNN",
           "lastName": "CHAN",
           "grade": "12",
           "gender": "M",
@@ -153,7 +153,7 @@
             "entityId": null
           },
           "firstName": "GARRY",
-          "middelName": "FAITH",
+          "middleName": "FAITH",
           "lastName": "FREEDMAN",
           "grade": "12",
           "gender": "M",
@@ -221,7 +221,7 @@
             "entityId": null
           },
           "firstName": "TEST",
-          "middelName": "NEXT",
+          "middleName": "NEXT",
           "grade": "12",
           "gender": "M",
           "birthdate": "2002-08-05",
@@ -289,7 +289,7 @@
             "entityId": null
           },
           "firstName": "STEPHANIE AREN-LEE",
-          "middelName": null,
+          "middleName": null,
           "lastName": "MA",
           "grade": "12",
           "gender": "M",
@@ -358,7 +358,7 @@
             "entityId": null
           },
           "firstName": "LARRY",
-          "middelName": null,
+          "middleName": null,
           "lastName": "TRUMAN",
           "grade": "12",
           "gender": "M",
@@ -427,7 +427,7 @@
             "entityId": null
           },
           "firstName": "GARRY",
-          "middelName": null,
+          "middleName": null,
           "lastName": "TRUMAN",
           "grade": "12",
           "gender": "M",
