@@ -64,7 +64,6 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = SchoolNonGraduationServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     @Autowired
     private ReportService reportService;
