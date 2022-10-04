@@ -78,7 +78,7 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public SchoolNonGraduationReport buildSchoolNonGraduationReport() throws DomainServiceException, IOException {
-        final String methodName = "buildReport()";
+        final String methodName = "buildSchoolNonGraduationReport()";
         LOG.entering(CLASSNAME, methodName);
 
 
@@ -148,31 +148,31 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
             final Parameters<String, Object> parameters,
             final Locale location) throws DomainServiceException {
 
-        final String methodName = "createSchoolNonGraduationReport(Student, School, Locale)";
+        final String methodName = "createSchoolNonGraduationReport(Students, School, Locale)";
         LOG.entering(CLASSNAME, methodName);
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
-        GraduationReport graduationReport = reportService.createSchoolNonGraduationReport();
-        graduationReport.setLocale(location);
-        graduationReport.setStudents(students);
-        graduationReport.setSchool(school);
+        GraduationReport nonGraduationReport = reportService.createSchoolNonGraduationReport();
+        nonGraduationReport.setLocale(location);
+        nonGraduationReport.setStudents(students);
+        nonGraduationReport.setSchool(school);
 
         if (parameters != null) {
-            graduationReport.setParameters(parameters);
+            nonGraduationReport.setParameters(parameters);
         }
 
         SchoolNonGraduationReport report = null;
         try {
-            final ReportDocument rptDoc = reportService.export(graduationReport);
+            final ReportDocument rptDoc = reportService.export(nonGraduationReport);
 
-            StringBuilder sb = new StringBuilder("school_graduation_");
+            StringBuilder sb = new StringBuilder("school_non_graduation_");
             sb.append(location.toLanguageTag());
             sb.append("_");
             sb.append(timestamp);
             sb.append(".");
             sb.append(PDF.getFilenameExtension());
-            final String filename = graduationReport.getFilename();
+            final String filename = nonGraduationReport.getFilename();
 
             byte[] inData = rptDoc.asBytes();
             inData = ArrayUtils.nullToEmpty(inData);
@@ -185,10 +185,10 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
             }
             byte[] rptData = inData;
 
-            report = new SchoolNonGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Graduation Report", location));
+            report = new SchoolNonGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Non Graduation Report", location));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
-                    "Failed to generate the provincial examination report.", ex);
+                    "Failed to generate the School Non Graduation Report report.", ex);
         }
 
         LOG.exiting(CLASSNAME, methodName);
