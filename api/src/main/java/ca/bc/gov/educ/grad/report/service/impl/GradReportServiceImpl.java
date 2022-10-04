@@ -27,10 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -68,6 +65,39 @@ public abstract class GradReportServiceImpl implements Serializable {
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;
+    }
+
+    List<Student> getStudents(ReportData reportData) {
+        final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
+        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
+        sortStudentsByLastUpdateDateAndNames(students);
+        return students;
+    }
+
+    void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
+    }
+
+    School getSchool(ReportData reportData) {
+        return gradDataConvertionBean.getSchool(reportData);
+    }
+
+    ReportData getReportData(String methodName) {
+        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+
+        if (reportData == null) {
+            EntityNotFoundException dse = new EntityNotFoundException(
+                    getClass(),
+                    REPORT_DATA_MISSING,
+                    "Report Data not exists for the current report generation");
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+        return reportData;
     }
 
     InputStream openImageResource(final String resource) throws IOException {

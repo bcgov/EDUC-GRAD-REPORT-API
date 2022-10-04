@@ -19,9 +19,7 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
-import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolNonGraduationReportImpl;
-import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
@@ -42,7 +40,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -82,16 +79,7 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
         LOG.entering(CLASSNAME, methodName);
 
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    getClass(),
-                    REPORT_DATA_MISSING,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
+        ReportData reportData = getReportData(methodName);
 
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
@@ -99,10 +87,8 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
         Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
-        final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
-        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
-        sortStudentsByLastUpdateDateAndNames(students);
-        final School school = gradDataConvertionBean.getSchool(reportData); //validated
+        final List<Student> students = getStudents(reportData);
+        final School school = getSchool(reportData);
 
         if(!students.isEmpty()) {
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
@@ -125,14 +111,6 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
 
         LOG.exiting(CLASSNAME, methodName);
         return report;
-    }
-
-    private void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
-        students.sort(Comparator
-                .comparing(Student::getLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
-                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
-                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
-                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
     /**
