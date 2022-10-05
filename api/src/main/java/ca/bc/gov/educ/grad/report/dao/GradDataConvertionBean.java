@@ -5,7 +5,6 @@ import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
-import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
@@ -102,13 +101,6 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         Code clientTranscriptTypeCode = clientTranscript.getTranscriptTypeCode();
         TranscriptTypeCode transcriptTypeCode = TranscriptTypeCode.valueFrom(clientTranscriptTypeCode.getCode());
         transcript.setTranscriptTypeCode(transcriptTypeCode);
-        GraduationStudentRecord graduationStudentRecord = this.getGraduationStudentRecord(reportData);
-        if (graduationStudentRecord != null) {
-            StudentTranscriptEntity studentTranscriptEntity = studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID());
-            if (studentTranscriptEntity != null && studentTranscriptEntity.getUpdateDate() != null) {
-                transcript.setIssueDate(studentTranscriptEntity.getUpdateDate());
-            }
-        }
         return transcript;
     }
 

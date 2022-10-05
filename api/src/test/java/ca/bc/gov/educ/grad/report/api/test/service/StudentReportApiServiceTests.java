@@ -5,15 +5,19 @@ import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dao.StudentTranscriptRepository;
+import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
@@ -75,6 +79,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	@MockBean
 	StudentTranscriptRepository studentTranscriptRepository;
+	@MockBean
+	ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
 	@MockBean WebClient webClient;
 	@Mock WebClient.RequestHeadersSpec requestHeadersMock;
@@ -200,6 +206,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_1950.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_1950));
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -336,7 +345,12 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
-		mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_1986_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_1986_EN));
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -449,6 +463,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_1996_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_1996_EN));
+
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -531,6 +548,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_2004_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_2004_EN));
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -668,6 +688,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_2018_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_2018_EN));
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -808,6 +831,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_SCCP.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP));
+
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());
@@ -890,6 +916,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity("02", GraduationProgramCode.PROGRAM_NOPROG.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_NOPROG));
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -1775,6 +1804,23 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
 		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
 		when(this.responseMock.bodyToMono(TraxSchool.class)).thenReturn(Mono.just(traxSchool));
+	}
+
+	private void mockGradProgramEntity(String schoolCategoryCode, String gradProgramCode, String transcriptTypeCode) {
+		ProgramCertificateTranscriptEntity programCertificateTranscriptEntity = new ProgramCertificateTranscriptEntity();
+		programCertificateTranscriptEntity.setSchoolCategoryCode(schoolCategoryCode);
+		programCertificateTranscriptEntity.setGraduationProgramCode(gradProgramCode);
+		programCertificateTranscriptEntity.setTranscriptTypeCode(transcriptTypeCode);
+		List<ProgramCertificateTranscriptEntity> entitys = List.of(programCertificateTranscriptEntity);
+		when(this.programCertificateTranscriptRepository.findBySchoolCategoryCodeAndTranscriptTypeCode(transcriptTypeCode)).thenReturn(entitys);
+	}
+
+	private void mockGradProgram(GradProgramImpl gradProgram) {
+		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
+		when(this.requestHeadersUriMock.uri(String.format(constants.getGraduationProgram(),gradProgram.getCode().getCode()))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
+		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
+		when(this.responseMock.bodyToMono(GradProgramImpl.class)).thenReturn(Mono.just(gradProgram));
 	}
 
 	private GraduationStudentRecord mockGraduationStudentRecord(String pen, String studentId) throws Exception {

@@ -378,6 +378,7 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     void populateSchoolFromTraxSchool(SchoolImpl school, TraxSchool traxSchool) {
+        school.setSchoolCategoryCode(traxSchool.getSchoolCategoryCode());
         school.setMincode(traxSchool.getMinCode());
         school.setName(traxSchool.getSchoolName());
         final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
@@ -430,6 +431,23 @@ public abstract class GradReportServiceImpl implements Serializable {
                         .block();
             } catch (Exception ex) {
                 LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
+                return null;
+            }
+        }
+        return null;
+    }
+
+    GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
+        if(!StringUtils.isBlank(programCode)) {
+            try {
+                return webClient.get()
+                        .uri(String.format(constants.getGraduationProgram(), programCode))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(GradProgramImpl.class)
+                        .block();
+            } catch (Exception ex) {
+                LOG.log(Level.WARNING, String.format("Could not retrieve graduation program with code: %s", programCode));
                 return null;
             }
         }

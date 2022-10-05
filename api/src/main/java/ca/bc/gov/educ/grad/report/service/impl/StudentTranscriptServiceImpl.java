@@ -19,8 +19,10 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
+import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
@@ -106,14 +108,14 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private static final String SORT_ASSESSMENT = "100";
 
-    private final String FORMAT_COURSE_CODE = "%-5s";
-    private final String FORMAT_COURSE_LEVEL = "%-3s";
-
     @Autowired
     private ReportService reportService;
 
     @Autowired
     private GradDataConvertionBean gradDataConvertionBean;
+
+    @Autowired
+    private ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
     /**
      * Creates the student's official transcript as a PDF (no other formats are
@@ -425,6 +427,46 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * Adapt the TRAX data from the collection of data value objects into a
      * Transcript object.
      *
+     * @param schoolCategoryCode
+     * @param transcriptTypeCode
+     * @param graduationProgramCode The graduation program code that influences sort order.
+     */
+    private GradProgram adapt(
+            final String schoolCategoryCode,
+            final String graduationProgramCode,
+            final TranscriptTypeCode transcriptTypeCode,
+            final String accessToken) {
+        final String m_ = "adapt(schoolCategoryCode, graduationProgramCode,transcriptTypeCode )";
+        LOG.entering(CLASSNAME, m_, transcriptTypeCode);
+
+        GradProgram result = createGradProgram(graduationProgramCode);
+
+        try {
+            if("BLANK".equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null && schoolCategoryCode != null) {
+                List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findBySchoolCategoryCodeAndTranscriptTypeCode(transcriptTypeCode.getCode());
+                if(!entities.isEmpty()) {
+                    GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
+                    if(gradProgram != null) {
+                        gradProgram.setCode();
+                        result = gradProgram;
+                    }
+                }
+            }
+        } catch (final Exception ex) {
+            String msg = "Failed to get graduation program code from transcript type code and school category %s, %s, %s ";
+            final DataException dex = new DataException(null, null, String.format(msg, schoolCategoryCode, transcriptTypeCode, graduationProgramCode), ex);
+            LOG.throwing(CLASSNAME, m_, dex);
+            throw dex;
+        }
+
+        LOG.exiting(CLASSNAME, m_);
+        return result;
+    }
+
+    /**
+     * Adapt the TRAX data from the collection of data value objects into a
+     * Transcript object.
+     *
      * @param programCode The graduation program code that influences sort
      * order.
      * @param transcriptCourses
@@ -655,7 +697,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
         final School school = adaptSchool(studentInfo, getAccessToken(), true);
 
-        final GradProgram program = createGradProgram(programCode);
+        final GradProgram program = adapt(school.getSchoolCategoryCode(), programCode, transcript.getTranscriptTypeCode(), getAccessToken());
+
         final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);
 
         final String gradMessage = studentInfo.getGradMessage();

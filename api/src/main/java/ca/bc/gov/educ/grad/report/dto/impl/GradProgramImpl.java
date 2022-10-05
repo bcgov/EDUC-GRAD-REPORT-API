@@ -32,6 +32,8 @@ public final class GradProgramImpl extends AbstractDomainEntity
     private static final long serialVersionUID = 3L;
 
     private GraduationProgramCode code;
+    private String programCode;
+    private String programName;
 
     public GradProgramImpl() {
 
@@ -54,5 +56,17 @@ public final class GradProgramImpl extends AbstractDomainEntity
     @Override
     public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setCode() {
+        this.code = GraduationProgramCode.valueFrom(programCode, programName);
+    }
+
+    public void setProgramCode(String programCode) {
+        this.programCode = programCode;
+    }
+
+    public void setProgramName(String programName) {
+        this.programName = programName;
     }
 }
