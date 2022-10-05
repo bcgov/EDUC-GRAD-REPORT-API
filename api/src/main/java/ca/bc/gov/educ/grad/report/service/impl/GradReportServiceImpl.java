@@ -10,6 +10,7 @@ import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
@@ -18,6 +19,7 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -33,6 +35,7 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static java.lang.Integer.parseInt;
+import static java.util.Locale.CANADA;
 
 public abstract class GradReportServiceImpl implements Serializable {
 
@@ -105,6 +108,46 @@ public abstract class GradReportServiceImpl implements Serializable {
         URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
         return url.openStream();
     }
+
+    GraduationReport getGraduationReport(String methodName) throws IOException {
+        Parameters<String, Object> parameters = createParameters();
+
+        ReportData reportData = getReportData(methodName);
+
+        LOG.log(Level.FINE,
+                "Confirmed the user is a student and retrieved the PEN.");
+
+        // validate incoming data for reporting
+        final List<Student> students = getStudents(reportData);
+        final School school = getSchool(reportData);
+
+        if(!students.isEmpty()) {
+            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
+            parameters.put("students", jrBeanCollectionDataSource);
+            parameters.put("hasStudents", "true");
+        }
+
+        if (school != null) {
+            parameters.put("school", school);
+        }
+
+        InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
+        parameters.put("orgImage", inputLogo);
+
+        parameters.put("reportNumber", reportData.getReportNumber());
+
+        GraduationReport nonGraduationReport = createGraduationReport();
+        nonGraduationReport.setLocale(CANADA);
+        nonGraduationReport.setStudents(students);
+        nonGraduationReport.setSchool(school);
+
+        if (parameters != null) {
+            nonGraduationReport.setParameters(parameters);
+        }
+        return nonGraduationReport;
+    }
+
+    abstract GraduationReport createGraduationReport();
 
     String getAccessToken() throws DomainServiceException {
         final String methodName = "getAccessToken()";

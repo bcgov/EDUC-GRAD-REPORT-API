@@ -117,7 +117,7 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
 
     @Override
     @RolesAllowed({USER_REPORTS_NON_GRAD})
-    public NonGradReport createNonGradReport() {
+    public GraduationReport createNonGradReport() {
         return new NonGradReportImpl();
     }
 

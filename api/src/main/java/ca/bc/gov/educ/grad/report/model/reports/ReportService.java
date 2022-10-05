@@ -78,7 +78,7 @@ public interface ReportService extends ReportExportService {
      *
      * @return A non-null report instance that must be populated with data.
      */
-    NonGradReport createNonGradReport();
+    GraduationReport createNonGradReport();
 
     /**
      * Creates a ReportDocument initialized with the contents of the passed byte

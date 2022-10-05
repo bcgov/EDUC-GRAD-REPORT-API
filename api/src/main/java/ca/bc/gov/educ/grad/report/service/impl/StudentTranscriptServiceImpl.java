@@ -33,6 +33,7 @@ import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -629,6 +630,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         LOG.exiting(CLASSNAME, methodName);
         return parameters;
+    }
+
+    @Override
+    GraduationReport createGraduationReport() {
+        throw new NotImplementedException("Method createGraduationReport() not implemented");
     }
 
     private StudentTranscriptReport getStudentTranscriptReport(
