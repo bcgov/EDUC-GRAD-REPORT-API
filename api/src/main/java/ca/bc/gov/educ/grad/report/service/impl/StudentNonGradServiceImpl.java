@@ -23,7 +23,7 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradReportImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
-import ca.bc.gov.educ.grad.report.model.reports.NonGradReport;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
@@ -146,7 +146,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
-        NonGradReport nonGradRequirementsReport = reportService.createNonGradReport();
+        GraduationReport nonGradRequirementsReport = createGraduationReport();
         nonGradRequirementsReport.setLocale(location);
         nonGradRequirementsReport.setStudents(students);
         nonGradRequirementsReport.setSchool(school);
@@ -196,5 +196,10 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
                 + " "
                 + locale.getISO3Language();
         return reportTypeName;
+    }
+
+    @Override
+    GraduationReport createGraduationReport() {
+        return reportService.createNonGradReport();
     }
 }

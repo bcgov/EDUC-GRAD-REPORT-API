@@ -18,13 +18,13 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
-import ca.bc.gov.educ.grad.report.dto.impl.SchoolGraduationReportImpl;
+import ca.bc.gov.educ.grad.report.dto.impl.SchoolNonGraduationReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
-import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
-import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
+import ca.bc.gov.educ.grad.report.model.school.SchoolNonGraduationReport;
+import ca.bc.gov.educ.grad.report.model.student.SchoolNonGraduationService;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,11 +50,11 @@ import static java.util.Locale.CANADA;
  */
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
-public class SchoolGraduationServiceImpl extends GradReportServiceImpl
-        implements SchoolGraduationService, Serializable {
+public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
+        implements SchoolNonGraduationService, Serializable {
 
     private static final long serialVersionUID = 2L;
-    private static final String CLASSNAME = SchoolGraduationServiceImpl.class.getName();
+    private static final String CLASSNAME = SchoolNonGraduationServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     @Autowired
@@ -65,38 +65,38 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
-    public SchoolGraduationReport buildSchoolGraduationReport() throws DomainServiceException, IOException {
-        final String methodName = "buildReport()";
+    public SchoolNonGraduationReport buildSchoolNonGraduationReport() throws DomainServiceException, IOException {
+        final String methodName = "buildSchoolNonGraduationReport()";
         LOG.entering(CLASSNAME, methodName);
 
-        GraduationReport graduationReport = getGraduationReport(methodName);
+        GraduationReport nonGraduationReport = getGraduationReport(methodName);
 
         LOG.exiting(CLASSNAME, methodName);
-        return createSchoolGraduationReport(graduationReport);
+        return createSchoolNonGraduationReport(nonGraduationReport);
     }
 
     /**
      * @return GradCertificateReport
      * @throws DomainServiceException
      */
-    private synchronized SchoolGraduationReport createSchoolGraduationReport(
-            final GraduationReport graduationReport) throws DomainServiceException {
-        final String methodName = "createSchoolGraduationReport(Student, School, Locale)";
+    private synchronized SchoolNonGraduationReport createSchoolNonGraduationReport(
+            final GraduationReport nonGraduationReport) throws DomainServiceException {
+        final String methodName = "createSchoolNonGraduationReport(Students, School, Locale)";
         LOG.entering(CLASSNAME, methodName);
 
-        SchoolGraduationReport report = null;
+        SchoolNonGraduationReport report = null;
         try {
 
             String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
-            final ReportDocument rptDoc = reportService.export(graduationReport);
+            final ReportDocument rptDoc = reportService.export(nonGraduationReport);
 
-            StringBuilder sb = new StringBuilder("school_graduation_");
+            StringBuilder sb = new StringBuilder("school_non_graduation_");
             sb.append(CANADA.toLanguageTag());
             sb.append("_");
             sb.append(timestamp);
             sb.append(".");
             sb.append(PDF.getFilenameExtension());
-            final String filename = graduationReport.getFilename();
+            final String filename = nonGraduationReport.getFilename();
 
             byte[] inData = rptDoc.asBytes();
             inData = ArrayUtils.nullToEmpty(inData);
@@ -109,10 +109,10 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
             }
             byte[] rptData = inData;
 
-            report = new SchoolGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Graduation Report", CANADA));
+            report = new SchoolNonGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Non Graduation Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
-                    "Failed to generate the provincial examination report.", ex);
+                    "Failed to generate the School Non Graduation Report report.", ex);
         }
 
         LOG.exiting(CLASSNAME, methodName);
@@ -121,6 +121,6 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
 
     @Override
     GraduationReport createGraduationReport() {
-        return reportService.createSchoolGraduationReport();
+        return reportService.createSchoolNonGraduationReport();
     }
 }

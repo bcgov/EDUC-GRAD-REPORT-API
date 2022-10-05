@@ -8,32 +8,28 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import java.util.Date;
 import java.util.List;
 
-public class NonGradReportImpl extends ReportImpl implements GraduationReport {
+public class SchoolNonGraduationReportImpl extends ReportImpl implements GraduationReport {
 
     private List<Student> students;
     private School school;
-
-    public NonGradReportImpl() {
-        this("StudentNonGrad");
-    }
 
     /**
      * Constructs a report implementation based with a report template name.
      *
      * @param name Report template name to run.
      */
-    public NonGradReportImpl(String name) {
+    public SchoolNonGraduationReportImpl(String name) {
         super(name);
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        return students;
     }
 
     @Override
     public void setStudents(List<Student> students) {
         this.students = students;
-    }
-
-    @Override
-    public List<Student> getStudents() {
-        return this.students;
     }
 
     @Override
@@ -43,12 +39,12 @@ public class NonGradReportImpl extends ReportImpl implements GraduationReport {
 
     @Override
     public void setSchool(School school, String logoCode) {
-
+        // Do nothing
     }
 
     @Override
     public void setReportDate(Date date) {
-
+        // Do nothing
     }
 
     /**
