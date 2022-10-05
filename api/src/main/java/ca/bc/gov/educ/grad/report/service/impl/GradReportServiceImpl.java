@@ -140,10 +140,8 @@ public abstract class GradReportServiceImpl implements Serializable {
         nonGraduationReport.setLocale(CANADA);
         nonGraduationReport.setStudents(students);
         nonGraduationReport.setSchool(school);
+        nonGraduationReport.setParameters(parameters);
 
-        if (parameters != null) {
-            nonGraduationReport.setParameters(parameters);
-        }
         return nonGraduationReport;
     }
 
