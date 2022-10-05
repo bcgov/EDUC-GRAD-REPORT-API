@@ -115,7 +115,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
             report = new SchoolDistributionReportImpl(rptData, PDF, filename, createReportTypeName("School Distribution Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
-                    "Failed to generate the provincial examination report.", ex);
+                    "Failed to generate the School Distribution report.", ex);
         }
 
         LOG.exiting(CLASSNAME, methodName);
