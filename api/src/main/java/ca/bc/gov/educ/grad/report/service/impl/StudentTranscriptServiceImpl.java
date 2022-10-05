@@ -443,7 +443,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         try {
             if("BLANK".equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null && schoolCategoryCode != null) {
-                List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findBySchoolCategoryCodeAndTranscriptTypeCode(transcriptTypeCode.getCode());
+                List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode.getCode());
                 if(!entities.isEmpty()) {
                     GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
                     if(gradProgram != null) {

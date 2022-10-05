@@ -10,5 +10,5 @@ import java.util.List;
 public interface ProgramCertificateTranscriptRepository extends JpaRepository<ProgramCertificateTranscriptEntity, String>, JpaSpecificationExecutor<ProgramCertificateTranscriptEntity> {
 
     @Query("select c from ProgramCertificateTranscriptEntity c where c.transcriptTypeCode=:transcriptTypeCode")
-    List<ProgramCertificateTranscriptEntity> findBySchoolCategoryCodeAndTranscriptTypeCode(String transcriptTypeCode);
+    List<ProgramCertificateTranscriptEntity> findByTranscriptTypeCode(String transcriptTypeCode);
 }
