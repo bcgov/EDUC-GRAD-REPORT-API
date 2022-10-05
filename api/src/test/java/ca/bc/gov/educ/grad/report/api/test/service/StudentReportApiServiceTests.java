@@ -208,7 +208,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1950.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_1950));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1950);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1950.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1950.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -350,7 +353,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1986_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_1986_EN));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1986_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1986_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1986_EN.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -464,7 +470,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1996_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_1996_EN));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1996_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1996_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1996_EN.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -550,7 +559,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_2004_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_2004_EN));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_2004_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_2004_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_2004_EN.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -690,7 +702,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_2018_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_2018_EN));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_2018_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_2018_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_2018_EN.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -832,7 +847,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_SCCP.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_SCCP.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_SCCP.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
@@ -918,7 +936,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		mockGradProgramEntity(GraduationProgramCode.PROGRAM_NOPROG.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-		mockGradProgram(new GradProgramImpl(GraduationProgramCode.PROGRAM_NOPROG));
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_NOPROG);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_NOPROG.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_NOPROG.getDescription());
+		mockGradProgram(gradProgram);
 
 		ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
