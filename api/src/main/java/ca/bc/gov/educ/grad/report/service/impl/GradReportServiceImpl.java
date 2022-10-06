@@ -7,7 +7,6 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
-import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
@@ -106,6 +105,7 @@ public abstract class GradReportServiceImpl implements Serializable {
     InputStream openImageResource(final String resource) throws IOException {
         //final URL url = getReportResource(resource);
         URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
+        assert url != null;
         return url.openStream();
     }
 
@@ -170,85 +170,49 @@ public abstract class GradReportServiceImpl implements Serializable {
         return gradDataConvertionBean.getStudent(reportData).getPen();
     }
 
-    Date getIssueDate() throws DataException, DomainServiceException {
+    Date getIssueDate() throws DomainServiceException {
         final String methodName = "getIssueDate()";
         LOG.entering(CLASSNAME, methodName);
 
-        final Date issueDate;
+        ReportData reportData = getReportData(methodName);
 
-        try {
-
-            ReportData reportData = getReportData(methodName);
-
-            LOG.log(Level.FINER,
-                    "Retrieved issue date: {0}", reportData.getIssueDate());
-
-            issueDate = reportData.getIssueDate();
-
-        } catch (Exception ex) {
-            String msg = "Failed to obtain issue date: ".concat(ex.getMessage());
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
+        LOG.log(Level.FINER,
+                "Retrieved issue date: {0}", reportData.getIssueDate());
 
         LOG.exiting(CLASSNAME, methodName);
-        return issueDate;
+        return reportData.getIssueDate();
     }
 
     /**
      * Read the static student data from TRAX which is needed for the achievement
      * service.
      *
-     * @param pen
-     * @return
+     * @param pen Student Pen
+     * @return StudentInfo
      */
-    StudentInfo getStudentInfo(final String pen) throws DataException, DomainServiceException {
+    StudentInfo getStudentInfo(final String pen) throws DomainServiceException {
         final String methodName = "getStudentInfo(String)";
         LOG.entering(CLASSNAME, methodName);
 
-        final StudentInfo studentInfo;
+        ReportData reportData = getReportData(methodName);
 
-        try {
+        LOG.log(Level.FINER,
+                "Retrieved student info for PEN: {0}", pen);
 
-            ReportData reportData = getReportData(methodName);
-
-            LOG.log(Level.FINER,
-                    "Retrieved student info for PEN: {0}", pen);
-
-            StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
-
-            if (student == null) {
-                final String msg = "Failed to find results for PEN: ".concat(pen);
-                final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            } else {
-                LOG.log(Level.FINEST, "Retrieved student from achievement:");
-                final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
-                student.setNonGradReasons(reasons);
-                studentInfo = student;
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
-            }
-
-        } catch (Exception ex) {
-            String msg = "Failed to access data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
+        StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
+        final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
+        student.setNonGradReasons(reasons);
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
         LOG.exiting(CLASSNAME, methodName);
-        return studentInfo;
+        return student;
     }
 
     /**
      * Adapt the TRAX data from the data value object into a Student object.
      *
-     * @param pen
-     * @param studentInfo
+     * @param pen Student pen
+     * @param studentInfo Student info
      */
     Student adaptStudent(
             final PersonalEducationNumber pen,
@@ -281,8 +245,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         student.setCurrentMailingAddress(address);
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         student.setSignatureBlockTypes(signatureBlockTypes);
 
         LOG.exiting(CLASSNAME, methodName);
@@ -292,7 +255,7 @@ public abstract class GradReportServiceImpl implements Serializable {
     /**
      * Adapt the TRAX data from the data value object into a School object.
      *
-     * @param studentInfo
+     * @param studentInfo Student Info
      */
     School adaptSchool(final StudentInfo studentInfo, String accessToken, boolean checkEligibility) {
         final String m_ = "adaptSchool(StudentInfo)";

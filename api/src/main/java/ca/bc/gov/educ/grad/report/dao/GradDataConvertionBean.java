@@ -94,6 +94,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         ca.bc.gov.educ.grad.report.api.client.Transcript clientTranscript = reportData.getTranscript();
         if(clientTranscript == null) {
             reportData.setTranscript(new ca.bc.gov.educ.grad.report.api.client.Transcript());
+            clientTranscript = reportData.getTranscript();
         }
         TranscriptImpl transcript = new TranscriptImpl();
         BeanUtils.copyProperties(clientTranscript, transcript);
@@ -186,7 +187,6 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public List<AchievementCourse> getAchievementCourses(ReportData reportData) {
-        Student student = getStudent(reportData);
         List<AchievementCourse> result = new ArrayList<>();
         if(reportData.getStudentCourses() != null) {
             for (ca.bc.gov.educ.grad.report.api.client.AchievementCourse r : reportData.getStudentCourses()) {
@@ -214,14 +214,13 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public List<OptionalProgram> getOptionalPrograms(ReportData reportData) {
-        Student student = getStudent(reportData);
         List<OptionalProgram> result = new ArrayList<>();
         if (reportData.getOptionalPrograms() != null) {
             for (ca.bc.gov.educ.grad.report.api.client.OptionalProgram r : reportData.getOptionalPrograms()) {
                 if (r.getOptionalProgramCode() == null || r.getOptionalProgramName() == null) {
                     throw new InvalidParameterException("Optional Program code and name can't be NULL");
                 }
-                List<ca.bc.gov.educ.grad.report.model.graduation.GradRequirement> requirementMet = new ArrayList();
+                List<ca.bc.gov.educ.grad.report.model.graduation.GradRequirement> requirementMet = new ArrayList<>();
                 for (GradRequirement gr : r.getRequirementMet()) {
                     ca.bc.gov.educ.grad.report.model.graduation.GradRequirement data = new GradRequirementImpl();
                     BeanUtils.copyProperties(gr, data);
@@ -234,7 +233,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                     data.setCourseDetails(acrs);
                     requirementMet.add(data);
                 }
-                List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons = new ArrayList();
+                List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nonGradReasons = new ArrayList<>();
                 for (ca.bc.gov.educ.grad.report.api.client.NonGradReason gr : r.getNonGradReasons()) {
                     ca.bc.gov.educ.grad.report.model.graduation.NonGradReason data = new NonGradReasonImpl();
                     BeanUtils.copyProperties(gr, data);

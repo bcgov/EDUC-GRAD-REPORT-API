@@ -95,7 +95,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
-        Parameters parameters = createParameters();
+        Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
