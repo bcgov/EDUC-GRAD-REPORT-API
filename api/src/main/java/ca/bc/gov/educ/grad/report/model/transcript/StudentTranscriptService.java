@@ -64,14 +64,6 @@ public interface StudentTranscriptService extends BusinessService {
     /**
      * Retrieves a transcript that contains course results and the report date.
      *
-     * @return A transcript for the currently logged in user.
-     * @throws DomainServiceException Could not read data from TRAX.
-     */
-    Transcript getTranscript() throws DomainServiceException;
-
-    /**
-     * Retrieves a transcript that contains course results and the report date.
-     *
      * @param pen The PEN of the student of which transcript to fetch.
      * @return A transcript for the queried user.
      * @throws DomainServiceException Could not read data from TRAX.

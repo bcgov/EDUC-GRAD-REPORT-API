@@ -102,3 +102,6 @@ endpoint:
       url: ${PEN_API}api/v1/student/%s
     by-pen:
       url: ${PEN_API}api/v1/student?pen=%s
+  grad-program-api:
+    program-name-by-program_code:
+      url: ${GRAD_PROGRAM_API}api/v1/program/programs/%s

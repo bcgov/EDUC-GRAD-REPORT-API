@@ -31,4 +31,7 @@ public class EducGradReportApiConstants {
     @Value("${endpoint.educ-grad-trax-api.school-by-min-code.url}")
     private String schoolDetails;
 
+    @Value("${endpoint.grad-program-api.program-name-by-program_code.url}")
+    private String graduationProgram;
+
 }
