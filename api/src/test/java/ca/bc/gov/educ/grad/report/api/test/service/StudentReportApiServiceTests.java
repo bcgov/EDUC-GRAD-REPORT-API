@@ -1754,22 +1754,43 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void createTranscriptReportThrowException() throws Exception {
+	public void createTranscriptReportThrowDataException() throws Exception {
 		LOG.debug("<{}.createTranscriptReportThrowException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getStudent());
+		assertNotNull(reportRequest.getData().getStudent().getPen());
+		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
 
 		assertThrows("Report Data not exists for the current report generation", DataException.class, () -> {
 			ReportRequestDataThreadLocal.setGenerateReportData(null);
-			transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
+			transcriptService.getTranscript(pen);
 		});
+
+		LOG.debug(">createTranscriptReportThrowException");
+	}
+
+	@Test
+	public void createTranscriptReportThrowProgramException() throws Exception {
+		LOG.debug("<{}.createTranscriptReportThrowException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getStudent());
+		assertNotNull(reportRequest.getData().getStudent().getPen());
+		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
 
 		assertThrows("Grad Program or Grad Program Code is null", DataException.class, () -> {
 			reportRequest.getData().setGradProgram(null);
 			ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-			transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
+			transcriptService.getTranscript(pen);
 		});
 
 		LOG.debug(">createTranscriptReportThrowException");
