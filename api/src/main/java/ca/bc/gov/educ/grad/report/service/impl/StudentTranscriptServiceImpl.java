@@ -275,33 +275,26 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         final List<TranscriptCourse> results;
 
-        try {
-            ReportData reportData = getReportData(methodName);
-            if(interim) {
-                results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
-            } else {
-                results = gradDataConvertionBean.getTranscriptCourses(reportData);
-            }
+        ReportData reportData = getReportData(methodName);
+        if(interim) {
+            results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
+        } else {
+            results = gradDataConvertionBean.getTranscriptCourses(reportData);
+        }
 
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
+                new Object[]{pen, interim});
+
+        if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
-                    new Object[]{pen, interim});
-
-            if (results != null && !results.isEmpty()) {
-                LOG.log(Level.INFO,
-                        "Total courses {0} retrieved  for PEN: {1}",
-                        new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student transcript course results:");
-                for (TranscriptCourse result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
-                }
+                    "Total courses {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student transcript course results:");
+            for (TranscriptCourse result : results) {
+                LOG.log(Level.FINEST, "{0} {1}",
+                        new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
             }
-        } catch (final Exception ex) {
-            String msg = "Failed to access transcript course data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
@@ -358,22 +351,15 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         GradProgram result = createGradProgram(graduationProgramCode);
 
-        try {
-            if("BLANK".equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null && schoolCategoryCode != null) {
-                List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode.getCode());
-                if(!entities.isEmpty()) {
-                    GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
-                    if(gradProgram != null) {
-                        gradProgram.setCode();
-                        result = gradProgram;
-                    }
+        if("BLANK".equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null && schoolCategoryCode != null) {
+            List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode.getCode());
+            if(!entities.isEmpty()) {
+                GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
+                if(gradProgram != null) {
+                    gradProgram.setCode();
+                    result = gradProgram;
                 }
             }
-        } catch (final Exception ex) {
-            String msg = "Failed to get graduation program code from transcript type code and school category %s, %s, %s ";
-            final DataException dex = new DataException(null, null, String.format(msg, schoolCategoryCode, transcriptTypeCode, graduationProgramCode), ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
         }
 
         LOG.exiting(CLASSNAME, m_);
@@ -546,18 +532,9 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final boolean interim = ((TranscriptImpl) transcript).getInterim();
         report.setInterim(interim);
 
-        final ReportDocument document;
+        ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
+        final ReportDocument document = reportService.export(report);
 
-        try {
-            ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
-            document = reportService.export(report);
-        } catch (final Exception ex) {
-            final String msg = "Failed to create report.";
-            LOG.log(Level.SEVERE, msg, ex);
-            final DomainServiceException dse = new DomainServiceException(msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
         LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
 
         final String filename = report.getFilename();

@@ -334,12 +334,8 @@ public abstract class GradReportServiceImpl implements Serializable {
         final String numericCredits = credits.replaceAll("[^\\d.]", "");
         int result = 0;
 
-        try {
-            if (!numericCredits.isEmpty()) {
-                result = parseInt(numericCredits);
-            }
-        } catch (final Exception ex) {
-            LOG.log(Level.WARNING, String.format("Could not parse credits: %s", credits), ex);
+        if (!numericCredits.isEmpty()) {
+            result = parseInt(numericCredits);
         }
 
         LOG.exiting(CLASSNAME, methodName);
@@ -349,34 +345,24 @@ public abstract class GradReportServiceImpl implements Serializable {
 
     TraxSchool getSchool(String minCode, String accessToken) {
         if(!StringUtils.isBlank(minCode)) {
-            try {
-                return webClient.get()
-                        .uri(String.format(constants.getSchoolDetails(), minCode))
-                        .headers(h -> h.setBearerAuth(accessToken))
-                        .retrieve()
-                        .bodyToMono(TraxSchool.class)
-                        .block();
-            } catch (Exception ex) {
-                LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
-                return null;
-            }
+            return webClient.get()
+                    .uri(String.format(constants.getSchoolDetails(), minCode))
+                    .headers(h -> h.setBearerAuth(accessToken))
+                    .retrieve()
+                    .bodyToMono(TraxSchool.class)
+                    .block();
         }
         return null;
     }
 
     GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
         if(!StringUtils.isBlank(programCode)) {
-            try {
-                return webClient.get()
-                        .uri(String.format(constants.getGraduationProgram(), programCode))
-                        .headers(h -> h.setBearerAuth(accessToken))
-                        .retrieve()
-                        .bodyToMono(GradProgramImpl.class)
-                        .block();
-            } catch (Exception ex) {
-                LOG.log(Level.WARNING, String.format("Could not retrieve graduation program with code: %s", programCode));
-                return null;
-            }
+            return webClient.get()
+                    .uri(String.format(constants.getGraduationProgram(), programCode))
+                    .headers(h -> h.setBearerAuth(accessToken))
+                    .retrieve()
+                    .bodyToMono(GradProgramImpl.class)
+                    .block();
         }
         return null;
     }
