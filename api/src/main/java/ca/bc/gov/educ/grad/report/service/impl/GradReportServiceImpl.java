@@ -151,18 +151,9 @@ public abstract class GradReportServiceImpl implements Serializable {
         final String methodName = "getAccessToken()";
         LOG.entering(CLASSNAME, methodName);
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    getClass(),
-                    REPORT_DATA_MISSING,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
-
+        ReportData reportData = getReportData(methodName);
         String accessToken = reportData.getAccessToken();
+
         assert accessToken != null;
         LOG.exiting(CLASSNAME, methodName);
         return accessToken;
@@ -172,16 +163,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         final String methodName = "getStudentPEN()";
         LOG.entering(CLASSNAME, methodName);
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    getClass(),
-                    REPORT_DATA_MISSING,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
+        ReportData reportData = getReportData(methodName);
 
         LOG.exiting(CLASSNAME, methodName);
 
@@ -196,16 +178,7 @@ public abstract class GradReportServiceImpl implements Serializable {
 
         try {
 
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
+            ReportData reportData = getReportData(methodName);
 
             LOG.log(Level.FINER,
                     "Retrieved issue date: {0}", reportData.getIssueDate());
@@ -238,16 +211,7 @@ public abstract class GradReportServiceImpl implements Serializable {
 
         try {
 
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
+            ReportData reportData = getReportData(methodName);
 
             LOG.log(Level.FINER,
                     "Retrieved student info for PEN: {0}", pen);
