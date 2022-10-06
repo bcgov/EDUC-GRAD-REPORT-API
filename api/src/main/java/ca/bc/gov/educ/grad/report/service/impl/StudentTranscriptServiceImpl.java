@@ -20,7 +20,6 @@ package ca.bc.gov.educ.grad.report.service.impl;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
-import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
@@ -187,17 +186,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Transcript transcript;
 
         try {
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
+            ReportData reportData = getReportData(methodName);
             transcript = gradDataConvertionBean.getTranscript(reportData);
 
         } catch (Exception ex) {
@@ -218,17 +207,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final GradProgram gradProgram;
 
         try {
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
+            ReportData reportData = getReportData(methodName);
             if (reportData.getGradProgram() == null || reportData.getGradProgram().getCode() == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
@@ -291,24 +270,13 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     private List<TranscriptCourse> getTranscriptCourseList(
             final String pen, final boolean interim)
             throws DataException, DomainServiceException {
-        final String m_ = "getTranscriptCourseList(String, boolean)";
-        LOG.entering(CLASSNAME, m_);
+        final String methodName = "getTranscriptCourseList(String, boolean)";
+        LOG.entering(CLASSNAME, methodName);
 
         final List<TranscriptCourse> results;
 
         try {
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
-            }
-
+            ReportData reportData = getReportData(methodName);
             if(interim) {
                 results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
             } else {
@@ -332,12 +300,12 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         } catch (final Exception ex) {
             String msg = "Failed to access transcript course data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
+            LOG.throwing(CLASSNAME, methodName, dex);
             throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, m_);
+        LOG.exiting(CLASSNAME, methodName);
         return results;
     }
 
