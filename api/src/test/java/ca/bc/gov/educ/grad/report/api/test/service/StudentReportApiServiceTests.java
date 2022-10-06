@@ -1765,9 +1765,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		ReportRequestDataThreadLocal.setGenerateReportData(null);
 
 		assertThrows("Report Data not exists for the current report generation", DataException.class, () -> {
-			ReportRequestDataThreadLocal.setGenerateReportData(null);
 			transcriptService.getTranscript(pen);
 		});
 
@@ -1787,9 +1787,10 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 
+		reportRequest.getData().setGradProgram(null);
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
 		assertThrows("Grad Program or Grad Program Code is null", DataException.class, () -> {
-			reportRequest.getData().setGradProgram(null);
-			ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 			transcriptService.getTranscript(pen);
 		});
 
