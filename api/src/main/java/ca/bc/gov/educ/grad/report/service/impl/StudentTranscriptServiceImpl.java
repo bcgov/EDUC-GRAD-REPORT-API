@@ -154,19 +154,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
-    public Transcript getTranscript() throws DomainServiceException {
-        final String methodName = "getTranscript()";
-        LOG.entering(CLASSNAME, methodName);
-
-        final String pen = getStudentPENId();
-        final Transcript transcript = getTranscript(pen);
-
-        LOG.exiting(CLASSNAME, methodName);
-        return transcript;
-    }
-
-    @Override
-    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public Transcript getTranscript(
             final String pen) throws DomainServiceException {
         final String methodName = "getTranscript(String)";
@@ -291,44 +278,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         );
         LOG.exiting(CLASSNAME, methodName);
         return report;
-    }
-
-    /**
-     * Creates a report in a specific format, either official or unofficial,
-     * depending on the preview value. Takes the PEN to generate the desired
-     * report.
-     *
-     * @param format
-     * @param preview Set to false to create an unofficial transcript
-     * @return
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    private StudentTranscriptReport createTranscriptReport(
-            final ReportFormat format,
-            final boolean preview, final PersonalEducationNumber pen, final Parameters<String, Object> parameters)
-            throws DomainServiceException, IOException, DataException {
-        final String methodName = "createTranscript(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, methodName);
-        LOG.log(Level.FINE, "Retrieved transcript for pen: {0}.", pen.getValue());
-
-        final StudentTranscriptReport report = getStudentTranscriptReport(pen, format, preview, parameters);
-        LOG.log(Level.INFO, "Created StudentTranscriptReport for pen: {0}.", pen.getValue());
-
-        LOG.exiting(CLASSNAME, methodName);
-        return report;
-    }
-
-    private String getStudentPENId() throws DomainServiceException {
-        final String methodName = "getStudentPENId()";
-        LOG.entering(CLASSNAME, methodName);
-
-        final PersonalEducationNumber pen = getStudentPEN();
-        final String result = pen.getValue();
-
-        LOG.exiting(CLASSNAME, methodName);
-        return result;
     }
 
     /**

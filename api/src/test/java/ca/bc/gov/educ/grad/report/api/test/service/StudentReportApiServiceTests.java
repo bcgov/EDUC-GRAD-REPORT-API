@@ -16,6 +16,7 @@ import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
+import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
@@ -1750,6 +1751,28 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertTrue(originalCourses.size() > filteredTranscript.getResults().size());
 
 		LOG.debug(">createTranscriptReportDuplicateInterimCourses_BC2018_IND");
+	}
+
+	@Test
+	public void createTranscriptReportThrowException() throws Exception {
+		LOG.debug("<{}.createTranscriptReportThrowException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		assertThrows("Report Data not exists for the current report generation", DataException.class, () -> {
+			ReportRequestDataThreadLocal.setGenerateReportData(null);
+			transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
+		});
+
+		assertThrows("Grad Program or Grad Program Code is null", DataException.class, () -> {
+			reportRequest.getData().setGradProgram(null);
+			ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+			transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
+		});
+
+		LOG.debug(">createTranscriptReportThrowException");
 	}
 
 	private void testPackingSlipReport(

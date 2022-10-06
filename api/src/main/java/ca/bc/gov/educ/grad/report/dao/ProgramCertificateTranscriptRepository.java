@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface ProgramCertificateTranscriptRepository extends JpaRepository<ProgramCertificateTranscriptEntity, String>, JpaSpecificationExecutor<ProgramCertificateTranscriptEntity> {
+public interface ProgramCertificateTranscriptRepository extends JpaRepository<ProgramCertificateTranscriptEntity, String>, JpaSpecificationExecutor<ProgramCertificateTranscriptEntity>, Serializable {
 
     @Query("select c from ProgramCertificateTranscriptEntity c where c.transcriptTypeCode=:transcriptTypeCode")
     List<ProgramCertificateTranscriptEntity> findByTranscriptTypeCode(String transcriptTypeCode);
