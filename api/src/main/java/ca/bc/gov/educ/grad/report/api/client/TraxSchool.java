@@ -23,6 +23,7 @@ public class TraxSchool {
     private String independentAffiliation;
     private String openFlag;
     private String signatureDistrict;
+    private String schoolCategoryCode;
 
     public String getSchoolName() {
         return  schoolName != null ? schoolName.trim(): null;

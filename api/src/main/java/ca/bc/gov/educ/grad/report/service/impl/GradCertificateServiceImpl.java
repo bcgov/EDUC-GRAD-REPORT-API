@@ -34,12 +34,14 @@ import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateReport;
 import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
 import ca.bc.gov.educ.grad.report.model.reports.CertificateReport;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -460,5 +462,10 @@ public class GradCertificateServiceImpl extends GradReportServiceImpl
             final CertificateSubType subtype,
             final Locale locale) {
         return type.toString() + " " + subtype.toString() + " " + locale.getISO3Language();
+    }
+
+    @Override
+    GraduationReport createGraduationReport() {
+        throw new NotImplementedException("Method createGraduationReport() not implemented");
     }
 }

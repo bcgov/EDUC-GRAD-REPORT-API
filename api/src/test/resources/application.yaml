@@ -103,3 +103,6 @@ endpoint:
       url: https://student-api-75e61b-dev.apps.silver.devops.gov.bc.ca/api/v1/student/paginated
     by-pen:
       url: https://student-api-75e61b-dev.apps.silver.devops.gov.bc.ca/api/v1/student?pen=%s
+  grad-program-api:
+    program-name-by-program_code:
+      url: https://educ-grad-program-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/program/programs/%s
