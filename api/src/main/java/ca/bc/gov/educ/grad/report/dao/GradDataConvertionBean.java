@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -99,6 +100,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         TranscriptImpl transcript = new TranscriptImpl();
         BeanUtils.copyProperties(clientTranscript, transcript);
         transcript.setInterim("true".equalsIgnoreCase(clientTranscript.getInterim()));
+        transcript.setIssueDate(new Date());
         Code clientTranscriptTypeCode = clientTranscript.getTranscriptTypeCode();
         TranscriptTypeCode transcriptTypeCode = TranscriptTypeCode.valueFrom(clientTranscriptTypeCode.getCode());
         transcript.setTranscriptTypeCode(transcriptTypeCode);
