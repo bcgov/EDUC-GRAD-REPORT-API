@@ -503,7 +503,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final GradProgram program,
             final List<NonGradReason> nonGradReasons,
             final String gradMessage,
-            final Date updateDt,
+            final Date issueDate,
             final Parameters<String, Object> parameters,
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
@@ -525,7 +525,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         report.setGraduationProgram(program);
         report.setTranscript(transcript);
         report.setGraduationStatus(nonGradReasons, gradMessage);
-        report.setReportDate(updateDt);
+        report.setReportDate(issueDate);
         report.setFormat(reportFormat);
         report.setGraduationData(graduationData);
 
