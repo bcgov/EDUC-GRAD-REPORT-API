@@ -1813,11 +1813,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				current,
 				total
 		);
-
-		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
-		byte[] bArray = packingSlip.asBytes();
+		byte[] packingSlipByteArray = packingSlip.asBytes();
 		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
-			out.write(bArray);
+			out.write(packingSlipByteArray);
+		}
+
+		DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
+		byte[] documentBundleByteArray = documentBundle.asBytes();
+		try (OutputStream out = new FileOutputStream("target/DocumentBundle" + orderType.getName() + ".pdf")) {
+			out.write(documentBundleByteArray);
 		}
 	}
 
