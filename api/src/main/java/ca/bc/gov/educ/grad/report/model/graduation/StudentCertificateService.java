@@ -29,7 +29,7 @@ import java.util.List;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface GradCertificateService extends BusinessService {
+public interface StudentCertificateService extends BusinessService {
 
     /**
      * Generate the student grad certificate report. Grad Certificates are
@@ -44,15 +44,5 @@ public interface GradCertificateService extends BusinessService {
      * @throws DomainServiceException
      */
     List<BusinessReport> buildReport() throws DomainServiceException;
-
-    /**
-     * Generate the blank grad certificate report. Grad Certificates are
-     * generated as PDF for the current user when certificates are ordered.
-     * <p>
-     * @return Report data for consumption by the GUI.
-     * <p>
-     * @throws DomainServiceException
-     */
-    List<BusinessReport> buildBlankReport() throws DomainServiceException;
 
 }

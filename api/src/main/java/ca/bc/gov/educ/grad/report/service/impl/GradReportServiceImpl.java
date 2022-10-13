@@ -7,6 +7,7 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
@@ -88,6 +89,10 @@ public abstract class GradReportServiceImpl implements Serializable {
         return gradDataConvertionBean.getSchool(reportData);
     }
 
+    Student getStudent(ReportData reportData) {
+        return gradDataConvertionBean.getStudent(reportData);
+    }
+
     ReportData getReportData(String methodName) {
         ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
@@ -101,6 +106,11 @@ public abstract class GradReportServiceImpl implements Serializable {
         }
         return reportData;
     }
+
+    Certificate getCertificate(ReportData reportData) {
+        return gradDataConvertionBean.getCertificate(reportData.getCertificate());
+    }
+
 
     InputStream openImageResource(final String resource) throws IOException {
         //final URL url = getReportResource(resource);

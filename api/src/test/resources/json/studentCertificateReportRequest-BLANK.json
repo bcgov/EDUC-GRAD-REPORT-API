@@ -1,0 +1,59 @@
+{
+  "options" : {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "Certificate",
+    "reportFile": "Certificate Report BLANK.pdf"
+  },
+  "data" : {
+    "student" : {
+      "pen" : null,
+      "firstName" : null,
+      "middleName" : null,
+      "lastName" : null,
+      "gender" : null,
+      "birthdate" : null,
+      "address" : null,
+      "grade" : null,
+      "gradProgram" : null,
+      "studStatus" : null,
+      "sccDate" : null,
+      "mincodeGrad" : null,
+      "englishCert" : null,
+      "frenchCert" : null,
+      "localId" : null,
+      "hasOtherProgram" : null,
+      "otherProgramParticipation" : [ ],
+      "graduationData" : null,
+      "nonGradReasons" : [ ]
+    },
+    "school" : null,
+    "updateDate" : null,
+    "packingSlip" : null,
+    "certificate" : {
+      "issued" : "2022-10-13",
+      "certStyle" : "Blank",
+      "orderType" : {
+        "name" : "Certificate",
+        "certificateType" : {
+          "reportName" : "O",
+          "paperType" : {
+            "code" : "YEDR"
+          }
+        }
+      },
+      "isOrigin" : false
+    },
+    "transcript" : null,
+    "gradProgram" : null,
+    "logo" : null,
+    "orgCode" : null,
+    "gradMessage" : null,
+    "reportNumber" : null,
+    "issueDate" : "2022-10-13",
+    "reportTitle" : null,
+    "reportSubTitle" : null,
+    "parameters" : null
+  }
+}
