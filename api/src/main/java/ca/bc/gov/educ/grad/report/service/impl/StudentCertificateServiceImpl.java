@@ -73,7 +73,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = StudentCertificateServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     private static final String CERTIFICATE_TYPE = "Cert Type: {0}";
     private static final String TYPE_SUB_TYPE = "Type: {0}; Subtype: {1}";
 
@@ -168,7 +167,11 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             final Certificate certificate) throws DomainServiceException {
 
         final CertificateType rsRptType = adaptCertificateType(certType);
-        final CertificateSubType rsRptSubType = Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.ORIGINAL : Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
+        final CertificateSubType rsRptSubType;
+        if (Certificate.CERT_STYLE_ORIGINAL.equalsIgnoreCase(certificate.getCertStyle()))
+            rsRptSubType = CertificateSubType.ORIGINAL;
+        else
+            rsRptSubType = Certificate.CERT_STYLE_REPRINT.equalsIgnoreCase(certificate.getCertStyle()) ? CertificateSubType.REPRINT : CertificateSubType.BLANK;
 
         LOG.log(Level.FINE, CERTIFICATE_TYPE, certType);
 
@@ -292,7 +295,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             }
             byte[] rptData = inData;
 
-            // TODO: Use a constant for the name.
             report = new GradCertificateReportImpl(rptData, PDF, filename, createReportTypeName(rsRptType, rsRptSubType, location));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
