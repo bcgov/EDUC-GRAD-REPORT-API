@@ -78,7 +78,7 @@ public class GradReportSignatureController extends BaseController {
     public GradReportSignatureImage saveGragReportSignatureImage(@RequestBody GradReportSignatureImage signatureImage) {
         String methodName = String.format("saveGragReportSignatureImage(String %s)", signatureImage.getGradReportSignatureCode());
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
+        logRequest(signatureImage);
         validation.requiredField(signatureImage.getGradReportSignatureCode(), "Signature Code");
         validation.requiredField(signatureImage.getSignatureContent(), "Signature Content");
         return gradReportSignatureService.saveSignatureImage(signatureImage);
@@ -111,7 +111,7 @@ public class GradReportSignatureController extends BaseController {
     public SignatureBlockTypeCode saveSignatureBlockTypeCode(@RequestBody SignatureBlockTypeCode code) {
         String methodName = String.format("saveSignatureBlockTypeCode(String %s)", code.getSignatureBlockTypeCode());
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        logRequest();
+        logRequest(code);
         validation.requiredField(code.getSignatureBlockTypeCode(), "Signature Block Type Code");
         validation.requiredField(code.getCode(), "Signature Block Type Code Code");
         validation.requiredField(code.getLabel(), "Signature Block Type Code Label");
