@@ -10,7 +10,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
-import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
+import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.school.*;
@@ -51,7 +51,7 @@ public class GradReportService {
 	StudentAchievementService achievementService;
 
 	@Autowired
-	GradCertificateService gradCertificateService;
+	StudentCertificateService certificateService;
 
 	@Autowired
 	BCMPBundleService bcmpBundleService;
@@ -229,12 +229,7 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-		List<BusinessReport> gradCertificateReports;
-		if(reportRequest.getData().getCertificate().getCertStyle().equalsIgnoreCase("Blank")) {
-			gradCertificateReports = gradCertificateService.buildBlankReport();
-		}else {
-			gradCertificateReports = gradCertificateService.buildReport();
-		}
+		List<BusinessReport> gradCertificateReports = certificateService.buildReport();
 
 		ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
 			@Override

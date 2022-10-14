@@ -61,4 +61,11 @@ public interface Certificate {
      */
 
     Map<String, SignatureBlockType> getSignatureBlockTypes();
+
+    /**
+     * Gets certificate type.
+     *
+     * @return the CertificateType
+     */
+    CertificateType getCertificateType();
 }

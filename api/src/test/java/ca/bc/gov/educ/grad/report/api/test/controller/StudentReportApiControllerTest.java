@@ -4,7 +4,7 @@ import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
-import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
+import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +36,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     StudentTranscriptService transcriptService;
 
     @Autowired
-    GradCertificateService gradCertificateService;
+    StudentCertificateService gradCertificateService;
 
     @Autowired
     BCMPBundleService bcmpBundleService;

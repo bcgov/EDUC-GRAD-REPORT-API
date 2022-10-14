@@ -275,15 +275,16 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public Certificate getCertificate(ca.bc.gov.educ.grad.report.api.client.Certificate certificate) {
-        CertificateImpl result = new CertificateImpl();
         if(certificate != null) {
+            CertificateImpl result = new CertificateImpl();
             BeanUtils.copyProperties(certificate, result);
             final CertificateType rsRptType = getCertificateType(certificate.getOrderType().getCertificateType().getReportName());
             CertificateOrderTypeImpl orderType = new CertificateOrderTypeImpl(rsRptType);
             orderType.setName(certificate.getOrderType().getName());
             result.setOrderType(orderType);
+            return result;
         }
-        return result;
+        return null;
     }
 
     public PostalDeliveryInfo getPostalDeliveryInfo(ReportData reportData) {
