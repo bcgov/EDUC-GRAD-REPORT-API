@@ -16,9 +16,11 @@ import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
+import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
@@ -75,6 +77,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	PackingSlipService packingSlipService;
 	@Autowired
 	StudentTranscriptService transcriptService;
+	@Autowired
+	StudentCertificateService certificateService;
 	@Autowired
 	GradDataConvertionBean gradDataConvertionBean;
 
@@ -1529,6 +1533,53 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReport_BLANK() throws Exception {
+		LOG.debug("<{}.createCertificateReport_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		List<BusinessReport> response = certificateService.buildReport();
+		assertNotNull(response);
+		assertFalse(response.isEmpty());
+
+		for(BusinessReport report: response) {
+			assertNotNull(report.getReportData());
+			try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+				out.write(report.getReportData());
+			}
+		}
+		LOG.debug(">createCertificateReport_BLANK");
+	}
+
+	@Test
+	public void createCertificateReport_NOTBLANK() throws Exception {
+		LOG.debug("<{}.createCertificateReport_NOTBLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-NOTBLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		List<BusinessReport> response = certificateService.buildReport();
+		assertNotNull(response);
+		assertFalse(response.isEmpty());
+
+		for(BusinessReport report: response) {
+			assertNotNull(report.getReportData());
+			try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+				out.write(report.getReportData());
+			}
+		}
+		LOG.debug(">createCertificateReport_NOTBLANK");
+	}
+
+	@Test
 	public void createSchoolDistributionReport() throws Exception {
 		LOG.debug("<{}.createSchoolDistributionReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
@@ -1775,6 +1826,28 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReportThrowDataException() throws Exception {
+		LOG.debug("<{}.createCertificateReportThrowDataException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getStudent());
+		assertNotNull(reportRequest.getData().getStudent().getPen());
+		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+
+		reportRequest.getData().setCertificate(null);
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		assertThrows("Failed to find student certificate", DomainServiceException.class, () -> {
+			certificateService.buildReport();
+		});
+
+		LOG.debug(">createCertificateReportThrowDataException");
+	}
+
+	@Test
 	public void createTranscriptReportThrowProgramException() throws Exception {
 		LOG.debug("<{}.createTranscriptReportThrowException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
@@ -1813,11 +1886,15 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				current,
 				total
 		);
-
-		//DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
-		byte[] bArray = packingSlip.asBytes();
+		byte[] packingSlipByteArray = packingSlip.asBytes();
 		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
-			out.write(bArray);
+			out.write(packingSlipByteArray);
+		}
+
+		DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
+		byte[] documentBundleByteArray = documentBundle.asBytes();
+		try (OutputStream out = new FileOutputStream("target/DocumentBundle" + orderType.getName() + ".pdf")) {
+			out.write(documentBundleByteArray);
 		}
 	}
 
