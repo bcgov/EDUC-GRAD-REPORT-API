@@ -32,8 +32,10 @@ public abstract class BaseController {
 
     @SneakyThrows
     protected void logRequest(Object request) {
-        String jsonRequest = jsonTransformer.marshall(request);
-        log.info(jsonRequest);
+        if(log.isDebugEnabled()) {
+            String jsonRequest = jsonTransformer.marshall(request);
+            log.debug(jsonRequest);
+        }
 
         HttpServletRequest httpServletRequest =
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())

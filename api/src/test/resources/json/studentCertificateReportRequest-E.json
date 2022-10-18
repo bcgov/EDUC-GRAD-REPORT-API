@@ -1,77 +1,103 @@
 {
-  "options": {
-    "cacheReport": false,
-    "convertTo": "pdf",
-    "overwrite": false,
-    "reportName": "Certificate",
-    "reportFile": "Certificate Report E.pdf"
+  "options" : {
+    "cacheReport" : false,
+    "convertTo" : null,
+    "overwrite" : false,
+    "reportName" : "Certificate",
+    "reportFile" : "Certificate Report E.pdf"
   },
-  "data": {
-    "student": {
-      "pen": {
-        "pen": "11111111",
-        "entityId": null
+  "data" : {
+    "student" : {
+      "pen" : {
+        "pen" : "128309721",
+        "studentID" : null
       },
-      "firstName": "JOHN",
-      "middleName": "PIRATE",
-      "lastName": "SILVER",
-      "gender": "M",
-      "birthdate": "2002-08-05",
-      "address": {
-        "streetLine1": "HISPANIOLA",
-        "streetLine2": "",
-        "city": "SHOONER",
-        "region": "BOAT",
-        "country": "VESSEL",
-        "code": "PAC SEA"
+      "firstName" : "ERIC",
+      "middleName" : "ARLENE",
+      "lastName" : "SOTO",
+      "gender" : "F",
+      "birthdate" : "2003-09-15",
+      "address" : {
+        "streetLine1" : null,
+        "streetLine2" : null,
+        "city" : null,
+        "region" : null,
+        "country" : null,
+        "code" : null
       },
-      "grade": "AD",
-      "studStatus": "CUR",
-      "sccDate": "",
-      "mincodeGrad": "03699064",
-      "englishCert": "E",
-      "frenchCert": "F"
+      "grade" : "12",
+      "gradProgram" : "",
+      "studStatus" : "CUR",
+      "sccDate" : "",
+      "mincodeGrad" : "",
+      "englishCert" : "E",
+      "frenchCert" : "",
+      "localId" : "",
+      "hasOtherProgram" : "",
+      "otherProgramParticipation" : [ ],
+      "graduationData" : {
+        "graduationDate" : null,
+        "honorsFlag" : false,
+        "dogwoodFlag" : false,
+        "programCodes" : null,
+        "programNames" : null,
+        "totalCreditsUsedForGrad" : null
+      },
+      "nonGradReasons" : [ ]
     },
-    "school": {
-      "mincode": "03699064",
-      "name": "GUILDFORD LEARNING CENTRE",
-      "typeIndicator": "",
-      "typeBanner": "",
-      "signatureCode": "036",
-      "distno": "036",
-      "schlno": "03699064",
-      "schoolCategoryCode": "01",
-      "address": {
-        "streetLine1": "300-10183 152A ST",
-        "streetLine2": "",
-        "city": "SURREY",
-        "region": "BC",
-        "country": "",
-        "code": "VER4H6"
-      }
+    "school" : {
+      "mincode" : "00502001",
+      "name" : "ROBERT EDGELL",
+      "typeIndicator" : "",
+      "typeBanner" : null,
+      "signatureCode" : "005",
+      "distno" : "005",
+      "schlno" : "00502001",
+      "schoolCategoryCode" : null,
+      "address" : {
+        "streetLine1" : "4TH FLOOR 620 SUPERIOR",
+        "streetLine2" : "PO BOX 9886 STN PROV GOVT",
+        "city" : "VICTORIA",
+        "region" : "BC",
+        "country" : "CN",
+        "code" : "V8W9T6"
+      },
+      "phoneNumber" : "",
+      "dogwoodElig" : "",
+      "students" : [ ]
     },
-    "logo": "BC",
-    "gradProgram": {
-      "code": {
-        "code": "2018-EN",
-        "description": "",
-        "credits": "",
-        "name": "PROGRAM_2018_EN"
-      }
-    },
-    "updateDate": "2001-06-01",
-    "certificate": {
-      "issued": "2020-04-01",
-      "certStyle": "Reprint",
-      "orderType": {
-        "name": "Certificate",
-        "certificateType": {
-          "reportName": "E",
-          "paperType": {
-            "code": "YEDR"
+    "updateDate" : "2022-10-17",
+    "packingSlip" : null,
+    "certificate" : {
+      "issued" : "2021-05-31",
+      "certStyle" : "Reprint",
+      "orderType" : {
+        "name" : "Certificate",
+        "certificateType" : {
+          "reportName" : "E",
+          "paperType" : {
+            "code" : "YEDR"
           }
         }
+      },
+      "isOrigin" : false
+    },
+    "transcript" : null,
+    "gradProgram" : {
+      "code" : {
+        "code" : "2018-EN",
+        "description" : "Graduation Program 2018",
+        "credits" : 0,
+        "name" : "Graduation Program 2018"
       }
-    }
+    },
+    "logo" : null,
+    "orgCode" : null,
+    "gradMessage" : null,
+    "reportNumber" : null,
+    "issueDate" : null,
+    "reportTitle" : null,
+    "reportSubTitle" : null,
+    "parameters" : null
   }
 }

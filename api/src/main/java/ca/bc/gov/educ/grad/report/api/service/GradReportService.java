@@ -350,12 +350,12 @@ public class GradReportService {
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentNonGradReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		return (StudentNonGradReport)studentNonGradService.buildStudentNonGradReport();
+		return studentNonGradService.buildStudentNonGradReport();
 	}
 
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
