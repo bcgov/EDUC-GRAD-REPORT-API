@@ -778,6 +778,43 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		LOG.debug(">createTranscriptReport_BC2018_PF");
 	}
 
+	/** This method is for testing the transcript spacing and page breaks.
+	 * */
+	@Test
+	public void createTranscriptReport_BC2018_SpaceTest() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_PF_SpaceTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+		String[] files = {
+				"json/studentTranscriptReportRequest-BC2018-PF-23.json",
+				"json/studentTranscriptReportRequest-BC2018-PF-24.json",
+				"json/studentTranscriptReportRequest-BC2018-PF-24-no-grad-reason.json"};
+
+		for (int i = 0; i < files.length; i++) {
+			ReportRequest reportRequest = createReportRequest(files[i]);
+			assertNotNull(reportRequest);
+			assertNotNull(reportRequest.getData());
+
+			mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+			ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+			String pen = reportRequest.getData().getStudent().getPen().getPen();
+			reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+			GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+			assertNotNull(graduationStudentRecord);
+			assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+			ResponseEntity<byte[]> response = apiReportService.getStudentTranscriptReport(reportRequest);
+			assertEquals(200, response.getStatusCode().value());
+			assertNotNull(response.getBody());
+			byte[] bArray = response.getBody();
+			try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+				out.write(bArray);
+			}
+			LOG.debug(">create " + files[i]);
+		}
+	}
+
 	@Test
 	public void createTranscriptReport_YU2018_PUB() throws Exception {
 		LOG.debug("<{}.createTranscriptReport_YU2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
