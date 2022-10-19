@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Transcript" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="23" rightMargin="22" topMargin="5" bottomMargin="15" resourceBundle="reports\resources\i18n\Transcript" whenResourceMissingType="Empty" uuid="5a0adfda-468c-4c62-ae31-d6ce9293eb62">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\StudentAdapter.xml"/>
 	<property name="net.sf.jasperreports.export.html.exclude.origin.band.1" value="pageFooter"/>
@@ -184,8 +184,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[$F{student.transcriptResults}.size()]]></initialValueExpression>
 	</variable>
 	<variable name="V_SHORT_PAGE_ROWS" class="java.lang.Integer">
-		<variableExpression><![CDATA[23]]></variableExpression>
-		<initialValueExpression><![CDATA[23]]></initialValueExpression>
+		<variableExpression><![CDATA[24]]></variableExpression>
+		<initialValueExpression><![CDATA[24]]></initialValueExpression>
 	</variable>
 	<variable name="V_LONG_PAGE_ROWS" class="java.lang.Integer">
 		<variableExpression><![CDATA[31]]></variableExpression>
@@ -263,7 +263,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		</band>
 	</background>
 	<pageHeader>
-		<band height="238">
+		<band height="220">
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="12" y="5" width="100" height="66" uuid="a896cade-f6fc-4d8f-b762-29b950309257"/>
 				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
@@ -288,7 +288,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<textFieldExpression><![CDATA[$F{student.school.districtOrganisation.name}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="86" width="567" height="100" uuid="c80eb8e6-0949-46b5-905a-48595e519bad"/>
+				<reportElement x="0" y="78" width="567" height="100" uuid="c80eb8e6-0949-46b5-905a-48595e519bad"/>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -326,7 +326,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0"/>
+				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="184" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -336,7 +336,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW"]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement positionType="Float" x="0" y="214" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
+				<reportElement positionType="Float" x="0" y="196" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
