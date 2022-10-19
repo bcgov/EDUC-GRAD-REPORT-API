@@ -193,7 +193,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE, TYPE_SUB_TYPE,
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
-        return createReport(student, school, certificate,CANADA, rsRptType, rsRptSubType);
+        return createReport(student, school, certificate, CANADA, rsRptType, rsRptSubType);
     }
 
     /**
@@ -220,7 +220,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE, TYPE_SUB_TYPE,
                 new Object[]{rsRptType.toString(), rsRptSubType.toString()});
 
-        return createReport(student, school, certificate,CANADA_FRENCH, rsRptType, rsRptSubType);
+        return createReport(student, school, certificate, CANADA_FRENCH, rsRptType, rsRptSubType);
     }
 
     private CertificateType adaptCertificateType(String certType) {

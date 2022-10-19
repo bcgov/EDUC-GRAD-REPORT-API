@@ -109,7 +109,14 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     public Student getStudent(ReportData reportData) {
         if (reportData.getStudent() == null || reportData.getStudent().getPen() == null) {
-            reportData.setStudent(new ca.bc.gov.educ.grad.report.api.client.Student());
+            ca.bc.gov.educ.grad.report.api.client.Student st = new ca.bc.gov.educ.grad.report.api.client.Student();
+            if(reportData.getStudent() != null) {
+                BeanUtils.copyProperties(reportData.getStudent(), st);
+                if(st.getPen() == null) {
+                    st.setPen(new Pen());
+                }
+            }
+            reportData.setStudent(st);
         }
         StudentImpl student = new StudentImpl();
         BeanUtils.copyProperties(reportData.getStudent(), student);
@@ -145,7 +152,14 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     public School getSchool(ReportData reportData) {
         if (reportData.getSchool() == null || reportData.getSchool().getMincode() == null) {
-            reportData.setSchool(new ca.bc.gov.educ.grad.report.api.client.School());
+            ca.bc.gov.educ.grad.report.api.client.School sch = new ca.bc.gov.educ.grad.report.api.client.School();
+            if(reportData.getSchool() != null) {
+                BeanUtils.copyProperties(reportData.getSchool(), sch);
+                if(sch.getMincode() == null) {
+                    sch.setMincode("");
+                }
+            }
+            reportData.setSchool(sch);
         }
         SchoolImpl school = new SchoolImpl();
         BeanUtils.copyProperties(reportData.getSchool(), school);
