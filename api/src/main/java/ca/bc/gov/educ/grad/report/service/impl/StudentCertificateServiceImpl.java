@@ -118,35 +118,34 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             }
         }
 
+        final String englishCert;
+        final String frenchCert;
+
         //adapt student certificate flags to requested certificate type
-        final String reportName = certificate.getCertificateType().getReportName();
-        switch (reportName) {
+        final String certType = certificate.getCertificateType().getReportName();
+        switch (certType) {
             case "F":
             case "SCF":
             case "S":
-                reportData.getStudent().setFrenchCert(reportName);
-                reportData.getStudent().setEnglishCert(null);
+                frenchCert = (certType);
+                englishCert = ("");
                 break;
             default:
-                reportData.getStudent().setEnglishCert(reportName);
-                reportData.getStudent().setFrenchCert(null);
+                englishCert = (certType);
+                frenchCert = ("");
                 break;
         }
+
+        LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
+        LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
         final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         ((CertificateImpl)certificate).setSignatureBlockTypes(signatureBlockTypes);
 
         final List<BusinessReport> certificates = new ArrayList<>();
-        final String englishCert = student.getEnglishCert().trim();
-        final String frenchCert = student.getFrenchCert().trim();
-
-        LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
-        LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
 
         if (!englishCert.isEmpty()) {
-            final String certType = certificate.getCertificateType().getReportName();
-
             final GradCertificateReport gradCert = englishCertificate(
                     certType, student, school, certificate);
 
@@ -154,8 +153,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         }
 
         if (!frenchCert.isEmpty()) {
-            final String certType = certificate.getCertificateType().getReportName();
-
             final GradCertificateReport gradCert = frenchCertificate(
                     certType, student, school, certificate);
 
