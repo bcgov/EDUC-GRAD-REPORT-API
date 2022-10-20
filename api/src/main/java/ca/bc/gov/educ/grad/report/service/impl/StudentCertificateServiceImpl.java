@@ -102,21 +102,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             throw dse;
         }
 
-        //adapt student certificate flags to requested certificate type
-        final String reportName = certificate.getCertificateType().getReportName();
-        switch (reportName) {
-            case "F":
-            case "SCF":
-            case "S":
-                reportData.getStudent().setFrenchCert(reportName);
-                reportData.getStudent().setEnglishCert(null);
-                break;
-            default:
-                reportData.getStudent().setEnglishCert(reportName);
-                reportData.getStudent().setFrenchCert(null);
-                break;
-        }
-
         // validate incoming data for reporting
         final Student student = getStudent(reportData); //validated
         final School school = getSchool(reportData); //validated
@@ -131,6 +116,21 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
+        }
+
+        //adapt student certificate flags to requested certificate type
+        final String reportName = certificate.getCertificateType().getReportName();
+        switch (reportName) {
+            case "F":
+            case "SCF":
+            case "S":
+                reportData.getStudent().setFrenchCert(reportName);
+                reportData.getStudent().setEnglishCert(null);
+                break;
+            default:
+                reportData.getStudent().setEnglishCert(reportName);
+                reportData.getStudent().setFrenchCert(null);
+                break;
         }
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
