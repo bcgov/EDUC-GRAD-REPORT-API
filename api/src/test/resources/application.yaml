@@ -56,7 +56,9 @@ logging:
     ca:
       bc:
         gov:
-          educ: INFO
+          educ:
+            grad:
+              report: DEBUG
     net:
       sf:
         jasperreports: INFO

@@ -32,14 +32,18 @@ public abstract class BaseController {
 
     @SneakyThrows
     protected void logRequest(Object request) {
-        if(log.isDebugEnabled()) {
-            String jsonRequest = jsonTransformer.marshall(request);
-            log.debug(jsonRequest);
-        }
-
         HttpServletRequest httpServletRequest =
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                         .getRequest();
+
+        StringBuffer requestURL = httpServletRequest.getRequestURL();
+        if (httpServletRequest.getQueryString() != null) {
+            requestURL.append("?").append(httpServletRequest.getQueryString());
+        }
+
+        log.debug(requestURL.toString());
+        String jsonRequest = jsonTransformer.marshall(request);
+        log.debug(jsonRequest);
 
         String username = "";
         if (httpServletRequest.getUserPrincipal() != null) {

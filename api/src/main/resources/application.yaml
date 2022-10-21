@@ -51,8 +51,8 @@ logging:
       bc:
         gov:
           educ:
-            api:
-              reportapi: ${APP_LOG_LEVEL}
+            grad:
+              report: ${APP_LOG_LEVEL}
     org:
       springframework:
         web: ${SPRING_WEB_LOG_LEVEL}
