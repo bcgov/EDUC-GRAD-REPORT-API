@@ -14,7 +14,6 @@ import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
-import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
@@ -1960,7 +1959,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	private School getReportDataSchool(ReportData reportData) {
 		reportData.setAccessToken("accessToken");
 		if(reportData.getSchool() == null || reportData.getSchool().getMincode() == null) {
-			throw new InvalidParameterException("School and mincode can't be NULL");
+			reportData.setSchool(new School());
 		}
 		return reportData.getSchool();
 	}
