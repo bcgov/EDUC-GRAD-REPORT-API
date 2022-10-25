@@ -140,6 +140,8 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         return localId;
     }
 
+    public void setLocalId(String localId) { this.localId = localId; }
+
     @Override
     public String getHasOtherProgram() {
         return hasOtherProgram;
