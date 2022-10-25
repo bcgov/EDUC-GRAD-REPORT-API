@@ -64,4 +64,5 @@ public class GraduationData implements Serializable {
     public void setTotalCreditsUsedForGrad(String value) {
         this.totalCreditsUsedForGrad = value;
     }
+
 }

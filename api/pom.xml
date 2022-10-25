@@ -60,6 +60,7 @@
         <junit>4.12</junit>
         <log4j.version>2.18.0</log4j.version>
         <maven.test.skip>false</maven.test.skip>
+        <jacoco.skip>true</jacoco.skip>
         <start-class>ca.bc.gov.educ.grad.report.api.ReportApiApplication</start-class>
     </properties>
 
