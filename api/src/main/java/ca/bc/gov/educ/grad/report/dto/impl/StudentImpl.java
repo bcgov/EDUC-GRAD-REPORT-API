@@ -31,10 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -153,12 +150,12 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     public List<NonGradReason> getNonGradReasons() {
-        return nonGradReasons;
+        return nonGradReasons == null ? Collections.emptyList() : nonGradReasons;
     }
 
     @Override
     public String getNonGradReasonsString() {
-        return nonGradReasons.stream()
+        return getNonGradReasons().stream()
                 .map(n -> String.valueOf(n.toString()))
                 .collect(Collectors.joining("\n", "", ""));
     }
