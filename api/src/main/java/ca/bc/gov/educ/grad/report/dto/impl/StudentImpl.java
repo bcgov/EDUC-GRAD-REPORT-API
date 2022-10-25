@@ -194,10 +194,6 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.grade = grade;
     }
 
-    public void setLocalId(String localId) {
-        this.localId = localId;
-    }
-
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getSccDate() {
         return sccDate;
