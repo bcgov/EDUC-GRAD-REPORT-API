@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface StudentCertificateRepository extends JpaRepository<StudentCertificateEntity, String>, JpaSpecificationExecutor<StudentCertificateEntity> {
 
-    @Query("select c.distributionDate from StudentCertificateEntity c where c.gradutionStudentRecordId=:graduationStudentRecordId")
+    @Query("select max(c.distributionDate) as distributionDate from StudentCertificateEntity c where c.gradutionStudentRecordId=:graduationStudentRecordId")
     Optional<Date> getCertificateDistributionDate(UUID graduationStudentRecordId);
 
 }
