@@ -4,10 +4,7 @@ import ca.bc.gov.educ.grad.report.api.client.*;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
-import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
-import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
-import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dao.StudentTranscriptRepository;
+import ca.bc.gov.educ.grad.report.dao.*;
 import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
@@ -46,10 +43,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Consumer;
 
 import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.E;
@@ -83,6 +77,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 	@MockBean
 	StudentTranscriptRepository studentTranscriptRepository;
+	@MockBean
+	StudentCertificateRepository studentCertificateRepository;
 	@MockBean
 	ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
@@ -1643,8 +1639,14 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getSchool());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		for(Student st: reportRequest.getData().getSchool().getStudents()) {
+			if(!StringUtils.isBlank(st.getPen().getEntityID())) {
+				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
+			}
+		}
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		ResponseEntity<byte[]> response = apiReportService.getSchoolGraduationReport(reportRequest);
@@ -2024,6 +2026,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		studentTranscriptEntity.setUpdateDate(graduationStudentRecord.getLastUpdateDate());
 
 		when(this.studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID())).thenReturn(studentTranscriptEntity);
+		when(this.studentCertificateRepository.getCertificateDistributionDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
 
 		return graduationStudentRecord;
 	}
