@@ -8,7 +8,7 @@ import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import lombok.SneakyThrows;
-import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
@@ -50,7 +50,7 @@ public abstract class BaseController {
         String appLogLevel = Optional.ofNullable(System.getenv("APP_LOG_LEVEL")).orElse("INFO");
         if("DEBUG".equalsIgnoreCase(appLogLevel)) {
             if (request instanceof ReportRequest) {
-                ReportRequest cloneRequest = (ReportRequest) ObjectUtils.clone(request);
+                ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest)request);
                 Student st = cloneRequest.getData().getStudent();
                 if (st != null) {
                     st.setPen(null);

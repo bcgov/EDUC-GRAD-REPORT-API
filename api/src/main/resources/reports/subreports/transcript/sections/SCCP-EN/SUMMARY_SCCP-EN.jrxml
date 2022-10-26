@@ -135,49 +135,51 @@
 				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryTitle" x="220" y="250" width="320" height="20" uuid="f3fd2419-7547-4d10-9826-4401b55314e3"/>
-				<textElement textAlignment="Left"/>
+				<reportElement style="SummaryTitle" x="180" y="250" width="320" height="20" uuid="f3fd2419-7547-4d10-9826-4401b55314e3"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[COURSE TYPE ABBREVIATIONS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="279" width="30" height="11" uuid="e36ad5be-e073-4b70-8531-4e8892964200"/>
+				<reportElement style="SummaryBody" x="180" y="280" width="30" height="11" uuid="e36ad5be-e073-4b70-8531-4e8892964200"/>
 				<text><![CDATA[AP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="279" width="260" height="11" uuid="d52d0d73-c57a-4710-b3c8-81ceaad523ef"/>
+				<reportElement style="SummaryBody" x="210" y="280" width="160" height="11" uuid="d52d0d73-c57a-4710-b3c8-81ceaad523ef"/>
 				<text><![CDATA[Advanced Placement Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="289" width="260" height="11" uuid="f0e59679-5c13-4882-9428-a5b75dc49d1d"/>
+				<reportElement style="SummaryBody" x="210" y="291" width="160" height="11" uuid="f0e59679-5c13-4882-9428-a5b75dc49d1d"/>
 				<text><![CDATA[Board/Authority-Authorized Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="289" width="30" height="11" uuid="9d8b3964-79aa-46c2-81f9-aad6a51c3546"/>
+				<reportElement style="SummaryBody" x="180" y="291" width="30" height="11" uuid="9d8b3964-79aa-46c2-81f9-aad6a51c3546"/>
 				<text><![CDATA[BA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="300" width="30" height="11" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
-				<text><![CDATA[LD]]></text>
+				<reportElement style="SummaryBody" x="180" y="302" width="30" height="11" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
+				<text><![CDATA[C]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="311" width="260" height="11" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
-				<text><![CDATA[International Baccalaureate Course]]></text>
+				<reportElement style="SummaryBody" x="210" y="324" width="160" height="11" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
+				<text><![CDATA[Career Preparation Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="300" width="260" height="11" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
-				<text><![CDATA[Locally Developed Course (non-credit course)]]></text>
+				<reportElement style="SummaryBody" x="210" y="302" width="160" height="22" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Course credit earned through challenge process]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="322" width="260" height="11" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
-				<text><![CDATA[Independent Directed Studies]]></text>
+				<reportElement style="SummaryBody" x="210" y="335" width="160" height="11" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
+				<text><![CDATA[Correspondence Study Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="322" width="30" height="11" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
-				<text><![CDATA[IDS]]></text>
+				<reportElement style="SummaryBody" x="180" y="335" width="30" height="11" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
+				<text><![CDATA[CS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="220" y="311" width="30" height="11" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
-				<text><![CDATA[IB]]></text>
+				<reportElement style="SummaryBody" x="180" y="324" width="30" height="11" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
+				<text><![CDATA[CP]]></text>
 			</staticText>
 			<subreport>
 				<reportElement key="SIGNATURE" x="18" y="250" width="144" height="110" uuid="2b4c0a6b-d883-4ef4-afeb-f22297c921a3">
@@ -250,6 +252,46 @@
 			<staticText>
 				<reportElement style="SummaryBody" x="305" y="84" width="45" height="22" uuid="2516bbca-264a-4981-8467-a9d3983b2640"/>
 				<text><![CDATA[Transfer Standing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="380" y="280" width="30" height="11" uuid="a353390f-233d-4863-868e-3d8fd289cb01"/>
+				<text><![CDATA[E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="410" y="280" width="157" height="22" uuid="3d26fd88-aa1c-4916-ba08-4f0c0d179ce1"/>
+				<text><![CDATA[Course credit earned through equivalency review]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="410" y="302" width="157" height="11" uuid="49bbed7b-af2f-46aa-89be-a1d766de7a9d"/>
+				<text><![CDATA[International Baccalaureate Course]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="380" y="302" width="30" height="11" uuid="92212c1f-b5d0-47a3-85c7-ad6a6f63df85"/>
+				<text><![CDATA[IB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="380" y="313" width="30" height="11" uuid="681a948d-acb6-43bf-889e-f341b9113ac6"/>
+				<text><![CDATA[IDS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="410" y="324" width="157" height="11" uuid="04cb5427-6c7d-4959-af20-0c87cc10935f"/>
+				<text><![CDATA[Locally Developed Course]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="410" y="313" width="157" height="11" uuid="45a62fd7-d36d-4a15-8077-bdaffb2e2e48"/>
+				<text><![CDATA[Independent Directed Studies Course]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="410" y="335" width="157" height="11" uuid="9d35ba27-8ec7-46ba-8d02-605757f5b154"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="380" y="335" width="30" height="11" uuid="e89c72b0-f97a-46b2-9983-14e6de85ec4f"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="380" y="324" width="30" height="11" uuid="f6916ab7-c1de-4707-90e8-30b1f860d5e2"/>
+				<text><![CDATA[LD]]></text>
 			</staticText>
 		</band>
 	</summary>

@@ -83,7 +83,7 @@
 					<textElement verticalAlignment="Middle">
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Name: " + $F{student.fullName}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[ $F{student.fullName}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="CourseRow" x="0" y="38" width="110" height="19" uuid="ea5d85df-a0f4-40fc-8883-86d01d318ac5">
@@ -151,7 +151,7 @@
 					<textElement>
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["".equalsIgnoreCase($F{student.school.ministryCode}) ? "" : $F{student.school.name} + "  (" + $F{student.school.ministryCode} + ")"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["".equalsIgnoreCase($F{student.school.ministryCode}) ? $F{student.school.name}  :  $F{student.school.ministryCode} + " " + $F{student.school.name} ]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="CourseRow" x="0" y="51" width="236" height="12" uuid="c1613b45-60c9-4f4c-8192-6f33b574ee1b">
