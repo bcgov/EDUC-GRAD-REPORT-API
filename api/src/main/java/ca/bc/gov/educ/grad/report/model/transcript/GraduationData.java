@@ -77,6 +77,7 @@ public interface GraduationData extends DomainEntity {
      */
     String getTotalCreditsUsedForGrad();
 
+
     /**
      * Get the list of program codes.
      *

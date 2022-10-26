@@ -18,9 +18,9 @@
 		<band height="100">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<frame>
-				<reportElement x="103" y="15" width="360" height="85" uuid="98b5f21d-158e-4cd5-821b-e6972f904db5">
+				<reportElement x="20" y="15" width="520" height="85" uuid="98b5f21d-158e-4cd5-821b-e6972f904db5">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -36,7 +36,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="9.5" isBold="true"/>
 				</textElement>
-				<text><![CDATA[POST SECONDARY INSTITUTIONS TO WHICH TRANSCRIPTS HAVE BEEN FORWARDED]]></text>
+				<text><![CDATA[STUDENT’S POST-SECONDARY INSTITUTION SELECTIONS IN STUDENTTRANSCRIPTS SERVICE (STS)]]></text>
 			</staticText>
 		</band>
 	</summary>
