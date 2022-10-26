@@ -28,10 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -39,6 +36,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
     @Autowired
     StudentTranscriptRepository studentTranscriptRepository;
+
+    @Autowired
+    StudentCertificateRepository studentCertificateRepository;
 
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);
@@ -395,7 +395,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         for (ca.bc.gov.educ.grad.report.api.client.Student st : students) {
             StudentImpl student = new StudentImpl();
             BeanUtils.copyProperties(st, student);
-            student.setPen(new PersonalEducationNumberObject(st.getPen().getPen()));
+            PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
+            pen.setEntityId(st.getPen().getEntityID());
+            student.setPen(pen);
             if (st.getAddress() != null) {
                 PostalAddressImpl address = new PostalAddressImpl();
                 BeanUtils.copyProperties(st.getAddress(), address);
@@ -411,6 +413,10 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                     BeanUtils.copyProperties(rsn, reason);
                     student.getNonGradReasons().add(reason);
                 }
+            }
+            if(!StringUtils.isBlank(pen.getEntityId())) {
+                Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
+                distributionDate.ifPresent(student::setCertificateDistributionDate);
             }
             result.add(student);
         }
