@@ -414,10 +414,10 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                     student.getNonGradReasons().add(reason);
                 }
             }
-            //if(!StringUtils.isBlank(pen.getEntityId())) {
-            //    Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
-            //    distributionDate.ifPresent(student::setCertificateDistributionDate);
-            //}
+            if(!StringUtils.isBlank(pen.getEntityId())) {
+                Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
+                distributionDate.ifPresent(student::setCertificateDistributionDate);
+            }
             result.add(student);
         }
         return result;
