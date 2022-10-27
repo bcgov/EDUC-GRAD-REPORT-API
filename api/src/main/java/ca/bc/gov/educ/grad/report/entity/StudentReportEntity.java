@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Date;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -17,7 +18,7 @@ public class StudentReportEntity extends BaseEntity {
 
     @Id
     @Column(name = "STUDENT_REPORT_ID", nullable = false)
-    private String studentReportId;
+    private UUID studentReportId;
 
     @Column(name = "REPORT")
     private String REPORT;
@@ -25,8 +26,8 @@ public class StudentReportEntity extends BaseEntity {
     @Column(name = "REPORT_TYPE_CODE", nullable = false)
     private String reportTypeCode;
 
-    @Column(name = "GRADUTION_STUDENT_RECORD_ID", nullable = false)
-    private String gradutionStudentRecordId;
+    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false)
+    private String graduationStudentRecordId;
 
     @Column(name = "DOCUMENT_STATUS_CODE")
     private String documentStatusCode;

@@ -65,7 +65,7 @@ public class InheritableResourceBundle extends ResourceBundle {
                 // This doesn't mean the resource is missing, rather that
                 // there's no resource for the given locale. Load the resource
                 // without a locale, instead.
-                LOG.log(Level.FINER, "Cannot find resource bundle", mre);
+                LOG.log(Level.FINEST, "Cannot find resource bundle", mre);
 
                 try {
                     final ResourceBundle bundle = getBundle(path);
@@ -74,7 +74,7 @@ public class InheritableResourceBundle extends ResourceBundle {
                     // This doesn't always mean that the resource is missing,
                     // rather it means that a potential bundle in the named
                     // bundle hierarchy is missing.
-                    LOG.log(Level.FINE, "Cannot find resource bundle", ex);
+                    LOG.log(Level.FINEST, "Cannot find resource bundle", ex);
                 }
             }
 

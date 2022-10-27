@@ -1,7 +1,5 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 
 
@@ -18,7 +16,6 @@ public class Pen implements Serializable {
         this.pen = value;
     }
 
-    @JsonProperty("studentID")
     public String getEntityID() {
         return entityID;
     }

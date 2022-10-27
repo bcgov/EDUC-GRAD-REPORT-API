@@ -54,7 +54,7 @@
 				<textElement verticalAlignment="Top" markup="none">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Numeracy 10 Assessment requirement met by a Mathematics 10 provincial exam]]></text>
+				<text><![CDATA[Assessment requirement met by a provincial exam]]></text>
 			</staticText>
 			<subreport>
 				<reportElement x="0" y="12" width="567" height="45" uuid="8bc60f6c-022e-4868-9bef-f972ed6039ce">
