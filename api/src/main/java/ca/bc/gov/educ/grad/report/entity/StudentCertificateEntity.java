@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -27,7 +27,7 @@ public class StudentCertificateEntity extends BaseEntity {
     private String certificateTypeCode;
 
     @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false)
-    private UUID gradutionStudentRecordId;
+    private UUID graduationStudentRecordId;
 
     @Column(name = "DOCUMENT_STATUS_CODE")
     private String documentStatusCode;
