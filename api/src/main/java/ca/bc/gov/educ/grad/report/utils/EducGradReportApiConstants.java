@@ -20,7 +20,7 @@ public class EducGradReportApiConstants {
     public static final String GET_SIGNATURE_IMAGE = "/get" + GET_SIGNATURE_IMAGE_BY_CODE;
     public static final String GET_SIGNATURE_IMAGES = "/get/all";
     public static final String GET_SIGNATURE_BLOCK_TYPE_CODES = "/getSignatureBlockTypeCodes";
-    public static final String GET_SIGNATURE_BLOCK_TYPE_CODE = "/getSignatureBlockTypeCode";
+    public static final String GET_SIGNATURE_BLOCK_TYPE_CODE = "/getSignatureBlockTypeCode/{signBlockTypeCode}";
 
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
