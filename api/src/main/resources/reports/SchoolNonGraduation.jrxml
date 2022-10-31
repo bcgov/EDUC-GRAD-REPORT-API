@@ -85,7 +85,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="175" splitType="Stretch">
+		<band height="210" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="104" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
@@ -145,7 +145,7 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="153" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+				<reportElement style="GeneratedText" x="0" y="193" width="280" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<line>
@@ -153,13 +153,18 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 			</line>
+			<staticText>
+				<reportElement stretchType="ContainerHeight" x="6" y="148" width="549" height="43" uuid="a1264f7b-874b-4cd7-b1fd-b5fdbcceb791"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[A daily, cumulative list of students in the current reporting cycle who have not yet graduated, based on the latest information submitted by the school. The list only includes students who are reported on a graduation program and in grade 12 (or AD for the Adult Graduation Program).]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
 		<band height="110">
 			<property name="com.jaspersoft.studio.layout"/>
 			<componentElement>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="560" height="60" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="60" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>

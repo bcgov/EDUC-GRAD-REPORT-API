@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class FiscalDates {
 
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("MMM yy");
+    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM yyyy");
 
     final private Date dateFrom;
     final private Date dateTo;
@@ -39,7 +39,7 @@ public class FiscalDates {
     }
 
     public String getFiscalDatesRange() {
-        return dateFormat.format(getDateFrom()) + " to " + dateFormat.format(getDateTo());
+        return DATE_FORMAT.format(getDateFrom()) + " to " + DATE_FORMAT.format(getDateTo());
     }
 
     public static void main(String[] args) {
