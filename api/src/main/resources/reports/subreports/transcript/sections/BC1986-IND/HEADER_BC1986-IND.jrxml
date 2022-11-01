@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-10-10T13:33:03 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Header" pageWidth="567" pageHeight="100" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b43f8564-f5a0-4fca-a3c6-9c5fc90458db">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\StudentAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -17,6 +16,9 @@
 	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
 	<field name="student.PEN" class="java.lang.String">
 		<fieldDescription><![CDATA[student.PEN]]></fieldDescription>
+	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
 	</field>
 	<field name="student.birthdate" class="java.util.Date">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
@@ -50,15 +52,6 @@
 	</variable>
 	<pageHeader>
 		<band height="100">
-			<!--textField evaluationTime="Auto" isBlankWhenNull="true">
-				<reportElement key="PAGE_NUMBERS" style="Title" positionType="Float" x="31" y="0" width="289" height="12" isRemoveLineWhenBlank="true" uuid="67bc99b0-2cab-4157-90d1-8209c90ca07e">
-					<printWhenExpression><![CDATA[$P{P_PAGE_NUMBER} != null]]></printWhenExpression>
-				</reportElement>
-				<textElement textAlignment="Left">
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[msg("Page:    {0}", $P{P_PAGE_NUMBER})]]></textFieldExpression>
-			</textField-->
 			<frame>
 				<reportElement positionType="Float" isPrintRepeatedValues="false" x="355" y="0" width="212" height="97" uuid="a1a35bc2-f8ae-4bc2-96e7-6c240e2df8a1"/>
 				<box>
@@ -177,8 +170,7 @@
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="Address" positionType="FixRelativeToBottom" x="0" y="20" width="289" height="64" uuid="5542dd62-67d9-4051-b8f9-ff7a9c581f48"/>
-					<textFieldExpression><![CDATA[($P{P_STUDENT_FULL_NAME}.substring( 0, Math.min( $P{P_STUDENT_FULL_NAME}.length(), 37 ) ) + "\n" +
-$F{student.address.formatted}).toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[($F{student.fullName} + "\n" + $F{student.address.formatted}).toUpperCase()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<textField isBlankWhenNull="true">
