@@ -159,7 +159,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     public String getNonGradReasonsString() {
         return getNonGradReasons().stream()
                 .map(n -> String.valueOf(n.toString()))
-                .collect(Collectors.joining("\n", "", ""));
+                .collect(Collectors.joining("\n", "", "")).concat("\n");
     }
 
     public void setGender(String gender) {
