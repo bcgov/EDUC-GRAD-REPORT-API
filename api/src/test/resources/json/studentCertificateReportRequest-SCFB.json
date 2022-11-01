@@ -6,22 +6,54 @@
     "reportName": "Certificate",
     "reportFile": "Certificate Report SCFB.pdf"
   },
-  "data": {
-    "student": {
-      "frenchCert": "F"
+  "data" : {
+    "student" : {
+      "pen" : null,
+      "firstName" : null,
+      "middleName" : null,
+      "lastName" : null,
+      "gender" : null,
+      "birthdate" : null,
+      "address" : null,
+      "grade" : null,
+      "gradProgram" : null,
+      "studStatus" : null,
+      "sccDate" : null,
+      "mincodeGrad" : null,
+      "englishCert" : null,
+      "frenchCert" : "SCF",
+      "localId" : null,
+      "hasOtherProgram" : null,
+      "otherProgramParticipation" : [ ],
+      "graduationData" : null,
+      "nonGradReasons" : [ ]
     },
-    "certificate": {
-      "issued": "2020-04-01",
-      "certStyle": "Blank",
-      "orderType": {
-        "name": "Certificate",
-        "certificateType": {
-          "reportName": "SCF",
-          "paperType": {
-            "code": "YEDR"
+    "school" : null,
+    "updateDate" : null,
+    "packingSlip" : null,
+    "certificate" : {
+      "issued" : "2022-10-19",
+      "certStyle" : "Blank",
+      "orderType" : {
+        "name" : "Certificate",
+        "certificateType" : {
+          "reportName" : "SCF",
+          "paperType" : {
+            "code" : "YED2"
           }
         }
-      }
-    }
+      },
+      "isOrigin" : false
+    },
+    "transcript" : null,
+    "gradProgram" : null,
+    "logo" : null,
+    "orgCode" : null,
+    "gradMessage" : null,
+    "reportNumber" : null,
+    "issueDate" : "2022-10-19",
+    "reportTitle" : null,
+    "reportSubTitle" : null,
+    "parameters" : null
   }
 }

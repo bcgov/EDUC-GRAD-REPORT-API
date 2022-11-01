@@ -7,9 +7,10 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
-import ca.bc.gov.educ.grad.report.model.common.DataException;
+import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
@@ -18,6 +19,8 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -26,15 +29,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static java.lang.Integer.parseInt;
+import static java.util.Locale.CANADA;
 
 public abstract class GradReportServiceImpl implements Serializable {
 
@@ -69,16 +70,30 @@ public abstract class GradReportServiceImpl implements Serializable {
         return parameters;
     }
 
-    InputStream openImageResource(final String resource) throws IOException {
-        //final URL url = getReportResource(resource);
-        URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
-        return url.openStream();
+    List<Student> getStudents(ReportData reportData) {
+        final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
+        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
+        sortStudentsByLastUpdateDateAndNames(students);
+        return students;
     }
 
-    String getAccessToken() throws DomainServiceException {
-        final String methodName = "getAccessToken()";
-        LOG.entering(CLASSNAME, methodName);
+    void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
+    }
 
+    School getSchool(ReportData reportData) {
+        return gradDataConvertionBean.getSchool(reportData);
+    }
+
+    Student getStudent(ReportData reportData) {
+        return gradDataConvertionBean.getStudent(reportData);
+    }
+
+    ReportData getReportData(String methodName) {
         ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
 
         if (reportData == null) {
@@ -89,8 +104,66 @@ public abstract class GradReportServiceImpl implements Serializable {
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
+        return reportData;
+    }
 
+    Certificate getCertificate(ReportData reportData) {
+        return gradDataConvertionBean.getCertificate(reportData.getCertificate());
+    }
+
+
+    InputStream openImageResource(final String resource) throws IOException {
+        //final URL url = getReportResource(resource);
+        URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
+        assert url != null;
+        return url.openStream();
+    }
+
+    GraduationReport getGraduationReport(String methodName) throws IOException {
+        Parameters<String, Object> parameters = createParameters();
+
+        ReportData reportData = getReportData(methodName);
+
+        LOG.log(Level.FINE,
+                "Confirmed the user is a student and retrieved the PEN.");
+
+        // validate incoming data for reporting
+        final List<Student> students = getStudents(reportData);
+        final School school = getSchool(reportData);
+
+        if(!students.isEmpty()) {
+            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
+            parameters.put("students", jrBeanCollectionDataSource);
+            parameters.put("hasStudents", "true");
+        }
+
+        if (school != null) {
+            parameters.put("school", school);
+        }
+
+        InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
+        parameters.put("orgImage", inputLogo);
+
+        parameters.put("reportNumber", reportData.getReportNumber());
+
+        GraduationReport nonGraduationReport = createGraduationReport();
+        nonGraduationReport.setLocale(CANADA);
+        nonGraduationReport.setStudents(students);
+        nonGraduationReport.setSchool(school);
+        nonGraduationReport.setParameters(parameters);
+
+        return nonGraduationReport;
+    }
+
+    abstract GraduationReport createGraduationReport();
+
+    String getAccessToken() throws DomainServiceException {
+        final String methodName = "getAccessToken()";
+        LOG.entering(CLASSNAME, methodName);
+
+        ReportData reportData = getReportData(methodName);
         String accessToken = reportData.getAccessToken();
+
         assert accessToken != null;
         LOG.exiting(CLASSNAME, methodName);
         return accessToken;
@@ -100,122 +173,56 @@ public abstract class GradReportServiceImpl implements Serializable {
         final String methodName = "getStudentPEN()";
         LOG.entering(CLASSNAME, methodName);
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = getReportData(methodName);
 
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    getClass(),
-                    REPORT_DATA_MISSING,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
-
-        PersonalEducationNumberObject pen = new PersonalEducationNumberObject();
-        pen.setPen(reportData.getStudent().getPen().getPen());
-
-        LOG.log(Level.FINE, "Confirmed the user is a student and retrieved the PEN: {0}.", pen);
         LOG.exiting(CLASSNAME, methodName);
-        return pen;
+
+        return gradDataConvertionBean.getStudent(reportData).getPen();
     }
 
-    Date getIssueDate() throws DataException, DomainServiceException {
+    Date getIssueDate() throws DomainServiceException {
         final String methodName = "getIssueDate()";
         LOG.entering(CLASSNAME, methodName);
 
-        final Date issueDate;
+        ReportData reportData = getReportData(methodName);
 
-        try {
-
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
-            LOG.log(Level.FINER,
-                    "Retrieved issue date: {0}", reportData.getIssueDate());
-
-            issueDate = reportData.getIssueDate();
-
-        } catch (Exception ex) {
-            String msg = "Failed to obtain issue date: ".concat(ex.getMessage());
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
+        LOG.log(Level.FINER,
+                "Retrieved issue date: {0}", reportData.getIssueDate());
 
         LOG.exiting(CLASSNAME, methodName);
-        return issueDate;
+        return reportData.getIssueDate();
     }
 
     /**
      * Read the static student data from TRAX which is needed for the achievement
      * service.
      *
-     * @param pen
-     * @return
+     * @param pen Student Pen
+     * @return StudentInfo
      */
-    StudentInfo getStudentInfo(final String pen) throws DataException, DomainServiceException {
+    StudentInfo getStudentInfo(final String pen) throws DomainServiceException {
         final String methodName = "getStudentInfo(String)";
         LOG.entering(CLASSNAME, methodName);
 
-        final StudentInfo studentInfo;
+        ReportData reportData = getReportData(methodName);
 
-        try {
+        LOG.log(Level.FINER,
+                "Retrieved student info for PEN: {0}", pen);
 
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
-            LOG.log(Level.FINER,
-                    "Retrieved student info for PEN: {0}", pen);
-
-            StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
-
-            if (student == null) {
-                final String msg = "Failed to find results for PEN: ".concat(pen);
-                final DomainServiceException dse = new DomainServiceException(null, msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            } else {
-                LOG.log(Level.FINEST, "Retrieved student from achievement:");
-                final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
-                student.setNonGradReasons(reasons);
-                studentInfo = student;
-                LOG.log(Level.FINEST, "{0} {1} {2}",
-                        new Object[]{studentInfo.getPen(), studentInfo.getFirstName(), studentInfo.getLastName()});
-            }
-
-        } catch (Exception ex) {
-            String msg = "Failed to access data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
-            throw dex;
-        }
+        StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
+        final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
+        student.setNonGradReasons(reasons);
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
         LOG.exiting(CLASSNAME, methodName);
-        return studentInfo;
+        return student;
     }
 
     /**
      * Adapt the TRAX data from the data value object into a Student object.
      *
-     * @param pen
-     * @param studentInfo
+     * @param pen Student pen
+     * @param studentInfo Student info
      */
     Student adaptStudent(
             final PersonalEducationNumber pen,
@@ -237,6 +244,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         student.setGradProgram(studentInfo.getGradProgram());
         student.setGradReqYear(studentInfo.getGradReqYear());
         student.setOtherProgramParticipation(studentInfo.getOtherProgramParticipation());
+        student.setLocalId(studentInfo.getLocalId());
 
         final PostalAddressImpl address = new PostalAddressImpl();
         address.setStreetLine1(studentInfo.getStudentAddress1());
@@ -248,8 +256,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         student.setCurrentMailingAddress(address);
 
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>();
-        signatureBlockTypes.putAll(signatureBlockTypeCodes);
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         student.setSignatureBlockTypes(signatureBlockTypes);
 
         LOG.exiting(CLASSNAME, methodName);
@@ -259,7 +266,7 @@ public abstract class GradReportServiceImpl implements Serializable {
     /**
      * Adapt the TRAX data from the data value object into a School object.
      *
-     * @param studentInfo
+     * @param studentInfo Student Info
      */
     School adaptSchool(final StudentInfo studentInfo, String accessToken, boolean checkEligibility) {
         final String m_ = "adaptSchool(StudentInfo)";
@@ -309,6 +316,7 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     void populateSchoolFromTraxSchool(SchoolImpl school, TraxSchool traxSchool) {
+        school.setSchoolCategoryCode(traxSchool.getSchoolCategoryCode());
         school.setMincode(traxSchool.getMinCode());
         school.setName(traxSchool.getSchoolName());
         final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
@@ -337,12 +345,8 @@ public abstract class GradReportServiceImpl implements Serializable {
         final String numericCredits = credits.replaceAll("[^\\d.]", "");
         int result = 0;
 
-        try {
-            if (!numericCredits.isEmpty()) {
-                result = parseInt(numericCredits);
-            }
-        } catch (final Exception ex) {
-            LOG.log(Level.WARNING, String.format("Could not parse credits: %s", credits), ex);
+        if (!numericCredits.isEmpty()) {
+            result = parseInt(numericCredits);
         }
 
         LOG.exiting(CLASSNAME, methodName);
@@ -351,17 +355,27 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     TraxSchool getSchool(String minCode, String accessToken) {
-        try {
+        if(!StringUtils.isBlank(minCode)) {
             return webClient.get()
                     .uri(String.format(constants.getSchoolDetails(), minCode))
                     .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(TraxSchool.class)
                     .block();
-        } catch (Exception ex) {
-            LOG.log(Level.WARNING, String.format("Could not retrieve school with mincode: %s", minCode));
-            return null;
         }
+        return null;
+    }
+
+    GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
+        if(!StringUtils.isBlank(programCode)) {
+            return webClient.get()
+                    .uri(String.format(constants.getGraduationProgram(), programCode))
+                    .headers(h -> h.setBearerAuth(accessToken))
+                    .retrieve()
+                    .bodyToMono(GradProgramImpl.class)
+                    .block();
+        }
+        return null;
     }
 
     String createReportTypeName(

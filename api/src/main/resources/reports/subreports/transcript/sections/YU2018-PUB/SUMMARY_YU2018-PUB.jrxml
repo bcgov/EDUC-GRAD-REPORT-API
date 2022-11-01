@@ -141,7 +141,7 @@
 			<staticText>
 				<reportElement style="SummaryTitle" x="18" y="250" width="549" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[B.C. 2018 Graduation Program Requirements]]></text>
+				<text><![CDATA[2018 GRADUATION PROGRAM REQUIREMENTS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="18" y="264" width="549" height="36" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd"/>
@@ -150,7 +150,9 @@
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="45" y="300" width="465" height="11" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d"/>
-				<textElement verticalAlignment="Top"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[The graduation requirements below are designated by a code number in the REQ column]]></text>
 			</staticText>
 			<staticText>
@@ -363,27 +365,27 @@
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="220" y="550" width="29" height="12" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
-				<text><![CDATA[LD]]></text>
+				<text><![CDATA[IB]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="260" y="560" width="247" height="12" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
-				<text><![CDATA[International Baccalaureate Course]]></text>
+				<text><![CDATA[Independent Directed Studies Course]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="260" y="550" width="247" height="12" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
-				<text><![CDATA[Locally Developed Course (non-credit course)]]></text>
+				<text><![CDATA[International Baccalaureate Course]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="260" y="570" width="247" height="12" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
-				<text><![CDATA[Independent Directed Studies]]></text>
+				<text><![CDATA[Locally Developed Course]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="220" y="570" width="29" height="12" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
-				<text><![CDATA[IDS]]></text>
+				<text><![CDATA[LD]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="220" y="560" width="29" height="12" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
-				<text><![CDATA[IB]]></text>
+				<text><![CDATA[IDS]]></text>
 			</staticText>
 			<subreport>
 				<reportElement key="SIGNATURE" x="10" y="490" width="144" height="122" uuid="2b4c0a6b-d883-4ef4-afeb-f22297c921a3">

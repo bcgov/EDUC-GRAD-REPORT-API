@@ -19,11 +19,9 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
-import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradReportImpl;
-import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
-import ca.bc.gov.educ.grad.report.model.reports.NonGradReport;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
@@ -81,27 +79,16 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
         LOG.entering(CLASSNAME, methodName);
 
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-        if (reportData == null) {
-            EntityNotFoundException dse = new EntityNotFoundException(
-                    getClass(),
-                    REPORT_DATA_MISSING,
-                    "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
+        ReportData reportData = getReportData(methodName);
 
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
-        Parameters parameters = createParameters();
+        Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
-        final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
-        final School school = gradDataConvertionBean.getSchool(reportData); //validated
-
-        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
+        final List<Student> students = getStudents(reportData); //validated
+        final School school = getSchool(reportData); //validated
 
         if(!students.isEmpty()) {
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
@@ -146,7 +133,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
-        NonGradReport nonGradRequirementsReport = reportService.createNonGradReport();
+        GraduationReport nonGradRequirementsReport = createGraduationReport();
         nonGradRequirementsReport.setLocale(location);
         nonGradRequirementsReport.setStudents(students);
         nonGradRequirementsReport.setSchool(school);
@@ -196,5 +183,10 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
                 + " "
                 + locale.getISO3Language();
         return reportTypeName;
+    }
+
+    @Override
+    GraduationReport createGraduationReport() {
+        return reportService.createNonGradReport();
     }
 }

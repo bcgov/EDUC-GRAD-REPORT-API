@@ -10,13 +10,11 @@ import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
-import ca.bc.gov.educ.grad.report.model.graduation.GradCertificateService;
+import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
-import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
-import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
-import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
-import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
+import ca.bc.gov.educ.grad.report.model.school.*;
+import ca.bc.gov.educ.grad.report.model.student.SchoolNonGraduationService;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
@@ -53,7 +51,7 @@ public class GradReportService {
 	StudentAchievementService achievementService;
 
 	@Autowired
-	GradCertificateService gradCertificateService;
+	StudentCertificateService certificateService;
 
 	@Autowired
 	BCMPBundleService bcmpBundleService;
@@ -66,6 +64,9 @@ public class GradReportService {
 
 	@Autowired
 	SchoolGraduationService schoolGraduationService;
+
+	@Autowired
+	SchoolNonGraduationService schoolNonGraduationService;
 
 	@Autowired
 	StudentNonGradService studentNonGradService;
@@ -228,12 +229,7 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-		List<BusinessReport> gradCertificateReports;
-		if(reportRequest.getData().getCertificate().getCertStyle().equalsIgnoreCase("Blank")) {
-			gradCertificateReports = gradCertificateService.buildBlankReport();
-		}else {
-			gradCertificateReports = gradCertificateService.buildReport();
-		}
+		List<BusinessReport> gradCertificateReports = certificateService.buildReport();
 
 		ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
 			@Override
@@ -286,6 +282,26 @@ public class GradReportService {
 		return response;
 	}
 
+	public ResponseEntity<byte[]> getSchoolNonGraduationReport(ReportRequest reportRequest) {
+		String methodName = "getSchoolNonGraduationReport(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			SchoolNonGraduationReport schoolNonGraduationReport = getSchoolNonGraduationReportDocument(reportRequest);
+			byte[] resultBinary = schoolNonGraduationReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public ResponseEntity<byte[]> getStudentNonGradReport(ReportRequest reportRequest) {
 		String methodName = "getStudentNonGradReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -324,13 +340,22 @@ public class GradReportService {
 		return schoolGraduationService.buildSchoolGraduationReport();
 	}
 
-	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+	public SchoolNonGraduationReport getSchoolNonGraduationReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getSchoolNonGraduationReportDocument(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		return (StudentNonGradReport)studentNonGradService.buildStudentNonGradReport();
+		return schoolNonGraduationService.buildSchoolNonGraduationReport();
+	}
+
+	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getStudentNonGradReportDocument(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		return studentNonGradService.buildStudentNonGradReport();
 	}
 
 	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {

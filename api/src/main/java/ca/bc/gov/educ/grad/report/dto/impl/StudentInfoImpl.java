@@ -181,7 +181,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.middleName = trimSafe(middleName);
         this.lastName = trimSafe(lastName);
         this.birthdate = birthdate;
-        this.schoolId = trimSafe(localId);
+        this.localId = trimSafe(localId);
         this.gender = studGender;
         this.mincode = trimSafe(mincode);
         this.grade = trimSafe(studGrade);
@@ -309,6 +309,8 @@ public class StudentInfoImpl implements StudentInfo {
     public String getLocalId() {
         return localId;
     }
+
+    public void setLocalId(String localId) { this.localId = localId; }
 
     @Override
     public List<OtherProgram> getOtherProgramParticipation() {

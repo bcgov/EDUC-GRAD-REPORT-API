@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2018-10-11T16:32:30 -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Summary 1950" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="23" rightMargin="22" topMargin="0" bottomMargin="0" uuid="091c5291-c43c-450f-a538-8c2f5a914dc4">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -45,127 +44,132 @@
 	<summary>
 		<band height="792">
 			<frame>
-				<reportElement x="0" y="28" width="567" height="138" uuid="f94f44ee-d1e9-4904-ae80-458c9ae57bf9"/>
+				<reportElement x="0" y="28" width="567" height="102" uuid="f94f44ee-d1e9-4904-ae80-458c9ae57bf9"/>
 				<staticText>
 					<reportElement style="SummaryTitle" x="0" y="0" width="567" height="20" uuid="6bddd718-1d7f-4605-9091-68f5d6f0312e"/>
 					<textElement textAlignment="Center"/>
 					<text><![CDATA[ACHIEVEMENT INDICATORS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="26" width="25" height="12" uuid="cc491bf0-b0e7-4d6f-ab13-a558bf072f90">
+					<reportElement style="SummaryBody" x="15" y="20" width="25" height="12" uuid="cc491bf0-b0e7-4d6f-ab13-a558bf072f90">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[A]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="37" width="25" height="12" uuid="994aa0d2-4f9a-491b-85c6-37c0199dc91c">
+					<reportElement style="SummaryBody" x="15" y="31" width="25" height="12" uuid="994aa0d2-4f9a-491b-85c6-37c0199dc91c">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[B]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="48" width="25" height="12" uuid="5bc78f80-ffb3-4ffb-881c-e0606e798a8c">
+					<reportElement style="SummaryBody" x="15" y="42" width="25" height="12" uuid="5bc78f80-ffb3-4ffb-881c-e0606e798a8c">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[C+]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="59" width="25" height="12" uuid="3d0ea376-207b-4d0e-92ad-b25c27608431">
+					<reportElement style="SummaryBody" x="15" y="53" width="25" height="12" uuid="3d0ea376-207b-4d0e-92ad-b25c27608431">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[C]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="70" width="25" height="12" uuid="c6eb8aa7-07a3-4d1f-af97-100d5ad5c742">
+					<reportElement style="SummaryBody" x="15" y="64" width="25" height="12" uuid="c6eb8aa7-07a3-4d1f-af97-100d5ad5c742">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[C-]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="26" width="57" height="12" uuid="3d1e045f-f85f-4eb9-9d10-fbf788ff3345">
+					<reportElement style="SummaryBody" x="45" y="20" width="57" height="12" uuid="3d1e045f-f85f-4eb9-9d10-fbf788ff3345">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[(86-100%)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="37" width="57" height="12" uuid="4f0063d1-1f0d-482b-b439-a58bbb599c7f">
+					<reportElement style="SummaryBody" x="45" y="31" width="57" height="12" uuid="4f0063d1-1f0d-482b-b439-a58bbb599c7f">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[(73-85%)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="48" width="57" height="12" uuid="247c80bc-73fe-4fd0-a04f-c0a8157f6439">
+					<reportElement style="SummaryBody" x="45" y="42" width="57" height="12" uuid="247c80bc-73fe-4fd0-a04f-c0a8157f6439">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[(67-72%)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="59" width="57" height="12" uuid="78001bb8-1a60-41fa-a69e-d5904c9e353a">
+					<reportElement style="SummaryBody" x="45" y="53" width="57" height="12" uuid="78001bb8-1a60-41fa-a69e-d5904c9e353a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[(60-66%)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="70" width="57" height="12" uuid="d9fa20d5-8515-4b70-9717-14f0f3d410c4">
+					<reportElement style="SummaryBody" x="45" y="64" width="57" height="12" uuid="d9fa20d5-8515-4b70-9717-14f0f3d410c4">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[(50-59%)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="170" y="26" width="180" height="12" uuid="9964bb04-50b1-4c80-b210-094b72858a9c">
+					<reportElement style="SummaryBody" x="121" y="20" width="180" height="12" uuid="9964bb04-50b1-4c80-b210-094b72858a9c">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Excellent Performance]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="170" y="37" width="180" height="12" uuid="b1c95142-a3dd-451a-98db-ecdd3f875876">
+					<reportElement style="SummaryBody" x="121" y="31" width="180" height="12" uuid="b1c95142-a3dd-451a-98db-ecdd3f875876">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Very Good Performance]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="170" y="48" width="180" height="12" uuid="91c1035f-d4e4-4d32-b871-cc4d6ec3628a">
+					<reportElement style="SummaryBody" x="121" y="42" width="180" height="12" uuid="91c1035f-d4e4-4d32-b871-cc4d6ec3628a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Good Performance]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="170" y="59" width="180" height="12" uuid="b63c0aa0-7954-46f0-bdcd-b10b5d1e0ac5">
+					<reportElement style="SummaryBody" x="121" y="53" width="180" height="12" uuid="b63c0aa0-7954-46f0-bdcd-b10b5d1e0ac5">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Satisfactory Performance]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="170" y="70" width="180" height="12" uuid="992edf70-7f2d-4b04-890d-54db3b9f017a">
+					<reportElement style="SummaryBody" x="121" y="64" width="180" height="12" uuid="992edf70-7f2d-4b04-890d-54db3b9f017a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Minimally Acceptable Performance]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="100" width="25" height="15" uuid="ffe99b63-4c4d-4201-886b-f2b64a77ad5a">
+					<reportElement style="SummaryBody" x="301" y="20" width="25" height="15" uuid="ffe99b63-4c4d-4201-886b-f2b64a77ad5a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top"/>
 					<text><![CDATA[SG]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="100" width="390" height="25" uuid="3fc47c18-82fc-4269-85a5-7c86ea40f93c"/>
+					<reportElement style="SummaryBody" x="331" y="20" width="236" height="34" uuid="3fc47c18-82fc-4269-85a5-7c86ea40f93c">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
 					<textElement verticalAlignment="Top">
 						<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 					</textElement>
 					<text><![CDATA[Standing granted where completion of normal requirements was not possible but credit was granted on the basis of adjudication by the school for non-examinable courses.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="123" width="25" height="15" uuid="d9be72a9-4a52-4259-9021-bc87d9ac9156">
+					<reportElement style="SummaryBody" x="301" y="54" width="25" height="15" uuid="d9be72a9-4a52-4259-9021-bc87d9ac9156">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top"/>
 					<text><![CDATA[TS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="123" width="390" height="15" uuid="7af1ae19-80f1-4082-ba18-d92fb2141776">
+					<reportElement style="SummaryBody" x="331" y="54" width="234" height="35" uuid="7af1ae19-80f1-4082-ba18-d92fb2141776">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
@@ -173,26 +177,26 @@
 					<text><![CDATA[Transfer standing granted for a course taken under another jurisdiction.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="81" width="25" height="12" uuid="b6861eb3-d521-473b-ab9f-18d788647622">
+					<reportElement style="SummaryBody" x="15" y="75" width="25" height="12" uuid="b6861eb3-d521-473b-ab9f-18d788647622">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[P]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="94" y="81" width="57" height="12" uuid="b59d93a8-015a-490f-a0d7-dbe54e4cdfa0">
+					<reportElement style="SummaryBody" x="45" y="75" width="57" height="12" uuid="b59d93a8-015a-490f-a0d7-dbe54e4cdfa0">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[(50-59%)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="170" y="81" width="180" height="12" uuid="7fd02687-9836-45e7-a3b8-d6ed3b04fccf">
+					<reportElement style="SummaryBody" x="121" y="75" width="180" height="12" uuid="7fd02687-9836-45e7-a3b8-d6ed3b04fccf">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Pass (only used before September 1994)]]></text>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement x="0" y="261" width="567" height="319" uuid="81266628-4faa-4f10-bb8b-b0c6425cfc5b">
+				<reportElement x="0" y="360" width="567" height="180" uuid="81266628-4faa-4f10-bb8b-b0c6425cfc5b">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<staticText>
@@ -227,61 +231,61 @@
 					<text><![CDATA[Advanced Placement Course.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="54" width="384" height="11" uuid="f59091fc-ce7e-48da-ab16-6b27c685ec17">
+					<reportElement style="SummaryBody" x="102" y="65" width="384" height="11" uuid="f59091fc-ce7e-48da-ab16-6b27c685ec17">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Career Prepartion Course.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="54" width="29" height="11" uuid="10e5e8f6-3357-4ccf-b5ac-c45839540fd0">
+					<reportElement style="SummaryBody" x="64" y="65" width="29" height="11" uuid="10e5e8f6-3357-4ccf-b5ac-c45839540fd0">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[CP]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="87" width="29" height="11" uuid="df61725c-ed2b-4ce3-b15b-5581639716d0">
+					<reportElement style="SummaryBody" x="64" y="98" width="29" height="11" uuid="df61725c-ed2b-4ce3-b15b-5581639716d0">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[LD]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="87" width="384" height="11" uuid="d4a5a53a-f26d-4a9c-9a69-563b72d4b90e">
+					<reportElement style="SummaryBody" x="102" y="98" width="384" height="11" uuid="d4a5a53a-f26d-4a9c-9a69-563b72d4b90e">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Locally Developed Course.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="76" width="384" height="11" uuid="17b7013b-0be7-4c92-b255-0c225d035280">
+					<reportElement style="SummaryBody" x="102" y="87" width="384" height="11" uuid="17b7013b-0be7-4c92-b255-0c225d035280">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[International Baccalaureate Course.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="76" width="29" height="11" uuid="8d589946-dea3-43cf-a0a9-20d1cf8ac55f">
+					<reportElement style="SummaryBody" x="64" y="87" width="29" height="11" uuid="8d589946-dea3-43cf-a0a9-20d1cf8ac55f">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[IB]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="65" width="29" height="11" uuid="2d21df85-ac3e-453d-956f-7a7d9b89dce7">
+					<reportElement style="SummaryBody" x="64" y="76" width="29" height="11" uuid="2d21df85-ac3e-453d-956f-7a7d9b89dce7">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[CS]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="65" width="384" height="11" uuid="4441b5ed-338d-4483-a313-ba0ec057c5e7">
+					<reportElement style="SummaryBody" x="102" y="76" width="384" height="11" uuid="4441b5ed-338d-4483-a313-ba0ec057c5e7">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[Correspondence Study Course.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="109" width="29" height="11" uuid="7991f420-be7c-4251-9b23-776b8568f7b4">
+					<reportElement style="SummaryBody" x="64" y="120" width="29" height="11" uuid="7991f420-be7c-4251-9b23-776b8568f7b4">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[NOTE:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="109" width="384" height="24" uuid="bc705356-fa2f-471d-bd24-31bfc366bd90">
+					<reportElement style="SummaryBody" x="102" y="120" width="384" height="24" uuid="bc705356-fa2f-471d-bd24-31bfc366bd90">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<box topPadding="0"/>
@@ -289,7 +293,7 @@
 					<text><![CDATA[Percentages are not reported for Non-Provincially Examinable courses completed before September 1994.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="139" width="384" height="24" uuid="f7a2e88c-bc53-41cb-b79a-16a39474d86d">
+					<reportElement style="SummaryBody" x="102" y="144" width="384" height="24" uuid="f7a2e88c-bc53-41cb-b79a-16a39474d86d">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<box topPadding="0"/>
@@ -297,24 +301,13 @@
 					<text><![CDATA[Courses completed after August 31, 2001 cannot be used to fulfill the Grade 12 Course-Based graduation requirements.]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="64" y="139" width="29" height="11" uuid="3f292abc-3179-4d69-8a9c-3d66689d3b8a">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					</reportElement>
-					<text><![CDATA[NOTE:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="SummaryBody" x="102" y="169" width="384" height="12" uuid="307b3463-1b87-4e31-81c0-68d22919a292"/>
-					<textElement verticalAlignment="Top"/>
-					<text><![CDATA[LD and CP courses do not meet Adult graduation program requirements.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="SummaryBody" x="64" y="169" width="29" height="11" uuid="b9444c00-d86b-4a5b-8004-86db45298f9c">
+					<reportElement style="SummaryBody" x="64" y="144" width="29" height="11" uuid="3f292abc-3179-4d69-8a9c-3d66689d3b8a">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<text><![CDATA[NOTE:]]></text>
 				</staticText>
 				<subreport>
-					<reportElement key="SIGNATURE" x="40" y="210" width="144" height="110" uuid="6c9b94ad-da41-431b-9c71-ebdbbece5e48">
+					<reportElement key="SIGNATURE" x="40" y="180" width="144" height="110" uuid="6c9b94ad-da41-431b-9c71-ebdbbece5e48">
 						<printWhenExpression><![CDATA[!$P{P_REPORT_PREVIEW}]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="P_REPORT_STYLE_FILE">
@@ -328,6 +321,18 @@
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Signature.jasper"]]></subreportExpression>
 				</subreport>
+				<staticText>
+					<reportElement style="SummaryBody" x="64" y="54" width="29" height="11" uuid="a50c40dd-cda4-4017-8e92-7bd4e4a56526">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[BA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SummaryBody" x="102" y="54" width="384" height="11" uuid="676209b3-9ca7-4f51-b717-f6222bc621fc">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[Board/Authority-Authorized Course]]></text>
+				</staticText>
 			</frame>
 			<subreport>
 				<reportElement x="0" y="660" width="567" height="100" uuid="86eb7503-a763-430e-87c8-87556421043b">
@@ -342,27 +347,119 @@
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/FORWARDED_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
-			<subreport>
-				<reportElement x="0" y="167" width="567" height="94" uuid="eea0da9b-0425-4742-adc2-61092b5950f5">
+			<staticText>
+				<reportElement style="SummaryTitle" x="15" y="140" width="521" height="15" uuid="6e581e09-597d-4e4b-908c-17fb789ebc5b">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<subreportParameter name="P_REPORT_STYLE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_BASE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_BASE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_TYPE">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_CONCRETE_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
-					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
-			</subreport>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[1986 GRADUATION PROGRAM REQUIREMENTS (Course-Based Program)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="15" y="162" width="541" height="28" uuid="41ab2309-2ee3-4742-b4b9-4576b0637f3b">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Program requirements are course-based rather than credit-based. The total number of Grade 11 and 12 courses required to graduate under this program is 13 courses.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="40" y="186" width="20" height="20" uuid="895b15cb-baf7-446b-bb65-b6b35b69166a">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[•]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="190" width="351" height="14" uuid="fd352098-b1aa-47e7-b1dc-e63b9072fc43">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top" markup="styled"/>
+				<text><![CDATA[<style isBold='true'>6 required courses</style>, one from each of the following:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="204" width="114" height="12" uuid="96d4afff-7922-49be-b72c-e1865e090c10">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Language Arts 11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="216" width="114" height="12" uuid="15504ab5-1562-4adc-ad1d-c73c6b89a3fc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Language Arts 12]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="228" width="114" height="12" uuid="11f782d8-1301-4466-9b7c-e847ce20851c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Social Studies 11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="240" width="114" height="12" uuid="cc2d8e71-2b2d-46a0-92be-d900b2c2b4f1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Math 11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="252" width="114" height="12" uuid="c7139f72-9c3e-404b-94e0-b116dc879796">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Science 11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="264" width="114" height="12" uuid="d6a16cb7-3b39-46b9-bdd0-a15397b407e1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<text><![CDATA[Consumer 10 or 12]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="15" y="282" width="541" height="28" uuid="e8b72c76-5d72-41f0-9e62-fa35ce7bcef7">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[As selected from required options found under the Course-Based Graduation Program in the online Course Registry. * 7 elective courses must be completed.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="40" y="306" width="20" height="20" uuid="1e5ce071-9e3d-4a1c-b20b-30ea0370df80">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[•]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="310" width="487" height="14" uuid="f634714f-209e-4f12-9137-76ca2d42875e">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Minimum 4 courses, including a Language Arts 12, must come from Grade 12 level provincially authorized or CP courses.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="40" y="326" width="20" height="20" uuid="dfecc090-9e37-4e9a-81b8-38331d002e18">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[•]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="69" y="330" width="487" height="14" uuid="222515a6-ab17-4322-aa3e-79ae5238fe67">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Maximum 2 LD courses may be used to meet requirements.]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

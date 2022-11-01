@@ -19,8 +19,9 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
-import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
+import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
+import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
@@ -33,6 +34,7 @@ import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -105,14 +107,14 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private static final String SORT_ASSESSMENT = "100";
 
-    private final String FORMAT_COURSE_CODE = "%-5s";
-    private final String FORMAT_COURSE_LEVEL = "%-3s";
-
     @Autowired
     private ReportService reportService;
 
     @Autowired
     private GradDataConvertionBean gradDataConvertionBean;
+
+    @Autowired
+    private ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
     /**
      * Creates the student's official transcript as a PDF (no other formats are
@@ -151,19 +153,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
-    public Transcript getTranscript() throws DomainServiceException {
-        final String methodName = "getTranscript()";
-        LOG.entering(CLASSNAME, methodName);
-
-        final String pen = getStudentPENId();
-        final Transcript transcript = getTranscript(pen);
-
-        LOG.exiting(CLASSNAME, methodName);
-        return transcript;
-    }
-
-    @Override
-    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public Transcript getTranscript(
             final String pen) throws DomainServiceException {
         final String methodName = "getTranscript(String)";
@@ -197,17 +186,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Transcript transcript;
 
         try {
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
+            ReportData reportData = getReportData(methodName);
             transcript = gradDataConvertionBean.getTranscript(reportData);
 
         } catch (Exception ex) {
@@ -228,17 +207,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final GradProgram gradProgram;
 
         try {
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
-
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-
+            ReportData reportData = getReportData(methodName);
             if (reportData.getGradProgram() == null || reportData.getGradProgram().getCode() == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
@@ -291,44 +260,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     }
 
     /**
-     * Creates a report in a specific format, either official or unofficial,
-     * depending on the preview value. Takes the PEN to generate the desired
-     * report.
-     *
-     * @param format
-     * @param preview Set to false to create an unofficial transcript
-     * @return
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    private StudentTranscriptReport createTranscriptReport(
-            final ReportFormat format,
-            final boolean preview, final PersonalEducationNumber pen, final Parameters<String, Object> parameters)
-            throws DomainServiceException, IOException, DataException {
-        final String methodName = "createTranscript(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, methodName);
-        LOG.log(Level.FINE, "Retrieved transcript for pen: {0}.", pen.getValue());
-
-        final StudentTranscriptReport report = getStudentTranscriptReport(pen, format, preview, parameters);
-        LOG.log(Level.INFO, "Created StudentTranscriptReport for pen: {0}.", pen.getValue());
-
-        LOG.exiting(CLASSNAME, methodName);
-        return report;
-    }
-
-    private String getStudentPENId() throws DomainServiceException {
-        final String methodName = "getStudentPENId()";
-        LOG.entering(CLASSNAME, methodName);
-
-        final PersonalEducationNumber pen = getStudentPEN();
-        final String result = pen.getValue();
-
-        LOG.exiting(CLASSNAME, methodName);
-        return result;
-    }
-
-    /**
      * Read the collection of transcript courses from the TRAX Adaptor which is
      * required for the transcript service.
      *
@@ -339,53 +270,35 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     private List<TranscriptCourse> getTranscriptCourseList(
             final String pen, final boolean interim)
             throws DataException, DomainServiceException {
-        final String m_ = "getTranscriptCourseList(String, boolean)";
-        LOG.entering(CLASSNAME, m_);
+        final String methodName = "getTranscriptCourseList(String, boolean)";
+        LOG.entering(CLASSNAME, methodName);
 
         final List<TranscriptCourse> results;
 
-        try {
+        ReportData reportData = getReportData(methodName);
+        if(interim) {
+            results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
+        } else {
+            results = gradDataConvertionBean.getTranscriptCourses(reportData);
+        }
 
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        LOG.log(Level.INFO,
+                "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
+                new Object[]{pen, interim});
 
-            if (reportData == null) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_MISSING,
-                        "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, m_, dse);
-                throw dse;
-            }
-
-            if(interim) {
-                results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
-            } else {
-                results = gradDataConvertionBean.getTranscriptCourses(reportData);
-            }
-
+        if (results != null && !results.isEmpty()) {
             LOG.log(Level.INFO,
-                    "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
-                    new Object[]{pen, interim});
-
-            if (results != null && !results.isEmpty()) {
-                LOG.log(Level.INFO,
-                        "Total courses {0} retrieved  for PEN: {1}",
-                        new Object[]{results.size(), pen});
-                LOG.log(Level.FINEST, "Retrieved student transcript course results:");
-                for (TranscriptCourse result : results) {
-                    LOG.log(Level.FINEST, "{0} {1}",
-                            new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
-                }
+                    "Total courses {0} retrieved  for PEN: {1}",
+                    new Object[]{results.size(), pen});
+            LOG.log(Level.FINEST, "Retrieved student transcript course results:");
+            for (TranscriptCourse result : results) {
+                LOG.log(Level.FINEST, "{0} {1}",
+                        new Object[]{result.getCourseName(), result.getFinalLetterGrade()});
             }
-        } catch (final Exception ex) {
-            String msg = "Failed to access transcript course data for student with PEN: ".concat(pen);
-            final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, m_, dex);
-            throw dex;
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, m_);
+        LOG.exiting(CLASSNAME, methodName);
         return results;
     }
 
@@ -418,6 +331,39 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         LOG.exiting(CLASSNAME, m_);
         return transcript;
+    }
+
+    /**
+     * Adapt the TRAX data from the collection of data value objects into a
+     * Transcript object.
+     *
+     * @param schoolCategoryCode
+     * @param transcriptTypeCode
+     * @param graduationProgramCode The graduation program code that influences sort order.
+     */
+    private GradProgram adapt(
+            final String schoolCategoryCode,
+            final String graduationProgramCode,
+            final TranscriptTypeCode transcriptTypeCode,
+            final String accessToken) {
+        final String m_ = "adapt(schoolCategoryCode, graduationProgramCode,transcriptTypeCode )";
+        LOG.entering(CLASSNAME, m_, transcriptTypeCode);
+
+        GradProgram result = createGradProgram(graduationProgramCode);
+
+        if("BLANK".equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null && schoolCategoryCode != null) {
+            List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode.getCode());
+            if(!entities.isEmpty()) {
+                GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
+                if(gradProgram != null) {
+                    gradProgram.setCode();
+                    result = gradProgram;
+                }
+            }
+        }
+
+        LOG.exiting(CLASSNAME, m_);
+        return result;
     }
 
     /**
@@ -557,7 +503,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final GradProgram program,
             final List<NonGradReason> nonGradReasons,
             final String gradMessage,
-            final Date updateDt,
+            final Date issueDate,
             final Parameters<String, Object> parameters,
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
@@ -579,25 +525,16 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         report.setGraduationProgram(program);
         report.setTranscript(transcript);
         report.setGraduationStatus(nonGradReasons, gradMessage);
-        report.setReportDate(updateDt);
+        report.setReportDate(issueDate);
         report.setFormat(reportFormat);
         report.setGraduationData(graduationData);
 
         final boolean interim = ((TranscriptImpl) transcript).getInterim();
         report.setInterim(interim);
 
-        final ReportDocument document;
+        ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
+        final ReportDocument document = reportService.export(report);
 
-        try {
-            ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
-            document = reportService.export(report);
-        } catch (final Exception ex) {
-            final String msg = "Failed to create report.";
-            LOG.log(Level.SEVERE, msg, ex);
-            final DomainServiceException dse = new DomainServiceException(msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dse);
-            throw dse;
-        }
         LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
 
         final String filename = report.getFilename();
@@ -631,6 +568,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         return parameters;
     }
 
+    @Override
+    GraduationReport createGraduationReport() {
+        throw new NotImplementedException("Method createGraduationReport() not implemented");
+    }
+
     private StudentTranscriptReport getStudentTranscriptReport(
             final PersonalEducationNumber personalEducationNumber,
             final ReportFormat format,
@@ -649,7 +591,8 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
         final School school = adaptSchool(studentInfo, getAccessToken(), true);
 
-        final GradProgram program = createGradProgram(programCode);
+        final GradProgram program = adapt(school.getSchoolCategoryCode(), programCode, transcript.getTranscriptTypeCode(), getAccessToken());
+
         final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);
 
         final String gradMessage = studentInfo.getGradMessage();

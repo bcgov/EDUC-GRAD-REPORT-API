@@ -1,13 +1,19 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
+import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
+import ca.bc.gov.educ.grad.report.api.client.Student;
 import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
+import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import lombok.SneakyThrows;
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -15,6 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Optional;
 
 public abstract class BaseController {
 
@@ -24,10 +31,39 @@ public abstract class BaseController {
     @Value("${endpoint.educ-grad-report-api.get-signature-by-code.url}")
     String signatureImageUrlProperty;
 
-    protected void logRequest() {
+    @Autowired
+    JsonTransformer jsonTransformer;
+
+    @SneakyThrows
+    protected void logRequest(Object request) {
         HttpServletRequest httpServletRequest =
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                         .getRequest();
+
+        StringBuffer requestURL = httpServletRequest.getRequestURL();
+        if (httpServletRequest.getQueryString() != null) {
+            requestURL.append("?").append(httpServletRequest.getQueryString());
+        }
+        String completeURL = requestURL.toString();
+        log.debug(completeURL);
+
+        String appLogLevel = Optional.ofNullable(System.getenv("APP_LOG_LEVEL")).orElse("INFO");
+        if("DEBUG".equalsIgnoreCase(appLogLevel)) {
+            if (request instanceof ReportRequest) {
+                ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest)request);
+                Student st = cloneRequest.getData().getStudent();
+                if (st != null) {
+                    st.setPen(null);
+                    st.setFirstName("John");
+                    st.setLastName("Doe");
+                }
+                String jsonRequest = jsonTransformer.marshall(cloneRequest);
+                log.debug(jsonRequest);
+            } else {
+                String jsonRequest = jsonTransformer.marshall(request);
+                log.debug(jsonRequest);
+            }
+        }
 
         String username = "";
         if (httpServletRequest.getUserPrincipal() != null) {

@@ -35,7 +35,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentAchievementReport(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getStudentAchievementReport");
-        logRequest();
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getStudentAchievementReport(report);
     }
@@ -46,7 +46,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentTranscriptReport(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getStudentTranscriptReport");
-        logRequest();
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getStudentTranscriptReport(report);
     }
@@ -57,7 +57,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentXmlTranscriptReport(@RequestBody XmlReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getStudentTranscriptReport");
-        logRequest();
+        logRequest(report);
         report.getData().setAccessToken(accessToken.replace("Bearer ", ""));
         return reportService.getStudentXmlTranscriptReport(report);
     }
@@ -68,7 +68,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentCertificate(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getStudentCertificate");
-        logRequest();
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getStudentCertificateReport(report);
     }
@@ -79,7 +79,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getPackingSlip(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getPackingSlip");
-        logRequest();
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getPackingSlipReport(report);
     }
@@ -90,7 +90,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getSchoolDistribution(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getSchoolDistribution");
-        logRequest();
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getSchoolDistributionReport(report);
     }
@@ -100,10 +100,21 @@ public class ReportController extends BaseController {
     @Operation(summary = "Generate School Graduation Report", description = "Generate School Graduation Report", tags = { "Report" })
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getSchoolGraduation(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
-        logger.debug("getSchoolDistribution");
-        logRequest();
+        logger.debug("getSchoolGraduation");
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getSchoolGraduationReport(report);
+    }
+
+    @PostMapping (ReportApiConstants.SCHOOL_NON_GRADUATION)
+    @PreAuthorize(PermissionsContants.SCHOOL_NON_GRADUATION)
+    @Operation(summary = "Generate School Non-Graduates Report", description = "Generate School Non-Graduates Report", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getSchoolNonGraduation(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
+        logger.debug("getSchoolNonGraduation");
+        logRequest(report);
+        setAccessToken(report, accessToken);
+        return reportService.getSchoolNonGraduationReport(report);
     }
 
     @PostMapping (ReportApiConstants.STUDENT_NON_GRAD)
@@ -112,7 +123,7 @@ public class ReportController extends BaseController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentNonGrad(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
         logger.debug("getStudentNonGrad");
-        logRequest();
+        logRequest(report);
         setAccessToken(report, accessToken);
         return reportService.getStudentNonGradReport(report);
     }
