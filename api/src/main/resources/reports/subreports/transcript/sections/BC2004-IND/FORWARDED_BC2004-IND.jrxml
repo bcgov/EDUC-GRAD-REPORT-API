@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-13T15:55:00 -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Forwarded" pageWidth="567" pageHeight="100" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="392d526e-f07c-4b21-84aa-abb41f56c8af">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -18,9 +17,10 @@
 		<band height="100">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<frame>
-				<reportElement x="103" y="15" width="360" height="85" uuid="98b5f21d-158e-4cd5-821b-e6972f904db5">
+				<reportElement x="20" y="15" width="520" height="85" uuid="98b5f21d-158e-4cd5-821b-e6972f904db5">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -36,7 +36,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="9.5" isBold="true"/>
 				</textElement>
-				<text><![CDATA[POST SECONDARY INSTITUTIONS TO WHICH TRANSCRIPTS HAVE BEEN FORWARDED]]></text>
+				<text><![CDATA[STUDENT'S POST-SECONDARY INSTITUTION SELECTIONS IN STUDENTTRANSCRIPTS SERVICE (STS)]]></text>
 			</staticText>
 		</band>
 	</summary>
