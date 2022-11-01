@@ -65,7 +65,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="175" splitType="Stretch">
+		<band height="189" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="104" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
@@ -125,14 +125,16 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="153" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+				<reportElement style="GeneratedText" x="0" y="170" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="144" width="555" height="1" uuid="ab20deb2-db97-4b0f-b6ae-5b73c00d97a8">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-			</line>
+			<staticText>
+				<reportElement x="5" y="140" width="545" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077"/>
+				<textElement verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or subgrade AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
@@ -170,8 +172,8 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
-							<textField isBlankWhenNull="true">
-								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="60" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="60" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Top">
@@ -203,8 +205,8 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
-							<textField isBlankWhenNull="true">
-								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="50" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="50" height="15" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement verticalAlignment="Top">
@@ -302,8 +304,8 @@
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
-							<textField isBlankWhenNull="true">
-								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="30" height="15" uuid="7e41a278-95f7-41dd-9b56-fae0ea8fcda5">
+							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="30" height="15" uuid="7e41a278-95f7-41dd-9b56-fae0ea8fcda5">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Top">
