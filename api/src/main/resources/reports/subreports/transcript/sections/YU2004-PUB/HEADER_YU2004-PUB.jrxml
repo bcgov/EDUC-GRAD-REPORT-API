@@ -18,6 +18,9 @@
 	<field name="student.PEN" class="java.lang.String">
 		<fieldDescription><![CDATA[student.PEN]]></fieldDescription>
 	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
+	</field>
 	<field name="student.birthdate" class="java.util.Date">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
 	</field>
@@ -177,8 +180,7 @@
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="Address" positionType="FixRelativeToBottom" x="0" y="20" width="289" height="64" uuid="5542dd62-67d9-4051-b8f9-ff7a9c581f48"/>
-					<textFieldExpression><![CDATA[($P{P_STUDENT_FULL_NAME}.substring( 0, Math.min( $P{P_STUDENT_FULL_NAME}.length(), 37 ) ) + "\n" +
-$F{student.address.formatted}).toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[($F{student.fullName} + "\n" + $F{student.address.formatted}).toUpperCase()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<textField isBlankWhenNull="true">

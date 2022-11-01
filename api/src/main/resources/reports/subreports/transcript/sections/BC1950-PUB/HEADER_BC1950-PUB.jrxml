@@ -69,8 +69,8 @@
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<textField isBlankWhenNull="true">
-					<reportElement style="CourseRow" x="0" y="21" width="270" height="17" uuid="9af5bb4b-2def-4978-8671-479260d004e8">
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement style="CourseRow" stretchType="ContainerHeight" x="0" y="21" width="270" height="17" uuid="9af5bb4b-2def-4978-8671-479260d004e8">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<box>
@@ -79,7 +79,7 @@
 						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<textElement verticalAlignment="Middle">
+					<textElement verticalAlignment="Top">
 						<paragraph leftIndent="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{student.fullName}]]></textFieldExpression>
