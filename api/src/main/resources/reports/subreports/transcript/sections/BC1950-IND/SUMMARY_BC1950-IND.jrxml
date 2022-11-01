@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Summary 2018" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="23" rightMargin="22" topMargin="0" bottomMargin="0" uuid="091c5291-c43c-450f-a538-8c2f5a914dc4">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
@@ -44,10 +44,12 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","MOE_ADM")]]></defaultValueExpression>
 	</parameter>
 	<summary>
-		<band height="760">
+		<band height="772">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
-				<reportElement style="SummaryTitle" x="0" y="28" width="150" height="20" uuid="cc25d2d5-9df5-4275-affc-52b6e33387e4">
+				<reportElement style="SummaryTitle" x="0" y="28" width="144" height="20" uuid="cc25d2d5-9df5-4275-affc-52b6e33387e4">
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left">
 					<paragraph rightIndent="5"/>
@@ -139,12 +141,17 @@
 				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryTitle" x="18" y="250" width="549" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
+				<reportElement style="SummaryTitle" x="18" y="240" width="549" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[B.C. ADULT GRADUATION PROGRAM REQUIREMENTS]]></text>
+				<text><![CDATA[ADULT GRADUATION PROGRAM REQUIREMENTS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="264" width="549" height="36" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd"/>
+				<reportElement style="SummaryBody" x="18" y="254" width="549" height="46" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[To graduate with an Adult Dogwood in the B.C. Secondary School System, adult learners must be 18 years or older. At least three of five required 4-credit courses must be completed after the adult student has entered the Adult Graduation Program.]]></text>
 			</staticText>
@@ -178,9 +185,11 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="333" width="160" height="11" uuid="1327b5fb-924b-4713-bca2-b0681aaa80b0"/>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Social Studies (4 credits) – if applicable]]></text>
+				<reportElement style="SummaryBody" x="75" y="333" width="240" height="11" uuid="1327b5fb-924b-4713-bca2-b0681aaa80b0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" markup="styled"/>
+				<text><![CDATA[Social Studies (4 credits) – <style isItalic='true'>if applicable</style>]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="45" y="322" width="16" height="11" uuid="e4ba81e7-019c-49ee-93ef-2163ada88acb"/>
@@ -207,8 +216,8 @@
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="75" y="344" width="405" height="11" uuid="b6fc5967-aaa4-4bb4-b8e6-9157b3eba328"/>
-				<textElement textAlignment="Left"/>
-				<text><![CDATA[Grade 12 Ministry-Authorized course elective (8 credits or 12 credits if no REQ #3)]]></text>
+				<textElement textAlignment="Left" markup="styled"/>
+				<text><![CDATA[Grade 12 Ministry-Authorized course elective (8 credits <style isBold='true'>or</style> 12 credits if no REQ #3)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryTitle" x="18" y="390" width="287" height="20" uuid="f3fd2419-7547-4d10-9826-4401b55314e3"/>
@@ -237,30 +246,31 @@
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="285" y="411" width="29" height="12" uuid="093fda9a-d30b-4a19-b9f5-d0412682087d"/>
-				<text><![CDATA[IB]]></text>
+				<text><![CDATA[E]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="325" y="423" width="242" height="12" uuid="54666776-ea9f-4497-88e2-55a6402097d5"/>
-				<text><![CDATA[Independent Direction Studies]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="SummaryBody" x="325" y="411" width="242" height="12" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
 				<text><![CDATA[International Baccalaureate Course]]></text>
 			</staticText>
 			<staticText>
+				<reportElement style="SummaryBody" x="325" y="411" width="242" height="12" uuid="f0fde1f8-c01c-4ee8-9b71-11639ec4cdb9"/>
+				<text><![CDATA[Course credit earned through equivalency review]]></text>
+			</staticText>
+			<staticText>
 				<reportElement style="SummaryBody" x="325" y="435" width="242" height="12" uuid="4d9417c4-eeeb-4433-947a-266667375414"/>
-				<text><![CDATA[Locally Developed Course ]]></text>
+				<text><![CDATA[Independent Directed Studies Course]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="285" y="435" width="29" height="12" uuid="59efa905-0a88-492d-ad64-21cb1e4c3ded"/>
-				<text><![CDATA[LD]]></text>
+				<text><![CDATA[IDS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="285" y="423" width="29" height="12" uuid="fba65936-1396-4a68-8397-ec8f323f34bc"/>
-				<text><![CDATA[IDS]]></text>
+				<text><![CDATA[IB]]></text>
 			</staticText>
 			<subreport>
-				<reportElement key="SIGNATURE" x="10" y="490" width="144" height="122" uuid="2b4c0a6b-d883-4ef4-afeb-f22297c921a3">
+				<reportElement key="SIGNATURE" x="10" y="500" width="144" height="122" uuid="2b4c0a6b-d883-4ef4-afeb-f22297c921a3">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<printWhenExpression><![CDATA[!$P{P_REPORT_PREVIEW}]]></printWhenExpression>
 				</reportElement>
 				<subreportParameter name="P_REPORT_STYLE_FILE">
@@ -285,8 +295,9 @@
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/FORWARDED_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="0" y="132" width="567" height="94" uuid="931d6184-3d5a-421e-a58f-e83d7480d6fc">
+				<reportElement x="0" y="142" width="567" height="94" uuid="931d6184-3d5a-421e-a58f-e83d7480d6fc">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<subreportParameter name="P_REPORT_STYLE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
@@ -309,8 +320,9 @@
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement style="SummaryTitle" x="150" y="28" width="367" height="20" uuid="6fc2a55e-6ff5-4fea-97cd-8060e51f7a85">
+				<reportElement style="SummaryTitle" x="144" y="28" width="367" height="20" uuid="6fc2a55e-6ff5-4fea-97cd-8060e51f7a85">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left">
 					<font isItalic="true"/>
@@ -342,21 +354,65 @@
 				<text><![CDATA[Course credit earned through challenge process]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="58" y="447" width="222" height="12" uuid="6ecd4a2e-fd89-416f-9ab4-87f8623cea74"/>
-				<text><![CDATA[Course credit earned through equivalency review]]></text>
+				<reportElement style="SummaryBody" x="58" y="459" width="222" height="12" uuid="6ecd4a2e-fd89-416f-9ab4-87f8623cea74">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[Correspondence Study Course]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="18" y="447" width="29" height="12" uuid="0f1d759a-4103-426a-a7f3-06e6dfdf4b91"/>
-				<text><![CDATA[E]]></text>
+				<reportElement style="SummaryBody" x="18" y="459" width="29" height="12" uuid="0f1d759a-4103-426a-a7f3-06e6dfdf4b91">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[CS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="285" y="447" width="29" height="12" uuid="80191d57-1e17-4494-b212-f6597c5a93bb"/>
+				<reportElement style="SummaryBody" x="285" y="459" width="29" height="12" uuid="80191d57-1e17-4494-b212-f6597c5a93bb">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<text><![CDATA[Q]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="325" y="447" width="242" height="53" uuid="9bd28020-9c0a-4e40-8085-9c8a9b0745af"/>
+				<reportElement style="SummaryBody" x="325" y="459" width="242" height="53" uuid="9bd28020-9c0a-4e40-8085-9c8a9b0745af">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[Provincial exams (discontinued July 1, 2019) were optional for the Adult Graduation Program. A “Q” code means the course mark is reported as the final mark because the student chose not to write.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="0" y="106" width="25" height="12" uuid="f29edc83-9eaa-45ad-a56f-c80deb640efc">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[P]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="25" y="106" width="57" height="12" uuid="7308614a-3024-4cd5-a319-daa23910e124">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<text><![CDATA[(50-59%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="85" y="106" width="158" height="24" uuid="2a05394e-c342-442c-8006-b97d0417474b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Pass (only used before September 1994)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="18" y="447" width="29" height="12" uuid="92721234-b85b-4106-bfba-506cd99d833d"/>
+				<text><![CDATA[CP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="58" y="447" width="222" height="12" uuid="46d1a26c-ef34-4080-a9c2-8a2257a604fe"/>
+				<text><![CDATA[Career Preparation Course]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="285" y="447" width="29" height="12" uuid="848d29c5-690e-4e75-8065-25ea2f16415d"/>
+				<text><![CDATA[LD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="325" y="447" width="242" height="12" uuid="05bb6cbe-5288-4c55-8d57-374a26277c77"/>
+				<text><![CDATA[Locally Developed Course ]]></text>
 			</staticText>
 		</band>
 	</summary>
