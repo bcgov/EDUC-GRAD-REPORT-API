@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio -->
 <jasperTemplate xmlns="http://jasperreports.sourceforge.net/jasperreports/template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/template http://jasperreports.sourceforge.net/xsd/jaspertemplate.xsd">
-	<style name="GeneratedText" fontName="Inconsolata" fontSize="9"/>
-	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="LiberationSans"/>
-	<style name="Body" style="StaticText" vTextAlign="Top" fontName="Carlito" fontSize="9">
+	<style name="GeneratedText" fontName="BCSans" fontSize="8"/>
+	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
+	<style name="Body" style="StaticText" vTextAlign="Top" fontName="BCSans" fontSize="8">
 		<box bottomPadding="2"/>
 	</style>
 	<style name="Contact" style="Body" hTextAlign="Center" isBold="true" isItalic="true"/>
 	<style name="ContactHyperlink" style="Body" hTextAlign="Center"/>
-	<style name="SectionTitle" style="Body" fontSize="11" isBold="true"/>
+	<style name="SectionTitle" style="Body" fontSize="10" isBold="true"/>
 	<style name="SubsectionTitle" style="Body" hTextAlign="Center" isBold="true"/>
-	<style name="InfoBoxHeader" style="StaticText" hTextAlign="Left" vTextAlign="Top" fontSize="6">
+	<style name="InfoBoxHeader" style="StaticText" hTextAlign="Left" vTextAlign="Top" fontSize="5">
 		<box topPadding="1" leftPadding="2"/>
 		<paragraph lineSpacing="Proportional" lineSpacingSize="0.8"/>
 	</style>
@@ -18,12 +18,12 @@
 		<box bottomPadding="1"/>
 		<paragraph leftIndent="7"/>
 	</style>
-	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
+	<style name="Title" style="StaticText" fontSize="11" isBold="true"/>
 	<style name="Address" style="GeneratedText" hTextAlign="Left" vTextAlign="Top" isBold="false">
 		<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 	</style>
-	<style name="Authenticity" style="StaticText" hTextAlign="Center" vTextAlign="Middle" fontSize="6"/>
-	<style name="CourseHeader" style="StaticText" hTextAlign="Center" vTextAlign="Middle" fontSize="6">
+	<style name="Authenticity" style="StaticText" hTextAlign="Center" vTextAlign="Middle" fontSize="5"/>
+	<style name="CourseHeader" style="StaticText" hTextAlign="Center" vTextAlign="Middle" fontSize="5">
 		<box topPadding="2" bottomPadding="2">
 			<topPen lineWidth="0.5"/>
 			<leftPen lineWidth="0.5"/>
@@ -32,19 +32,19 @@
 		<paragraph leftIndent="2"/>
 	</style>
 	<style name="CourseRow" style="GeneratedText" vTextAlign="Top"/>
-	<style name="GraduationStatus" style="GeneratedText" fontSize="9">
+	<style name="GraduationStatus" style="GeneratedText" fontSize="8">
 		<paragraph lineSpacing="Proportional" lineSpacingSize="1.2"/>
 	</style>
-	<style name="SummaryBody" style="StaticText" fontSize="9"/>
-	<style name="SummaryTitle" style="Title" fontSize="10"/>
+	<style name="SummaryBody" style="StaticText" fontSize="8"/>
+	<style name="SummaryTitle" style="Title" fontSize="9"/>
 	<style name="InfoHeader" style="StaticText" vTextAlign="Top" isBold="true"/>
 	<style name="InfoContent" style="StaticText" vTextAlign="Top"/>
-	<style name="TableHeader" style="StaticText" hTextAlign="Center" vTextAlign="Top" fontSize="9" isBold="true">
+	<style name="TableHeader" style="StaticText" hTextAlign="Center" vTextAlign="Top" fontSize="8" isBold="true">
 		<box>
 			<bottomPen lineWidth="0.5"/>
 		</box>
 	</style>
-	<style name="TableBody" style="Body" fontSize="8">
+	<style name="TableBody" style="Body" fontSize="7">
 		<box topPadding="1" leftPadding="2"/>
 		<paragraph leftIndent="4" rightIndent="4"/>
 	</style>
@@ -72,7 +72,7 @@
 		</box>
 	</style>
 	<style name="TabularRowNumeric" style="TabularRow" hTextAlign="Right"/>
-	<style name="ExaminableTitle" style="Title" mode="Opaque" backcolor="#EEEEEE" hTextAlign="Center" fontSize="9"/>
+	<style name="ExaminableTitle" style="Title" mode="Opaque" backcolor="#EEEEEE" hTextAlign="Center" fontSize="8"/>
 	<style name="CourseNameAdult" style="CourseRow">
 		<paragraph leftIndent="30"/>
 	</style>
@@ -85,7 +85,7 @@
 		</box>
 		<paragraph leftIndent="7"/>
 	</style>
-	<style name="ExaminableHeader" style="TabularHeader" mode="Opaque" backcolor="#DDDDDD" vTextAlign="Top" fontSize="9">
+	<style name="ExaminableHeader" style="TabularHeader" mode="Opaque" backcolor="#DDDDDD" vTextAlign="Top" fontSize="8">
 		<box topPadding="2"/>
 	</style>
 	<style name="ExaminableRowNumeric" style="TabularRowNumeric" hTextAlign="Right" vTextAlign="Middle">
