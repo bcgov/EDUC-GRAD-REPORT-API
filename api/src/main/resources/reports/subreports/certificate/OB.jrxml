@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2017-02-09T13:06:24 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="E" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\CertificateAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -70,7 +69,7 @@
 		<initialValueExpression><![CDATA[""]]></initialValueExpression>
 	</variable>
 	<title>
-		<band height="557">
+		<band height="558">
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="57" width="792" height="29" uuid="7d4b4b94-866e-4765-8eb0-52d5ca4bafde"/>
 				<textFieldExpression><![CDATA[$R{header.title.EI}]]></textFieldExpression>
@@ -98,83 +97,86 @@
 				<textFieldExpression><![CDATA[$R{header.issuance}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement x="27" y="372" width="269" height="82" uuid="78987025-a306-40ff-b600-bdf0febe0081">
+				<reportElement x="27" y="388" width="269" height="75" uuid="78987025-a306-40ff-b600-bdf0febe0081">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<image onErrorType="Blank">
-					<reportElement x="2" y="19" width="212" height="62" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0"/>
+					<reportElement x="13" y="0" width="247" height="58" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
 					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + "")]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="9" y="67" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
+					<reportElement style="SignatoryTitle" x="9" y="60" width="245" height="15" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "MOE" : "MOEF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="26" y="487" width="278" height="70" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
+				<reportElement x="26" y="470" width="270" height="83" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<image onErrorType="Blank">
-					<reportElement x="14" y="-1" width="264" height="52" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
+					<reportElement x="14" y="0" width="247" height="51" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
 					<imageExpression><![CDATA[""]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="0" y="54" width="278" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
-					<box>
-						<topPen lineWidth="0.0"/>
-					</box>
+					<reportElement style="SignatoryTitle" stretchType="ContainerHeight" x="70" y="54" width="130" height="29" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "103" : "103").toString()]]></textFieldExpression>
 				</textField>
-				<frame>
-					<reportElement x="10" y="54" width="245" height="2" uuid="e1bc4c56-f185-4c13-ba71-fc39f0141cfa"/>
-					<box>
-						<topPen lineWidth="1.0"/>
-					</box>
-				</frame>
 			</frame>
 			<frame>
-				<reportElement x="505" y="396" width="241" height="56" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
+				<reportElement x="505" y="396" width="235" height="56" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDate" x="0" y="28" width="241" height="12" uuid="11d6f836-dae5-4b8a-8444-93eb425bdfe1">
+					<reportElement style="OrgDate" x="0" y="28" width="235" height="12" uuid="11d6f836-dae5-4b8a-8444-93eb425bdfe1">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDateTitle" x="0" y="40" width="241" height="16" uuid="5b07d5d0-b45a-440a-b89d-47eec90e43d5"/>
+					<reportElement style="OrgDateTitle" x="0" y="40" width="235" height="16" uuid="5b07d5d0-b45a-440a-b89d-47eec90e43d5"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.principal.school}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="446" width="235" height="56" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
+				<reportElement x="505" y="452" width="235" height="50" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDate" x="0" y="28" width="235" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
+					<reportElement style="OrgDate" x="0" y="22" width="235" height="12" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDateTitle" x="0" y="40" width="235" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86"/>
+					<reportElement style="OrgDateTitle" x="0" y="34" width="235" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.school}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="496" width="235" height="61" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
+				<reportElement x="505" y="502" width="235" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDate" x="0" y="33" width="235" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97"/>
+					<reportElement style="OrgDate" x="0" y="27" width="235" height="12" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDateTitle" x="0" y="45" width="235" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a"/>
+					<reportElement style="OrgDateTitle" x="0" y="39" width="235" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.date}]]></textFieldExpression>
 				</textField>

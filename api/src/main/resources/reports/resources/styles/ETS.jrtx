@@ -36,7 +36,7 @@
 		<paragraph lineSpacing="Proportional" lineSpacingSize="1.2"/>
 	</style>
 	<style name="SummaryBody" style="StaticText" fontSize="8"/>
-	<style name="SummaryTitle" style="Title" fontSize="9"/>
+	<style name="SummaryTitle" style="Title" fontSize="8"/>
 	<style name="InfoHeader" style="StaticText" vTextAlign="Top" isBold="true"/>
 	<style name="InfoContent" style="StaticText" vTextAlign="Top"/>
 	<style name="TableHeader" style="StaticText" hTextAlign="Center" vTextAlign="Top" fontSize="8" isBold="true">
