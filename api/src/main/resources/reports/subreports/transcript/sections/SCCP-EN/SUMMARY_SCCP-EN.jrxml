@@ -242,7 +242,8 @@
 				<text><![CDATA[(50-59%)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="124" y="105" width="158" height="25" uuid="86fdcf9f-18cf-4789-b783-55234861ac02"/>
+				<reportElement style="SummaryBody" stretchType="ContainerHeight" x="124" y="105" width="158" height="25" uuid="86fdcf9f-18cf-4789-b783-55234861ac02"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[Pass (only used before September 1994)]]></text>
 			</staticText>
 			<staticText>

@@ -498,12 +498,12 @@
 				<text><![CDATA[(Transfer Standing)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="431" width="523" height="19" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>
+				<reportElement style="SummaryBody" x="10" y="431" width="523" height="19" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[• Multiple courses can be designated as meeting a requirement where partial credits are used]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="450" width="523" height="20" uuid="29384896-6ce9-4323-9e2a-125a2e8e04d4"/>
+				<reportElement style="SummaryBody" x="10" y="450" width="523" height="20" uuid="29384896-6ce9-4323-9e2a-125a2e8e04d4"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[• A list of all courses that may be used to satisfy requirements is found in the Ministry of Education Course Registry]]></text>
 			</staticText>

@@ -187,9 +187,10 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                         r.getMark().getInterimPercent(), //String interimMark,
                         r.getMark().getInterimLetterGrade(), //String interimLetterGrade,
                         r.getRequirement(), //String requirement,
-                        null, //String specialCase,
+                        r.getEquivalency(), //String equivalency,
                         r.getCourse().getType() //Character courseType
                 );
+
                 result.add(course);
             }
         }

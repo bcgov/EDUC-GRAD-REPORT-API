@@ -341,7 +341,7 @@
 				<text><![CDATA[(Transfer Standing)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="18" y="355" width="523" height="19" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>
+				<reportElement style="SummaryBody" x="18" y="355" width="523" height="19" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>
 				<textElement verticalAlignment="Bottom"/>
 				<text><![CDATA[A list of all courses that may be used to satisfy these requirements is found in the online Course Registry]]></text>
 			</staticText>
