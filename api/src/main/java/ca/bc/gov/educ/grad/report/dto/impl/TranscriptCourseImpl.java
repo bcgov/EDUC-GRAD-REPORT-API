@@ -94,7 +94,7 @@ public class TranscriptCourseImpl implements TranscriptCourse {
             final String interimMark,
             final String interimLetterGrade,
             final String requirement,
-            final String specialCase,
+            final String equivalency,
             final String courseType) {
         this.pen = pen;
         this.courseName = nullSafe(courseName);
@@ -108,7 +108,7 @@ public class TranscriptCourseImpl implements TranscriptCourse {
         this.interimMark = nullSafe(interimMark);
         this.interimLetterGrade = nullSafe(interimLetterGrade);
         this.requirement = nullSafe(requirement);
-        this.equivalency = nullSafe(specialCase);
+        this.equivalency = nullSafe(equivalency);
         this.courseType = nullSafe(courseType);
         this.finalPercent = nullSafe(finalPercent).trim();
     }

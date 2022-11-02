@@ -138,7 +138,7 @@
           },
           "requirement": "",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "E",
           "usedForGrad": ""
         },
         {
@@ -234,7 +234,7 @@
           },
           "requirement": "8",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "S",
           "usedForGrad": ""
         },
         {
@@ -306,7 +306,7 @@
           },
           "requirement": "2",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "C",
           "usedForGrad": ""
         },
         {
@@ -786,7 +786,7 @@
           },
           "requirement": "16",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "A",
           "usedForGrad": ""
         },
         {
