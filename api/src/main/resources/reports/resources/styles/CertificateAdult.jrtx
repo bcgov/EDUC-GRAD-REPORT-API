@@ -15,6 +15,6 @@
 		</box>
 		<paragraph spacingBefore="4"/>
 	</style>
-	<style name="SignatoryTitle" style="OrgDateTitle" fontSize="12"/>
+	<style name="SignatoryTitle" style="OrgDateTitle" fontSize="11"/>
 	<style name="Issuer" style="Body"/>
 </jasperTemplate>
