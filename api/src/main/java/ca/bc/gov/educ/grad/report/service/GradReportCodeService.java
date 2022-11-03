@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.dto.*;
 import ca.bc.gov.educ.grad.report.entity.*;
 import ca.bc.gov.educ.grad.report.exception.ServiceException;
 import ca.bc.gov.educ.grad.report.transformer.*;
+import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
@@ -142,11 +141,11 @@ public class GradReportCodeService implements Serializable {
 
     }
 
-    public Map<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
+    public SerializableMap<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
         String methodName = "getSignatureBlockTypeCodesMap()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        Map<String, SignatureBlockTypeCode> _result = new HashMap<>();
+        SerializableMap<String, SignatureBlockTypeCode> _result = new SerializableMap<>();
 
         try {
 
