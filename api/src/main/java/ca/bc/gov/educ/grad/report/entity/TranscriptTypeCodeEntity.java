@@ -20,10 +20,10 @@ public class TranscriptTypeCodeEntity extends BaseEntity {
     private String transcriptTypeCode;
 
     @Column(name = "LABEL", nullable = false)
-    private String LABEL;
+    private String label;
 
     @Column(name = "DESCRIPTION", nullable = false)
-    private String DESCRIPTION;
+    private String description;
 
     @Column(name = "DISPLAY_ORDER", nullable = false)
     private String displayOrder;

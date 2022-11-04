@@ -1,6 +1,8 @@
 package ca.bc.gov.educ.grad.report.model.common;
 
-public interface SignatureBlockType {
+import java.io.Serializable;
+
+public interface SignatureBlockType extends Serializable {
 
     String getCode();
 

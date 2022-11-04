@@ -20,10 +20,10 @@ public class CertificateTypeCodeEntity extends BaseEntity {
     private String certificateTypeCode;
 
     @Column(name = "LABEL", nullable = false)
-    private String LABEL;
+    private String label;
 
     @Column(name = "DESCRIPTION", nullable = false)
-    private String DESCRIPTION;
+    private String description;
 
     @Column(name = "DISPLAY_ORDER", nullable = false)
     private String displayOrder;

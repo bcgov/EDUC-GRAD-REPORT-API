@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.dto.impl.CertificateImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.GradCertificateReportImpl;
+import ca.bc.gov.educ.grad.report.dto.impl.SchoolImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateSubType;
@@ -39,8 +40,10 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
+import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -108,13 +111,18 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
 
         if(school != null && !StringUtils.isBlank(school.getMinistryCode())) {
             TraxSchool traxSchool = getSchool(school.getMinistryCode(), accessToken);
-            if (traxSchool != null && "N".equalsIgnoreCase(traxSchool.getCertificateEligibility())) {
-                EntityNotFoundException dse = new EntityNotFoundException(
-                        getClass(),
-                        REPORT_DATA_VALIDATION,
-                        "School is not eligible for certificates");
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
+            if(traxSchool != null) {
+                if ("N".equalsIgnoreCase(traxSchool.getCertificateEligibility())) {
+                    EntityNotFoundException dse = new EntityNotFoundException(
+                            getClass(),
+                            REPORT_DATA_VALIDATION,
+                            "School is not eligible for certificates");
+                    LOG.throwing(CLASSNAME, methodName, dse);
+                    throw dse;
+                }
+                if(StringUtils.isBlank(school.getSchoolCategoryCode())) {
+                    ((SchoolImpl) school).setSchoolCategoryCode(traxSchool.getSchoolCategoryCode());
+                }
             }
         }
 
@@ -139,8 +147,8 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE, "EnglishCert flag: {0}", englishCert);
         LOG.log(Level.FINE, "FrenchCert flag: {0}", frenchCert);
 
-        final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
-        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
+        final SerializableMap<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
+        final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(SerializationUtils.clone(signatureBlockTypeCodes));
         ((CertificateImpl)certificate).setSignatureBlockTypes(signatureBlockTypes);
 
         final List<BusinessReport> certificates = new ArrayList<>();

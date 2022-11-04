@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.dto.*;
 import ca.bc.gov.educ.grad.report.entity.*;
 import ca.bc.gov.educ.grad.report.exception.ServiceException;
 import ca.bc.gov.educ.grad.report.transformer.*;
+import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
@@ -51,18 +50,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = "getCertificateTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        List<CertificateTypeCode> _result;
+        List<CertificateTypeCode> result;
 
         try {
 
             List<CertificateTypeCodeEntity> dtos = certificateTypeCodeRepository.findAll();
-            _result = gradReportCertificateTypeCodeTransformer.transformToDTO(dtos);
+            result = gradReportCertificateTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "List<CertificateTypeCode>"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -70,18 +69,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = String.format("getCertificateTypeCode(%s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        CertificateTypeCode _result;
+        CertificateTypeCode result;
 
         try {
 
             CertificateTypeCodeEntity dto = certificateTypeCodeRepository.findByCertificateCode(code);
-            _result = gradReportCertificateTypeCodeTransformer.transformToDTO(dto);
+            result = gradReportCertificateTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "CertificateTypeCode"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -89,18 +88,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = "getTranscriptTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        List<TranscriptTypeCode> _result;
+        List<TranscriptTypeCode> result;
 
         try {
 
             List<TranscriptTypeCodeEntity> dtos = transcriptTypeCodeRepository.findAll();
-            _result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dtos);
+            result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "List<TranscriptTypeCode>"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -108,18 +107,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = String.format("getTranscriptTypeCode(%s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        TranscriptTypeCode _result;
+        TranscriptTypeCode result;
 
         try {
 
             TranscriptTypeCodeEntity dto = transcriptTypeCodeRepository.findByTranscriptCode(code);
-            _result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dto);
+            result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "TranscriptTypeCode"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -127,39 +126,39 @@ public class GradReportCodeService implements Serializable {
         String methodName = "getSignatureBlockTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        List<SignatureBlockTypeCode> _result;
+        List<SignatureBlockTypeCode> result;
 
         try {
 
             List<SignatureBlockTypeCodeEntity> dtos = signatureBlockTypeRepository.findAll();
-            _result = gradReportSignatureBlockTypeCodeTransformer.transformToDTO(dtos);
+            result = gradReportSignatureBlockTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "List<SignatureBlockTypeCode>"));
         }
 
-        return _result;
+        return result;
 
     }
 
-    public Map<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
+    public SerializableMap<String, SignatureBlockTypeCode> getSignatureBlockTypeCodesMap() {
         String methodName = "getSignatureBlockTypeCodesMap()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        Map<String, SignatureBlockTypeCode> _result = new HashMap<>();
+        SerializableMap<String, SignatureBlockTypeCode> result = new SerializableMap<>();
 
         try {
 
             List<SignatureBlockTypeCode> dtos = getSignatureBlockTypeCodes();
             for(SignatureBlockTypeCode code: dtos) {
-                _result.put(code.getSignatureBlockTypeCode(), code);
+                result.put(code.getSignatureBlockTypeCode(), code);
             }
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "Map<String, SignatureBlockTypeCode>"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -167,18 +166,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = String.format("getSignatureBlockTypeCode(%s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        SignatureBlockTypeCode _result;
+        SignatureBlockTypeCode result;
 
         try {
 
             SignatureBlockTypeCodeEntity dto = signatureBlockTypeRepository.findBySignatureBlockTypeCode(code);
-            _result = gradReportSignatureBlockTypeCodeTransformer.transformToDTO(dto);
+            result = gradReportSignatureBlockTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "SignatureBlockTypeCode"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -201,18 +200,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = "getDocumentStatusCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        List<DocumentStatusCode> _result;
+        List<DocumentStatusCode> result;
 
         try {
 
             List<DocumentStatusCodeEntity> dtos = documentStatusCodeRepository.findAll();
-            _result = gradReportDocumentStatusCodeTransformer.transformToDTO(dtos);
+            result = gradReportDocumentStatusCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "List<DocumentStatusCode>"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -220,18 +219,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = String.format("getDocumentStatusCode(%s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        DocumentStatusCode _result;
+        DocumentStatusCode result;
 
         try {
 
             DocumentStatusCodeEntity dto = documentStatusCodeRepository.findByDocumentStatusCode(code);
-            _result = gradReportDocumentStatusCodeTransformer.transformToDTO(dto);
+            result = gradReportDocumentStatusCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "DocumentStatusCode"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -239,18 +238,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = "getReportTypeCodes()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        List<ReportTypeCode> _result;
+        List<ReportTypeCode> result;
 
         try {
 
             List<ReportTypeCodeEntity> dtos = reportTypeCodeRepository.findAll();
-            _result = gradReportReportTypeCodeTransformer.transformToDTO(dtos);
+            result = gradReportReportTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "List<ReportTypeCode>"));
         }
 
-        return _result;
+        return result;
 
     }
 
@@ -258,18 +257,18 @@ public class GradReportCodeService implements Serializable {
         String methodName = String.format("getReportTypeCode(%s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-        ReportTypeCode _result;
+        ReportTypeCode result;
 
         try {
 
             ReportTypeCodeEntity dto = reportTypeCodeRepository.findByReportTypeCode(code);
-            _result = gradReportReportTypeCodeTransformer.transformToDTO(dto);
+            result = gradReportReportTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
             throw new ServiceException(String.format("Unable to retrieve %s", "ReportTypeCode"));
         }
 
-        return _result;
+        return result;
 
     }
 }
