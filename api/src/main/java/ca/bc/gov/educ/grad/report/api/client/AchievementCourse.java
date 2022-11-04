@@ -17,6 +17,8 @@
  */
 package ca.bc.gov.educ.grad.report.api.client;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -328,7 +330,7 @@ public class AchievementCourse implements Serializable {
 
     
     public String getUsedForGrad() {
-        if (usedForGrad == null)
+        if (!StringUtils.isNumeric(usedForGrad))
             return "0";
         else
             return usedForGrad;

@@ -416,7 +416,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Double" leftIndent="5"/>
 								</textElement>
-								<text><![CDATA[Cert Printed Date]]></text>
+								<text><![CDATA[Certificate Printed]]></text>
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell height="15">
