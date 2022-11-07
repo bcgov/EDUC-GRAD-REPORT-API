@@ -52,10 +52,11 @@ public abstract class BaseController {
             if (request instanceof ReportRequest) {
                 ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest)request);
                 Student st = cloneRequest.getData().getStudent();
-                if (st != null) {
-                    st.setPen(null);
-                    st.setFirstName("John");
-                    st.setLastName("Doe");
+                hideStudentDataForDebug(st);
+                if(cloneRequest.getData().getSchool() != null) {
+                    for (Student s : cloneRequest.getData().getSchool().getStudents()) {
+                        hideStudentDataForDebug(s);
+                    }
                 }
                 String jsonRequest = jsonTransformer.marshall(cloneRequest);
                 log.debug(jsonRequest);
@@ -112,6 +113,15 @@ public abstract class BaseController {
 
     protected static String getCurrentUserId() {
         return AuditingUtils.getCurrentUserId();
+    }
+
+    private void hideStudentDataForDebug(Student st) {
+        if (st != null) {
+            st.setPen(null);
+            st.setFirstName("John");
+            st.setMiddleName("");
+            st.setLastName("Doe");
+        }
     }
 
 }
