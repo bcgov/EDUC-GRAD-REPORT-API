@@ -180,5 +180,12 @@ public interface Student extends Person {
      */
     Date getLastUpdateDate();
 
+    /**
+     * Short string value of the last update date
+     *
+     * @return last update date
+     */
+    String getStringLastUpdateDate();
+
 
 }

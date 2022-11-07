@@ -31,6 +31,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -300,6 +301,13 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public String getStringLastUpdateDate() {
+        if(getLastUpdateDate() != null)
+            return new SimpleDateFormat("MM/dd/yyyy").format(getLastUpdateDate());
+        else
+            return "";
     }
 
     @JsonFormat(pattern="yyyy-MM-dd")
