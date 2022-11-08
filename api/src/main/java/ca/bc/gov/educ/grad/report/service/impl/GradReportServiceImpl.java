@@ -79,7 +79,7 @@ public abstract class GradReportServiceImpl implements Serializable {
 
     void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
         students.sort(Comparator
-                .comparing(Student::getLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .comparing(Student::getStringLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
                 .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
