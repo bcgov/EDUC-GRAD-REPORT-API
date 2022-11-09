@@ -6,15 +6,15 @@
 	</style>
 	<style name="Title" style="Body" fontSize="16" isItalic="false"/>
 	<style name="Awardee" style="Body" fontSize="20.5" isItalic="true"/>
-	<style name="OrgDate" style="Body" hTextAlign="Center" fontSize="8" isItalic="true">
+	<style name="OrgDate" style="Body" hTextAlign="Center" fontSize="12" isItalic="true">
 		<box leftPadding="0"/>
 	</style>
-	<style name="OrgDateTitle" style="Body" fontSize="10" isBold="false">
+	<style name="OrgDateTitle" style="Body" fontSize="12" isBold="false">
 		<box>
 			<topPen lineWidth="1.0"/>
 		</box>
 		<paragraph spacingBefore="4"/>
 	</style>
-	<style name="SignatoryTitle" style="OrgDateTitle" fontSize="11"/>
+	<style name="SignatoryTitle" style="OrgDateTitle"/>
 	<style name="Issuer" style="Body"/>
 </jasperTemplate>
