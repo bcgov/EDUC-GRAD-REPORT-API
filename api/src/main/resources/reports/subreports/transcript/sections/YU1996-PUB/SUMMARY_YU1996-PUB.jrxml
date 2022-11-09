@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2018-10-11T16:35:19 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Summary 1995" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="23" rightMargin="22" topMargin="0" bottomMargin="0" uuid="091c5291-c43c-450f-a538-8c2f5a914dc4">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -194,14 +193,14 @@
 				<text><![CDATA[Minimum 52 credits over Grades 11 - 12, plus successful completion of the courses listed below. Students may have earned more than 52 credits but not have successfully completed all requirements.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="149" y="241" width="351" height="25" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">
+				<reportElement style="SummaryBody" x="149" y="243" width="418" height="35" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[28 Credits of Foundation Studies. The required Foundation Studies courses below are designated by a code number (e.g., 1-10) in the Req. column.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="115" y="238" width="20" height="20" uuid="6ccd1cc6-7a33-413b-a935-7ed0babfcc39"/>
+				<reportElement style="SummaryBody" x="120" y="243" width="29" height="35" uuid="6ccd1cc6-7a33-413b-a935-7ed0babfcc39"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="16"/>
 				</textElement>
@@ -375,7 +374,7 @@
 				<text><![CDATA[one from a number of course options]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="115" y="400" width="20" height="20" uuid="49ce87c7-8365-4ae6-9bde-fad708b645f9">
+				<reportElement style="SummaryBody" x="116" y="399" width="33" height="36" uuid="49ce87c7-8365-4ae6-9bde-fad708b645f9">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -384,11 +383,11 @@
 				<text><![CDATA[•]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="149" y="400" width="351" height="30" uuid="889dafa7-69f3-4fbe-ba13-1aeed97c3420">
+				<reportElement style="SummaryBody" x="149" y="400" width="418" height="35" uuid="889dafa7-69f3-4fbe-ba13-1aeed97c3420">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<text><![CDATA[24 Credits of Selected Studies (a minimum of 10 of these 24 credits must com from Grade 12 level provincially authorized external credential, CP or BAA courses)]]></text>
+				<text><![CDATA[24 Credits of Selected Studies (a minimum of 10 of these 24 credits must come from Grade 12 level provincially authorized, external credential credientials, CP or BAA courses)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryTitle" x="0" y="435" width="567" height="15" uuid="f3fd2419-7547-4d10-9826-4401b55314e3">

@@ -77,23 +77,23 @@ public enum TranscriptTypeCode implements Serializable {
 
     @XmlEnumValue("BC1995-PUB")
     @JsonProperty("BC1995-PUB")
-    BC1995_PUB("BC1995-PUB", "1996 Public School Transcript BC; including Programme Francophone and Offshore"),
+    BC1995_PUB("BC1995-PUB", "1995 Public School Transcript BC; including Programme Francophone and Offshore"),
 
     @XmlEnumValue("BC1996-PUB")
     @JsonProperty("BC1996-PUB")
-    BC1996_PUB("BC1996-PUB", BC1995_PUB.getDescription()),
+    BC1996_PUB("BC1996-PUB", "1995 Public School Transcript BC; including Programme Francophone and Offshore"),
 
     @XmlEnumValue("BC1996-IND")
     @JsonProperty("BC1996-IND")
-    BC1996_IND("BC1996-IND", BC1995_PUB.getDescription()),
+    BC1996_IND("BC1996-IND", "1995 Independent School Transcript"),
 
     @XmlEnumValue("YU1995-PUB")
     @JsonProperty("YU1995-PUB")
-    YU1995_PUB("YU1995-PUB", "1996 Public School Transcript Yukon"),
+    YU1995_PUB("YU1995-PUB", "1995 Public School Transcript Yukon"),
 
     @XmlEnumValue("YU1996-PUB")
     @JsonProperty("YU1996-PUB")
-    YU1996_PUB("YU1996-PUB", YU1995_PUB.getDescription()),
+    YU1996_PUB("YU1996-PUB", "1995 Public School Transcript Yukon"),
 
     @XmlEnumValue("SCCP-EN")
     @JsonProperty("SCCP-EN")
