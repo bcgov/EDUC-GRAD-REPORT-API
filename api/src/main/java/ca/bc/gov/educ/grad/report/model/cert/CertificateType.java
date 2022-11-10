@@ -34,6 +34,7 @@ public enum CertificateType {
     AI("AI", PaperType.CERTIFICATE_AI),
     EI("EI", PaperType.CERTIFICATE_EI),
     SC("SC", PaperType.CERTIFICATE_SC),
+    SCI("SCI", PaperType.CERTIFICATE_SCI),
     SCF("SCF", PaperType.CERTIFICATE_SCF),
     E("E", PaperType.CERTIFICATE_E),
     S("S", PaperType.CERTIFICATE_S),

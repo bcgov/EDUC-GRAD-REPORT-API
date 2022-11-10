@@ -25,6 +25,7 @@ import ca.bc.gov.educ.grad.report.dto.impl.CertificateImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.GradCertificateReportImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateSubType;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
@@ -234,17 +235,23 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             case "A":
                 rsRptType = CertificateType.A;
                 break;
-            case "EI":
-                rsRptType = CertificateType.EI;
-                break;
             case "AI":
                 rsRptType = CertificateType.AI;
+                break;
+            case "E":
+                rsRptType = CertificateType.E;
+                break;
+            case "EI":
+                rsRptType = CertificateType.EI;
                 break;
             case "S":
                 rsRptType = CertificateType.S;
                 break;
             case "SC":
                 rsRptType = CertificateType.SC;
+                break;
+            case "SCI":
+                rsRptType = CertificateType.SCI;
                 break;
             case "SCF":
                 rsRptType = CertificateType.SCF;
@@ -256,7 +263,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                 rsRptType = CertificateType.O;
                 break;
             default:
-                rsRptType = CertificateType.E;
+                throw new InvalidParameterException(certType);
         }
         return rsRptType;
     }

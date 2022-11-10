@@ -1,0 +1,28 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "Certificate",
+    "reportFile": "Certificate Report SCIB.pdf"
+  },
+  "data": {
+    "student": {
+      "englishCert": "E",
+      "frenchCert": "F"
+    },
+    "certificate": {
+      "issued": "2020-04-01",
+      "certStyle": "Blank",
+      "orderType": {
+        "name": "Certificate",
+        "certificateType": {
+          "reportName": "SCI",
+          "paperType": {
+            "code": "YED2"
+          }
+        }
+      }
+    }
+  }
+}
