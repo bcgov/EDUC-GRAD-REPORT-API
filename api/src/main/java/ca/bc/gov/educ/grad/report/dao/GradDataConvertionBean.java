@@ -374,6 +374,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             case "SC":
                 rsRptType = CertificateType.SC;
                 break;
+            case "SCI":
+                rsRptType = CertificateType.SCI;
+                break;
             case "SCF":
                 rsRptType = CertificateType.SCF;
                 break;
@@ -384,7 +387,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 rsRptType = CertificateType.O;
                 break;
             default:
-                rsRptType = CertificateType.E;
+                throw new InvalidParameterException(reportName);
         }
         return rsRptType;
     }
