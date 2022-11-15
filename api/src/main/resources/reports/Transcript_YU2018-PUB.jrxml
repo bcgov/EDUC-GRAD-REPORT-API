@@ -63,13 +63,10 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
-		<parameterDescription><![CDATA[Date the transcript result data was merged]]></parameterDescription>
+		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
 		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
-		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
-	</parameter>
-	<parameter name="P_COMPLETION_NOTICE" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_INTERIM" class="java.lang.Boolean">
@@ -77,6 +74,9 @@
 	</parameter>
 	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_COMPLETION_NOTICE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
 	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
@@ -184,8 +184,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[$F{student.transcriptResults}.size()]]></initialValueExpression>
 	</variable>
 	<variable name="V_SHORT_PAGE_ROWS" class="java.lang.Integer">
-		<variableExpression><![CDATA[23]]></variableExpression>
-		<initialValueExpression><![CDATA[23]]></initialValueExpression>
+		<variableExpression><![CDATA[24]]></variableExpression>
+		<initialValueExpression><![CDATA[24]]></initialValueExpression>
 	</variable>
 	<variable name="V_LONG_PAGE_ROWS" class="java.lang.Integer">
 		<variableExpression><![CDATA[31]]></variableExpression>
@@ -263,32 +263,32 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		</band>
 	</background>
 	<pageHeader>
-		<band height="238">
+		<band height="220">
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="12" y="5" width="100" height="66" uuid="a896cade-f6fc-4d8f-b762-29b950309257"/>
 				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="337" y="17" width="230" height="12" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a"/>
+				<reportElement style="GeneratedText" x="327" y="26" width="230" height="12" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a"/>
 				<textElement textAlignment="Right" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{student.graduationProgram.description}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="337" y="0" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
+				<reportElement style="Title" x="327" y="11" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
 				<textElement textAlignment="Right">
 					<font size="10.5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{V_TITLE}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="180" y="44" width="250" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
+				<reportElement style="Title" x="180" y="50" width="250" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
 					<printWhenExpression><![CDATA["BC".equalsIgnoreCase($F{student.school.districtOrganisation.logoCode})]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{student.school.districtOrganisation.name}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="0" y="86" width="567" height="100" uuid="c80eb8e6-0949-46b5-905a-48595e519bad"/>
+				<reportElement x="0" y="78" width="567" height="100" uuid="c80eb8e6-0949-46b5-905a-48595e519bad"/>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -326,17 +326,17 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0"/>
+				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="184" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW".toUpperCase()]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement positionType="Float" x="0" y="214" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
+				<reportElement positionType="Float" x="0" y="196" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
 				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
 					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -440,11 +440,11 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 	<pageFooter>
 		<band height="25">
 			<textField>
-				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" stretchType="ContainerHeight" x="113" y="2" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
+				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" stretchType="ContainerHeight" x="113" y="5" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA["QUESTIONS? STUDENTS SHOULD CONTACT THEIR SCHOOL OF RECORD IMMEDIATELY"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{text.footer.contact}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

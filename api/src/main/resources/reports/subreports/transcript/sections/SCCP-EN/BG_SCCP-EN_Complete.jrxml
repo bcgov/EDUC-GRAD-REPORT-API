@@ -74,7 +74,7 @@
 						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA["Courses may have been completed at schools or institutions other than the student's current school of record as noted on this transcript".toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA["COURSES MAY HAVE BEEN COMPLETED AT SCHOOLS OR INSTITUTIONS OTHER THAN THE STUDENT'S CURRENT SCHOOL OF RECORD AS NOTED IN THIS TRANSCRIPT".toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GraduationStatus" x="0" y="0" width="567" height="86" uuid="d2fa32c9-111c-4826-9805-a1e7e3ff21d1"/>

@@ -25,8 +25,8 @@
 	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
 	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.TranscriptCalculator"/>
+	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
 	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.EmbeddedImageTranscoder"/>
 	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<import value="net.sf.jasperreports.engine.util.JRLoader"/>
@@ -63,7 +63,7 @@
 		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_DATE" class="java.util.Date">
-		<parameterDescription><![CDATA[Date the transcript result data was merged.]]></parameterDescription>
+		<parameterDescription><![CDATA[Date the transcript result data was merged]]></parameterDescription>
 		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>
 	</parameter>
 	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
@@ -74,6 +74,9 @@
 	</parameter>
 	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_COMPLETION_NOTICE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
 	</parameter>
 	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
 		<fieldDescription><![CDATA[student]]></fieldDescription>
@@ -162,8 +165,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase() + ($P{P_REPORT_PREVIEW} ? "" : "_bw")]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_DATE" class="java.lang.String">
-		<variableExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
-		<initialValueExpression><![CDATA[new SimpleDateFormat( "d-MMM-yyyy").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
+		<variableExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
+		<initialValueExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_BIRTHDATE" class="java.lang.String">
 		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
@@ -266,19 +269,19 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="337" y="17" width="230" height="12" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a"/>
+				<reportElement style="GeneratedText" x="327" y="26" width="230" height="12" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a"/>
 				<textElement textAlignment="Right" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{student.graduationProgram.description}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="337" y="0" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
+				<reportElement style="Title" x="327" y="11" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
 				<textElement textAlignment="Right">
 					<font size="10.5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{V_TITLE}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="180" y="44" width="250" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
+				<reportElement style="Title" x="180" y="50" width="250" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
 					<printWhenExpression><![CDATA["BC".equalsIgnoreCase($F{student.school.districtOrganisation.logoCode})]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
@@ -330,7 +333,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["The face of this transcript has a coloured background - not a white background - the transcript has a watermark of the B.C. flag - hold up to a light to view".toUpperCase()]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW".toUpperCase()]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement positionType="Float" x="0" y="214" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
@@ -438,8 +441,8 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 	<pageFooter>
 		<band height="25">
 			<textField>
-				<reportElement style="GeneratedText" stretchType="ContainerHeight" positionType="FixRelativeToBottom" x="113" y="5" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
-				<textElement textAlignment="Left" verticalAlignment="Top">
+				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" stretchType="ContainerHeight" x="113" y="5" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{text.footer.contact}]]></textFieldExpression>
