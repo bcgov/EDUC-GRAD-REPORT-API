@@ -41,7 +41,4 @@ public class StudentTranscriptEntity {
     @Column(name = "UPDATE_DATE", nullable = false)
     private Date updateDate;
 
-    @Column(name = "POSTING_DATE")
-    private Date postingDate;
-
 }
