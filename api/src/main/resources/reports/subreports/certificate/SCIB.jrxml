@@ -67,8 +67,8 @@
 		<initialValueExpression><![CDATA[new SimpleDateFormat("MMMMM yyyy", $P{REPORT_LOCALE})]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_NAME" class="java.lang.String">
-		<variableExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></variableExpression>
-		<initialValueExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></initialValueExpression>
+		<variableExpression><![CDATA[""]]></variableExpression>
+		<initialValueExpression><![CDATA[""]]></initialValueExpression>
 	</variable>
 	<title>
 		<band height="542">
@@ -141,10 +141,10 @@
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$R{header.certify.suffix.SC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.certify.suffix.SCI}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement x="40" y="374" width="231" height="56" uuid="78987025-a306-40ff-b600-bdf0febe0081">
+				<reportElement x="40" y="372" width="231" height="56" uuid="78987025-a306-40ff-b600-bdf0febe0081">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -164,25 +164,25 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="40" y="481" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
+				<reportElement x="40" y="479" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<image onErrorType="Blank">
 					<reportElement x="0" y="0" width="231" height="42" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + "")]]></imageExpression>
+					<imageExpression><![CDATA[""]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="0" y="42" width="231" height="16" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "INDEP" : "INDEPF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="374" width="231" height="56" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
+				<reportElement x="505" y="372" width="231" height="56" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -201,7 +201,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="430" width="231" height="55" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
+				<reportElement x="505" y="428" width="231" height="55" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -209,7 +209,7 @@
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="40" width="231" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86">
@@ -220,13 +220,13 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="486" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
+				<reportElement x="505" y="484" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="17" width="231" height="20" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$V{V_ISSUE_DATE_FORMAT}.format( $F{issued} ).toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDateTitle" x="0" y="37" width="231" height="16" uuid="1120ee5c-ced2-4bad-8b42-311bb082bf7a">

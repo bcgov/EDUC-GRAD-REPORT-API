@@ -32,6 +32,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public enum PaperType {
 
     CERTIFICATE_SC("YED2"),
+    CERTIFICATE_SCI("YED2"),
     CERTIFICATE_A("YEDB"),
     CERTIFICATE_AI("YEDB"),
     CERTIFICATE_EI("YEDR"),

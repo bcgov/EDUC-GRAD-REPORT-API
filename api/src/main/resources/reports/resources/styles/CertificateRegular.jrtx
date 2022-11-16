@@ -2,17 +2,17 @@
 <!-- Created with Jaspersoft Studio -->
 <jasperTemplate xmlns="http://jasperreports.sourceforge.net/jasperreports/template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/template http://jasperreports.sourceforge.net/xsd/jaspertemplate.xsd">
 	<style name="Body" hTextAlign="Center" fontName="BCSans" fontSize="14" isBold="true" isItalic="true"/>
-	<style name="Title" style="Body" fontSize="16" isItalic="false"/>
+	<style name="Title" style="Body" fontSize="18" isItalic="false"/>
 	<style name="Awardee" style="Body" fontSize="20.5"/>
-	<style name="OrgDate" style="Body" hTextAlign="Left" fontSize="8">
+	<style name="OrgDate" style="Body" hTextAlign="Left" fontSize="12">
 		<box leftPadding="0"/>
 	</style>
-	<style name="OrgDateTitle" style="Body" fontSize="10">
+	<style name="OrgDateTitle" style="Body" fontSize="12">
 		<box>
 			<topPen lineWidth="1.0"/>
 		</box>
 		<paragraph spacingBefore="4"/>
 	</style>
-	<style name="SignatoryTitle" style="OrgDateTitle" fontSize="11"/>
-	<style name="Signatory" style="Body" fontSize="11"/>
+	<style name="SignatoryTitle" style="OrgDateTitle"/>
+	<style name="Signatory" style="Body" fontSize="12"/>
 </jasperTemplate>

@@ -141,7 +141,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$R{header.certify.suffix.SC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.certify.suffix.SCI}]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="40" y="374" width="231" height="56" uuid="78987025-a306-40ff-b600-bdf0febe0081">
@@ -178,7 +178,7 @@
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "INDEP" : "INDEPF").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>

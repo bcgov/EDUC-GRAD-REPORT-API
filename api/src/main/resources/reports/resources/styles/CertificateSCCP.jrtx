@@ -8,14 +8,14 @@
 	<style name="Awardee" style="Body" fontSize="20" isBold="true" isItalic="true">
 		<paragraph lineSpacing="Double"/>
 	</style>
-	<style name="OrgDateTitle" style="Body" fontSize="10">
+	<style name="OrgDateTitle" style="Body" fontSize="12">
 		<box>
 			<topPen lineWidth="1.0"/>
 		</box>
 		<paragraph spacingBefore="4"/>
 	</style>
-	<style name="SignatoryTitle" style="OrgDateTitle" fontSize="11"/>
-	<style name="OrgDate" style="Body" hTextAlign="Left" fontSize="8" isItalic="true">
+	<style name="SignatoryTitle" style="OrgDateTitle"/>
+	<style name="OrgDate" style="Body" hTextAlign="Left" fontSize="12" isItalic="true">
 		<box leftPadding="6"/>
 	</style>
 </jasperTemplate>
