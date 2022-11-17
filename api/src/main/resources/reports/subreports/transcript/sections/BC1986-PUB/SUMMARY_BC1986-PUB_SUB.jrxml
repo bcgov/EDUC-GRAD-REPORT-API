@@ -244,7 +244,7 @@
 					<reportElement style="SummaryTitle" x="0" y="0" width="567" height="16" uuid="f8dba257-85e1-4d79-b171-a55fee6fe8ba">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
-					<textElement textAlignment="Center"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
 					<text><![CDATA[ABBREVIATIONS]]></text>
 				</staticText>
 				<staticText>
@@ -252,7 +252,7 @@
 					<text><![CDATA[AEG]]></text>
 				</staticText>
 				<staticText>
-					<reportElement style="SummaryBody" x="102" y="22" width="384" height="24" uuid="b012f63c-bbbc-4b94-986a-116a261d18bb">
+					<reportElement style="SummaryBody" x="102" y="22" width="384" height="26" uuid="b012f63c-bbbc-4b94-986a-116a261d18bb">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<text><![CDATA[Aegrotat standing for a provincial exam granted by the Provincial Board of Examiners because of illness or domestic affliction.]]></text>
