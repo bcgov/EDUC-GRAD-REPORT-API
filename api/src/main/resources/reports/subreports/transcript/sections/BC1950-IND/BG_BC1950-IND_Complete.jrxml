@@ -79,10 +79,8 @@
 					<reportElement style="GraduationStatus" x="0" y="12" width="567" height="74" uuid="d2fa32c9-111c-4826-9805-a1e7e3ff21d1">
 						<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
 					</reportElement>
-					<box padding="10"/>
-					<textElement verticalAlignment="Top">
-						<paragraph firstLineIndent="0"/>
-					</textElement>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
+					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
 			</frame>

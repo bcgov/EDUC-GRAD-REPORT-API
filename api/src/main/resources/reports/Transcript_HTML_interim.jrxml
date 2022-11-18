@@ -210,7 +210,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<reportElement style="GraduationStatus" positionType="Float" mode="Transparent" x="0" y="0" width="628" height="14" uuid="fdf49ecc-902f-47cf-a837-4115198c9561">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
-					<box padding="10"/>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{student.status.graduationMessage}.trim()]]></textFieldExpression>
 				</textField>

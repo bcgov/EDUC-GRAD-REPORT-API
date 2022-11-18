@@ -87,7 +87,7 @@
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" uuid="d31b893a-531a-4852-83a0-9c74cdf72824"/>
-					<box padding="10"/>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
