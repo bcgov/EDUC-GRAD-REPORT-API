@@ -36,7 +36,10 @@
 				<reportElement style="TabularRowBackground" mode="Transparent" x="0" y="24" width="200" height="368" uuid="9c71588d-78fc-42bb-bb3a-5e535ac7303f"/>
 			</frame>
 			<frame>
-				<reportElement style="TabularRowBackground" x="200" y="24" width="95" height="368" uuid="0166b0b9-cdd2-4dba-87de-0a89c715f4b7"/>
+				<reportElement style="TabularRowBackground" x="200" y="24" width="49" height="368" uuid="0166b0b9-cdd2-4dba-87de-0a89c715f4b7"/>
+			</frame>
+			<frame>
+				<reportElement style="TabularRowBackground" x="249" y="24" width="46" height="368" uuid="c0dd156b-b33b-4027-bdbf-d1699cb59879"/>
 			</frame>
 			<frame>
 				<reportElement style="TabularRowBackground" x="295" y="24" width="18" height="368" uuid="0995ecb8-f9d0-4002-a691-ca613b659f00"/>
@@ -90,8 +93,8 @@
 					<textFieldExpression><![CDATA["Courses may have been completed at schools or institutions other than the student's current school of record as noted on this transcript".toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="0" width="567" height="96" uuid="d31b893a-531a-4852-83a0-9c74cdf72824"/>
-					<box padding="10"/>
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" uuid="d31b893a-531a-4852-83a0-9c74cdf72824"/>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
@@ -103,8 +106,7 @@
 					<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[
-						// Do not add more reasons than the non-grad reasons box on the paper
+					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
 						// transcript can hold. To do so would cause the list to overflow onto
 						// an additional page, breaking the report formatting. The Ministry is aware
 						// that these are truncated.
@@ -113,8 +115,7 @@
 							0,
 							java.lang.Math.min($F{student.status.incompletionReasons}.size(), 12)
 							)
-						)]]>
-					</dataSourceExpression>
+						)]]></dataSourceExpression>
 					<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/NGR_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 				</subreport>
 			</frame>

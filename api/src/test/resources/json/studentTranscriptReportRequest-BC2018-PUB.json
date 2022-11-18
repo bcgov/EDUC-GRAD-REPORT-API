@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": true,
+      "interim": false,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-PUB",
@@ -90,7 +90,7 @@
           },
           "requirement": "1",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "A",
           "usedForGrad": ""
         },
         {

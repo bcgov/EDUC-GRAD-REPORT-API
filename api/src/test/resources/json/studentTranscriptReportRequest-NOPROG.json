@@ -69,7 +69,7 @@
     },
     "logo": "BC",
     "transcript": {
-      "interim": "false",
+      "interim": false,
       "issueDate": "2022-09-09",
       "code": {
         "code": "NOPROG",
@@ -99,7 +99,7 @@
           },
           "requirement": "",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "A",
           "usedForGrad": "0"
         },
         {
