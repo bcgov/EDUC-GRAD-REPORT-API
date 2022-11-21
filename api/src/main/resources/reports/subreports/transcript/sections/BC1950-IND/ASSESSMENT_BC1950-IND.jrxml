@@ -60,7 +60,7 @@
 				<text><![CDATA[Assessment requirement met by a provincial exam]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="12" y="15" width="13" height="14" uuid="b26b0d7c-4db4-4b85-9ed1-b4debb518b2e">
+				<reportElement style="SummaryBody" x="2" y="15" width="23" height="14" uuid="b26b0d7c-4db4-4b85-9ed1-b4debb518b2e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -69,7 +69,7 @@
 				<text><![CDATA[1]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="12" y="29" width="13" height="14" uuid="e371dc59-47b8-42ff-a5b8-6529ee56f9ca">
+				<reportElement style="SummaryBody" x="2" y="29" width="23" height="14" uuid="e371dc59-47b8-42ff-a5b8-6529ee56f9ca">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -78,7 +78,7 @@
 				<text><![CDATA[2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="12" y="43" width="13" height="14" uuid="925e4593-a42c-4285-8ec0-01cf999c0a47">
+				<reportElement style="SummaryBody" x="2" y="43" width="23" height="14" uuid="925e4593-a42c-4285-8ec0-01cf999c0a47">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -87,7 +87,7 @@
 				<text><![CDATA[3]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="12" y="57" width="13" height="14" uuid="9dba9c04-fb7f-4bbe-8983-204e58c198f0">
+				<reportElement style="SummaryBody" x="2" y="57" width="23" height="14" uuid="9dba9c04-fb7f-4bbe-8983-204e58c198f0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -96,7 +96,7 @@
 				<text><![CDATA[4]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="25" y="15" width="60" height="14" uuid="b377e334-3ece-46ea-838e-9af1075c6a11">
+				<reportElement style="SummaryBody" x="15" y="15" width="70" height="14" uuid="b377e334-3ece-46ea-838e-9af1075c6a11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -105,7 +105,7 @@
 				<text><![CDATA[(Emerging)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="25" y="29" width="60" height="14" uuid="20a82cae-5bd7-4eea-bc54-ee513f664185">
+				<reportElement style="SummaryBody" x="15" y="29" width="70" height="14" uuid="20a82cae-5bd7-4eea-bc54-ee513f664185">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -114,7 +114,7 @@
 				<text><![CDATA[(Developing)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="25" y="43" width="60" height="14" uuid="0c292e4e-185e-4b5c-86ab-016679d310bf">
+				<reportElement style="SummaryBody" x="15" y="43" width="70" height="14" uuid="0c292e4e-185e-4b5c-86ab-016679d310bf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -123,7 +123,7 @@
 				<text><![CDATA[(Proficient)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="25" y="57" width="60" height="14" uuid="73aef594-a393-4545-82b0-5b4e40cdb3b6">
+				<reportElement style="SummaryBody" x="15" y="57" width="70" height="14" uuid="73aef594-a393-4545-82b0-5b4e40cdb3b6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -132,7 +132,7 @@
 				<text><![CDATA[(Extending)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="82" y="14" width="485" height="14" uuid="f0955af7-4bc4-4a55-b0ec-f17891c475c6">
+				<reportElement style="SummaryBody" x="72" y="15" width="495" height="14" uuid="f0955af7-4bc4-4a55-b0ec-f17891c475c6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -141,7 +141,7 @@
 				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="82" y="28" width="485" height="14" uuid="b4440168-3d26-47f2-bfe3-1237d263fbe4">
+				<reportElement style="SummaryBody" x="72" y="29" width="495" height="14" uuid="b4440168-3d26-47f2-bfe3-1237d263fbe4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -150,7 +150,7 @@
 				<text><![CDATA[- Demonstrates a partial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="82" y="42" width="485" height="14" uuid="70613607-cdac-4d71-90d9-805df4d5254e">
+				<reportElement style="SummaryBody" x="72" y="43" width="495" height="14" uuid="70613607-cdac-4d71-90d9-805df4d5254e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
@@ -159,7 +159,7 @@
 				<text><![CDATA[- Demonstrates a complete understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="82" y="56" width="485" height="14" uuid="27986fed-c86e-4c04-9880-f0f6a753c1ca">
+				<reportElement style="SummaryBody" x="72" y="57" width="495" height="14" uuid="27986fed-c86e-4c04-9880-f0f6a753c1ca">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
