@@ -269,19 +269,19 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="337" y="17" width="230" height="12" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a"/>
+				<reportElement style="GeneratedText" x="327" y="26" width="230" height="12" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a"/>
 				<textElement textAlignment="Right" verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{student.graduationProgram.description}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="337" y="0" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
+				<reportElement style="Title" x="327" y="11" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
 				<textElement textAlignment="Right">
 					<font size="10.5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{V_TITLE}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="Title" x="180" y="44" width="250" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
+				<reportElement style="Title" x="180" y="50" width="250" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
 					<printWhenExpression><![CDATA["BC".equalsIgnoreCase($F{student.school.districtOrganisation.logoCode})]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center"/>
@@ -444,7 +444,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA["QUESTIONS? STUDENTS SHOULD CONTACT THEIR SCHOOL OF RECORD IMMEDIATELY"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{text.footer.contact}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

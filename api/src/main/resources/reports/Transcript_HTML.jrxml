@@ -214,7 +214,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					</reportElement>
-					<box padding="10"/>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{student.status.graduationMessage}.trim()]]></textFieldExpression>
 				</textField>
