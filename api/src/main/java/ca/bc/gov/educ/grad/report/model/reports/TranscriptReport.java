@@ -87,4 +87,11 @@ public interface TranscriptReport extends StudentReport {
      * @param interim true means to include interim marks.
      */
     void setInterim(boolean interim);
+
+    /**
+     * Indicates that the transcript should be blank
+     *
+     * @param blank true means to include interim marks.
+     */
+    void setBlank(boolean blank);
 }
