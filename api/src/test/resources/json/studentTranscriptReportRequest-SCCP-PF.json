@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": true,
+      "interim": false,
       "issueDate": "2021-04-26",
       "code": {
         "code": "SCCP-FR",

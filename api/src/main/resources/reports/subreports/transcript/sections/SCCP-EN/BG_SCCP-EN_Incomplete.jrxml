@@ -86,7 +86,7 @@
 					<textFieldExpression><![CDATA["COURSES MAY HAVE BEEN COMPLETED AT SCHOOLS OR INSTITUTIONS OTHER THAN THE STUDENT'S CURRENT SCHOOL OF RECORD AS NOTED IN THIS TRANSCRIPT".toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="0" width="567" height="96" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
 						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
 					</reportElement>
 					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
@@ -101,8 +101,7 @@
 					<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[
-						// Do not add more reasons than the non-grad reasons box on the paper
+					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
 						// transcript can hold. To do so would cause the list to overflow onto
 						// an additional page, breaking the report formatting. The Ministry is aware
 						// that these are truncated.

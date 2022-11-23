@@ -35,6 +35,7 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
 import org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -531,6 +532,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         final boolean interim = ((TranscriptImpl) transcript).getInterim();
         report.setInterim(interim);
+        report.setBlank(StringUtils.isBlank(student.getPen().getPen()));
 
         ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
         final ReportDocument document = reportService.export(report);

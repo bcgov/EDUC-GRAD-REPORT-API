@@ -71,6 +71,11 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     private boolean interim;
 
     /**
+     * Assume no blank marks by default.
+     */
+    private boolean blank;
+
+    /**
      * Constructs a new report using the default report template.
      */
     public TranscriptReportImpl(TranscriptTypeCode transcriptTypeCode, GradProgram program) {
@@ -252,6 +257,11 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
         return this.interim;
     }
 
+    @Override
+    public void setBlank(boolean blank) {
+        this.blank = blank;
+    }
+
     /**
      * Sets whether the report should be made print-ready in an official
      * capacity.
@@ -270,7 +280,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
      * @return true The report is blank.
      */
     public final boolean isBlank() {
-        return this.graduationProgramCode != null && GraduationProgramCode.PROGRAM_BLANK.getCode().equalsIgnoreCase(this.graduationProgramCode.getCode());
+        return this.blank;
     }
 
     /**
