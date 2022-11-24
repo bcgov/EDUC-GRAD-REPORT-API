@@ -210,7 +210,7 @@ GRADE]]></text>
 					<textElement textAlignment="Left"/>
 					<textFieldExpression><![CDATA[$R{text.header.separator.completion}.toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="36" isRemoveLineWhenBlank="true" uuid="81cc511a-0e3d-4087-9021-b8e648ce1f5c">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
