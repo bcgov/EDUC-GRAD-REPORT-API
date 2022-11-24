@@ -447,7 +447,7 @@
 				<text><![CDATA[As selected from required options found under the Course-Based Graduation Program in the online Course Registry.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="36" y="313" width="33" height="25" uuid="1e5ce071-9e3d-4a1c-b20b-30ea0370df80">
+				<reportElement style="SummaryBody" x="35" y="314" width="33" height="25" uuid="1e5ce071-9e3d-4a1c-b20b-30ea0370df80">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -459,16 +459,16 @@
 				<text><![CDATA[•]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="61" y="313" width="495" height="20" uuid="f634714f-209e-4f12-9137-76ca2d42875e">
+				<reportElement style="SummaryBody" x="61" y="313" width="495" height="26" uuid="f634714f-209e-4f12-9137-76ca2d42875e">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[Minimum 4 courses, including a Language Arts 12, must come from Grade 12 level provincially authorized or CP courses.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="36" y="326" width="33" height="25" uuid="dfecc090-9e37-4e9a-81b8-38331d002e18">
+				<reportElement style="SummaryBody" x="35" y="336" width="33" height="25" uuid="dfecc090-9e37-4e9a-81b8-38331d002e18">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -479,7 +479,7 @@
 				<text><![CDATA[•]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="61" y="326" width="495" height="20" uuid="222515a6-ab17-4322-aa3e-79ae5238fe67">
+				<reportElement style="SummaryBody" x="60" y="336" width="495" height="20" uuid="222515a6-ab17-4322-aa3e-79ae5238fe67">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -488,7 +488,7 @@
 				<text><![CDATA[Maximum 2 LD courses may be used to meet requirements.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" stretchType="ContainerHeight" x="36" y="300" width="33" height="25" uuid="2a91ddac-fac3-49ce-8750-f15616c26617">
+				<reportElement style="SummaryBody" stretchType="ContainerHeight" x="35" y="295" width="33" height="25" uuid="2a91ddac-fac3-49ce-8750-f15616c26617">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -500,12 +500,12 @@
 				<text><![CDATA[•]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="61" y="300" width="495" height="20" uuid="8c18470f-fcf0-4ba6-9edf-1ae700c98a6b">
+				<reportElement style="SummaryBody" x="61" y="300" width="495" height="13" uuid="8c18470f-fcf0-4ba6-9edf-1ae700c98a6b">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[7 elective courses must be completed.]]></text>
 			</staticText>
 		</band>
