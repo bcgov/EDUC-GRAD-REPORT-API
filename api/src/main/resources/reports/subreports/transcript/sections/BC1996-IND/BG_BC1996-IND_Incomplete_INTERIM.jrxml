@@ -91,7 +91,7 @@
 					<textElement textAlignment="Left"/>
 					<textFieldExpression><![CDATA["Courses may have been completed at schools or institutions other than the student's current school of record as noted on this transcript".toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="566" height="96" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
