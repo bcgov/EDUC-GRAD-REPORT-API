@@ -10,6 +10,15 @@
 	<pageHeader>
 		<band height="24">
 			<staticText>
+				<reportElement style="CourseHeader" x="294" y="0" width="57" height="24" uuid="f6396a2d-fabd-4ef0-b460-ce3f52c48371"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<text><![CDATA[REQ]]></text>
+			</staticText>
+			<staticText>
 				<reportElement style="CourseHeader" x="351" y="0" width="18" height="24" uuid="8f6d3703-2cdc-4294-81bf-5e661f1dbf68"/>
 				<box>
 					<topPen lineWidth="0.5"/>

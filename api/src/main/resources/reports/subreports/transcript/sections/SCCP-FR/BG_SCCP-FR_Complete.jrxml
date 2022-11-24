@@ -12,13 +12,20 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="P_COMPLETION_NOTICE" class="java.lang.Boolean" isForPrompting="false"/>
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
 	<background>
 		<band height="562">
 			<frame>
@@ -57,7 +64,8 @@
 				</box>
 			</frame>
 			<frame>
-				<reportElement x="0" y="469" width="567" height="86" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="397" width="567" height="158" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
+					<property name="ShowOutOfBoundContent" value="false"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box>
@@ -74,11 +82,13 @@
 						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA["Courses may have been completed at schools or institutions other than the student's current school of record as noted on this transcript".toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA["COURSES MAY HAVE BEEN COMPLETED AT SCHOOLS OR INSTITUTIONS OTHER THAN THE STUDENT'S CURRENT SCHOOL OF RECORD AS NOTED IN THIS TRANSCRIPT".toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" x="0" y="0" width="567" height="86" uuid="d2fa32c9-111c-4826-9805-a1e7e3ff21d1"/>
-					<box padding="10"/>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
+						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					</reportElement>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>

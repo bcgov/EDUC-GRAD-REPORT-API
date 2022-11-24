@@ -92,9 +92,9 @@
 					<textElement textAlignment="Left"/>
 					<textFieldExpression><![CDATA["Courses may have been completed at schools or institutions other than the student's current school of record as noted on this transcript".toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="0" width="567" height="96" uuid="d31b893a-531a-4852-83a0-9c74cdf72824"/>
-					<box padding="10"/>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" uuid="d31b893a-531a-4852-83a0-9c74cdf72824"/>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
@@ -106,8 +106,7 @@
 					<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 					</subreportParameter>
-					<dataSourceExpression><![CDATA[
-						// Do not add more reasons than the non-grad reasons box on the paper
+					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
 						// transcript can hold. To do so would cause the list to overflow onto
 						// an additional page, breaking the report formatting. The Ministry is aware
 						// that these are truncated.
@@ -116,8 +115,7 @@
 							0,
 							java.lang.Math.min($F{student.status.incompletionReasons}.size(), 12)
 							)
-						)]]>
-					</dataSourceExpression>
+						)]]></dataSourceExpression>
 					<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/NGR_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 				</subreport>
 			</frame>

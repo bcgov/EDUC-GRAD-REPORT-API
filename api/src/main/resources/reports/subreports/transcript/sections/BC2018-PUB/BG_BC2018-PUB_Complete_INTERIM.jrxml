@@ -82,9 +82,9 @@
 					<textElement textAlignment="Left"/>
 					<textFieldExpression><![CDATA["Courses may have been completed at schools or institutions other than the student's current school of record as noted on this transcript".toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" x="0" y="0" width="567" height="86" uuid="d2fa32c9-111c-4826-9805-a1e7e3ff21d1"/>
-					<box padding="10"/>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="GraduationStatus" x="0" y="12" width="567" height="74" uuid="d2fa32c9-111c-4826-9805-a1e7e3ff21d1"/>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
