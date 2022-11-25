@@ -325,33 +325,39 @@
 	<summary>
 		<band height="80">
 			<frame>
-				<reportElement x="24" y="7" width="506" height="43" uuid="a09e2582-ea6a-4c00-b3d1-ae514477c931">
+				<reportElement x="0" y="10" width="555" height="43" uuid="a09e2582-ea6a-4c00-b3d1-ae514477c931">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 				</reportElement>
 				<box>
-					<topPen lineWidth="1.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="1.0"/>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 				<staticText>
-					<reportElement x="8" y="8" width="112" height="15" uuid="bda48582-517d-48f0-ad84-ec3e26d425cc">
+					<reportElement x="1" y="8" width="120" height="15" uuid="bda48582-517d-48f0-ad84-ec3e26d425cc">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
+					<textElement>
+						<paragraph leftIndent="10"/>
+					</textElement>
 					<text><![CDATA[Total # of Certificates:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="8" y="21" width="112" height="15" uuid="12dd20a8-0bf9-45b6-a9c6-1261c0dd9ca9"/>
+					<reportElement x="1" y="21" width="120" height="15" uuid="12dd20a8-0bf9-45b6-a9c6-1261c0dd9ca9">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement>
+						<paragraph leftIndent="10"/>
+					</textElement>
 					<text><![CDATA[Total # of Transcripts:]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="120" y="8" width="100" height="15" uuid="4d36f7a9-89e3-4481-ab72-0976d38c18fa">
+					<reportElement x="121" y="9" width="100" height="15" uuid="4d36f7a9-89e3-4481-ab72-0976d38c18fa">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textFieldExpression><![CDATA[$P{counts}.getTotalCertificates()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="120" y="21" width="100" height="15" uuid="0b1770dd-7c5f-47fe-83f6-d5f6d9003ade">
+					<reportElement x="121" y="22" width="100" height="15" uuid="0b1770dd-7c5f-47fe-83f6-d5f6d9003ade">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textFieldExpression><![CDATA[$P{counts}.getTotalTranscripts()]]></textFieldExpression>
