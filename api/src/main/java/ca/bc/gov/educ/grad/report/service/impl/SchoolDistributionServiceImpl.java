@@ -57,7 +57,6 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     @Autowired
     private ReportService reportService;

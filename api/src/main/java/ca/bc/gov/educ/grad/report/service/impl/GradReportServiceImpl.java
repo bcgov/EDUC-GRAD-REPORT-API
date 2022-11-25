@@ -149,6 +149,7 @@ public abstract class GradReportServiceImpl implements Serializable {
                 break;
             case "buildSchoolGraduationReport()":
             case "buildSchoolNonGraduationReport()":
+            case "buildStudentNonGradReport()":
             default:
                 sortStudentsByLastUpdateDateAndNames(students);
                 break;
@@ -172,14 +173,16 @@ public abstract class GradReportServiceImpl implements Serializable {
         parameters.put("orgImage", inputLogo);
 
         parameters.put("reportNumber", reportData.getReportNumber());
+        parameters.put("reportTitle", reportData.getReportTitle());
+        parameters.put("reportSubTitle", reportData.getReportSubTitle());
 
-        GraduationReport nonGraduationReport = createGraduationReport();
-        nonGraduationReport.setLocale(CANADA);
-        nonGraduationReport.setStudents(students);
-        nonGraduationReport.setSchool(school);
-        nonGraduationReport.setParameters(parameters);
+        GraduationReport graduationReport = createGraduationReport();
+        graduationReport.setLocale(CANADA);
+        graduationReport.setStudents(students);
+        graduationReport.setSchool(school);
+        graduationReport.setParameters(parameters);
 
-        return nonGraduationReport;
+        return graduationReport;
     }
 
     abstract GraduationReport createGraduationReport();
