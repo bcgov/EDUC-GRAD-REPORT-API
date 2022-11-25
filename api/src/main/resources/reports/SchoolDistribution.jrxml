@@ -48,6 +48,7 @@
 	<parameter name="orgCode" class="java.lang.String"/>
 	<parameter name="orgImage" class="java.io.InputStream"/>
 	<parameter name="reportNumber" class="java.lang.String"/>
+	<parameter name="counts" class="ca.bc.gov.educ.grad.report.utils.TotalCounts"/>
 	<parameter name="school" class="ca.bc.gov.educ.grad.report.model.school.School"/>
 	<parameter name="students" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
 	<parameter name="hasStudents" class="java.lang.String" isForPrompting="false"/>
@@ -139,7 +140,7 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="110">
+		<band height="63">
 			<property name="com.jaspersoft.studio.layout"/>
 			<componentElement>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="50" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
@@ -322,6 +323,40 @@
 		</band>
 	</detail>
 	<summary>
-		<band splitType="Stretch"/>
+		<band height="80">
+			<frame>
+				<reportElement x="24" y="7" width="506" height="43" uuid="a09e2582-ea6a-4c00-b3d1-ae514477c931">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="8" y="8" width="112" height="15" uuid="bda48582-517d-48f0-ad84-ec3e26d425cc">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<text><![CDATA[Total # of Certificates:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="21" width="112" height="15" uuid="12dd20a8-0bf9-45b6-a9c6-1261c0dd9ca9"/>
+					<text><![CDATA[Total # of Transcripts:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="120" y="8" width="100" height="15" uuid="4d36f7a9-89e3-4481-ab72-0976d38c18fa">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$P{counts}.getTotalCertificates()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="120" y="21" width="100" height="15" uuid="0b1770dd-7c5f-47fe-83f6-d5f6d9003ade">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$P{counts}.getTotalTranscripts()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
 	</summary>
 </jasperReport>

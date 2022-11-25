@@ -22,9 +22,11 @@ import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import ca.bc.gov.educ.grad.report.service.impl.BaseServiceImpl;
+import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -392,8 +394,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         return rsRptType;
     }
 
-    public List<Student> getStudents(ReportData reportData) {
+    public Pair<List<Student>, TotalCounts> getStudents(ReportData reportData) {
         List<Student> result = new ArrayList<>();
+        TotalCounts totals = new TotalCounts();
         ca.bc.gov.educ.grad.report.api.client.School school = reportData.getSchool();
         List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
         for (ca.bc.gov.educ.grad.report.api.client.Student st : students) {
@@ -431,12 +434,18 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             if(!StringUtils.isBlank(pen.getEntityId())) {
                 Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
                 distributionDate.ifPresent(student::setCertificateDistributionDate);
+
                 List<String> certificateTypes = studentCertificateRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()));
                 student.setCertificateTypes(certificateTypes);
+                totals.countCertificate(certificateTypes.size());
+
+                List<String> transcriptTypes = studentTranscriptRepository.getStudentTranscriptTypes(UUID.fromString(pen.getEntityId()));
+                student.setTranscriptTypes(transcriptTypes);
+                totals.countTranscript(transcriptTypes.size());
             }
             result.add(student);
         }
-        return result;
+        return Pair.of(result, totals);
     }
 
     public GraduationStudentRecord getGraduationStudentRecord(ReportData reportData) {

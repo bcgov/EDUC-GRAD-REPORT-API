@@ -83,7 +83,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
      */
     private synchronized SchoolDistributionReport createSchoolDistributionReport(final GraduationReport graduationReport) throws DomainServiceException {
 
-        final String methodName = "createSchoolDistributionReport(Student, School, Locale)";
+        final String methodName = "createSchoolDistributionReport(GraduationReport)";
         LOG.entering(CLASSNAME, methodName);
 
         SchoolDistributionReport report = null;
@@ -126,4 +126,5 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     GraduationReport createGraduationReport() {
         return reportService.createSchoolDistributionReport();
     }
+
 }

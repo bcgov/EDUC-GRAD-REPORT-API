@@ -14,7 +14,7 @@ public interface StudentCertificateRepository extends JpaRepository<StudentCerti
     @Query("select max(c.distributionDate) as distributionDate from StudentCertificateEntity c where c.graduationStudentRecordId=:graduationStudentRecordId")
     Optional<Date> getCertificateDistributionDate(UUID graduationStudentRecordId);
 
-    @Query("select t.label from CertificateTypeCodeEntity t join StudentCertificateEntity c on t.certificateTypeCode = c.certificateTypeCode where c.graduationStudentRecordId=:graduationStudentRecordId")
-    List<String> getStudentCertificateTypes(UUID graduationStudentRecordId);
+    @Query("select t.label from CertificateTypeCodeEntity t join StudentCertificateEntity c on t.certificateTypeCode = c.certificateTypeCode where c.documentStatusCode='COMPL' and c.graduationStudentRecordId=:entityId")
+    List<String> getStudentCertificateTypes(UUID entityId);
 
 }

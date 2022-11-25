@@ -19,9 +19,11 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.security.RolesAllowed;
@@ -70,18 +72,25 @@ public abstract class GradReportServiceImpl implements Serializable {
         return parameters;
     }
 
-    List<Student> getStudents(ReportData reportData, List<String> excludePrograms) {
-        final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
+    Pair<List<Student>, TotalCounts> getStudents(ReportData reportData, List<String> excludePrograms) {
+        final Pair<List<Student>, TotalCounts> students = gradDataConvertionBean.getStudents(reportData); //validated
         for(String program: excludePrograms) {
-            students.removeIf(p -> program.equalsIgnoreCase(p.getGradProgram()));
+            students.getFirst().removeIf(p -> program.equalsIgnoreCase(p.getGradProgram()));
         }
-        sortStudentsByLastUpdateDateAndNames(students);
         return students;
     }
 
     void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
         students.sort(Comparator
                 .comparing(Student::getStringLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
+    }
+
+    void sortStudentsByProgramCompletionDateAndNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getProgramCompletionDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
                 .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
@@ -130,7 +139,21 @@ public abstract class GradReportServiceImpl implements Serializable {
                 "Confirmed the user is a student and retrieved the PEN.");
 
         // validate incoming data for reporting
-        final List<Student> students = getStudents(reportData, excludePrograms);
+        final Pair<List<Student>, TotalCounts> studentsResult = getStudents(reportData, excludePrograms);
+        final List<Student> students = studentsResult.getFirst();
+        final TotalCounts counts = studentsResult.getSecond();
+
+        switch (methodName) {
+            case "buildSchoolDistributionReport()":
+                sortStudentsByProgramCompletionDateAndNames(students);
+                break;
+            case "buildSchoolGraduationReport()":
+            case "buildSchoolNonGraduationReport()":
+            default:
+                sortStudentsByLastUpdateDateAndNames(students);
+                break;
+        }
+
         final School school = getSchool(reportData);
 
         if(!students.isEmpty()) {
@@ -138,6 +161,8 @@ public abstract class GradReportServiceImpl implements Serializable {
             parameters.put("students", jrBeanCollectionDataSource);
             parameters.put("hasStudents", "true");
         }
+
+        parameters.put("counts", counts);
 
         if (school != null) {
             parameters.put("school", school);

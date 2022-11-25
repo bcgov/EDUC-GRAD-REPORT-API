@@ -29,9 +29,11 @@ import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
+import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.security.DeclareRoles;
@@ -75,7 +77,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public StudentNonGradReport buildStudentNonGradReport() throws DomainServiceException, IOException {
-        final String methodName = "buildReport()";
+        final String methodName = "buildStudentNonGradReport()";
         LOG.entering(CLASSNAME, methodName);
 
 
@@ -87,7 +89,9 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
         Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
-        final List<Student> students = getStudents(reportData, List.of("SCCP")); //validated
+        final Pair<List<Student>, TotalCounts> studentsResult = getStudents(reportData, List.of("SCCP")); //validated
+        final List<Student> students = studentsResult.getFirst();
+        final TotalCounts counts = studentsResult.getSecond();
         final School school = getSchool(reportData); //validated
 
         if(!students.isEmpty()) {
@@ -95,6 +99,8 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
             parameters.put("students", jrBeanCollectionDataSource);
             parameters.put("hasStudents", "true");
         }
+
+        parameters.put("counts", counts);
 
         if (school != null) {
             parameters.put("school", school);

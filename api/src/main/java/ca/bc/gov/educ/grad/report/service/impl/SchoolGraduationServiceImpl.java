@@ -67,7 +67,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public SchoolGraduationReport buildSchoolGraduationReport() throws DomainServiceException, IOException {
-        final String methodName = "buildReport()";
+        final String methodName = "buildSchoolGraduationReport()";
         LOG.entering(CLASSNAME, methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));

@@ -69,6 +69,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
     private List<NonGradReason> nonGradReasons = new ArrayList<>();
     private List<String> certificateTypes = new ArrayList<>();
+    private List<String> transcriptTypes = new ArrayList<>();
 
     private GraduationData graduationData = new GraduationDataImpl();
     private GraduationStatus graduationStatus = new GraduationStatusImpl();
@@ -164,6 +165,10 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         return certificateTypes == null ? Collections.emptyList() : certificateTypes;
     }
 
+    public List<String> getTranscriptTypes() {
+        return transcriptTypes == null ? Collections.emptyList() : transcriptTypes;
+    }
+
     @Override
     public String getNonGradReasonsString() {
         return getNonGradReasons().stream()
@@ -174,6 +179,13 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     @Override
     public String getCertificateTypesString() {
         final String concat = getCertificateTypes().stream()
+                .collect(Collectors.joining("\n", "", "")).concat("\n");
+        return concat;
+    }
+
+    @Override
+    public String getTranscriptTypesString() {
+        final String concat = getTranscriptTypes().stream()
                 .collect(Collectors.joining("\n", "", "")).concat("\n");
         return concat;
     }
@@ -267,6 +279,10 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.certificateTypes = certificateTypes;
     }
 
+    public void setTranscriptTypes(List<String> transcriptTypes) {
+        this.transcriptTypes = transcriptTypes;
+    }
+
     @Override
     public String getStudStatus() {
         return studStatus;
@@ -330,6 +346,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.lastUpdateDate = lastUpdateDate;
     }
 
+    @Override
     public String getStringLastUpdateDate() {
         if(getLastUpdateDate() != null)
             return new SimpleDateFormat("MM/dd/yyyy").format(getLastUpdateDate());
@@ -344,6 +361,14 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setCertificateDistributionDate(Date certificateDistributionDate) {
         this.certificateDistributionDate = certificateDistributionDate;
+    }
+
+    @Override
+    public String getProgramCompletionDate() {
+        if(graduationStatus != null) {
+            return graduationStatus.getProgramCompletionDate();
+        }
+        return null;
     }
 
     private boolean isBlank() {
