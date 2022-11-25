@@ -167,6 +167,20 @@ public interface Student extends Person {
     String getNonGradReasonsString();
 
     /**
+     * Gets student certificate types.
+     *
+     * @return certificate types
+     */
+    List<String> getCertificateTypes();
+
+    /**
+     * Gets student certificate types as String.
+     *
+     * @return certificate types
+     */
+    String getCertificateTypesString();
+
+    /**
      * Gets other program participationdata source.
      *
      * @return the other program participationdata source

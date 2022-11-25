@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -69,7 +70,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
         final String methodName = "buildReport()";
         LOG.entering(CLASSNAME, methodName);
 
-        GraduationReport graduationReport = getGraduationReport(methodName);
+        GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
         LOG.exiting(CLASSNAME, methodName);
         return createSchoolGraduationReport(graduationReport);

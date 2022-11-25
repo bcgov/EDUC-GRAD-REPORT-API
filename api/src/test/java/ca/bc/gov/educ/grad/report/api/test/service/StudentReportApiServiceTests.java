@@ -1685,6 +1685,11 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
+		String entityId = "709d33ac-4976-2e1a-8176-4a3b766f61cb";
+
+		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.studentCertificateRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of("Dogwood (Public)", "diplôme (Programme francophone)"));
+
 		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);
 		assertEquals(200, response.getStatusCode().value());
 		assertNotNull(response.getBody());

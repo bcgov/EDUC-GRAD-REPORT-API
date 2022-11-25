@@ -87,7 +87,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
         Parameters<String, Object> parameters = createParameters();
 
         // validate incoming data for reporting
-        final List<Student> students = getStudents(reportData); //validated
+        final List<Student> students = getStudents(reportData, List.of("SCCP")); //validated
         final School school = getSchool(reportData); //validated
 
         if(!students.isEmpty()) {

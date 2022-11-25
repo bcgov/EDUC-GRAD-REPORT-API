@@ -70,9 +70,11 @@ public abstract class GradReportServiceImpl implements Serializable {
         return parameters;
     }
 
-    List<Student> getStudents(ReportData reportData) {
+    List<Student> getStudents(ReportData reportData, List<String> excludePrograms) {
         final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
-        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
+        for(String program: excludePrograms) {
+            students.removeIf(p -> program.equalsIgnoreCase(p.getGradProgram()));
+        }
         sortStudentsByLastUpdateDateAndNames(students);
         return students;
     }
@@ -119,7 +121,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         return url.openStream();
     }
 
-    GraduationReport getGraduationReport(String methodName) throws IOException {
+    GraduationReport getGraduationReport(String methodName, List<String> excludePrograms) throws IOException {
         Parameters<String, Object> parameters = createParameters();
 
         ReportData reportData = getReportData(methodName);
@@ -128,7 +130,7 @@ public abstract class GradReportServiceImpl implements Serializable {
                 "Confirmed the user is a student and retrieved the PEN.");
 
         // validate incoming data for reporting
-        final List<Student> students = getStudents(reportData);
+        final List<Student> students = getStudents(reportData, excludePrograms);
         final School school = getSchool(reportData);
 
         if(!students.isEmpty()) {

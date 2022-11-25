@@ -402,15 +402,18 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
             pen.setEntityId(st.getPen().getEntityID());
             student.setPen(pen);
+
             if (st.getAddress() != null) {
                 PostalAddressImpl address = new PostalAddressImpl();
                 BeanUtils.copyProperties(st.getAddress(), address);
                 student.setCurrentMailingAddress(address);
             }
+
             GraduationDataImpl gradData = new GraduationDataImpl();
             GraduationData graduationData = st.getGraduationData();
             BeanUtils.copyProperties(graduationData, gradData);
             student.setGraduationData(gradData);
+
             if(st.getNonGradReasons() != null) {
                 for (ca.bc.gov.educ.grad.report.api.client.NonGradReason rsn : st.getNonGradReasons()) {
                     NonGradReasonImpl reason = new NonGradReasonImpl();
@@ -418,9 +421,18 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                     student.getNonGradReasons().add(reason);
                 }
             }
+
+            if(st.getGraduationStatus() != null) {
+                GraduationStatusImpl gradStatus = new GraduationStatusImpl();
+                BeanUtils.copyProperties(st.getGraduationStatus(), gradStatus);
+                student.setGraduationStatus(gradStatus);
+            }
+
             if(!StringUtils.isBlank(pen.getEntityId())) {
                 Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
                 distributionDate.ifPresent(student::setCertificateDistributionDate);
+                List<String> certificateTypes = studentCertificateRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()));
+                student.setCertificateTypes(certificateTypes);
             }
             result.add(student);
         }

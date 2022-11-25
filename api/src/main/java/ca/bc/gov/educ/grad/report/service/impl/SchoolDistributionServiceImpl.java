@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,8 +71,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
         final String methodName = "buildSchoolDistributionReport()";
         LOG.entering(CLASSNAME, methodName);
 
-        GraduationReport graduationReport = getGraduationReport(methodName);
-        graduationReport.getStudents().removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
+        GraduationReport graduationReport = getGraduationReport(methodName, List.of());
 
         LOG.exiting(CLASSNAME, methodName);
         return createSchoolDistributionReport(graduationReport);
