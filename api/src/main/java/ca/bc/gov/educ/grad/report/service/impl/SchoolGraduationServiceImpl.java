@@ -21,11 +21,9 @@ import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolGraduationReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
-import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,14 +31,11 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
-import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
 import static java.util.Locale.CANADA;
@@ -88,29 +83,9 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
         SchoolGraduationReport report = null;
         try {
 
-            String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
-            final ReportDocument rptDoc = reportService.export(graduationReport);
+            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_graduation_");
 
-            StringBuilder sb = new StringBuilder("school_graduation_");
-            sb.append(CANADA.toLanguageTag());
-            sb.append("_");
-            sb.append(timestamp);
-            sb.append(".");
-            sb.append(PDF.getFilenameExtension());
-            final String filename = graduationReport.getFilename();
-
-            byte[] inData = rptDoc.asBytes();
-            inData = ArrayUtils.nullToEmpty(inData);
-            if (ArrayUtils.isEmpty(inData)) {
-                String msg = "The generated report output is empty.";
-                DomainServiceException dse = new DomainServiceException(null,
-                        msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-            byte[] rptData = inData;
-
-            report = new SchoolGraduationReportImpl(rptData, PDF, filename, createReportTypeName("School Graduation Report", CANADA));
+            report = new SchoolGraduationReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Graduation Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the provincial examination report.", ex);

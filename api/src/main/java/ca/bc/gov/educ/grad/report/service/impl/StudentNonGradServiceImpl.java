@@ -21,11 +21,9 @@ import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
-import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
-import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,14 +31,11 @@ import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
-import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
 import static java.util.Locale.CANADA;
@@ -84,35 +79,16 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
     private synchronized StudentNonGradReport createStudentNonGradReport(
             final GraduationReport graduationReport) throws DomainServiceException {
 
-        final String methodName = "createSchoolDistributionReport(GraduationReport)";
+        final String methodName = "createStudentNonGradReport(GraduationReport)";
         LOG.entering(CLASSNAME, methodName);
 
         StudentNonGradReport report = null;
         try {
-            String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
-            final ReportDocument rptDoc = reportService.export(graduationReport);
 
-            StringBuilder sb = new StringBuilder("student_nongrad_requirements_");
-            sb.append(CANADA.toLanguageTag());
-            sb.append("_");
-            sb.append(timestamp);
-            sb.append(".");
-            sb.append(PDF.getFilenameExtension());
-            final String filename = graduationReport.getFilename();
-
-            byte[] inData = rptDoc.asBytes();
-            inData = ArrayUtils.nullToEmpty(inData);
-            if (ArrayUtils.isEmpty(inData)) {
-                String msg = "The generated report output is empty.";
-                DomainServiceException dse = new DomainServiceException(null,
-                        msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
-                throw dse;
-            }
-            byte[] rptData = inData;
+            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "student_nongrad_requirements_");
 
             // TODO: Use a constant for the name.
-            report = new StudentNonGradReportImpl(rptData, PDF, filename, createReportTypeName("Student NonGrad Requirements Report", CANADA));
+            report = new StudentNonGradReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Requirements Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the provincial examination report.", ex);
@@ -124,6 +100,6 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
 
     @Override
     GraduationReport createGraduationReport() {
-        return reportService.createNonGradReport();
+        return reportService.createStudentNonGradReport();
     }
 }

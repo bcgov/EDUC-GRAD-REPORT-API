@@ -12,6 +12,7 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
+import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
@@ -21,6 +22,7 @@ import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -31,11 +33,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
+import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
 import static java.lang.Integer.parseInt;
 import static java.util.Locale.CANADA;
 
@@ -414,5 +419,28 @@ public abstract class GradReportServiceImpl implements Serializable {
         return reportName
                 + " "
                 + locale.getISO3Language();
+    }
+
+    byte[] getPdfReportAsBytes(GraduationReport graduationReport, String methodName, String reportFilePrefix) throws IOException {
+        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
+        final ReportDocument rptDoc = reportService.export(graduationReport);
+
+        StringBuilder sb = new StringBuilder(reportFilePrefix);
+        sb.append(CANADA.toLanguageTag());
+        sb.append("_");
+        sb.append(timestamp);
+        sb.append(".");
+        sb.append(PDF.getFilenameExtension());
+
+        byte[] inData = rptDoc.asBytes();
+        inData = ArrayUtils.nullToEmpty(inData);
+        if (ArrayUtils.isEmpty(inData)) {
+            String msg = "The generated report output is empty.";
+            DomainServiceException dse = new DomainServiceException(null,
+                    msg);
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+        return inData;
     }
 }
