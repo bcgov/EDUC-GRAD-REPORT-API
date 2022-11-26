@@ -37,6 +37,8 @@ public class Student implements Comparable<Student>, Serializable {
 
     @JsonDeserialize(as = GraduationData.class)
     private GraduationData graduationData = new GraduationData();
+    @JsonDeserialize(as = GraduationStatus.class)
+    private GraduationStatus graduationStatus = new GraduationStatus();
 
     @JsonDeserialize(as = Pen.class)
     public Pen getPen() {
@@ -201,6 +203,14 @@ public class Student implements Comparable<Student>, Serializable {
 
     public void setGraduationData(GraduationData graduationData) {
         this.graduationData = graduationData;
+    }
+
+    public GraduationStatus getGraduationStatus() {
+        return graduationStatus;
+    }
+
+    public void setGraduationStatus(GraduationStatus graduationStatus) {
+        this.graduationStatus = graduationStatus;
     }
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
