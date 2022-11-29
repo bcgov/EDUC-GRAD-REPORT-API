@@ -8,8 +8,10 @@ import ca.bc.gov.educ.grad.report.dao.*;
 import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
+import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
@@ -76,9 +78,13 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	GradDataConvertionBean gradDataConvertionBean;
 
 	@MockBean
-	StudentTranscriptRepository studentTranscriptRepository;
+	TranscriptTypeCodeRepository transcriptTypeCodeRepository;
+	@MockBean
+	CertificateTypeCodeRepository certificateTypeCodeRepository;
 	@MockBean
 	StudentCertificateRepository studentCertificateRepository;
+	@MockBean
+	StudentTranscriptRepository studentTranscriptRepository;
 	@MockBean
 	ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
@@ -1688,12 +1694,13 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		String entityId = "709d33ac-4976-2e1a-8176-4a3b766f61cb";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
-		when(this.studentCertificateRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
-				"Dogwood (Public)", "diplôme (Programme francophone)"
+		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
+				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
 		));
-		when(this.studentTranscriptRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
-				"Adult Graduation Program",
-				"Graduation Program 2018"
+		when(this.transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				TranscriptTypeCodeEntity.builder().label("Adult Graduation Program").build(),
+				TranscriptTypeCodeEntity.builder().label("Graduation Program 2018").build()
 		));
 
 		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);

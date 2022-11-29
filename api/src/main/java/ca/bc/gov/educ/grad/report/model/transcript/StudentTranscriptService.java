@@ -97,7 +97,6 @@ public interface StudentTranscriptService extends BusinessService {
      * into the report because of the logic the report uses to insert blank rows
      * that delineate different courses.
      *
-     * @deprecated Use report services to sort.
      * @param transcriptResults The list of results to sort.
      * @param programCode The program code that influences sorting behaviour.
      * @return A sorted list for suitable for the given program code.
