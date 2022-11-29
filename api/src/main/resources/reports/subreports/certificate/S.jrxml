@@ -137,8 +137,8 @@
 			</frame>
 			<frame>
 				<reportElement x="505" y="413" width="235" height="56" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31"/>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDate" x="0" y="20" width="235" height="20" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="OrgDate" stretchType="ContainerHeight" x="0" y="20" width="235" height="20" uuid="2ef4b6a1-10bb-4977-b590-79e3b3d97212"/>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 				</textField>
