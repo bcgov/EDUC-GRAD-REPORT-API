@@ -1691,7 +1691,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		String entityId = "709d33ac-4976-2e1a-8176-4a3b766f61cb";
+		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
 		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
