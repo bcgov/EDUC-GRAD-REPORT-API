@@ -13,14 +13,14 @@ import java.util.UUID;
 public class StudentTranscriptEntity {
 
     @Id
-    @Column(name = "STUDENT_TRANSCRIPT_ID", nullable = false)
+    @Column(name = "STUDENT_TRANSCRIPT_ID", nullable = false, columnDefinition = "uuid")
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TRANSCRIPT_TYPE_CODE", nullable = false)
     private TranscriptTypeCodeEntity transcriptTypeCode;
 
-    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false)
+    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false, columnDefinition = "uuid")
     private UUID graduationStudentRecordId;
 
     @Column(name = "DOCUMENT_STATUS_CODE", length = 5)

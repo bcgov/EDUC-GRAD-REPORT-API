@@ -5,6 +5,8 @@ import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
+import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
+import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
@@ -37,7 +39,10 @@ import java.util.stream.Collectors;
 public class GradDataConvertionBean extends BaseServiceImpl implements Serializable {
 
     @Autowired
-    StudentTranscriptRepository studentTranscriptRepository;
+    TranscriptTypeCodeRepository transcriptTypeCodeRepository;
+
+    @Autowired
+    CertificateTypeCodeRepository certificateTypeCodeRepository;
 
     @Autowired
     StudentCertificateRepository studentCertificateRepository;
@@ -435,12 +440,12 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
                 distributionDate.ifPresent(student::setCertificateDistributionDate);
 
-                List<String> certificateTypes = studentCertificateRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()));
-                student.setCertificateTypes(certificateTypes);
+                List<CertificateTypeCodeEntity> certificateTypes = certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()));
+                student.setCertificateTypes(certificateTypes.stream().map(CertificateTypeCodeEntity::getLabel).collect(Collectors.toList()));
                 totals.countCertificate(certificateTypes.size());
 
-                List<String> transcriptTypes = studentTranscriptRepository.getStudentTranscriptTypes(UUID.fromString(pen.getEntityId()));
-                student.setTranscriptTypes(transcriptTypes);
+                List<TranscriptTypeCodeEntity> transcriptTypes = transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(pen.getEntityId()));
+                student.setTranscriptTypes(transcriptTypes.stream().map(TranscriptTypeCodeEntity::getLabel).collect(Collectors.toList()));
                 totals.countTranscript(transcriptTypes.size());
             }
             result.add(student);
