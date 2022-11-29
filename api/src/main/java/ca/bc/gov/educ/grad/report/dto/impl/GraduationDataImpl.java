@@ -71,8 +71,20 @@ public class GraduationDataImpl extends AbstractDomainEntity
 
     public String getTruncatedGraduationDate() {
         Date result = getGraduationDate();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
-        return sdf.format(result);
+        if(result != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
+            return sdf.format(result);
+        }
+        return null;
+    }
+
+    public String getFullGraduationDate() {
+        Date result = getGraduationDate();
+        if(result != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(result);
+        }
+        return null;
     }
 
     public void setDogwoodFlag(Boolean dogwoodFlag) {

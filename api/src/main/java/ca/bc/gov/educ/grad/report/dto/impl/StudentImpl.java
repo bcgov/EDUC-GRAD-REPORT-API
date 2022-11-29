@@ -367,8 +367,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     public String getProgramCompletionDate() {
         if(graduationStatus != null) {
             return graduationStatus.getProgramCompletionDate();
+        } else if (graduationData != null) {
+            return graduationData.getFullGraduationDate();
+        } else {
+            return null;
         }
-        return null;
     }
 
     private boolean isBlank() {
