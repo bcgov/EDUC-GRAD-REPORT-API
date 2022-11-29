@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
+import ca.bc.gov.educ.grad.report.api.client.Pen;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.client.Student;
 import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
@@ -117,7 +118,9 @@ public abstract class BaseController {
 
     private void hideStudentDataForDebug(Student st) {
         if (st != null) {
-            st.setPen(null);
+            Pen pen = st.getPen();
+            pen.setPen(null);
+            st.setPen(pen);
             st.setFirstName("John");
             st.setMiddleName("");
             st.setLastName("Doe");
