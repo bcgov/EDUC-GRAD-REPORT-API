@@ -41,7 +41,7 @@
 				<reportElement style="InfoHeader" x="0" y="12" width="80" height="12" uuid="cdcc6791-821c-461d-8596-2185a4f6c3c4"/>
 				<text><![CDATA[School Name:]]></text>
 			</staticText>
-			<textField isBlankWhenNull="true">
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 				<reportElement style="InfoContent" x="80" y="12" width="270" height="12" uuid="20eee797-d4da-489f-82d6-eedec68d53ad"/>
 				<textFieldExpression><![CDATA[$F{student.school.name}.toUpperCase()]]></textFieldExpression>
 			</textField>
