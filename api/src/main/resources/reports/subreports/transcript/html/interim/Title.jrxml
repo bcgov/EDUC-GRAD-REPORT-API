@@ -128,7 +128,7 @@
 					</box>
 					<textFieldExpression><![CDATA[$F{student.school.address.formattedStreet}.toUpperCase()]]></textFieldExpression>
 				</textField>
-				<textField isBlankWhenNull="true">
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 					<reportElement style="InfoBoxContent" isPrintRepeatedValues="false" x="0" y="42" width="291" height="14" uuid="20eee797-d4da-489f-82d6-eedec68d53ad">
 						<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
 					</reportElement>
