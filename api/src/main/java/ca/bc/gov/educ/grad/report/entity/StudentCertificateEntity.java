@@ -17,7 +17,7 @@ public class StudentCertificateEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "STUDENT_CERTIFICATE_ID", nullable = false)
+    @Column(name = "STUDENT_CERTIFICATE_ID", nullable = false, columnDefinition = "uuid")
     private UUID studentCertificateId;
 
     @Column(name = "CERTIFICATE")
@@ -26,7 +26,7 @@ public class StudentCertificateEntity extends BaseEntity {
     @Column(name = "CERTIFICATE_TYPE_CODE", nullable = false)
     private String certificateTypeCode;
 
-    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false)
+    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false, columnDefinition = "uuid")
     private UUID graduationStudentRecordId;
 
     @Column(name = "DOCUMENT_STATUS_CODE")

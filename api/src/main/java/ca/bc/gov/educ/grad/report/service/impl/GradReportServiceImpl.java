@@ -12,6 +12,7 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
+import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
@@ -19,9 +20,12 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.security.RolesAllowed;
@@ -29,11 +33,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
+import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
 import static java.lang.Integer.parseInt;
 import static java.util.Locale.CANADA;
 
@@ -70,16 +77,25 @@ public abstract class GradReportServiceImpl implements Serializable {
         return parameters;
     }
 
-    List<Student> getStudents(ReportData reportData) {
-        final List<Student> students = gradDataConvertionBean.getStudents(reportData); //validated
-        students.removeIf(p -> "SCCP".equalsIgnoreCase(p.getGradProgram()));
-        sortStudentsByLastUpdateDateAndNames(students);
+    Pair<List<Student>, TotalCounts> getStudents(ReportData reportData, List<String> excludePrograms) {
+        final Pair<List<Student>, TotalCounts> students = gradDataConvertionBean.getStudents(reportData); //validated
+        for(String program: excludePrograms) {
+            students.getFirst().removeIf(p -> program.equalsIgnoreCase(p.getGradProgram()));
+        }
         return students;
     }
 
     void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
         students.sort(Comparator
                 .comparing(Student::getStringLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
+    }
+
+    void sortStudentsByProgramCompletionDateAndNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getProgramCompletionDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
                 .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
@@ -119,7 +135,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         return url.openStream();
     }
 
-    GraduationReport getGraduationReport(String methodName) throws IOException {
+    GraduationReport getGraduationReport(String methodName, List<String> excludePrograms) throws IOException {
         Parameters<String, Object> parameters = createParameters();
 
         ReportData reportData = getReportData(methodName);
@@ -128,7 +144,22 @@ public abstract class GradReportServiceImpl implements Serializable {
                 "Confirmed the user is a student and retrieved the PEN.");
 
         // validate incoming data for reporting
-        final List<Student> students = getStudents(reportData);
+        final Pair<List<Student>, TotalCounts> studentsResult = getStudents(reportData, excludePrograms);
+        final List<Student> students = studentsResult.getFirst();
+        final TotalCounts counts = studentsResult.getSecond();
+
+        switch (methodName) {
+            case "buildSchoolDistributionReport()":
+                sortStudentsByProgramCompletionDateAndNames(students);
+                break;
+            case "buildSchoolGraduationReport()":
+            case "buildSchoolNonGraduationReport()":
+            case "buildStudentNonGradReport()":
+            default:
+                sortStudentsByLastUpdateDateAndNames(students);
+                break;
+        }
+
         final School school = getSchool(reportData);
 
         if(!students.isEmpty()) {
@@ -136,6 +167,8 @@ public abstract class GradReportServiceImpl implements Serializable {
             parameters.put("students", jrBeanCollectionDataSource);
             parameters.put("hasStudents", "true");
         }
+
+        parameters.put("counts", counts);
 
         if (school != null) {
             parameters.put("school", school);
@@ -145,14 +178,16 @@ public abstract class GradReportServiceImpl implements Serializable {
         parameters.put("orgImage", inputLogo);
 
         parameters.put("reportNumber", reportData.getReportNumber());
+        parameters.put("reportTitle", reportData.getReportTitle());
+        parameters.put("reportSubTitle", reportData.getReportSubTitle());
 
-        GraduationReport nonGraduationReport = createGraduationReport();
-        nonGraduationReport.setLocale(CANADA);
-        nonGraduationReport.setStudents(students);
-        nonGraduationReport.setSchool(school);
-        nonGraduationReport.setParameters(parameters);
+        GraduationReport graduationReport = createGraduationReport();
+        graduationReport.setLocale(CANADA);
+        graduationReport.setStudents(students);
+        graduationReport.setSchool(school);
+        graduationReport.setParameters(parameters);
 
-        return nonGraduationReport;
+        return graduationReport;
     }
 
     abstract GraduationReport createGraduationReport();
@@ -384,5 +419,28 @@ public abstract class GradReportServiceImpl implements Serializable {
         return reportName
                 + " "
                 + locale.getISO3Language();
+    }
+
+    byte[] getPdfReportAsBytes(GraduationReport graduationReport, String methodName, String reportFilePrefix) throws IOException {
+        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
+        final ReportDocument rptDoc = reportService.export(graduationReport);
+
+        StringBuilder sb = new StringBuilder(reportFilePrefix);
+        sb.append(CANADA.toLanguageTag());
+        sb.append("_");
+        sb.append(timestamp);
+        sb.append(".");
+        sb.append(PDF.getFilenameExtension());
+
+        byte[] inData = rptDoc.asBytes();
+        inData = ArrayUtils.nullToEmpty(inData);
+        if (ArrayUtils.isEmpty(inData)) {
+            String msg = "The generated report output is empty.";
+            DomainServiceException dse = new DomainServiceException(null,
+                    msg);
+            LOG.throwing(CLASSNAME, methodName, dse);
+            throw dse;
+        }
+        return inData;
     }
 }

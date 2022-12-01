@@ -96,7 +96,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     private static final String CLASSNAME = StudentTranscriptServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     /**
      * Sort order for ungraded courses (to bottom, above assessments).

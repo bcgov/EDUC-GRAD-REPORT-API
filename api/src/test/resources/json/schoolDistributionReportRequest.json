@@ -11,7 +11,7 @@
         {
           "pen": {
             "pen": "129382610",
-            "entityId": null
+            "entityID": "ac339d70-7649-1a2e-8176-4a2e693008cf"
           },
           "firstName": "CAYMAN",
           "middleName": "",
@@ -25,6 +25,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": false,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           },
           "lastUpdateDate": "2020-01-01 13:00:05"
         },
@@ -43,6 +56,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           },
           "lastUpdateDate": "2020-12-01 13:00:15"
         },
@@ -62,6 +88,19 @@
             "honorsFlag": true,
             "dogwoodFlag": false
           },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          },
           "lastUpdateDate": "2019-01-15 13:00:05"
         },
         {
@@ -79,6 +118,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           },
           "lastUpdateDate": "2021-10-01 13:00:05"
         },
@@ -98,6 +150,19 @@
             "honorsFlag": true,
             "dogwoodFlag": false
           },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          },
           "lastUpdateDate": "2020-10-01 13:25:05"
         },
         {
@@ -115,6 +180,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           },
           "lastUpdateDate": "2020-01-01 13:01:05"
         },
@@ -134,6 +212,19 @@
             "honorsFlag": true,
             "dogwoodFlag": false
           },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          },
           "lastUpdateDate": "2020-01-31 13:12:05"
         },
         {
@@ -151,6 +242,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           },
           "lastUpdateDate": "2020-05-15 00:00:05"
         },
@@ -170,6 +274,19 @@
             "honorsFlag": true,
             "dogwoodFlag": false
           },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          },
           "lastUpdateDate": "2020-01-01 13:00:05"
         },
         {
@@ -187,6 +304,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -221,6 +351,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -238,6 +381,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -255,6 +411,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -272,6 +441,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -289,6 +471,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -306,6 +501,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -323,6 +531,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -340,6 +561,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -357,6 +591,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -374,6 +621,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -391,6 +651,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -408,6 +681,127 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": null
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -1003,6 +1397,19 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -1037,6 +1444,868 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": null
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": null
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          }
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityId": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "graduationStatus": {
+            "programCompletionDate": "2020-09-01",
+            "honours": null,
+            "gpa": null,
+            "studentGrade": null,
+            "studentStatus": null,
+            "studentStatusName": null,
+            "schoolAtGrad": null,
+            "schoolOfRecord": null,
+            "certificates": null,
+            "graduationMessage": null,
+            "programName": null
           }
         },
         {
@@ -1207,857 +2476,8 @@
             "graduationDate": "2020-09-01",
             "honorsFlag": true,
             "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
           },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "SCCP",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "SCCP",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "SCCP",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "SCCP",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
-        },
-        {
-          "pen": {
-            "pen": "11111111",
-            "entityId": null
-          },
-          "firstName": "JOHN",
-          "middleName": "PIRATE",
-          "lastName": "SILVER",
-          "gender": "M",
-          "birthdate": "2002-08-05",
-          "gradProgram": "2004",
-          "graduationData": {
-            "graduationDate": "2020-09-01",
-            "honorsFlag": true,
-            "dogwoodFlag": false
-          }
+          "graduationStatus": null
         },
         {
           "pen": {

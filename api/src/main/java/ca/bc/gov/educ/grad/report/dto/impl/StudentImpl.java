@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationStatus;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
@@ -67,8 +68,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private Date certificateDistributionDate;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
     private List<NonGradReason> nonGradReasons = new ArrayList<>();
+    private List<String> certificateTypes = new ArrayList<>();
+    private List<String> transcriptTypes = new ArrayList<>();
 
-    private GraduationData graduationData;
+    private GraduationData graduationData = new GraduationDataImpl();
+    private GraduationStatus graduationStatus = new GraduationStatusImpl();
 
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
@@ -157,10 +161,33 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
+    public List<String> getCertificateTypes() {
+        return certificateTypes == null ? Collections.emptyList() : certificateTypes;
+    }
+
+    public List<String> getTranscriptTypes() {
+        return transcriptTypes == null ? Collections.emptyList() : transcriptTypes;
+    }
+
+    @Override
     public String getNonGradReasonsString() {
         return getNonGradReasons().stream()
                 .map(n -> String.valueOf(n.toString()))
                 .collect(Collectors.joining("\n", "", "")).concat("\n");
+    }
+
+    @Override
+    public String getCertificateTypesString() {
+        final String concat = getCertificateTypes().stream()
+                .collect(Collectors.joining("\n", "", "")).concat("\n");
+        return concat;
+    }
+
+    @Override
+    public String getTranscriptTypesString() {
+        final String concat = getTranscriptTypes().stream()
+                .collect(Collectors.joining("\n", "", "")).concat("\n");
+        return concat;
     }
 
     public void setGender(String gender) {
@@ -248,6 +275,14 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.nonGradReasons = nonGradReasons;
     }
 
+    public void setCertificateTypes(List<String> certificateTypes) {
+        this.certificateTypes = certificateTypes;
+    }
+
+    public void setTranscriptTypes(List<String> transcriptTypes) {
+        this.transcriptTypes = transcriptTypes;
+    }
+
     @Override
     public String getStudStatus() {
         return studStatus;
@@ -294,6 +329,14 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.graduationData = graduationData;
     }
 
+    public GraduationStatus getGraduationStatus() {
+        return graduationStatus;
+    }
+
+    public void setGraduationStatus(GraduationStatus graduationStatus) {
+        this.graduationStatus = graduationStatus;
+    }
+
     @JsonFormat(pattern="yyyy-MM-dd")
     public Date getLastUpdateDate() {
         return lastUpdateDate;
@@ -303,6 +346,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.lastUpdateDate = lastUpdateDate;
     }
 
+    @Override
     public String getStringLastUpdateDate() {
         if(getLastUpdateDate() != null)
             return new SimpleDateFormat("MM/dd/yyyy").format(getLastUpdateDate());
@@ -317,6 +361,17 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setCertificateDistributionDate(Date certificateDistributionDate) {
         this.certificateDistributionDate = certificateDistributionDate;
+    }
+
+    @Override
+    public String getProgramCompletionDate() {
+        if(graduationStatus != null) {
+            return graduationStatus.getProgramCompletionDate();
+        } else if (graduationData != null) {
+            return graduationData.getFullGraduationDate();
+        } else {
+            return null;
+        }
     }
 
     private boolean isBlank() {
