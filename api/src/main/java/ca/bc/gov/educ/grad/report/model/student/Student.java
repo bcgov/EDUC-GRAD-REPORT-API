@@ -67,6 +67,14 @@ public interface Student extends Person {
     String getGender();
 
     /**
+     * Student's current citizenship.
+     *
+     * @return Current citizenship.
+     */
+
+    String getCitizenship();
+
+    /**
      * Returns information about where to send physical items (such as the
      * student's transcripts). In the future, this might change to accommodate
      * international mailing addresses.

@@ -275,6 +275,7 @@ public abstract class GradReportServiceImpl implements Serializable {
         student.setBirthdate(studentInfo.getBirthdate());
         student.setGrade(studentInfo.getGrade());
         student.setGender(studentInfo.getGender());
+        student.setCitizenship(studentInfo.getCitizenship());
         student.setHasOtherProgram(studentInfo.getHasOtherProgram());
         student.setGradProgram(studentInfo.getGradProgram());
         student.setGradReqYear(studentInfo.getGradReqYear());

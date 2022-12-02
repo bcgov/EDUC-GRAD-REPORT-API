@@ -61,6 +61,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 student.getBirthdate() != null ? student.getBirthdate() : null,// Long birthdate,
                 student.getLocalId(),// String localId,
                 student.getGender(),// Character studGender,
+                student.getCitizenship(), //citizenship
                 school.getMinistryCode(),// String mincode,
                 student.getGrade(),// String studGrade,
                 gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,

@@ -59,6 +59,7 @@ public class StudentInfoImpl implements StudentInfo {
     private Date lastUpdateDate = new Date(0L);
     private String logo = "";
     private String gender = "";
+    private String citizenship = "";
     private String status = "";
     private Boolean honourFlag = Boolean.FALSE;
     private Boolean dogwoodFlag = Boolean.FALSE;
@@ -110,7 +111,7 @@ public class StudentInfoImpl implements StudentInfo {
      * @param mincode
      * @param studGrade
      * @param gradDate
-     * @param gradReqtYear
+     * @param gradProgram
      * @param gradMessage
      * @param updateDt
      * @param logoType
@@ -145,6 +146,7 @@ public class StudentInfoImpl implements StudentInfo {
             final Date birthdate,
             final String localId,
             final String studGender,
+            final String citizenship,
             final String mincode,
             final String studGrade,
             final Date gradDate,
@@ -183,6 +185,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.birthdate = birthdate;
         this.localId = trimSafe(localId);
         this.gender = studGender;
+        this.citizenship = citizenship;
         this.mincode = trimSafe(mincode);
         this.grade = trimSafe(studGrade);
         this.gradDate = gradDate;
@@ -279,6 +282,11 @@ public class StudentInfoImpl implements StudentInfo {
     @Override
     public String getGender() {
         return this.gender;
+    }
+
+    @Override
+    public String getCitizenship() {
+        return citizenship;
     }
 
     @Override
