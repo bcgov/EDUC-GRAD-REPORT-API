@@ -53,6 +53,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private String lastName = "";
     private String grade = "";
     private String gender = "";
+    private String citizenship = "";
     private Date sccDate;
     private String mincodeGrad;
     private String englishCert;
@@ -124,6 +125,11 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
+    public String getCitizenship() {
+        return citizenship;
+    }
+
+    @Override
     public String getGradProgram() {
         return gradProgram;
     }
@@ -192,6 +198,10 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setCitizenship(String citizenship) {
+        this.citizenship = citizenship;
     }
 
     public void setPen(final PersonalEducationNumber pen) {

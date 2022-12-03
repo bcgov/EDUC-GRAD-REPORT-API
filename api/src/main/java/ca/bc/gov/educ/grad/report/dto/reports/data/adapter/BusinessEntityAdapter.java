@@ -78,6 +78,7 @@ public class BusinessEntityAdapter {
                 .withCreatedOn(student.getCreatedOn())
                 .withPEN(student.getPen().getValue())
                 .withBirthdate(student.getBirthdate())
+                .withCitizenship(student.getCitizenship())
                 .withFirstName(student.getFirstName())
                 .withLastName(student.getLastName())
                 .withMiddleNames(student.getMiddleName())
