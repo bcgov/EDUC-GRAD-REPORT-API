@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-08-24T12:30:50 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TITLE_AI" pageWidth="792" pageHeight="300" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="080ab795-f2be-42c4-a4c8-6ae8a1be3fa5">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -24,12 +23,11 @@
 	</parameter>
 	<parameter name="P_STUDENT_NAME" class="java.lang.String"/>
 	<title>
-		<band height="258">
+		<band height="275">
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="0" y="228" width="792" height="30" uuid="895e224f-ad57-457b-8303-2d3154b95226"/>
+				<reportElement style="Body" x="0" y="228" width="792" height="45" uuid="895e224f-ad57-457b-8303-2d3154b95226"/>
 				<textElement>
-					<font size="10" isBold="false" isItalic="true"/>
-					<paragraph lineSpacing="Double"/>
+					<font isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{header.certify.suffix.AI}]]></textFieldExpression>
 			</textField>
