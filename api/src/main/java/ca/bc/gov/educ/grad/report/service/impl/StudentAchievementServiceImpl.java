@@ -711,7 +711,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         List<String> careerProgramCodes = this.getCareerProgramList(pen);
         if (careerProgramCodes != null && !careerProgramCodes.isEmpty()) {
-            String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(","));
+            String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(", "));
             parameters.put("careerProgramsObj", careerPrograms);
         }
 
