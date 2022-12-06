@@ -12,6 +12,7 @@ import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
+import ca.bc.gov.educ.grad.report.model.common.CitizenshipCode;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
@@ -130,6 +131,12 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             PostalAddressImpl address = new PostalAddressImpl();
             BeanUtils.copyProperties(reportData.getStudent().getAddress(), address);
             student.setCurrentMailingAddress(address);
+        }
+
+        String citizenshipCode = reportData.getStudent().getCitizenship();
+        if(StringUtils.isNotBlank(citizenshipCode)) {
+            CitizenshipCode code = CitizenshipCode.valueFrom(citizenshipCode);
+            student.setCitizenship(code.getDescription());
         }
 
         List<ca.bc.gov.educ.grad.report.model.graduation.OtherProgram> otherPrograms = new ArrayList<>();

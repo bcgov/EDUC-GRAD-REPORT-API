@@ -417,7 +417,7 @@
 					<textFieldExpression><![CDATA[$P{careerProgramsObj}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="368" y="67" width="32" height="14" uuid="72b5e66a-a827-45e5-ae5a-9823a6dbcde1">
+					<reportElement style="GeneratedText" x="384" y="67" width="33" height="14" uuid="72b5e66a-a827-45e5-ae5a-9823a6dbcde1">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -429,7 +429,7 @@
 					<text><![CDATA[Grade:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="400" y="67" width="30" height="14" uuid="1919a9b8-ff73-418e-a57c-db36a20fd1cc">
+					<reportElement style="GeneratedText" x="417" y="67" width="30" height="14" uuid="1919a9b8-ff73-418e-a57c-db36a20fd1cc">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -451,7 +451,7 @@
 					<text><![CDATA[Name:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="58" y="14" width="452" height="14" uuid="f605b10b-4e5a-48ab-91c3-2309af4816a8">
+					<reportElement style="GeneratedText" x="58" y="14" width="481" height="14" uuid="f605b10b-4e5a-48ab-91c3-2309af4816a8">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
@@ -489,12 +489,13 @@
 					<text><![CDATA[Citiz:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="383" y="28" width="127" height="14" uuid="73aa9c52-f171-4e31-a504-7488d2dd6331">
+					<reportElement style="GeneratedText" x="383" y="28" width="156" height="14" uuid="73aa9c52-f171-4e31-a504-7488d2dd6331">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
+					<box leftPadding="5"/>
 					<textElement>
 						<paragraph leftIndent="0"/>
 					</textElement>
@@ -545,7 +546,7 @@
 					<text><![CDATA[DOB:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="296" y="51" width="134" height="14" uuid="5b51795c-95d3-401d-ac92-52efdf0b208c">
+					<reportElement x="296" y="51" width="151" height="14" uuid="5b51795c-95d3-401d-ac92-52efdf0b208c">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -567,12 +568,13 @@
 					<text><![CDATA[Program:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="336" y="67" width="31" height="14" uuid="b5483804-778e-47df-8899-e01c99068fc9">
+					<reportElement style="GeneratedText" x="336" y="67" width="47" height="14" uuid="b5483804-778e-47df-8899-e01c99068fc9">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
+					<box leftPadding="5"/>
 					<textElement>
 						<paragraph leftIndent="0"/>
 					</textElement>
