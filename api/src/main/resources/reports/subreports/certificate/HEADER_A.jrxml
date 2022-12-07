@@ -55,7 +55,7 @@
 		<band height="270">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<frame>
-				<reportElement x="40" y="75" width="235" height="88" uuid="78987025-a306-40ff-b600-bdf0febe0081">
+				<reportElement x="40" y="50" width="235" height="88" uuid="78987025-a306-40ff-b600-bdf0febe0081">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -75,7 +75,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="504" y="75" width="235" height="88" uuid="8f4b0ce9-b7e7-4a97-b7b5-5f3fd41ed8cf">
+				<reportElement x="515" y="50" width="235" height="88" uuid="8f4b0ce9-b7e7-4a97-b7b5-5f3fd41ed8cf">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -95,7 +95,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="40" y="196" width="235" height="72" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
+				<reportElement x="40" y="171" width="235" height="72" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -110,11 +110,11 @@
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT" : "DISTRICT_PF").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT_PRES" : "DISTRICT_PRES").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="170" width="235" height="38" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
+				<reportElement x="516" y="145" width="235" height="38" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 				</reportElement>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
@@ -133,7 +133,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="230" width="235" height="38" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
+				<reportElement x="516" y="205" width="235" height="38" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="0" width="235" height="20" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
