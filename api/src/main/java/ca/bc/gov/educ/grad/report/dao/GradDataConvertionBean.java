@@ -133,11 +133,8 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             student.setCurrentMailingAddress(address);
         }
 
-        String citizenshipCode = reportData.getStudent().getCitizenship();
-        if(StringUtils.isNotBlank(citizenshipCode)) {
-            CitizenshipCode code = CitizenshipCode.valueFrom(citizenshipCode);
-            student.setCitizenship(code.getDescription());
-        }
+        CitizenshipCode code = CitizenshipCode.valueFrom(reportData.getStudent().getCitizenship());
+        student.setCitizenship(code.getDescription());
 
         List<ca.bc.gov.educ.grad.report.model.graduation.OtherProgram> otherPrograms = new ArrayList<>();
         if (reportData.getStudent().getOtherProgramParticipation() != null) {
