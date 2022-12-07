@@ -77,7 +77,6 @@ public class TranscriptCourseImpl implements TranscriptCourse {
      * @param finalLetterGrade
      * @param interimMark
      * @param requirement
-     * @param specialCase
      * @param courseType
      */
     public TranscriptCourseImpl(
