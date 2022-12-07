@@ -412,8 +412,15 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
                 tResult.setCourse(course);
 
-                final String schoolPct = transcriptCourse.getSchoolPercent();
-                final String examPct = transcriptCourse.getExamPercent();
+                String schoolPct = transcriptCourse.getSchoolPercent();
+                String examPct = transcriptCourse.getExamPercent();
+                if(StringUtils.isNumeric(courseLevel)) {
+                    int lv = Integer.parseInt(courseLevel);
+                    if(lv < 12) {
+                        schoolPct = "";
+                        examPct = "";
+                    }
+                }
                 String finalPct = transcriptCourse.getFinalPercent();
                 final String finalLetterGrade = transcriptCourse.getFinalLetterGrade();
                 final String interimPct = transcriptCourse.getInterimMark();
