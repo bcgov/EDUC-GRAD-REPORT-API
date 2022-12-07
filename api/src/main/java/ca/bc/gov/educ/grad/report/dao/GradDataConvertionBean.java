@@ -12,6 +12,7 @@ import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
+import ca.bc.gov.educ.grad.report.model.common.CitizenshipCode;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
@@ -61,6 +62,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 student.getBirthdate() != null ? student.getBirthdate() : null,// Long birthdate,
                 student.getLocalId(),// String localId,
                 student.getGender(),// Character studGender,
+                student.getCitizenship(), //citizenship
                 school.getMinistryCode(),// String mincode,
                 student.getGrade(),// String studGrade,
                 gradData != null ? gradData.getGraduationDate() : null,// Date gradDate,
@@ -130,6 +132,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             BeanUtils.copyProperties(reportData.getStudent().getAddress(), address);
             student.setCurrentMailingAddress(address);
         }
+
+        CitizenshipCode code = CitizenshipCode.valueFrom(reportData.getStudent().getCitizenship());
+        student.setCitizenship(code.getDescription());
 
         List<ca.bc.gov.educ.grad.report.model.graduation.OtherProgram> otherPrograms = new ArrayList<>();
         if (reportData.getStudent().getOtherProgramParticipation() != null) {

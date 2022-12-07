@@ -62,7 +62,7 @@
 		<initialValueExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></initialValueExpression>
 	</variable>
 	<title>
-		<band height="256">
+		<band height="275">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<subreport>
 				<reportElement x="0" y="0" width="792" height="256" uuid="15504b1f-c942-4bc1-8191-8c1233826f97">

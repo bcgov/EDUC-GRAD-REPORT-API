@@ -237,7 +237,7 @@
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement x="0" y="360" width="567" height="180" uuid="81266628-4faa-4f10-bb8b-b0c6425cfc5b">
+				<reportElement x="0" y="360" width="567" height="160" uuid="81266628-4faa-4f10-bb8b-b0c6425cfc5b">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<staticText>
@@ -323,22 +323,8 @@
 					<textElement verticalAlignment="Top"/>
 					<text><![CDATA[Percentages are not reported for Non-Provincially Examinable courses completed before September 1994.]]></text>
 				</staticText>
-				<staticText>
-					<reportElement style="SummaryBody" x="102" y="150" width="384" height="30" uuid="f7a2e88c-bc53-41cb-b79a-16a39474d86d">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					</reportElement>
-					<box topPadding="0"/>
-					<textElement verticalAlignment="Top"/>
-					<text><![CDATA[Courses completed after August 31, 2001 cannot be used to fulfill the Grade 12 Course-Based graduation requirements.]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="SummaryBody" x="64" y="150" width="29" height="13" uuid="3f292abc-3179-4d69-8a9c-3d66689d3b8a">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<text><![CDATA[NOTE:]]></text>
-				</staticText>
 				<subreport>
-					<reportElement key="SIGNATURE" x="39" y="184" width="144" height="110" uuid="6c9b94ad-da41-431b-9c71-ebdbbece5e48">
+					<reportElement key="SIGNATURE" x="38" y="177" width="144" height="110" uuid="6c9b94ad-da41-431b-9c71-ebdbbece5e48">
 						<printWhenExpression><![CDATA[!$P{P_REPORT_PREVIEW}]]></printWhenExpression>
 					</reportElement>
 					<subreportParameter name="P_REPORT_STYLE_FILE">

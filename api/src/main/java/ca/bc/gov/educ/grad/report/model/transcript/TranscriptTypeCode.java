@@ -210,7 +210,7 @@ public enum TranscriptTypeCode implements Serializable {
     }
 
     /**
-     * Returns true if this code represents an adult graduation program.
+     * Returns true if this code represents an transcript.
      *
      * @return true This is an adult program.
      */
@@ -219,9 +219,9 @@ public enum TranscriptTypeCode implements Serializable {
     }
 
     /**
-     * Returns the string representation of this graduation program code.
+     * Returns the string representation of this transcript code.
      *
-     * @return The graduation program code (without the description).
+     * @return The transcript code (without the description).
      */
     @Override
     public String toString() {

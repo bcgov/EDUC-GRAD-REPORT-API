@@ -69,6 +69,11 @@ public final class Student extends BusinessEntity {
     private String gender;
 
     /**
+     * Student''s citizenship
+     */
+    private String citizenship;
+
+    /**
      * Grade level of a student. Used in an XML but not paper transcript.
      */
     private String grade;
@@ -223,6 +228,10 @@ public final class Student extends BusinessEntity {
         return this.birthdate;
     }
 
+    public String getCitizenship() {
+        return citizenship;
+    }
+
     /**
      * Answers true if the student has graduated.
      *
@@ -318,6 +327,10 @@ public final class Student extends BusinessEntity {
      */
     protected void setBirthdate(final Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    protected void setCitizenship(String citizenship) {
+        this.citizenship = citizenship;
     }
 
     /**
@@ -908,13 +921,12 @@ public final class Student extends BusinessEntity {
          * Convenience method to create a new birthdate using a given year,
          * month, and day.
          *
-         * @param year The birth year.
-         * @param month The birth month.
-         * @param day The birth day.
+         * @param citizenship
          * @return thisBuilder
          */
-        public Builder withBirthdate(final int year, final int month, final int day) {
-            return withBirthdate(createdDate(year, month, day));
+        public Builder withCitizenship(final String citizenship) {
+            getObject().setCitizenship(citizenship);
+            return thisBuilder();
         }
 
         /**

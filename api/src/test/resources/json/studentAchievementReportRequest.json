@@ -18,6 +18,7 @@
       "lastName": "SPARROW",
       "grade": "11",
       "gender": "M",
+      "citizenship": "C",
       "birthdate": "2010-01-01",
       "localId": "000000555666",
       "gradProgram": "2018-PF",
@@ -465,9 +466,11 @@
       "dogwoodFlag": false,
       "programCodes": [
         "XE",
-        "XP"
+        "XP",
+        "XN"
       ],
       "programNames": [
+        "",
         "",
         ""
       ],
