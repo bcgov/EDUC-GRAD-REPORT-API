@@ -1906,9 +1906,9 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
-	public void createTranscriptReportDuplicateInterimCourses_BC2018_IND() throws Exception {
-		LOG.debug("<{}.createTranscriptReportDuplicateInterimCourses_BC2018_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+	public void createTranscriptReportDuplicateInterimCourses_BC2018_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReportDuplicateInterimCourses_BC2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PUB.json");
 
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
@@ -1920,7 +1920,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		assertTrue(originalCourses.size() > filteredTranscript.getResults().size());
 
-		LOG.debug(">createTranscriptReportDuplicateInterimCourses_BC2018_IND");
+		LOG.debug(">createTranscriptReportDuplicateInterimCourses_BC2018_PUB");
 	}
 
 	@Test
