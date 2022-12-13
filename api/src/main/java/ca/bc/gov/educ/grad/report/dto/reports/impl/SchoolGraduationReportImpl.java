@@ -58,4 +58,9 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
     public Object getDataSource() {
         return this.school;
     }
+
+    @Override
+    public boolean isPreview() {
+        return false;
+    }
 }
