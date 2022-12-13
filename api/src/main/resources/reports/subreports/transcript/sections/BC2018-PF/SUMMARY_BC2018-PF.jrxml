@@ -161,7 +161,7 @@
 				<text><![CDATA[(Standing Granted)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="327" y="49" width="220" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<reportElement style="SummaryBody" x="327" y="49" width="239" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
@@ -181,7 +181,7 @@
 				<text><![CDATA[(Transfer Standing)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="327" y="93" width="220" height="38" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
+				<reportElement style="SummaryBody" x="327" y="93" width="239" height="38" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
