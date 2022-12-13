@@ -163,21 +163,21 @@
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="330" y="90" width="220" height="42" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
-				<textElement verticalAlignment="Top" markup="html">
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
+				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="15" y="180" width="25" height="13" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
-				<textElement verticalAlignment="Top" markup="none"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[MET]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="40" y="180" width="493" height="13" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Top" markup="none">
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Assessment requirement met by a provincial exam]]></text>
