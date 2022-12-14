@@ -9,6 +9,7 @@
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+    <parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_REPORT_DATE" class="java.lang.String"/>
 	<parameter name="P_STUDENT_FULL_NAME" class="java.lang.String"/>

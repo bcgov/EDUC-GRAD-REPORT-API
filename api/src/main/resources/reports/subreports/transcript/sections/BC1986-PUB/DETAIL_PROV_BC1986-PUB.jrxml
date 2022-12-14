@@ -8,6 +8,7 @@
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+    <parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
 	<parameter name="P_ROW_COUNT" class="java.lang.Integer" isForPrompting="false">
 		<parameterDescription><![CDATA[Total number of rows in the master report.]]></parameterDescription>
 	</parameter>

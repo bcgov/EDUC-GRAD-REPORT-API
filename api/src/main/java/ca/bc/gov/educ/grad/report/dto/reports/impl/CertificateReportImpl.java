@@ -77,6 +77,11 @@ public final class CertificateReportImpl extends StudentReportImpl
         return this.certificate;
     }
 
+    @Override
+    public boolean isPreview() {
+        return false;
+    }
+
     /**
      * Sets the report date (the certificate's issue date), report type, and
      * report subtype.

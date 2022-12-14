@@ -61,7 +61,7 @@ public class TranscriptJasperReportImpl extends JasperReportImpl {
         ReportDocument transcript = super.export();
 
         // Only the PDF version has summary pages.
-        if (report.isFormat(PDF)) {
+        if (report.isFormat(PDF) && !report.isPreview()) {
             // Change report name for summary page (for grad program code).
             report.preprocessReportName();
 

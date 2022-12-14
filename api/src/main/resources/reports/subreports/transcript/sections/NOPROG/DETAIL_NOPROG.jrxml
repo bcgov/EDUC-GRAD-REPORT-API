@@ -8,6 +8,7 @@
 	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.TranscriptCalculator"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+    <parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
 	<parameter name="P_TOTAL_ROWS" class="java.lang.Integer"/>
 	<parameter name="P_SHORT_PAGE_ROWS" class="java.lang.Integer"/>
 	<parameter name="P_LONG_PAGE_ROWS" class="java.lang.Integer"/>

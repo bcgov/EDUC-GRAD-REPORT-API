@@ -42,6 +42,11 @@ public final class PackingSlipReportImpl extends ReportImpl
         return this.packingSlipDetails;
     }
 
+    @Override
+    public boolean isPreview() {
+        return false;
+    }
+
     /**
      * Sets the information to write on the packing slip.
      *
