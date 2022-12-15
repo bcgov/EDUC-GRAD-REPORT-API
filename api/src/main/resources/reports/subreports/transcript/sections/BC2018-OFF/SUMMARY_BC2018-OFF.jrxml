@@ -145,39 +145,58 @@
 				<text><![CDATA[Minimally Acceptable Performance]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="49" width="17" height="15" uuid="cd9c3af6-1d25-434b-b50e-138c0cc2059b"/>
+				<reportElement style="SummaryBody" x="258" y="49" width="18" height="13" uuid="cd9c3af6-1d25-434b-b50e-138c0cc2059b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[SG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="330" y="50" width="220" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<reportElement style="SummaryBody" x="276" y="49" width="45" height="35" uuid="78606c6f-5ce8-449b-84c4-60f427c9ec01">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[(Standing Granted)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="327" y="49" width="239" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
 				<text><![CDATA[Where completion of normal requirements was not possible, but credit was granted on the basis of adjudication by the school]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="260" y="93" width="17" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3"/>
+				<reportElement style="SummaryBody" x="258" y="93" width="17" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[TS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="330" y="90" width="220" height="42" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
-				<textElement verticalAlignment="Top" markup="html">
+				<reportElement style="SummaryBody" x="275" y="93" width="45" height="35" uuid="86df63e9-ee34-4482-8268-7c401ee39231">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[(Transfer Standing)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="327" y="93" width="239" height="38" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
+				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="15" y="180" width="25" height="13" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
-				<textElement verticalAlignment="Top" markup="none"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[MET]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="40" y="180" width="493" height="13" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Top" markup="none">
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Assessment requirement met by a provincial exam]]></text>
@@ -349,7 +368,7 @@
 				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryTitle" x="16" y="245" width="535" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
+				<reportElement style="SummaryTitle" x="16" y="245" width="534" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[2018 GRADUATION PROGRAM REQUIREMENTS]]></text>
 			</staticText>
@@ -778,16 +797,6 @@
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<text><![CDATA[(See Provincial Letter Grades Order M192/94 for complete definition)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="280" y="51" width="50" height="33" uuid="78606c6f-5ce8-449b-84c4-60f427c9ec01"/>
-				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[(Standing Granted)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="280" y="90" width="50" height="33" uuid="86df63e9-ee34-4482-8268-7c401ee39231"/>
-				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[(Transfer Standing)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="19" y="440" width="514" height="19" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>

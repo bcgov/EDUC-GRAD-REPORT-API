@@ -13,6 +13,7 @@ import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.school.*;
 import ca.bc.gov.educ.grad.report.model.student.SchoolNonGraduationService;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
@@ -171,8 +172,10 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-
-		return transcriptService.buildOfficialTranscriptReport();
+		if(reportRequest.getOptions().isPreview())
+			return transcriptService.buildUnOfficialTranscriptReport(ReportFormat.PDF);
+		else
+			return transcriptService.buildOfficialTranscriptReport();
 	}
 
 	public ResponseEntity<byte[]> getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {

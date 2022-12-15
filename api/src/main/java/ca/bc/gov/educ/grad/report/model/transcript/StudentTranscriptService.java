@@ -47,7 +47,7 @@ public interface StudentTranscriptService extends BusinessService {
      * @throws IOException
      * @throws DataException
      */
-    Future<StudentTranscriptReport> buildTranscriptReportAsync(ReportFormat format)
+    Future<StudentTranscriptReport> buildUnofficialTranscriptReportAsync(ReportFormat format)
             throws DomainServiceException, IOException, DataException;
 
     /**
@@ -59,6 +59,17 @@ public interface StudentTranscriptService extends BusinessService {
      * @throws DataException
      */
     StudentTranscriptReport buildOfficialTranscriptReport()
+            throws DomainServiceException, IOException, DataException;
+
+    /**
+     * Creates the student's unofficial transcript in the selected format
+     *
+     * @return A filled transcript report suitable for sending to a PSI.
+     * @throws DomainServiceException
+     * @throws IOException
+     * @throws DataException
+     */
+    public StudentTranscriptReport buildUnOfficialTranscriptReport(final ReportFormat format)
             throws DomainServiceException, IOException, DataException;
 
     /**

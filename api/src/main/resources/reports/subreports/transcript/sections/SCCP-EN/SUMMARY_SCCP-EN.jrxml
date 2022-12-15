@@ -141,25 +141,39 @@
 				<text><![CDATA[Minimally Acceptable Performance]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="282" y="32" width="18" height="15" uuid="cd9c3af6-1d25-434b-b50e-138c0cc2059b"/>
+				<reportElement style="SummaryBody" x="282" y="32" width="18" height="13" uuid="cd9c3af6-1d25-434b-b50e-138c0cc2059b"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[SG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="345" y="30" width="217" height="38" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<reportElement style="SummaryBody" x="300" y="32" width="45" height="35" uuid="260e5044-f041-42d2-a2b0-b63beeeb024d"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[(Standing Granted)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="350" y="32" width="217" height="44" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
 				<text><![CDATA[Where completion of normal requirements was not possible, but credit was granted on the basis of adjudication by the school.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="282" y="75" width="18" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3"/>
+				<reportElement style="SummaryBody" x="282" y="76" width="18" height="13" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[TS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="345" y="75" width="217" height="39" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
-				<textElement verticalAlignment="Top" markup="html">
+				<reportElement style="SummaryBody" x="300" y="76" width="45" height="35" uuid="2516bbca-264a-4981-8467-a9d3983b2640"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[(Transfer Standing)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="350" y="76" width="217" height="44" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
 				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act ]]></text>
@@ -250,6 +264,9 @@
 				<subreportParameter name="P_SIGNATURE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Signature.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
@@ -262,6 +279,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/FORWARDED_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -281,14 +301,6 @@
 				<reportElement style="SummaryBody" stretchType="ContainerHeight" x="124" y="87" width="158" height="27" uuid="86fdcf9f-18cf-4789-b783-55234861ac02"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[Pass (only used before September 1994)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="SummaryBody" x="300" y="32" width="45" height="35" uuid="260e5044-f041-42d2-a2b0-b63beeeb024d"/>
-				<text><![CDATA[Standing Granted]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="SummaryBody" x="300" y="75" width="45" height="39" uuid="2516bbca-264a-4981-8467-a9d3983b2640"/>
-				<text><![CDATA[Transfer Standing]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="369" y="270" width="30" height="13" uuid="a353390f-233d-4863-868e-3d8fd289cb01">
@@ -483,14 +495,14 @@
 				<reportElement style="SummaryBody" x="23" y="200" width="25" height="13" uuid="d0bbafab-260a-4895-a2c1-2058692c7e2a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Top" markup="none"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[MET]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="53" y="200" width="503" height="13" uuid="08e46da1-e223-4c7b-9319-571900143ea0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement verticalAlignment="Top" markup="none">
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Assessment requirement met by a provincial exam.]]></text>

@@ -141,7 +141,12 @@
 				<text><![CDATA[SG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="325" y="48" width="237" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<reportElement style="SummaryBody" x="280" y="48" width="45" height="39" uuid="78606c6f-5ce8-449b-84c4-60f427c9ec01"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[(Standing Granted)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="330" y="48" width="232" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
@@ -155,11 +160,16 @@
 				<text><![CDATA[TS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="325" y="87" width="237" height="48" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
-				<textElement verticalAlignment="Top" markup="html">
+				<reportElement style="SummaryBody" x="280" y="88" width="45" height="33" uuid="86df63e9-ee34-4482-8268-7c401ee39231"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[(Transfer Standing)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SummaryBody" x="330" y="87" width="232" height="48" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
+				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryTitle" x="30" y="245" width="532" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68">
@@ -320,6 +330,9 @@
 				<subreportParameter name="P_SIGNATURE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Signature.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
@@ -329,6 +342,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/FORWARDED_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -355,6 +371,9 @@
 				<subreportParameter name="P_SIGNATURE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
@@ -367,16 +386,6 @@
 					<paragraph leftIndent="5"/>
 				</textElement>
 				<text><![CDATA[(See Provincial Letter Grades Order M192/94 for complete definition)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="280" y="48" width="45" height="39" uuid="78606c6f-5ce8-449b-84c4-60f427c9ec01"/>
-				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[(Standing Granted)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="280" y="88" width="45" height="33" uuid="86df63e9-ee34-4482-8268-7c401ee39231"/>
-				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[(Transfer Standing)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="30" y="370" width="508" height="15" uuid="60ab2176-9b74-49a7-aebc-9d275c8f1333"/>

@@ -133,6 +133,21 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     }
 
     /**
+     * Creates the student's unofficial transcript in the selected format
+     *
+     * @return A filled transcript report suitable for sending to a PSI.
+     * @throws DomainServiceException
+     * @throws IOException
+     * @throws DataException
+     */
+    @Override
+    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
+    public StudentTranscriptReport buildUnOfficialTranscriptReport(final ReportFormat format)
+            throws DomainServiceException, IOException, DataException {
+        return createTranscriptReport(format, true);
+    }
+
+    /**
      * Builds an unofficial transcript report asynchronously. Calls
      * <code>createTranscriptReport(ReportFormat, true)</code> and returns the
      * result wrapped in an AsyncResult.
@@ -145,7 +160,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
-    public Future<StudentTranscriptReport> buildTranscriptReportAsync(
+    public Future<StudentTranscriptReport> buildUnofficialTranscriptReportAsync(
             final ReportFormat format)
             throws DomainServiceException, IOException, DataException {
         return new AsyncResult<>(createTranscriptReport(format, true));

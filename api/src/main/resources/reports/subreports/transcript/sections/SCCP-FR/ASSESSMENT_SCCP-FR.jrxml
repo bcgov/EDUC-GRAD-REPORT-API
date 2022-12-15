@@ -42,12 +42,12 @@
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="18" y="65" width="25" height="12" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
-				<textElement verticalAlignment="Top" markup="none"/>
+				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[MET]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="48" y="65" width="503" height="12" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae"/>
-				<textElement verticalAlignment="Top" markup="none">
+				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
 				<text><![CDATA[Assessment requirement met by a provincial exam.]]></text>
@@ -64,6 +64,9 @@
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_COMMON_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_COMMON_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_SCORE_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>

@@ -139,7 +139,7 @@
 		<fieldDescription><![CDATA[student.nonProvinciallyExaminableCourses]]></fieldDescription>
 	</field>
 	<variable name="V_TITLE" class="java.lang.String" calculation="System">
-		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "Unofficial " : "") + "Transcript of Grades").toUpperCase()]]></initialValueExpression>
+		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "XML Transcript Preview" : "Transcript of Grades")).toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_FULL_NAME" class="java.lang.String">
 		<variableExpression><![CDATA[$F{student.fullName}]]></variableExpression>
@@ -227,6 +227,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				</subreportParameter>
 				<subreportParameter name="P_COMPLETION_NOTICE">
 					<subreportParameterExpression><![CDATA["YU".equalsIgnoreCase($V{V_LOGO_CODE})]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/BG_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
@@ -332,11 +335,16 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_BLANK">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0"/>
+				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0">
+					<printWhenExpression><![CDATA[!$P{P_REPORT_PREVIEW}]]></printWhenExpression>
+				</reportElement>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -344,6 +352,18 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				</box>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0">
+					<printWhenExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["This document is a preview of transcript information sent (upon student authorization) to institutions with XML capabilities. It is not a transcript".toUpperCase()]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -374,6 +394,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<subreportParameter name="P_REPORT_BLANK">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
 				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.provinciallyExaminableCourses})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_PROV_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
@@ -396,6 +419,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_BLANK">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.nonProvinciallyExaminableCourses})]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_NONPROV_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
