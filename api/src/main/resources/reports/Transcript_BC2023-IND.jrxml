@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Transcript" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="23" rightMargin="22" topMargin="5" bottomMargin="15" resourceBundle="reports\resources\i18n\Transcript" whenResourceMissingType="Empty" uuid="5a0adfda-468c-4c62-ae31-d6ce9293eb62">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\StudentAdapter.xml"/>
+	<property name="net.sf.jasperreports.export.html.exclude.origin.band.1" value="pageFooter"/>
+	<property name="net.sf.jasperreports.export.html.remove.emtpy.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.export.html.embed.image" value="true"/>
+	<property name="net.sf.jasperreports.export.html.between.pages" value=""/>
+	<property name="net.sf.jasperreports.export.html.size.unit" value="pt"/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.PAGE_NUMBERS"/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.AUTHENTICITY"/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.MINISTRY_CODE"/>
+	<property name="net.sf.jasperreports.export.html.exclude.key.IMAGE_LOGO_SVG"/>
+	<property name="net.sf.jasperreports.export.pdf.exclude.key.IMAGE_LOGO_PNG"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.TranscriptCalculator"/>
+	<import value="net.sf.jasperreports.engine.util.JRImageLoader"/>
+	<import value="ca.bc.gov.educ.grad.report.dto.reports.jasper.EmbeddedImageTranscoder"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<import value="net.sf.jasperreports.engine.util.JRLoader"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_BASE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SUBREPORTS_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "subreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_COMMON_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "common/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH} + "transcript/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "styles/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_STYLES_PATH} + "ETS.jrtx"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String">
+		<parameterDescription><![CDATA[Graduation program code]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_DATE" class="java.util.Date">
+		<parameterDescription><![CDATA[Date the transcript result data was merged]]></parameterDescription>
+		<defaultValueExpression><![CDATA[DATE(1990,06,02)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_INTERIM" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.FALSE]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_COMPLETION_NOTICE" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[Boolean.TRUE]]></defaultValueExpression>
+	</parameter>
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
+	<field name="student.transcriptResults" class="java.util.List">
+		<fieldDescription><![CDATA[student.transcriptResults]]></fieldDescription>
+	</field>
+	<field name="student.assessments" class="java.util.List">
+		<fieldDescription><![CDATA[student.assessments]]></fieldDescription>
+	</field>
+	<field name="student.firstName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.firstName]]></fieldDescription>
+	</field>
+	<field name="student.lastName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.lastName]]></fieldDescription>
+	</field>
+	<field name="student.middleNames" class="java.lang.String">
+		<fieldDescription><![CDATA[student.middleNames]]></fieldDescription>
+	</field>
+	<field name="student.fullName" class="java.lang.String">
+		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
+	</field>
+	<field name="student.birthdate" class="java.util.Date">
+		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
+	</field>
+	<field name="student.graduationProgram.description" class="java.lang.String">
+		<fieldDescription><![CDATA[student.graduationProgram.description]]></fieldDescription>
+	</field>
+	<field name="student.school.address.formattedStreet" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.formattedStreet]]></fieldDescription>
+	</field>
+	<field name="student.school.address.city" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.city]]></fieldDescription>
+	</field>
+	<field name="student.school.address.region" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.region]]></fieldDescription>
+	</field>
+	<field name="student.school.address.postalCode" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.address.postalCode]]></fieldDescription>
+	</field>
+	<field name="student.school.name" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.name]]></fieldDescription>
+	</field>
+	<field name="student.school.districtOrganisation.name" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.districtOrganisation.name]]></fieldDescription>
+	</field>
+	<field name="student.school.districtOrganisation.logoCode" class="java.lang.String">
+		<fieldDescription><![CDATA[student.school.districtOrganisation.logoCode]]></fieldDescription>
+	</field>
+	<field name="student.status.graduationMessage" class="java.lang.String">
+		<fieldDescription><![CDATA[student.status.graduationMessage]]></fieldDescription>
+	</field>
+	<field name="student.status.graduated" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[student.status.graduated]]></fieldDescription>
+	</field>
+	<field name="student.provinciallyExaminableCourses" class="java.util.List">
+		<fieldDescription><![CDATA[student.provinciallyExaminableCourses]]></fieldDescription>
+	</field>
+	<field name="student.nonProvinciallyExaminableCourses" class="java.util.List">
+		<fieldDescription><![CDATA[student.nonProvinciallyExaminableCourses]]></fieldDescription>
+	</field>
+	<variable name="V_TITLE" class="java.lang.String" calculation="System">
+		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "XML Transcript Preview" : "Transcript of Grades")).toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_STUDENT_FULL_NAME" class="java.lang.String">
+		<variableExpression><![CDATA[$F{student.fullName}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.fullName}]]></initialValueExpression>
+	</variable>
+	<variable name="V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE" class="java.lang.String">
+		<initialValueExpression><![CDATA[$F{student.school.address.postalCode}.replaceAll("\\s","").toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_SCHOOL_ADDRESS_POSTAL_CODE" class="java.lang.String">
+		<initialValueExpression><![CDATA[$V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.length() == 6 ? (
+$V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 3 )
+) : ""]]></initialValueExpression>
+	</variable>
+	<variable name="V_SCHOOL_ADDRESS_STREET" class="java.lang.String">
+		<initialValueExpression><![CDATA[$F{student.school.address.formattedStreet}.toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_LOGO_CODE" class="java.lang.String">
+		<variableExpression><![CDATA[$F{student.school.districtOrganisation.logoCode}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.school.districtOrganisation.logoCode}]]></initialValueExpression>
+	</variable>
+	<variable name="V_LOGO_FILE" class="java.lang.String">
+		<variableExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase() + ($P{P_REPORT_PREVIEW} ? "" : "_bw")]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase() + ($P{P_REPORT_PREVIEW} ? "" : "_bw")]]></initialValueExpression>
+	</variable>
+	<variable name="V_REPORT_DATE" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></variableExpression>
+		<initialValueExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
+	</variable>
+	<variable name="V_STUDENT_BIRTHDATE" class="java.lang.String">
+		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
+	</variable>
+	<variable name="V_REPORT_SUMMARY" class="java.lang.String">
+		<variableExpression><![CDATA[$P{P_REPORT_TYPE}]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{P_REPORT_TYPE}]]></initialValueExpression>
+	</variable>
+	<variable name="V_REPORT_INTERIM" class="java.lang.String">
+		<variableExpression><![CDATA[$P{P_REPORT_INTERIM} ? "_INTERIM" : ""]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{P_REPORT_INTERIM} ? "_INTERIM" : ""]]></initialValueExpression>
+	</variable>
+	<variable name="V_TOTAL_ROWS" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{student.transcriptResults}.size()]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.transcriptResults}.size()]]></initialValueExpression>
+	</variable>
+	<variable name="V_SHORT_PAGE_ROWS" class="java.lang.Integer">
+		<variableExpression><![CDATA[24]]></variableExpression>
+		<initialValueExpression><![CDATA[24]]></initialValueExpression>
+	</variable>
+	<variable name="V_LONG_PAGE_ROWS" class="java.lang.Integer">
+		<variableExpression><![CDATA[31]]></variableExpression>
+		<initialValueExpression><![CDATA[31]]></initialValueExpression>
+	</variable>
+	<variable name="V_TOTAL_PAGES" class="java.lang.Integer">
+		<variableExpression><![CDATA[(int)Math.ceil( ($V{V_TOTAL_ROWS} - $V{V_SHORT_PAGE_ROWS} ) / (double)$V{V_LONG_PAGE_ROWS}) + 1]]></variableExpression>
+		<initialValueExpression><![CDATA[(int)Math.ceil( ($V{V_TOTAL_ROWS} - $V{V_SHORT_PAGE_ROWS} ) / (double)$V{V_LONG_PAGE_ROWS}) + 1]]></initialValueExpression>
+	</variable>
+	<variable name="V_LONG_PAGE" class="java.lang.Boolean">
+		<variableExpression><![CDATA[$V{PAGE_NUMBER} <= $V{V_TOTAL_PAGES}]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER} <= $V{V_TOTAL_PAGES}]]></initialValueExpression>
+	</variable>
+	<variable name="V_GROUP_COUNT" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{student.assessments}.size() > 0 ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.assessments}.size() > 0 ? 1 : 0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band height="761">
+			<subreport>
+				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="736c2390-ffd6-447d-8349-b3ef91d3ca91">
+					<printWhenExpression><![CDATA[!($V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES}))]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_GRADUATION_MESSAGE">
+					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_COMPLETION_NOTICE">
+					<subreportParameterExpression><![CDATA[$P{P_COMPLETION_NOTICE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/BG_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="199" width="567" height="562" isRemoveLineWhenBlank="true" uuid="e2bca6ce-a978-4a55-893d-fda3e775e165">
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER}.equals($V{V_TOTAL_PAGES})]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_GRADUATION_MESSAGE">
+					<subreportParameterExpression><![CDATA[$F{student.status.graduationMessage}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_COMPLETION_NOTICE">
+					<subreportParameterExpression><![CDATA[$P{P_COMPLETION_NOTICE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/BG_" + $P{P_REPORT_TYPE} + "_" + ($F{student.status.graduated} ? "Complete" : "Incomplete") + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="238">
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement key="IMAGE_LOGO_SVG" x="20" y="6" width="100" height="66" uuid="a896cade-f6fc-4d8f-b762-29b950309257"/>
+				<imageExpression><![CDATA[EmbeddedImageTranscoder.asSVG($V{V_LOGO_FILE} + ".svg")]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement style="GeneratedText" x="327" y="21" width="230" height="13" isRemoveLineWhenBlank="true" uuid="bdb1fabf-a9d8-497d-8d89-2b16fb8b9d6a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{student.graduationProgram.description}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Master" isBlankWhenNull="true">
+				<reportElement key="PAGE_NUMBERS" style="GeneratedText" positionType="Float" x="327" y="45" width="230" height="13" isRemoveLineWhenBlank="true" uuid="67bc99b0-2cab-4157-90d1-8209c90ca07e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Page " + $V{MASTER_CURRENT_PAGE} + " of " + $V{MASTER_TOTAL_PAGES}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Master" isBlankWhenNull="true">
+				<reportElement style="GeneratedText" isPrintRepeatedValues="false" x="327" y="33" width="230" height="13" uuid="9b55f08f-c74f-49d6-83db-f71392a58533">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA["Issue Date: " + $V{V_REPORT_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Title" x="327" y="6" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
+				<textElement textAlignment="Right">
+					<font size="10.5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_TITLE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="Title" x="0" y="58" width="567" height="15" isRemoveLineWhenBlank="true" uuid="e3744a28-ca95-4b2b-91fd-ab32b3198916">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA["BC".equalsIgnoreCase($F{student.school.districtOrganisation.logoCode})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{student.school.districtOrganisation.name}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="100" width="567" height="100" uuid="c80eb8e6-0949-46b5-905a-48595e519bad"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_DATE">
+					<subreportParameterExpression><![CDATA[$V{V_REPORT_DATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_STUDENT_FULL_NAME">
+					<subreportParameterExpression><![CDATA[$V{V_STUDENT_FULL_NAME}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_SCHOOL_ADDRESS_STREET">
+					<subreportParameterExpression><![CDATA[$V{V_SCHOOL_ADDRESS_STREET}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_SCHOOL_ADDRESS_POSTAL_CODE">
+					<subreportParameterExpression><![CDATA[$V{V_SCHOOL_ADDRESS_POSTAL_CODE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_STUDENT_BIRTHDATE">
+					<subreportParameterExpression><![CDATA[$V{V_STUDENT_BIRTHDATE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_PAGE_NUMBER">
+					<subreportParameterExpression><![CDATA[(($F{student.provinciallyExaminableCourses}.size() >= 11) || ($F{student.nonProvinciallyExaminableCourses}.size() >= 15)) ?  $V{PAGE_NUMBER} : null]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0">
+					<printWhenExpression><![CDATA[!$P{P_REPORT_PREVIEW}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["PAPER TRANSCRIPT HAS A COLOURED BACKGROUND - NOT A WHITE BACKGROUND – PAPER TRANSCRIPT HAS A WATER MARK OF THE B.C. FLAG. HOLD UP TO LIGHT TO VIEW"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="AUTHENTICITY" style="Authenticity" positionType="Float" x="0" y="202" width="567" height="12" uuid="7758e4c7-ff47-4fc6-9d3b-b0f9c46bc4a0">
+					<printWhenExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["This document is a preview of transcript information sent (upon student authorization) to institutions with XML capabilities. It is not a transcript".toUpperCase()]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="214" width="567" height="24" isRemoveLineWhenBlank="true" uuid="02508e0c-5a8c-4abf-ab98-1103dd090799"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + "_SUB.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="432">
+			<printWhenExpression><![CDATA[$V{V_LONG_PAGE}]]></printWhenExpression>
+			<subreport overflowType="NoStretch">
+				<reportElement x="0" y="0" width="567" height="432" uuid="1e4bcc86-711a-4267-8a0a-13323879773c"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_TOTAL_ROWS">
+					<subreportParameterExpression><![CDATA[$V{V_TOTAL_ROWS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_SHORT_PAGE_ROWS">
+					<subreportParameterExpression><![CDATA[$V{V_SHORT_PAGE_ROWS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_LONG_PAGE_ROWS">
+					<subreportParameterExpression><![CDATA[$V{V_LONG_PAGE_ROWS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_INTERIM">
+					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.transcriptResults})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="310">
+			<printWhenExpression><![CDATA[!$V{V_LONG_PAGE}]]></printWhenExpression>
+			<subreport overflowType="NoStretch">
+				<reportElement x="0" y="0" width="567" height="310" uuid="0baaca0e-0222-49d8-9d7f-338a97c98fac"/>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_TYPE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_TYPE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_STYLE_FILE">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_SUBREPORTS_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_SUBREPORTS_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_CONCRETE_PATH">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_TOTAL_ROWS">
+					<subreportParameterExpression><![CDATA[$V{V_TOTAL_ROWS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_SHORT_PAGE_ROWS">
+					<subreportParameterExpression><![CDATA[$V{V_SHORT_PAGE_ROWS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_LONG_PAGE_ROWS">
+					<subreportParameterExpression><![CDATA[$V{V_LONG_PAGE_ROWS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_INTERIM">
+					<subreportParameterExpression><![CDATA[$V{V_REPORT_INTERIM}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_BLANK">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_BLANK}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource($F{student.transcriptResults})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/DETAIL_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25">
+			<textField>
+				<reportElement style="GeneratedText" positionType="FixRelativeToBottom" stretchType="ContainerHeight" x="113" y="5" width="340" height="20" uuid="29452e4d-ed41-4f4f-aba8-1d6595debd0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.footer.contact}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
