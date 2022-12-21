@@ -151,8 +151,8 @@ public enum TranscriptTypeCode implements Serializable {
     @JsonProperty("YU2023-PUB")
     YU2023_PUB("YU2023-PUB", "2023 Public School Transcript Yukon"),
 
-    @XmlEnumValue("BC2018-PF")
-    @JsonProperty("BC2018-PF")
+    @XmlEnumValue("BC2023-PF")
+    @JsonProperty("BC2023-PF")
     BC2023_PF("BC2023-PF", "2023 Programme Francophone Transcript"),
 
     @XmlEnumValue("NOPROG")
