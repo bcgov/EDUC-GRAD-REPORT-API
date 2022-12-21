@@ -135,6 +135,26 @@ public enum TranscriptTypeCode implements Serializable {
     @JsonProperty("BC2018-PF")
     BC2018_PF("BC2018-PF", "2018 Programme Francophone Transcript"),
 
+    @XmlEnumValue("BC2023-PUB")
+    @JsonProperty("BC2023-PUB")
+    BC2023_PUB("BC2023-PUB", "2023 Public School Transcript BC"),
+
+    @XmlEnumValue("BC2023-IND")
+    @JsonProperty("BC2023-IND")
+    BC2023_IND("BC2023-IND", "2023 Independent School Transcript"),
+
+    @XmlEnumValue("BC2023-OFF")
+    @JsonProperty("BC2023-OFF")
+    BC2023_OFF("BC2023-OFF", "2023 Offshore Transcript"),
+
+    @XmlEnumValue("YU2023-PUB")
+    @JsonProperty("YU2023-PUB")
+    YU2023_PUB("YU2023-PUB", "2023 Public School Transcript Yukon"),
+
+    @XmlEnumValue("BC2018-PF")
+    @JsonProperty("BC2018-PF")
+    BC2023_PF("BC2023-PF", "2023 Programme Francophone Transcript"),
+
     @XmlEnumValue("NOPROG")
     @JsonProperty("NOPROG")
     NOPROG("NOPROG", "No Program Specified");
