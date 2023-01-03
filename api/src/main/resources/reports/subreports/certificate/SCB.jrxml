@@ -71,14 +71,14 @@
 		<initialValueExpression><![CDATA[""]]></initialValueExpression>
 	</variable>
 	<title>
-		<band height="542">
+		<band height="546">
 			<frame>
 				<reportElement x="140" y="140" width="513" height="40" uuid="a8bd5589-c1c6-4663-a57a-64f0f167230b">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<staticText>
-					<reportElement x="0" y="-20" width="20" height="60" uuid="294879e0-7103-4957-8df3-c5faae4590ef">
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<reportElement x="0" y="-19" width="20" height="60" uuid="294879e0-7103-4957-8df3-c5faae4590ef">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 					<box topPadding="0"/>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
@@ -96,7 +96,9 @@
 					<text><![CDATA[CHOOL]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="120" y="-20" width="28" height="60" uuid="53232743-cc2c-445d-9068-15c93220e04e"/>
+					<reportElement x="120" y="-19" width="28" height="60" uuid="53232743-cc2c-445d-9068-15c93220e04e">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
 					<textElement textAlignment="Right" verticalAlignment="Bottom">
 						<font fontName="TexGyreSchola" size="29" isBold="true"/>
 					</textElement>
@@ -112,7 +114,9 @@
 					<text><![CDATA[OMPLETION]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="315" y="-20" width="28" height="60" uuid="7ec71482-7c4e-4a82-ac47-fbda4c5474bf"/>
+					<reportElement x="315" y="-19" width="28" height="60" uuid="7ec71482-7c4e-4a82-ac47-fbda4c5474bf">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
 					<textElement textAlignment="Right" verticalAlignment="Bottom">
 						<font fontName="TexGyreSchola" size="29" isBold="true"/>
 					</textElement>
@@ -130,6 +134,9 @@
 			</frame>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Body" x="0" y="190" width="792" height="22" uuid="8314869c-ad63-4c24-aabd-312df4643602"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$R{header.certify.prefix}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -137,7 +144,7 @@
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Body" x="0" y="279" width="792" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
+				<reportElement style="BodySuffix" x="0" y="279" width="792" height="45" uuid="a2555a0e-1365-4ebc-ae78-7226c9cce107">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<box leftPadding="10" rightPadding="10"/>
@@ -145,7 +152,7 @@
 				<textFieldExpression><![CDATA[$R{header.certify.suffix.SC}]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement x="55" y="361" width="231" height="70" uuid="78987025-a306-40ff-b600-bdf0febe0081">
+				<reportElement x="66" y="361" width="231" height="70" uuid="78987025-a306-40ff-b600-bdf0febe0081">
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -165,7 +172,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="55" y="481" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
+				<reportElement x="66" y="485" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<image onErrorType="Blank">
@@ -183,7 +190,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="374" width="231" height="56" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
+				<reportElement x="510" y="373" width="231" height="58" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -194,15 +201,16 @@
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDateTitle" x="0" y="40" width="231" height="16" uuid="5b07d5d0-b45a-440a-b89d-47eec90e43d5">
+					<reportElement style="OrgDateTitle" x="0" y="40" width="231" height="18" uuid="5b07d5d0-b45a-440a-b89d-47eec90e43d5">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.principal.school}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="430" width="231" height="55" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
+				<reportElement x="510" y="431" width="231" height="58" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
@@ -213,15 +221,16 @@
 					<textFieldExpression><![CDATA[""]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="OrgDateTitle" x="0" y="40" width="231" height="16" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86">
+					<reportElement style="OrgDateTitle" x="0" y="40" width="231" height="18" uuid="b45156dc-3ac9-48f7-a169-42fdb8ae0b86">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
 					<textFieldExpression><![CDATA[$R{signature.school}]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="505" y="485" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
+				<reportElement x="510" y="490" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="17" width="231" height="20" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
