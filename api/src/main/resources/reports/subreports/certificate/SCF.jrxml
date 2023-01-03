@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2017-02-09T13:06:24 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\CertificateAdapter.xml"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
@@ -73,10 +72,16 @@
 		<band height="557">
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="57" width="792" height="29" uuid="7d4b4b94-866e-4765-8eb0-52d5ca4bafde"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$R{header.title.SCF}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="90" width="792" height="30" uuid="bbac1e82-4607-4c52-957c-c865249188cf"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$R{header.title.issuer.SCF}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -93,7 +98,7 @@
 			</textField>
 			<textField>
 				<reportElement style="Body" x="0" y="260" width="792" height="120" uuid="f08ef6b8-ba4c-4da5-baeb-d72dacb3ad79"/>
-				<textFieldExpression><![CDATA[$R{header.issuance}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$R{header.issuance.SCF}]]></textFieldExpression>
 			</textField>
 			<frame>
 				<reportElement x="50" y="378" width="250" height="70" uuid="78987025-a306-40ff-b600-bdf0febe0081">
