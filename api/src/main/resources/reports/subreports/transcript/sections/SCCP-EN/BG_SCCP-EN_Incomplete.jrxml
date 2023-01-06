@@ -18,7 +18,7 @@
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
-    <parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
+	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
@@ -66,7 +66,7 @@
 				</box>
 			</frame>
 			<frame>
-				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="397" width="567" height="158" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="392" width="567" height="163" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
 					<property name="ShowOutOfBoundContent" value="false"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
@@ -95,7 +95,7 @@
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
 				<subreport overflowType="Stretch">
-					<reportElement positionType="Float" isPrintRepeatedValues="false" mode="Transparent" x="10" y="56" width="547" height="90" uuid="037e0ef2-d24e-4b0c-a242-50a8f1d2b7fc"/>
+					<reportElement positionType="Float" isPrintRepeatedValues="false" mode="Transparent" x="11" y="61" width="547" height="90" uuid="037e0ef2-d24e-4b0c-a242-50a8f1d2b7fc"/>
 					<subreportParameter name="P_REPORT_STYLE_FILE">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
 					</subreportParameter>
