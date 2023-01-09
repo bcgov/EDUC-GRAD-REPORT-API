@@ -69,7 +69,7 @@
 		<initialValueExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></initialValueExpression>
 	</variable>
 	<title>
-		<band height="551">
+		<band height="557">
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement style="Title" x="0" y="148" width="792" height="29" uuid="7d4b4b94-866e-4765-8eb0-52d5ca4bafde"/>
 				<textElement>
