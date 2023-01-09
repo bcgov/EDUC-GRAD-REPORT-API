@@ -9,6 +9,7 @@ import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
@@ -118,7 +119,7 @@ public abstract class BaseController {
 
     private void hideStudentDataForDebug(Student st) {
         if (st != null) {
-            Pen pen = st.getPen();
+            Pen pen = ObjectUtils.defaultIfNull(st.getPen(), new Pen());
             pen.setPen(null);
             st.setPen(pen);
             st.setFirstName("John");
