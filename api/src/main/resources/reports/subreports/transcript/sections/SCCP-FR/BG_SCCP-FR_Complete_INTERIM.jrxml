@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2016-09-27T16:18:04 -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Background (1995, 2004, SCCP) - Graduated" pageWidth="567" pageHeight="562" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="392d526e-f07c-4b21-84aa-abb41f56c8af">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -19,7 +18,7 @@
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
 	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
-    <parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
+	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
 	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
 	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
@@ -72,9 +71,9 @@
 				</box>
 			</frame>
 			<frame>
-				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="397" width="567" height="158" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="464" width="567" height="90" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
 					<property name="ShowOutOfBoundContent" value="false"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
@@ -90,10 +89,10 @@
 						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA["COURSES MAY HAVE BEEN COMPLETED AT SCHOOLS OR INSTITUTIONS OTHER THAN THE STUDENT'S CURRENT SCHOOL OF RECORD AS NOTED IN THIS TRANSCRIPT".toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$R{text.header.separator.completion}.toUpperCase() + ($P{P_REPORT_PREVIEW} ? $R{text.header.separator.completion.xml.note} : "")]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="78" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
 						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
 					</reportElement>
 					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>

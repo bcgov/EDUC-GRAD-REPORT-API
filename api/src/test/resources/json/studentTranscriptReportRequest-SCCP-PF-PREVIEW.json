@@ -1,0 +1,393 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "preview": true,
+    "reportName": "transcript",
+    "reportFile": "Transcript Report SCCP-PF-PREVIEW.pdf"
+  },
+  "data": {
+    "student": {
+      "pen": {
+        "pen": "11111111",
+        "entityId": null
+      },
+      "firstName": "JOHN",
+      "middleName": "PIRATE",
+      "lastName": "SILVER",
+      "gender": "M",
+      "birthdate": "2002-08-05",
+      "address": {
+        "streetLine1": "HISPANIOLA",
+        "streetLine2": "",
+        "city": "SHOONER",
+        "region": "BOAT",
+        "country": "VESSEL",
+        "code": "PAC SEA"
+      },
+      "grade": "11",
+      "studStatus": "CUR",
+      "sccDate": "",
+      "mincodeGrad": "03636175",
+      "englishCert": "E",
+      "frenchCert": "F"
+    },
+    "school": {
+      "mincode": "03636175",
+      "name": "CLAYTON HEIGHTS SECONDARY",
+      "typeIndicator": "",
+      "typeBanner": "",
+      "signatureCode": "036",
+      "distno": "036",
+      "schlno": "03636175",
+      "schoolCategoryCode": "",
+      "address": {
+        "streetLine1": "7003 188 STREET",
+        "streetLine2": "",
+        "city": "SURREY",
+        "region": "BC",
+        "country": "",
+        "code": "V4N3G6"
+      }
+    },
+    "logo": "BC",
+    "nonGradReasons" : [
+      {
+        "code": "101",
+        "description" : "No Language Arts 10"
+      },
+      {
+        "code": "107",
+        "description" : "No Mathematics 11 or 12"
+      }
+    ],
+    "transcript": {
+      "interim": true,
+      "issueDate": "2021-04-26",
+      "code": {
+        "code": "SCCP-FR",
+        "description": "School Completion Certificate Program French Transcript"
+      },
+      "results": [
+        {
+          "course": {
+            "name": "LD FINE ARTS 10",
+            "code": "XFINA",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "93",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD FOODS & NUTRITION 10",
+            "code": "XFN",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "55",
+            "finalLetterGrade": "C-",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD WOODWORK 10",
+            "code": "XLDC",
+            "level": "10A",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "82",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "MUSIC",
+            "code": "XSIEP",
+            "level": "10A",
+            "credits": "4",
+            "sessionDate": "201906",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "60",
+            "interimLetterGrade": "C"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "PERSONAL AND SOCIAL DEVELOPMENT 10B",
+            "code": "XSIEP",
+            "level": "10B",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD IEP MODIFIED 10D",
+            "code": "XSIEP",
+            "level": "10D",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD IEP MODIFIED 10F",
+            "code": "XSIEP",
+            "level": "10F",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "75",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD IEP MODIFIED 10G",
+            "code": "XSIEP",
+            "level": "10G",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD INFORMATION COMMUNICATION TECH 11",
+            "code": "XICTC",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202101",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD IEP MODIFIED 11A BASES",
+            "code": "XSIEP",
+            "level": "11A",
+            "credits": "4",
+            "sessionDate": "202011",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD IEP MODIFIED 11D BASES",
+            "code": "XSIEP",
+            "level": "11D",
+            "credits": "4",
+            "sessionDate": "202101",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "LD TECHNOLOGY EDUCATION 11",
+            "code": "XTEED",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202011",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "75",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        }
+      ]
+    },
+    "gradProgram": {
+      "code": {
+        "code": "SCCP-PF",
+        "description": "School Completion Certificate Program French",
+        "credits": "0"
+      }
+    },
+    "graduationData": {
+      "graduationDate": "",
+      "honorsFlag": false,
+      "dogwoodFlag": false,
+      "programCodes": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "programNames": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "totalCreditsUsedForGrad": "0"
+    },
+    "gradMessage": "Upon completion of this student's School Completion Certificate Program, a certificate will be issued from the Ministry of Education and Child Care for meeting their educational program goals other than graduation, as determined by the board of education.  If you have any questions about your results, please contact your school immediately.",
+    "updateDate": "2021-10-04"
+  }
+}

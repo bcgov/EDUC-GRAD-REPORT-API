@@ -64,7 +64,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
     public StudentNonGradReport buildStudentNonGradReport() throws DomainServiceException, IOException {
         final String methodName = "buildStudentNonGradReport()";
         LOG.entering(CLASSNAME, methodName);
-        GraduationReport graduationReport = getGraduationReport(methodName, List.of());
+        GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
         LOG.exiting(CLASSNAME, methodName);
 
