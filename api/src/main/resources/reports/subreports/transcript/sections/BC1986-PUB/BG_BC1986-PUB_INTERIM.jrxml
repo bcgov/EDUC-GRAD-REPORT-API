@@ -226,19 +226,19 @@ GRADE]]></text>
 					<textFieldExpression><![CDATA[$R{text.header.separator.completion}.toUpperCase() + ($P{P_REPORT_PREVIEW} ? $R{text.header.separator.completion.xml.note} : "")]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="36" uuid="81cc511a-0e3d-4087-9021-b8e648ce1f5c">
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" isRemoveLineWhenBlank="true" uuid="81cc511a-0e3d-4087-9021-b8e648ce1f5c">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
 				</textField>
 				<subreport overflowType="NoStretch">
-					<reportElement positionType="Float" mode="Transparent" x="21" y="48" width="530" height="90" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="37f0dcf5-42c8-4bdc-9990-4dedd7d84cc5">
+					<reportElement positionType="Float" mode="Transparent" x="21" y="60" width="530" height="78" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="37f0dcf5-42c8-4bdc-9990-4dedd7d84cc5">
 						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -247,6 +247,9 @@ GRADE]]></text>
 					</reportElement>
 					<subreportParameter name="P_REPORT_STYLE_FILE">
 						<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_REPORT_PREVIEW">
+						<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 					</subreportParameter>
 					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
 						// transcript can hold. To do so would cause the list to overflow onto
