@@ -68,7 +68,9 @@
 	<parameter name="reportNumber" class="java.lang.String"/>
 	<parameter name="school" class="ca.bc.gov.educ.grad.report.model.school.School"/>
 	<parameter name="students" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
-	<parameter name="hasStudents" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="hasStudents" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["false"]]></defaultValueExpression>
+	</parameter>
 	<variable name="V_FISCAL_DATES" class="java.lang.String">
 		<variableExpression><![CDATA[ca.bc.gov.educ.grad.report.model.reports.FiscalDates.getInstance().getFiscalDatesRange()]]></variableExpression>
 		<initialValueExpression><![CDATA[ca.bc.gov.educ.grad.report.model.reports.FiscalDates.getInstance().getFiscalDatesRange()]]></initialValueExpression>
@@ -166,6 +168,7 @@
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudents})]]></printWhenExpression>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="studentDataset" uuid="5614a4c2-839f-425f-99e6-f6099ccb7441">
@@ -404,6 +407,23 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<frame>
+				<reportElement x="0" y="0" width="559" height="15" uuid="8f2ad1e9-bcd0-45df-aa98-25d84f24ea4d">
+					<printWhenExpression><![CDATA["false".equalsIgnoreCase($P{hasStudents})]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="555" height="15" backcolor="lightGray" uuid="9bb48ab9-2756-4134-8c46-a40d66ddd57e"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[No students selected for this report]]></text>
+				</staticText>
+			</frame>
 		</band>
 	</detail>
 	<summary>

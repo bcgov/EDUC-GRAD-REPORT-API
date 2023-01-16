@@ -1,0 +1,16 @@
+{
+  "options": {
+    "reportName": "schooldistribution",
+    "reportFile": "School Distribution Report - NO STUDENTS.pdf"
+  },
+  "data": {
+    "school": {
+      "name": "MOUNT BAKER SECONDARY",
+      "mincode": "00502001",
+      "students":null
+    },
+    "orgCode": "BC",
+    "issueDate": "2021-04-26",
+    "reportNumber": "BC-001234"
+  }
+}
