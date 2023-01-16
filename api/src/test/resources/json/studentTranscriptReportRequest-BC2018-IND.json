@@ -57,8 +57,12 @@
         "description" : "No Language Arts 10"
       },
       {
-        "code": "107",
+        "code": "",
         "description" : "No Mathematics 11 or 12"
+      },
+      {
+        "code": "",
+        "description" : "No Mathematics 10 or 9"
       }
     ],
     "transcript": {

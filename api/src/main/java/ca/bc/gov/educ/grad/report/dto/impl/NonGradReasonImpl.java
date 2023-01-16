@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
@@ -41,7 +42,7 @@ public class NonGradReasonImpl extends AbstractDomainEntity
 
     @Override
     public String getCode() {
-        return this.code;
+        return StringUtils.startsWith(code, "!") ? "" : code;
     }
 
     @Override
