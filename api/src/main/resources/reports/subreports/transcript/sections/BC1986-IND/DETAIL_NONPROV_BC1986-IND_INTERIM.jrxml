@@ -23,6 +23,7 @@
 	</parameter>
 	<parameter name="P_ROWS_PER_PAGE" class="java.lang.Integer"/>
 	<parameter name="P_REPORT_BLANK" class="java.lang.Boolean"/>
+	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
 	<field name="transcriptResult.courseName" class="java.lang.String">
 		<fieldDescription><![CDATA[courseName]]></fieldDescription>
 	</field>

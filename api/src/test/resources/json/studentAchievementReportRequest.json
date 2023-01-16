@@ -18,8 +18,9 @@
       "lastName": "SPARROW",
       "grade": "11",
       "gender": "M",
+      "citizenship": "C",
       "birthdate": "2010-01-01",
-      "localId": null,
+      "localId": "000000555666",
       "gradProgram": "2018-PF",
       "otherProgramParticipation": null,
       "hasOtherProgram": "Other Program Participation",
@@ -46,6 +47,23 @@
         "interimPercent": "50",
         "equivOrChallenge": "10",
         "credits": "4",
+        "metLitNumRequirement": "Y",
+        "creditsUsedForGrad": 4,
+        "projected": true
+      },
+      {
+        "courseCode": "FOMPC",
+        "courseName": "FOUNDATIONS OF MATH AND PRE-CALCULUS 10",
+        "courseLevel": "12",
+        "sessionDate": "202004",
+        "gradReqMet": "111",
+        "bestSchoolPercent": "60",
+        "bestExamPercent": "40",
+        "completedCoursePercentage": "95",
+        "completedCourseLetterGrade": "A",
+        "interimPercent": "60",
+        "equivOrChallenge": "10",
+        "credits": "5",
         "metLitNumRequirement": "Y",
         "creditsUsedForGrad": 4,
         "projected": true
@@ -465,9 +483,11 @@
       "dogwoodFlag": false,
       "programCodes": [
         "XE",
-        "XP"
+        "XP",
+        "XN"
       ],
       "programNames": [
+        "",
         "",
         ""
       ],

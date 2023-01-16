@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.grad.report.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,12 @@ import javax.persistence.Table;
 import java.sql.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "TRANSCRIPT_TYPE_CODE")
+@EqualsAndHashCode(callSuper=false)
 public class TranscriptTypeCodeEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -20,10 +24,10 @@ public class TranscriptTypeCodeEntity extends BaseEntity {
     private String transcriptTypeCode;
 
     @Column(name = "LABEL", nullable = false)
-    private String LABEL;
+    private String label;
 
     @Column(name = "DESCRIPTION", nullable = false)
-    private String DESCRIPTION;
+    private String description;
 
     @Column(name = "DISPLAY_ORDER", nullable = false)
     private String displayOrder;

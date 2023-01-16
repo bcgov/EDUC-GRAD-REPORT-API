@@ -4,6 +4,7 @@ import ca.bc.gov.educ.grad.report.entity.BaseEntity;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Data
@@ -25,6 +26,6 @@ public class SignatureBlockTypeCode extends BaseEntity implements SignatureBlock
 
     @Override
     public String toString() {
-        return label;
+        return StringUtils.replace(label, ",", ",\n");
     }
 }

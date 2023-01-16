@@ -12,9 +12,9 @@
         "pen": "11111111",
         "entityId": null
       },
-      "firstName": "JOHN",
-      "middelName": "PIRATE",
-      "lastName": "SILVER",
+      "firstName": "TCHAKA MAGUMU NORA",
+      "middleName": "WEBDY HILDA ROSE",
+      "lastName": "HUTSON-WILLEY",
       "gender": "M",
       "birthdate": "2002-08-05",
       "address": {
@@ -34,7 +34,7 @@
     },
     "school": {
       "mincode": "03939008",
-      "name": "LORD BYNG SECONDARY",
+      "name": "ELKFORD ELEMENTARY SECONDARY CATHOLIC SAINT-BAPTIST",
       "typeIndicator": "",
       "typeBanner": "",
       "signatureCode": "039",
@@ -42,12 +42,12 @@
       "schlno": "03939008",
       "schoolCategoryCode": "",
       "address": {
-        "streetLine1": "3939 16TH AVENUE W",
+        "streetLine1": "PO BOX 910",
         "streetLine2": "",
-        "city": "VANCOUVER",
+        "city": "ELKFORD",
         "region": "BC",
         "country": "",
-        "code": "V6R3C9"
+        "code": "V0B 1H0"
       }
     },
     "logo": "BC",
@@ -62,7 +62,7 @@
       }
     ],
     "transcript": {
-      "interim": true,
+      "interim": false,
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-IND",
@@ -71,9 +71,9 @@
       "results": [
         {
           "course": {
-            "name": "ENGLISH 10",
+            "name": "ENGLISH 12",
             "code": "EN",
-            "level": "10",
+            "level": "12",
             "credits": "4",
             "sessionDate": "201806",
             "type": "2",
@@ -81,8 +81,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
+            "schoolPercent": "90",
+            "examPercent": "80",
             "finalPercent": "52",
             "finalLetterGrade": "C-",
             "interimPercent": "",
@@ -105,8 +105,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
+            "schoolPercent": "90",
+            "examPercent": "80",
             "finalPercent": "50",
             "finalLetterGrade": "C-",
             "interimPercent": "",
@@ -138,7 +138,7 @@
           },
           "requirement": "",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "E",
           "usedForGrad": ""
         },
         {
@@ -234,7 +234,7 @@
           },
           "requirement": "8",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "S",
           "usedForGrad": ""
         },
         {
@@ -306,7 +306,7 @@
           },
           "requirement": "2",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "C",
           "usedForGrad": ""
         },
         {
@@ -361,7 +361,7 @@
           "course": {
             "name": "MARINE RADIO",
             "code": "MR",
-            "level": "11",
+            "level": "12",
             "credits": "6",
             "sessionDate": "202005",
             "type": "2",
@@ -369,8 +369,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
+            "schoolPercent": "80",
+            "examPercent": "80",
             "finalPercent": "90",
             "finalLetterGrade": "A",
             "interimPercent": "",
@@ -409,7 +409,7 @@
           "course": {
             "name": "MARINE NAVIGATION",
             "code": "MN",
-            "level": "11",
+            "level": "12",
             "credits": "6",
             "sessionDate": "202005",
             "type": "2",
@@ -417,8 +417,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
+            "schoolPercent": "80",
+            "examPercent": "80",
             "finalPercent": "90",
             "finalLetterGrade": "A",
             "interimPercent": "",
@@ -465,8 +465,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
+            "schoolPercent": "75",
+            "examPercent": "75",
             "finalPercent": "90",
             "finalLetterGrade": "A",
             "interimPercent": "",
@@ -681,7 +681,7 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
+            "schoolPercent": "75",
             "examPercent": "",
             "finalPercent": "60",
             "finalLetterGrade": "C",
@@ -745,7 +745,7 @@
           "course": {
             "name": "LITERACY ASSESSMENT 12",
             "code": "LTE12",
-            "level": "",
+            "level": "12",
             "credits": "4",
             "sessionDate": "202106",
             "type": "3",
@@ -754,7 +754,7 @@
           },
           "mark": {
             "schoolPercent": "",
-            "examPercent": "",
+            "examPercent": "80",
             "finalPercent": "XMT",
             "finalLetterGrade": "NA",
             "interimPercent": "",
@@ -786,7 +786,7 @@
           },
           "requirement": "16",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "A",
           "usedForGrad": ""
         },
         {
@@ -825,8 +825,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
+            "schoolPercent": "85",
+            "examPercent": "80",
             "finalPercent": "75",
             "finalLetterGrade": "B",
             "interimPercent": "",

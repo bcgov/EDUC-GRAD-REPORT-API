@@ -108,6 +108,14 @@ public interface Report extends Serializable {
     boolean isFormat(ReportFormat format);
 
     /**
+     * Answers whether the given report is a preview report.
+     * Preview report doesn't have summary page
+     *
+     * @return true The internal format matches the given format.
+     */
+    boolean isPreview();
+
+    /**
      * Returns a filename for saving the report. This should return a unique
      * filename so that browser caching is avoided. For example,
      *

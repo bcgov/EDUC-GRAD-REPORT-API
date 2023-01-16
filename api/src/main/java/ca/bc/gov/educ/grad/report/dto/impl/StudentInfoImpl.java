@@ -59,6 +59,7 @@ public class StudentInfoImpl implements StudentInfo {
     private Date lastUpdateDate = new Date(0L);
     private String logo = "";
     private String gender = "";
+    private String citizenship = "";
     private String status = "";
     private Boolean honourFlag = Boolean.FALSE;
     private Boolean dogwoodFlag = Boolean.FALSE;
@@ -110,7 +111,7 @@ public class StudentInfoImpl implements StudentInfo {
      * @param mincode
      * @param studGrade
      * @param gradDate
-     * @param gradReqtYear
+     * @param gradProgram
      * @param gradMessage
      * @param updateDt
      * @param logoType
@@ -145,6 +146,7 @@ public class StudentInfoImpl implements StudentInfo {
             final Date birthdate,
             final String localId,
             final String studGender,
+            final String citizenship,
             final String mincode,
             final String studGrade,
             final Date gradDate,
@@ -181,8 +183,9 @@ public class StudentInfoImpl implements StudentInfo {
         this.middleName = trimSafe(middleName);
         this.lastName = trimSafe(lastName);
         this.birthdate = birthdate;
-        this.schoolId = trimSafe(localId);
+        this.localId = trimSafe(localId);
         this.gender = studGender;
+        this.citizenship = citizenship;
         this.mincode = trimSafe(mincode);
         this.grade = trimSafe(studGrade);
         this.gradDate = gradDate;
@@ -282,6 +285,11 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
+    public String getCitizenship() {
+        return citizenship;
+    }
+
+    @Override
     public Boolean isHonourFlag() {
         return this.honourFlag;
     }
@@ -309,6 +317,8 @@ public class StudentInfoImpl implements StudentInfo {
     public String getLocalId() {
         return localId;
     }
+
+    public void setLocalId(String localId) { this.localId = localId; }
 
     @Override
     public List<OtherProgram> getOtherProgramParticipation() {

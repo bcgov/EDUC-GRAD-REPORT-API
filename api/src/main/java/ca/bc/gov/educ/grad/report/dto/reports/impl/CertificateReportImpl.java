@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Signatories;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateSubType;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.reports.CertificateReport;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,11 @@ public final class CertificateReportImpl extends StudentReportImpl
     @Override
     public Object getDataSource() {
         return this.certificate;
+    }
+
+    @Override
+    public boolean isPreview() {
+        return false;
     }
 
     /**
@@ -262,7 +268,9 @@ public final class CertificateReportImpl extends StudentReportImpl
     }
 
     private String getSchoolSignatureCode() {
-        return this.schoolSignatureCode;
+        return StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "AI")
+                || StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "EI")
+                || StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "SCI") ? "INDEP" : this.schoolSignatureCode;
     }
 
     private void setSchoolSignatureCode(final String schoolSignatureCode) {

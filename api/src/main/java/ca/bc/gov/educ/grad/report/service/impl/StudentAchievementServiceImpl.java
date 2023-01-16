@@ -34,6 +34,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.BeanUtils;
@@ -710,7 +711,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         List<String> careerProgramCodes = this.getCareerProgramList(pen);
         if (careerProgramCodes != null && !careerProgramCodes.isEmpty()) {
-            String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(","));
+            String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(", "));
             parameters.put("careerProgramsObj", careerPrograms);
         }
 
@@ -1023,5 +1024,10 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         final String code = c == null ? "" : c.getCode();
 
         return nullSafe(code);
+    }
+
+    @Override
+    GraduationReport createGraduationReport() {
+        throw new NotImplementedException("Method createGraduationReport() not implemented");
     }
 }

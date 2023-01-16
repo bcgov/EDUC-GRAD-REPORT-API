@@ -12,7 +12,9 @@ spring:
     url: jdbc:h2:mem:educ-grad-report-api-h2db;MODE=Oracle
     username: user
     password: password
-    data: classpath:data/test.sql
+  sql:
+    init:
+      data-locations: classpath:data/test.sql
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
@@ -56,7 +58,9 @@ logging:
     ca:
       bc:
         gov:
-          educ: INFO
+          educ:
+            grad:
+              report: INFO
     net:
       sf:
         jasperreports: INFO
@@ -67,6 +71,12 @@ logging:
         boot:
           autoconfigure:
             logging: INFO
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
   logback:
     rollingpolicy:
       max-history: 1
@@ -103,3 +113,6 @@ endpoint:
       url: https://student-api-75e61b-dev.apps.silver.devops.gov.bc.ca/api/v1/student/paginated
     by-pen:
       url: https://student-api-75e61b-dev.apps.silver.devops.gov.bc.ca/api/v1/student?pen=%s
+  grad-program-api:
+    program-name-by-program_code:
+      url: https://educ-grad-program-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/program/programs/%s

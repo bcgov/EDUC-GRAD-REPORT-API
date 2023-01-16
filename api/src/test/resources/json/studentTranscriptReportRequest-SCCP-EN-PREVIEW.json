@@ -1,0 +1,405 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "preview": true,
+    "reportName": "transcript",
+    "reportFile": "Transcript Report SCCP-EN-PREVIEW.pdf"
+  },
+  "data": {
+    "student": {
+      "pen": {
+        "pen": "130187966",
+        "entityID": "ac339d70-7649-1a2e-8176-4a3ca940192e"
+      },
+      "firstName": "ALLISON",
+      "middleName": "WILLIAM",
+      "lastName": "FERNANDEZ",
+      "gender": "F",
+      "citizenship": "C",
+      "birthdate": "2004-06-25",
+      "address": {
+        "streetLine1": null,
+        "streetLine2": null,
+        "city": null,
+        "region": null,
+        "country": null,
+        "code": null
+      },
+      "grade": "12",
+      "gradProgram": "",
+      "studStatus": "CUR",
+      "sccDate": "",
+      "mincodeGrad": "",
+      "englishCert": "",
+      "frenchCert": "",
+      "localId": "",
+      "hasOtherProgram": "",
+      "lastUpdateDate": null,
+      "otherProgramParticipation": [],
+      "nonGradReasons": [],
+      "graduationData": {
+        "graduationDate": "2022-06-01",
+        "honorsFlag": false,
+        "dogwoodFlag": false,
+        "programCodes": [],
+        "programNames": [],
+        "totalCreditsUsedForGrad": null
+      },
+      "graduationStatus": {
+        "programCompletionDate": "",
+        "honours": "",
+        "gpa": "",
+        "studentGrade": "",
+        "studentStatus": "",
+        "studentStatusName": "",
+        "schoolAtGrad": "",
+        "schoolOfRecord": "",
+        "certificates": "",
+        "graduationMessage": "",
+        "programName": ""
+      }
+    },
+    "school": {
+      "mincode": "03434052",
+      "name": "RICK HANSEN SECONDARY",
+      "typeIndicator": "",
+      "typeBanner": null,
+      "signatureCode": "034",
+      "distno": "034",
+      "schlno": "03434052",
+      "schoolCategoryCode": null,
+      "address": {
+        "streetLine1": "31150 BLUE RIDGE DRIVE",
+        "streetLine2": "",
+        "city": "ABBOTSFORD",
+        "region": "BC",
+        "country": "CN",
+        "code": "V2T5R2"
+      },
+      "phoneNumber": "",
+      "dogwoodElig": "",
+      "students": []
+    },
+    "logo": "BC",
+    "transcript": {
+      "interim": "true",
+      "issueDate": "2023-01-06",
+      "code": {
+        "code": "SCCP-EN",
+        "description": null,
+        "credits": 0,
+        "name": null
+      },
+      "results": [
+        {
+          "course": {
+            "name": "ART STUDIO 10",
+            "code": "VAST",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "PHOTOGRAPHY 10",
+            "code": "VAPH",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "RESOURCE 10B",
+            "code": "XSIEP",
+            "level": "10B",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "RESOURCE 10F",
+            "code": "XSIEP",
+            "level": "10F",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "RESOURCE 11B",
+            "code": "XSIEP",
+            "level": "11B",
+            "credits": "4",
+            "sessionDate": "202106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "RESOURCE 11D",
+            "code": "XSIEP",
+            "level": "11D",
+            "credits": "4",
+            "sessionDate": "202101",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "RESOURCE 11F",
+            "code": "XSIEP",
+            "level": "11F",
+            "credits": "4",
+            "sessionDate": "202101",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "INSTRUMENTAL MUSIC: GUITAR 12",
+            "code": "IMG",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202202",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "70",
+            "finalLetterGrade": "C+",
+            "interimPercent": "70",
+            "interimLetterGrade": "C+"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "PHOTOGRAPHY 12",
+            "code": "VAPH",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202202",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "73",
+            "finalLetterGrade": "B",
+            "interimPercent": "73",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "RESOURCE 12A",
+            "code": "XSIEP",
+            "level": "12A",
+            "credits": "4",
+            "sessionDate": "202106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "INCLUSIVE EDUCATION 12B",
+            "code": "XSIEP",
+            "level": "12B",
+            "credits": "4",
+            "sessionDate": "202202",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "66",
+            "finalLetterGrade": "C",
+            "interimPercent": "66",
+            "interimLetterGrade": "C"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        }
+      ]
+    },
+    "assessment": null,
+    "gradProgram": {
+      "code": {
+        "code": "SCCP",
+        "description": "Student Completion Certificate Program",
+        "credits": 0,
+        "name": "Student Completion Certificate Program"
+      }
+    },
+    "graduationData": {
+      "graduationDate": "2022-06-01",
+      "honorsFlag": false,
+      "dogwoodFlag": false,
+      "programCodes": [],
+      "programNames": [],
+      "totalCreditsUsedForGrad": null
+    },
+    "gradMessage": "This student has been issued a School Completion Certificate, from the Ministry of Education and Child Care, for meeting their individual educational program goals. This is not a Graduation credential. ",
+    "updateDate": null,
+    "certificate": null,
+    "graduationStatus": {
+      "programCompletionDate": "2022-06-01",
+      "honours": "",
+      "gpa": "",
+      "studentGrade": "",
+      "studentStatus": "",
+      "studentStatusName": "",
+      "schoolAtGrad": "",
+      "schoolOfRecord": "",
+      "certificates": "",
+      "graduationMessage": "This student has been issued a School Completion Certificate, from the Ministry of Education and Child Care, for meeting their individual educational program goals. This is not a Graduation credential. ",
+      "programName": ""
+    },
+    "orgCode": null,
+    "issueDate": "2023-01-06",
+    "reportNumber": null,
+    "reportTitle": null,
+    "reportSubTitle": null,
+    "nonGradReasons": [],
+    "studentCourses": null,
+    "studentExams": null,
+    "optionalPrograms": null,
+    "exception": null
+  }
+}

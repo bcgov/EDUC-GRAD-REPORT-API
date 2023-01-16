@@ -7,7 +7,7 @@
     <groupId>ca.bc.gov.educ</groupId>
     <artifactId>educ-grad-report-api</artifactId>
     <name>educ-grad-report-api</name>
-    <version>1.6.0</version>
+    <version>1.7.10.1</version>
     <description>Ministry of Education and Child Care REPORT API</description>
 
     <properties>
@@ -18,8 +18,10 @@
             src/main/java/ca/bc/gov/educ/grad/report/api/ReportApiApplication.java,
             src/main/java/ca/bc/gov/educ/grad/report/service/impl/BaseServiceImpl.java,
             src/main/java/ca/bc/gov/educ/grad/report/api/client/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/controller/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/test/**,
             src/main/java/ca/bc/gov/educ/grad/report/config/**,
             src/main/java/ca/bc/gov/educ/grad/report/dao/**,
             src/main/java/ca/bc/gov/educ/grad/report/dto/**,
@@ -35,8 +37,10 @@
             src/main/java/ca/bc/gov/educ/grad/report/api/ReportApiApplication.java,
             src/main/java/ca/bc/gov/educ/grad/report/service/impl/BaseServiceImpl.java,
             src/main/java/ca/bc/gov/educ/grad/report/api/client/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/controller/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/test/**,
             src/main/java/ca/bc/gov/educ/grad/report/config/**,
             src/main/java/ca/bc/gov/educ/grad/report/dao/**,
             src/main/java/ca/bc/gov/educ/grad/report/dto/**,
@@ -56,6 +60,7 @@
         <junit>4.12</junit>
         <log4j.version>2.18.0</log4j.version>
         <maven.test.skip>false</maven.test.skip>
+        <!--jacoco.skip>true</jacoco.skip-->
         <start-class>ca.bc.gov.educ.grad.report.api.ReportApiApplication</start-class>
     </properties>
 
@@ -509,13 +514,6 @@
             <artifactId>mockito-core</artifactId>
             <version>4.5.1</version>
             <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.picketbox/picketbox -->
-        <dependency>
-            <groupId>org.picketbox</groupId>
-            <artifactId>picketbox</artifactId>
-            <version>5.1.0.Final</version>
-            <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
         <dependency>

@@ -6,7 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.util.Date;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -16,8 +17,8 @@ public class StudentCertificateEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "STUDENT_CERTIFICATE_ID", nullable = false)
-    private String studentCertificateId;
+    @Column(name = "STUDENT_CERTIFICATE_ID", nullable = false, columnDefinition = "uuid")
+    private UUID studentCertificateId;
 
     @Column(name = "CERTIFICATE")
     private String CERTIFICATE;
@@ -25,8 +26,8 @@ public class StudentCertificateEntity extends BaseEntity {
     @Column(name = "CERTIFICATE_TYPE_CODE", nullable = false)
     private String certificateTypeCode;
 
-    @Column(name = "GRADUTION_STUDENT_RECORD_ID", nullable = false)
-    private String gradutionStudentRecordId;
+    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false, columnDefinition = "uuid")
+    private UUID graduationStudentRecordId;
 
     @Column(name = "DOCUMENT_STATUS_CODE")
     private String documentStatusCode;

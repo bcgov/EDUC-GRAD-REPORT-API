@@ -57,6 +57,14 @@ public interface GraduationData extends DomainEntity {
     String getTruncatedGraduationDate();
 
     /**
+     * Get the full date the student graduated in the form of yyyy-MM-dd. This will return the current date if
+     * the user has not graduated.
+     *
+     * @return Date of graduation.
+     */
+    String getFullGraduationDate();
+
+    /**
      * Get the honours flag.
      *
      * @return
@@ -76,6 +84,7 @@ public interface GraduationData extends DomainEntity {
      * @return
      */
     String getTotalCreditsUsedForGrad();
+
 
     /**
      * Get the list of program codes.

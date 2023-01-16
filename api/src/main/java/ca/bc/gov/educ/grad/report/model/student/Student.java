@@ -67,6 +67,14 @@ public interface Student extends Person {
     String getGender();
 
     /**
+     * Student's current citizenship.
+     *
+     * @return Current citizenship.
+     */
+
+    String getCitizenship();
+
+    /**
      * Returns information about where to send physical items (such as the
      * student's transcripts). In the future, this might change to accommodate
      * international mailing addresses.
@@ -167,6 +175,34 @@ public interface Student extends Person {
     String getNonGradReasonsString();
 
     /**
+     * Gets student certificate types.
+     *
+     * @return certificate types
+     */
+    List<String> getCertificateTypes();
+
+    /**
+     * Gets student transcript types.
+     *
+     * @return transcript types
+     */
+    List<String> getTranscriptTypes();
+
+    /**
+     * Gets student certificate types as String.
+     *
+     * @return certificate types
+     */
+    String getCertificateTypesString();
+
+    /**
+     * Gets student tramscript types as String.
+     *
+     * @return certificate types
+     */
+    String getTranscriptTypesString();
+
+    /**
      * Gets other program participationdata source.
      *
      * @return the other program participationdata source
@@ -179,6 +215,20 @@ public interface Student extends Person {
      * @return last update date
      */
     Date getLastUpdateDate();
+
+    /**
+     * Short string value of the last update date
+     *
+     * @return last update date
+     */
+    String getStringLastUpdateDate();
+
+    /**
+     * Short string value of the program completion date
+     *
+     * @return last update date
+     */
+    String getProgramCompletionDate();
 
 
 }

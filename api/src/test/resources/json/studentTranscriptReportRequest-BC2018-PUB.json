@@ -12,9 +12,9 @@
         "pen": "11111111",
         "entityId": null
       },
-      "firstName": "JOHN",
-      "middelName": "PIRATE",
-      "lastName": "SILVER",
+      "firstName": "TCHAKA MAGUMU NORA",
+      "middleName": "WEBDY HILDA ROSE",
+      "lastName": "HUTSON-WILLEY",
       "gender": "M",
       "birthdate": "2002-08-05",
       "address": {
@@ -34,7 +34,7 @@
     },
     "school": {
       "mincode": "03939008",
-      "name": "LORD BYNG SECONDARY",
+      "name": "ELKFORD ELEMENTARY SECONDARY CATHOLIC SAINT-BAPTIST",
       "typeIndicator": "",
       "typeBanner": "",
       "signatureCode": "039",
@@ -42,12 +42,12 @@
       "schlno": "03939008",
       "schoolCategoryCode": "",
       "address": {
-        "streetLine1": "3939 16TH AVENUE W",
+        "streetLine1": "PO BOX 910",
         "streetLine2": "",
-        "city": "VANCOUVER",
+        "city": "ELKFORD",
         "region": "BC",
         "country": "",
-        "code": "V6R3C9"
+        "code": "V0B 1H0"
       }
     },
     "logo": "BC",
@@ -66,7 +66,7 @@
       "issueDate": "2021-04-26",
       "code": {
         "code": "BC2018-PUB",
-        "description": "2018 Public School Transcript BC"
+        "description": "2018 Public School Transcript"
       },
       "results": [
         {
@@ -83,10 +83,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "99",
-            "interimLetterGrade": "F-"
+            "finalPercent": "52",
+            "finalLetterGrade": "C-",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "1",
           "requirementName": "",
@@ -107,10 +107,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "49",
-            "interimLetterGrade": "A+"
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "6",
           "requirementName": "",
@@ -138,7 +138,7 @@
           },
           "requirement": "",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "E",
           "usedForGrad": ""
         },
         {
@@ -179,10 +179,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "90",
-            "interimLetterGrade": "D-"
+            "finalPercent": "78",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "10",
           "requirementName": "",
@@ -234,7 +234,7 @@
           },
           "requirement": "8",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "S",
           "usedForGrad": ""
         },
         {
@@ -299,14 +299,14 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "51",
-            "finalLetterGrade": "C-",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "51",
+            "interimLetterGrade": "C-"
           },
           "requirement": "2",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "C",
           "usedForGrad": ""
         },
         {
@@ -323,10 +323,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "50",
-            "finalLetterGrade": "C-",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "50",
+            "interimLetterGrade": "C-"
           },
           "requirement": "7",
           "requirementName": "",
@@ -347,10 +347,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "82",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "82",
+            "interimLetterGrade": "B"
           },
           "requirement": "",
           "requirementName": "",
@@ -460,17 +460,17 @@
             "level": "11",
             "credits": "6",
             "sessionDate": "202005",
-            "type": "3",
+            "type": "2",
             "relatedCourse": "",
             "relatedLevel": ""
           },
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "90",
-            "interimLetterGrade": "A"
+            "finalPercent": "90",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "",
           "requirementName": "",
@@ -484,7 +484,7 @@
             "level": "11",
             "credits": "6",
             "sessionDate": "202005",
-            "type": "1",
+            "type": "2",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -786,7 +786,7 @@
           },
           "requirement": "16",
           "requirementName": "",
-          "equivalency": "",
+          "equivalency": "A",
           "usedForGrad": ""
         },
         {
@@ -815,8 +815,8 @@
         },
         {
           "course": {
-            "name": "YACHTMASTER OCEAN",
-            "code": "YMO",
+            "name": "YACHTMASTER COSTAL",
+            "code": "YMC",
             "level": "12",
             "credits": "4",
             "sessionDate": "200106",
@@ -916,7 +916,7 @@
             "level": "12",
             "credits": "4",
             "sessionDate": "200106",
-            "type": "1",
+            "type": "2",
             "relatedCourse": "",
             "relatedLevel": ""
           },
@@ -1115,10 +1115,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "65",
+            "interimLetterGrade": "B"
           },
           "requirement": "",
           "requirementName": "",
@@ -1139,10 +1139,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "75",
+            "interimLetterGrade": "B+"
           },
           "requirement": "",
           "requirementName": "",
@@ -1187,10 +1187,34 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "80",
+            "finalPercent": "78",
             "finalLetterGrade": "A",
             "interimPercent": "",
             "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": ""
+        },
+        {
+          "course": {
+            "name": "MARINE TRAFFIC RULES AND REGULATIONS",
+            "code": "MTR",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "200106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": ""
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "",
+            "finalLetterGrade": "",
+            "interimPercent": "82",
+            "interimLetterGrade": "A"
           },
           "requirement": "",
           "requirementName": "",
@@ -1202,7 +1226,7 @@
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "2018-EN",
+        "code": "2018",
         "description": "Graduation Program 2018",
         "credits": 80
       }
@@ -1212,16 +1236,10 @@
       "honorsFlag": false,
       "dogwoodFlag": false,
       "programCodes": [
-        "",
-        "",
-        "",
-        "",
-        ""
+        "XE",
+        "XP"
       ],
       "programNames": [
-        "",
-        "",
-        "",
         "",
         ""
       ],

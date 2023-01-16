@@ -113,7 +113,15 @@ public enum GraduationProgramCode implements Serializable {
 
     @XmlEnumValue("2018-PF")
     @JsonProperty("2018-PF")
-    PROGRAM_2018_PF("2018-PF", "Legacy - 2018 Programme Francophone", 80);
+    PROGRAM_2018_PF("2018-PF", "Legacy - 2018 Programme Francophone", 80),
+
+    @XmlEnumValue("2023-EN")
+    @JsonProperty("2023-EN")
+    PROGRAM_2023_EN("2023-EN", "Legacy - Graduation Program 2023", 0),
+
+    @XmlEnumValue("2023-PF")
+    @JsonProperty("2023-PF")
+    PROGRAM_2023_PF("2023-PF", "Legacy - Graduation Program 2023", 0);
 
     private String code;
     private String description;

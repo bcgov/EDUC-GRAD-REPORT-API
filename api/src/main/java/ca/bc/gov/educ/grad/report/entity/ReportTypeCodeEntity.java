@@ -20,10 +20,10 @@ public class ReportTypeCodeEntity extends BaseEntity {
     private String reportTypeCode;
 
     @Column(name = "LABEL")
-    private String LABEL;
+    private String label;
 
     @Column(name = "DESCRIPTION")
-    private String DESCRIPTION;
+    private String description;
 
     @Column(name = "DISPLAY_ORDER")
     private String displayOrder;

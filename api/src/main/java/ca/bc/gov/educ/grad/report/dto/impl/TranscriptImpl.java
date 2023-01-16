@@ -42,6 +42,7 @@ public class TranscriptImpl extends AbstractDomainEntity
     private static final long serialVersionUID = 3L;
 
     private boolean interim;
+    private boolean blank;
     private Date issueDate;
     private TranscriptTypeCode transcriptTypeCode;
     private List<TranscriptResult> results = new ArrayList<>();
@@ -116,8 +117,18 @@ public class TranscriptImpl extends AbstractDomainEntity
         this.interim = interim;
     }
 
+    @Override
     public boolean getInterim() {
         return this.interim;
+    }
+
+    @Override
+    public boolean getBlank() {
+        return blank;
+    }
+
+    public void setBlank(boolean blank) {
+        this.blank = blank;
     }
 
     @Override

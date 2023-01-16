@@ -110,6 +110,13 @@ public interface StudentInfo {
     String getGender();
 
     /**
+     * get the student citizenship.
+     *
+     * @return citiz
+     */
+    String getCitizenship();
+
+    /**
      * Gets local id.
      *
      * @return the local id

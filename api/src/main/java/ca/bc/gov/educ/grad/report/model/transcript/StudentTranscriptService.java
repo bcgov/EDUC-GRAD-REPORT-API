@@ -47,7 +47,7 @@ public interface StudentTranscriptService extends BusinessService {
      * @throws IOException
      * @throws DataException
      */
-    Future<StudentTranscriptReport> buildTranscriptReportAsync(ReportFormat format)
+    Future<StudentTranscriptReport> buildUnofficialTranscriptReportAsync(ReportFormat format)
             throws DomainServiceException, IOException, DataException;
 
     /**
@@ -62,12 +62,15 @@ public interface StudentTranscriptService extends BusinessService {
             throws DomainServiceException, IOException, DataException;
 
     /**
-     * Retrieves a transcript that contains course results and the report date.
+     * Creates the student's unofficial transcript in the selected format
      *
-     * @return A transcript for the currently logged in user.
-     * @throws DomainServiceException Could not read data from TRAX.
+     * @return A filled transcript report suitable for sending to a PSI.
+     * @throws DomainServiceException
+     * @throws IOException
+     * @throws DataException
      */
-    Transcript getTranscript() throws DomainServiceException;
+    public StudentTranscriptReport buildUnOfficialTranscriptReport(final ReportFormat format)
+            throws DomainServiceException, IOException, DataException;
 
     /**
      * Retrieves a transcript that contains course results and the report date.
@@ -105,7 +108,6 @@ public interface StudentTranscriptService extends BusinessService {
      * into the report because of the logic the report uses to insert blank rows
      * that delineate different courses.
      *
-     * @deprecated Use report services to sort.
      * @param transcriptResults The list of results to sort.
      * @param programCode The program code that influences sorting behaviour.
      * @return A sorted list for suitable for the given program code.

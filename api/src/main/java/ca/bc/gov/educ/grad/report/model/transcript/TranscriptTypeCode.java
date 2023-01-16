@@ -77,23 +77,23 @@ public enum TranscriptTypeCode implements Serializable {
 
     @XmlEnumValue("BC1995-PUB")
     @JsonProperty("BC1995-PUB")
-    BC1995_PUB("BC1995-PUB", "1996 Public School Transcript BC; including Programme Francophone and Offshore"),
+    BC1995_PUB("BC1995-PUB", "1995 Public School Transcript BC; including Programme Francophone and Offshore"),
 
     @XmlEnumValue("BC1996-PUB")
     @JsonProperty("BC1996-PUB")
-    BC1996_PUB("BC1996-PUB", BC1995_PUB.getDescription()),
+    BC1996_PUB("BC1996-PUB", "1995 Public School Transcript BC; including Programme Francophone and Offshore"),
 
     @XmlEnumValue("BC1996-IND")
     @JsonProperty("BC1996-IND")
-    BC1996_IND("BC1996-IND", BC1995_PUB.getDescription()),
+    BC1996_IND("BC1996-IND", "1995 Independent School Transcript"),
 
     @XmlEnumValue("YU1995-PUB")
     @JsonProperty("YU1995-PUB")
-    YU1995_PUB("YU1995-PUB", "1996 Public School Transcript Yukon"),
+    YU1995_PUB("YU1995-PUB", "1995 Public School Transcript Yukon"),
 
     @XmlEnumValue("YU1996-PUB")
     @JsonProperty("YU1996-PUB")
-    YU1996_PUB("YU1996-PUB", YU1995_PUB.getDescription()),
+    YU1996_PUB("YU1996-PUB", "1995 Public School Transcript Yukon"),
 
     @XmlEnumValue("SCCP-EN")
     @JsonProperty("SCCP-EN")
@@ -134,6 +134,26 @@ public enum TranscriptTypeCode implements Serializable {
     @XmlEnumValue("BC2018-PF")
     @JsonProperty("BC2018-PF")
     BC2018_PF("BC2018-PF", "2018 Programme Francophone Transcript"),
+
+    @XmlEnumValue("BC2023-PUB")
+    @JsonProperty("BC2023-PUB")
+    BC2023_PUB("BC2023-PUB", "2023 Public School Transcript BC"),
+
+    @XmlEnumValue("BC2023-IND")
+    @JsonProperty("BC2023-IND")
+    BC2023_IND("BC2023-IND", "2023 Independent School Transcript"),
+
+    @XmlEnumValue("BC2023-OFF")
+    @JsonProperty("BC2023-OFF")
+    BC2023_OFF("BC2023-OFF", "2023 Offshore Transcript"),
+
+    @XmlEnumValue("YU2023-PUB")
+    @JsonProperty("YU2023-PUB")
+    YU2023_PUB("YU2023-PUB", "2023 Public School Transcript Yukon"),
+
+    @XmlEnumValue("BC2023-PF")
+    @JsonProperty("BC2023-PF")
+    BC2023_PF("BC2023-PF", "2023 Programme Francophone Transcript"),
 
     @XmlEnumValue("NOPROG")
     @JsonProperty("NOPROG")
@@ -210,7 +230,7 @@ public enum TranscriptTypeCode implements Serializable {
     }
 
     /**
-     * Returns true if this code represents an adult graduation program.
+     * Returns true if this code represents an transcript.
      *
      * @return true This is an adult program.
      */
@@ -219,9 +239,9 @@ public enum TranscriptTypeCode implements Serializable {
     }
 
     /**
-     * Returns the string representation of this graduation program code.
+     * Returns the string representation of this transcript code.
      *
-     * @return The graduation program code (without the description).
+     * @return The transcript code (without the description).
      */
     @Override
     public String toString() {

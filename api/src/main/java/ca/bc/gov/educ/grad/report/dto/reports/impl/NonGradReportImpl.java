@@ -1,14 +1,14 @@
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.ReportImpl;
-import ca.bc.gov.educ.grad.report.model.reports.NonGradReport;
+import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 
 import java.util.Date;
 import java.util.List;
 
-public class NonGradReportImpl extends ReportImpl implements NonGradReport {
+public class NonGradReportImpl extends ReportImpl implements GraduationReport {
 
     private List<Student> students;
     private School school;
@@ -29,6 +29,11 @@ public class NonGradReportImpl extends ReportImpl implements NonGradReport {
     @Override
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        return this.students;
     }
 
     @Override
@@ -56,5 +61,10 @@ public class NonGradReportImpl extends ReportImpl implements NonGradReport {
     @Override
     public Object getDataSource() {
         return this.school;
+    }
+
+    @Override
+    public boolean isPreview() {
+        return false;
     }
 }

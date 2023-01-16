@@ -13,7 +13,7 @@ spring:
     password: ${PASSWORD}
     driver-class: oracle.jdbc.driver.OracleDriver
   jpa:
-    show-sql: true
+    show-sql: ${SHOW_SQL_LOGS}
     database-platform: org.hibernate.dialect.Oracle12cDialect
     hibernate:
       ddl-auto: none
@@ -51,8 +51,8 @@ logging:
       bc:
         gov:
           educ:
-            api:
-              reportapi: ${APP_LOG_LEVEL}
+            grad:
+              report: ${APP_LOG_LEVEL}
     org:
       springframework:
         web: ${SPRING_WEB_LOG_LEVEL}
@@ -102,3 +102,6 @@ endpoint:
       url: ${PEN_API}api/v1/student/%s
     by-pen:
       url: ${PEN_API}api/v1/student?pen=%s
+  grad-program-api:
+    program-name-by-program_code:
+      url: ${GRAD_PROGRAM_API}api/v1/program/programs/%s

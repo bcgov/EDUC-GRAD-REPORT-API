@@ -409,6 +409,7 @@ public class JRDataSourceFactory {
                 .withLastName(randomLastName())
                 .withMiddleNames(randomMiddleName())
                 .withBirthdate(getStudentBirthdate())
+                .withCitizenship("CAD")
                 .withSchool(school)
                 .withAddress(studentAddress)
                 .withTranscriptResults(transcriptResults)
