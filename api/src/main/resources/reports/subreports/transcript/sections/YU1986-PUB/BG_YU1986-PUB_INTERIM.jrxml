@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Background (1995, 2004, SCCP) - Not Graduated" pageWidth="567" pageHeight="550" whenNoDataType="AllSectionsNoDetail" columnWidth="567" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="392d526e-f07c-4b21-84aa-abb41f56c8af">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
+	<parameter name="P_REPORT_TYPE" class="java.lang.String"/>
+	<parameter name="P_REPORT_STYLE_FILE" class="java.lang.String"/>
+    <parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean"/>
+	<parameter name="P_REPORT_CONCRETE_PATH" class="java.lang.String"/>
+	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String"/>
+	<parameter name="P_GRADUATION_MESSAGE" class="java.lang.String" isForPrompting="false"/>
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
+	<field name="student.status.incompletionReasons" class="java.util.List">
+		<fieldDescription><![CDATA[student.status.incompletionReasons]]></fieldDescription>
+	</field>
+	<background>
+		<band height="550">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="2" width="567" height="174" uuid="18d8043e-93f1-441a-9c1e-1d53466ae235"/>
+				<textField>
+					<reportElement style="ExaminableTitle" x="0" y="0" width="567" height="12" uuid="2b4c0b2b-0bff-4e3f-ac1f-39a7da85a327"/>
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textFieldExpression><![CDATA[$R{text.header.separator.provincial}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="CourseHeader" x="0" y="12" width="276" height="28" uuid="904bb194-f65b-4ab8-a0d9-9b7d0e2004a5"/>
+					<text><![CDATA[COURSE NAME]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="276" y="12" width="72" height="28" uuid="c41c4180-672f-4668-b2d4-81f2b206a8bd"/>
+					<text><![CDATA[COURSE CODE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="348" y="12" width="50" height="28" uuid="8479f685-97c5-4295-82fd-b059a425fda7">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<text><![CDATA[SESSION
+DATE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="398" y="12" width="133" height="9" uuid="9bf7c9e5-fc78-451e-b1ab-cb2cdacc56eb">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box topPadding="0" bottomPadding="0"/>
+					<text><![CDATA[COMPLETED COURSE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="398" y="21" width="37" height="19" uuid="03a3b59e-a9ad-454f-b755-88e59d3ad0f7">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<box topPadding="0"/>
+					<text><![CDATA[SCHOOL
+%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="435" y="21" width="35" height="19" uuid="7815de6d-1b02-4672-accd-91430af5f21e">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box topPadding="0"/>
+					<text><![CDATA[EXAM
+%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="470" y="21" width="35" height="19" uuid="32b8632b-9e95-4951-b094-7c25a9c45202">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<box topPadding="0"/>
+					<text><![CDATA[FINAL
+%]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="505" y="21" width="26" height="19" uuid="18f9c1a1-a996-4b7c-b967-1ba35792243e"/>
+					<box topPadding="0" bottomPadding="0"/>
+					<textElement verticalAlignment="Top">
+						<font size="5"/>
+					</textElement>
+					<text><![CDATA[FINAL
+LETTER
+GRADE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="CourseHeader" x="531" y="12" width="36" height="28" uuid="002cfcd1-58d8-4b07-b128-5e1a59d52eb2"/>
+					<box>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<frame>
+					<reportElement style="TabularRowBackground" x="0" y="40" width="276" height="134" uuid="4cf007f3-e7c3-4f2f-bde7-16f9b9078324">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="276" y="40" width="72" height="134" uuid="60fd6866-735d-4288-9aa8-53e686e8ee27"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="348" y="40" width="50" height="134" uuid="aff7189e-1220-4421-a9a4-3879314efe2c"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="398" y="40" width="37" height="134" uuid="43525788-b258-4241-8edd-e0968990fa4a"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="435" y="40" width="35" height="134" uuid="3f209300-f0b3-4a1b-b8fd-331c3ac22726"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="470" y="40" width="35" height="134" uuid="a0964f54-0c46-48c3-818f-767ef8e2a4f4"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="505" y="40" width="26" height="134" uuid="07bb9a92-72c4-4080-8597-89c4eacbec57"/>
+				</frame>
+				<staticText>
+					<reportElement style="TabularRowBackground" x="531" y="40" width="36" height="134" uuid="9902112d-6d46-43fd-9a5f-07cbb8bdbf8f">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<leftPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="0" y="176" width="567" height="225" uuid="43457aa1-e791-43af-beef-1eb45f542e48"/>
+				<textField>
+					<reportElement style="ExaminableTitle" x="0" y="0" width="567" height="12" uuid="9de96715-d04b-43e8-a474-47ee13ebbf04"/>
+					<box>
+						<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textFieldExpression><![CDATA[$R{text.header.separator.nonprovincial}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<frame>
+					<reportElement style="TabularRowBackground" x="0" y="32" width="213" height="193" uuid="8d4d6453-53c6-48e2-bdb9-9af10e447212"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="213" y="32" width="80" height="193" uuid="3a627dbf-61a7-4e74-a55d-734bee5aae63"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="293" y="32" width="40" height="193" uuid="57ae3b80-d51c-4e51-9172-901eb65d9393"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="333" y="32" width="40" height="193" uuid="25989b09-e0ab-4d69-a634-934ab0b9ad56"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="373" y="32" width="50" height="193" uuid="57ae3b80-d51c-4e51-9172-901eb65d9393"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="423" y="32" width="72" height="193" uuid="25989b09-e0ab-4d69-a634-934ab0b9ad56"/>
+				</frame>
+				<frame>
+					<reportElement style="TabularRowBackground" x="495" y="32" width="72" height="193" uuid="e176085a-9ca2-4b4e-9499-782b60d9af5d">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<box>
+						<rightPen lineWidth="0.5"/>
+					</box>
+				</frame>
+				<textField>
+					<reportElement style="CourseHeader" x="0" y="12" width="213" height="20" uuid="4371e55d-e865-4e14-9c04-e8551704a712"/>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.name}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="CourseHeader" x="213" y="12" width="80" height="20" uuid="955bfd3e-b7cf-490a-a795-42d37d2f191b"/>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.code}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="CourseHeader" x="293" y="12" width="40" height="20" uuid="64a441a0-6fd8-48dc-a1a1-9ad91aa7d50a"/>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.session}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="CourseHeader" x="333" y="12" width="40" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.interm.percent}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="CourseHeader" x="373" y="12" width="50" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.interm.grade}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="CourseHeader" x="423" y="12" width="72" height="20" uuid="bdf7219a-c2cd-4312-907e-846201b2091c"/>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.percent}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="CourseHeader" x="495" y="12" width="72" height="20" uuid="63facf3a-1cc1-4308-9014-8358ff1a84fa"/>
+					<box>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="5.5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{text.header.column.adult.nonprov.course.grade}.toUpperCase()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame borderSplitType="DrawBorders">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="0" y="401" width="567" height="144" backcolor="#FFFFFF" uuid="1488e527-ef0c-4617-ac34-2b7d278a490a">
+					<property name="ShowOutOfBoundContent" value="false"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField isBlankWhenNull="true">
+					<reportElement style="Authenticity" x="0" y="0" width="567" height="12" uuid="e0363bf0-5cab-40e1-8c35-3193a2a24639"/>
+					<box leftPadding="4">
+						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[$R{text.header.separator.completion}.toUpperCase() + ($P{P_REPORT_PREVIEW} ? $R{text.header.separator.completion.xml.note} : "")]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="84" isRemoveLineWhenBlank="true" uuid="81cc511a-0e3d-4087-9021-b8e648ce1f5c">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box topPadding="5" leftPadding="10" bottomPadding="5" rightPadding="10"/>
+					<textElement verticalAlignment="Top"/>
+					<textFieldExpression><![CDATA[$P{P_GRADUATION_MESSAGE}.trim()]]></textFieldExpression>
+				</textField>
+				<subreport overflowType="NoStretch">
+					<reportElement positionType="Float" mode="Transparent" x="21" y="60" width="530" height="78" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="37f0dcf5-42c8-4bdc-9990-4dedd7d84cc5">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<printWhenExpression><![CDATA[$F{student.status.incompletionReasons} != null && !$F{student.status.incompletionReasons}.isEmpty()]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="P_REPORT_STYLE_FILE">
+						<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="P_REPORT_PREVIEW">
+						<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[// Do not add more reasons than the non-grad reasons box on the paper
+						// transcript can hold. To do so would cause the list to overflow onto
+						// an additional page, breaking the report formatting. The Ministry is aware
+						// that these are truncated.
+						new JRBeanCollectionDataSource(
+							$F{student.status.incompletionReasons}.subList(0, java.lang.Math.min($F{student.status.incompletionReasons}.size(), 8)
+						))]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/NGR_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</background>
+</jasperReport>
