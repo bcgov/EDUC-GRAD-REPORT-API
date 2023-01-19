@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dto.impl.SchoolImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolLabelReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
@@ -28,6 +29,8 @@ import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelService;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +39,7 @@ import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -88,7 +92,22 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
         final List<School> schools = getSchools(reportData);
 
         if(!schools.isEmpty()) {
-            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(schools);
+            List<List<School>> partition = ListUtils.partition(schools, 2);
+            List<Pair<School, School>> schools2Columns = new ArrayList<>();
+            for(List<School> schs: partition) {
+                School schoolLeft;
+                School schoolRight;
+                if(schs.size() == 2) {
+                    schoolLeft = schs.get(0);
+                    schoolRight = schs.get(1);
+                } else {
+                    schoolLeft = schs.get(0);
+                    schoolRight = new SchoolImpl();
+                }
+                Pair<School, School> p = Pair.of(schoolLeft, schoolRight);
+                schools2Columns.add(p);
+            }
+            JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(schools2Columns);
             parameters.put("schools", jrBeanCollectionDataSource);
             parameters.put("hasSchools", "true");
         }

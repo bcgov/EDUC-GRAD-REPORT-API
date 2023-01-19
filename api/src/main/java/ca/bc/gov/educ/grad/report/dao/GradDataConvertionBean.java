@@ -488,6 +488,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         for(ca.bc.gov.educ.grad.report.api.client.School sch: reportData.getSchools()) {
             SchoolImpl school = new SchoolImpl();
             BeanUtils.copyProperties(sch, school);
+            school.setSchoolCategoryCode("Principal");
             if (sch.getAddress() != null) {
                 PostalAddressImpl address = new PostalAddressImpl();
                 BeanUtils.copyProperties(sch.getAddress(), address);
