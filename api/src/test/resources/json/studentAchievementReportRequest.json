@@ -360,6 +360,18 @@
       {
         "code": "001",
         "description": "Computer Science - A degree in computer science may sound like you’re on the right track for a successful career after graduation. However, like many of the most useless college degrees, computer science is a difficult degree to use after you graduate."
+      },
+      {
+        "code": "",
+        "description": "Student has not completed their main program "
+      },
+      {
+        "code": null,
+        "description": "Fewer than 12 Other French credits"
+      },
+      {
+        "code": "205",
+        "description": "Fewer than 4 Gr 11 or 12 French Other credits"
       }
     ],
     "optionalPrograms": [
@@ -451,11 +463,11 @@
             "description": "No Français langue seconde-immersion 11 "
           },
           {
-            "code": "957",
+            "code": "",
             "description": "Student has not completed their main program "
           },
           {
-            "code": "204",
+            "code": null,
             "description": "Fewer than 12 Other French credits"
           },
           {
@@ -463,7 +475,7 @@
             "description": "Fewer than 4 Gr 11 or 12 French Other credits"
           },
           {
-            "code": "206",
+            "code": "",
             "description": "Fewer than 10 Grade Student has not completed their main program"
           }
         ]

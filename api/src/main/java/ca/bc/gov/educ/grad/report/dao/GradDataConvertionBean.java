@@ -26,6 +26,8 @@ import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import ca.bc.gov.educ.grad.report.service.impl.BaseServiceImpl;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -276,7 +278,8 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         final HashMap<String, String> reasons = new HashMap<>();
         if (reportData.getNonGradReasons() != null) {
             for (ca.bc.gov.educ.grad.report.api.client.NonGradReason reason : reportData.getNonGradReasons()) {
-                reasons.put(reason.getCode(), reason.getDescription());
+                String code = ObjectUtils.defaultIfNull(StringUtils.trimToNull(reason.getCode()), "!" + RandomStringUtils.randomAlphabetic(3));
+                reasons.put(code, reason.getDescription());
             }
         }
         return reasons;

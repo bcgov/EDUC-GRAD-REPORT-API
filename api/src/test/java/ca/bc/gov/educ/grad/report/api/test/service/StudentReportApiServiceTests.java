@@ -2081,6 +2081,39 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createSchoolDistributionReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
+
+		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
+				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
+		));
+		when(this.transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				TranscriptTypeCodeEntity.builder().label("Adult Graduation Program").build(),
+				TranscriptTypeCodeEntity.builder().label("Graduation Program 2018").build()
+		));
+
+		ResponseEntity<byte[]> response = apiReportService.getSchoolDistributionReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createSchoolDistributionReport_NOSTUDENTS");
+	}
+
+	@Test
 	public void createSchoolGraduationReport() throws Exception {
 		LOG.debug("<{}.createSchoolGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");
@@ -2108,6 +2141,33 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createSchoolGraduationReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createSchoolGraduationReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getSchool());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		for(Student st: reportRequest.getData().getSchool().getStudents()) {
+			if(!StringUtils.isBlank(st.getPen().getEntityID())) {
+				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
+			}
+		}
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getSchoolGraduationReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createSchoolGraduationReport_NOSTUDENTS");
+	}
+
+	@Test
 	public void createSchoolNonGraduationReport() throws Exception {
 		LOG.debug("<{}.createSchoolNonGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest.json");
@@ -2129,6 +2189,27 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createSchoolNonGraduationReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createSchoolNonGraduationReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getSchoolNonGraduationReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createSchoolNonGraduationReport_NOSTUDENTS");
+	}
+
+	@Test
 	public void createStudentNonGradReport() throws Exception {
 		LOG.debug("<{}.createStudentNonGradReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest.json");
@@ -2147,6 +2228,27 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(bArray);
 		}
 		LOG.debug(">createStudentNonGradReport");
+	}
+
+	@Test
+	public void createStudentNonGradReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createStudentNonGradReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getStudentNonGradReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createStudentNonGradReport_NOSTUDENTS");
 	}
 
 	@Test
