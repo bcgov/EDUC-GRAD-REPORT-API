@@ -81,6 +81,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
         return createSchoolLabelReport(graduationReport);
     }
 
+    @Override
     GraduationReport getGraduationReport(String methodName, List<String> excludePrograms) throws IOException {
         Parameters<String, Object> parameters = createParameters();
 
@@ -139,7 +140,6 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
 
             byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_label_");
 
-            // TODO: Use a constant for the name.
             report = new SchoolLabelReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Label Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
