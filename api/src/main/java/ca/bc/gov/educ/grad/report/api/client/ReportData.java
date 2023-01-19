@@ -82,6 +82,8 @@ public class ReportData implements Serializable {
 	@JsonDeserialize(using = OptionalProgramListDeserializer.class)
 	private List<OptionalProgram> optionalPrograms = new ArrayList<>();
 
+	private List<School> schools = new ArrayList<>();
+
 	@JsonIgnore
 	private Map<String, String> parameters = new HashMap<>();
 	@JsonIgnore
@@ -101,6 +103,14 @@ public class ReportData implements Serializable {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	public List<School> getSchools() {
+		return schools;
+	}
+
+	public void setSchools(List<School> schools) {
+		this.schools = schools;
 	}
 
 	public Transcript getTranscript() {

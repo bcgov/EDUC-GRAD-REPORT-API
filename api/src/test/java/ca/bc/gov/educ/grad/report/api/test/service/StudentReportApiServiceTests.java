@@ -2114,6 +2114,26 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createSchoolLabelReport() throws Exception {
+		LOG.debug("<{}.createSchoolLabelReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolLabelReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		ResponseEntity<byte[]> response = apiReportService.getSchoolLabelReport(reportRequest);
+		assertEquals(200, response.getStatusCode().value());
+		assertNotNull(response.getBody());
+		byte[] bArray = response.getBody();
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(bArray);
+		}
+		LOG.debug(">createSchoolLabelReport");
+	}
+
+	@Test
 	public void createSchoolGraduationReport() throws Exception {
 		LOG.debug("<{}.createSchoolGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");

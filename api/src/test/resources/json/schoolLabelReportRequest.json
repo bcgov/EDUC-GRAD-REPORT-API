@@ -1,0 +1,106 @@
+{
+  "options": {
+    "reportName": "schoollabel",
+    "reportFile": "School Label Report.pdf"
+  },
+  "data": {
+    "schools":[
+      {
+        "mincode": "03939008",
+        "name": "LORD BYNG SECONDARY",
+        "typeIndicator": "",
+        "typeBanner": "",
+        "signatureCode": "039",
+        "distno": "039",
+        "schlno": "03939008",
+        "schoolCategoryCode": "",
+        "address": {
+          "streetLine1": "3939 16TH AVENUE W",
+          "streetLine2": "",
+          "city": "VANCOUVER",
+          "region": "BC",
+          "country": "",
+          "code": "V6R3C9"
+        }
+      },
+      {
+        "mincode": "03939000",
+        "name": "VANCOUVER SCHOOL BOARD ADULT EDUCATION",
+        "typeIndicator": "",
+        "typeBanner": null,
+        "signatureCode": "039",
+        "distno": "039",
+        "schlno": "03939000",
+        "schoolCategoryCode": null,
+        "address": {
+          "streetLine1": "6010 FRASER ST",
+          "streetLine2": "",
+          "city": "VANCOUVER",
+          "region": "BC",
+          "country": "CN",
+          "code": "V5W2Z7"
+        }
+      },
+      {
+        "mincode": "03434052",
+        "name": "RICK HANSEN SECONDARY",
+        "typeIndicator": "",
+        "typeBanner": null,
+        "signatureCode": "034",
+        "distno": "034",
+        "schlno": "03434052",
+        "schoolCategoryCode": null,
+        "address": {
+          "streetLine1": "31150 BLUE RIDGE DRIVE",
+          "streetLine2": "",
+          "city": "ABBOTSFORD",
+          "region": "BC",
+          "country": "CN",
+          "code": "V2T5R2"
+        },
+        "phoneNumber": "",
+        "dogwoodElig": "",
+        "students": []
+      },
+      {
+        "mincode": "03939008",
+        "name": "ELKFORD ELEMENTARY SECONDARY CATHOLIC SAINT-BAPTIST",
+        "typeIndicator": "",
+        "typeBanner": "",
+        "signatureCode": "039",
+        "distno": "039",
+        "schlno": "03939008",
+        "schoolCategoryCode": "",
+        "address": {
+          "streetLine1": "PO BOX 910",
+          "streetLine2": "",
+          "city": "ELKFORD",
+          "region": "BC",
+          "country": "",
+          "code": "V0B 1H0"
+        }
+      },
+      {
+        "mincode": "03699064",
+        "name": "Ecole Secondaire Mark R. Isfeld Secondary",
+        "typeIndicator": "",
+        "typeBanner": "",
+        "signatureCode": "036",
+        "distno": "036",
+        "schlno": "03699064",
+        "schoolCategoryCode": "01",
+        "address": {
+          "streetLine1": "300-10183 152A ST",
+          "streetLine2": "",
+          "city": "SURREY",
+          "region": "BC",
+          "country": "",
+          "code": "VER4H6"
+        }
+      }
+    ],
+    "orgCode": "BC",
+    "issueDate": "2021-04-26",
+    "reportNumber": "EDLAB.LABL14__TRAX2830A001.JCL_20220929152901__20221003_072903_.PDF"
+  }
+}

@@ -95,6 +95,17 @@ public class ReportController extends BaseController {
         return reportService.getSchoolDistributionReport(report);
     }
 
+    @PostMapping (ReportApiConstants.SCHOOL_LABEL)
+    @PreAuthorize(PermissionsContants.SCHOOL_LABEL)
+    @Operation(summary = "Generate School Label Report", description = "Generate School Label Report", tags = { "Report" })
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getSchoolLabel(@RequestBody ReportRequest report, @RequestHeader(name="Authorization") String accessToken) {
+        logger.debug("getSchoolLabel");
+        logRequest(report);
+        setAccessToken(report, accessToken);
+        return reportService.getSchoolLabelReport(report);
+    }
+
     @PostMapping (ReportApiConstants.SCHOOL_GRADUATION)
     @PreAuthorize(PermissionsContants.SCHOOL_GRADUATION)
     @Operation(summary = "Generate School Graduation Report", description = "Generate School Graduation Report", tags = { "Report" })

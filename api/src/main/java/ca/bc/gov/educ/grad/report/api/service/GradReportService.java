@@ -64,6 +64,9 @@ public class GradReportService {
 	SchoolDistributionService schoolDistributionService;
 
 	@Autowired
+	SchoolLabelService schoolLabelService;
+
+	@Autowired
 	SchoolGraduationService schoolGraduationService;
 
 	@Autowired
@@ -265,6 +268,26 @@ public class GradReportService {
 		return response;
 	}
 
+	public ResponseEntity<byte[]> getSchoolLabelReport(ReportRequest reportRequest) {
+		String methodName = "getSchoolLabelReport(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		String reportFile = reportRequest.getOptions().getReportFile();
+
+		ResponseEntity<byte[]> response = null;
+
+		try {
+			SchoolLabelReport schoolLabelReport = getSchoolLabelReportDocument(reportRequest);
+			byte[] resultBinary = schoolLabelReport.asBytes();
+			response = handleBinaryResponse(resultBinary, reportFile);
+		} catch (Exception e) {
+			log.error(EXCEPTION_MSG, methodName, e);
+			response = getInternalServerErrorResponse(e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public ResponseEntity<byte[]> getSchoolGraduationReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolGraduationReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -332,6 +355,15 @@ public class GradReportService {
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
 		return schoolDistributionService.buildSchoolDistributionReport();
+	}
+
+	public SchoolLabelReport getSchoolLabelReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getSchoolLabelReportDocument(GenerateReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		return schoolLabelService.buildSchoolLabelReport();
 	}
 
 	public SchoolGraduationReport getSchoolGraduationReportDocument(ReportRequest reportRequest) throws IOException {

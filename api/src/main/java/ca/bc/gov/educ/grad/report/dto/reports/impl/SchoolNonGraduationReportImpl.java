@@ -28,6 +28,16 @@ public class SchoolNonGraduationReportImpl extends ReportImpl implements Graduat
     }
 
     @Override
+    public void setSchools(List<School> schools) {
+
+    }
+
+    @Override
+    public List<School> getSchools() {
+        return null;
+    }
+
+    @Override
     public void setStudents(List<Student> students) {
         this.students = students;
     }
