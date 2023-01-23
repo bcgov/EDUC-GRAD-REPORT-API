@@ -38,12 +38,12 @@ public class NonGradReportImpl extends ReportImpl implements GraduationReport {
 
     @Override
     public void setSchools(List<School> schools) {
-
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public List<School> getSchools() {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

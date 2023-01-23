@@ -11,6 +11,7 @@ import java.util.List;
 public class SchoolGraduationReportImpl extends ReportImpl implements GraduationReport {
 
     private List<Student> students;
+    private List<School> schools;
     private School school;
 
     /**
@@ -29,12 +30,12 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
 
     @Override
     public void setSchools(List<School> schools) {
-
+        this.schools = schools;
     }
 
     @Override
     public List<School> getSchools() {
-        return null;
+        return this.schools;
     }
 
     @Override
