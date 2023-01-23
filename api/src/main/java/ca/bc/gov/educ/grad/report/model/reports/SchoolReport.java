@@ -19,8 +19,6 @@ package ca.bc.gov.educ.grad.report.model.reports;
 
 import ca.bc.gov.educ.grad.report.model.school.School;
 
-import java.util.Date;
-
 /**
  * Superclass for various reports (transcript, provincial examination,
  * scholarships, certificates, etc.) that involve student information.
@@ -37,21 +35,4 @@ public interface SchoolReport extends Report {
      */
     void setSchool(School school);
 
-    /**
-     * Sets the school to use for populating the reports.
-     *
-     * @param school The school instance with data used for filling reports.
-     * @param logoCode The logo code to use for the district organization
-     * responsible for the school's operations.
-     */
-    void setSchool(School school, String logoCode);
-
-    /**
-     * Sets the last updated or issue date for reports. If null, or not set, the
-     * date and corresponding label will not be shown on the report.
-     *
-     * @param date The date the information on the report was last updated, or
-     * the date the report was issued.
-     */
-    void setReportDate(Date date);
 }

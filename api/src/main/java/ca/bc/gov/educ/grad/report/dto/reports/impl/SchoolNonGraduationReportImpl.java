@@ -5,7 +5,6 @@ import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 
-import java.util.Date;
 import java.util.List;
 
 public class SchoolNonGraduationReportImpl extends ReportImpl implements GraduationReport {
@@ -45,16 +44,6 @@ public class SchoolNonGraduationReportImpl extends ReportImpl implements Graduat
     @Override
     public void setSchool(School school) {
         this.school = school;
-    }
-
-    @Override
-    public void setSchool(School school, String logoCode) {
-        // Do nothing
-    }
-
-    @Override
-    public void setReportDate(Date date) {
-        // Do nothing
     }
 
     /**
