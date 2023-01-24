@@ -37,7 +37,7 @@ import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTER
 public class GradReportService {
 
 	private static final String CLASS_NAME = GradReportService.class.getName();
-	private static final String EXCEPTION_MSG = "Unable to execute {}";
+	private static final String EXCEPTION_MSG = "Unable to execute %s";
 
 	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
@@ -87,8 +87,7 @@ public class GradReportService {
 			ReportDocument report = getPackingSlipReportDocument(reportRequest);
 			response = report.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -126,8 +125,7 @@ public class GradReportService {
 			StudentAchievementReport report = getStudentAchievementReportDocument(reportRequest);
 			response = report.getReportData();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -155,8 +153,7 @@ public class GradReportService {
 			StudentTranscriptReport report = getStudentTranscriptReportDocument(reportRequest);
 			response = report.getReportData();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -184,8 +181,7 @@ public class GradReportService {
 			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
 			response = transcriptReport.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -211,8 +207,7 @@ public class GradReportService {
 			DocumentBundle documentBundle = getStudentCertificateReportDocument(reportRequest);
 			response = documentBundle.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -247,8 +242,7 @@ public class GradReportService {
 			SchoolDistributionReport schoolDistributionReport = getSchoolDistributionReportDocument(reportRequest);
 			response = schoolDistributionReport.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -265,8 +259,7 @@ public class GradReportService {
 			SchoolLabelReport schoolLabelReport = getSchoolLabelReportDocument(reportRequest);
 			response = schoolLabelReport.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -283,8 +276,7 @@ public class GradReportService {
 			SchoolGraduationReport schoolGraduationReport = getSchoolGraduationReportDocument(reportRequest);
 			response = schoolGraduationReport.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -301,8 +293,7 @@ public class GradReportService {
 			SchoolNonGraduationReport schoolNonGraduationReport = getSchoolNonGraduationReportDocument(reportRequest);
 			response = schoolNonGraduationReport.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -319,8 +310,7 @@ public class GradReportService {
 			StudentNonGradReport studentNonGradReport = getStudentNonGradReportDocument(reportRequest);
 			response = studentNonGradReport.asBytes();
 		} catch (Exception e) {
-			log.error(EXCEPTION_MSG, methodName, e);
-			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
