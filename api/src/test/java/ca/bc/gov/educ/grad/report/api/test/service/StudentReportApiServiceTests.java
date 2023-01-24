@@ -13,6 +13,7 @@ import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.report.exception.ServiceException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
@@ -1380,7 +1381,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
-		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for transcripts", EntityNotFoundException.class, () -> {
+		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for transcripts", ServiceException.class, () -> {
 			apiReportService.getStudentTranscriptReport(reportRequest);
 		});
 
@@ -1400,7 +1401,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		mockTraxSchool(school);
 		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
 
-		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", EntityNotFoundException.class, () -> {
+		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ServiceException.class, () -> {
 			apiReportService.getStudentCertificateReport(reportRequest);
 		});
 
@@ -2347,7 +2348,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(packingSlipReportRequest);
 		assertNotNull(packingSlipReportRequest.getData());
 
-		packingSlipReportRequest.getOptions().setReportFile("Packing Slip Report.pdf");
+		byte[] packingSlipResponse = apiReportService.getPackingSlipReport(packingSlipReportRequest);
+		assertNotNull(packingSlipResponse);
 
 		List<ReportDocument> rds = new ArrayList<>();
 		rds.add(achievementReport);
