@@ -21,13 +21,10 @@ import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -78,21 +75,19 @@ public class GradReportService {
 	@Autowired
 	StudentXmlTranscriptService studentXmlTranscriptService;
 
-	public ResponseEntity<byte[]> getPackingSlipReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			ReportDocument report = getPackingSlipReportDocument(reportRequest);
-			byte[] resultBinary = report.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = report.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -119,21 +114,19 @@ public class GradReportService {
 		);
 	}
 
-    public ResponseEntity<byte[]> getStudentAchievementReport(ReportRequest reportRequest) {
+	@SneakyThrows
+    public byte[] getStudentAchievementReport(ReportRequest reportRequest) {
     	String methodName = "getStudentAchievementReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			StudentAchievementReport report = getStudentAchievementReportDocument(reportRequest);
-			byte[] resultBinary = report.getReportData();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = report.getReportData();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -150,21 +143,19 @@ public class GradReportService {
 		return achievementService.buildOfficialAchievementReport();
 	}
 
-	public ResponseEntity<byte[]> getStudentTranscriptReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getStudentTranscriptReport(ReportRequest reportRequest) {
 		String methodName = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			StudentTranscriptReport report = getStudentTranscriptReportDocument(reportRequest);
-			byte[] resultBinary = report.getReportData();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = report.getReportData();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -181,21 +172,19 @@ public class GradReportService {
 			return transcriptService.buildOfficialTranscriptReport();
 	}
 
-	public ResponseEntity<byte[]> getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
 		String methodName = "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
-			byte[] resultBinary = transcriptReport.asBytes();
-			response = handleBinaryResponse(resultBinary, String.format(reportFile, transcriptReport.getFilename()), MediaType.APPLICATION_XML);
+			response = transcriptReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -209,22 +198,20 @@ public class GradReportService {
 
 		return studentXmlTranscriptService.buildXmlTranscriptReport();
 	}
-	
-	public ResponseEntity<byte[]> getStudentCertificateReport(ReportRequest reportRequest) {
+
+	@SneakyThrows
+	public byte[] getStudentCertificateReport(ReportRequest reportRequest) {
 		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			DocumentBundle documentBundle = getStudentCertificateReportDocument(reportRequest);
-			byte[] resultBinary = documentBundle.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = documentBundle.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -248,101 +235,91 @@ public class GradReportService {
 		return documentBundle;
 	}
 
-	public ResponseEntity<byte[]> getSchoolDistributionReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getSchoolDistributionReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolDistributionReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			SchoolDistributionReport schoolDistributionReport = getSchoolDistributionReportDocument(reportRequest);
-			byte[] resultBinary = schoolDistributionReport.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = schoolDistributionReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
 
-	public ResponseEntity<byte[]> getSchoolLabelReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getSchoolLabelReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolLabelReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			SchoolLabelReport schoolLabelReport = getSchoolLabelReportDocument(reportRequest);
-			byte[] resultBinary = schoolLabelReport.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = schoolLabelReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
 
-	public ResponseEntity<byte[]> getSchoolGraduationReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getSchoolGraduationReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolGraduationReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			SchoolGraduationReport schoolGraduationReport = getSchoolGraduationReportDocument(reportRequest);
-			byte[] resultBinary = schoolGraduationReport.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = schoolGraduationReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
 
-	public ResponseEntity<byte[]> getSchoolNonGraduationReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getSchoolNonGraduationReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolNonGraduationReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			SchoolNonGraduationReport schoolNonGraduationReport = getSchoolNonGraduationReportDocument(reportRequest);
-			byte[] resultBinary = schoolNonGraduationReport.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = schoolNonGraduationReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
 
-	public ResponseEntity<byte[]> getStudentNonGradReport(ReportRequest reportRequest) {
+	@SneakyThrows
+	public byte[] getStudentNonGradReport(ReportRequest reportRequest) {
 		String methodName = "getStudentNonGradReport(GenerateReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		String reportFile = reportRequest.getOptions().getReportFile();
-
-		ResponseEntity<byte[]> response = null;
+		byte[] response = null;
 
 		try {
 			StudentNonGradReport studentNonGradReport = getStudentNonGradReportDocument(reportRequest);
-			byte[] resultBinary = studentNonGradReport.asBytes();
-			response = handleBinaryResponse(resultBinary, reportFile);
+			response = studentNonGradReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			response = getInternalServerErrorResponse(e);
+			throw e;
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -392,45 +369,4 @@ public class GradReportService {
 
 		return studentNonGradService.buildStudentNonGradReport();
 	}
-
-	protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
-		ResponseEntity<byte[]> result = null;
-
-		Throwable tmp = t;
-		String message = null;
-		if (tmp.getCause() != null) {
-			tmp = tmp.getCause();
-			message = tmp.getMessage();
-		} else {
-			message = tmp.getMessage();
-		}
-		if(message == null) {
-			message = tmp.getClass().getName();
-		}
-
-		result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message.getBytes());
-		return result;
-	}
-
-	private ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
-		return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_PDF);
-	}
-
-	private ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
-		ResponseEntity<byte[]> response = null;
-
-		if(resultBinary.length > 0) {
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Content-Disposition", "inline; filename=" + reportFile);
-			response = ResponseEntity
-					.ok()
-					.headers(headers)
-					.contentType(contentType)
-					.body(resultBinary);
-		} else {
-			response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-		}
-		return response;
-	}
-
 }

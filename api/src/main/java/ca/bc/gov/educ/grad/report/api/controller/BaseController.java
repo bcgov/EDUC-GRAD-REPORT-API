@@ -17,6 +17,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -126,6 +130,46 @@ public abstract class BaseController {
             st.setMiddleName("");
             st.setLastName("Doe");
         }
+    }
+
+    protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
+        ResponseEntity<byte[]> result = null;
+
+        Throwable tmp = t;
+        String message = null;
+        if (tmp.getCause() != null) {
+            tmp = tmp.getCause();
+            message = tmp.getMessage();
+        } else {
+            message = tmp.getMessage();
+        }
+        if(message == null) {
+            message = tmp.getClass().getName();
+        }
+
+        result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message.getBytes());
+        return result;
+    }
+    
+    protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
+        return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_PDF);
+    }
+
+    protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
+        ResponseEntity<byte[]> response = null;
+
+        if(resultBinary.length > 0) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=" + reportFile);
+            response = ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentType(contentType)
+                    .body(resultBinary);
+        } else {
+            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return response;
     }
 
 }
