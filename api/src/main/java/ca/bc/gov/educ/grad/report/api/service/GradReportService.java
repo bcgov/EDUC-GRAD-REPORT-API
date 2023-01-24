@@ -7,6 +7,7 @@ import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.exception.ServiceException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
@@ -87,7 +88,7 @@ public class GradReportService {
 			response = report.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -126,7 +127,7 @@ public class GradReportService {
 			response = report.getReportData();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -155,7 +156,7 @@ public class GradReportService {
 			response = report.getReportData();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -184,7 +185,7 @@ public class GradReportService {
 			response = transcriptReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -211,7 +212,7 @@ public class GradReportService {
 			response = documentBundle.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -247,7 +248,7 @@ public class GradReportService {
 			response = schoolDistributionReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -265,7 +266,7 @@ public class GradReportService {
 			response = schoolLabelReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -283,7 +284,7 @@ public class GradReportService {
 			response = schoolGraduationReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -301,7 +302,7 @@ public class GradReportService {
 			response = schoolNonGraduationReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -319,7 +320,7 @@ public class GradReportService {
 			response = studentNonGradReport.asBytes();
 		} catch (Exception e) {
 			log.error(EXCEPTION_MSG, methodName, e);
-			throw e;
+			throw new ServiceException(String.format("Unable to execute %s", methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
