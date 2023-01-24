@@ -11,6 +11,8 @@ public interface Transformer {
 
     public Object unmarshall(InputStream input, Class<?> clazz) throws TransformerException;
 
+    public String marshallPrettyPrinter(Object input) throws TransformerException;
+
     public String marshall(Object input) throws TransformerException;
 
     public String getAccept();

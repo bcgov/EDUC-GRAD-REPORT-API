@@ -1,16 +1,11 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
-import ca.bc.gov.educ.grad.report.api.client.Pen;
-import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.client.Student;
 import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
-import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import lombok.SneakyThrows;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
@@ -27,7 +22,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Optional;
 
 public abstract class BaseController {
 
@@ -53,35 +47,13 @@ public abstract class BaseController {
         String completeURL = requestURL.toString();
         log.debug(completeURL);
 
-        String appLogLevel = Optional.ofNullable(System.getenv("APP_LOG_LEVEL")).orElse("INFO");
-        if("DEBUG".equalsIgnoreCase(appLogLevel)) {
-            if (request instanceof ReportRequest) {
-                ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest)request);
-                Student st = cloneRequest.getData().getStudent();
-                hideStudentDataForDebug(st);
-                if(cloneRequest.getData().getSchool() != null) {
-                    for (Student s : cloneRequest.getData().getSchool().getStudents()) {
-                        hideStudentDataForDebug(s);
-                    }
-                }
-                String jsonRequest = jsonTransformer.marshall(cloneRequest);
-                log.debug(jsonRequest);
-            } else {
-                String jsonRequest = jsonTransformer.marshall(request);
-                log.debug(jsonRequest);
-            }
-        }
-
-        String username = "";
-        if (httpServletRequest.getUserPrincipal() != null) {
-            username = httpServletRequest.getUserPrincipal().getName();
-            AuditingUtils.setCurrentUserId(username);
-        }
-
         String contentPath = httpServletRequest.getRequestURI();
         if(StringUtils.contains(contentPath, EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
             return;
         }
+
+        String username = ReportRequestDataThreadLocal.getCurrentUser();
+        assert StringUtils.isNotBlank(username);
 
         RandomStringGenerator generator = new RandomStringGenerator.Builder()
                 .withinRange('a', 'z')
@@ -113,23 +85,8 @@ public abstract class BaseController {
         if (StringUtils.trimToNull(signatureImageUrl) == null) {
             throw new RuntimeException("signatureImageUrl is undefined");
         }
-        AuditingUtils.setSignatureImageUrl(signatureImageUrl);
+        ReportRequestDataThreadLocal.setSignatureImageUrl(signatureImageUrl);
 
-    }
-
-    protected static String getCurrentUserId() {
-        return AuditingUtils.getCurrentUserId();
-    }
-
-    private void hideStudentDataForDebug(Student st) {
-        if (st != null) {
-            Pen pen = ObjectUtils.defaultIfNull(st.getPen(), new Pen());
-            pen.setPen(null);
-            st.setPen(pen);
-            st.setFirstName("John");
-            st.setMiddleName("");
-            st.setLastName("Doe");
-        }
     }
 
     protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {

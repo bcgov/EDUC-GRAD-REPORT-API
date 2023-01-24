@@ -1,13 +1,15 @@
 package ca.bc.gov.educ.grad.report.api.util;
 
+import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,16 +19,19 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
+@Component
 public class LogHelper {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    @Autowired
+    JsonTransformer jsonTransformer;
+
     private static final String EXCEPTION = "Exception ";
 
     private LogHelper() {
 
     }
 
-    public static void logServerHttpReqResponseDetails(@NonNull final HttpServletRequest request, final HttpServletResponse response, final boolean logging) {
+    public void logServerHttpReqResponseDetails(@NonNull final HttpServletRequest request, final HttpServletResponse response, final boolean logging) {
         if (!logging) return;
         try {
             final int status = response.getStatus();
@@ -41,10 +46,10 @@ public class LogHelper {
             }
             httpMap.put("server_http_request_url", String.valueOf(request.getRequestURL()));
             httpMap.put("server_http_request_processing_time_ms", totalTime);
-            httpMap.put("server_http_request_payload", String.valueOf(request.getAttribute("payload")));
+            httpMap.put("server_http_request_payload", request.getAttribute("payload"));
             httpMap.put("server_http_request_remote_address", request.getRemoteAddr());
             httpMap.put("server_http_request_client_name", StringUtils.trimToEmpty(request.getHeader("X-Client-Name")));
-            MDC.putCloseable("httpEvent", mapper.writeValueAsString(httpMap));
+            MDC.putCloseable("httpEvent", jsonTransformer.marshallPrettyPrinter(httpMap));
             log.info("");
             MDC.clear();
         } catch (final Exception exception) {
@@ -60,7 +65,7 @@ public class LogHelper {
      * @param responseCode
      * @param correlationID
      */
-    public static void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID, final boolean logging) {
+    public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID, final boolean logging) {
         if (!logging) return;
         try {
             final Map<String, Object> httpMap = new HashMap<>();
@@ -70,7 +75,7 @@ public class LogHelper {
             if (correlationID != null) {
                 httpMap.put("correlation_id", String.join(",", correlationID));
             }
-            MDC.putCloseable("httpEvent", mapper.writeValueAsString(httpMap));
+            MDC.putCloseable("httpEvent", jsonTransformer.marshallPrettyPrinter(httpMap));
             log.info("");
             MDC.clear();
         } catch (final Exception exception) {
@@ -84,7 +89,7 @@ public class LogHelper {
      *
      * @param event the json string
      */
-    public static void logMessagingEventDetails(final String event, final boolean logging) {
+    public void logMessagingEventDetails(final String event, final boolean logging) {
         if (!logging) return;
         try {
             MDC.putCloseable("messageEvent", event);
@@ -101,7 +106,7 @@ public class LogHelper {
      *
      * @param message string
      */
-    public static void logMessage(final String message, final boolean logging) {
+    public void logMessage(final String message, final boolean logging) {
         if (!logging) return;
         try {
             MDC.putCloseable("msg", message);

@@ -85,7 +85,7 @@ logging:
 
 splunk:
   log-helper:
-    enabled: false
+    enabled: true
 
 #API Documentation
 springdoc:

@@ -85,6 +85,18 @@ abstract class BaseTransformer implements Transformer {
 
     @Override
     public String marshall(Object input) throws TransformerException {
+        String result = null;
+        try {
+            result = objectMapper.writeValueAsString(input);
+        } catch (IOException e) {
+            throw new TransformerException(e);
+        }
+
+        return result;
+    }
+
+    @Override
+    public String marshallPrettyPrinter(Object input) throws TransformerException {
         ObjectWriter prettyPrinter = objectMapper.writerWithDefaultPrettyPrinter();
         String result = null;
         try {

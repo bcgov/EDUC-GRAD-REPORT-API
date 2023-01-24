@@ -9,6 +9,7 @@ public class ReportRequestDataThreadLocal {
     private static final InheritableThreadLocal<XmlReportData> xmlReportDataThread = new InheritableThreadLocal<XmlReportData>();
     private static final InheritableThreadLocal<String> currentUserThread = new InheritableThreadLocal<String>();
     private static final InheritableThreadLocal<String> transactionThread = new InheritableThreadLocal<String>();
+    private static final ThreadLocal<String> signatureImageUrlThreadLocal = new ThreadLocal<String>();
 
     public static ReportData getGenerateReportData() {
         return reportDataThread.get();
@@ -58,9 +59,22 @@ public class ReportRequestDataThreadLocal {
         transactionThread.remove();
     }
 
+    public static String getSignatureImageUrl() {
+        return signatureImageUrlThreadLocal.get();
+    }
+
+    public static void setSignatureImageUrl(String imageUrl) {
+        if (imageUrl == null) {
+            signatureImageUrlThreadLocal.remove();
+        } else {
+            signatureImageUrlThreadLocal.set(imageUrl);
+        }
+    }
+
     public static void clear() {
         removeGenerateReportData();
         removeXmlReportData();
         removeCurrentUser();
+        setSignatureImageUrl(null);
     }
 }
