@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @Component
@@ -33,6 +34,8 @@ public class LogHelper {
 
     public void logServerHttpReqResponseDetails(@NonNull final HttpServletRequest request, final HttpServletResponse response, final boolean logging) {
         if (!logging) return;
+        String appLogLevel = Optional.ofNullable(System.getenv("APP_LOG_LEVEL")).orElse("INFO");
+        boolean isDebugMode = "DEBUG".equalsIgnoreCase(appLogLevel);
         try {
             final int status = response.getStatus();
             val totalTime = Instant.now().toEpochMilli() - (Long) request.getAttribute("startTime");
@@ -46,11 +49,13 @@ public class LogHelper {
             }
             httpMap.put("server_http_request_url", String.valueOf(request.getRequestURL()));
             httpMap.put("server_http_request_processing_time_ms", totalTime);
-            httpMap.put("server_http_request_payload", request.getAttribute("payload"));
+            if(isDebugMode) {
+                httpMap.put("server_http_request_payload", request.getAttribute("payload"));
+            }
             httpMap.put("server_http_request_remote_address", request.getRemoteAddr());
             httpMap.put("server_http_request_client_name", StringUtils.trimToEmpty(request.getHeader("X-Client-Name")));
             MDC.putCloseable("httpEvent", jsonTransformer.marshallPrettyPrinter(httpMap));
-            log.info("");
+            if(isDebugMode) log.debug(""); else log.info("");
             MDC.clear();
         } catch (final Exception exception) {
             log.error(EXCEPTION, exception);
