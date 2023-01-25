@@ -60,7 +60,7 @@ logging:
         gov:
           educ:
             grad:
-              report: INFO
+              report: DEBUG
     net:
       sf:
         jasperreports: INFO
@@ -82,6 +82,13 @@ logging:
       max-history: 1
       max-file-size: 20MB
       clean-history-on-start: true
+
+server:
+  undertow:
+    threads:
+      worker: 128
+      io: 16
+  port: 8080
 
 splunk:
   log-helper:
