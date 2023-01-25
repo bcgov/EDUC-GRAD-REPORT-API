@@ -92,7 +92,7 @@ server:
 
 splunk:
   log-helper:
-    enabled: true
+    enabled: false
 
 #API Documentation
 springdoc:
