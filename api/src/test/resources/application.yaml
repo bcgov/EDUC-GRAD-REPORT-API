@@ -50,9 +50,9 @@ spring:
 logging:
   file:
     name: /logs/app.log
-  #pattern:
-  #  file: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
-  #  console: %d | [${HOSTNAME}] | %clr(%5p) | [%t]   | %logger{36}:%L | %msg%n
+  pattern:
+    file: '{"time_stamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}","level":"%3p" ,"thread":"%t" ,"class":"%logger{36}","msg":"%replace(%msg){"[\n\r\"]",""}", "exception":"%replace(%rEx{10}){"[\n\r\"]",""}","http_event":%X{httpEvent:-""},"message_event":%X{messageEvent:-""}}%nopex%n'
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%5p] [%t] [%logger{36}] [%replace(%msg){'[\n\r\"]',''} %X{httpEvent} %X{messageEvent}] %replace(%rEx{10}){'[\n\r\"]',''}%nopex%n"
   level:
     root: INFO
     ca:
@@ -82,6 +82,10 @@ logging:
       max-history: 1
       max-file-size: 20MB
       clean-history-on-start: true
+
+splunk:
+  log-helper:
+    enabled: true
 
 #API Documentation
 springdoc:

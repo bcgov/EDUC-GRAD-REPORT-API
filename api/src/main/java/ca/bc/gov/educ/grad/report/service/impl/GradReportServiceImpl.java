@@ -190,6 +190,13 @@ public abstract class GradReportServiceImpl implements Serializable {
         return graduationReport;
     }
 
+    protected List<School> getSchools(ReportData reportData) {
+        final String methodName = "getSchools()";
+        LOG.entering(CLASSNAME, methodName);
+
+        return gradDataConvertionBean.getSchools(reportData);
+    }
+
     abstract GraduationReport createGraduationReport();
 
     String getAccessToken() throws DomainServiceException {

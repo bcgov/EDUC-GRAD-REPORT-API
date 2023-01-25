@@ -168,4 +168,12 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public String toString() {
+        return "SchoolImpl{" +
+                "mincode='" + mincode + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

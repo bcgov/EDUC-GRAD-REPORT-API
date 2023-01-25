@@ -5,12 +5,12 @@ import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 
-import java.util.Date;
 import java.util.List;
 
 public class SchoolGraduationReportImpl extends ReportImpl implements GraduationReport {
 
     private List<Student> students;
+    private List<School> schools;
     private School school;
 
     /**
@@ -28,6 +28,16 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
     }
 
     @Override
+    public void setSchools(List<School> schools) {
+        this.schools = schools;
+    }
+
+    @Override
+    public List<School> getSchools() {
+        return this.schools;
+    }
+
+    @Override
     public void setStudents(List<Student> students) {
         this.students = students;
     }
@@ -35,16 +45,6 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
     @Override
     public void setSchool(School school) {
         this.school = school;
-    }
-
-    @Override
-    public void setSchool(School school, String logoCode) {
-        // Do nothing
-    }
-
-    @Override
-    public void setReportDate(Date date) {
-        // Do nothing
     }
 
     /**
