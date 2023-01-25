@@ -4,13 +4,12 @@ import ca.bc.gov.educ.grad.report.api.client.*;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
-import ca.bc.gov.educ.grad.report.dao.*;
+import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
-import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
-import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
 import ca.bc.gov.educ.grad.report.exception.ServiceException;
@@ -27,30 +26,22 @@ import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
-import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.function.Consumer;
 
 import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.E;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
@@ -76,27 +67,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	StudentCertificateService certificateService;
 	@Autowired
 	GradDataConvertionBean gradDataConvertionBean;
-
-	@MockBean
-	TranscriptTypeCodeRepository transcriptTypeCodeRepository;
-	@MockBean
-	CertificateTypeCodeRepository certificateTypeCodeRepository;
-	@MockBean
-	StudentCertificateRepository studentCertificateRepository;
-	@MockBean
-	StudentTranscriptRepository studentTranscriptRepository;
-	@MockBean
-	ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
-
-	@MockBean WebClient webClient;
-	@Mock WebClient.RequestHeadersSpec requestHeadersMock;
-	@Mock WebClient.RequestHeadersUriSpec requestHeadersUriMock;
-	@Mock WebClient.RequestBodySpec requestBodyMock;
-	@Mock WebClient.RequestBodyUriSpec requestBodyUriMock;
-	@Mock WebClient.ResponseSpec responseMock;
-
-	@Autowired
-	EducGradReportApiConstants constants;
 
 	@Before
 	public void init() {
@@ -2523,96 +2493,6 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		bundle = bcmpBundleService.appendReportDocument(bundle, rds);
 		// Once the bundle has been created, decorate the page numbers.
 		return bcmpBundleService.enumeratePages(bundle);
-	}
-
-	private School getReportDataSchool(ReportData reportData) {
-		reportData.setAccessToken("accessToken");
-		if(reportData.getSchool() == null || reportData.getSchool().getMincode() == null) {
-			reportData.setSchool(new School());
-		}
-		return reportData.getSchool();
-	}
-
-	private TraxSchool adaptTraxSchool(School school) {
-		TraxSchool traxSchool = new TraxSchool();
-		traxSchool.setMinCode(school.getMincode());
-		traxSchool.setSchoolName(school.getName());
-		traxSchool.setAddress1(school.getAddress().getStreetLine1());
-		traxSchool.setAddress2(school.getAddress().getStreetLine2());
-		traxSchool.setCity(school.getAddress().getCity());
-		traxSchool.setProvCode(school.getAddress().getRegion());
-		traxSchool.setPostal(school.getAddress().getCode());
-		traxSchool.setCountryCode(school.getAddress().getCountry());
-		return traxSchool;
-	}
-	
-	private void mockTraxSchool(TraxSchool traxSchool) {
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(constants.getSchoolDetails(),traxSchool.getMinCode()))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(TraxSchool.class)).thenReturn(Mono.just(traxSchool));
-	}
-
-	private void mockGradProgramEntity(String gradProgramCode, String transcriptTypeCode) {
-		ProgramCertificateTranscriptEntity programCertificateTranscriptEntity = new ProgramCertificateTranscriptEntity();
-		programCertificateTranscriptEntity.setGraduationProgramCode(gradProgramCode);
-		programCertificateTranscriptEntity.setTranscriptTypeCode(transcriptTypeCode);
-		List<ProgramCertificateTranscriptEntity> entities = List.of(programCertificateTranscriptEntity);
-		when(this.programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode)).thenReturn(entities);
-	}
-
-	private void mockGradProgram(GradProgramImpl gradProgram) {
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(constants.getGraduationProgram(),gradProgram.getCode().getCode()))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(GradProgramImpl.class)).thenReturn(Mono.just(gradProgram));
-	}
-
-	private GraduationStudentRecord mockGraduationStudentRecord(String pen, String studentId) throws Exception {
-
-		GraduationStudentRecord graduationStudentRecord = new GraduationStudentRecord();
-		graduationStudentRecord.setPen(pen);
-		graduationStudentRecord.setStudentID(UUID.fromString(studentId));
-		graduationStudentRecord.setLastUpdateDate(new Date());
-
-		String studentGradData = readFile("data/student_grad_data.json");
-		assertNotNull(studentGradData);
-		graduationStudentRecord.setStudentGradData(studentGradData);
-
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getReadGradStudentRecord(),graduationStudentRecord.getStudentID().toString()))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(GraduationStudentRecord.class)).thenReturn(Mono.just(graduationStudentRecord));
-
-		StudentTranscriptEntity studentTranscriptEntity = new StudentTranscriptEntity();
-		studentTranscriptEntity.setId(UUID.randomUUID());
-		studentTranscriptEntity.setGraduationStudentRecordId(graduationStudentRecord.getStudentID());
-		studentTranscriptEntity.setUpdateDate(graduationStudentRecord.getLastUpdateDate());
-
-		when(this.studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID())).thenReturn(studentTranscriptEntity);
-		when(this.studentCertificateRepository.getCertificateDistributionDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
-
-		return graduationStudentRecord;
-	}
-
-	private GradSearchStudent mockGradSearchStudent(String pen) {
-		GradSearchStudent gradSearchStudent = new GradSearchStudent();
-		gradSearchStudent.setPen(pen);
-		gradSearchStudent.setStudentID(UUID.randomUUID().toString());
-
-		final ParameterizedTypeReference<List<GradSearchStudent>> gradSearchStudentResponseType = new ParameterizedTypeReference<>() {
-		};
-		when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-		when(this.requestHeadersUriMock.uri(String.format(reportApiConstants.getPenStudentApiByPenUrl(),gradSearchStudent.getPen()))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-		when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-		when(this.responseMock.bodyToMono(gradSearchStudentResponseType)).thenReturn(Mono.just(List.of(gradSearchStudent)));
-
-		return gradSearchStudent;
-
 	}
 
 }

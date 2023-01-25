@@ -1,19 +1,14 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
-import ca.bc.gov.educ.grad.report.dao.*;
 import ca.bc.gov.educ.grad.report.entity.*;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
-import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,27 +26,6 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 
 	@Autowired
 	GradReportCodeService gradReportCodeService;
-
-	@MockBean
-	CertificateTypeCodeRepository certificateTypeCodeRepository;
-	@MockBean
-	TranscriptTypeCodeRepository transcriptTypeCodeRepository;
-	@MockBean
-	SignatureBlockTypeRepository signatureBlockTypeRepository;
-	@MockBean
-	DocumentStatusCodeRepository documentStatusCodeRepository;
-	@MockBean
-	ReportTypeCodeRepository reportTypeCodeRepository;
-
-	@MockBean WebClient webClient;
-	@Mock WebClient.RequestHeadersSpec requestHeadersMock;
-	@Mock WebClient.RequestHeadersUriSpec requestHeadersUriMock;
-	@Mock WebClient.RequestBodySpec requestBodyMock;
-	@Mock WebClient.RequestBodyUriSpec requestBodyUriMock;
-	@Mock WebClient.ResponseSpec responseMock;
-
-	@Autowired
-	EducGradReportApiConstants constants;
 
 	@Before
 	public void init() {
