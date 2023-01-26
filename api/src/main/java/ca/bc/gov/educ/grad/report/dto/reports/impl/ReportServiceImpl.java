@@ -100,6 +100,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
         return new SchoolGraduationReportImpl("SchoolDistribution");
     }
 
+    @Override
+    public GraduationReport createSchoolLabelReport() {
+        return new SchoolGraduationReportImpl("SchoolLabel");
+    }
+
     /**
      * @inheritDoc
      */

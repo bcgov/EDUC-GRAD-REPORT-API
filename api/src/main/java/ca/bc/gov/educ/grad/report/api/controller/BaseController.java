@@ -1,29 +1,27 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
-import ca.bc.gov.educ.grad.report.api.client.Pen;
-import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
-import ca.bc.gov.educ.grad.report.api.client.Student;
 import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
-import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import lombok.SneakyThrows;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Optional;
 
 public abstract class BaseController {
 
@@ -49,35 +47,13 @@ public abstract class BaseController {
         String completeURL = requestURL.toString();
         log.debug(completeURL);
 
-        String appLogLevel = Optional.ofNullable(System.getenv("APP_LOG_LEVEL")).orElse("INFO");
-        if("DEBUG".equalsIgnoreCase(appLogLevel)) {
-            if (request instanceof ReportRequest) {
-                ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest)request);
-                Student st = cloneRequest.getData().getStudent();
-                hideStudentDataForDebug(st);
-                if(cloneRequest.getData().getSchool() != null) {
-                    for (Student s : cloneRequest.getData().getSchool().getStudents()) {
-                        hideStudentDataForDebug(s);
-                    }
-                }
-                String jsonRequest = jsonTransformer.marshall(cloneRequest);
-                log.debug(jsonRequest);
-            } else {
-                String jsonRequest = jsonTransformer.marshall(request);
-                log.debug(jsonRequest);
-            }
-        }
-
-        String username = "";
-        if (httpServletRequest.getUserPrincipal() != null) {
-            username = httpServletRequest.getUserPrincipal().getName();
-            AuditingUtils.setCurrentUserId(username);
-        }
-
         String contentPath = httpServletRequest.getRequestURI();
         if(StringUtils.contains(contentPath, EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING)) {
             return;
         }
+
+        String username = ReportRequestDataThreadLocal.getCurrentUser();
+        assert StringUtils.isNotBlank(username);
 
         RandomStringGenerator generator = new RandomStringGenerator.Builder()
                 .withinRange('a', 'z')
@@ -109,23 +85,48 @@ public abstract class BaseController {
         if (StringUtils.trimToNull(signatureImageUrl) == null) {
             throw new RuntimeException("signatureImageUrl is undefined");
         }
-        AuditingUtils.setSignatureImageUrl(signatureImageUrl);
+        ReportRequestDataThreadLocal.setSignatureImageUrl(signatureImageUrl);
 
     }
 
-    protected static String getCurrentUserId() {
-        return AuditingUtils.getCurrentUserId();
-    }
+    protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
+        ResponseEntity<byte[]> result = null;
 
-    private void hideStudentDataForDebug(Student st) {
-        if (st != null) {
-            Pen pen = ObjectUtils.defaultIfNull(st.getPen(), new Pen());
-            pen.setPen(null);
-            st.setPen(pen);
-            st.setFirstName("John");
-            st.setMiddleName("");
-            st.setLastName("Doe");
+        Throwable tmp = t;
+        String message = null;
+        if (tmp.getCause() != null) {
+            tmp = tmp.getCause();
+            message = tmp.getMessage();
+        } else {
+            message = tmp.getMessage();
         }
+        if(message == null) {
+            message = tmp.getClass().getName();
+        }
+
+        result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message.getBytes());
+        return result;
+    }
+    
+    protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
+        return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_PDF);
+    }
+
+    protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
+        ResponseEntity<byte[]> response = null;
+
+        if(resultBinary.length > 0) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=" + reportFile);
+            response = ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentType(contentType)
+                    .body(resultBinary);
+        } else {
+            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return response;
     }
 
 }

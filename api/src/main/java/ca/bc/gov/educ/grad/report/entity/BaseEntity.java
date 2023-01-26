@@ -1,6 +1,6 @@
 package ca.bc.gov.educ.grad.report.entity;
 
-import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,10 +28,10 @@ public class BaseEntity {
 	@PrePersist
 	protected void onCreate() {
 		if (StringUtils.isBlank(createdBy)) {
-			this.createdBy = AuditingUtils.getCurrentUserId();
+			this.createdBy = ReportRequestDataThreadLocal.getCurrentUser();
 		}		
 		if (StringUtils.isBlank(updatedBy)) {
-			this.updatedBy = AuditingUtils.getCurrentUserId();
+			this.updatedBy = ReportRequestDataThreadLocal.getCurrentUser();
 		}
 		if (StringUtils.isBlank(createdBy)) {
 			this.createdBy = "GRADUATION";
@@ -47,10 +47,10 @@ public class BaseEntity {
 	@PreUpdate
 	protected void onPersist() {
 		if (StringUtils.isBlank(createdBy)) {
-			this.createdBy = AuditingUtils.getCurrentUserId();
+			this.createdBy = ReportRequestDataThreadLocal.getCurrentUser();
 		}
 		if (StringUtils.isBlank(updatedBy)) {
-			this.updatedBy = AuditingUtils.getCurrentUserId();
+			this.updatedBy = ReportRequestDataThreadLocal.getCurrentUser();
 		}
 		if (StringUtils.isBlank(createdBy)) {
 			this.createdBy = "GRADUATION";

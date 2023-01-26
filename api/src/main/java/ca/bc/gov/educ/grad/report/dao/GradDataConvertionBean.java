@@ -482,4 +482,20 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         }
         return result;
     }
+
+    public List<School> getSchools(ReportData reportData) {
+        List<School> result = new ArrayList<>();
+        for(ca.bc.gov.educ.grad.report.api.client.School sch: reportData.getSchools()) {
+            SchoolImpl school = new SchoolImpl();
+            BeanUtils.copyProperties(sch, school);
+            school.setSchoolCategoryCode("Principal");
+            if (sch.getAddress() != null) {
+                PostalAddressImpl address = new PostalAddressImpl();
+                BeanUtils.copyProperties(sch.getAddress(), address);
+                school.setAddress(address);
+            }
+            result.add(school);
+        }
+        return result;
+    }
 }

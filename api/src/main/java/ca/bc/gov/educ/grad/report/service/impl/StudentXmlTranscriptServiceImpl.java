@@ -110,7 +110,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
             AcademicRecordBatch academicRecordBatch = (AcademicRecordBatch)jsonTransformer.unmarshall(graduationStudentRecord.getStudentGradData(), AcademicRecordBatch.class);
             setDefaultValues(academicRecordBatch);
             StudentTranscriptReportImpl transcriptReport = new StudentTranscriptReportImpl(
-                    xmlTransformer.marshall(academicRecordBatch).getBytes(),
+                    xmlTransformer.marshallPrettyPrinter(academicRecordBatch).getBytes(),
                     ReportFormat.XML,
                     reportData.getPen().getPen(),
                     reportData.getPen().getPen()

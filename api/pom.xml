@@ -7,7 +7,7 @@
     <groupId>ca.bc.gov.educ</groupId>
     <artifactId>educ-grad-report-api</artifactId>
     <name>educ-grad-report-api</name>
-    <version>1.8.0</version>
+    <version>1.8.1</version>
     <description>Ministry of Education and Child Care REPORT API</description>
 
     <properties>
@@ -20,6 +20,7 @@
             src/main/java/ca/bc/gov/educ/grad/report/api/client/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/controller/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/service/utils/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/test/**,
             src/main/java/ca/bc/gov/educ/grad/report/config/**,
@@ -39,6 +40,7 @@
             src/main/java/ca/bc/gov/educ/grad/report/api/client/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/controller/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/config/**,
+            src/main/java/ca/bc/gov/educ/grad/report/api/service/utils/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/util/**,
             src/main/java/ca/bc/gov/educ/grad/report/api/test/**,
             src/main/java/ca/bc/gov/educ/grad/report/config/**,
