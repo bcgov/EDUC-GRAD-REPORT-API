@@ -139,10 +139,11 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="480" y="380" width="241" height="58" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
+				<reportElement x="489" y="380" width="241" height="58" uuid="5f6c52ac-5bef-42a2-9f00-fe2384dfeb6f">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 				</reportElement>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="22" width="241" height="20" uuid="11d6f836-dae5-4b8a-8444-93eb425bdfe1">
@@ -160,7 +161,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="480" y="438" width="241" height="54" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
+				<reportElement x="490" y="438" width="241" height="54" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -180,7 +181,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="480" y="492" width="241" height="57" uuid="e74998e0-5574-422c-b5cf-44990717c2c1">
+				<reportElement x="490" y="492" width="241" height="57" uuid="e74998e0-5574-422c-b5cf-44990717c2c1">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">

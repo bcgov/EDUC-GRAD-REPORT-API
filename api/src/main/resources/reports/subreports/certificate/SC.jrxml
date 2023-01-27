@@ -140,7 +140,7 @@
 				<textFieldExpression><![CDATA[$R{header.certify.prefix}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Awardee" x="0" y="235" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
+				<reportElement style="Awardee" x="0" y="226" width="792" height="30" uuid="14f1acf7-257c-4eb7-93e0-5e4fc569b3db"/>
 				<textFieldExpression><![CDATA[$V{V_STUDENT_NAME}.toUpperCase()]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
@@ -190,7 +190,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="489" y="380" width="231" height="58" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
+				<reportElement x="500" y="380" width="231" height="58" uuid="a8ec40ff-4625-48d3-9f99-b572508e2e31">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
@@ -210,7 +210,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="489" y="497" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
+				<reportElement x="500" y="497" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="17" width="231" height="20" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
