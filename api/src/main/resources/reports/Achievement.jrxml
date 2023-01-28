@@ -933,6 +933,15 @@
 								</textElement>
 								<textFieldExpression><![CDATA[$F{gradReqMet}]]></textFieldExpression>
 							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement style="GeneratedText" x="0" y="0" width="35" height="15" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+									<printWhenExpression><![CDATA[!$F{projected}]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{gradReqMet}]]></textFieldExpression>
+							</textField>
 						</jr:detailCell>
 					</jr:column>
 					<jr:column width="40" uuid="982df395-33cb-4e5c-8333-38f3bc6fafc1">
@@ -1168,6 +1177,15 @@
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement style="GeneratedText" x="0" y="0" width="40" height="15" uuid="14f394b0-b967-4f2f-b336-bc433cd19270">
+									<printWhenExpression><![CDATA[!$F{projected}]]></printWhenExpression>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
 							</textField>
