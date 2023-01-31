@@ -41,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.E;
+import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.PROGRAM_SCCP_PF;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
@@ -1240,6 +1241,39 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createTranscriptReport_SCCP_PF");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_PF_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_PF_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(PROGRAM_SCCP_PF.getCode(), null);
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP_PF);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_SCCP_PF.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_SCCP_PF.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_PF_BLANK");
 	}
 
 	@Test

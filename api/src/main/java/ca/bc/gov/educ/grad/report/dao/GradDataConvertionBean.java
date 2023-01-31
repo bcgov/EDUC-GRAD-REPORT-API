@@ -15,6 +15,8 @@ import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.common.CitizenshipCode;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.graduation.Exam;
+import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.reports.PaperType;
@@ -481,6 +483,14 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             }
         }
         return result;
+    }
+
+    public GradProgram getGradProgram(ReportData reportData) {
+        ca.bc.gov.educ.grad.report.api.client.GradProgram program = reportData.getGradProgram();
+        assert program != null;
+        return new GradProgramImpl(GraduationProgramCode.valueFrom(
+                program.getCode().getCode(),
+                program.getCode().getDescription()));
     }
 
     public List<School> getSchools(ReportData reportData) {

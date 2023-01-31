@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
 import ca.bc.gov.educ.grad.report.api.client.utils.TranscriptResultListDeserializer;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -15,7 +16,7 @@ public class Transcript implements Serializable {
 
     private String interim = "";
     private Date issueDate;
-    private Code transcriptTypeCode;
+    private Code transcriptTypeCode = new Code(TranscriptTypeCode.NOPROG.getCode());
     private List<TranscriptResult> results = new ArrayList<>();
 
     public String getInterim() {

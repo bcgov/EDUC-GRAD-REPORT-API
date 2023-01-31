@@ -9,6 +9,13 @@ public class Code implements Serializable {
     private int credits;
     private String name = "";
 
+    public Code() {
+    }
+
+    public Code(String code) {
+        this.code = code;
+    }
+
     public String getCode() {
         return code;
     }
