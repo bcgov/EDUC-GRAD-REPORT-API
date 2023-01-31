@@ -8,10 +8,18 @@
   },
   "data": {
     "logo": "BC",
+    "transcript": {
+      "interim": true,
+      "issueDate": "2021-04-26",
+      "code": {
+        "code": "SCCP-EN",
+        "description": ""
+      }
+    },
     "gradProgram": {
       "code": {
         "code": "BLANK",
-        "description": "School Completion Certificate Program French",
+        "description": "School Completion Certificate Program",
         "credits": 0
       }
     }
