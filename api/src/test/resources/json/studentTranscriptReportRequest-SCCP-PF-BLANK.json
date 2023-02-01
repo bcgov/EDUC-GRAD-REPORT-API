@@ -4,7 +4,7 @@
     "convertTo": "pdf",
     "overwrite": false,
     "reportName": "transcript",
-    "reportFile": "Transcript Report BC1950-IND BLANK.pdf"
+    "reportFile": "Transcript Report SCCP-PF BLANK.pdf"
   },
   "data": {
     "logo": "BC",
@@ -12,15 +12,14 @@
       "interim": true,
       "issueDate": "2021-04-26",
       "code": {
-        "code": "BC1950-IND",
-        "description": "Adult Independent School Transcript"
+        "code": "SCCP-EN",
+        "description": ""
       }
     },
     "gradProgram": {
-      "description": null,
       "code": {
         "code": "BLANK",
-        "description": "Adult Graduation Program",
+        "description": "School Completion Certificate Program",
         "credits": 0
       }
     }

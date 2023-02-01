@@ -14,7 +14,8 @@ spring:
     password: password
   sql:
     init:
-      data-locations: classpath:data/test.sql
+      mode: always
+      data-locations: classpath:data/schema.sql
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
@@ -60,7 +61,7 @@ logging:
         gov:
           educ:
             grad:
-              report: DEBUG
+              report: INFO
     net:
       sf:
         jasperreports: INFO

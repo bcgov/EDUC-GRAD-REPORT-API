@@ -925,7 +925,7 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="35" height="8" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement style="GeneratedText" x="0" y="0" width="35" height="15" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<printWhenExpression><![CDATA[$F{projected}]]></printWhenExpression>
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -934,7 +934,7 @@
 								<textFieldExpression><![CDATA[$F{gradReqMet}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="8" width="35" height="7" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement style="GeneratedText" x="0" y="0" width="35" height="15" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<printWhenExpression><![CDATA[!$F{projected}]]></printWhenExpression>
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -1172,7 +1172,7 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="15">
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="0" width="40" height="8" uuid="14f394b0-b967-4f2f-b336-bc433cd19270">
+								<reportElement style="GeneratedText" x="0" y="0" width="40" height="15" uuid="14f394b0-b967-4f2f-b336-bc433cd19270">
 									<printWhenExpression><![CDATA[$F{projected}]]></printWhenExpression>
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -1181,7 +1181,7 @@
 								<textFieldExpression><![CDATA[$F{gradReqMet} == null ? "" : $F{gradReqMet}]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
-								<reportElement style="GeneratedText" x="0" y="8" width="40" height="7" uuid="14f394b0-b967-4f2f-b336-bc433cd19270">
+								<reportElement style="GeneratedText" x="0" y="0" width="40" height="15" uuid="14f394b0-b967-4f2f-b336-bc433cd19270">
 									<printWhenExpression><![CDATA[!$F{projected}]]></printWhenExpression>
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
