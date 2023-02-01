@@ -54,8 +54,8 @@ public class Student implements Comparable<Student>, Serializable {
         return firstName;
     }
 
-    public void setFirstName(String value) {
-        this.firstName = value;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName == null ? "" : firstName;
     }
 
     public String getMiddleName() {
@@ -70,8 +70,8 @@ public class Student implements Comparable<Student>, Serializable {
         return lastName;
     }
 
-    public void setLastName(String value) {
-        this.lastName = value;
+    public void setLastName(String lastName) {
+        this.lastName = lastName == null ? "" : lastName;
     }
 
     public String getGender() {
@@ -161,7 +161,7 @@ public class Student implements Comparable<Student>, Serializable {
     }
 
     public void setGradProgram(String gradProgram) {
-        this.gradProgram = gradProgram;
+        this.gradProgram = gradProgram == null ? "" : gradProgram;
     }
 
     public String getGradReqYear() {
@@ -234,15 +234,15 @@ public class Student implements Comparable<Student>, Serializable {
     @Override
     public int compareTo(Student student) {
         String lastNameSt
-                = student.lastName;
+                = "" + student.lastName;
         String firstNameSt
-                = student.firstName;
+                = "" + student.firstName;
         String middleNameSt
-                = student.middleName;
-        String gradProgramSt = student.gradProgram;
+                = "" + student.middleName;
+        String gradProgramSt = "" + student.gradProgram;
         String lastUpdateDateSt = "" + student.lastUpdateDate;
-        return "".concat(gradProgramSt).concat(getLastName()).concat(getFirstName()).concat(getMiddleName()).concat(lastUpdateDateSt)
-                .compareTo("".concat(getGradProgram()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt).concat("" + getLastUpdateDate()));
+        return "".concat(gradProgramSt).concat("" + getLastName()).concat("" + getFirstName()).concat("" + getMiddleName()).concat(lastUpdateDateSt)
+                .compareTo("".concat("" + getGradProgram()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt).concat("" + getLastUpdateDate()));
     }
 
     @Override
