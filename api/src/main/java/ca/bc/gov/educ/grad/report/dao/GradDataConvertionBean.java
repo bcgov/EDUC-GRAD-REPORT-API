@@ -131,11 +131,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         StudentImpl student = new StudentImpl();
         BeanUtils.copyProperties(reportData.getStudent(), student);
         student.setPen(new PersonalEducationNumberObject(reportData.getStudent().getPen().getPen()));
+        PostalAddressImpl address = new PostalAddressImpl();
         if (reportData.getStudent().getAddress() != null) {
-            PostalAddressImpl address = new PostalAddressImpl();
             BeanUtils.copyProperties(reportData.getStudent().getAddress(), address);
-            student.setCurrentMailingAddress(address);
         }
+        student.setCurrentMailingAddress(address);
 
         CitizenshipCode code = CitizenshipCode.valueFrom(reportData.getStudent().getCitizenship());
         student.setCitizenship(code.getDescription());
@@ -173,11 +173,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         }
         SchoolImpl school = new SchoolImpl();
         BeanUtils.copyProperties(reportData.getSchool(), school);
+        PostalAddressImpl address = new PostalAddressImpl();
         if (reportData.getSchool().getAddress() != null) {
-            PostalAddressImpl address = new PostalAddressImpl();
             BeanUtils.copyProperties(reportData.getSchool().getAddress(), address);
-            school.setAddress(address);
         }
+        school.setAddress(address);
         return school;
     }
 
@@ -421,11 +421,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             pen.setEntityId(st.getPen().getEntityID());
             student.setPen(pen);
 
+            PostalAddressImpl address = new PostalAddressImpl();
             if (st.getAddress() != null) {
-                PostalAddressImpl address = new PostalAddressImpl();
                 BeanUtils.copyProperties(st.getAddress(), address);
-                student.setCurrentMailingAddress(address);
             }
+            student.setCurrentMailingAddress(address);
 
             GraduationDataImpl gradData = new GraduationDataImpl();
             GraduationData graduationData = st.getGraduationData();
@@ -499,11 +499,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             SchoolImpl school = new SchoolImpl();
             BeanUtils.copyProperties(sch, school);
             school.setSchoolCategoryCode("Principal");
+            PostalAddressImpl address = new PostalAddressImpl();
             if (sch.getAddress() != null) {
-                PostalAddressImpl address = new PostalAddressImpl();
                 BeanUtils.copyProperties(sch.getAddress(), address);
-                school.setAddress(address);
             }
+            school.setAddress(address);
             result.add(school);
         }
         return result;

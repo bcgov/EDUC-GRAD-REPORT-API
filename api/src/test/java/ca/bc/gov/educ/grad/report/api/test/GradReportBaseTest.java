@@ -107,12 +107,14 @@ public abstract class GradReportBaseTest {
         TraxSchool traxSchool = new TraxSchool();
         traxSchool.setMinCode(school.getMincode());
         traxSchool.setSchoolName(school.getName());
-        traxSchool.setAddress1(school.getAddress().getStreetLine1());
-        traxSchool.setAddress2(school.getAddress().getStreetLine2());
-        traxSchool.setCity(school.getAddress().getCity());
-        traxSchool.setProvCode(school.getAddress().getRegion());
-        traxSchool.setPostal(school.getAddress().getCode());
-        traxSchool.setCountryCode(school.getAddress().getCountry());
+        if(school.getAddress() != null) {
+            traxSchool.setAddress1(school.getAddress().getStreetLine1());
+            traxSchool.setAddress2(school.getAddress().getStreetLine2());
+            traxSchool.setCity(school.getAddress().getCity());
+            traxSchool.setProvCode(school.getAddress().getRegion());
+            traxSchool.setPostal(school.getAddress().getCode());
+            traxSchool.setCountryCode(school.getAddress().getCountry());
+        }
         return traxSchool;
     }
 
