@@ -184,6 +184,22 @@
       {
         "code": null,
         "description": "Fewer than 3 Gr 12 courses"
+      },
+      {
+        "code": null,
+        "description": "Fewer than 4 Gr 12 courses"
+      },
+      {
+        "code": null,
+        "description": "Fewer than 5 Gr 12 courses"
+      },
+      {
+        "code": null,
+        "description": "No Social Studies 10"
+      },
+      {
+        "code": null,
+        "description": "No Social Studies 9"
       }
     ],
     "studentCourses": null,

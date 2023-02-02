@@ -68,36 +68,36 @@
 	<group name="CourseLevelGroup">
 		<groupExpression><![CDATA[$F{transcriptResult.courseLevelGroup}]]></groupExpression>
 		<groupFooter>
-			<band height="12">
+			<band height="10">
 				<frame>
-					<reportElement positionType="Float" x="0" y="0" width="231" height="12" uuid="d2449f5c-6e6a-470f-89c7-299f2299041b"/>
+					<reportElement positionType="Float" x="0" y="0" width="231" height="10" uuid="d2449f5c-6e6a-470f-89c7-299f2299041b"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="251" y="0" width="63" height="12" uuid="ef790b2d-d321-4f1c-b46a-13ae36587391"/>
+					<reportElement positionType="Float" x="251" y="0" width="63" height="10" uuid="ef790b2d-d321-4f1c-b46a-13ae36587391"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="324" y="0" width="57" height="12" uuid="8d6b16bd-b642-4c39-9ac2-225a88212837"/>
+					<reportElement positionType="Float" x="324" y="0" width="57" height="10" uuid="8d6b16bd-b642-4c39-9ac2-225a88212837"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="351" y="0" width="18" height="12" uuid="d811c77c-6cf6-4f53-a81f-4b0423c5efff"/>
+					<reportElement positionType="Float" x="351" y="0" width="18" height="10" uuid="d811c77c-6cf6-4f53-a81f-4b0423c5efff"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="369" y="0" width="46" height="12" uuid="60fb5b27-1e5a-4561-910b-73318d05d9a7"/>
+					<reportElement positionType="Float" x="369" y="0" width="46" height="10" uuid="60fb5b27-1e5a-4561-910b-73318d05d9a7"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="415" y="0" width="30" height="12" uuid="fbb2bbdb-a2ae-45a5-bba9-8847e9300e9d"/>
+					<reportElement positionType="Float" x="415" y="0" width="30" height="10" uuid="fbb2bbdb-a2ae-45a5-bba9-8847e9300e9d"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="445" y="0" width="30" height="12" uuid="0cf473a5-4c1d-4a89-a520-b55a17748430"/>
+					<reportElement positionType="Float" x="445" y="0" width="30" height="10" uuid="0cf473a5-4c1d-4a89-a520-b55a17748430"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="475" y="0" width="31" height="12" uuid="c305244a-099d-47cc-a40f-4977bcbd7fa6"/>
+					<reportElement positionType="Float" x="475" y="0" width="31" height="10" uuid="c305244a-099d-47cc-a40f-4977bcbd7fa6"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="506" y="0" width="28" height="12" uuid="4bd9d978-d544-44b7-9453-c9ba9ccf974b"/>
+					<reportElement positionType="Float" x="506" y="0" width="28" height="10" uuid="4bd9d978-d544-44b7-9453-c9ba9ccf974b"/>
 				</frame>
 				<frame>
-					<reportElement positionType="Float" x="534" y="0" width="33" height="12" uuid="33c12f77-d444-4317-b478-13f725839ca9"/>
+					<reportElement positionType="Float" x="534" y="0" width="33" height="10" uuid="33c12f77-d444-4317-b478-13f725839ca9"/>
 				</frame>
 			</band>
 		</groupFooter>
