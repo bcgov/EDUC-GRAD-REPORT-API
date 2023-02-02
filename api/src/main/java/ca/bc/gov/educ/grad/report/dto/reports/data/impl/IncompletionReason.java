@@ -92,12 +92,12 @@ public class IncompletionReason extends BusinessEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IncompletionReason that = (IncompletionReason) o;
-        return Objects.equals(code, that.code);
+        return Objects.equals(code, that.code) && Objects.equals(nullSafe(this.description), nullSafe(that.description));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code);
+        return Objects.hash(code, nullSafe(description));
     }
 
     /**
