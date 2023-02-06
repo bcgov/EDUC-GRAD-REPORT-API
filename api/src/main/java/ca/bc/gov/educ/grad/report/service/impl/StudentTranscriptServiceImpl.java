@@ -367,11 +367,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             if(!entities.isEmpty()) {
                 GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
                 if(gradProgram != null) {
-                    String codeDescription = result.getCode().getDescription();
-                    if(StringUtils.isNotBlank(codeDescription)) {
-                        gradProgram.setProgramName(codeDescription);
-                    }
-                    gradProgram.setCode();
                     result = gradProgram;
                 }
             }
