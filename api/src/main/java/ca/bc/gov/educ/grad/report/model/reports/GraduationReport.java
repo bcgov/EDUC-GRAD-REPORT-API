@@ -15,6 +15,7 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.report.model.reports;
 
+import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 
 import java.util.List;
@@ -37,4 +38,16 @@ public interface GraduationReport extends SchoolReport {
      * Get students
      */
     List<Student> getStudents();
+
+    /**
+     * Sets the schools to use for populating the reports.
+     *
+     * @param schools The list of student instance with data used for filling reports.
+     */
+    void setSchools(List<School> schools);
+
+    /**
+     * Get schools
+     */
+    List<School> getSchools();
 }

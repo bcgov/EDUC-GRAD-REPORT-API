@@ -17,12 +17,12 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.jasper.impl;
 
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.impl.ParametersImpl;
 import ca.bc.gov.educ.grad.report.model.common.Predicate;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
-import ca.bc.gov.educ.grad.report.utils.AuditingUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -564,7 +564,7 @@ public abstract class ReportImpl implements Report {
         setParameter("P_REPORT_BASE", DIR_JASPER_BASE);
 
         // Relative paths for signatures.
-        String signatureImageUrl = AuditingUtils.getSignatureImageUrl();
+        String signatureImageUrl = ReportRequestDataThreadLocal.getSignatureImageUrl();
         setParameter("P_REPORT_SIGNATURES_PATH", signatureImageUrl == null ? "" : signatureImageUrl);
 
         // Toggle pagination for HTML reports.

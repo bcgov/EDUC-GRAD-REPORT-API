@@ -232,9 +232,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 throw dse;
             }
 
-            gradProgram = new GradProgramImpl(GraduationProgramCode.valueFrom(
-                    code,
-                    reportData.getGradProgram().getCode().getDescription()));
+            gradProgram = gradDataConvertionBean.getGradProgram(reportData);
 
         } catch (Exception ex) {
             String msg = "Failed to get grad program : ".concat(code);
@@ -352,12 +350,10 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * Adapt the TRAX data from the collection of data value objects into a
      * Transcript object.
      *
-     * @param schoolCategoryCode
      * @param transcriptTypeCode
      * @param graduationProgramCode The graduation program code that influences sort order.
      */
     private GradProgram adapt(
-            final String schoolCategoryCode,
             final String graduationProgramCode,
             final TranscriptTypeCode transcriptTypeCode,
             final String accessToken) {
@@ -366,11 +362,15 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         GradProgram result = createGradProgram(graduationProgramCode);
 
-        if("BLANK".equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null && schoolCategoryCode != null) {
+        if(GraduationProgramCode.PROGRAM_BLANK.getCode().equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null) {
             List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode.getCode());
             if(!entities.isEmpty()) {
                 GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
                 if(gradProgram != null) {
+                    String codeDescription = result.getCode().getDescription();
+                    if(StringUtils.isNotBlank(codeDescription)) {
+                        gradProgram.setProgramName(codeDescription);
+                    }
                     gradProgram.setCode();
                     result = gradProgram;
                 }
@@ -614,7 +614,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
         final School school = adaptSchool(studentInfo, getAccessToken(), true);
 
-        final GradProgram program = adapt(school.getSchoolCategoryCode(), programCode, transcript.getTranscriptTypeCode(), getAccessToken());
+        final GradProgram program = adapt(programCode, transcript.getTranscriptTypeCode(), getAccessToken());
 
         final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);
 

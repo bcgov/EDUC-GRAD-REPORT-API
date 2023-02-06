@@ -48,7 +48,7 @@ public class GradReportSignatureController extends BaseController {
         String methodName = String.format("extractSignatureImageByCode(String %s)", signCode);
         logger.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImage signatureImage = gradReportSignatureService.getSignatureImageByCode(signCode);
-        return signatureImage.getSignatureContent();
+        return signatureImage == null ? new byte[0] : signatureImage.getSignatureContent();
     }
 
     @GetMapping(EducGradReportApiConstants.GET_SIGNATURE_IMAGE)

@@ -1,25 +1,35 @@
 package ca.bc.gov.educ.grad.report.api.test.controller;
 
+import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.controller.ReportController;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @WebAppConfiguration
 @ExtendWith(MockitoExtension.class)
@@ -48,48 +58,6 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     private ReportController reportController;
 
     @Test
-    public void testFake() {
-        assertEquals(1+1, 2);
-    }
-    /*@Test
-    public void getStudentXmlTranscriptReportTest() throws Exception {
-        LOG.debug("<{}.getStudentXmlTranscriptReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
-
-        XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
-
-        assertNotNull(reportRequest);
-        assertNotNull(reportRequest.getData());
-
-        ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
-
-        reportRequest.getOptions().setReportFile("XML Transcript Report (Controller).xml");
-
-        byte[] resultBinary = new byte[0];
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
-        ResponseEntity response = ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_XML)
-                .body(resultBinary);
-
-        Authentication authentication = Mockito.mock(Authentication.class);
-        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
-        // Mockito.whens() for your authorization object
-        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-        Mockito.when(authentication.getDetails()).thenReturn(details);
-        SecurityContextHolder.setContext(securityContext);
-        reportRequest.getData().setAccessToken(details.getTokenValue());
-
-        Mockito.when(reportService.getStudentXmlTranscriptReport(reportRequest)).thenReturn(response);
-        reportController.getStudentXmlTranscriptReport(reportRequest, "");
-        Mockito.verify(reportService).getStudentXmlTranscriptReport(reportRequest);
-
-        LOG.debug(">getStudentXmlTranscriptReportTest");
-    }*/
-
-    /*@Test
     public void getSchoolDistributionReportTest() throws Exception {
         LOG.debug("<{}.getSchoolDistributionReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -99,34 +67,21 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest.getData());
 
         ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
-        reportRequest.getOptions().setReportFile("School Distribution Report.pdf");
-
-        byte[] resultBinary = new byte[0];
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
-        ResponseEntity response = ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(resultBinary);
 
-        Authentication authentication = Mockito.mock(Authentication.class);
-        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
-        // Mockito.whens() for your authorization object
-        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-        //Mockito.when(authentication.getDetails()).thenReturn(details);
-        SecurityContextHolder.setContext(securityContext);
-
-        Mockito.when(reportService.getSchoolDistributionReport(reportRequest)).thenReturn(response);
-        reportController.getSchoolDistribution(reportRequest);
+        Mockito.when(reportService.getSchoolDistributionReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getSchoolDistribution(reportRequest, "accessToken");
         Mockito.verify(reportService).getSchoolDistributionReport(reportRequest);
+        assertNotNull(response.getBody());
 
         LOG.debug(">getSchoolDistributionReportTest");
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void getPackingSlipReportTest() throws Exception {
         LOG.debug("<{}.getPackingSlipReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -136,34 +91,21 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest.getData());
 
         ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
-        reportRequest.getOptions().setReportFile("Packing Slip Report.pdf");
-
-        byte[] resultBinary = new byte[0];
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
-        ResponseEntity response = ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(resultBinary);
 
-        Authentication authentication = Mockito.mock(Authentication.class);
-        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
-        // Mockito.whens() for your authorization object
-        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-        //Mockito.when(authentication.getDetails()).thenReturn(details);
-        SecurityContextHolder.setContext(securityContext);
-
-        Mockito.when(reportService.getPackingSlipReport(reportRequest)).thenReturn(response);
-        reportController.getPackingSlip(reportRequest);
+        Mockito.when(reportService.getPackingSlipReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getPackingSlip(reportRequest, "accessToken");
         Mockito.verify(reportService).getPackingSlipReport(reportRequest);
+        assertNotNull(response.getBody());
 
         LOG.debug(">getPackingSlipReportTest");
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void getStudentAchievementReportTest() throws Exception {
         LOG.debug("<{}.getStudentAchievementReportReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -173,34 +115,21 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest.getData());
 
         ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
-        reportRequest.getOptions().setReportFile("Student Achievement Report.pdf");
-
-        byte[] resultBinary = new byte[0];
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
-        ResponseEntity response = ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(resultBinary);
 
-        Authentication authentication = Mockito.mock(Authentication.class);
-        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
-        // Mockito.whens() for your authorization object
-        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-        //Mockito.when(authentication.getDetails()).thenReturn(details);
-        SecurityContextHolder.setContext(securityContext);
-
-        Mockito.when(reportService.getStudentAchievementReport(reportRequest)).thenReturn(response);
-        reportController.getStudentAchievementReport(reportRequest);
+        Mockito.when(reportService.getStudentAchievementReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getStudentAchievementReport(reportRequest, "accessToken");
         Mockito.verify(reportService).getStudentAchievementReport(reportRequest);
+        assertNotNull(response.getBody());
 
         LOG.debug(">getStudentAchievementReportTest");
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void getStudentTranscriptReportTest() throws Exception {
         LOG.debug("<{}.getStudentTranscriptReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -210,34 +139,21 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest.getData());
 
         ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
-        reportRequest.getOptions().setReportFile("Transcript BC1950-PUB Report.pdf");
-        StudentTranscriptReport report = transcriptService.buildOfficialTranscriptReport();
-        byte[] resultBinary = report.getReportData();
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
-        ResponseEntity response = ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(resultBinary);
 
-        Authentication authentication = Mockito.mock(Authentication.class);
-        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
-        // Mockito.whens() for your authorization object
-        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-        //Mockito.when(authentication.getDetails()).thenReturn(details);
-        SecurityContextHolder.setContext(securityContext);
-
-        Mockito.when(reportService.getStudentTranscriptReport(reportRequest)).thenReturn(response);
-        reportController.getStudentTranscriptReport(reportRequest);
+        Mockito.when(reportService.getStudentTranscriptReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getStudentTranscriptReport(reportRequest, "accessToken");
         Mockito.verify(reportService).getStudentTranscriptReport(reportRequest);
+        assertNotNull(response.getBody());
 
         LOG.debug(">getStudentTranscriptReportTest");
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void getStudentCertificateTest() throws Exception {
         LOG.debug("<{}.getStudentCertificateTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -247,8 +163,10 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest.getData());
 
         ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
-        reportRequest.getOptions().setReportFile("Certificate 1950 Report.pdf");
+        mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+
         List<BusinessReport> gradCertificateReports = gradCertificateService.buildReport();
 
         ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
@@ -263,25 +181,13 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
-        ResponseEntity response = ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(resultBinary);
 
-        Authentication authentication = Mockito.mock(Authentication.class);
-        OAuth2AuthenticationDetails details = Mockito.mock(OAuth2AuthenticationDetails.class);
-        // Mockito.whens() for your authorization object
-        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
-        //Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
-        //Mockito.when(authentication.getDetails()).thenReturn(details);
-        SecurityContextHolder.setContext(securityContext);
-
-        Mockito.when(reportService.getStudentCertificateReport(reportRequest)).thenReturn(response);
-        reportController.getStudentCertificate(reportRequest);
+        Mockito.when(reportService.getStudentCertificateReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getStudentCertificate(reportRequest, "accessToken");
         Mockito.verify(reportService).getStudentCertificateReport(reportRequest);
+        assertNotNull(response.getBody());
 
         LOG.debug(">getStudentCertificateTest");
-    }*/
+    }
 
 }

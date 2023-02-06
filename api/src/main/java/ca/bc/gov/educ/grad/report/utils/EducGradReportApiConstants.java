@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class EducGradReportApiConstants {
+
+    public static final String CORRELATION_ID = "correlationID";
     //API end-point Mapping constants
     public static final String API_ROOT_MAPPING = "";
     public static final String API_VERSION = "v1";
@@ -33,5 +35,9 @@ public class EducGradReportApiConstants {
 
     @Value("${endpoint.grad-program-api.program-name-by-program_code.url}")
     private String graduationProgram;
+
+    // Splunk LogHelper Enabled
+    @Value("${splunk.log-helper.enabled}")
+    private boolean splunkLogHelperEnabled;
 
 }
