@@ -410,15 +410,19 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
+        GradProgramImpl result = null;
         if(!StringUtils.isBlank(programCode)) {
-            return webClient.get()
+            result = webClient.get()
                     .uri(String.format(constants.getGraduationProgram(), programCode))
                     .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(GradProgramImpl.class)
                     .block();
+            if(result != null) {
+                result.setCode();
+            }
         }
-        return null;
+        return result;
     }
 
     String createReportTypeName(
