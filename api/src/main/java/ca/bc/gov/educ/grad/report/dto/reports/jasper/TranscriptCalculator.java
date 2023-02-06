@@ -60,8 +60,6 @@ public class TranscriptCalculator {
             final int page,
             final int shortPage,
             final int longPage) {
-        // 2 rows for page breakers
-        rows = rows + 2;
         final int pages = (int) Math.ceil((rows - shortPage) / (double) longPage) + 1;
         final int pageBreaks[] = new int[pages];
 
