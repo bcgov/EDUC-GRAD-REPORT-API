@@ -61,7 +61,7 @@ public class SchoolReportDecorator extends DocumentBundleDecorator {
      */
     @Override
     protected NumberLabel createPageCountLabel(int count) {
-        NumberLabel label = new PageNumberLabel(new Point2D.Float(490, 810), count, 0);
+        NumberLabel label = new PageNumberLabel(new Point2D.Float(495, 810), count, 0);
         label.setNumberFormat("Page: %s%s");
         label.setLabelPrefix("");
         return label;
