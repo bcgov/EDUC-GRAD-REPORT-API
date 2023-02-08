@@ -101,6 +101,24 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     }
 
     @Override
+    @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
+    public GraduationReport createSchoolDistributionYearEndReport() {
+        return new SchoolGraduationReportImpl("SchoolDistributionYearEnd");
+    }
+
+    @Override
+    @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
+    public GraduationReport createSchoolDistributionYearEndNewCredentialsReport() {
+        return new SchoolGraduationReportImpl("SchoolDistributionYearEndNewCredentials");
+    }
+
+    @Override
+    @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
+    public GraduationReport createSchoolDistributionYearEndIssuedTranscriptsReport() {
+        return new SchoolGraduationReportImpl("SchoolDistributionYearEndIssuedTranscripts");
+    }
+
+    @Override
     public GraduationReport createSchoolLabelReport() {
         return new SchoolGraduationReportImpl("SchoolLabel");
     }

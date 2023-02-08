@@ -2,15 +2,16 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.SneakyThrows;
 
 import java.io.Serializable;
+import java.util.Map;
 
 
-@JsonPropertyOrder({ "options", "data"})
-public class ReportRequest implements Serializable, Cloneable {
+@JsonPropertyOrder({ "options", "data", "dataList"})
+public class ReportRequest implements Serializable {
 
 	private ReportData data;
+	private Map<String, ReportData> dataMap;
 	private ReportOptions options;
 
 	@JsonProperty("data")
@@ -21,6 +22,15 @@ public class ReportRequest implements Serializable, Cloneable {
 		this.data = data;
 	}
 
+	@JsonProperty("dataMap")
+	public Map<String, ReportData> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataList(Map<String, ReportData> dataList) {
+		this.dataMap = dataMap;
+	}
+
 	@JsonProperty("options")
 	public ReportOptions getOptions() {
 		return options;
@@ -29,9 +39,4 @@ public class ReportRequest implements Serializable, Cloneable {
 		this.options = options;
 	}
 
-	@Override
-	@SneakyThrows
-	public ReportRequest clone() {
-		return (ReportRequest) super.clone();
-	}
 }

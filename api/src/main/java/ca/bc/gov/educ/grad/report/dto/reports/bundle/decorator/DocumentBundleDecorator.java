@@ -92,13 +92,13 @@ public abstract class DocumentBundleDecorator implements Serializable {
 
         final List<byte[]> pdfs = new ArrayList<>();
         final byte[] bundleContent = getDocumentBundleBytes();
-        boolean packingSlipPage = bundleContent.length == 0;
+        boolean firstPage = bundleContent.length == 0;
 
         // If the bundle length is zero, then this is the first time a
         // packing slip and/or transcripts/certificates are being appended
         // to the document. In this situation, do not rotate the first
         // document in the reports list because it is a packing slip.
-        if (!packingSlipPage) {
+        if (!firstPage) {
             pdfs.add(bundleContent);
         }
 
@@ -107,13 +107,13 @@ public abstract class DocumentBundleDecorator implements Serializable {
             // for the packing slip page.
             ReportDocument processedReport = report;
 
-            if (!packingSlipPage) {
+            if (!firstPage) {
                 processedReport = process(report);
             }
 
             // Load the document to append into the list of documents.
             pdfs.add(processedReport.asBytes());
-            packingSlipPage = false;
+            firstPage = false;
         }
 
         final byte[] result = writeBundle(pdfs);
@@ -167,7 +167,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      */
     protected ReportDocument process(final ReportDocument report)
             throws IOException {
-        return rotate(report, 90);
+        return rotate(report, getRotateDegree());
     }
 
     private byte[] writeBundle(List<byte[]> pdfs) throws IOException {
@@ -284,8 +284,12 @@ public abstract class DocumentBundleDecorator implements Serializable {
                     final NumberLabel countLabel = createPageCountLabel(i);
                     final NumberLabel imageLabel = createImageCountLabel(i);
 
-                    countLabel.write(pcb);
-                    imageLabel.write(pcb);
+                    if(countLabel != null) {
+                        countLabel.write(pcb);
+                    }
+                    if(imageLabel != null) {
+                        imageLabel.write(pcb);
+                    }
                 }
             }
 
@@ -411,6 +415,8 @@ public abstract class DocumentBundleDecorator implements Serializable {
         return result;
     }
 
+    protected abstract int getRotateDegree();
+
     /**
      * Returns the recipient name for the print job.
      *
@@ -494,7 +500,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      * @return An open stream for reading the resource contents, or null if the
      * resource cannot be read.
      */
-    private InputStream getResourceAsStream(final String resourceName) {
+    protected InputStream getResourceAsStream(final String resourceName) {
         return getClass().getResourceAsStream(resourceName);
     }
 
@@ -507,7 +513,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      *
      * @return A non-null array, possibly empty.
      */
-    private byte[] getDocumentBundleBytes() {
+    protected byte[] getDocumentBundleBytes() {
         final DocumentBundle db = getDocumentBundle();
 
         // All implementations return a non-null array.

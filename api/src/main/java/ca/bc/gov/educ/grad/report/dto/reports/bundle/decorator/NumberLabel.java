@@ -50,6 +50,15 @@ public abstract class NumberLabel {
     private int number;
 
     /**
+     * The rotation degree.
+     */
+    private int rotate = 90;
+
+    private String numberFormat = "%c%07d";
+
+    private String labelPrefix = "";
+
+    /**
      * Constructs a new number label used to write page and image numbers to
      * PDFs.
      *
@@ -58,15 +67,29 @@ public abstract class NumberLabel {
      */
     public NumberLabel(final Point2D coordinate, final int number) {
         setCoordinate(coordinate);
-        getNumber(number);
+        setNumber(number);
     }
 
     /**
-     * Return 'P' or 'I', depending on the type of number.
+     * Constructs a new number label used to write page and image numbers to
+     * PDFs.
      *
-     * @return The image or page number prefix.
+     * @param coordinate The location on the PDF to write the number.
+     * @param number The number to write on the PDF.
      */
-    protected abstract char getLabelPrefix();
+    public NumberLabel(final Point2D coordinate, final int number, final int degree) {
+        setCoordinate(coordinate);
+        setNumber(number);
+        setRotate(degree);
+    }
+
+    public void setLabelPrefix(String labelPrefix) {
+        this.labelPrefix = labelPrefix;
+    }
+
+    public String getLabelPrefix() {
+        return labelPrefix;
+    }
 
     /**
      * Creates a number such as "I0000001" or "P0000001" based on the label
@@ -74,8 +97,12 @@ public abstract class NumberLabel {
      *
      * @return Formatted number.
      */
-    private String getNumberText() {
-        return format("%c%07d", getLabelPrefix(), getNumber());
+    protected String getNumberText() {
+        return format(numberFormat, getLabelPrefix(), getNumber());
+    }
+
+    public void setNumberFormat(String numberFormat) {
+        this.numberFormat = numberFormat;
     }
 
     /**
@@ -135,10 +162,10 @@ public abstract class NumberLabel {
     /**
      * Returns the number of degrees to rotate the text.
      *
-     * @return 90
+     * @return rotateDegree
      */
     private int getRotation() {
-        return 90;
+        return this.rotate;
     }
 
     private Point2D getCoordinate() {
@@ -153,8 +180,12 @@ public abstract class NumberLabel {
         return this.number;
     }
 
-    private void getNumber(int text) {
+    private void setNumber(int text) {
         this.number = text;
+    }
+
+    private void setRotate(int degree) {
+        this.rotate = degree;
     }
 
     /**
@@ -173,6 +204,7 @@ public abstract class NumberLabel {
         );
 
         font.setSize(getFontSize());
+        font.setStyle(Font.BOLD);
 
         return font;
     }

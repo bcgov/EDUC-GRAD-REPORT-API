@@ -122,6 +122,13 @@ public interface BCMPBundleService extends ReportExportService, Serializable {
     OrderType createTranscriptOrderType();
 
     /**
+     * Creates an order type for school reports.
+     *
+     * @return A non-null instance.
+     */
+    OrderType createSchoolOrderType();
+
+    /**
      * Creates an order type for transcripts.
      *
      * @param ct The certificate type that dictates the paper to use when
