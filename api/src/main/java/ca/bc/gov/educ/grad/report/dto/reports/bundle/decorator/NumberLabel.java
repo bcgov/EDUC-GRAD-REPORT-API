@@ -54,7 +54,7 @@ public abstract class NumberLabel {
      */
     private int rotate = 90;
 
-    private String numberFormat = "%c%07d";
+    private String numberFormat = "%s%07d";
 
     private String labelPrefix = "";
 
