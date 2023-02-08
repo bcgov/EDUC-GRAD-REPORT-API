@@ -24,7 +24,7 @@ import ca.bc.gov.educ.grad.report.model.cert.CertificateOrderType;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
-import ca.bc.gov.educ.grad.report.model.school.SchoolOrderType;
+import ca.bc.gov.educ.grad.report.model.school.SchoolReportOrderType;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptOrderType;
 
 import javax.naming.NamingException;
@@ -346,7 +346,7 @@ public class DocumentBundleImpl implements DocumentBundle {
             dbd = new CertificateReportDecorator(this);
         } else if (ot instanceof AchievementOrderType) {
             dbd = new AchievementReportDecorator(this);
-        } else if (ot instanceof SchoolOrderType) {
+        } else if (ot instanceof SchoolReportOrderType) {
             dbd = new SchoolReportDecorator(this);
         } else {
             throw new IllegalArgumentException("Unexpected order type: " + ot);

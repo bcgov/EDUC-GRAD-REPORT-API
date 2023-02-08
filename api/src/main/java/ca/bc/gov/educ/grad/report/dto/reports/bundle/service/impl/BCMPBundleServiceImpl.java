@@ -20,7 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.reports.bundle.service.impl;
 import ca.bc.gov.educ.grad.report.dto.impl.PackingSlipDetailsImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolOrderTypeImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolReportOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.model.DocumentBundleImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.model.Roles;
@@ -214,7 +214,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
     @Override
     @RolesAllowed({Roles.USER_BCMP_TRANSCRIPT_ORDER_TYPE, FULFILLMENT_SERVICES_USER})
     public OrderType createSchoolOrderType() {
-        return new SchoolOrderTypeImpl();
+        return new SchoolReportOrderTypeImpl();
     }
 
     /**

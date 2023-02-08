@@ -25,6 +25,6 @@ import ca.bc.gov.educ.grad.report.model.order.OrderType;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface SchoolOrderType extends OrderType {
+public interface SchoolReportOrderType extends OrderType {
 
 }

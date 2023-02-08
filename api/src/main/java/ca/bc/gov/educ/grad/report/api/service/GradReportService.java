@@ -6,7 +6,7 @@ import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolOrderTypeImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolReportOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.exception.ServiceException;
@@ -369,23 +369,11 @@ public class GradReportService {
 
 		Map<String, ReportData> reportDataMap = reportRequest.getDataMap();
 		if(reportDataMap != null && reportDataMap.size() == 2) {
-			{
-				ReportData data = reportDataMap.get("newCredentialsReportData");
-				if (data != null) {
-					ReportRequestDataThreadLocal.setReportData(data);
-					newCredentialsReport = this.schoolDistributionEndYearNewCredentialsService.buildSchoolDistributionReport();
-				}
-			}
-			{
-				ReportData data = reportDataMap.get("IssuedTranscriptsReportData");
-				if (data != null) {
-					ReportRequestDataThreadLocal.setReportData(data);
-					issuedTranscriptsReport = this.schoolDistributionEndYearIssuedTranscriptsService.buildSchoolDistributionReport();
-				}
-			}
+			newCredentialsReport = getSchoolDistributionNewCredentialsReport(newCredentialsReport, reportDataMap);
+			issuedTranscriptsReport = getSchoolDistributionIssuedTranscriptsReport(issuedTranscriptsReport, reportDataMap);
 		}
 
-		OrderType orderType = new SchoolOrderTypeImpl() {
+		OrderType orderType = new SchoolReportOrderTypeImpl() {
 			@Override
 			public String getName() {
 				return "School";
@@ -398,6 +386,15 @@ public class GradReportService {
 		// Once the bundle has been created, decorate the page numbers.
 		return bcmpBundleService.enumeratePages(bundle);
 
+	}
+
+	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(SchoolDistributionReport issuedTranscriptsReport, Map<String, ReportData> reportDataMap) throws IOException {
+		ReportData data = reportDataMap.get("IssuedTranscriptsReportData");
+		if (data != null) {
+			ReportRequestDataThreadLocal.setReportData(data);
+			issuedTranscriptsReport = this.schoolDistributionEndYearIssuedTranscriptsService.buildSchoolDistributionReport();
+		}
+		return issuedTranscriptsReport;
 	}
 
 	public SchoolLabelReport getSchoolLabelReportDocument(ReportRequest reportRequest) throws IOException {
@@ -434,5 +431,14 @@ public class GradReportService {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return studentNonGradService.buildStudentNonGradReport();
+	}
+
+	private SchoolDistributionReport getSchoolDistributionNewCredentialsReport(SchoolDistributionReport newCredentialsReport, Map<String, ReportData> reportDataMap) throws IOException {
+		ReportData data = reportDataMap.get("newCredentialsReportData");
+		if (data != null) {
+			ReportRequestDataThreadLocal.setReportData(data);
+			newCredentialsReport = this.schoolDistributionEndYearNewCredentialsService.buildSchoolDistributionReport();
+		}
+		return newCredentialsReport;
 	}
 }

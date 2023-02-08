@@ -18,7 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.report.model.reports.PaperType;
-import ca.bc.gov.educ.grad.report.model.school.SchoolOrderType;
+import ca.bc.gov.educ.grad.report.model.school.SchoolReportOrderType;
 
 /**
  * Responsible for creating order types that can print school report on the
@@ -26,17 +26,17 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolOrderType;
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class SchoolOrderTypeImpl extends OrderTypeImpl
-        implements SchoolOrderType {
+public class SchoolReportOrderTypeImpl extends OrderTypeImpl
+        implements SchoolReportOrderType {
 
     private static final long serialVersionUID = 3L;
 
-    private String name;
+    private String name = "School";
 
     /**
      * Constructs with paper type YED4.
      */
-    public SchoolOrderTypeImpl() {
+    public SchoolReportOrderTypeImpl() {
         setPaperType(PaperType.SCHOOL);
     }
 
@@ -47,7 +47,7 @@ public class SchoolOrderTypeImpl extends OrderTypeImpl
      */
     @Override
     public String getName() {
-        return "School";
+        return this.name;
     }
 
     public void setName(String name) {
