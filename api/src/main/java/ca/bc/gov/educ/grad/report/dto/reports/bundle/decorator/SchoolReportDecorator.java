@@ -19,21 +19,26 @@ package ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator;
 
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 
+import java.awt.geom.Point2D;
+import java.util.logging.Logger;
+
 /**
  * Responsible for bundling transcript reports.
  *
  * @author CGI Information Management Consultants Inc.
  */
-public class TranscriptReportDecorator extends DocumentBundleDecorator {
+public class SchoolReportDecorator extends DocumentBundleDecorator {
 
     private static final long serialVersionUID = 1L;
+    private static final String CLASSNAME = SchoolReportDecorator.class.getName();
+    private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     /**
      * Constructs using the superclass.
      *
      * @param bundle The bundle to manipulate.
      */
-    public TranscriptReportDecorator(final DocumentBundle bundle) {
+    public SchoolReportDecorator(final DocumentBundle bundle) {
         super(bundle);
     }
 
@@ -45,7 +50,7 @@ public class TranscriptReportDecorator extends DocumentBundleDecorator {
      */
     @Override
     protected boolean isEnumerable(final int pageNumber) {
-        return pageNumber % 2 == 1;
+        return pageNumber > 1;
     }
 
     /**
@@ -56,7 +61,20 @@ public class TranscriptReportDecorator extends DocumentBundleDecorator {
      */
     @Override
     protected NumberLabel createPageCountLabel(int count) {
-        return super.createPageCountLabel((count + 1) / 2);
+        NumberLabel label = new PageNumberLabel(new Point2D.Float(495, 810), count, 0);
+        label.setNumberFormat("Page: %s%s");
+        label.setLabelPrefix("");
+        return label;
+    }
+
+    /**
+     * Returns the label that can overlay an image number.
+     *
+     * @param count The incremental count to overlay.
+     * @return A label that can write to a PDF document.
+     */
+    protected NumberLabel createImageCountLabel(final int count) {
+        return null;
     }
 
     /**
@@ -66,7 +84,7 @@ public class TranscriptReportDecorator extends DocumentBundleDecorator {
      */
     @Override
     protected String getXpifResourceName() {
-        return "xpif_transcript.xml";
+        return "xpif_school.xml";
     }
 
     /**
@@ -76,13 +94,12 @@ public class TranscriptReportDecorator extends DocumentBundleDecorator {
      */
     @Override
     public String getFilenamePrefix() {
-        return "TRANS";
+        return "SCHOOL";
     }
 
     @Override
     protected int getRotateDegree() {
-        return 90;
+        return 0;
     }
-
 
 }

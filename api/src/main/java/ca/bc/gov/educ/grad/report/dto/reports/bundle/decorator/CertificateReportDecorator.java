@@ -79,4 +79,9 @@ public class CertificateReportDecorator extends DocumentBundleDecorator {
     public String getFilenamePrefix() {
         return "CERT";
     }
+
+    @Override
+    protected int getRotateDegree() {
+        return 90;
+    }
 }

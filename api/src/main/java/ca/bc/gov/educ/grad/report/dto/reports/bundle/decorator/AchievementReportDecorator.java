@@ -67,4 +67,9 @@ public class AchievementReportDecorator extends DocumentBundleDecorator {
     public String getFilenamePrefix() {
         return "ACHIV";
     }
+
+    @Override
+    protected int getRotateDegree() {
+        return 90;
+    }
 }

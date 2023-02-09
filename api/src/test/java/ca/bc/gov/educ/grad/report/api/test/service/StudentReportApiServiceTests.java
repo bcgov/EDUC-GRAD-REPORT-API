@@ -85,7 +85,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		reportRequest.getData().setAccessToken("accessToken");
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -128,8 +128,8 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		});
 
 		reportRequest.setData(null);
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
-		ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 		assertNull(reportData);
 
 		assertThrows("Report Data not exists for the current report generation", EntityNotFoundException.class, () -> {
@@ -148,7 +148,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -175,7 +175,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -209,7 +209,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -237,7 +237,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -265,7 +265,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -293,7 +293,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -321,7 +321,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -348,7 +348,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -382,7 +382,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -416,7 +416,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -444,7 +444,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -472,7 +472,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -499,7 +499,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -533,7 +533,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -567,7 +567,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -595,7 +595,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -622,7 +622,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -656,7 +656,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -690,7 +690,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -718,7 +718,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -744,7 +744,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -772,7 +772,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -800,7 +800,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -828,7 +828,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -856,7 +856,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -885,7 +885,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -913,7 +913,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -940,7 +940,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -974,7 +974,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1008,7 +1008,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1036,7 +1036,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1072,7 +1072,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 			assertNotNull(reportRequest.getData());
 
 			mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-			ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+			ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 			String pen = reportRequest.getData().getStudent().getPen().getPen();
 			reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1101,7 +1101,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1129,7 +1129,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1156,7 +1156,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1190,7 +1190,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1224,7 +1224,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1251,7 +1251,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1285,7 +1285,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1313,7 +1313,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1340,7 +1340,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1376,7 +1376,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
 		school.setTranscriptEligibility("N");
 		mockTraxSchool(school);
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
@@ -1403,7 +1403,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
 		school.setCertificateEligibility("N");
 		mockTraxSchool(school);
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ServiceException.class, () -> {
 			apiReportService.getStudentCertificateReport(reportRequest);
@@ -1421,7 +1421,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1442,7 +1442,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1463,7 +1463,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1484,7 +1484,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1505,7 +1505,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 
@@ -1526,7 +1526,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1547,7 +1547,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1568,7 +1568,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1589,7 +1589,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1610,7 +1610,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1631,7 +1631,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1652,7 +1652,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1673,7 +1673,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1694,7 +1694,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1715,7 +1715,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1736,7 +1736,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1757,7 +1757,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1778,7 +1778,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1799,7 +1799,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1820,7 +1820,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1841,7 +1841,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1862,7 +1862,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1883,7 +1883,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1904,7 +1904,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1925,7 +1925,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1946,7 +1946,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1967,7 +1967,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -1988,7 +1988,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -2009,7 +2009,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
 		
@@ -2029,7 +2029,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		List<BusinessReport> response = certificateService.buildReport();
 		assertNotNull(response);
@@ -2053,7 +2053,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		List<BusinessReport> response = certificateService.buildReport();
 		assertNotNull(response);
@@ -2077,7 +2077,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
@@ -2102,6 +2102,39 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createSchoolDistributionYearEndReport() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionYearEndReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionYearEndReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
+
+		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
+				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
+		));
+		when(this.transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				TranscriptTypeCodeEntity.builder().label("Adult Graduation Program").build(),
+				TranscriptTypeCodeEntity.builder().label("Graduation Program 2018").build()
+		));
+
+		byte[] response = apiReportService.getSchoolDistributionReportYearEnd(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolDistributionYearEndReport");
+	}
+
+	@Test
 	public void createSchoolDistributionReport_NOSTUDENTS() throws Exception {
 		LOG.debug("<{}.createSchoolDistributionReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest-NOSTUDENTS.json");
@@ -2110,7 +2143,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
@@ -2142,7 +2175,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getSchoolLabelReport(reportRequest);
 		
@@ -2169,7 +2202,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
 			}
 		}
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getSchoolGraduationReport(reportRequest);
 		
@@ -2196,7 +2229,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
 			}
 		}
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getSchoolGraduationReport(reportRequest);
 		
@@ -2217,7 +2250,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getSchoolNonGraduationReport(reportRequest);
 		
@@ -2238,7 +2271,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getSchoolNonGraduationReport(reportRequest);
 		
@@ -2259,7 +2292,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentNonGradReport(reportRequest);
 		
@@ -2280,7 +2313,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentNonGradReport(reportRequest);
 		
@@ -2334,7 +2367,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		achievementReportRequest.getData().setAccessToken("accessToken");
 
-		ReportRequestDataThreadLocal.setGenerateReportData(achievementReportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(achievementReportRequest.getData());
 		achievementReportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
 
 		String pen = achievementReportRequest.getData().getStudent().getPen().getPen();
@@ -2352,7 +2385,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(eCertificateReportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(eCertificateReportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(eCertificateReportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(eCertificateReportRequest.getData());
 
 		eCertificateReportRequest.getOptions().setReportFile("Certificate E Report.pdf");
 		DocumentBundle eCertificateReport = apiReportService.getStudentCertificateReportDocument(eCertificateReportRequest);
@@ -2363,7 +2396,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(sccpTranscriptReportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(sccpTranscriptReportRequest.getData())));
-		ReportRequestDataThreadLocal.setGenerateReportData(sccpTranscriptReportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(sccpTranscriptReportRequest.getData());
 
 		sccpTranscriptReportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
 		StudentTranscriptReport sccpTranscriptReport = apiReportService.getStudentTranscriptReportDocument(sccpTranscriptReportRequest);
@@ -2381,7 +2414,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 
 		orderType = bcmpBundleService.createAchievementOrderType();
 		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Achievement");
-		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(packingSlipReportRequest.getData());
 		testPackingSlipReport(
 				rds,
 				orderType,
@@ -2393,7 +2426,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		rds.add(eCertificateReport);
 		orderType = bcmpBundleService.createCertificateOrderType(E);
 		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Certificate");
-		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(packingSlipReportRequest.getData());
 		testPackingSlipReport(
 				rds,
 				orderType,
@@ -2405,7 +2438,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		rds.add(sccpTranscriptReport);
 		orderType = bcmpBundleService.createTranscriptOrderType();
 		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Transcript");
-		ReportRequestDataThreadLocal.setGenerateReportData(packingSlipReportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(packingSlipReportRequest.getData());
 		testPackingSlipReport(
 				rds,
 				orderType,
@@ -2424,7 +2457,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest);
 		assertNotNull(reportRequest.getData());
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		ca.bc.gov.educ.grad.report.model.transcript.Transcript filteredTranscript = transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
 		List<TranscriptCourse> originalCourses = gradDataConvertionBean.getTranscriptCourses(reportRequest.getData());
@@ -2446,7 +2479,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
-		ReportRequestDataThreadLocal.setGenerateReportData(null);
+		ReportRequestDataThreadLocal.setReportData(null);
 
 		assertThrows("Report Data not exists for the current report generation", DataException.class, () -> {
 			transcriptService.getTranscript(pen);
@@ -2469,7 +2502,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 
 		reportRequest.getData().setCertificate(null);
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 		assertThrows("Failed to find student certificate", DomainServiceException.class, () -> {
 			certificateService.buildReport();
 		});
@@ -2491,7 +2524,7 @@ public class StudentReportApiServiceTests extends GradReportBaseTest {
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 
 		reportRequest.getData().setGradProgram(null);
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		assertThrows("Grad Program or Grad Program Code is null", DataException.class, () -> {
 			transcriptService.getTranscript(pen);

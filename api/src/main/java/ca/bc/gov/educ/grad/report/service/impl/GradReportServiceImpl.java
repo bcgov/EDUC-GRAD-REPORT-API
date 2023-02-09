@@ -110,7 +110,7 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     ReportData getReportData(String methodName) {
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -174,8 +174,10 @@ public abstract class GradReportServiceImpl implements Serializable {
             parameters.put("school", school);
         }
 
-        InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
-        parameters.put("orgImage", inputLogo);
+        if(StringUtils.isNotBlank(reportData.getOrgCode())) {
+            InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
+            parameters.put("orgImage", inputLogo);
+        }
 
         parameters.put("reportNumber", reportData.getReportNumber());
         parameters.put("reportTitle", reportData.getReportTitle());

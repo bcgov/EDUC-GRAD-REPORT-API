@@ -66,7 +66,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
         ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
         byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
@@ -82,6 +82,30 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     }
 
     @Test
+    public void getSchoolDistributionYearEndReportTest() throws Exception {
+        LOG.debug("<{}.getSchoolDistributionYearEndReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/schoolDistributionYearEndReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getSchoolDistributionReportYearEnd(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getSchoolDistributionYearEnd(reportRequest, "accessToken");
+        Mockito.verify(reportService).getSchoolDistributionReportYearEnd(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getSchoolDistributionYearEndReportTest");
+    }
+
+    @Test
     public void getPackingSlipReportTest() throws Exception {
         LOG.debug("<{}.getPackingSlipReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -90,7 +114,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
         ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
         byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
@@ -114,7 +138,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
         ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
         byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
@@ -138,7 +162,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
         ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
         byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
@@ -162,7 +186,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         assertNotNull(reportRequest);
         assertNotNull(reportRequest.getData());
 
-        ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
         ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
 
         mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));

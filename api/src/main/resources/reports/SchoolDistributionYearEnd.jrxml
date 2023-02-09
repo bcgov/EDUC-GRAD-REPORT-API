@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolDistributionYearEndReport" pageWidth="595" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
+	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
+	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
+	<style name="StaticTextGen" fontName="BCSans" fontSize="9"/>
+	<subDataset name="studentDataset" uuid="4816c7e1-6c7c-4be3-97ea-75677761dc8b">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="pen" class="java.lang.String">
+			<fieldDescription><![CDATA[pen.pen]]></fieldDescription>
+		</field>
+		<field name="fullName" class="java.lang.String">
+			<fieldDescription><![CDATA[fullName]]></fieldDescription>
+		</field>
+		<field name="certificateTypesString" class="java.lang.String">
+			<fieldDescription><![CDATA[certificateTypesString]]></fieldDescription>
+		</field>
+		<field name="programCompletionDate" class="java.lang.String">
+			<fieldDescription><![CDATA[graduationStatus.programCompletionDate]]></fieldDescription>
+		</field>
+		<field name="honorsFlag" class="java.lang.Boolean">
+			<fieldDescription><![CDATA[graduationData.honorsFlag]]></fieldDescription>
+		</field>
+		<field name="gradProgram" class="java.lang.String">
+			<fieldDescription><![CDATA[gradProgram]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="P_REPORT_BASE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/reports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_RESOURCES_PATH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_BASE} + "resources/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_IMAGES_PATH" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{P_REPORT_RESOURCES_PATH} + "images/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_REPORT_PREVIEW" class="java.lang.Boolean" isForPrompting="false"/>
+	<parameter name="orgCode" class="java.lang.String"/>
+	<parameter name="orgImage" class="java.io.InputStream"/>
+	<parameter name="reportNumber" class="java.lang.String"/>
+	<parameter name="counts" class="ca.bc.gov.educ.grad.report.utils.TotalCounts"/>
+	<parameter name="school" class="ca.bc.gov.educ.grad.report.model.school.School"/>
+	<parameter name="students" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource" isForPrompting="false"/>
+	<parameter name="hasStudents" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["false"]]></defaultValueExpression>
+	</parameter>
+	<variable name="V_LOGO_CODE" class="java.lang.String">
+		<variableExpression><![CDATA[$P{orgCode}]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{orgCode}]]></initialValueExpression>
+	</variable>
+	<variable name="V_LOGO_FILE" class="java.lang.String">
+		<variableExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase()]]></variableExpression>
+		<initialValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "logo_" + $V{V_LOGO_CODE}.trim().toLowerCase()]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="120" splitType="Stretch">
+			<image scaleImage="RetainShape" onErrorType="Blank">
+				<reportElement key="IMAGE_LOGO_SVG" x="5" y="11" width="100" height="80" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
+				<imageExpression><![CDATA[$P{orgImage}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement style="StaticText" x="137" y="30" width="283" height="28" uuid="3653820a-7238-4dcd-9aba-90fa185d0d8d"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="GeneratedText" x="446" y="30" width="27" height="15" uuid="779a2a57-a8d9-466d-b28a-cf0b8e7de1ba">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Page:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="GeneratedText" x="473" y="30" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="GeneratedText" x="446" y="45" width="27" height="15" uuid="53e9d34f-3e5e-4846-b8b0-c81e613e795d">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="GeneratedText" x="473" y="45" width="82" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="GeneratedText" x="137" y="58" width="283" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Credentials and Transcript Distribution Report"]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="100" width="555" height="19" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement style="GeneratedText" x="0" y="0" width="267" height="19" uuid="90b917b3-d719-48a0-9bd3-904f82f2c183"/>
+					<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+</jasperReport>
