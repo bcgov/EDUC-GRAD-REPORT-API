@@ -174,10 +174,7 @@ public abstract class GradReportServiceImpl implements Serializable {
             parameters.put("school", school);
         }
 
-        if(StringUtils.isNotBlank(reportData.getOrgCode())) {
-            InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
-            parameters.put("orgImage", inputLogo);
-        }
+        addReportLogo(parameters, reportData);
 
         parameters.put("reportNumber", reportData.getReportNumber());
         parameters.put("reportTitle", reportData.getReportTitle());
@@ -190,6 +187,13 @@ public abstract class GradReportServiceImpl implements Serializable {
         graduationReport.setParameters(parameters);
 
         return graduationReport;
+    }
+
+    protected void addReportLogo(Parameters<String, Object> parameters, ReportData reportData) throws IOException {
+        if(StringUtils.isNotBlank(reportData.getOrgCode())) {
+            InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
+            parameters.put("orgImage", inputLogo);
+        }
     }
 
     protected List<School> getSchools(ReportData reportData) {
