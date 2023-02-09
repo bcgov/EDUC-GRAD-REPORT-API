@@ -54,15 +54,6 @@ public interface ReportService extends ReportExportService {
     GraduationReport createSchoolDistributionReport();
 
     /**
-     * Creates a school distribution year end report instance that can be exported into a final
-     * report document. The calling class is responsible for setting the
-     * required fields on the report instance returned from this method.
-     *
-     * @return A non-null report instance that must be populated with data.
-     */
-    GraduationReport createSchoolDistributionYearEndReport();
-
-    /**
      * Creates a school distribution year end new credentials subreport instance that can be exported into a final
      * report document. The calling class is responsible for setting the
      * required fields on the report instance returned from this method.
@@ -79,6 +70,15 @@ public interface ReportService extends ReportExportService {
      * @return A non-null report instance that must be populated with data.
      */
     GraduationReport createSchoolDistributionYearEndIssuedTranscriptsReport();
+
+    /**
+     * Creates a district distribution year end issued transcripts subreport instance that can be exported into a final
+     * report document. The calling class is responsible for setting the
+     * required fields on the report instance returned from this method.
+     *
+     * @return A non-null report instance that must be populated with data.
+     */
+    GraduationReport createDistrictDistributionYearEndCredentialsTranscriptsReport();
 
     /**
      * Creates a school label report instance that can be exported into a final

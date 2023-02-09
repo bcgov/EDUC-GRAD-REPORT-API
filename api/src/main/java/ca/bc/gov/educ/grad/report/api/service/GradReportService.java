@@ -67,10 +67,6 @@ public class GradReportService {
 	@Autowired
 	SchoolDistributionService schoolDistributionService;
 
-	@Qualifier("schoolDistributionYearEndServiceImpl")
-	@Autowired
-	SchoolDistributionService schoolDistributionEndYearService;
-
 	@Qualifier("schoolDistributionYearEndNewCredentialsServiceImpl")
 	@Autowired
 	SchoolDistributionService schoolDistributionEndYearNewCredentialsService;
