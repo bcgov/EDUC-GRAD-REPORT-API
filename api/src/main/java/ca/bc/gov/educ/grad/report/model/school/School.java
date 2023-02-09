@@ -105,4 +105,11 @@ public interface School extends Organization {
      * @return the dogwood elig
      */
     String getDogwoodElig();
+
+    /**
+     * Gets school stat elig.
+     *
+     * @return the school stat
+     */
+    SchoolStatistic getSchoolStatistic();
 }

@@ -1,4 +1,4 @@
-package ca.bc.gov.educ.grad.report.model.common;
+package ca.bc.gov.educ.grad.report.model.student;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.school.School;
+import ca.bc.gov.educ.grad.report.model.school.SchoolStatistic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -47,6 +48,7 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     private String signatureCode = "";
     private String phoneNumber = "";
     private String dogwoodElig = "";
+    private SchoolStatistic schoolStatistic;
 
     public void setAddress(final PostalAddress address) {
         this.address = address;
@@ -105,6 +107,10 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
         this.signatureCode = code;
     }
 
+    public void setSchoolStatistic(SchoolStatistic schoolStatistic) {
+        this.schoolStatistic = schoolStatistic;
+    }
+
     @Override
     public String getMinistryCode() {
         return this.mincode;
@@ -154,6 +160,11 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
 
     public String getDogwoodElig() {
         return dogwoodElig;
+    }
+
+    @Override
+    public SchoolStatistic getSchoolStatistic() {
+        return schoolStatistic;
     }
 
     public void setDogwoodElig(String dogwoodElig) {

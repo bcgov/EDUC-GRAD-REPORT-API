@@ -2,8 +2,8 @@ package ca.bc.gov.educ.grad.report.api.test.controller;
 
 import ca.bc.gov.educ.grad.report.api.controller.GradReportSignatureController;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
-import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
+import ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
@@ -73,7 +73,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         signatureImage.setSignatureContent(imageBinary);
         signatureImage.setSignatureId(UUID.randomUUID());
 
-        District district = new District();
+        DistrictImpl district = new DistrictImpl();
         district.setDistrictNumber("02");
 
         mockDistrictInfo(district);
