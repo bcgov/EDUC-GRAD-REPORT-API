@@ -1,0 +1,2586 @@
+package ca.bc.gov.educ.grad.report.api.test.service;
+
+import ca.bc.gov.educ.grad.report.api.client.*;
+import ca.bc.gov.educ.grad.report.api.service.GradReportService;
+import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
+import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
+import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
+import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
+import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
+import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
+import ca.bc.gov.educ.grad.report.exception.ServiceException;
+import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
+import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
+import ca.bc.gov.educ.grad.report.model.common.DataException;
+import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
+import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
+import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
+import ca.bc.gov.educ.grad.report.model.order.OrderType;
+import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
+import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
+import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
+import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
+import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Before;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.E;
+import static ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode.PROGRAM_SCCP_PF;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
+
+@WebAppConfiguration
+public class GradReportApiServiceTests extends GradReportBaseTest {
+
+	private static final Logger LOG = LoggerFactory.getLogger(GradReportApiServiceTests.class);
+	private static final String CLASS_NAME = GradReportApiServiceTests.class.getSimpleName();
+	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+	@Autowired
+	ReportApiConstants reportApiConstants;
+	@Autowired
+	GradReportService apiReportService;
+	@Autowired
+	BCMPBundleService bcmpBundleService;
+	@Autowired
+	GradReportSignatureService reportSignatureService;
+	@Autowired
+	PackingSlipService packingSlipService;
+	@Autowired
+	StudentTranscriptService transcriptService;
+	@Autowired
+	StudentCertificateService certificateService;
+	@Autowired
+	GradDataConvertionBean gradDataConvertionBean;
+
+	@Before
+	public void init() {
+
+	}
+
+	@Test
+	public void createStudentAchievementReport() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentAchievementReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test
+	public void createStudentAchievementReportError() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReportError at {}", CLASS_NAME, dateFormat.format(new Date()));
+		String pen = "12345678";
+		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		reportRequest.getData().setGradProgram(null);
+		assertThrows("Graduation Program not exists for the current report generation", EntityNotFoundException.class, () -> {
+			apiReportService.getStudentAchievementReportDocument(reportRequest);
+		});
+
+		reportRequest.setData(null);
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		ReportData reportData = ReportRequestDataThreadLocal.getReportData();
+		assertNull(reportData);
+
+		assertThrows("Report Data not exists for the current report generation", EntityNotFoundException.class, () -> {
+			apiReportService.getStudentAchievementReportDocument(reportRequest);
+		});
+
+		LOG.debug(">createStudentAchievementReportError");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1950_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1950_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1950.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1950);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1950.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1950.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_IND_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1950_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1950_IND_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1950_IND_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1950-IND-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1950_IND_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_YU1950_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU1950_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1950-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_YU1950_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1986_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1986_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1986_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1986_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1986_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1986_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1986_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1986_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1986_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1986_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1986_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1986_IND_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1986_IND_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1986_IND_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1986-IND-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1986_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1986_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1986_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1986_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1986_IND_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_YU1986_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU1986_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1986-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_YU1986_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1996_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1996_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1996_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1996_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1996_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1996_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1996_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1996_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1996_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1996_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1996_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1996_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1996_IND_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_BC1996_IND_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC1996_IND_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC1996-IND-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_1996_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_1996_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_1996_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_1996_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC1996_IND_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_YU1996_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU1996_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU1996-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_YU1996_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2004_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2004_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2004_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2004_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2004_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_2004_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_2004_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_2004_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_2004_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2004_IND_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2004_IND_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2004_IND_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-IND-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_2004_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_2004_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_2004_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_2004_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2004_IND_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2004_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2004_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2004-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2004_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_YU2004_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU2004_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2004-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_YU2004_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2023_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2023_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2023-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2023_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_YU2023_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU2023_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2023-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_YU2023_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2023_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2023_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2023-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2023_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2023_OFF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2023_OFF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2023-OFF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2023_OFF");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2023_PF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2023_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2023-PF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2023_PF");
+	}
+
+
+	@Test
+	public void createTranscriptReport_BC2018_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_IND() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_IND at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_IND");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_IND_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_IND_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_2018_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_2018_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_2018_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_2018_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_IND_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_IND_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_IND_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_2018_EN.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_2018_EN);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_2018_EN.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_2018_EN.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_IND_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_OFF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_OFF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-OFF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_OFF");
+	}
+
+	@Test
+	public void createTranscriptReport_BC2018_PF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_BC2018_PF");
+	}
+
+	/** This method is for testing the transcript spacing and page breaks.
+	 * */
+	@Test
+	public void createTranscriptReport_BC2018_SpaceTest() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_BC2018_PF_SpaceTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+		String[] files = {
+				"json/studentTranscriptReportRequest-BC2018-PF-23.json",
+				"json/studentTranscriptReportRequest-BC2018-PF-24.json",
+				"json/studentTranscriptReportRequest-BC2018-PF-24-no-grad-reason.json"};
+
+		for (int i = 0; i < files.length; i++) {
+			ReportRequest reportRequest = createReportRequest(files[i]);
+			assertNotNull(reportRequest);
+			assertNotNull(reportRequest.getData());
+
+			mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+			ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+			String pen = reportRequest.getData().getStudent().getPen().getPen();
+			reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+			GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+			assertNotNull(graduationStudentRecord);
+			assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+			byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+			
+			assertNotNull(response);
+			
+			try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+				out.write(response);
+			}
+			LOG.debug(">create " + files[i]);
+		}
+	}
+
+	@Test
+	public void createTranscriptReport_YU2018_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_YU2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-YU2018-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_YU2018_PUB");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_EN() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_EN at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_EN");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_EN_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_EN_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_SCCP.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_SCCP.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_SCCP.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_EN_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_EN_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_EN_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_SCCP.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_SCCP.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_SCCP.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_EN_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_PF() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_PF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_PF");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_PF_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_PF_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(PROGRAM_SCCP_PF.getCode(), null);
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_SCCP_PF);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_SCCP_PF.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_SCCP_PF.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_PF_BLANK");
+	}
+
+	@Test
+	public void createTranscriptReport_SCCP_PF_PREVIEW() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_SCCP_PF_PREVIEW at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-PF-PREVIEW.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_SCCP_PF_PREVIEW");
+	}
+
+	@Test
+	public void createTranscriptReport_NOPROG() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOPROG.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_NOPROG");
+	}
+
+	@Test
+	public void createTranscriptReport_NOPROG_BLANK() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOPROG-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		mockGradProgramEntity(GraduationProgramCode.PROGRAM_NOPROG.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
+		GradProgramImpl gradProgram = new GradProgramImpl(GraduationProgramCode.PROGRAM_NOPROG);
+		gradProgram.setProgramCode(GraduationProgramCode.PROGRAM_NOPROG.getCode());
+		gradProgram.setProgramName(GraduationProgramCode.PROGRAM_NOPROG.getDescription());
+		mockGradProgram(gradProgram);
+
+		byte[] response = apiReportService.getStudentTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createTranscriptReport_NOPROG");
+	}
+
+	@Test
+	public void createTranscriptReport_NOTELIG_NOPROG() throws Exception {
+		LOG.debug("<{}.createTranscriptReport_NOTELIG_NOPROG at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-NOTELIG_NOPROG.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
+		school.setTranscriptEligibility("N");
+		mockTraxSchool(school);
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for transcripts", ServiceException.class, () -> {
+			apiReportService.getStudentTranscriptReport(reportRequest);
+		});
+
+		LOG.debug(">createTranscriptReport_NOTELIG_NOPROG");
+	}
+
+	@Test
+	public void createCertificateReport_NOTELIG_E() throws Exception {
+		LOG.debug("<{}.createCertificateReport_NOTELIG_E at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		TraxSchool school = adaptTraxSchool(getReportDataSchool(reportRequest.getData()));
+		school.setCertificateEligibility("N");
+		mockTraxSchool(school);
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ServiceException.class, () -> {
+			apiReportService.getStudentCertificateReport(reportRequest);
+		});
+
+		LOG.debug(">createCertificateReport_NOTELIG_E");
+	}
+
+	@Test
+	public void createCertificateReport_E() throws Exception {
+		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_E");
+	}
+
+	@Test
+	public void createCertificateReport_EO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_EO");
+	}
+
+	@Test
+	public void createCertificateReport_EB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_EB");
+	}
+
+	@Test
+	public void createCertificateReport_A() throws Exception {
+		LOG.debug("<{}.createCertificateReport_A at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_A");
+	}
+
+	@Test
+	public void createCertificateReport_AO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_AO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_AO");
+	}
+
+	@Test
+	public void createCertificateReport_AB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_AB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_AB");
+	}
+
+	@Test
+	public void createCertificateReport_AIB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_AIB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AIB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_AIB");
+	}
+
+	@Test
+	public void createCertificateReport_EI() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EI at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EI.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_EI");
+	}
+
+	@Test
+	public void createCertificateReport_EIB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EIB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_EIB");
+	}
+
+	@Test
+	public void createCertificateReport_EIO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_EIO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_EIO");
+	}
+
+	@Test
+	public void createCertificateReport_AI() throws Exception {
+		LOG.debug("<{}.createCertificateReport_AI at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AI.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_AI");
+	}
+
+	@Test
+	public void createCertificateReport_SC() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SC at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SC.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SC");
+	}
+
+	@Test
+	public void createCertificateReport_SCB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCB");
+	}
+
+	@Test
+	public void createCertificateReport_SCO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCO");
+	}
+
+	@Test
+	public void createCertificateReport_SCI() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCI at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCI.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCI");
+	}
+
+	@Test
+	public void createCertificateReport_SCIB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCIB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCIB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCIB");
+	}
+
+	@Test
+	public void createCertificateReport_SCIO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCIO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCIO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCIO");
+	}
+
+	@Test
+	public void createCertificateReport_S() throws Exception {
+		LOG.debug("<{}.createCertificateReport_S at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-S.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_S");
+	}
+
+	@Test
+	public void createCertificateReport_SB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SB");
+	}
+
+	@Test
+	public void createCertificateReport_SO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SO");
+	}
+
+	@Test
+	public void createCertificateReport_F() throws Exception {
+		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_F");
+	}
+
+	@Test
+	public void createCertificateReport_FB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_FB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_FB");
+	}
+
+	@Test
+	public void createCertificateReport_FO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_FO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_FO");
+	}
+
+	@Test
+	public void createCertificateReport_SCF() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCF at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCF");
+	}
+
+	@Test
+	public void createCertificateReport_SCFB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCFB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCF");
+	}
+
+	@Test
+	public void createCertificateReport_SCFO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_SCFO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_SCFO");
+	}
+
+	@Test
+	public void createCertificateReport_O() throws Exception {
+		LOG.debug("<{}.createCertificateReport_O at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-O.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_O");
+	}
+
+	@Test
+	public void createCertificateReport_OB() throws Exception {
+		LOG.debug("<{}.createCertificateReport_OB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_OB");
+	}
+
+	@Test
+	public void createCertificateReport_OO() throws Exception {
+		LOG.debug("<{}.createCertificateReport_OO at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OO.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createCertificateReport_OO");
+	}
+
+	@Test
+	public void createCertificateReport_BLANK() throws Exception {
+		LOG.debug("<{}.createCertificateReport_BLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-BLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		List<BusinessReport> response = certificateService.buildReport();
+		assertNotNull(response);
+		assertFalse(response.isEmpty());
+
+		for(BusinessReport report: response) {
+			assertNotNull(report.getReportData());
+			try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+				out.write(report.getReportData());
+			}
+		}
+		LOG.debug(">createCertificateReport_BLANK");
+	}
+
+	@Test
+	public void createCertificateReport_NOTBLANK() throws Exception {
+		LOG.debug("<{}.createCertificateReport_NOTBLANK at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-NOTBLANK.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		List<BusinessReport> response = certificateService.buildReport();
+		assertNotNull(response);
+		assertFalse(response.isEmpty());
+
+		for(BusinessReport report: response) {
+			assertNotNull(report.getReportData());
+			try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+				out.write(report.getReportData());
+			}
+		}
+		LOG.debug(">createCertificateReport_NOTBLANK");
+	}
+
+	@Test
+	public void createSchoolDistributionReport() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
+
+		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
+				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
+		));
+		when(this.transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				TranscriptTypeCodeEntity.builder().label("Adult Graduation Program").build(),
+				TranscriptTypeCodeEntity.builder().label("Graduation Program 2018").build()
+		));
+
+		byte[] response = apiReportService.getSchoolDistributionReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolDistributionReport");
+	}
+
+	@Test
+	public void createSchoolDistributionYearEndReport() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionYearEndReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionYearEndReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
+
+		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
+				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
+		));
+		when(this.transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				TranscriptTypeCodeEntity.builder().label("Adult Graduation Program").build(),
+				TranscriptTypeCodeEntity.builder().label("Graduation Program 2018").build()
+		));
+
+		byte[] response = apiReportService.getSchoolDistributionReportYearEnd(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolDistributionYearEndReport");
+	}
+
+	@Test
+	public void createSchoolDistributionReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
+
+		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
+				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
+		));
+		when(this.transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(entityId))).thenReturn(List.of(
+				TranscriptTypeCodeEntity.builder().label("Adult Graduation Program").build(),
+				TranscriptTypeCodeEntity.builder().label("Graduation Program 2018").build()
+		));
+
+		byte[] response = apiReportService.getSchoolDistributionReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolDistributionReport_NOSTUDENTS");
+	}
+
+	@Test
+	public void createSchoolLabelReport() throws Exception {
+		LOG.debug("<{}.createSchoolLabelReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolLabelReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getSchoolLabelReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolLabelReport");
+	}
+
+	@Test
+	public void createSchoolGraduationReport() throws Exception {
+		LOG.debug("<{}.createSchoolGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getSchool());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		for(Student st: reportRequest.getData().getSchool().getStudents()) {
+			if(!StringUtils.isBlank(st.getPen().getEntityID())) {
+				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
+			}
+		}
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getSchoolGraduationReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolGraduationReport");
+	}
+
+	@Test
+	public void createSchoolGraduationReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createSchoolGraduationReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getSchool());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		for(Student st: reportRequest.getData().getSchool().getStudents()) {
+			if(!StringUtils.isBlank(st.getPen().getEntityID())) {
+				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
+			}
+		}
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getSchoolGraduationReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolGraduationReport_NOSTUDENTS");
+	}
+
+	@Test
+	public void createSchoolNonGraduationReport() throws Exception {
+		LOG.debug("<{}.createSchoolNonGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getSchoolNonGraduationReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolNonGraduationReport");
+	}
+
+	@Test
+	public void createSchoolNonGraduationReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createSchoolNonGraduationReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getSchoolNonGraduationReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createSchoolNonGraduationReport_NOSTUDENTS");
+	}
+
+	@Test
+	public void createStudentNonGradReport() throws Exception {
+		LOG.debug("<{}.createStudentNonGradReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentNonGradReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createStudentNonGradReport");
+	}
+
+	@Test
+	public void createStudentNonGradReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createStudentNonGradReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentNonGradReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createStudentNonGradReport_NOSTUDENTS");
+	}
+
+	@Test
+	public void createXmlTranscriptReport() throws Exception {
+		LOG.debug("<{}.createXmlTranscriptReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		byte[] response = apiReportService.getStudentXmlTranscriptReport(reportRequest);
+		
+		assertNotNull(response);
+		
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createXmlTranscriptReport");
+	}
+
+	@Test
+	public void testPackingSlipReport() throws Exception {
+		LOG.debug("<{}.testPackingSlipReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+		OrderType orderType;
+
+		ReportRequest achievementReportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		assertNotNull(achievementReportRequest);
+		assertNotNull(achievementReportRequest.getData());
+
+		achievementReportRequest.getData().setAccessToken("accessToken");
+
+		ReportRequestDataThreadLocal.setReportData(achievementReportRequest.getData());
+		achievementReportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
+
+		String pen = achievementReportRequest.getData().getStudent().getPen().getPen();
+		achievementReportRequest.getOptions().setReportFile(String.format(achievementReportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		StudentAchievementReport achievementReport = apiReportService.getStudentAchievementReportDocument(achievementReportRequest);
+
+		ReportRequest eCertificateReportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(eCertificateReportRequest);
+		assertNotNull(eCertificateReportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(eCertificateReportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(eCertificateReportRequest.getData());
+
+		eCertificateReportRequest.getOptions().setReportFile("Certificate E Report.pdf");
+		DocumentBundle eCertificateReport = apiReportService.getStudentCertificateReportDocument(eCertificateReportRequest);
+
+		ReportRequest sccpTranscriptReportRequest = createReportRequest("json/studentTranscriptReportRequest-SCCP-EN.json");
+
+		assertNotNull(sccpTranscriptReportRequest);
+		assertNotNull(sccpTranscriptReportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(sccpTranscriptReportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(sccpTranscriptReportRequest.getData());
+
+		sccpTranscriptReportRequest.getOptions().setReportFile("Transcript SCCP-EN Report.pdf");
+		StudentTranscriptReport sccpTranscriptReport = apiReportService.getStudentTranscriptReportDocument(sccpTranscriptReportRequest);
+
+		ReportRequest packingSlipReportRequest = createReportRequest("json/packingSlipReportRequest.json");
+
+		assertNotNull(packingSlipReportRequest);
+		assertNotNull(packingSlipReportRequest.getData());
+
+		byte[] packingSlipResponse = apiReportService.getPackingSlipReport(packingSlipReportRequest);
+		assertNotNull(packingSlipResponse);
+
+		List<ReportDocument> rds = new ArrayList<>();
+		rds.add(achievementReport);
+
+		orderType = bcmpBundleService.createAchievementOrderType();
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Achievement");
+		ReportRequestDataThreadLocal.setReportData(packingSlipReportRequest.getData());
+		testPackingSlipReport(
+				rds,
+				orderType,
+				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
+				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
+		rds.clear();
+
+		rds.add(eCertificateReport);
+		orderType = bcmpBundleService.createCertificateOrderType(E);
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Certificate");
+		ReportRequestDataThreadLocal.setReportData(packingSlipReportRequest.getData());
+		testPackingSlipReport(
+				rds,
+				orderType,
+				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
+				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
+		rds.clear();
+
+		rds.add(sccpTranscriptReport);
+		orderType = bcmpBundleService.createTranscriptOrderType();
+		packingSlipReportRequest.getData().getPackingSlip().getOrderType().setName("Transcript");
+		ReportRequestDataThreadLocal.setReportData(packingSlipReportRequest.getData());
+		testPackingSlipReport(
+				rds,
+				orderType,
+				packingSlipReportRequest.getData().getPackingSlip().getQuantity(),
+				packingSlipReportRequest.getData().getPackingSlip().getCurrent(),
+				packingSlipReportRequest.getData().getPackingSlip().getTotal());
+
+		LOG.debug(">testPackingSlipReport");
+	}
+
+	@Test
+	public void createTranscriptReportDuplicateInterimCourses_BC2018_PUB() throws Exception {
+		LOG.debug("<{}.createTranscriptReportDuplicateInterimCourses_BC2018_PUB at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-PUB.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		ca.bc.gov.educ.grad.report.model.transcript.Transcript filteredTranscript = transcriptService.getTranscript(reportRequest.getData().getStudent().getPen().getPen());
+		List<TranscriptCourse> originalCourses = gradDataConvertionBean.getTranscriptCourses(reportRequest.getData());
+
+		assertTrue(originalCourses.size() > filteredTranscript.getResults().size());
+
+		LOG.debug(">createTranscriptReportDuplicateInterimCourses_BC2018_PUB");
+	}
+
+	@Test
+	public void createTranscriptReportThrowDataException() throws Exception {
+		LOG.debug("<{}.createTranscriptReportThrowException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getStudent());
+		assertNotNull(reportRequest.getData().getStudent().getPen());
+		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		ReportRequestDataThreadLocal.setReportData(null);
+
+		assertThrows("Report Data not exists for the current report generation", DataException.class, () -> {
+			transcriptService.getTranscript(pen);
+		});
+
+		LOG.debug(">createTranscriptReportThrowException");
+	}
+
+	@Test
+	public void createCertificateReportThrowDataException() throws Exception {
+		LOG.debug("<{}.createCertificateReportThrowDataException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getStudent());
+		assertNotNull(reportRequest.getData().getStudent().getPen());
+		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+
+		reportRequest.getData().setCertificate(null);
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		assertThrows("Failed to find student certificate", DomainServiceException.class, () -> {
+			certificateService.buildReport();
+		});
+
+		LOG.debug(">createCertificateReportThrowDataException");
+	}
+
+	@Test
+	public void createTranscriptReportThrowProgramException() throws Exception {
+		LOG.debug("<{}.createTranscriptReportThrowException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentTranscriptReportRequest-BC2018-IND.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+		assertNotNull(reportRequest.getData().getStudent());
+		assertNotNull(reportRequest.getData().getStudent().getPen());
+		assertNotNull(reportRequest.getData().getStudent().getPen().getPen());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+
+		reportRequest.getData().setGradProgram(null);
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		assertThrows("Grad Program or Grad Program Code is null", DataException.class, () -> {
+			transcriptService.getTranscript(pen);
+		});
+
+		LOG.debug(">createTranscriptReportThrowException");
+	}
+
+	private void testPackingSlipReport(
+			final List<ReportDocument> rds,
+			final OrderType orderType,
+			final int quantity,
+			final int current,
+			final int total)
+			throws DomainServiceException, IOException {
+
+		ReportDocument packingSlip = packingSlipService.createPackingSlipReport(
+			16895L,
+			new Date(),
+			"Test Case",
+				quantity,
+				current,
+				total
+		);
+		byte[] packingSlipByteArray = packingSlip.asBytes();
+		try (OutputStream out = new FileOutputStream("target/PackingSlip" + orderType.getName() + ".pdf")) {
+			out.write(packingSlipByteArray);
+		}
+
+		DocumentBundle documentBundle = createDocumentBundle(packingSlip, rds, orderType);
+		byte[] documentBundleByteArray = documentBundle.asBytes();
+		try (OutputStream out = new FileOutputStream("target/DocumentBundle" + orderType.getName() + ".pdf")) {
+			out.write(documentBundleByteArray);
+		}
+	}
+
+	/**
+	 * Bundles an arbitrary number of transcripts or certificates with a packing
+	 * slip without XPIF information.
+	 *
+	 * @param orderType The type of report document to bundle (transcript or
+	 * certificate).
+	 *
+	 * @throws IOException Could not generate bundle.
+	 */
+	private DocumentBundle createDocumentBundle(
+			final ReportDocument packingSlip,
+			final List<ReportDocument> rds,
+			final OrderType orderType)
+			throws IOException {
+
+		DocumentBundle bundle = bcmpBundleService.createDocumentBundle(orderType);
+		bundle = bcmpBundleService.appendReportDocument(bundle, packingSlip);
+		bundle = bcmpBundleService.appendReportDocument(bundle, rds);
+		// Once the bundle has been created, decorate the page numbers.
+		return bcmpBundleService.enumeratePages(bundle);
+	}
+
+}

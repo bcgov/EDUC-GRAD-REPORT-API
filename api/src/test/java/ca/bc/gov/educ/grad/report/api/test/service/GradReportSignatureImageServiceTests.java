@@ -26,10 +26,10 @@ import static org.junit.Assert.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 @WebAppConfiguration
-public class StudentReportSignatureImageServiceTests extends GradReportBaseTest {
+public class GradReportSignatureImageServiceTests extends GradReportBaseTest {
 
-	private static final Logger LOG = LoggerFactory.getLogger(StudentReportSignatureImageServiceTests.class);
-	private static final String CLASS_NAME = StudentReportSignatureImageServiceTests.class.getSimpleName();
+	private static final Logger LOG = LoggerFactory.getLogger(GradReportSignatureImageServiceTests.class);
+	private static final String CLASS_NAME = GradReportSignatureImageServiceTests.class.getSimpleName();
 	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
 	@Autowired	GradReportSignatureService reportSignatureService;

@@ -78,7 +78,7 @@ public interface ReportService extends ReportExportService {
      *
      * @return A non-null report instance that must be populated with data.
      */
-    GraduationReport createDistrictDistributionYearEndCredentialsTranscriptsReport();
+    GraduationReport createDistrictDistributionYearEndCredentialsReport();
 
     /**
      * Creates a school label report instance that can be exported into a final

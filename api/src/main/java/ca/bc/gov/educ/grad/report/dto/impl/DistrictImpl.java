@@ -1,67 +1,64 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.district.District;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
 @Component
-public class DistrictImpl implements District {
+public class DistrictImpl extends AbstractDomainEntity implements District {
 
-	private String districtNumber;
-    private String districtName;    
-    private String districtSeq;
-    private String schoolETPSystem;
-    private String superIntendent;    
-    private String djdeFlash;    
-    private String activeFlag;    
-    private String address1;    
-    private String address2;    
-    private String city;    
-    private String provCode;    
-    private String countryCode;
-    private String postal;
+	private String distno;
+    private String name;
+    private PostalAddress address = new PostalAddressImpl();
 
-    @Override
+    public String getDistno() {
+        return distno;
+    }
+
+    public void setDistno(String distno) {
+        this.distno = distno;
+    }
+
+    public String getDistrictNumber() {
+        return getDistno();
+    }
+
+    public void setDistrictNumber(String districtNumber) {
+        setDistno(districtNumber);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDistrictName() {
-        return districtName != null ? districtName.trim(): null;
+        return getName();
+    }
+
+    public void setDistrictName(String name) {
+        setName(name);
     }
 
     @Override
-    public String getDistrictSeq() {  return districtSeq != null ? districtSeq.trim(): null; }
+    @JsonDeserialize(as = PostalAddressImpl.class)
+    public PostalAddress getAddress() {
+        return address;
+    }
+
+    public void setAddress(PostalAddress address) {
+        this.address = address;
+    }
 
     @Override
-    public String getSchoolETPSystem() { return schoolETPSystem != null ? schoolETPSystem.trim(): null; }
-
-    @Override
-    public String getSuperIntendent() {return superIntendent != null ? superIntendent.trim(): null;}
-
-    @Override
-    public String getDjdeFlash() {        return djdeFlash != null ? djdeFlash.trim(): null;    }
-
-    @Override
-    public String getActiveFlag() {        return activeFlag != null ? activeFlag.trim(): null;    }
-
-    @Override
-    public String getAddress1() {        return address1 != null ? address1.trim(): null;    }
-
-    @Override
-    public String getAddress2() {        return address2 != null ? address2.trim(): null;    }
-
-    @Override
-    public String getCity() {        return postal != null ? city.trim(): null;    }
-
-    @Override
-    public String getPostal() {        return postal != null ? postal.trim(): null;    }
-
-    @Override
-	public String toString() {
-		return "District [districtNumber=" + districtNumber + ", districtName=" + districtName + ", districtSeq="
-				+ districtSeq + ", schoolETPSystem=" + schoolETPSystem + ", superIntendent=" + superIntendent
-				+ ", djdeFlash=" + djdeFlash + ", activeFlag=" + activeFlag + ", address1=" + address1 + ", address2="
-				+ address2 + ", city=" + city + ", provCode=" + provCode + ", countryCode=" + countryCode + ", postal="
-				+ postal + "]";
-	}
-    
-    
+    public Long getId() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

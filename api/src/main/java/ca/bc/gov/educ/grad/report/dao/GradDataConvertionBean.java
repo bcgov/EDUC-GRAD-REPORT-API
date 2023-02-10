@@ -90,11 +90,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
                 programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
                 school.getName(),// String schoolName,
-                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine1() : "",// String schoolStreet,
-                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine2() : "",// String schoolStreet2,
-                school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "",// String schoolCity,
-                school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "",// String schoolProv,
-                school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "",// String schoolPostalCode,
+                school.getAddress() != null ? school.getAddress().getStreetLine1() : "",// String schoolStreet,
+                school.getAddress() != null ? school.getAddress().getStreetLine2() : "",// String schoolStreet2,
+                school.getAddress() != null ? school.getAddress().getCity() : "",// String schoolCity,
+                school.getAddress() != null ? school.getAddress().getRegion() : "",// String schoolProv,
+                school.getAddress() != null ? school.getAddress().getPostalCode() : "",// String schoolPostalCode,
                 school.getPhoneNumber(),// String schoolPhone,
                 school.getTypeIndicator()// Character schlIndType
         );

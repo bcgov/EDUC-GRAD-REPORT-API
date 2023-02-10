@@ -71,6 +71,10 @@ public class GradReportService {
 	@Autowired
 	SchoolDistributionService schoolDistributionEndYearNewCredentialsService;
 
+	@Qualifier("districtDistributionYearEndCredentialsServiceImpl")
+	@Autowired
+	SchoolDistributionService districtDistributionEndYearCredentialsService;
+
 	@Qualifier("schoolDistributionYearEndIssuedTranscriptsServiceImpl")
 	@Autowired
 	SchoolDistributionService schoolDistributionEndYearIssuedTranscriptsService;
@@ -92,7 +96,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getPackingSlipReport(ReportRequest reportRequest) {
-		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
+		String methodName = "getPackingSlipReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -110,7 +114,7 @@ public class GradReportService {
 
 	public ReportDocument getPackingSlipReportDocument(ReportRequest reportRequest) {
 
-		String methodName = "getPackingSlipReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getPackingSlipReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 
@@ -130,7 +134,7 @@ public class GradReportService {
 
 	@SneakyThrows
     public byte[] getStudentAchievementReport(ReportRequest reportRequest) {
-    	String methodName = "getStudentAchievementReport(GenerateReportRequest reportRequest)";
+    	String methodName = "getStudentAchievementReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -148,7 +152,7 @@ public class GradReportService {
 
 	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) throws IOException {
 
-		String methodName = "getStudentAchievementReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentAchievementReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -158,7 +162,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getStudentTranscriptReport(ReportRequest reportRequest) {
-		String methodName = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentTranscriptReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -174,7 +178,7 @@ public class GradReportService {
 	}
 
 	public StudentTranscriptReport getStudentTranscriptReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getStudentTranscriptReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentTranscriptReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -212,7 +216,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getStudentCertificateReport(ReportRequest reportRequest) {
-		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentCertificateReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -228,7 +232,7 @@ public class GradReportService {
 	}
 
 	public DocumentBundle getStudentCertificateReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentCertificateReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -247,7 +251,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getSchoolDistributionReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolDistributionReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolDistributionReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -261,10 +265,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getSchoolDistributionReportYearEnd(ReportRequest reportRequest) {
-		String methodName = "getSchoolDistributionReportYearEnd(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolDistributionReportYearEnd(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -279,9 +282,24 @@ public class GradReportService {
 		return response;
 	}
 
-	@SneakyThrows
+	public byte[] getDistrictDistributionReportYearEnd(ReportRequest reportRequest) {
+		String methodName = "getDistrictDistributionReportYearEnd(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			SchoolDistributionReport districtDistributionYearEndReport = getDistrictDistributionCredentialsReportDocument(reportRequest);
+			response = districtDistributionYearEndReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+	
 	public byte[] getSchoolLabelReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolLabelReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolLabelReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -295,10 +313,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getSchoolGraduationReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolGraduationReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolGraduationReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -312,10 +329,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getSchoolNonGraduationReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolNonGraduationReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolNonGraduationReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -329,10 +345,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getStudentNonGradReport(ReportRequest reportRequest) {
-		String methodName = "getStudentNonGradReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentNonGradReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -348,7 +363,7 @@ public class GradReportService {
 	}
 
 	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolDistributionReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -357,7 +372,7 @@ public class GradReportService {
 	}
 
 	public DocumentBundle getSchoolDistributionYearEndReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolDistributionYearEndReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolDistributionYearEndReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		SchoolDistributionReport newCredentialsReport = null;
@@ -394,7 +409,7 @@ public class GradReportService {
 	}
 
 	public SchoolLabelReport getSchoolLabelReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolLabelReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolLabelReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -403,7 +418,7 @@ public class GradReportService {
 	}
 
 	public SchoolGraduationReport getSchoolGraduationReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolGraduationReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolGraduationReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -412,7 +427,7 @@ public class GradReportService {
 	}
 
 	public SchoolNonGraduationReport getSchoolNonGraduationReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolNonGraduationReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolNonGraduationReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -421,7 +436,7 @@ public class GradReportService {
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getStudentNonGradReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentNonGradReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
@@ -436,5 +451,10 @@ public class GradReportService {
 			newCredentialsReport = this.schoolDistributionEndYearNewCredentialsService.buildSchoolDistributionReport();
 		}
 		return newCredentialsReport;
+	}
+
+	private SchoolDistributionReport getDistrictDistributionCredentialsReportDocument(ReportRequest reportRequest) throws IOException {
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		return this.districtDistributionEndYearCredentialsService.buildSchoolDistributionReport();
 	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolDistributionYearEndNewCredentialsReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="45" bottomMargin="30" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolDistributionYearEndNewCredentialsReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
 	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
@@ -71,14 +71,11 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="160" splitType="Stretch">
-			<printWhenExpression><![CDATA[EQUALS($V{PAGE_NUMBER},1)]]></printWhenExpression>
+		<band height="151" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="555" height="150" uuid="6e42880d-c3f1-4b6c-9a33-b922c7ed7b97">
-					<printWhenExpression><![CDATA[EQUALS($V{PAGE_NUMBER},1)]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="0" y="0" width="555" height="143" uuid="6e42880d-c3f1-4b6c-9a33-b922c7ed7b97"/>
 				<staticText>
-					<reportElement stretchType="ContainerHeight" x="0" y="110" width="555" height="40" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
+					<reportElement stretchType="ContainerHeight" x="0" y="110" width="555" height="33" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 					</reportElement>
@@ -143,22 +140,6 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement style="GeneratedText" x="445" y="165" width="27" height="15" uuid="6a5c3f2d-c817-4ad6-8d0b-3c2279ef0640">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					</reportElement>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Page:]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="472" y="165" width="83" height="15" uuid="06d713d9-1beb-4256-a139-aba484e48015"/>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
 			</frame>
 		</band>
 	</pageHeader>
@@ -167,7 +148,7 @@
 			<property name="com.jaspersoft.studio.layout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<componentElement>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="20" width="555" height="50" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="10" width="555" height="50" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -446,7 +427,7 @@
 				</jr:table>
 			</componentElement>
 			<frame>
-				<reportElement x="0" y="20" width="555" height="15" uuid="8f2ad1e9-bcd0-45df-aa98-25d84f24ea4d">
+				<reportElement x="0" y="10" width="555" height="15" uuid="8f2ad1e9-bcd0-45df-aa98-25d84f24ea4d">
 					<printWhenExpression><![CDATA["false".equalsIgnoreCase($P{hasSchools})]]></printWhenExpression>
 				</reportElement>
 				<box>

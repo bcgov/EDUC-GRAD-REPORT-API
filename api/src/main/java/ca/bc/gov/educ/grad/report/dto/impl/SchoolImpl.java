@@ -17,13 +17,10 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
-import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
-import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolStatistic;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Represents information about a school that is used on a report.
@@ -33,13 +30,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = PostalAddressImpl.class)
 })
-public class SchoolImpl extends AbstractDomainEntity implements School {
+public class SchoolImpl extends DistrictImpl implements School {
 
     private static final long serialVersionUID = 4L;
 
-    private PostalAddress address = new PostalAddressImpl();
     private String mincode = "";
-    private String distno = "";
     private String schlno = "";
     private String schoolCategoryCode = "";
     private String name = "";
@@ -50,29 +45,13 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     private String dogwoodElig = "";
     private SchoolStatistic schoolStatistic;
 
-    public void setAddress(final PostalAddress address) {
-        this.address = address;
-    }
-
     public void setMincode(final String mincode) {
         this.mincode = mincode;
-    }
-
-    public PostalAddress getAddress() {
-        return address;
     }
 
     @JsonProperty("minCode")
     public String getMincode() {
         return mincode;
-    }
-
-    public String getDistno() {
-        return distno;
-    }
-
-    public void setDistno(String distno) {
-        this.distno = distno;
     }
 
     public String getSchlno() {
@@ -123,12 +102,6 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
     }
 
     @Override
-    @JsonDeserialize(as = PostalAddressImpl.class)
-    public PostalAddress getPostalAddress() {
-        return this.address;
-    }
-
-    @Override
     public String getTypeIndicator() {
         return this.typeIndicator;
     }
@@ -173,11 +146,6 @@ public class SchoolImpl extends AbstractDomainEntity implements School {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public Long getId() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

@@ -1,31 +1,42 @@
 package ca.bc.gov.educ.grad.report.model.district;
 
+import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+
 public interface District {
 
-    String getDistrictName();
+    /**
+     * Gets distno.
+     *
+     * @return the distno
+     */
+    String getDistno();
 
-    String getDistrictSeq();
+    /**
+     * Returns the postal mailing address for this school.
+     *
+     * @return An address for sending packages to a school.
+     */
+    PostalAddress getAddress();
 
-    String getSchoolETPSystem();
+    /**
+     * Gets district name.
+     *
+     * @return the distno
+     */
+    String getName();
 
-    String getSuperIntendent();
-
-    String getDjdeFlash();
-
-    String getActiveFlag();
-
-    String getAddress1();
-
-    String getAddress2();
-
-    String getCity();
-
-    String getPostal();
-
+    /**
+     * Gets distno.
+     *
+     * @return the distno
+     */
     String getDistrictNumber();
 
-    String getProvCode();
-
-    String getCountryCode();
+    /**
+     * Gets district name.
+     *
+     * @return the distno
+     */
+    String getDistrictName();
 
 }

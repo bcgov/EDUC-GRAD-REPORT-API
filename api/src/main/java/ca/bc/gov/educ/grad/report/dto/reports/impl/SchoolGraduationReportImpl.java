@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.ReportImpl;
+import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
@@ -12,6 +13,7 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
     private List<Student> students;
     private List<School> schools;
     private School school;
+    private District district;
 
     /**
      * Constructs a report implementation based with a report template name.
@@ -45,6 +47,11 @@ public class SchoolGraduationReportImpl extends ReportImpl implements Graduation
     @Override
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    @Override
+    public void setDistrict(District district) {
+        this.district = district;
     }
 
     /**

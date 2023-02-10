@@ -106,6 +106,30 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     }
 
     @Test
+    public void getDistrictDistributionYearEndReportTest() throws Exception {
+        LOG.debug("<{}.getDistrictDistributionYearEndReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/districtDistributionYearEndReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getDistrictDistributionReportYearEnd(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getDistrictDistributionYearEnd(reportRequest, "accessToken");
+        Mockito.verify(reportService).getDistrictDistributionReportYearEnd(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getDistrictDistributionYearEndReportTest");
+    }
+
+    @Test
     public void getPackingSlipReportTest() throws Exception {
         LOG.debug("<{}.getPackingSlipReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 

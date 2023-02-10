@@ -144,7 +144,7 @@ public abstract class GradReportBaseTest {
 
     protected void mockDistrictInfo(District district) {
         when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-        when(this.requestHeadersUriMock.uri(String.format(constants.getDistrictDetails(),district.getDistrictNumber()))).thenReturn(this.requestHeadersMock);
+        when(this.requestHeadersUriMock.uri(String.format(constants.getDistrictDetails(),district.getDistno()))).thenReturn(this.requestHeadersMock);
         when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
         when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
         when(this.responseMock.bodyToMono(District.class)).thenReturn(Mono.just(district));
