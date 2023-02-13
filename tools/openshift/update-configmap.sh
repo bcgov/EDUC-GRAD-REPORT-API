@@ -54,6 +54,7 @@ oc create -n "$OPENSHIFT_NAMESPACE"-"$envValue" configmap "$APP_NAME"-config-map
  --from-literal=GRAD_STUDENT_API="http://educ-grad-student-api.$OPENSHIFT_NAMESPACE-$envValue.svc.cluster.local:8080/" \
  --from-literal=GRAD_TRAX_API="http://educ-grad-trax-api.$OPENSHIFT_NAMESPACE-$envValue.svc.cluster.local:8080/" \
  --from-literal=PEN_API="http://student-api-master.$COMMON_NAMESPACE-$envValue.svc.cluster.local:8080/" \
+ --from-literal=MAXIMUM_POOL_SIZE="10" \
  --dry-run=client -o yaml | oc apply -f -
 echo
 
