@@ -219,7 +219,7 @@
 								<reportElement style="Zebra" mode="Opaque" x="0" y="0" width="44" height="20" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
-								<textElement textAlignment="Left">
+								<textElement textAlignment="Center">
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>

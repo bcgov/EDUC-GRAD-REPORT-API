@@ -178,6 +178,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             BeanUtils.copyProperties(reportData.getSchool().getAddress(), address);
         }
         school.setAddress(address);
+        SchoolStatisticImpl statistics = new SchoolStatisticImpl();
+        if (reportData.getSchool().getSchoolStatistic() != null) {
+            BeanUtils.copyProperties(reportData.getSchool().getSchoolStatistic(), statistics);
+        }
+        school.setSchoolStatistic(statistics);
         return school;
     }
 
@@ -504,6 +509,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 BeanUtils.copyProperties(sch.getAddress(), address);
             }
             school.setAddress(address);
+            SchoolStatisticImpl statistics = new SchoolStatisticImpl();
+            if (sch.getSchoolStatistic() != null) {
+                BeanUtils.copyProperties(sch.getSchoolStatistic(), statistics);
+            }
+            school.setSchoolStatistic(statistics);
             result.add(school);
         }
         return result;

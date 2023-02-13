@@ -6,7 +6,7 @@
   "data": {
     "school": {
       "name": "REVELSTOKE",
-      "mincode": "039"
+      "distno": "039"
     },
     "schools":[
       {
@@ -25,6 +25,14 @@
           "region": "BC",
           "country": "",
           "code": "V6R3C9"
+        },
+        "schoolStatistic": {
+          "transcriptCount": 4,
+          "dogwoodCount": 5,
+          "adultDogwoodCount": 1,
+          "programFrancophoneCount": 35,
+          "evergreenCount": 2,
+          "totalCertificateCount": 47
         }
       },
       {
@@ -43,6 +51,15 @@
           "region": "BC",
           "country": "CN",
           "code": "V5W2Z7"
+        },
+        "schoolStatistic": {
+          "transcriptCount": 2,
+          "dogwoodCount": 5,
+          "adultDogwoodCount": 1,
+          "frenchImmersionCount": 67,
+          "programFrancophoneCount": 23,
+          "evergreenCount": 3,
+          "totalCertificateCount": 49
         }
       },
       {
@@ -61,6 +78,15 @@
           "region": "BC",
           "country": "",
           "code": "V0B 1H0"
+        },
+        "schoolStatistic": {
+          "transcriptCount": 5,
+          "dogwoodCount": 5,
+          "adultDogwoodCount": 1,
+          "frenchImmersionCount": 128,
+          "programFrancophoneCount": 45,
+          "evergreenCount": 4,
+          "totalCertificateCount": 88
         }
       },
       {
@@ -79,6 +105,14 @@
           "region": "BC",
           "country": "",
           "code": "VER4H6"
+        },
+        "schoolStatistic": {
+          "transcriptCount": 4,
+          "dogwoodCount": 6,
+          "adultDogwoodCount": 122,
+          "frenchImmersionCount": 5,
+          "programFrancophoneCount": 12,
+          "totalCertificateCount": 23
         }
       },
       {
@@ -98,9 +132,15 @@
           "country": "CN",
           "code": "V2T5R2"
         },
-        "phoneNumber": "",
-        "dogwoodElig": "",
-        "students": []
+        "schoolStatistic": {
+          "transcriptCount": 5,
+          "dogwoodCount": 5,
+          "adultDogwoodCount": 6,
+          "frenchImmersionCount": 5,
+          "programFrancophoneCount": 3,
+          "evergreenCount": 2,
+          "totalCertificateCount": 21
+        }
       }
     ],
     "orgCode": "BC",
