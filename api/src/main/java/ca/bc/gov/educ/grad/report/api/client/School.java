@@ -21,6 +21,8 @@ public class School implements Serializable {
     private String phoneNumber = "";
     private String dogwoodElig = "";
 
+    private SchoolStatistic schoolStatistic = new SchoolStatistic();
+
     private List<Student> students = new ArrayList<>();
 
     public String getMincode() {
@@ -121,5 +123,13 @@ public class School implements Serializable {
             Collections.sort(students);
             this.students = students;
         }
+    }
+
+    public SchoolStatistic getSchoolStatistic() {
+        return schoolStatistic;
+    }
+
+    public void setSchoolStatistic(SchoolStatistic schoolStatistic) {
+        this.schoolStatistic = schoolStatistic;
     }
 }

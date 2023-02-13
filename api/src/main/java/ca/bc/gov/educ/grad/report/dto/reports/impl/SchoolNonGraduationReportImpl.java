@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.jasper.impl.ReportImpl;
+import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
@@ -44,6 +45,11 @@ public class SchoolNonGraduationReportImpl extends ReportImpl implements Graduat
     @Override
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    @Override
+    public void setDistrict(District district) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**

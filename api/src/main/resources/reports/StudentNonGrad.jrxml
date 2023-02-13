@@ -110,13 +110,13 @@
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["GRAD System - Projected Non-Grad Report"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Projected Non-Graduates Summary Report"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="105" y="15" width="341" height="15" uuid="31b126b4-76d2-4dae-a97b-a3a8266a5bf8">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["for Students in Grade 12 and Adult Students"]]></textFieldExpression>
@@ -151,7 +151,7 @@
 				<textElement verticalAlignment="Top">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or subgrade AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
+				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>

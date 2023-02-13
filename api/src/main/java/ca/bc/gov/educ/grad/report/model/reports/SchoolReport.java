@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.model.reports;
 
+import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.model.school.School;
 
 /**
@@ -35,4 +36,11 @@ public interface SchoolReport extends Report {
      */
     void setSchool(School school);
 
+    /**
+     * Sets the District to use for populating the reports. The default logo code
+     * will be BC.
+     *
+     * @param district The District instance with data used for filling reports.
+     */
+    void setDistrict(District district);
 }
