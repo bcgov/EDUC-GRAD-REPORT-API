@@ -89,7 +89,7 @@
 	<pageHeader>
 		<band height="203" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="104" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -123,16 +123,25 @@
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["GRAD System - Not-Yet Graduated Report"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Not-Yet Graduated Students"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="152" y="15" width="200" height="15" uuid="4199149b-e9de-4559-aa0e-69a343270352">
+					<reportElement style="GeneratedText" x="137" y="28" width="243" height="15" uuid="4199149b-e9de-4559-aa0e-69a343270352">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
 						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[ "(" + $V{V_FISCAL_DATES} + ")"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["(" + $V{V_FISCAL_DATES} + ")"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="GeneratedText" x="137" y="15" width="243" height="15" uuid="45114c3e-20b0-4307-a30b-f1914f264406">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Cumulative List of Students"]]></textFieldExpression>
 				</textField>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">

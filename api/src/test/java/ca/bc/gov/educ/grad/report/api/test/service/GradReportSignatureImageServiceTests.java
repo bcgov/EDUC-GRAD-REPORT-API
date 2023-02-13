@@ -105,8 +105,8 @@ public class GradReportSignatureImageServiceTests extends GradReportBaseTest {
 		saveCode = gradReportCodeService.saveSignatureBlockTypeCode(saveCode);
 
 		SignatureBlockTypeCode savedCode = gradReportCodeService.getSignatureBlockTypeCode(saveCode.getCode());
-		assertEquals(savedCode.getLabel(), "New Label");
-		assertEquals(savedCode.getDescription(), "New Description");
+		assertEquals("New Label", savedCode.getLabel());
+		assertEquals("New Description", savedCode.getDescription());
 
 		LOG.debug(">saveSignatureBlockTypesTest");
 	}

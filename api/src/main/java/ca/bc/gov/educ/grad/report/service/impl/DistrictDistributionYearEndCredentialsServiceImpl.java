@@ -69,6 +69,7 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
         return createSchoolDistributionReport(graduationReport);
     }
 
+    @Override
     GraduationReport getGraduationReport(String methodName, List<String> excludePrograms) throws IOException {
         Parameters<String, Object> parameters = createParameters();
 
