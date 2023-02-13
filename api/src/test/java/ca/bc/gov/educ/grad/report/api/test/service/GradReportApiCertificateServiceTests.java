@@ -63,611 +63,148 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 
 	@Test
 	public void createCertificateReport_E() throws Exception {
-		LOG.debug("<{}.createCertificateReport_E at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-E.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_E");
+		createCertificateReport("createCertificateReport_E", "json/studentCertificateReportRequest-E.json");
 	}
 
 	@Test
 	public void createCertificateReport_EO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_EO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_EO");
+		createCertificateReport("createCertificateReport_EO", "json/studentCertificateReportRequest-EO.json");
 	}
 
 	@Test
 	public void createCertificateReport_EB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_EB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_EB");
+		createCertificateReport("createCertificateReport_EB", "json/studentCertificateReportRequest-EB.json");
 	}
 
 	@Test
 	public void createCertificateReport_A() throws Exception {
-		LOG.debug("<{}.createCertificateReport_A at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-A.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_A");
+		createCertificateReport("createCertificateReport_A", "json/studentCertificateReportRequest-A.json");
 	}
 
 	@Test
 	public void createCertificateReport_AO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_AO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-
-		assertNotNull(response);
-
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_AO");
+		createCertificateReport("createCertificateReport_AO", "json/studentCertificateReportRequest-AO.json");
 	}
 
 	@Test
 	public void createCertificateReport_AB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_AB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_AB");
+		createCertificateReport("createCertificateReport_AB", "json/studentCertificateReportRequest-AB.json");
 	}
 
 	@Test
 	public void createCertificateReport_AIB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_AIB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AIB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_AIB");
+		createCertificateReport("createCertificateReport_AIB", "json/studentCertificateReportRequest-AIB.json");
 	}
 
 	@Test
 	public void createCertificateReport_EI() throws Exception {
-		LOG.debug("<{}.createCertificateReport_EI at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EI.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_EI");
+		createCertificateReport("createCertificateReport_EI", "json/studentCertificateReportRequest-EI.json");
 	}
 
 	@Test
 	public void createCertificateReport_EIB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_EIB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_EIB");
+		createCertificateReport("createCertificateReport_EIB", "json/studentCertificateReportRequest-EIB.json");
 	}
 
 	@Test
 	public void createCertificateReport_EIO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_EIO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-EIO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_EIO");
+		createCertificateReport("createCertificateReport_EIO", "json/studentCertificateReportRequest-EIO.json");
 	}
 
 	@Test
 	public void createCertificateReport_AI() throws Exception {
-		LOG.debug("<{}.createCertificateReport_AI at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-AI.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_AI");
+		createCertificateReport("createCertificateReport_AI", "json/studentCertificateReportRequest-AI.json");
 	}
 
 	@Test
 	public void createCertificateReport_SC() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SC at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SC.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SC");
+		createCertificateReport("createCertificateReport_SC", "json/studentCertificateReportRequest-SC.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCB");
+		createCertificateReport("createCertificateReport_SCB", "json/studentCertificateReportRequest-SCB.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCO");
+		createCertificateReport("createCertificateReport_SCO", "json/studentCertificateReportRequest-SCO.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCI() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCI at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCI.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCI");
+		createCertificateReport("createCertificateReport_SCI", "json/studentCertificateReportRequest-SCI.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCIB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCIB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCIB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCIB");
+		createCertificateReport("createCertificateReport_SCIB", "json/studentCertificateReportRequest-SCIB.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCIO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCIO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCIO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCIO");
+		createCertificateReport("createCertificateReport_SCIO", "json/studentCertificateReportRequest-SCIO.json");
 	}
 
 	@Test
 	public void createCertificateReport_S() throws Exception {
-		LOG.debug("<{}.createCertificateReport_S at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-S.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_S");
+		createCertificateReport("createCertificateReport_S", "json/studentCertificateReportRequest-S.json");
 	}
 
 	@Test
 	public void createCertificateReport_SB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SB");
+		createCertificateReport("createCertificateReport_SB", "json/studentCertificateReportRequest-SB.json");
 	}
 
 	@Test
 	public void createCertificateReport_SO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SO");
+		createCertificateReport("createCertificateReport_SO", "json/studentCertificateReportRequest-SO.json");
 	}
 
 	@Test
 	public void createCertificateReport_F() throws Exception {
-		LOG.debug("<{}.createCertificateReport_F at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-F.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_F");
+		createCertificateReport("createCertificateReport_F", "json/studentCertificateReportRequest-F.json");
 	}
 
 	@Test
 	public void createCertificateReport_FB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_FB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_FB");
+		createCertificateReport("createCertificateReport_FB", "json/studentCertificateReportRequest-FB.json");
 	}
 
 	@Test
 	public void createCertificateReport_FO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_FO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-FO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_FO");
+		createCertificateReport("createCertificateReport_FO", "json/studentCertificateReportRequest-FO.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCF() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCF at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCF.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCF");
+		createCertificateReport("createCertificateReport_SCF", "json/studentCertificateReportRequest-SCF.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCFB() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCFB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCF");
+		createCertificateReport("createCertificateReport_SCFB", "json/studentCertificateReportRequest-SCFB.json");
 	}
 
 	@Test
 	public void createCertificateReport_SCFO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_SCFO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-SCFO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_SCFO");
+		createCertificateReport("createCertificateReport_SCFO", "json/studentCertificateReportRequest-SCFO.json");
 	}
 
 	@Test
 	public void createCertificateReport_O() throws Exception {
-		LOG.debug("<{}.createCertificateReport_O at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-O.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_O");
+		createCertificateReport("createCertificateReport_O", "json/studentCertificateReportRequest-O.json");
 	}
 
 	@Test
 	public void createCertificateReport_OB() throws Exception {
+		createCertificateReport("createCertificateReport_OB", "json/studentCertificateReportRequest-OB.json");
 		LOG.debug("<{}.createCertificateReport_OB at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OB.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_OB");
 	}
 
 	@Test
 	public void createCertificateReport_OO() throws Exception {
-		LOG.debug("<{}.createCertificateReport_OO at {}", CLASS_NAME, dateFormat.format(new Date()));
-		ReportRequest reportRequest = createReportRequest("json/studentCertificateReportRequest-OO.json");
-
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
-		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
-		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
-		
-		assertNotNull(response);
-		
-		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
-			out.write(response);
-		}
-		LOG.debug(">createCertificateReport_OO");
+		createCertificateReport("createCertificateReport_OO", "json/studentCertificateReportRequest-OO.json");
 	}
 
 	@Test
@@ -739,4 +276,25 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 		LOG.debug(">createCertificateReportThrowDataException");
 	}
 
+	void createCertificateReport(String methodName, String jsonPath) throws Exception {
+		LOG.debug("<{}.{} at {}", CLASS_NAME, methodName, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest(jsonPath);
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentCertificateReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">".concat(methodName));
+	}
+
 }
+

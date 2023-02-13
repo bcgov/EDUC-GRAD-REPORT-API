@@ -5,15 +5,9 @@ import ca.bc.gov.educ.grad.report.api.client.Student;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
-import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
-import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
-import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
-import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
-import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,18 +38,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 	ReportApiConstants reportApiConstants;
 	@Autowired
 	GradReportService apiReportService;
-	@Autowired
-	BCMPBundleService bcmpBundleService;
-	@Autowired
-	GradReportSignatureService reportSignatureService;
-	@Autowired
-	PackingSlipService packingSlipService;
-	@Autowired
-	StudentTranscriptService transcriptService;
-	@Autowired
-	StudentCertificateService certificateService;
-	@Autowired
-	GradDataConvertionBean gradDataConvertionBean;
 
 	@Before
 	public void init() {
