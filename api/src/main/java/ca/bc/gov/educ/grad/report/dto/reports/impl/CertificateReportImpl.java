@@ -270,7 +270,10 @@ public final class CertificateReportImpl extends StudentReportImpl
     private String getSchoolSignatureCode() {
         return StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "AI")
                 || StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "EI")
-                || StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "SCI") ? "INDEP" : this.schoolSignatureCode;
+                || StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "SCI") ? "INDEP" :
+               StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "FN")
+                || StringUtils.startsWithIgnoreCase(certificateType.getReportName(), "SCFN") ? "FIRST_NATIONS" :
+                this.schoolSignatureCode;
     }
 
     private void setSchoolSignatureCode(final String schoolSignatureCode) {
