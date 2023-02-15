@@ -132,7 +132,7 @@
 					<textElement textAlignment="Center">
 						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["(" + $V{V_FISCAL_DATES} + ")"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{V_FISCAL_DATES}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="137" y="15" width="243" height="15" uuid="45114c3e-20b0-4307-a30b-f1914f264406">
@@ -141,8 +141,17 @@
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Cumulative List of Students"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["for students in Grade 12 and Adult Students"]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="105" height="17" uuid="e1096ad5-239d-4b4c-bf66-c6ca3fb44216">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[GRAD]]></text>
+				</staticText>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="5" y="11" width="100" height="80" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
@@ -410,7 +419,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYYY/MM/dd hh:mm").format($F{lastUpdateDate})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd hh:mm").format($F{lastUpdateDate})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

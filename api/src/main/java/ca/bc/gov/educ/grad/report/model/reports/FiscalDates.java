@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class FiscalDates {
 
-    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM yyyy");
+    private static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM yyyy");
 
     final private Date dateFrom;
     final private Date dateTo;

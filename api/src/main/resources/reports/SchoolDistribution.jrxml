@@ -113,6 +113,15 @@
 					</textElement>
 					<textFieldExpression><![CDATA["New Credentials Issued"]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="105" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[GRAD]]></text>
+				</staticText>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="5" y="11" width="100" height="80" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
@@ -335,7 +344,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="555" height="15" backcolor="lightGray" uuid="9bb48ab9-2756-4134-8c46-a40d66ddd57e"/>
+					<reportElement x="0" y="0" width="555" height="15" backcolor="#C0C0C0" uuid="9bb48ab9-2756-4134-8c46-a40d66ddd57e"/>
 					<textElement textAlignment="Center"/>
 					<text><![CDATA[No students selected for this report]]></text>
 				</staticText>

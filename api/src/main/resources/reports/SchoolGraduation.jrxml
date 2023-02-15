@@ -129,7 +129,7 @@
 					<textElement textAlignment="Center">
 						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["(" + $V{V_FISCAL_DATES} + ")"]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{V_FISCAL_DATES}]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="155" y="15" width="244" height="15" uuid="84c8e5bf-3fa1-4111-803e-b519ed68e8d7">
@@ -138,8 +138,17 @@
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Cumulative List of Students"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Cumulative List of Graduated Students"]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="105" height="17" uuid="5b16747c-04a6-4100-af4f-ef6d2952a93e">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[GRAD]]></text>
+				</staticText>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="5" y="11" width="100" height="80" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
