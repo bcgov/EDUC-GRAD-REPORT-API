@@ -19,10 +19,10 @@ public class GenericTests {
         assertNotNull(transcriptReport);
         CertificateReport certificateReport = service.createCertificateReport();
         assertNotNull(certificateReport);
-        GraduationReport graduationReport1 = service.createSchoolDistributionReport();
-        assertNotNull(graduationReport1);
-        GraduationReport graduationReport2 = service.createSchoolGraduationReport();
-        assertNotNull(graduationReport2);
+        GraduationReport schoolDistributionReport = service.createSchoolDistributionReport();
+        assertNotNull(schoolDistributionReport);
+        GraduationReport schoolGraduationReport = service.createSchoolGraduationReport();
+        assertNotNull(schoolGraduationReport);
         GraduationReport nonGradReport = service.createSchoolNonGraduationReport();
         assertNotNull(nonGradReport);
         ParameterPredicate predicate = service.createParameterPredicate();

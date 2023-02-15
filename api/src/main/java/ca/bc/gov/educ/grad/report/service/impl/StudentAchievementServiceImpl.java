@@ -199,7 +199,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             code = GraduationProgramCode.PROGRAM_2018.getCode();
         }
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -294,7 +294,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<AchievementCourse> results;
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -346,7 +346,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -398,7 +398,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -436,7 +436,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -488,7 +488,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -533,7 +533,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 "Retrieved the collection of career program results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
-        ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+        ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
         if (reportData == null) {
             EntityNotFoundException dse = new EntityNotFoundException(
@@ -735,8 +735,10 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             parameters.put("gradObj", graduationStatus);
         }
 
-        InputStream inputLogo = openImageResource("logo_" + studentInfo.getLogo().toLowerCase(Locale.ROOT) + "_bw.svg");
-        parameters.put("orgImage", inputLogo);
+        if(StringUtils.isNotBlank(studentInfo.getLogo())) {
+            InputStream inputLogo = openImageResource("logo_" + studentInfo.getLogo().toLowerCase(Locale.ROOT) + "_bw.svg");
+            parameters.put("orgImage", inputLogo);
+        }
 
         final StudentAchievementReport report = createReport(
                 format,

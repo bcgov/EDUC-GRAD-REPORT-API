@@ -42,7 +42,8 @@ public enum PaperType {
     CERTIFICATE_F("YEDR"),
     CERTIFICATE_O("YEDR"),
     ACHIEVEMENT("YED4"),
-    TRANSCRIPT("YED4");
+    TRANSCRIPT("YED4"),
+    SCHOOL("YED4");
 
     private final String code;
 

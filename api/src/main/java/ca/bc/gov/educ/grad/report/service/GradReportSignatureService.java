@@ -1,8 +1,8 @@
 package ca.bc.gov.educ.grad.report.service;
 
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
-import ca.bc.gov.educ.grad.report.dto.District;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
+import ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
@@ -67,7 +67,7 @@ public class GradReportSignatureService {
         List<GradReportSignatureImage> result = new ArrayList();
         for(GradReportSignatureImageEntity entity: entities) {
             GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
-            District dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+            DistrictImpl dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
             if(dist != null)
                 signatureImage.setDistrictName(dist.getDistrictName());
             result.add(signatureImage);
@@ -101,7 +101,7 @@ public class GradReportSignatureService {
         String methodName = String.format("getSignatureImageByCode(String %s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImage signatureImage = getSignatureImageByCode(code);
-        District dist = getDistrictInfo(signatureImage.getGradReportSignatureCode(),accessToken);
+        DistrictImpl dist = getDistrictInfo(signatureImage.getGradReportSignatureCode(),accessToken);
         if(dist != null)
             signatureImage.setDistrictName(dist.getDistrictName());
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -130,12 +130,12 @@ public class GradReportSignatureService {
         return imageBytes;
     }
 
-    public District getDistrictInfo(String districtCode,String accessToken) {
+    public DistrictImpl getDistrictInfo(String districtCode, String accessToken) {
         return webClient.get()
                 .uri(String.format(constants.getDistrictDetails(), districtCode))
                 .headers(h -> h.setBearerAuth(accessToken))
                 .retrieve()
-                .bodyToMono(District.class)
+                .bodyToMono(DistrictImpl.class)
                 .block();
     }
 }

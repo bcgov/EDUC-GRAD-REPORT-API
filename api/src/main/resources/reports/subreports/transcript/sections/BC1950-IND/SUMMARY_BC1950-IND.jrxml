@@ -222,7 +222,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" markup="styled"/>
-				<text><![CDATA[Social Studies (4 credits) – <style isItalic='true'>if applicable</style>]]></text>
+				<text><![CDATA[Social Studies 11 (4 credits) – <style isItalic='true'>if applicable</style>]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="44" y="323" width="15" height="14" uuid="e4ba81e7-019c-49ee-93ef-2163ada88acb"/>

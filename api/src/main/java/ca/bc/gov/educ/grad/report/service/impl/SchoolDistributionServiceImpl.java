@@ -75,7 +75,7 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
      * @return GradCertificateReport
      * @throws DomainServiceException
      */
-    private synchronized SchoolDistributionReport createSchoolDistributionReport(final GraduationReport graduationReport) throws DomainServiceException {
+    protected synchronized SchoolDistributionReport createSchoolDistributionReport(final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createSchoolDistributionReport(GraduationReport)";
         LOG.entering(CLASSNAME, methodName);

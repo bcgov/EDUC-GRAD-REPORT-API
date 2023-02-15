@@ -12,7 +12,6 @@ import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
-import ca.bc.gov.educ.grad.report.model.common.CitizenshipCode;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalDeliveryInfo;
 import ca.bc.gov.educ.grad.report.model.graduation.Exam;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
@@ -21,6 +20,7 @@ import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.reports.PaperType;
 import ca.bc.gov.educ.grad.report.model.school.School;
+import ca.bc.gov.educ.grad.report.model.student.CitizenshipCode;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
@@ -90,11 +90,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 programCodes != null && programCodes.size() >= 4 ? programCodes.get(3) : null, //String prgmCode4,
                 programCodes != null && programCodes.size() >= 5 ? programCodes.get(4) : null, //String prgmCode5,
                 school.getName(),// String schoolName,
-                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine1() : "",// String schoolStreet,
-                school.getPostalAddress() != null ? school.getPostalAddress().getStreetLine2() : "",// String schoolStreet2,
-                school.getPostalAddress() != null ? school.getPostalAddress().getCity() : "",// String schoolCity,
-                school.getPostalAddress() != null ? school.getPostalAddress().getRegion() : "",// String schoolProv,
-                school.getPostalAddress() != null ? school.getPostalAddress().getPostalCode() : "",// String schoolPostalCode,
+                school.getAddress() != null ? school.getAddress().getStreetLine1() : "",// String schoolStreet,
+                school.getAddress() != null ? school.getAddress().getStreetLine2() : "",// String schoolStreet2,
+                school.getAddress() != null ? school.getAddress().getCity() : "",// String schoolCity,
+                school.getAddress() != null ? school.getAddress().getRegion() : "",// String schoolProv,
+                school.getAddress() != null ? school.getAddress().getPostalCode() : "",// String schoolPostalCode,
                 school.getPhoneNumber(),// String schoolPhone,
                 school.getTypeIndicator()// Character schlIndType
         );
@@ -178,6 +178,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             BeanUtils.copyProperties(reportData.getSchool().getAddress(), address);
         }
         school.setAddress(address);
+        SchoolStatisticImpl statistics = new SchoolStatisticImpl();
+        if (reportData.getSchool().getSchoolStatistic() != null) {
+            BeanUtils.copyProperties(reportData.getSchool().getSchoolStatistic(), statistics);
+        }
+        school.setSchoolStatistic(statistics);
         return school;
     }
 
@@ -504,6 +509,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 BeanUtils.copyProperties(sch.getAddress(), address);
             }
             school.setAddress(address);
+            SchoolStatisticImpl statistics = new SchoolStatisticImpl();
+            if (sch.getSchoolStatistic() != null) {
+                BeanUtils.copyProperties(sch.getSchoolStatistic(), statistics);
+            }
+            school.setSchoolStatistic(statistics);
             result.add(school);
         }
         return result;

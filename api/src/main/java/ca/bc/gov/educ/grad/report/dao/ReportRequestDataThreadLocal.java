@@ -11,15 +11,15 @@ public class ReportRequestDataThreadLocal {
     private static final InheritableThreadLocal<String> transactionThread = new InheritableThreadLocal<String>();
     private static final ThreadLocal<String> signatureImageUrlThreadLocal = new ThreadLocal<String>();
 
-    public static ReportData getGenerateReportData() {
+    public static ReportData getReportData() {
         return reportDataThread.get();
     }
 
-    public static void setGenerateReportData(ReportData request) {
+    public static void setReportData(ReportData request) {
         reportDataThread.set(request);
     }
 
-    public static void removeGenerateReportData() {
+    public static void removeReportData() {
         reportDataThread.remove();
     }
 
@@ -72,7 +72,7 @@ public class ReportRequestDataThreadLocal {
     }
 
     public static void clear() {
-        removeGenerateReportData();
+        removeReportData();
         removeXmlReportData();
         removeCurrentUser();
         setSignatureImageUrl(null);

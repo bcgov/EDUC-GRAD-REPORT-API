@@ -4,8 +4,8 @@
     "convertTo" : null,
     "overwrite" : false,
     "preview" : false,
-    "reportName" : "Student Achievement Report.pdf",
-    "reportFile" : "achievement"
+    "reportName" : "achievement",
+    "reportFile" : "Student Achievement Report.pdf"
   },
   "data" : {
     "student" : {

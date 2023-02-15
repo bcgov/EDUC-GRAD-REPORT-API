@@ -1,10 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.service;
 
 import ca.bc.gov.educ.grad.report.api.client.PackingSlip;
+import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolReportOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.exception.ServiceException;
@@ -12,6 +14,7 @@ import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
+import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
@@ -26,10 +29,12 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
@@ -58,8 +63,21 @@ public class GradReportService {
 	@Autowired
 	PackingSlipService packingSlipService;
 
+	@Qualifier("schoolDistributionServiceImpl")
 	@Autowired
 	SchoolDistributionService schoolDistributionService;
+
+	@Qualifier("schoolDistributionYearEndNewCredentialsServiceImpl")
+	@Autowired
+	SchoolDistributionService schoolDistributionEndYearNewCredentialsService;
+
+	@Qualifier("districtDistributionYearEndCredentialsServiceImpl")
+	@Autowired
+	SchoolDistributionService districtDistributionEndYearCredentialsService;
+
+	@Qualifier("schoolDistributionYearEndIssuedTranscriptsServiceImpl")
+	@Autowired
+	SchoolDistributionService schoolDistributionEndYearIssuedTranscriptsService;
 
 	@Autowired
 	SchoolLabelService schoolLabelService;
@@ -78,7 +96,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getPackingSlipReport(ReportRequest reportRequest) {
-		String methodName = "getPackingSlipReport(GenerateReportRequest reportRequest)";
+		String methodName = "getPackingSlipReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -96,11 +114,11 @@ public class GradReportService {
 
 	public ReportDocument getPackingSlipReportDocument(ReportRequest reportRequest) {
 
-		String methodName = "getPackingSlipReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getPackingSlipReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		PackingSlip packingSlip = reportRequest.getData().getPackingSlip();
 
@@ -116,7 +134,7 @@ public class GradReportService {
 
 	@SneakyThrows
     public byte[] getStudentAchievementReport(ReportRequest reportRequest) {
-    	String methodName = "getStudentAchievementReport(GenerateReportRequest reportRequest)";
+    	String methodName = "getStudentAchievementReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -134,17 +152,17 @@ public class GradReportService {
 
 	public StudentAchievementReport getStudentAchievementReportDocument(ReportRequest reportRequest) throws IOException {
 
-		String methodName = "getStudentAchievementReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentAchievementReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return achievementService.buildOfficialAchievementReport();
 	}
 
 	@SneakyThrows
 	public byte[] getStudentTranscriptReport(ReportRequest reportRequest) {
-		String methodName = "getStudentTranscriptReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentTranscriptReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -160,10 +178,10 @@ public class GradReportService {
 	}
 
 	public StudentTranscriptReport getStudentTranscriptReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getStudentTranscriptReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentTranscriptReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 		if(reportRequest.getOptions().isPreview())
 			return transcriptService.buildUnOfficialTranscriptReport(ReportFormat.PDF);
 		else
@@ -198,7 +216,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getStudentCertificateReport(ReportRequest reportRequest) {
-		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentCertificateReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -214,13 +232,13 @@ public class GradReportService {
 	}
 
 	public DocumentBundle getStudentCertificateReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getStudentCertificateReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentCertificateReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 		List<BusinessReport> gradCertificateReports = certificateService.buildReport();
 
-		ca.bc.gov.educ.grad.report.model.order.OrderType orderType = new CertificateOrderTypeImpl() {
+		OrderType orderType = new CertificateOrderTypeImpl() {
 			@Override
 			public String getName() {
 				return reportRequest.getData().getCertificate().getOrderType().getName();
@@ -233,7 +251,7 @@ public class GradReportService {
 
 	@SneakyThrows
 	public byte[] getSchoolDistributionReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolDistributionReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolDistributionReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -247,10 +265,41 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
+	
+	public byte[] getSchoolDistributionReportYearEnd(ReportRequest reportRequest) {
+		String methodName = "getSchoolDistributionReportYearEnd(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-	@SneakyThrows
+		byte[] response = null;
+
+		try {
+			DocumentBundle schoolDistributionYearEndReport = getSchoolDistributionYearEndReportDocument(reportRequest);
+			response = schoolDistributionYearEndReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
+	public byte[] getDistrictDistributionReportYearEnd(ReportRequest reportRequest) {
+		String methodName = "getDistrictDistributionReportYearEnd(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			SchoolDistributionReport districtDistributionYearEndReport = getDistrictDistributionCredentialsReportDocument(reportRequest);
+			response = districtDistributionYearEndReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+	
 	public byte[] getSchoolLabelReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolLabelReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolLabelReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -264,10 +313,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getSchoolGraduationReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolGraduationReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolGraduationReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -281,10 +329,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getSchoolNonGraduationReport(ReportRequest reportRequest) {
-		String methodName = "getSchoolNonGraduationReport(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolNonGraduationReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -298,10 +345,9 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
-
-	@SneakyThrows
+	
 	public byte[] getStudentNonGradReport(ReportRequest reportRequest) {
-		String methodName = "getStudentNonGradReport(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentNonGradReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
 		byte[] response = null;
@@ -317,47 +363,98 @@ public class GradReportService {
 	}
 
 	public SchoolDistributionReport getSchoolDistributionReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolDistributionReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolDistributionReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return schoolDistributionService.buildSchoolDistributionReport();
 	}
 
-	public SchoolLabelReport getSchoolLabelReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolLabelReportDocument(GenerateReportRequest reportRequest)";
+	public DocumentBundle getSchoolDistributionYearEndReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getSchoolDistributionYearEndReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		SchoolDistributionReport newCredentialsReport = null;
+		SchoolDistributionReport issuedTranscriptsReport = null;
+
+		Map<String, ReportData> reportDataMap = reportRequest.getDataMap();
+		if(reportDataMap != null && reportDataMap.size() == 2) {
+			newCredentialsReport = getSchoolDistributionNewCredentialsReport(newCredentialsReport, reportDataMap);
+			issuedTranscriptsReport = getSchoolDistributionIssuedTranscriptsReport(issuedTranscriptsReport, reportDataMap);
+		}
+
+		OrderType orderType = new SchoolReportOrderTypeImpl() {
+			@Override
+			public String getName() {
+				return "School";
+			}
+		};
+
+		DocumentBundle bundle = bcmpBundleService.createDocumentBundle(orderType);
+		bundle = bcmpBundleService.appendReportDocument(bundle, newCredentialsReport);
+		bundle = bcmpBundleService.appendReportDocument(bundle, issuedTranscriptsReport);
+		// Once the bundle has been created, decorate the page numbers.
+		return bcmpBundleService.enumeratePages(bundle);
+
+	}
+
+	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(SchoolDistributionReport issuedTranscriptsReport, Map<String, ReportData> reportDataMap) throws IOException {
+		ReportData data = reportDataMap.get("IssuedTranscriptsReportData");
+		if (data != null) {
+			ReportRequestDataThreadLocal.setReportData(data);
+			issuedTranscriptsReport = this.schoolDistributionEndYearIssuedTranscriptsService.buildSchoolDistributionReport();
+		}
+		return issuedTranscriptsReport;
+	}
+
+	public SchoolLabelReport getSchoolLabelReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getSchoolLabelReportDocument(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return schoolLabelService.buildSchoolLabelReport();
 	}
 
 	public SchoolGraduationReport getSchoolGraduationReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolGraduationReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolGraduationReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return schoolGraduationService.buildSchoolGraduationReport();
 	}
 
 	public SchoolNonGraduationReport getSchoolNonGraduationReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getSchoolNonGraduationReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getSchoolNonGraduationReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return schoolNonGraduationService.buildSchoolNonGraduationReport();
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
-		String methodName = "getStudentNonGradReportDocument(GenerateReportRequest reportRequest)";
+		String methodName = "getStudentNonGradReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
-		ReportRequestDataThreadLocal.setGenerateReportData(reportRequest.getData());
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return studentNonGradService.buildStudentNonGradReport();
+	}
+
+	private SchoolDistributionReport getSchoolDistributionNewCredentialsReport(SchoolDistributionReport newCredentialsReport, Map<String, ReportData> reportDataMap) throws IOException {
+		ReportData data = reportDataMap.get("newCredentialsReportData");
+		if (data != null) {
+			ReportRequestDataThreadLocal.setReportData(data);
+			newCredentialsReport = this.schoolDistributionEndYearNewCredentialsService.buildSchoolDistributionReport();
+		}
+		return newCredentialsReport;
+	}
+
+	private SchoolDistributionReport getDistrictDistributionCredentialsReportDocument(ReportRequest reportRequest) throws IOException {
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		return this.districtDistributionEndYearCredentialsService.buildSchoolDistributionReport();
 	}
 }

@@ -171,7 +171,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         final PostalDeliveryInfo postalDeliveryInfo;
 
         try {
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+            ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
@@ -202,7 +202,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         final OrderType orderType;
 
         try {
-            ReportData reportData = ReportRequestDataThreadLocal.getGenerateReportData();
+            ReportData reportData = ReportRequestDataThreadLocal.getReportData();
 
             if (reportData == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(

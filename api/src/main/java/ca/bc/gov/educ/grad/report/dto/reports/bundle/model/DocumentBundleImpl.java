@@ -17,16 +17,14 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.bundle.model;
 
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementReportDecorator;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateReportDecorator;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.DocumentBundleDecorator;
-import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptReportDecorator;
+import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.*;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementOrderType;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateOrderType;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
+import ca.bc.gov.educ.grad.report.model.school.SchoolReportOrderType;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptOrderType;
 
 import javax.naming.NamingException;
@@ -348,6 +346,8 @@ public class DocumentBundleImpl implements DocumentBundle {
             dbd = new CertificateReportDecorator(this);
         } else if (ot instanceof AchievementOrderType) {
             dbd = new AchievementReportDecorator(this);
+        } else if (ot instanceof SchoolReportOrderType) {
+            dbd = new SchoolReportDecorator(this);
         } else {
             throw new IllegalArgumentException("Unexpected order type: " + ot);
         }

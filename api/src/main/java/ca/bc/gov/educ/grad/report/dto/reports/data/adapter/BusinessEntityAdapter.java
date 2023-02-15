@@ -111,7 +111,7 @@ public class BusinessEntityAdapter {
                 .withName(school.getName())
                 .withTypeIndicator(school.getTypeIndicator())
                 .withTypeBanner(school.getTypeBanner())
-                .withAddress(adapt(school.getPostalAddress()))
+                .withAddress(adapt(school.getAddress()))
                 .withDistrictOrganisation(org)
                 .build();
     }

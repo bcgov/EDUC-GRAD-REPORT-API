@@ -78,4 +78,11 @@ public class TranscriptReportDecorator extends DocumentBundleDecorator {
     public String getFilenamePrefix() {
         return "TRANS";
     }
+
+    @Override
+    protected int getRotateDegree() {
+        return 90;
+    }
+
+
 }

@@ -17,22 +17,14 @@
  */
 package ca.bc.gov.educ.grad.report.model.school;
 
-import ca.bc.gov.educ.grad.report.model.common.party.Organization;
-import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
+import ca.bc.gov.educ.grad.report.model.district.District;
 
 /**
  * Represents a school located within Canada.
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface School extends Organization {
-
-    /**
-     * Returns the postal mailing address for this school.
-     *
-     * @return An address for sending packages to a school.
-     */
-    PostalAddress getPostalAddress();
+public interface School extends District {
 
     /**
      * Returns the code the Ministry uses to uniquely identify this school.
@@ -72,13 +64,6 @@ public interface School extends Organization {
     String getTypeBanner();
 
     /**
-     * Gets distno.
-     *
-     * @return the distno
-     */
-    String getDistno();
-
-    /**
      * Gets schlno.
      *
      * @return the schlno
@@ -105,4 +90,11 @@ public interface School extends Organization {
      * @return the dogwood elig
      */
     String getDogwoodElig();
+
+    /**
+     * Gets school stat elig.
+     *
+     * @return the school stat
+     */
+    SchoolStatistic getSchoolStatistic();
 }

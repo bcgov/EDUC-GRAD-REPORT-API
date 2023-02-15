@@ -34,18 +34,18 @@ public class ImageNumberLabel extends NumberLabel {
      */
     public ImageNumberLabel(final Point2D coordinate, final int number) {
         super(coordinate, number);
+        setLabelPrefix("I");
     }
 
     /**
-     * Count of the front and back pages of each physical page. On the packing
-     * slip this value should be "I0000001"; there may be image numbers on other
-     * pages of the BC Mail Print File the details of which are described in the
-     * business requirements document (BR095, BR110).
+     * Constructs using the superclass.
      *
-     * @return 'I'
+     * @param coordinate Passed to superclass.
+     * @param number Passed to superclass.
      */
-    @Override
-    protected char getLabelPrefix() {
-        return 'I';
+    public ImageNumberLabel(final Point2D coordinate, final int number, final int degree) {
+        super(coordinate, number, degree);
+        setLabelPrefix("I");
     }
+
 }

@@ -30,6 +30,7 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolLabelReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelService;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -113,8 +114,10 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
             parameters.put("hasSchools", "true");
         }
 
-        InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
-        parameters.put("orgImage", inputLogo);
+        if(StringUtils.isNotBlank(reportData.getOrgCode())) {
+            InputStream inputLogo = openImageResource("logo_" + reportData.getOrgCode().toLowerCase(Locale.ROOT) + ".svg");
+            parameters.put("orgImage", inputLogo);
+        }
 
         parameters.put("reportNumber", reportData.getReportNumber());
 

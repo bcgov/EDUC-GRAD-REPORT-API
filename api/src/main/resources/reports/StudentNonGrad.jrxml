@@ -58,6 +58,10 @@
 	<parameter name="hasStudents" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["false"]]></defaultValueExpression>
 	</parameter>
+	<variable name="V_FISCAL_DATES" class="java.lang.String">
+		<variableExpression><![CDATA[ca.bc.gov.educ.grad.report.model.reports.FiscalDates.getInstance().getFiscalDatesRange()]]></variableExpression>
+		<initialValueExpression><![CDATA[ca.bc.gov.educ.grad.report.model.reports.FiscalDates.getInstance().getFiscalDatesRange()]]></initialValueExpression>
+	</variable>
 	<variable name="V_LOGO_CODE" class="java.lang.String">
 		<variableExpression><![CDATA[$P{orgCode}]]></variableExpression>
 		<initialValueExpression><![CDATA[$P{orgCode}]]></initialValueExpression>
@@ -72,7 +76,7 @@
 	<pageHeader>
 		<band height="189" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="104" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -100,23 +104,41 @@
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="159" y="0" width="184" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
+					<reportElement style="GeneratedText" x="105" y="0" width="341" height="17" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
-					<textElement>
-						<font isBold="false"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{reportTitle}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Projected Non-Graduates Summary Report"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="104" y="15" width="325" height="14" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
+					<reportElement style="GeneratedText" x="105" y="15" width="341" height="15" uuid="31b126b4-76d2-4dae-a97b-a3a8266a5bf8">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
-					<textElement>
-						<font isBold="false"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{reportSubTitle}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["for Students in Grade 12 and Adult Students"]]></textFieldExpression>
 				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement style="GeneratedText" x="105" y="28" width="341" height="15" uuid="139f3029-c5fd-4d8c-8c2a-ecd2a78f55ff">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[ $V{V_FISCAL_DATES}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement verticalAlignment="Top">
+						<paragraph leftIndent="10"/>
+					</textElement>
+					<text><![CDATA[GRAD]]></text>
+				</staticText>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
 				<reportElement key="IMAGE_LOGO_SVG" x="5" y="11" width="100" height="80" uuid="8b039bcb-1bce-4e08-91c5-927c69af7420"/>
@@ -138,7 +160,7 @@
 				<textElement verticalAlignment="Top">
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or subgrade AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
+				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -223,11 +245,11 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="130" uuid="bfe45a7a-0be1-47e4-9a3b-17e33a46ee10">
+					<jr:column width="120" uuid="bfe45a7a-0be1-47e4-9a3b-17e33a46ee10">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:columnHeader height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="130" height="35" uuid="cd69d97c-aad2-4549-8f44-f2efb463d8d1">
+								<reportElement style="StaticText" x="0" y="0" width="120" height="35" uuid="cd69d97c-aad2-4549-8f44-f2efb463d8d1">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -245,7 +267,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="130" height="15" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="120" height="15" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Left" verticalAlignment="Top">
@@ -256,11 +278,11 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="190" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
+					<jr:column width="180" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
 						<jr:columnHeader height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="190" height="35" uuid="98159ba9-eb32-4244-8ce5-6d12461f8fa7">
+								<reportElement style="StaticText" x="0" y="0" width="180" height="35" uuid="98159ba9-eb32-4244-8ce5-6d12461f8fa7">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -278,7 +300,7 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement style="Zebra" positionType="Float" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="190" height="15" isPrintWhenDetailOverflows="true" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement style="Zebra" positionType="Float" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="180" height="15" isPrintWhenDetailOverflows="true" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Left" verticalAlignment="Top">
@@ -355,11 +377,11 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="70" uuid="82519cae-1684-4862-a789-0a893638e98e">
+					<jr:column width="75" uuid="82519cae-1684-4862-a789-0a893638e98e">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
 						<jr:columnHeader height="35" rowSpan="1">
 							<staticText>
-								<reportElement style="StaticText" x="0" y="0" width="70" height="35" uuid="1f8fa017-2f86-4fc4-915e-dba37658b235">
+								<reportElement style="StaticText" x="0" y="0" width="75" height="35" uuid="1f8fa017-2f86-4fc4-915e-dba37658b235">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
@@ -377,14 +399,14 @@
 						</jr:columnHeader>
 						<jr:detailCell height="15">
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="70" height="15" uuid="d13fa151-c4d1-45be-8f60-da3f1da0f232">
+								<reportElement style="Zebra" stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="75" height="15" uuid="d13fa151-c4d1-45be-8f60-da3f1da0f232">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<textElement textAlignment="Center" verticalAlignment="Top">
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/YYYY").format($F{lastUpdateDate})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd hh:mm").format($F{lastUpdateDate})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -402,7 +424,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<staticText>
-					<reportElement x="0" y="0" width="555" height="15" backcolor="lightGray" uuid="9bb48ab9-2756-4134-8c46-a40d66ddd57e"/>
+					<reportElement x="0" y="0" width="555" height="15" backcolor="#C0C0C0" uuid="9bb48ab9-2756-4134-8c46-a40d66ddd57e"/>
 					<textElement textAlignment="Center"/>
 					<text><![CDATA[No students selected for this report]]></text>
 				</staticText>
