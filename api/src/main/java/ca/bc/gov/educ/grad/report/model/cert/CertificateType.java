@@ -39,7 +39,11 @@ public enum CertificateType {
     E("E", PaperType.CERTIFICATE_E),
     S("S", PaperType.CERTIFICATE_S),
     F("F", PaperType.CERTIFICATE_F),
-    O("O", PaperType.CERTIFICATE_O);
+    O("O", PaperType.CERTIFICATE_O),
+    FN("FN", PaperType.CERTIFICATE_FN),
+    FNA("FNA", PaperType.CERTIFICATE_FNA),
+    SCFN("SCFN", PaperType.CERTIFICATE_SCFN),
+    ;
 
     private String reportName;
     private PaperType paperType;

@@ -262,6 +262,15 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             case "O":
                 rsRptType = CertificateType.O;
                 break;
+            case "FN":
+                rsRptType = CertificateType.FN;
+                break;
+            case "FNA":
+                rsRptType = CertificateType.FNA;
+                break;
+            case "SCFN":
+                rsRptType = CertificateType.SCFN;
+                break;
             default:
                 throw new InvalidParameterException(certType);
         }
