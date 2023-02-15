@@ -67,6 +67,11 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createCertificateReport_FN() throws Exception {
+		createCertificateReport("createCertificateReport_FN", "json/studentCertificateReportRequest-FN.json");
+	}
+
+	@Test
 	public void createCertificateReport_EO() throws Exception {
 		createCertificateReport("createCertificateReport_EO", "json/studentCertificateReportRequest-EO.json");
 	}
@@ -79,6 +84,11 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_A() throws Exception {
 		createCertificateReport("createCertificateReport_A", "json/studentCertificateReportRequest-A.json");
+	}
+
+	@Test
+	public void createCertificateReport_FNA() throws Exception {
+		createCertificateReport("createCertificateReport_FNA", "json/studentCertificateReportRequest-FNA.json");
 	}
 
 	@Test
@@ -119,6 +129,11 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 	@Test
 	public void createCertificateReport_SC() throws Exception {
 		createCertificateReport("createCertificateReport_SC", "json/studentCertificateReportRequest-SC.json");
+	}
+
+	@Test
+	public void createCertificateReport_SCFN() throws Exception {
+		createCertificateReport("createCertificateReport_SCFN", "json/studentCertificateReportRequest-SCFN.json");
 	}
 
 	@Test
