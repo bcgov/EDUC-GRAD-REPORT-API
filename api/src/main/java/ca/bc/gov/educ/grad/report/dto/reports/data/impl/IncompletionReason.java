@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -92,7 +93,7 @@ public class IncompletionReason extends BusinessEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IncompletionReason that = (IncompletionReason) o;
-        return Objects.equals(code, that.code) && Objects.equals(nullSafe(this.description), nullSafe(that.description));
+        return Objects.equals(code, that.code) && StringUtils.contains(nullSafe(this.description), nullSafe(that.description));
     }
 
     @Override
