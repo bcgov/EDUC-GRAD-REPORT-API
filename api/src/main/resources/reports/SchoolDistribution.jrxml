@@ -66,7 +66,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="217" splitType="Stretch">
+		<band height="211" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="104" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
@@ -96,16 +96,16 @@
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="150" y="0" width="200" height="13" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
+					<reportElement style="GeneratedText" x="150" y="0" width="200" height="17" uuid="9d60ef35-2da9-41e6-817f-99155d38f297">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
-						<font isBold="false"/>
+						<font isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Credentials and Transcript Distribution Report"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="150" y="15" width="200" height="14" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
+					<reportElement style="GeneratedText" x="150" y="15" width="200" height="15" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -114,13 +114,14 @@
 					<textFieldExpression><![CDATA["New Credentials Issued"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="105" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
+					<reportElement x="0" y="7" width="150" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
+						<font isBold="true"/>
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<text><![CDATA[GRAD]]></text>
+					<text><![CDATA[GRAD System]]></text>
 				</staticText>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
@@ -135,23 +136,28 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="200" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+				<reportElement style="GeneratedText" x="0" y="196" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement>
+					<paragraph leftIndent="6"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="ContainerHeight" x="0" y="136" width="555" height="55" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
+				<reportElement stretchType="ContainerHeight" x="0" y="136" width="555" height="60" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
-					<paragraph leftIndent="10" rightIndent="10"/>
+					<paragraph leftIndent="6" rightIndent="0"/>
 				</textElement>
 				<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order free printed copy(ies) of their transcript through the Student Transcripts Service.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="98">
+		<band height="55">
 			<property name="com.jaspersoft.studio.layout"/>
 			<componentElement>
 				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="50" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">

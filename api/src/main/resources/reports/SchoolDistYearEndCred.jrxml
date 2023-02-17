@@ -66,28 +66,41 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="197" splitType="Stretch">
+		<band height="189" splitType="Stretch">
 			<printWhenExpression><![CDATA[EQUALS($V{PAGE_NUMBER},1)]]></printWhenExpression>
 			<frame>
-				<reportElement x="0" y="0" width="555" height="187" uuid="6e42880d-c3f1-4b6c-9a33-b922c7ed7b97">
+				<reportElement x="0" y="0" width="555" height="174" uuid="6e42880d-c3f1-4b6c-9a33-b922c7ed7b97">
 					<printWhenExpression><![CDATA[EQUALS($V{PAGE_NUMBER},1)]]></printWhenExpression>
 				</reportElement>
+				<frame>
+					<reportElement mode="Opaque" x="0" y="81" width="555" height="31" backcolor="#F2F2F2" uuid="6abcf31a-03f8-4e39-bc1f-9d36c86f4e4d"/>
+					<staticText>
+						<reportElement x="0" y="7" width="136" height="17" uuid="222bd9ed-193e-428e-b936-119f8a9d8016">
+							<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						</reportElement>
+						<textElement verticalAlignment="Top">
+							<font isBold="true"/>
+							<paragraph leftIndent="10"/>
+						</textElement>
+						<text><![CDATA[GRAD System]]></text>
+					</staticText>
+				</frame>
 				<staticText>
-					<reportElement stretchType="ContainerHeight" x="0" y="131" width="555" height="56" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
+					<reportElement stretchType="ContainerHeight" x="0" y="114" width="555" height="60" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
 						<paragraph leftIndent="10" rightIndent="10"/>
 					</textElement>
-					<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order free printed copy(ies) of their transcript through the Student Transcripts Service.]]></text>
+					<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order a free printed copy of their transcript through the StudentTranscripts Service.]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="0" y="111" width="555" height="16" uuid="3d6a96da-75bd-4f67-ac96-20e185df0d1c">
+					<reportElement style="GeneratedText" x="136" y="96" width="283" height="16" uuid="3d6a96da-75bd-4f67-ac96-20e185df0d1c">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font size="10" isBold="true"/>
+						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["New Credentials Issued"]]></textFieldExpression>
 				</textField>
@@ -103,7 +116,7 @@
 					<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="445" y="15" width="27" height="15" uuid="e1cbbad6-162d-443a-b4a8-0df68c6090ca">
+					<reportElement style="GeneratedText" x="445" y="97" width="27" height="15" uuid="e1cbbad6-162d-443a-b4a8-0df68c6090ca">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
@@ -112,27 +125,20 @@
 					<text><![CDATA[Date:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="472" y="15" width="83" height="15" uuid="a4068295-ed63-421f-abe6-20434309a563"/>
+					<reportElement style="GeneratedText" x="472" y="97" width="83" height="15" uuid="a4068295-ed63-421f-abe6-20434309a563"/>
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="136" y="48" width="283" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
+					<reportElement style="GeneratedText" x="136" y="81" width="283" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
-						<font size="10" isBold="false"/>
+						<font size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Credentials and Transcript Distribution Report"]]></textFieldExpression>
 				</textField>
-				<frame>
-					<reportElement mode="Opaque" x="0" y="90" width="555" height="19" backcolor="#F2F2F2" uuid="6abcf31a-03f8-4e39-bc1f-9d36c86f4e4d"/>
-				</frame>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="0" y="90" width="268" height="19" uuid="433d82ec-c85e-4440-bbd8-7016c2c33daf"/>
-					<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="445" y="0" width="27" height="15" uuid="1bd7f145-84bc-4aef-b1b7-4964b9d58caf">
+					<reportElement style="GeneratedText" x="445" y="82" width="27" height="15" uuid="1bd7f145-84bc-4aef-b1b7-4964b9d58caf">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
@@ -141,21 +147,31 @@
 					<text><![CDATA[Page:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="472" y="0" width="83" height="15" uuid="d0498f0c-ed61-4f04-a26f-265f55085490"/>
+					<reportElement style="GeneratedText" x="472" y="81" width="83" height="16" uuid="d0498f0c-ed61-4f04-a26f-265f55085490"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
+				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+					<reportElement style="GeneratedText" x="0" y="174" width="267" height="15" uuid="9458bca2-bed5-4e00-a98a-2bb72901e78f">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<paragraph leftIndent="6"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="70" splitType="Stretch">
+		<band height="58" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<componentElement>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="10" width="555" height="50" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="50" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -334,7 +350,7 @@
 				</jr:table>
 			</componentElement>
 			<frame>
-				<reportElement x="0" y="10" width="555" height="15" uuid="8f2ad1e9-bcd0-45df-aa98-25d84f24ea4d">
+				<reportElement x="0" y="0" width="555" height="15" uuid="8f2ad1e9-bcd0-45df-aa98-25d84f24ea4d">
 					<printWhenExpression><![CDATA["false".equalsIgnoreCase($P{hasStudents})]]></printWhenExpression>
 				</reportElement>
 				<box>
