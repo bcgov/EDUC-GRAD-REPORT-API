@@ -74,7 +74,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="189" splitType="Stretch">
+		<band height="185" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
@@ -117,27 +117,28 @@
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Top">
-						<font size="10" isBold="true"/>
+						<font size="10" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["for Students in Grade 12 and Adult Students"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Grade 12 and Adult Students"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="105" y="28" width="341" height="15" uuid="139f3029-c5fd-4d8c-8c2a-ecd2a78f55ff">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="10" isBold="true"/>
+						<font size="10" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA[ $V{V_FISCAL_DATES}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$V{V_FISCAL_DATES}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="0" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
+					<reportElement x="0" y="14" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
+						<font isBold="true"/>
 						<paragraph leftIndent="10"/>
 					</textElement>
-					<text><![CDATA[GRAD]]></text>
+					<text><![CDATA[GRAD System]]></text>
 				</staticText>
 			</frame>
 			<image scaleImage="RetainShape" onErrorType="Blank">
@@ -152,13 +153,21 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="170" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+				<reportElement style="GeneratedText" x="0" y="170" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement>
+					<paragraph leftIndent="6"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="5" y="140" width="545" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077"/>
+				<reportElement x="0" y="140" width="555" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font size="9"/>
+					<paragraph leftIndent="6"/>
 				</textElement>
 				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
 			</staticText>
