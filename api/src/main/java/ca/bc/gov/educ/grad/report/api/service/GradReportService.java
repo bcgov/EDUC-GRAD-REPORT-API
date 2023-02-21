@@ -392,8 +392,12 @@ public class GradReportService {
 		};
 
 		DocumentBundle bundle = bcmpBundleService.createDocumentBundle(orderType);
-		bundle = bcmpBundleService.appendReportDocument(bundle, newCredentialsReport);
-		bundle = bcmpBundleService.appendReportDocument(bundle, issuedTranscriptsReport);
+		if(newCredentialsReport != null) {
+			bundle = bcmpBundleService.appendReportDocument(bundle, newCredentialsReport);
+		}
+		if(issuedTranscriptsReport != null) {
+			bundle = bcmpBundleService.appendReportDocument(bundle, issuedTranscriptsReport);
+		}
 		// Once the bundle has been created, decorate the page numbers.
 		return bcmpBundleService.enumeratePages(bundle);
 
