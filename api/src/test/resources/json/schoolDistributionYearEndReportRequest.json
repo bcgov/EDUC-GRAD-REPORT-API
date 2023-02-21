@@ -2682,7 +2682,7 @@
       "issueDate": "2021-04-26",
       "reportNumber": "BC-001234"
     },
-    "IssuedTranscriptsReportData" : {
+    "issuedTranscriptsReportData" : {
       "school": {
         "name": "MOUNT BAKER SECONDARY",
         "mincode": "00502001",

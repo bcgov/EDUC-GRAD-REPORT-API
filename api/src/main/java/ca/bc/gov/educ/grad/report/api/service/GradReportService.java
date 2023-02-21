@@ -404,7 +404,7 @@ public class GradReportService {
 	}
 
 	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(SchoolDistributionReport issuedTranscriptsReport, Map<String, ReportData> reportDataMap) throws IOException {
-		ReportData data = reportDataMap.get("IssuedTranscriptsReportData");
+		ReportData data = reportDataMap.get("issuedTranscriptsReportData");
 		if (data != null) {
 			ReportRequestDataThreadLocal.setReportData(data);
 			issuedTranscriptsReport = this.schoolDistributionEndYearIssuedTranscriptsService.buildSchoolDistributionReport();
