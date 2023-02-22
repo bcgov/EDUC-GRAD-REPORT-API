@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 
-@JsonPropertyOrder({ "options", "data", "dataList"})
+@JsonPropertyOrder({ "options", "data", "dataMap"})
 public class ReportRequest implements Serializable {
 
 	private ReportData data;
@@ -26,8 +26,7 @@ public class ReportRequest implements Serializable {
 	public Map<String, ReportData> getDataMap() {
 		return dataMap;
 	}
-
-	public void setDataList(Map<String, ReportData> dataList) {
+	public void setDataMap(Map<String, ReportData> dataMap) {
 		this.dataMap = dataMap;
 	}
 

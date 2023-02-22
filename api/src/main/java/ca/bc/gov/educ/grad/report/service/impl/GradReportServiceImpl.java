@@ -258,8 +258,10 @@ public abstract class GradReportServiceImpl implements Serializable {
                 "Retrieved student info for PEN: {0}", pen);
 
         StudentInfoImpl student = (StudentInfoImpl) gradDataConvertionBean.getStudentInfo(reportData);
-        final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
-        student.setNonGradReasons(reasons);
+        if(student.getNonGradReasons() == null || student.getNonGradReasons().isEmpty()) {
+            final HashMap<String, String> reasons = gradDataConvertionBean.getNongradReasons(reportData);
+            student.setNonGradReasons(reasons);
+        }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
         LOG.exiting(CLASSNAME, methodName);
