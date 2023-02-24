@@ -109,7 +109,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="51" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
@@ -151,241 +151,141 @@
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="81" splitType="Stretch">
+		<band height="100" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<componentElement>
-				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="555" height="80" isPrintWhenDetailOverflows="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
-					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="555" height="100" isPrintWhenDetailOverflows="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasSchools})]]></printWhenExpression>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="schoolsDataset" uuid="5614a4c2-839f-425f-99e6-f6099ccb7441">
 						<dataSourceExpression><![CDATA[$P{schools}]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="230" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
+					<jr:column width="210" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:detailCell style="Table_TD" height="60">
-							<textField isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="230" height="12" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
+						<jr:detailCell style="Table_TD" height="100">
+							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="210" height="20" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
-								<box leftPadding="5">
+								<box topPadding="5" leftPadding="5">
 									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
-								<textElement verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+								<textElement verticalAlignment="Top">
+									<font size="12"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeLeft}.toUpperCase()]]></textFieldExpression>
 							</textField>
-							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="12" width="230" height="12" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
-									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-								</reportElement>
-								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase()]]></textFieldExpression>
-							</textField>
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="24" width="230" height="12" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement mode="Opaque" x="0" y="20" width="210" height="80" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box leftPadding="5">
 									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<font size="12"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{streetLine1Left}.toUpperCase()]]></textFieldExpression>
-							</textField>
-							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="36" width="230" height="12" uuid="a77f360b-a82c-448d-a4aa-2a28bf49396a">
-									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-								</reportElement>
-								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[($F{cityLeft} + " " + $F{regionLeft} + " " + $F{codeLeft}).toUpperCase()]]></textFieldExpression>
-							</textField>
-							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="48" width="230" height="12" uuid="a77f360b-a82c-448d-a4aa-2a28bf49396a">
-									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-								</reportElement>
-								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase() + "\n" + $F{streetLine1Left}.toUpperCase() + "\n" + ($F{cityLeft} + " " + $F{regionLeft} + " " + $F{codeLeft}).toUpperCase()]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="48" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
+					<jr:column width="67" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
-						<jr:detailCell style="Table_TD" height="60">
-							<textField isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="48" height="60" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+						<jr:detailCell style="Table_TD" height="100">
+							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="67" height="100" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 								</reportElement>
-								<box>
+								<box topPadding="5">
 									<pen lineColor="#DBDBDB"/>
-									<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Top">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<font size="12"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{mincodeLeft}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="230" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
+					<jr:column width="210" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:detailCell style="Table_TD" height="60">
-							<textField isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="230" height="12" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
+						<jr:detailCell style="Table_TD" height="100">
+							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="210" height="20" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
-								<box leftPadding="5">
+								<box topPadding="5" leftPadding="5">
 									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
-								<textElement verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+								<textElement verticalAlignment="Top">
+									<font size="12"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeRight}.toUpperCase()]]></textFieldExpression>
 							</textField>
-							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="12" width="230" height="12" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
-									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-								</reportElement>
-								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase()]]></textFieldExpression>
-							</textField>
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="24" width="230" height="12" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement mode="Opaque" x="0" y="20" width="210" height="80" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box leftPadding="5">
 									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<font size="12"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{streetLine1Right}.toUpperCase()]]></textFieldExpression>
-							</textField>
-							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="36" width="230" height="12" uuid="a77f360b-a82c-448d-a4aa-2a28bf49396a">
-									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-								</reportElement>
-								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[($F{cityRight} + " " + $F{regionRight} + " " + $F{codeRight}).toUpperCase()]]></textFieldExpression>
-							</textField>
-							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="48" width="230" height="12" uuid="a77f360b-a82c-448d-a4aa-2a28bf49396a">
-									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-								</reportElement>
-								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
-									<topPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase() + "\n" + $F{streetLine1Right}.toUpperCase() + "\n" + ($F{cityRight} + " " + $F{regionRight} + " " + $F{codeRight}).toUpperCase()]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="47" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
+					<jr:column width="67" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
-						<jr:detailCell style="Table_TD" height="60">
-							<textField isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="47" height="60" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+						<jr:detailCell style="Table_TD" height="100">
+							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="67" height="100" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-									<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 								</reportElement>
-								<box>
+								<box topPadding="5">
 									<pen lineColor="#DBDBDB"/>
-									<topPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.0" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.5" lineStyle="Dotted" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Top">
-									<font size="8"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<font size="12"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{mincodeRight}]]></textFieldExpression>
 							</textField>
