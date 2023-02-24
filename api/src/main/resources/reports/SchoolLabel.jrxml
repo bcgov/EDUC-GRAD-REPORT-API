@@ -183,7 +183,7 @@
 								</box>
 								<textElement verticalAlignment="Top">
 									<font size="12"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeLeft}.toUpperCase()]]></textFieldExpression>
 							</textField>
@@ -200,7 +200,7 @@
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Middle">
 									<font size="12"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase() + "\n" + $F{streetLine1Left}.toUpperCase() + "\n" + ($F{cityLeft} + " " + $F{regionLeft} + " " + $F{codeLeft}).toUpperCase()]]></textFieldExpression>
 							</textField>
@@ -223,7 +223,7 @@
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Top">
 									<font size="12"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{mincodeLeft}]]></textFieldExpression>
 							</textField>
@@ -245,7 +245,7 @@
 								</box>
 								<textElement verticalAlignment="Top">
 									<font size="12"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeRight}.toUpperCase()]]></textFieldExpression>
 							</textField>
@@ -262,7 +262,7 @@
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Middle">
 									<font size="12"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase() + "\n" + $F{streetLine1Right}.toUpperCase() + "\n" + ($F{cityRight} + " " + $F{regionRight} + " " + $F{codeRight}).toUpperCase()]]></textFieldExpression>
 							</textField>
@@ -285,7 +285,7 @@
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Top">
 									<font size="12"/>
-									<paragraph lineSpacing="Single" leftIndent="5"/>
+									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{mincodeRight}]]></textFieldExpression>
 							</textField>
