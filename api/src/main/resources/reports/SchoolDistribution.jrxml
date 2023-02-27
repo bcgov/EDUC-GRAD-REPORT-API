@@ -114,7 +114,7 @@
 					<textFieldExpression><![CDATA["New Credentials Issued"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="7" width="150" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
+					<reportElement x="0" y="0" width="150" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
