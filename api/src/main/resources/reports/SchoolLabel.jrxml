@@ -207,6 +207,7 @@
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
+								<textElement textAlignment="Center" verticalAlignment="Top"/>
 								<textFieldExpression><![CDATA[""]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
