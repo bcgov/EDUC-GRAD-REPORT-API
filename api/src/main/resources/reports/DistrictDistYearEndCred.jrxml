@@ -79,7 +79,7 @@
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<staticText>
-						<reportElement x="0" y="7" width="137" height="17" uuid="e5d069b4-1f56-4efd-a131-3a251b77df13">
+						<reportElement x="0" y="0" width="137" height="17" uuid="e5d069b4-1f56-4efd-a131-3a251b77df13">
 							<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						</reportElement>
 						<textElement verticalAlignment="Top">
@@ -124,7 +124,7 @@
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="137" y="97" width="283" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
+					<reportElement style="GeneratedText" x="137" y="90" width="282" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">

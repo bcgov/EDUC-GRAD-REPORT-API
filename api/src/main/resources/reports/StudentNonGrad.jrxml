@@ -131,7 +131,7 @@
 					<textFieldExpression><![CDATA[$V{V_FISCAL_DATES}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="14" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
+					<reportElement x="0" y="0" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">

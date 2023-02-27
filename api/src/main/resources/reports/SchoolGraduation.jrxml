@@ -141,7 +141,7 @@
 					<textFieldExpression><![CDATA["Cumulative List of Graduated Students"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="14" width="155" height="17" uuid="5b16747c-04a6-4100-af4f-ef6d2952a93e">
+					<reportElement x="0" y="0" width="155" height="17" uuid="5b16747c-04a6-4100-af4f-ef6d2952a93e">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">

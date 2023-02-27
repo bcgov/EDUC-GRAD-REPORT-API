@@ -75,7 +75,7 @@
 				<frame>
 					<reportElement mode="Opaque" x="0" y="93" width="555" height="31" backcolor="#F2F2F2" uuid="6abcf31a-03f8-4e39-bc1f-9d36c86f4e4d"/>
 					<staticText>
-						<reportElement x="0" y="7" width="136" height="17" uuid="222bd9ed-193e-428e-b936-119f8a9d8016">
+						<reportElement x="0" y="0" width="136" height="17" uuid="222bd9ed-193e-428e-b936-119f8a9d8016">
 							<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						</reportElement>
 						<textElement verticalAlignment="Top">

@@ -144,7 +144,7 @@
 					<textFieldExpression><![CDATA["Grade 12 and Adult Students"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="14" width="137" height="17" uuid="e1096ad5-239d-4b4c-bf66-c6ca3fb44216">
+					<reportElement x="0" y="0" width="137" height="17" uuid="e1096ad5-239d-4b4c-bf66-c6ca3fb44216">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
