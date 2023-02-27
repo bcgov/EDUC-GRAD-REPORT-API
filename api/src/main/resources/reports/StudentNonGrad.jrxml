@@ -74,9 +74,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="185" splitType="Stretch">
+		<band height="189" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<reportElement mode="Opaque" x="0" y="101" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -153,7 +153,7 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="170" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee">
+				<reportElement style="GeneratedText" x="0" y="174" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement>
@@ -162,7 +162,7 @@
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="140" width="555" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077">
+				<reportElement x="0" y="144" width="555" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
