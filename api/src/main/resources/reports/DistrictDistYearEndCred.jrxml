@@ -71,11 +71,11 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="163" splitType="Stretch">
+		<band height="178" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="555" height="148" uuid="6e42880d-c3f1-4b6c-9a33-b922c7ed7b97"/>
+				<reportElement x="0" y="0" width="555" height="163" uuid="6e42880d-c3f1-4b6c-9a33-b922c7ed7b97"/>
 				<frame>
-					<reportElement mode="Opaque" x="0" y="81" width="555" height="30" backcolor="#F2F2F2" uuid="6abcf31a-03f8-4e39-bc1f-9d36c86f4e4d">
+					<reportElement mode="Opaque" x="0" y="90" width="555" height="30" backcolor="#F2F2F2" uuid="6abcf31a-03f8-4e39-bc1f-9d36c86f4e4d">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<staticText>
@@ -90,7 +90,7 @@
 					</staticText>
 				</frame>
 				<staticText>
-					<reportElement stretchType="ContainerHeight" x="0" y="113" width="555" height="35" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
+					<reportElement stretchType="ContainerHeight" x="0" y="120" width="555" height="43" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 					</reportElement>
@@ -111,7 +111,7 @@
 					<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="445" y="96" width="27" height="15" uuid="e1cbbad6-162d-443a-b4a8-0df68c6090ca">
+					<reportElement style="GeneratedText" x="445" y="105" width="27" height="15" uuid="e1cbbad6-162d-443a-b4a8-0df68c6090ca">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
@@ -120,11 +120,11 @@
 					<text><![CDATA[Date:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="472" y="96" width="83" height="15" uuid="a4068295-ed63-421f-abe6-20434309a563"/>
+					<reportElement style="GeneratedText" x="472" y="105" width="83" height="15" uuid="a4068295-ed63-421f-abe6-20434309a563"/>
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="137" y="88" width="283" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
+					<reportElement style="GeneratedText" x="137" y="97" width="283" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -133,17 +133,17 @@
 					<textFieldExpression><![CDATA["District Credential and Transcript Distribution Report"]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="0" y="148" width="268" height="15" uuid="433d82ec-c85e-4440-bbd8-7016c2c33daf">
+					<reportElement style="GeneratedText" x="0" y="163" width="268" height="15" uuid="433d82ec-c85e-4440-bbd8-7016c2c33daf">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<textElement>
+					<textElement verticalAlignment="Bottom">
 						<paragraph leftIndent="6"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{district}.getDistrictNumber() +"  "+$P{district}.getDistrictName()]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement style="GeneratedText" x="445" y="81" width="27" height="15" uuid="1bd7f145-84bc-4aef-b1b7-4964b9d58caf">
+					<reportElement style="GeneratedText" x="445" y="90" width="27" height="15" uuid="1bd7f145-84bc-4aef-b1b7-4964b9d58caf">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement>
@@ -152,7 +152,7 @@
 					<text><![CDATA[Page:]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="472" y="81" width="83" height="15" uuid="d0498f0c-ed61-4f04-a26f-265f55085490"/>
+					<reportElement style="GeneratedText" x="472" y="90" width="83" height="15" uuid="d0498f0c-ed61-4f04-a26f-265f55085490"/>
 					<textElement>
 						<font isBold="true"/>
 					</textElement>

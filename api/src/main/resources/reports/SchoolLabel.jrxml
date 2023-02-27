@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolLabelsReport" pageWidth="595" pageHeight="842" columnWidth="220" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolLabelsReport" pageWidth="595" pageHeight="842" columnWidth="573" leftMargin="11" rightMargin="11" topMargin="17" bottomMargin="17" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
 	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
 	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
@@ -108,54 +117,12 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<pageHeader>
-		<band height="44" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="555" height="30" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
-					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement style="GeneratedText" x="446" y="0" width="27" height="15" uuid="779a2a57-a8d9-466d-b28a-cf0b8e7de1ba">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					</reportElement>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Page:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="GeneratedText" x="446" y="15" width="27" height="15" uuid="53e9d34f-3e5e-4846-b8b0-c81e613e795d">
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-					</reportElement>
-					<textElement>
-						<font isBold="true"/>
-					</textElement>
-					<text><![CDATA[Date:]]></text>
-				</staticText>
-				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="473" y="15" width="82" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
-				</textField>
-				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="60" y="15" width="386" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
-					<textElement verticalAlignment="Middle"/>
-					<textFieldExpression><![CDATA[$P{reportNumber}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="0" y="15" width="60" height="15" uuid="90502c38-d943-4559-b97d-0c9ebccca92f"/>
-					<text><![CDATA[Job Name:]]></text>
-				</staticText>
-			</frame>
-		</band>
-	</pageHeader>
 	<detail>
-		<band height="100" splitType="Stretch">
+		<band height="120" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<componentElement>
-				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="555" height="100" isPrintWhenDetailOverflows="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="573" height="110" isPrintWhenDetailOverflows="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -169,13 +136,12 @@
 					</datasetRun>
 					<jr:column width="210" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:detailCell style="Table_TD" height="100">
+						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="210" height="20" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
+								<reportElement mode="Opaque" x="0" y="0" width="210" height="25" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5" leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
 									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
@@ -188,11 +154,10 @@
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeLeft}.toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="20" width="210" height="80" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement mode="Opaque" x="0" y="20" width="210" height="85" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
 									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
@@ -209,13 +174,12 @@
 					<jr:column width="67" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-						<jr:detailCell style="Table_TD" height="100">
+						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="67" height="100" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="67" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5">
-									<pen lineColor="#DBDBDB"/>
 									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
@@ -229,15 +193,33 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
+					<jr:column width="19" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+						<jr:detailCell style="Table_TD" height="110">
+							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="19" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Top"/>
+								<textFieldExpression><![CDATA[""]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
 					<jr:column width="210" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:detailCell style="Table_TD" height="100">
+						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="210" height="20" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
+								<reportElement mode="Opaque" x="0" y="0" width="210" height="25" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5" leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
 									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
@@ -250,11 +232,10 @@
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeRight}.toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="20" width="210" height="80" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement mode="Opaque" x="0" y="20" width="210" height="85" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box leftPadding="5">
-									<pen lineColor="#FFFFFF"/>
 									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
@@ -270,14 +251,13 @@
 					</jr:column>
 					<jr:column width="67" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
-						<jr:detailCell style="Table_TD" height="100">
+						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="67" height="100" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="67" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 									<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 								</reportElement>
 								<box topPadding="5">
-									<pen lineColor="#DBDBDB"/>
 									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
