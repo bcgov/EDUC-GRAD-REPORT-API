@@ -203,7 +203,9 @@
 								</reportElement>
 								<box>
 									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textFieldExpression><![CDATA[]]></textFieldExpression>
 							</textField>
