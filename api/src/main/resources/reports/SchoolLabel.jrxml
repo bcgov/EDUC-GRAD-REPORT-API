@@ -176,7 +176,7 @@
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="67" height="110" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="67" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5">
@@ -198,7 +198,7 @@
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="19" height="110" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="19" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box>
@@ -207,7 +207,7 @@
 									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
-								<textFieldExpression><![CDATA[]]></textFieldExpression>
+								<textFieldExpression><![CDATA[""]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -252,7 +252,7 @@
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:detailCell style="Table_TD" height="110">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="67" height="110" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="67" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 									<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 								</reportElement>
