@@ -80,7 +80,7 @@ public class TranscriptCalculator {
         } catch (final Exception ex) {
             final String msg = format("calcPageBreak( %d, %d, %d, %d )",
                     rows, page, shortPage, longPage);
-            LOG.log(Level.INFO, msg);
+            LOG.log(Level.FINE, msg);
         }
 
         return pageBreak;

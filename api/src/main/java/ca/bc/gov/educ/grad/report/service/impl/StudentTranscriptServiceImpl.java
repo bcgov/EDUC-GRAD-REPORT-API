@@ -295,12 +295,12 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             results = gradDataConvertionBean.getTranscriptCourses(reportData);
         }
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
                 new Object[]{pen, interim});
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total courses {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student transcript course results:");
