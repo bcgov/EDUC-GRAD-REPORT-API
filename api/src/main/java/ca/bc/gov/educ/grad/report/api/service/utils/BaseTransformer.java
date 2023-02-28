@@ -23,7 +23,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from bytes to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from bytes to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
@@ -39,7 +39,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from String to {} is {} ms", clazz.getSimpleName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from String to {} is {} ms", clazz.getSimpleName(), (System.currentTimeMillis() - start));
         return result;
     }
 
@@ -66,7 +66,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from String to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from String to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
@@ -79,7 +79,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from stream to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from stream to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 

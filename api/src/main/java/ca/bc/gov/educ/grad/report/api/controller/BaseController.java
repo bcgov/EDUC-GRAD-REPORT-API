@@ -63,7 +63,6 @@ public abstract class BaseController {
         String accessToken = tokenKey + jwtTokenUtil.generateToken(new GradReportSignatureUser(username));
         String signatureImageUrl = "";
         if (StringUtils.trimToNull(signatureImageUrlProperty) == null) {
-            System.out.println("Signature URL Property not found");
             String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
             String serverName = "localhost";
             try {
@@ -76,11 +75,11 @@ public abstract class BaseController {
             String method = httpServletRequest.getMethod();
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
-            System.out.println(username + ": " + method + "->" + signatureImageUrl);
+            log.debug(username + ": " + method + "->" + signatureImageUrl);
         } else {
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = signatureImageUrlProperty + "/#signatureCode#" + accessTokenParam;
-            System.out.println(signatureImageUrl);
+            log.debug(signatureImageUrl);
         }
         if (StringUtils.trimToNull(signatureImageUrl) == null) {
             throw new RuntimeException("signatureImageUrl is undefined");
