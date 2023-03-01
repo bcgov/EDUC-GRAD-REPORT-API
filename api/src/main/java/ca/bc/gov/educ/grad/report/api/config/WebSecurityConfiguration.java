@@ -64,9 +64,4 @@ public class WebSecurityConfiguration {
 
         return authProvider;
     }
-
-//    @PostConstruct
-//    public void enableAuthCtxOnSpawnedThreads() {
-//        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_THREADLOCAL);
-//    }
 }
