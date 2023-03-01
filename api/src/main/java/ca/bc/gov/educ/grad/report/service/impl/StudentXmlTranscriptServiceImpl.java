@@ -15,12 +15,12 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
+import jakarta.annotation.security.DeclareRoles;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import javax.annotation.security.DeclareRoles;
 import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;

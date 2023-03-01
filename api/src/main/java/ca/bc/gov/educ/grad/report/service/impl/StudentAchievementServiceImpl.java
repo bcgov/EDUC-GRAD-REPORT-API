@@ -33,6 +33,8 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
@@ -42,8 +44,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.NumberFormat;

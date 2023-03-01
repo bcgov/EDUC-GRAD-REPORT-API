@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
@@ -19,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

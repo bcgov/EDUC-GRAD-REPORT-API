@@ -1,4 +1,5 @@
 #Spring boot Properties
+#
 spring:
   jmx:
     enabled: false
@@ -16,7 +17,7 @@ spring:
     driver-class: oracle.jdbc.driver.OracleDriver
   jpa:
     show-sql: ${SHOW_SQL_LOGS}
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: none
   mvc:

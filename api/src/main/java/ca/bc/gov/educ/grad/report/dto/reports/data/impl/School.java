@@ -18,9 +18,8 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
 /**
  * Represents a school, including its name, address, and agency.
