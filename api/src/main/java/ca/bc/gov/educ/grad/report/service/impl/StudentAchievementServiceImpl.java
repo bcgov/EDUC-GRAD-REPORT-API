@@ -33,6 +33,8 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
@@ -42,8 +44,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.NumberFormat;
@@ -273,7 +273,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         LOG.log(Level.FINE, "Retrieved achievement for pen: {0}.", pen.getValue());
 
         final StudentAchievementReport report = getStudentAchievementReport(pen, format, preview, parameters, interim);
-        LOG.log(Level.INFO, "Created StudentAchievementReport for pen: {0}.", pen.getValue());
+        LOG.log(Level.FINE, "Created StudentAchievementReport for pen: {0}.", pen.getValue());
 
         LOG.exiting(CLASSNAME, methodName);
         return report;
@@ -307,12 +307,12 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         results = gradDataConvertionBean.getAchievementCourses(reportData);
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results from TRAX for PEN: {0} INTERIM: {1}",
                 new Object[]{pen, interim});
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total courses {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student achievement course results:");
@@ -342,7 +342,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<AssessmentResult> results;
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
@@ -364,7 +364,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total courses {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student achievement course results:");
@@ -394,7 +394,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final GraduationStatus result;
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
@@ -432,7 +432,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<Exam> results;
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
@@ -454,7 +454,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total exam {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student exam results:");
@@ -484,7 +484,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<OptionalProgram> results;
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
@@ -506,7 +506,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total exam {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student optional program results:");
@@ -529,7 +529,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         final List<String> results;
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of career program results from TRAX for PEN: {0}",
                 new Object[]{pen});
 
@@ -547,7 +547,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         results = this.gradDataConvertionBean.getCareerPrograms(reportData);
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total carrier programs {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student career program results:");

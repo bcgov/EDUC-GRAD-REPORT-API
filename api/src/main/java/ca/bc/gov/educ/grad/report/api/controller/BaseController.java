@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
@@ -19,7 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -63,7 +63,6 @@ public abstract class BaseController {
         String accessToken = tokenKey + jwtTokenUtil.generateToken(new GradReportSignatureUser(username));
         String signatureImageUrl = "";
         if (StringUtils.trimToNull(signatureImageUrlProperty) == null) {
-            System.out.println("Signature URL Property not found");
             String protocol = StringUtils.startsWith(httpServletRequest.getProtocol(), "HTTP") ? "http://" : "https://";
             String serverName = "localhost";
             try {
@@ -76,11 +75,11 @@ public abstract class BaseController {
             String method = httpServletRequest.getMethod();
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
-            System.out.println(username + ": " + method + "->" + signatureImageUrl);
+            log.debug(username + ": " + method + "->" + signatureImageUrl);
         } else {
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = signatureImageUrlProperty + "/#signatureCode#" + accessTokenParam;
-            System.out.println(signatureImageUrl);
+            log.debug(signatureImageUrl);
         }
         if (StringUtils.trimToNull(signatureImageUrl) == null) {
             throw new RuntimeException("signatureImageUrl is undefined");

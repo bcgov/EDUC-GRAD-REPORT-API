@@ -84,9 +84,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="185" splitType="Stretch">
+		<band height="199" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<reportElement mode="Opaque" x="0" y="104" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -141,7 +141,7 @@
 					<textFieldExpression><![CDATA["Cumulative List of Graduated Students"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="14" width="155" height="17" uuid="5b16747c-04a6-4100-af4f-ef6d2952a93e">
+					<reportElement x="0" y="0" width="155" height="17" uuid="5b16747c-04a6-4100-af4f-ef6d2952a93e">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
@@ -163,14 +163,14 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="170" width="280" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+				<reportElement style="GeneratedText" x="0" y="183" width="280" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
 				<textElement>
 					<paragraph leftIndent="4"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="ContainerHeight" x="0" y="140" width="555" height="30" uuid="1dcd8655-33e9-439d-a887-5106fb0a6d9f"/>
+				<reportElement stretchType="ContainerHeight" x="0" y="153" width="555" height="30" uuid="1dcd8655-33e9-439d-a887-5106fb0a6d9f"/>
 				<textElement verticalAlignment="Top">
 					<font size="9"/>
 					<paragraph leftIndent="4"/>

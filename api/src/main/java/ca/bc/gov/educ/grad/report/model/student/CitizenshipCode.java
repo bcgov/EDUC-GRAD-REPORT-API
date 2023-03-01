@@ -3,8 +3,8 @@ package ca.bc.gov.educ.grad.report.model.student;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import jakarta.xml.bind.annotation.XmlEnumValue;
 
-import javax.xml.bind.annotation.XmlEnumValue;
 import java.io.Serializable;
 
 public enum CitizenshipCode implements Serializable {

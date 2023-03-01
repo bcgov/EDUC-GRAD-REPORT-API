@@ -28,6 +28,8 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelService;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,8 +37,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;

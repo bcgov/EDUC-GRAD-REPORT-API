@@ -87,9 +87,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="198" splitType="Stretch">
+		<band height="201" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<reportElement mode="Opaque" x="0" y="99" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -144,7 +144,7 @@
 					<textFieldExpression><![CDATA["Grade 12 and Adult Students"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="14" width="137" height="17" uuid="e1096ad5-239d-4b4c-bf66-c6ca3fb44216">
+					<reportElement x="0" y="0" width="137" height="17" uuid="e1096ad5-239d-4b4c-bf66-c6ca3fb44216">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
@@ -166,14 +166,14 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="183" width="280" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
+				<reportElement style="GeneratedText" x="0" y="185" width="280" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee"/>
 				<textElement>
 					<paragraph leftIndent="4"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="ContainerHeight" x="0" y="140" width="555" height="43" uuid="a1264f7b-874b-4cd7-b1fd-b5fdbcceb791"/>
+				<reportElement stretchType="ContainerHeight" x="0" y="142" width="555" height="43" uuid="a1264f7b-874b-4cd7-b1fd-b5fdbcceb791"/>
 				<textElement verticalAlignment="Top">
 					<font size="9"/>
 					<paragraph leftIndent="4"/>

@@ -3,6 +3,8 @@ package ca.bc.gov.educ.grad.report.api.util;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
@@ -12,8 +14,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;

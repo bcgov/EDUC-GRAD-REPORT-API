@@ -24,11 +24,11 @@ import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;

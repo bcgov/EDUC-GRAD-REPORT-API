@@ -19,10 +19,10 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
+import jakarta.annotation.security.DeclareRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
 import java.io.Serializable;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;

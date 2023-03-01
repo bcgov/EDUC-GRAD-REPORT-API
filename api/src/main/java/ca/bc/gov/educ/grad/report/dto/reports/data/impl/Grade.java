@@ -17,8 +17,9 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+
 import java.io.Serializable;
 
 import static ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity.nullSafe;
