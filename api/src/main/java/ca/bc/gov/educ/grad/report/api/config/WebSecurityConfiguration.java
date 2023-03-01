@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -27,10 +26,6 @@ public class WebSecurityConfiguration {
 
     @Autowired
     GradReportSignatureAuthenticationService signatureAuthenticationService;
-
-    public WebSecurityConfiguration() {
-        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -69,4 +64,9 @@ public class WebSecurityConfiguration {
 
         return authProvider;
     }
+
+//    @PostConstruct
+//    public void enableAuthCtxOnSpawnedThreads() {
+//        SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_THREADLOCAL);
+//    }
 }

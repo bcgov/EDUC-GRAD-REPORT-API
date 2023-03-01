@@ -2,12 +2,10 @@ package ca.bc.gov.educ.grad.report.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Immutable;
 
 import java.util.UUID;
 
 @Data
-@Immutable
 @Entity
 @Table(name = "DIGITAL_SIGNATURE")
 public class GradReportSignatureImageEntity extends BaseEntity {

@@ -80,7 +80,7 @@ public class GradReportSignatureService {
     public GradReportSignatureImage getSignatureImageByCode(String code) {
         String methodName = String.format("getSignatureImageBinaryByCode(String %s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
-        GradReportSignatureImageEntity entity = signatureImageRepository.findBySignatureCode(code);
+        GradReportSignatureImageEntity entity = signatureImageRepository.findByGradReportSignatureCode(code);
         if(entity ==  null) {
             try {
                 entity = new GradReportSignatureImageEntity();

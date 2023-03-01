@@ -54,7 +54,7 @@ public class GradReportSignatureRequestFilter extends OncePerRequestFilter {
         }
 
         String signatureCode = StringUtils.substringAfter(contentPath, EducGradReportApiConstants.GRAD_SIGNATURE_IMAGE_API_ROOT_MAPPING + "/");
-        GradReportSignatureImageEntity signatureImage = signatureImageRepository.findBySignatureCode(signatureCode);
+        GradReportSignatureImageEntity signatureImage = signatureImageRepository.findByGradReportSignatureCode(signatureCode);
         if(signatureImage == null) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
