@@ -1,8 +1,8 @@
 package ca.bc.gov.educ.grad.report.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;

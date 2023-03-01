@@ -1,9 +1,9 @@
 package ca.bc.gov.educ.grad.report.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Immutable;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 @Data

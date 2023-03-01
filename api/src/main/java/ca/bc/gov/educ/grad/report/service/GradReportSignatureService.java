@@ -7,13 +7,13 @@ import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import javax.transaction.Transactional;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
