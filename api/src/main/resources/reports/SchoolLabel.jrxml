@@ -134,8 +134,8 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5" leftPadding="5">
-									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
@@ -146,13 +146,13 @@
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeLeft}.toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="20" width="210" height="85" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement mode="Opaque" x="0" y="20" width="288" height="85" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box leftPadding="5">
 									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -168,14 +168,14 @@
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 						<jr:detailCell style="Table_TD" height="108">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="78" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="78" height="25" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5">
-									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Top">
 									<font size="12"/>
@@ -194,10 +194,10 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box>
-									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<leftPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Top"/>
 								<textFieldExpression><![CDATA[""]]></textFieldExpression>
@@ -212,7 +212,7 @@
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box topPadding="5" leftPadding="5">
-									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
@@ -224,13 +224,13 @@
 								<textFieldExpression><![CDATA[$F{schoolCategoryCodeRight}.toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="20" width="210" height="85" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
+								<reportElement mode="Opaque" x="0" y="20" width="288" height="85" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
 								<box leftPadding="5">
 									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -245,15 +245,15 @@
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
 						<jr:detailCell style="Table_TD" height="108">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
-								<reportElement mode="Opaque" x="0" y="0" width="78" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
+								<reportElement mode="Opaque" x="0" y="0" width="78" height="25" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 									<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 								</reportElement>
 								<box topPadding="5">
-									<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<topPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
-									<rightPen lineWidth="0.5" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
+									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
 								<textElement textAlignment="Left" verticalAlignment="Top">
 									<font size="12"/>
