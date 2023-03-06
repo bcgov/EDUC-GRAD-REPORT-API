@@ -1,0 +1,4 @@
+Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('ADDRESS_LABEL','Mailing Labels - School and District','A set of labels to support the distribution run to schools and districts. Labels are addressed to districts for B.C. public schools, the Yukon Department of Education for Yukon schools and to individual schools for Independent, First Nations and Offshore schools.',70,to_date('22-12-07','RR-MM-DD'));
+Insert into REPORT_TYPE_CODE (REPORT_TYPE_CODE,LABEL,DESCRIPTION,DISPLAY_ORDER,EFFECTIVE_DATE) values ('DISTREP_SD','District Credentials and Transcript Distribution Report (District)','A count of credentials, by school and credential-type, as well as number of transcripts, issued in the Credentials and Transcript Distribution run. Printed reports are included in the year-end certificate and transcript packages sent to districts.',28,to_date('21-07-19','RR-MM-DD'));
+
+
