@@ -93,7 +93,7 @@
 					<textElement verticalAlignment="Top">
 						<paragraph leftIndent="10" rightIndent="10"/>
 					</textElement>
-					<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order a free printed copy of their transcript through the StudentTranscripts Service.]]></text>
+					<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order one free printed copy of their transcript through the StudentTranscripts Service.]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="136" y="108" width="283" height="16" uuid="3d6a96da-75bd-4f67-ac96-20e185df0d1c">
