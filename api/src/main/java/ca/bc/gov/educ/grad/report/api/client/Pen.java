@@ -23,4 +23,12 @@ public class Pen implements Serializable {
     public void setEntityID(String value) {
         this.entityID = value;
     }
+
+    public String getStudentID() {
+        return getEntityID();
+    }
+
+    public void setStudentID(String studentID) {
+        setEntityID(studentID);
+    }
 }
