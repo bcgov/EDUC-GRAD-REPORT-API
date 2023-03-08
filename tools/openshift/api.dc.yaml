@@ -148,6 +148,12 @@ objects:
             target:
               averageUtilization: 400
               type: Utilization
+        - type: Resource
+          resource:
+            name: memory
+            target:
+              averageUtilization: 400
+              type: Utilization
 parameters:
   - name: REPO_NAME
     description: Application repository name
