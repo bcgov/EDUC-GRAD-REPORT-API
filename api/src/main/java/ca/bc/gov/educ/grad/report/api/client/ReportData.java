@@ -110,6 +110,9 @@ public class ReportData implements Serializable {
 	}
 
 	public void setSchools(List<School> schools) {
+		if(schools != null && !schools.isEmpty()) {
+			schools.sort(Comparator.comparing(School::getMincode));
+		}
 		this.schools = schools;
 	}
 
