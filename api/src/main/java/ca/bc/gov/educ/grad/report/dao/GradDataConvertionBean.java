@@ -31,6 +31,8 @@ import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -42,6 +44,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class GradDataConvertionBean extends BaseServiceImpl implements Serializable {
+
+    private static final String CLASS_NAME = GradDataConvertionBean.class.getName();
+    private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 
     @Autowired
     TranscriptTypeCodeRepository transcriptTypeCodeRepository;
@@ -429,6 +434,10 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         ca.bc.gov.educ.grad.report.api.client.School school = reportData.getSchool();
         List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
         for (ca.bc.gov.educ.grad.report.api.client.Student st : students) {
+            if(st.getPen() == null || StringUtils.isBlank(st.getPen().getPen())) {
+                log.warn("Skip Student {} without Pen #", st.getPen().getEntityID());
+                continue;
+            }
             StudentImpl student = new StudentImpl();
             BeanUtils.copyProperties(st, student);
             PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
