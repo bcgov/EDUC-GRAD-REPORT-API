@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE xpif SYSTEM "xpif-v02021.dtd">
+<!--suppress ALL -->
 <xpif version="1.0" xml:lang="en-US" cpss-version="2.01">
     <job-template-attributes>
         <copies syntax="integer">1</copies>
