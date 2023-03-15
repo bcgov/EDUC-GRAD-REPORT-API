@@ -30,7 +30,7 @@ public enum StudentTypeEnum {
 
     /**
      *
-     * @param name
+     * @param value
      */
     StudentTypeEnum(String value) {
         this.value = value;

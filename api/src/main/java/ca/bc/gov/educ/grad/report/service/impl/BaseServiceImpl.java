@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 import java.util.logging.Logger;
 
+@SuppressWarnings("ALL")
 public class BaseServiceImpl {
 
     private static final String CLASSNAME = BaseServiceImpl.class.getName();
