@@ -133,7 +133,7 @@ public class EmbeddedImageTranscoder {
      * can produce high-quality output. This method can be removed or
      * investigated and fixed (and used around line 90 above).
      *
-     * @see https://stackoverflow.com/a/13550493/59087
+     * @see "https://stackoverflow.com/a/13550493/59087"
      * @return A transcoder for transforming SVG sources to PNG images.
      */
     private static PNGTranscoder createPNGTranscoder() {

@@ -137,7 +137,7 @@ public interface TranscriptCourse {
     /**
      * Returns true if the course type is 1.
      *
-     * @see getCourseType
+     * @see "getCourseType()"
      * @return true The course type is 1.
      */
     Boolean isExaminable();

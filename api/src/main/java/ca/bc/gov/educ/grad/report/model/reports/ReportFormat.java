@@ -28,50 +28,50 @@ public enum ReportFormat {
     /**
      * Adobe Acrobat Portable Document Format.
      *
-     * @see https://tools.ietf.org/html/rfc3778
+     * @see "https://tools.ietf.org/html/rfc3778"
      */
     PDF("application/pdf", "pdf", true),
     /**
      * Extensible Mark-up Language.
      *
-     * @see https://tools.ietf.org/html/rfc7303
+     * @see "https://tools.ietf.org/html/rfc7303"
      */
     XML("text/xml", "xml"),
     /**
      * Hypertext Mark-up Language.
      *
-     * @see https://www.ietf.org/rfc/rfc2854.txt
+     * @see "https://www.ietf.org/rfc/rfc2854.txt"
      */
     HTML("text/html", "html"),
     /**
      * Comma-separated Values.
      *
-     * @see https://tools.ietf.org/html/rfc4180
+     * @see "https://tools.ietf.org/html/rfc4180"
      */
     CSV("text/csv", "csv"),
     /**
      * Plain Text File.
      *
-     * @see https://tools.ietf.org/html/rfc5147
+     * @see "https://tools.ietf.org/html/rfc5147"
      */
     TEXT("text/plain", "txt"),
     /**
      * Proprietary Microsoft Excel Format (see also: CSV).
      *
-     * @see http://www.iana.org/assignments/media-types/application/vnd.ms-excel
+     * @see "http://www.iana.org/assignments/media-types/application/vnd.ms-excel"
      */
     XLS("application/vnd.ms-excel", "xls"),
     /**
      * Proprietary Microsoft Excel Format (see also: CSV).
      *
-     * @see http://www.iana.org/assignments/media-types/application/vnd.ms-excel
+     * @see "http://www.iana.org/assignments/media-types/application/vnd.ms-excel"
      */
     XLSX("application/vnd.ms-excel", "xlsx");
 
     /**
      * The media type as defined by IANA and IETF.
      *
-     * @see http://www.iana.org/assignments/media-types/media-types.xhtml
+     * @see "http://www.iana.org/assignments/media-types/media-types.xhtml"
      */
     private final String mediaType;
 
@@ -128,7 +128,7 @@ public enum ReportFormat {
      * suitable for inclusion in the content-header of an HTTP response.
      *
      * @return The report format media type.
-     * @see http://www.iana.org/assignments/media-types/media-types.xhtml
+     * @see "http://www.iana.org/assignments/media-types/media-types.xhtml"
      */
     public String getMediaType() {
         return this.mediaType;
