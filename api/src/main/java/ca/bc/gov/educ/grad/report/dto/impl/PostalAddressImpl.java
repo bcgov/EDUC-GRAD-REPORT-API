@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -46,7 +47,7 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @Override
     @JsonProperty("address1")
     public String getStreetLine1() {
-        return streetLine1;
+        return streetLine1 + (StringUtils.isNotBlank(getStreetLine2()) ? "\n" + getStreetLine2() : "") + (StringUtils.isNotBlank(getStreetLine3()) ? "\n" + getStreetLine3() : "");
     }
 
     @Override
@@ -56,6 +57,7 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     }
 
     @Override
+    @JsonProperty("address3")
     public  String getStreetLine3() {
         return streetLine3;
     }
