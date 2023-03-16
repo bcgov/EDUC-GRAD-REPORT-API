@@ -25,7 +25,7 @@
       },
       {
         "mincode": "03939000",
-        "name": "VANCOUVER SCHOOL BOARD ADULT EDUCATION",
+        "name": "Idaho Correctional Institution",
         "typeIndicator": "",
         "typeBanner": "Principal",
         "signatureCode": "039",
@@ -33,13 +33,13 @@
         "schlno": "03939000",
         "schoolCategoryCode": null,
         "address": {
-          "streetLine1": "6010 FRASER ST",
+          "streetLine1": "381 W Hospital Dr",
           "streetLine2": "ATTN: Bill Gates",
-          "streetLine3": "in jail",
-          "city": "VANCOUVER",
-          "region": "BC",
-          "country": "CN",
-          "code": "V5W2Z7"
+          "streetLine3": "",
+          "city": "Orofino",
+          "region": "ID",
+          "country": "US",
+          "code": "83544"
         }
       },
       {
@@ -212,15 +212,15 @@
       },
       {
         "mincode": "03939000",
-        "name": "VANCOUVER SCHOOL BOARD ADULT EDUCATION",
+        "name": "New York state university of gender study",
         "typeIndicator": "",
-        "typeBanner": "Principal",
+        "typeBanner": "REGISTRAR",
         "signatureCode": "039",
         "distno": "039",
         "schlno": "03939000",
         "schoolCategoryCode": null,
         "address": {
-          "streetLine1": "6010 FRASER ST",
+          "streetLine1": "6010 WALL ST",
           "streetLine2": "ATTN: Donald Trump",
           "city": "New York",
           "region": "NY",

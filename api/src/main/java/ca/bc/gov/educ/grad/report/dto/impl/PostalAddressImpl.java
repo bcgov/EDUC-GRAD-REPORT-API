@@ -77,14 +77,14 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @Override
     @JsonProperty("postal")
     public  String getPostalCode() {
-        switch(getCountryCode()) {
+        switch(StringUtils.trimToEmpty(getCountryCode()).toUpperCase()) {
             case "CN":
                 if(StringUtils.isNotBlank(this.code) && this.code.length() == 6) {
                     return new StringBuilder(this.code).insert(3, " ").toString();
                 } else {
                     return this.code;
                 }
-            case "US":
+            case "US", "USA":
                 if(StringUtils.isNotBlank(this.code) && this.code.length() == 9) {
                     return new StringBuilder(this.code).insert(5, "-").toString();
                 } else {
@@ -178,14 +178,15 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
             sb.append("\n").append(getCity());
         }
         if(StringUtils.isNotBlank(getRegion())) {
-            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? " " : "\n").append(getRegion());
+            sb.append(" ").append(getRegion());
         }
         if(StringUtils.isNotBlank(getCountryCode())) {
-            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? " " : "\n").append(getCountryCode());
-            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? "" : getCountryCode());
+            if(!"CN".equalsIgnoreCase(getCountryCode())) {
+                sb.append("\n").append(getCountryCode());
+            }
         }
         if(StringUtils.isNotBlank(getPostalCode())) {
-            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? "  " : " ").append(getPostalCode());
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) || StringUtils.isBlank(getCountryCode()) ? "  " : " ").append(getPostalCode());
         }
         return sb.toString();
     }
