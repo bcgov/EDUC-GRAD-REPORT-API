@@ -1,7 +1,5 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.Serializable;
 
 
@@ -67,10 +65,6 @@ public class Address implements Serializable {
     }
 
     public void setCode(String value) {
-        if(StringUtils.isNotBlank(value) && value.length() == 6) {
-            this.code = new StringBuilder(value).insert(3, " ").toString();
-        } else {
-            this.code = value;
-        }
+        this.code = value;
     }
 }
