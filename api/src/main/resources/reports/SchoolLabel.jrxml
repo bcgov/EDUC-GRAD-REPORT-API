@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<!--suppress ALL -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolLabelsReport" pageWidth="612" pageHeight="792" columnWidth="590" leftMargin="11" rightMargin="11" topMargin="18" bottomMargin="18" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -21,8 +20,8 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="schoolCategoryCodeLeft" class="java.lang.String">
-			<fieldDescription><![CDATA[left.schoolCategoryCode]]></fieldDescription>
+		<field name="typeBannerLeft" class="java.lang.String">
+			<fieldDescription><![CDATA[left.typeBanner]]></fieldDescription>
 		</field>
 		<field name="mincodeLeft" class="java.lang.String">
 			<fieldDescription><![CDATA[left.mincode]]></fieldDescription>
@@ -51,8 +50,8 @@
 		<field name="countryLeft" class="java.lang.String">
 			<fieldDescription><![CDATA[left.address.countryCode]]></fieldDescription>
 		</field>
-		<field name="schoolCategoryCodeRight" class="java.lang.String">
-			<fieldDescription><![CDATA[right.schoolCategoryCode]]></fieldDescription>
+		<field name="typeBannerRight" class="java.lang.String">
+			<fieldDescription><![CDATA[right.typeBanner]]></fieldDescription>
 		</field>
 		<field name="mincodeRight" class="java.lang.String">
 			<fieldDescription><![CDATA[right.mincode]]></fieldDescription>
@@ -111,11 +110,11 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="108" splitType="Stretch">
+		<band height="106" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<componentElement>
-				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="590" height="108" isPrintWhenDetailOverflows="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="0" width="590" height="106" isPrintWhenDetailOverflows="true" uuid="6dfd45d5-681e-4159-a41f-2c558c482172">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -129,7 +128,7 @@
 					</datasetRun>
 					<jr:column width="288" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:detailCell style="Table_TD" height="108">
+						<jr:detailCell style="Table_TD" height="106">
 							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="0" y="0" width="210" height="25" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -144,9 +143,9 @@
 									<font size="12"/>
 									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{schoolCategoryCodeLeft}.toUpperCase()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{typeBannerLeft}.toUpperCase()]]></textFieldExpression>
 							</textField>
-							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="0" y="25" width="288" height="80" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
@@ -156,11 +155,11 @@
 									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
+								<textElement textAlignment="Left" verticalAlignment="Top">
 									<font size="12"/>
 									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase() + "\n" + $F{streetLine1Left}.toUpperCase() + "\n" + ($F{cityLeft} + " " + $F{regionLeft} + " " + $F{codeLeft}).toUpperCase()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase() + "\n" + $F{streetLine1Left}.toUpperCase() + "\n" + ($F{cityLeft} + " " + $F{regionLeft} + "  " + $F{codeLeft}).toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="210" y="0" width="78" height="25" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
@@ -183,7 +182,7 @@
 					<jr:column width="14" uuid="dc4371bf-1aa8-49a0-8281-75ee1021517c">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
 						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
-						<jr:detailCell style="Table_TD" height="108">
+						<jr:detailCell style="Table_TD" height="106">
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="0" y="0" width="14" height="105" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -201,7 +200,7 @@
 					</jr:column>
 					<jr:column width="288" uuid="422fa4e7-6006-46cc-aefc-b6ab997fb49a">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:detailCell style="Table_TD" height="108">
+						<jr:detailCell style="Table_TD" height="106">
 							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="0" y="0" width="210" height="25" uuid="80505548-4897-41a1-8bed-36b0b22fe73a">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
@@ -216,9 +215,9 @@
 									<font size="12"/>
 									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{schoolCategoryCodeRight}.toUpperCase()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{typeBannerRight}.toUpperCase()]]></textFieldExpression>
 							</textField>
-							<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+							<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="0" y="25" width="288" height="80" uuid="f3a1d85a-680f-4efc-baed-59855c8ea819">
 									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 								</reportElement>
@@ -228,11 +227,11 @@
 									<bottomPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 									<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#DBDBDB"/>
 								</box>
-								<textElement textAlignment="Left" verticalAlignment="Middle">
+								<textElement textAlignment="Left" verticalAlignment="Top">
 									<font size="12"/>
 									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase() + "\n" + $F{streetLine1Right}.toUpperCase() + "\n" + ($F{cityRight} + " " + $F{regionRight} + " " + $F{codeRight}).toUpperCase()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase() + "\n" + $F{streetLine1Right}.toUpperCase() + "\n" + ($F{cityRight} + " " + $F{regionRight} + "  " + $F{codeRight}).toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="210" y="0" width="78" height="25" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
