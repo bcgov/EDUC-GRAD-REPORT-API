@@ -47,7 +47,7 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @Override
     @JsonProperty("address1")
     public String getStreetLine1() {
-        return streetLine1 + (StringUtils.isNotBlank(getStreetLine2()) ? "\n" + getStreetLine2() : "") + (StringUtils.isNotBlank(getStreetLine3()) ? "\n" + getStreetLine3() : "");
+        return streetLine1;
     }
 
     @Override
@@ -77,7 +77,22 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @Override
     @JsonProperty("postal")
     public  String getPostalCode() {
-        return this.code;
+        switch(getCountryCode()) {
+            case "CN":
+                if(StringUtils.isNotBlank(this.code) && this.code.length() == 6) {
+                    return new StringBuilder(this.code).insert(3, " ").toString();
+                } else {
+                    return this.code;
+                }
+            case "US":
+                if(StringUtils.isNotBlank(this.code) && this.code.length() == 9) {
+                    return new StringBuilder(this.code).insert(5, "-").toString();
+                } else {
+                    return this.code;
+                }
+            default:
+                return this.code;
+        }
     }
 
     @Override
@@ -147,6 +162,32 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
      */
     public void setCode(final String code) {
         this.code = code;
+    }
+
+    @Override
+    public String getFormattedAddressForLabels() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getStreetLine1());
+        if(StringUtils.isNotBlank(getStreetLine2())) {
+            sb.append("\n").append(getStreetLine2());
+        }
+        if(StringUtils.isNotBlank(getStreetLine3())) {
+            sb.append("\n").append(getStreetLine3());
+        }
+        if(StringUtils.isNotBlank(getCity())) {
+            sb.append("\n").append(getCity());
+        }
+        if(StringUtils.isNotBlank(getRegion())) {
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? " " : "\n").append(getRegion());
+        }
+        if(StringUtils.isNotBlank(getCountryCode())) {
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? " " : "\n").append(getCountryCode());
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? "" : getCountryCode());
+        }
+        if(StringUtils.isNotBlank(getPostalCode())) {
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) ? "  " : " ").append(getPostalCode());
+        }
+        return sb.toString();
     }
 
     @Override

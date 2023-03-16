@@ -50,6 +50,9 @@
 		<field name="countryLeft" class="java.lang.String">
 			<fieldDescription><![CDATA[left.address.countryCode]]></fieldDescription>
 		</field>
+		<field name="formattedAddressLeft" class="java.lang.String">
+			<fieldDescription><![CDATA[left.address.formattedAddressForLabels]]></fieldDescription>
+		</field>
 		<field name="typeBannerRight" class="java.lang.String">
 			<fieldDescription><![CDATA[right.typeBanner]]></fieldDescription>
 		</field>
@@ -78,7 +81,10 @@
 			<fieldDescription><![CDATA[right.address.postalCode]]></fieldDescription>
 		</field>
 		<field name="countryRight" class="java.lang.String">
-			<fieldDescription><![CDATA[left.address.countryCode]]></fieldDescription>
+			<fieldDescription><![CDATA[right.address.countryCode]]></fieldDescription>
+		</field>
+		<field name="formattedAddressRight" class="java.lang.String">
+			<fieldDescription><![CDATA[right.address.formattedAddressForLabels]]></fieldDescription>
 		</field>
 	</subDataset>
 	<parameter name="P_REPORT_BASE" class="java.lang.String" isForPrompting="false">
@@ -159,7 +165,7 @@
 									<font size="12"/>
 									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase() + "\n" + $F{streetLine1Left}.toUpperCase() + "\n" + ($F{cityLeft} + " " + $F{regionLeft} + "  " + $F{codeLeft}).toUpperCase()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nameLeft}.toUpperCase() + "\n" + $F{formattedAddressLeft}.toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="210" y="0" width="78" height="25" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">
@@ -231,7 +237,7 @@
 									<font size="12"/>
 									<paragraph lineSpacing="Proportional" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase() + "\n" + $F{streetLine1Right}.toUpperCase() + "\n" + ($F{cityRight} + " " + $F{regionRight} + "  " + $F{codeRight}).toUpperCase()]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nameRight}.toUpperCase() + "\n" + $F{formattedAddressRight}.toUpperCase()]]></textFieldExpression>
 							</textField>
 							<textField textAdjust="ScaleFont" evaluationTime="Auto" isBlankWhenNull="true">
 								<reportElement mode="Opaque" x="210" y="0" width="78" height="25" uuid="b70e039d-6c60-45bf-90e0-5e5f4836618a">

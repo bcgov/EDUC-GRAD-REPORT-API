@@ -78,4 +78,11 @@ public interface MailingAddress {
      * @return A mostly unique identifier for the address.
      */
     String getPostalCode();
+
+    /**
+     * Returns the formatted address depending on country formats.
+     *
+     * @return formatted country specific address
+     */
+    String getFormattedAddressForLabels();
 }
