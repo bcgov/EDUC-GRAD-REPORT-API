@@ -156,21 +156,21 @@
 				<text><![CDATA[SG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="298" y="48" width="258" height="65" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<reportElement style="SummaryBody" x="298" y="48" width="258" height="42" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
 				<text><![CDATA[Where completion of normal requirements was not possible, but credit was granted on the basis of adjudication by the school]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="273" y="113" width="25" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3">
+				<reportElement style="SummaryBody" x="273" y="100" width="25" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[TS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="298" y="113" width="258" height="58" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9">
+				<reportElement style="SummaryBody" x="298" y="100" width="258" height="58" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -195,7 +195,7 @@
 				<text><![CDATA[Minimum 52 credits over Grades 11 - 12, plus successful completion of the courses listed below. Students may have earned more than 52 credits but not have successfully completed all requirements.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="149" y="243" width="418" height="35" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">
+				<reportElement style="SummaryBody" x="149" y="243" width="407" height="35" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Top"/>
