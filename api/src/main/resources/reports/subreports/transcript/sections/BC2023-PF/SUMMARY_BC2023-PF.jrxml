@@ -187,7 +187,7 @@
 				<textElement verticalAlignment="Top" markup="html">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act]]></text>
+				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="15" y="180" width="25" height="13" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
