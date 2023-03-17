@@ -153,7 +153,7 @@
 				<text><![CDATA[SG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="276" y="49" width="45" height="35" uuid="78606c6f-5ce8-449b-84c4-60f427c9ec01">
+				<reportElement style="SummaryBody" x="276" y="49" width="44" height="35" uuid="78606c6f-5ce8-449b-84c4-60f427c9ec01">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -161,7 +161,8 @@
 				<text><![CDATA[(Standing Granted)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="327" y="49" width="239" height="40" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<reportElement style="SummaryBody" x="320" y="49" width="246" height="46" uuid="5f34d91e-a1ae-425d-8fb3-a8ca6c4d3c06"/>
+				<box leftPadding="3"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
@@ -181,11 +182,12 @@
 				<text><![CDATA[(Transfer Standing)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="327" y="93" width="239" height="38" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
-				<textElement verticalAlignment="Top">
+				<reportElement style="SummaryBody" x="320" y="93" width="246" height="38" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9"/>
+				<box topPadding="0" leftPadding="3" bottomPadding="0" rightPadding="0"/>
+				<textElement verticalAlignment="Top" markup="html">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the School Act]]></text>
+				<text><![CDATA[Granted by the school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="15" y="180" width="25" height="13" uuid="ba6c28c4-b013-4479-adcf-cb980115c881"/>
@@ -400,9 +402,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="324" width="160" height="13" uuid="536db2bf-3bcd-4b1a-a5a6-efb0bbb940f4">
+				<reportElement style="SummaryBody" x="70" y="324" width="179" height="13" uuid="536db2bf-3bcd-4b1a-a5a6-efb0bbb940f4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Language Arts 10 (4 credits)]]></text>
 			</staticText>
@@ -420,9 +423,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="346" width="160" height="13" uuid="1327b5fb-924b-4713-bca2-b0681aaa80b0">
+				<reportElement style="SummaryBody" x="70" y="346" width="179" height="13" uuid="1327b5fb-924b-4713-bca2-b0681aaa80b0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Language Arts 12 (4 credits)]]></text>
 			</staticText>
@@ -440,9 +444,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="335" width="160" height="13" uuid="762157dc-a12c-48f6-937f-5040b71bf4b0">
+				<reportElement style="SummaryBody" x="70" y="335" width="179" height="13" uuid="762157dc-a12c-48f6-937f-5040b71bf4b0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Language Arts 11 (4 credits)]]></text>
 			</staticText>
@@ -460,9 +465,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="357" width="160" height="13" uuid="b6fc5967-aaa4-4bb4-b8e6-9157b3eba328">
+				<reportElement style="SummaryBody" x="70" y="357" width="179" height="13" uuid="b6fc5967-aaa4-4bb4-b8e6-9157b3eba328">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Social Studies 10 (4 credits)]]></text>
 			</staticText>
@@ -480,9 +486,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="379" width="160" height="13" uuid="3bb31d94-092d-42be-bf7b-a7dee48725c4">
+				<reportElement style="SummaryBody" x="70" y="379" width="179" height="13" uuid="3bb31d94-092d-42be-bf7b-a7dee48725c4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Mathematics 10 (4 credits)]]></text>
 			</staticText>
@@ -500,9 +507,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="368" width="160" height="13" uuid="5efebd5c-766d-4473-9e44-58dde31f9e94">
+				<reportElement style="SummaryBody" x="70" y="368" width="179" height="13" uuid="5efebd5c-766d-4473-9e44-58dde31f9e94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Social Studies 11 or 12 (4 credits)]]></text>
 			</staticText>
@@ -520,9 +528,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="390" width="160" height="13" uuid="a44e9742-d7bc-447b-9292-d720ff2be513">
+				<reportElement style="SummaryBody" x="70" y="390" width="179" height="13" uuid="a44e9742-d7bc-447b-9292-d720ff2be513">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Mathematics 11 or 12 (4 credits)]]></text>
 			</staticText>
@@ -540,9 +549,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="401" width="160" height="13" uuid="20b56dfd-fc6d-40f6-a11e-c076142f210f">
+				<reportElement style="SummaryBody" x="70" y="401" width="179" height="13" uuid="20b56dfd-fc6d-40f6-a11e-c076142f210f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Science 10 (4 credits)]]></text>
 			</staticText>
@@ -560,9 +570,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="412" width="160" height="13" uuid="9542393b-798a-4886-aa82-b462587c5766">
+				<reportElement style="SummaryBody" x="70" y="412" width="179" height="13" uuid="9542393b-798a-4886-aa82-b462587c5766">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Science 11 or 12 (4 credits)]]></text>
 			</staticText>
@@ -580,9 +591,10 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="75" y="424" width="194" height="13" uuid="234c1e0a-9374-4456-bf3f-14a0062991c5">
+				<reportElement style="SummaryBody" x="70" y="424" width="219" height="13" uuid="234c1e0a-9374-4456-bf3f-14a0062991c5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
+				<box leftPadding="5"/>
 				<textElement textAlignment="Left"/>
 				<text><![CDATA[Physical and Health Education 10 (4 credits)]]></text>
 			</staticText>
@@ -806,7 +818,7 @@
 			<staticText>
 				<reportElement style="SummaryBody" x="19" y="459" width="515" height="20" uuid="29384896-6ce9-4323-9e2a-125a2e8e04d4"/>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[• A list of all courses that may be used to satisfy requirements is found in the Ministry of Education Course Registry]]></text>
+				<text><![CDATA[• A list of all courses that may be used to satisfy requirements is found in the BC Course Registry.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="269" y="415" width="16" height="13" uuid="d598a73c-be3d-43f5-a7c6-4b075dd32780">
