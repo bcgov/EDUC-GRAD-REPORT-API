@@ -174,7 +174,7 @@
 				<text><![CDATA[May be granted by the principal, vice principal or director of instruction in charge of a school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act.</i>]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryTitle" x="35" y="168" width="515" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68">
+				<reportElement style="SummaryTitle" x="35" y="160" width="515" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
@@ -182,12 +182,11 @@
 				<text><![CDATA[2004 GRADUATION PROGRAM REQUIREMENTS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="35" y="185" width="449" height="35" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd">
+				<reportElement style="SummaryBody" x="35" y="175" width="515" height="45" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[Minimum 80 credits over Grades 10 - 12, including successful completion of the courses listed below. Students might have earned more than 80 credits but not have successfully completed all required courses. All Ministry
--authorized, Board/Authority-Authorized or post-secondary courses count toward graduation.]]></text>
+				<text><![CDATA[Minimum 80 credits over Grades 10 - 12, including successful completion of the courses listed below. Students might have earned more than 80 credits but not have successfully completed all required courses. All Ministry-authorized, Board/Authority-Authorized or post-secondary courses count toward graduation.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="149" y="220" width="325" height="25" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">

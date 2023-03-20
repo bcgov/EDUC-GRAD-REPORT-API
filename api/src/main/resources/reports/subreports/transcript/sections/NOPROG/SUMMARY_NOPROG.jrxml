@@ -349,17 +349,17 @@
 				<text><![CDATA[- Demonstrates an initial understanding of the concepts and competencies relevant to the expected learning]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryTitle" x="16" y="245" width="535" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
+				<reportElement style="SummaryTitle" x="15" y="245" width="536" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[2018 GRADUATION PROGRAM REQUIREMENTS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="15" y="260" width="535" height="45" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd"/>
+				<reportElement style="SummaryBody" x="15" y="260" width="536" height="51" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd"/>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[Students must earn a min. of 80 credits and write provincial assessments of numeracy and literacy. The 80 credits include 52 credits for required courses (including 8 credits of Career Education courses) and a min. of 28 elective credits. Students must complete a min. of 16 credits at the Grade 12 level, including a required Language Arts 12 and Career Life Connections.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="45" y="308" width="465" height="13" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">
+				<reportElement style="SummaryBody" x="44" y="311" width="465" height="13" uuid="f5bd4a4d-4cb4-42ed-9958-82fc763c7e4d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">

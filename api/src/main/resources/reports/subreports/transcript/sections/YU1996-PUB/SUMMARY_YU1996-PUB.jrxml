@@ -160,24 +160,25 @@
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Where completion of normal requirements was not possible, but credit was granted on the basis of adjudication by the school]]></text>
+				<text><![CDATA[Where completion of normal requirements was not
+possible, but credit was granted on the basis of adjudication by the school]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="273" y="100" width="25" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3">
+				<reportElement style="SummaryBody" x="273" y="90" width="25" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[TS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="298" y="100" width="258" height="58" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9">
+				<reportElement style="SummaryBody" x="298" y="90" width="258" height="58" uuid="3096afe8-45b4-4483-a6de-ad3a9b1607b9">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top" markup="html">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[May be granted by the principal, vice principal or director of instruction in charge of a school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act.</i>]]></text>
+				<text><![CDATA[May be granted by the principal, vice principal or director of instruction in charge of a school on the basis of an examination of records from an institution other than a school as defined in the <i>School Act</i>]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryTitle" x="35" y="175" width="521" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68">
