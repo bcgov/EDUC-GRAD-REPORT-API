@@ -48,7 +48,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[MET]]></text>
+				<text><![CDATA[RM]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="70" y="72" width="460" height="15" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae">
@@ -57,7 +57,7 @@
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Assessment requirement met by a provincial exam]]></text>
+				<text><![CDATA[Requirement met by completion of the Literacy 10 Assessment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="2" y="15" width="23" height="14" uuid="b26b0d7c-4db4-4b85-9ed1-b4debb518b2e">
@@ -166,22 +166,6 @@
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
 				<text><![CDATA[- Demonstrates a sophisticated understanding of the concepts and competencies relevant to the expected learning]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="SummaryBody" stretchType="RelativeToTallestObject" x="70" y="85" width="460" height="15" uuid="d45d1fbd-a711-44ee-b345-5771240bf6bd">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<paragraph lineSpacing="Proportional"/>
-				</textElement>
-				<text><![CDATA[Requirement met by completion of the Literacy 10 Assessment]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="SummaryBody" x="40" y="85" width="25" height="15" uuid="6fa3077a-8179-4055-aef9-7595c5e12103">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[RM]]></text>
 			</staticText>
 		</band>
 	</summary>

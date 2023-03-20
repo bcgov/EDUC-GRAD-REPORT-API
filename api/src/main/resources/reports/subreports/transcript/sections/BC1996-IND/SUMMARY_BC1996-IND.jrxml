@@ -160,7 +160,8 @@
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" lineSpacingSize="1.0"/>
 				</textElement>
-				<text><![CDATA[Where completion of normal requirements was not possible, but credit was granted on the basis of adjudication by the school]]></text>
+				<text><![CDATA[Where completion of normal requirements was not
+possible, but credit was granted on the basis of adjudication by the school]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="273" y="90" width="25" height="15" uuid="8f3c2e01-1957-4fc6-8ea0-8c1644fca0e3">
