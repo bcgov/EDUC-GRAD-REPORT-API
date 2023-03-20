@@ -368,7 +368,7 @@
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/ASSESSMENT_" + $P{P_REPORT_TYPE} + ".jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement style="SummaryTitle" x="177" y="28" width="334" height="20" uuid="6fc2a55e-6ff5-4fea-97cd-8060e51f7a85">
+				<reportElement style="SummaryTitle" x="174" y="28" width="337" height="20" uuid="6fc2a55e-6ff5-4fea-97cd-8060e51f7a85">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
