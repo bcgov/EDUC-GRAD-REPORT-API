@@ -42,7 +42,7 @@
 				<text><![CDATA[GRADUATION ASSESSMENTS (OPTIONAL FOR ADULT DIPLOMA)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="40" y="72" width="25" height="15" uuid="ba6c28c4-b013-4479-adcf-cb980115c881">
+				<reportElement style="SummaryBody" x="47" y="72" width="25" height="15" uuid="ba6c28c4-b013-4479-adcf-cb980115c881">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
@@ -51,13 +51,13 @@
 				<text><![CDATA[RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="70" y="72" width="460" height="15" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae">
+				<reportElement style="SummaryBody" x="72" y="72" width="458" height="15" uuid="cdd80016-b406-42fc-874b-6fef65ac3dae">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional"/>
 				</textElement>
-				<text><![CDATA[Requirement met by completion of the Literacy 10 Assessment]]></text>
+				<text><![CDATA[- Requirement met by completion of the Literacy 10 Assessment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="2" y="15" width="23" height="14" uuid="b26b0d7c-4db4-4b85-9ed1-b4debb518b2e">
