@@ -203,7 +203,7 @@ possible, but credit was granted on the basis of adjudication by the school]]></
 				<text><![CDATA[28 Credits of Foundation Studies. The required Foundation Studies courses below are designated by a code number (e.g., 1-10) in the Req. column.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="118" y="233" width="29" height="35" uuid="6ccd1cc6-7a33-413b-a935-7ed0babfcc39"/>
+				<reportElement style="SummaryBody" x="118" y="228" width="29" height="27" uuid="6ccd1cc6-7a33-413b-a935-7ed0babfcc39"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="16"/>
 				</textElement>
@@ -410,10 +410,12 @@ possible, but credit was granted on the basis of adjudication by the school]]></
 				<text><![CDATA[Both Fine Arts 11 and Applied Skills 11 (4 credits)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="116" y="430" width="33" height="35" uuid="49ce87c7-8365-4ae6-9bde-fad708b645f9">
+				<reportElement style="SummaryBody" x="120" y="430" width="29" height="27" uuid="49ce87c7-8365-4ae6-9bde-fad708b645f9">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font size="16"/>
 				</textElement>
 				<text><![CDATA[•]]></text>
