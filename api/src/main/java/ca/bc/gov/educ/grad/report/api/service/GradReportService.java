@@ -379,9 +379,9 @@ public class GradReportService {
 		SchoolDistributionReport issuedTranscriptsReport = null;
 
 		Map<String, ReportData> reportDataMap = reportRequest.getDataMap();
-		if(reportDataMap != null && reportDataMap.size() == 2) {
-			newCredentialsReport = getSchoolDistributionNewCredentialsReport(newCredentialsReport, reportDataMap);
-			issuedTranscriptsReport = getSchoolDistributionIssuedTranscriptsReport(issuedTranscriptsReport, reportDataMap);
+		if(reportDataMap != null && !reportDataMap.isEmpty()) {
+			newCredentialsReport = getSchoolDistributionNewCredentialsReport(reportDataMap);
+			issuedTranscriptsReport = getSchoolDistributionIssuedTranscriptsReport(reportDataMap);
 		}
 
 		OrderType orderType = new SchoolReportOrderTypeImpl() {
@@ -403,7 +403,8 @@ public class GradReportService {
 
 	}
 
-	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(SchoolDistributionReport issuedTranscriptsReport, Map<String, ReportData> reportDataMap) throws IOException {
+	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(Map<String, ReportData> reportDataMap) throws IOException {
+		SchoolDistributionReport issuedTranscriptsReport = null;
 		ReportData data = reportDataMap.get("issuedTranscriptsReportData");
 		if (data != null) {
 			ReportRequestDataThreadLocal.setReportData(data);
@@ -448,7 +449,8 @@ public class GradReportService {
 		return studentNonGradService.buildStudentNonGradReport();
 	}
 
-	private SchoolDistributionReport getSchoolDistributionNewCredentialsReport(SchoolDistributionReport newCredentialsReport, Map<String, ReportData> reportDataMap) throws IOException {
+	private SchoolDistributionReport getSchoolDistributionNewCredentialsReport(Map<String, ReportData> reportDataMap) throws IOException {
+		SchoolDistributionReport newCredentialsReport = null;
 		ReportData data = reportDataMap.get("newCredentialsReportData");
 		if (data != null) {
 			ReportRequestDataThreadLocal.setReportData(data);
