@@ -376,7 +376,7 @@
 				<reportElement style="SummaryTitle" x="0" y="120" width="567" height="20" uuid="fd629bfa-9f59-4a80-9eae-f7e06661569a">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[GRADUATION ASSESSMENTS (Not Required for SCCP)]]></text>
 			</staticText>
 			<staticText>
@@ -499,7 +499,7 @@
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="Proportional" leftIndent="0"/>
 				</textElement>
-				<text><![CDATA[- Requirement met by completion of the Literacy 10 Assessment.]]></text>
+				<text><![CDATA[- Requirement met by completion of the Literacy 10 Assessment]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="54" y="188" width="25" height="13" uuid="de0ccc3d-92c6-4401-b8bb-c0a51d888b31">
