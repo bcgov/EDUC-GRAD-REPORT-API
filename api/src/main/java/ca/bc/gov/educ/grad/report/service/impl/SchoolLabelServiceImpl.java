@@ -18,7 +18,9 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dto.impl.PostalAddressImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolLabelReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
@@ -94,6 +96,15 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
         final List<School> schools = getSchools(reportData);
 
         if(!schools.isEmpty()) {
+            for(School school: schools) {
+                String countryCode = school.getAddress().getCountryCode();
+                if(StringUtils.isNotBlank(countryCode) && !"CN".equalsIgnoreCase(countryCode)) {
+                    TraxCountry traxCountry = getCountry(countryCode, reportData.getAccessToken());
+                    if(traxCountry != null) {
+                        ((PostalAddressImpl) school.getAddress()).setCountry(traxCountry.getCountryName());
+                    }
+                }
+            }
             List<List<School>> partition = ListUtils.partition(schools, 2);
             List<Pair<School, School>> schools2Columns = new ArrayList<>();
             for(List<School> schs: partition) {

@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -412,6 +413,18 @@ public abstract class GradReportServiceImpl implements Serializable {
                     .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(TraxSchool.class)
+                    .block();
+        }
+        return null;
+    }
+
+    TraxCountry getCountry(String code, String accessToken) {
+        if(!StringUtils.isBlank(code)) {
+            return webClient.get()
+                    .uri(String.format(constants.getCountryDetails(), code))
+                    .headers(h -> h.setBearerAuth(accessToken))
+                    .retrieve()
+                    .bodyToMono(TraxCountry.class)
                     .block();
         }
         return null;

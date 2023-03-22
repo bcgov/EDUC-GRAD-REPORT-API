@@ -25,7 +25,6 @@ import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +93,6 @@ public class GradReportService {
 	@Autowired
 	StudentXmlTranscriptService studentXmlTranscriptService;
 
-	@SneakyThrows
 	public byte[] getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -132,8 +130,7 @@ public class GradReportService {
 		);
 	}
 
-	@SneakyThrows
-    public byte[] getStudentAchievementReport(ReportRequest reportRequest) {
+	public byte[] getStudentAchievementReport(ReportRequest reportRequest) {
     	String methodName = "getStudentAchievementReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 
@@ -160,7 +157,6 @@ public class GradReportService {
 		return achievementService.buildOfficialAchievementReport();
 	}
 
-	@SneakyThrows
 	public byte[] getStudentTranscriptReport(ReportRequest reportRequest) {
 		String methodName = "getStudentTranscriptReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -188,7 +184,6 @@ public class GradReportService {
 			return transcriptService.buildOfficialTranscriptReport();
 	}
 
-	@SneakyThrows
 	public byte[] getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {
 		String methodName = "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -214,7 +209,6 @@ public class GradReportService {
 		return studentXmlTranscriptService.buildXmlTranscriptReport();
 	}
 
-	@SneakyThrows
 	public byte[] getStudentCertificateReport(ReportRequest reportRequest) {
 		String methodName = "getStudentCertificateReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -249,7 +243,6 @@ public class GradReportService {
 		return documentBundle;
 	}
 
-	@SneakyThrows
 	public byte[] getSchoolDistributionReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolDistributionReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -379,9 +372,9 @@ public class GradReportService {
 		SchoolDistributionReport issuedTranscriptsReport = null;
 
 		Map<String, ReportData> reportDataMap = reportRequest.getDataMap();
-		if(reportDataMap != null && reportDataMap.size() == 2) {
-			newCredentialsReport = getSchoolDistributionNewCredentialsReport(newCredentialsReport, reportDataMap);
-			issuedTranscriptsReport = getSchoolDistributionIssuedTranscriptsReport(issuedTranscriptsReport, reportDataMap);
+		if(reportDataMap != null && !reportDataMap.isEmpty()) {
+			newCredentialsReport = getSchoolDistributionNewCredentialsReport(reportDataMap);
+			issuedTranscriptsReport = getSchoolDistributionIssuedTranscriptsReport(reportDataMap);
 		}
 
 		OrderType orderType = new SchoolReportOrderTypeImpl() {
@@ -403,7 +396,8 @@ public class GradReportService {
 
 	}
 
-	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(SchoolDistributionReport issuedTranscriptsReport, Map<String, ReportData> reportDataMap) throws IOException {
+	private SchoolDistributionReport getSchoolDistributionIssuedTranscriptsReport(Map<String, ReportData> reportDataMap) throws IOException {
+		SchoolDistributionReport issuedTranscriptsReport = null;
 		ReportData data = reportDataMap.get("issuedTranscriptsReportData");
 		if (data != null) {
 			ReportRequestDataThreadLocal.setReportData(data);
@@ -448,7 +442,8 @@ public class GradReportService {
 		return studentNonGradService.buildStudentNonGradReport();
 	}
 
-	private SchoolDistributionReport getSchoolDistributionNewCredentialsReport(SchoolDistributionReport newCredentialsReport, Map<String, ReportData> reportDataMap) throws IOException {
+	private SchoolDistributionReport getSchoolDistributionNewCredentialsReport(Map<String, ReportData> reportDataMap) throws IOException {
+		SchoolDistributionReport newCredentialsReport = null;
 		ReportData data = reportDataMap.get("newCredentialsReportData");
 		if (data != null) {
 			ReportRequestDataThreadLocal.setReportData(data);

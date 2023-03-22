@@ -1,13 +1,12 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.Serializable;
 
 
 public class Address implements Serializable {
     private String streetLine1 = "";
     private String streetLine2 = "";
+    private String streetLine3 = "";
     private String city = "";
     private String region = "";
     private String country = "";
@@ -27,6 +26,14 @@ public class Address implements Serializable {
 
     public void setStreetLine2(String value) {
         this.streetLine2 = value;
+    }
+
+    public String getStreetLine3() {
+        return streetLine3;
+    }
+
+    public void setStreetLine3(String value) {
+        this.streetLine3 = value;
     }
 
     public String getCity() {
@@ -58,10 +65,6 @@ public class Address implements Serializable {
     }
 
     public void setCode(String value) {
-        if(StringUtils.isNotBlank(value) && value.length() == 6) {
-            this.code = new StringBuilder(value).insert(3, " ").toString();
-        } else {
-            this.code = value;
-        }
+        this.code = value;
     }
 }
