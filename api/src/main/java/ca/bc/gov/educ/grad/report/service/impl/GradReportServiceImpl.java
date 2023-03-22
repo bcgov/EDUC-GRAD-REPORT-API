@@ -407,40 +407,54 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     TraxSchool getSchool(String minCode, String accessToken) {
+        TraxSchool traxSchool = null;
         if(!StringUtils.isBlank(minCode)) {
-            return webClient.get()
+            try {
+                traxSchool = webClient.get()
                     .uri(String.format(constants.getSchoolDetails(), minCode))
                     .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(TraxSchool.class)
                     .block();
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "Unable to get TRAX school by {0} code. Reason {1}", new String[]{minCode, e.getMessage()});
+            }
         }
-        return null;
+        return traxSchool;
     }
 
     TraxCountry getCountry(String code, String accessToken) {
+        TraxCountry traxCountry = null;
         if(!StringUtils.isBlank(code)) {
-            return webClient.get()
-                    .uri(String.format(constants.getCountryDetails(), code))
-                    .headers(h -> h.setBearerAuth(accessToken))
-                    .retrieve()
-                    .bodyToMono(TraxCountry.class)
-                    .block();
+            try {
+                traxCountry = webClient.get()
+                        .uri(String.format(constants.getCountryDetails(), code))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(TraxCountry.class)
+                        .block();
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "Unable to get TRAX country by {0} code. Reason {1}", new String[]{code, e.getMessage()});
+            }
         }
-        return null;
+        return traxCountry;
     }
 
     GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
         GradProgramImpl result = null;
         if(!StringUtils.isBlank(programCode)) {
-            result = webClient.get()
-                    .uri(String.format(constants.getGraduationProgram(), programCode))
-                    .headers(h -> h.setBearerAuth(accessToken))
-                    .retrieve()
-                    .bodyToMono(GradProgramImpl.class)
-                    .block();
-            if(result != null) {
-                result.setCode();
+            try {
+                result = webClient.get()
+                        .uri(String.format(constants.getGraduationProgram(), programCode))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(GradProgramImpl.class)
+                        .block();
+                if (result != null) {
+                    result.setCode();
+                }
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "Unable to get graduation program by {0} code. Reason {1}", new String[]{programCode, e.getMessage()});
             }
         }
         return result;

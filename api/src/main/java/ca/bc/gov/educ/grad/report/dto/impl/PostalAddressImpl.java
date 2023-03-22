@@ -181,12 +181,12 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
             sb.append(" ").append(getRegion());
         }
         if(StringUtils.isNotBlank(getCountryCode())) {
-            if(!"CN".equalsIgnoreCase(getCountryCode())) {
+            if(!"CN".equalsIgnoreCase(getCountryCode()) && !"CANADA".equalsIgnoreCase(getCountryCode())) {
                 sb.append("\n").append(getCountryCode());
             }
         }
         if(StringUtils.isNotBlank(getPostalCode())) {
-            sb.append("CN".equalsIgnoreCase(getCountryCode()) || StringUtils.isBlank(getCountryCode()) ? "  " : " ").append(getPostalCode());
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) || "CANADA".equalsIgnoreCase(getCountryCode()) || StringUtils.isBlank(getCountryCode()) ? "  " : " ").append(getPostalCode());
         }
         return sb.toString();
     }
