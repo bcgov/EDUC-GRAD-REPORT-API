@@ -90,18 +90,15 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
 
         ReportData reportData = getReportData(methodName);
 
-        LOG.log(Level.FINE,
-                "Confirmed the user is a student and retrieved the PEN.");
-
         final List<School> schools = getSchools(reportData);
 
         if(!schools.isEmpty()) {
             for(School school: schools) {
                 String countryCode = school.getAddress().getCountryCode();
-                if(StringUtils.isNotBlank(countryCode) && !"CN".equalsIgnoreCase(countryCode)) {
+                if(StringUtils.isNotBlank(countryCode) && countryCode.length() == 2) {
                     TraxCountry traxCountry = getCountry(countryCode, reportData.getAccessToken());
                     if(traxCountry != null) {
-                        ((PostalAddressImpl) school.getAddress()).setCountry(traxCountry.getCountryName());
+                        ((PostalAddressImpl) school.getAddress()).setCountry(StringUtils.trimToEmpty(traxCountry.getCountryName()));
                     }
                 }
             }
