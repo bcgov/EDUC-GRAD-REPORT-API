@@ -78,7 +78,7 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @JsonProperty("postal")
     public  String getPostalCode() {
         switch(StringUtils.trimToEmpty(getCountryCode()).toUpperCase()) {
-            case "CN":
+            case "CN", "CANADA":
                 if(StringUtils.isNotBlank(this.code) && this.code.length() == 6) {
                     return new StringBuilder(this.code).insert(3, " ").toString();
                 } else {
