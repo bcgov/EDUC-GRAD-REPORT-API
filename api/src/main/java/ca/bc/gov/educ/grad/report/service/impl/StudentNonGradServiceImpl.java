@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
+import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
@@ -59,6 +60,9 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
     @Autowired
     GradDataConvertionBean gradDataConvertionBean;
 
+    @Autowired
+    JsonTransformer jsonTransformer;
+
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public StudentNonGradReport buildStudentNonGradReport() throws DomainServiceException, IOException {
@@ -91,7 +95,7 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
             report = new StudentNonGradReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Requirements Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
-                    "Failed to generate the provincial examination report.", ex);
+                    "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
         LOG.exiting(CLASSNAME, methodName);
