@@ -13,7 +13,7 @@ public interface Transformer {
 
     public String marshallPrettyPrinter(Object input) throws TransformerException;
 
-    public String marshall(Object input) throws TransformerException;
+    public String marshall(Object input);
 
     public String getAccept();
 

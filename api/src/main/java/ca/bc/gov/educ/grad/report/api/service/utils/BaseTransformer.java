@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.service.utils;
 
+import ca.bc.gov.educ.grad.report.exception.ServiceException;
 import com.fasterxml.jackson.databind.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,12 +85,12 @@ abstract class BaseTransformer implements Transformer {
     }
 
     @Override
-    public String marshall(Object input) throws TransformerException {
+    public String marshall(Object input) {
         String result = null;
         try {
             result = objectMapper.writeValueAsString(input);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            throw new ServiceException(e.getMessage());
         }
 
         return result;
