@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
@@ -82,7 +83,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getBirthdate() {
         return birthdate;
     }
@@ -232,7 +233,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.grade = grade;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getSccDate() {
         return sccDate;
     }
@@ -347,7 +348,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.graduationStatus = graduationStatus;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getLastUpdateDate() {
         return lastUpdateDate;
     }
@@ -364,7 +365,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
             return "";
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getCertificateDistributionDate() {
         return certificateDistributionDate;
     }

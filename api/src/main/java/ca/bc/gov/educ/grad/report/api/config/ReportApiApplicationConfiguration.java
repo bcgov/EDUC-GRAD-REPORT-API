@@ -1,13 +1,17 @@
 package ca.bc.gov.educ.grad.report.api.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.integration.config.EnableIntegration;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.TimeZone;
+
+import static ca.bc.gov.educ.grad.report.api.util.ReportApiConstants.DATETIME_FORMAT;
 
 @Configuration
 @IntegrationComponentScan
@@ -27,15 +31,11 @@ public class ReportApiApplicationConfiguration {
     }
 
     @Bean
-    ObjectMapper jacksonObjectMapper(Jackson2ObjectMapperBuilder builder) {
-        return builder.createXmlMapper(false)
-                // Set timezone for JSON serialization as system timezone
-                .timeZone(TimeZone.getDefault())
-                .build();
-    }
-
-    @Bean
-    Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder() {
-        return new Jackson2ObjectMapperBuilder();
+    public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {
+        TimeZone defaultTimezone = TimeZone.getDefault();
+        String timeZoneId = Optional.ofNullable(System.getenv("TZ")).orElse(defaultTimezone.getID());
+        LocalDateTimeSerializer localDateTimeSerializer = new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATETIME_FORMAT));
+        return jacksonObjectMapperBuilder ->
+                jacksonObjectMapperBuilder.serializers(localDateTimeSerializer).timeZone(TimeZone.getTimeZone(timeZoneId));
     }
 }

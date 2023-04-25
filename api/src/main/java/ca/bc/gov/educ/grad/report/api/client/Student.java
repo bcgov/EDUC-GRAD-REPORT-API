@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -90,7 +91,7 @@ public class Student implements Comparable<Student>, Serializable {
         this.citizenship = citizenship;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.BIRTHDATE_FORMAT)
     public Date getBirthdate() {
         return birthdate;
     }
@@ -222,7 +223,7 @@ public class Student implements Comparable<Student>, Serializable {
         this.graduationStatus = graduationStatus;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern= ReportApiConstants.DATETIME_FORMAT)
     public Date getLastUpdateDate() {
         return lastUpdateDate;
     }
