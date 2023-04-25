@@ -8,8 +8,6 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.integration.config.EnableIntegration;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
-import java.util.TimeZone;
 
 import static ca.bc.gov.educ.grad.report.api.util.ReportApiConstants.DATETIME_FORMAT;
 
@@ -32,10 +30,9 @@ public class ReportApiApplicationConfiguration {
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {
-        TimeZone defaultTimezone = TimeZone.getDefault();
-        String timeZoneId = Optional.ofNullable(System.getenv("TZ")).orElse(defaultTimezone.getID());
         LocalDateTimeSerializer localDateTimeSerializer = new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATETIME_FORMAT));
         return jacksonObjectMapperBuilder ->
-                jacksonObjectMapperBuilder.serializers(localDateTimeSerializer).timeZone(TimeZone.getTimeZone(timeZoneId));
+                jacksonObjectMapperBuilder
+                        .serializers(localDateTimeSerializer);
     }
 }
