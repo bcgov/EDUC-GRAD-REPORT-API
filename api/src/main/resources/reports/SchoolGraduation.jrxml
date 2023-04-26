@@ -422,7 +422,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd hh:mm").format($F{lastUpdateDate})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd HH:mm").format($F{lastUpdateDate})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -455,7 +455,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd hh:mm").format($F{certificateDistributionDate})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd HH:mm").format($F{certificateDistributionDate})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
