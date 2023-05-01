@@ -93,21 +93,5 @@
 				<text><![CDATA[]]></text>
 			</staticText>
 		</band>
-		<band height="12">
-			<printWhenExpression><![CDATA[!$V{REPORT_COUNT}.equals($P{P_ROW_COUNT}) && ($P{P_ROW_COUNT}/$P{P_ROWS_PER_PAGE} > 0)  && ($V{REPORT_COUNT} % $P{P_ROWS_PER_PAGE} == 0) && !$P{P_REPORT_BLANK}]]></printWhenExpression>
-			<textField>
-				<reportElement style="CourseNameAdult" x="0" y="0" width="251" height="12" uuid="50195b18-12bd-4d71-8a3e-2f12785b1283"/>
-				<textFieldExpression><![CDATA[$R{text.footer.continue}]]></textFieldExpression>
-			</textField>
-		</band>
-		<band height="12">
-			<printWhenExpression><![CDATA[($V{REPORT_COUNT} >= $P{P_ROW_COUNT}) && !$P{P_REPORT_BLANK}]]></printWhenExpression>
-			<textField>
-				<reportElement style="CourseNameAdult" x="0" y="0" width="251" height="12" isRemoveLineWhenBlank="true" uuid="1a3aea57-e771-4a91-8e55-47e56942a25a">
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-				</reportElement>
-				<textFieldExpression><![CDATA[$R{text.footer.end}]]></textFieldExpression>
-			</textField>
-		</band>
 	</detail>
 </jasperReport>

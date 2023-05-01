@@ -135,23 +135,4 @@
 			</frame>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="12">
-			<printWhenExpression><![CDATA[$V{REPORT_COUNT} < $P{P_ROW_COUNT} && !$P{P_REPORT_BLANK}]]></printWhenExpression>
-			<textField>
-				<reportElement style="CourseNameAdult" positionType="Float" x="0" y="0" width="251" height="12" uuid="c27908c4-11ed-49fc-89d4-a789ac7ebea4"/>
-				<textFieldExpression><![CDATA[$R{text.footer.continue}]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
-	<lastPageFooter>
-		<band height="12">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK}]]></printWhenExpression>
-			<textField>
-				<reportElement style="CourseNameAdult" positionType="Float" x="0" y="0" width="251" height="12" uuid="82fb13a1-6dc5-4fca-9967-0eb93d7ca61a"/>
-				<textFieldExpression><![CDATA[$R{text.footer.end}]]></textFieldExpression>
-			</textField>
-		</band>
-	</lastPageFooter>
 </jasperReport>

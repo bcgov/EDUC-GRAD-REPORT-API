@@ -234,22 +234,6 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/BG_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + ".jasper"]]></subreportExpression>
 			</subreport>
-			<frame>
-				<reportElement x="0" y="254" width="567" height="357" uuid="e257ccaa-ab74-472b-8460-3afc9740edce"/>
-				<textField>
-					<reportElement style="CourseNameAdult" x="0" y="0" width="275" height="12" isRemoveLineWhenBlank="true" uuid="e62763d4-0bb5-4a5a-b5fd-8591195d7b2e">
-						<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK} && ($V{PAGE_NUMBER} > Math.ceil( $F{student.provinciallyExaminableCourses}.size() / (double)10) || $F{student.provinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
-					</reportElement>
-					<textFieldExpression><![CDATA[$R{text.footer.end}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="CourseNameAdult" x="0" y="177" width="275" height="12" isRemoveLineWhenBlank="true" uuid="6c6555e8-e594-4e49-a39c-96cf45015d9b">
-						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
-						<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK} && ($V{PAGE_NUMBER} > Math.ceil( ($F{student.nonProvinciallyExaminableCourses}.size() + $V{V_GROUP_COUNT}) / (double)15)) || ($F{student.nonProvinciallyExaminableCourses}.size() == 0)]]></printWhenExpression>
-					</reportElement>
-					<textFieldExpression><![CDATA[$R{text.footer.end}]]></textFieldExpression>
-				</textField>
-			</frame>
 		</band>
 	</background>
 	<pageHeader>
