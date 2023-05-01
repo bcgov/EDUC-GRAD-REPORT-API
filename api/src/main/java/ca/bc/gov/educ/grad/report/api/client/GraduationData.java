@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class GraduationData implements Serializable {
     private List<String> programNames = new ArrayList<>();
     private String totalCreditsUsedForGrad = "";
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getGraduationDate() {
         return graduationDate;
     }

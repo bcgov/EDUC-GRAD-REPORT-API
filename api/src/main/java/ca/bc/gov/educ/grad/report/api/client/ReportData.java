@@ -4,6 +4,7 @@ import ca.bc.gov.educ.grad.report.api.client.utils.AchievementCourseListDeserial
 import ca.bc.gov.educ.grad.report.api.client.utils.ExamListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.OptionalProgramListDeserializer;
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -55,13 +56,13 @@ public class ReportData implements Serializable {
 	private GradProgram gradProgram = new GradProgram();
 	@JsonDeserialize(as = GraduationData.class)
 	private GraduationData graduationData = new GraduationData();
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
 	private String updateDate;
 	@JsonDeserialize(as = Certificate.class)
 	private Certificate certificate = new Certificate();
 	@JsonDeserialize(as = GraduationStatus.class)
 	private GraduationStatus graduationStatus = new GraduationStatus();
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
 	private Date issueDate;
 	@JsonDeserialize(as = PackingSlip.class)
 	private PackingSlip packingSlip = new PackingSlip();

@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -60,7 +61,7 @@ public class GraduationDataImpl extends AbstractDomainEntity
     }
 
     @Override
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getGraduationDate() {
         return this.graduationDate == null ? new Date() : this.graduationDate;
     }

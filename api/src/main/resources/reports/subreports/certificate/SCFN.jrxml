@@ -172,8 +172,8 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="66" y="492" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
-					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				<reportElement x="66" y="460" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<image onErrorType="Blank">
 					<reportElement x="0" y="0" width="231" height="42" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
@@ -210,7 +210,7 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="500" y="497" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
+				<reportElement x="500" y="460" width="231" height="55" uuid="e74998e0-5574-422c-b5cf-44990717c2c1"/>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="OrgDate" x="0" y="17" width="231" height="20" uuid="e6da42d8-709c-41f0-968f-70dd2b864d97">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
