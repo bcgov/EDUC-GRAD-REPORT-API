@@ -1,0 +1,981 @@
+{
+  "options": {
+    "cacheReport": false,
+    "convertTo": "pdf",
+    "overwrite": false,
+    "reportName": "transcript",
+    "reportFile": "Transcript Report BC2018-PUB-23.pdf"
+  },
+  "data": {
+    "student": {
+      "pen": {
+        "pen": "145428264",
+        "entityID": "0a614e84-7e27-1815-817f-09898e9c3a87"
+      },
+      "firstName": "ANA",
+      "middleName": "JAMES",
+      "lastName": "GARDY",
+      "gender": "F",
+      "citizenship": null,
+      "birthdate": "2005-04-07",
+      "address": {
+        "streetLine1": null,
+        "streetLine2": null,
+        "streetLine3": null,
+        "city": null,
+        "region": null,
+        "country": null,
+        "code": null
+      },
+      "grade": "12",
+      "gradProgram": "",
+      "studStatus": "CUR",
+      "sccDate": "",
+      "mincodeGrad": "",
+      "englishCert": "",
+      "frenchCert": "",
+      "consumerEducReqt": "",
+      "localId": "",
+      "hasOtherProgram": "",
+      "lastUpdateDate": null,
+      "otherProgramParticipation": [],
+      "nonGradReasons": [],
+      "certificateTypes": [],
+      "transcriptTypes": [],
+      "graduationData": {
+        "graduationDate": "2022-08-01",
+        "honorsFlag": true,
+        "dogwoodFlag": true,
+        "programCodes": [],
+        "programNames": [],
+        "totalCreditsUsedForGrad": null
+      },
+      "graduationStatus": {
+        "programCompletionDate": "2022-08-01",
+        "honours": "",
+        "gpa": "",
+        "studentGrade": "",
+        "studentStatus": "",
+        "studentStatusName": "",
+        "schoolAtGrad": "",
+        "schoolOfRecord": "",
+        "certificates": "",
+        "graduationMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 2018 with Honours. \n\nGraduation Date: August 2022. Graduation School: FLEETWOOD PARK SECONDARY.",
+        "programName": ""
+      }
+    },
+    "school": {
+      "mincode": "03636167",
+      "name": "FLEETWOOD PARK SECONDARY",
+      "typeIndicator": "",
+      "typeBanner": null,
+      "signatureCode": "036",
+      "distno": "036",
+      "schlno": "03636167",
+      "schoolCategoryCode": null,
+      "address": {
+        "streetLine1": "7940 156TH STREET",
+        "streetLine2": "",
+        "streetLine3": null,
+        "city": "SURREY",
+        "region": "BC",
+        "country": "CN",
+        "code": "V3S3R3"
+      },
+      "phoneNumber": null,
+      "dogwoodElig": null,
+      "schoolStatistic": {
+        "transcriptCount": 0,
+        "dogwoodCount": 0,
+        "adultDogwoodCount": 0,
+        "frenchImmersionCount": 0,
+        "programFrancophoneCount": 0,
+        "evergreenCount": 0,
+        "totalCertificateCount": 0
+      },
+      "students": []
+    },
+    "logo": "BC",
+    "transcript": {
+      "interim": "false",
+      "issueDate": "2023-05-02",
+      "code": {
+        "code": "BC2018-PUB",
+        "description": null,
+        "credits": 0,
+        "name": null
+      },
+      "results": [
+        {
+          "course": {
+            "name": "CAREER-LIFE CONNECTIONS",
+            "code": "CLC",
+            "level": "",
+            "credits": "4",
+            "sessionDate": "202108",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "94",
+            "finalLetterGrade": "A",
+            "interimPercent": "94",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "13",
+          "requirementName": "13 - Career Life Connections",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "CAREER-LIFE EDUCATION",
+            "code": "CLE",
+            "level": "",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "93",
+            "finalLetterGrade": "A",
+            "interimPercent": "93",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "12",
+          "requirementName": "12 - Career Life Education",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "ART STUDIO 10",
+            "code": "VAST",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "95",
+            "finalLetterGrade": "A",
+            "interimPercent": "95",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "17",
+          "requirementName": "17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "CREATIVE WRITING 10",
+            "code": "CTWR",
+            "level": "10",
+            "credits": "2",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "B",
+            "interimPercent": "85",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "1",
+          "requirementName": "1 - Language Arts 10",
+          "equivalency": "",
+          "usedForGrad": "2"
+        },
+        {
+          "course": {
+            "name": "FOUNDATIONS OF MATH AND PRE-CALCULUS 10",
+            "code": "FMP",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "201906",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "92",
+            "finalLetterGrade": "A",
+            "interimPercent": "92",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "6",
+          "requirementName": "6 - Mathematics 10",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "LITERARY STUDIES 10",
+            "code": "LTST",
+            "level": "10",
+            "credits": "2",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "85",
+            "finalLetterGrade": "B",
+            "interimPercent": "85",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "1",
+          "requirementName": "1 - Language Arts 10",
+          "equivalency": "",
+          "usedForGrad": "2"
+        },
+        {
+          "course": {
+            "name": "PHYSICAL AND HEALTH EDUCATION 10",
+            "code": "PHED",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "82",
+            "finalLetterGrade": "B",
+            "interimPercent": "82",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "10",
+          "requirementName": "10 - Physical and Health Education 10",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "SCIENCE 10",
+            "code": "SC",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "88",
+            "finalLetterGrade": "A",
+            "interimPercent": "88",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "8",
+          "requirementName": "8 - Science 10",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "SOCIAL STUDIES 10",
+            "code": "SS",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "90",
+            "finalLetterGrade": "A",
+            "interimPercent": "90",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "4",
+          "requirementName": "4 - Social Studies 10",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "SPANISH 10",
+            "code": "SP",
+            "level": "10",
+            "credits": "4",
+            "sessionDate": "202006",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "96",
+            "finalLetterGrade": "A",
+            "interimPercent": "96",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "17",
+          "requirementName": "17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "CHEMISTRY 11",
+            "code": "CH",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "82",
+            "finalLetterGrade": "B",
+            "interimPercent": "82",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "CREATIVE WRITING 11",
+            "code": "CTWR",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202104",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "82",
+            "finalLetterGrade": "B",
+            "interimPercent": "82",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "2",
+          "requirementName": "2 - Language Arts 11",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "EXPLORATIONS IN SOCIAL STUDIES 11",
+            "code": "EPSS",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202011",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "88",
+            "finalLetterGrade": "A",
+            "interimPercent": "88",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "5",
+          "requirementName": "5 - Social Studies 11 or 12",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "LIFE SCIENCES 11",
+            "code": "LFSC",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202101",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "90",
+            "finalLetterGrade": "A",
+            "interimPercent": "90",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "PHYSICS 11",
+            "code": "PH",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202102",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "94",
+            "finalLetterGrade": "A",
+            "interimPercent": "94",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "9",
+          "requirementName": "9 - Science 11 or 12",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "PRE-CALCULUS 11",
+            "code": "PREC",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202001",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "91",
+            "finalLetterGrade": "A",
+            "interimPercent": "91",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "7",
+          "requirementName": "7 - Mathematics 11 or 12",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "SPANISH 11",
+            "code": "SP",
+            "level": "11",
+            "credits": "4",
+            "sessionDate": "202011",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "97",
+            "finalLetterGrade": "A",
+            "interimPercent": "97",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "17",
+          "requirementName": "17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "EXTERNAL LANGUAGE CERTIFICATE 11A",
+            "code": "UXLC",
+            "level": "11A",
+            "credits": "4",
+            "sessionDate": "201706",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "95",
+            "finalLetterGrade": "A",
+            "interimPercent": "95",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "17",
+          "requirementName": "17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "STUDENT LEADERSHIP 11",
+            "code": "YIPS",
+            "level": "11B",
+            "credits": "4",
+            "sessionDate": "202106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "96",
+            "finalLetterGrade": "A",
+            "interimPercent": "96",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "11",
+          "requirementName": "11 - Arts Education/ADST credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "ANATOMY AND PHYSIOLOGY 12",
+            "code": "ATPH",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202206",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "83",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "AP CALCULUS AB 12",
+            "code": "APCAL",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202206",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "81",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "CHEMISTRY 12",
+            "code": "CH",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202201",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "86",
+            "finalLetterGrade": "A",
+            "interimPercent": "86",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "ENGLISH STUDIES 12",
+            "code": "ENST",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202208",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "90",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "3",
+          "requirementName": "3 - Language Arts 12",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "LAW STUDIES 12",
+            "code": "LST",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202201",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "86",
+            "finalLetterGrade": "A",
+            "interimPercent": "86",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "PHYSICS 12",
+            "code": "PH",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202106",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "80",
+            "finalLetterGrade": "B",
+            "interimPercent": "80",
+            "interimLetterGrade": "B"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "PRE-CALCULUS 12",
+            "code": "PREC",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202104",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "89",
+            "finalLetterGrade": "A",
+            "interimPercent": "89",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "",
+          "requirementName": "",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "SPANISH 12",
+            "code": "SP",
+            "level": "12",
+            "credits": "4",
+            "sessionDate": "202206",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "95",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "19",
+          "requirementName": "19 - 16 Gr 12 credits",
+          "equivalency": "",
+          "usedForGrad": "0"
+        },
+        {
+          "course": {
+            "name": "LABORATORY TECHNOLOGY 12 (SD36)",
+            "code": "YED",
+            "level": "12A",
+            "credits": "4",
+            "sessionDate": "202201",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "96",
+            "finalLetterGrade": "A",
+            "interimPercent": "96",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "19, 17",
+          "requirementName": "19 - 16 Gr 12 credits, 17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "PEER TUTORING 12",
+            "code": "YIPS",
+            "level": "12A",
+            "credits": "4",
+            "sessionDate": "202202",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "97",
+            "finalLetterGrade": "A",
+            "interimPercent": "97",
+            "interimLetterGrade": "A"
+          },
+          "requirement": "19, 17",
+          "requirementName": "19 - 16 Gr 12 credits, 17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "STUDENT LEADERSHIP 12",
+            "code": "YIPS",
+            "level": "12B",
+            "credits": "4",
+            "sessionDate": "202206",
+            "type": "2",
+            "relatedCourse": "",
+            "relatedLevel": "",
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "95",
+            "finalLetterGrade": "A",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "19, 17",
+          "requirementName": "19 - 16 Gr 12 credits, 17 - 28 Elective credits",
+          "equivalency": "",
+          "usedForGrad": "4"
+        },
+        {
+          "course": {
+            "name": "Literacy 10 Assessment",
+            "code": "LTE10",
+            "level": "",
+            "credits": "NA",
+            "sessionDate": "202001",
+            "type": "3",
+            "relatedCourse": null,
+            "relatedLevel": null,
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "RM",
+            "finalLetterGrade": "NA",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "15",
+          "requirementName": "15 - Literacy 10 Assessment",
+          "equivalency": null,
+          "usedForGrad": null
+        },
+        {
+          "course": {
+            "name": "Literacy 12 Assessment",
+            "code": "LTE12",
+            "level": "",
+            "credits": "NA",
+            "sessionDate": "202201",
+            "type": "3",
+            "relatedCourse": null,
+            "relatedLevel": null,
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "XMT",
+            "finalLetterGrade": "NA",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "18",
+          "requirementName": "18 - Literacy 12 Assessment",
+          "equivalency": null,
+          "usedForGrad": null
+        },
+        {
+          "course": {
+            "name": "Numeracy Assessment",
+            "code": "NME",
+            "level": "",
+            "credits": "NA",
+            "sessionDate": "201906",
+            "type": "3",
+            "relatedCourse": null,
+            "relatedLevel": null,
+            "specialCase": null
+          },
+          "mark": {
+            "schoolPercent": "",
+            "examPercent": "",
+            "finalPercent": "3",
+            "finalLetterGrade": "NA",
+            "interimPercent": "",
+            "interimLetterGrade": ""
+          },
+          "requirement": "16",
+          "requirementName": "16 - Numeracy 10 Assessment",
+          "equivalency": null,
+          "usedForGrad": null
+        }
+      ]
+    },
+    "assessment": null,
+    "gradProgram": {
+      "code": {
+        "code": "2018-EN",
+        "description": "Graduation Program 2018",
+        "credits": 0,
+        "name": "Graduation Program 2018"
+      }
+    },
+    "graduationData": {
+      "graduationDate": "2022-08-01",
+      "honorsFlag": true,
+      "dogwoodFlag": true,
+      "programCodes": [],
+      "programNames": [],
+      "totalCreditsUsedForGrad": null
+    },
+    "gradMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 2018 with Honours. \n\nGraduation Date: August 2022. Graduation School: FLEETWOOD PARK SECONDARY.",
+    "updateDate": null,
+    "certificate": null,
+    "graduationStatus": {
+      "programCompletionDate": "2022-08-01",
+      "honours": "",
+      "gpa": "",
+      "studentGrade": "",
+      "studentStatus": "",
+      "studentStatusName": "",
+      "schoolAtGrad": "",
+      "schoolOfRecord": "",
+      "certificates": "",
+      "graduationMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 2018 with Honours. \n\nGraduation Date: August 2022. Graduation School: FLEETWOOD PARK SECONDARY.",
+      "programName": ""
+    },
+    "orgCode": null,
+    "issueDate": "2023-05-02",
+    "reportNumber": null,
+    "reportTitle": null,
+    "reportSubTitle": null,
+    "nonGradReasons": [],
+    "studentCourses": null,
+    "studentExams": null,
+    "optionalPrograms": null,
+    "schools": null,
+    "exception": null
+  }
+}
