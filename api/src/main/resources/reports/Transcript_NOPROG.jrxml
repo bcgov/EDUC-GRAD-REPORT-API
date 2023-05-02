@@ -187,12 +187,12 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[$F{student.transcriptResults}.size()]]></initialValueExpression>
 	</variable>
 	<variable name="V_SHORT_PAGE_ROWS" class="java.lang.Integer">
-		<variableExpression><![CDATA[24]]></variableExpression>
-		<initialValueExpression><![CDATA[24]]></initialValueExpression>
+		<variableExpression><![CDATA[23]]></variableExpression>
+		<initialValueExpression><![CDATA[23]]></initialValueExpression>
 	</variable>
 	<variable name="V_LONG_PAGE_ROWS" class="java.lang.Integer">
-		<variableExpression><![CDATA[31]]></variableExpression>
-		<initialValueExpression><![CDATA[31]]></initialValueExpression>
+		<variableExpression><![CDATA[30]]></variableExpression>
+		<initialValueExpression><![CDATA[30]]></initialValueExpression>
 	</variable>
 	<variable name="V_TOTAL_PAGES" class="java.lang.Integer">
 		<variableExpression><![CDATA[(int)Math.ceil( ($V{V_TOTAL_ROWS} - $V{V_SHORT_PAGE_ROWS} ) / (double)$V{V_LONG_PAGE_ROWS}) + 1]]></variableExpression>

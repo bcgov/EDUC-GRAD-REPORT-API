@@ -175,5 +175,29 @@
 				</textField>
 			</frame>
 		</band>
+		<band height="12">
+			<printWhenExpression><![CDATA[$V{PAGE_COUNT} >= $V{V_PAGE_BREAK}]]></printWhenExpression>
+			<textField>
+				<reportElement style="CourseRow" positionType="Float" x="0" y="0" width="251" height="12" uuid="e68e2cc0-4a89-4e25-98f5-fa31f6b763f7"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{text.footer.continue}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement positionType="Float" x="0" y="11" width="100" height="1" uuid="34797fe1-1b47-4a53-8fb4-028842ef4334"/>
+			</break>
+		</band>
 	</detail>
+	<lastPageFooter>
+		<band height="12">
+			<textField>
+				<reportElement style="CourseRow" positionType="Float" x="0" y="0" width="251" height="12" uuid="533a5764-5c46-4db0-8fe7-e034e2251f1a"/>
+				<textElement textAlignment="Left">
+					<paragraph leftIndent="5" spacingAfter="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{V_END_TEXT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
 </jasperReport>
