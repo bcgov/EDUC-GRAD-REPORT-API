@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
 import ca.bc.gov.educ.grad.report.api.client.utils.AssessmentResultListDeserializer;
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -16,7 +17,7 @@ public class Assessment implements Serializable {
     private Date issueDate;
     private List<AssessmentResult> results = new ArrayList<>();
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getIssueDate() {
         return issueDate;
     }

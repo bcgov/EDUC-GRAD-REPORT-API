@@ -38,7 +38,9 @@ public class ReportApiConstants {
     public static final Date DEFAULT_UPDATED_TIMESTAMP = new Date();
 
     //Default Date format constants
-    public static final String DEFAULT_DATE_FORMAT = "yyyyMMdd";
+    public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String BIRTHDATE_FORMAT = DEFAULT_DATE_FORMAT;
 
     @Value("${endpoint.grad-student-api.read-grad-student-record.url}")
     private String readGradStudentRecord;

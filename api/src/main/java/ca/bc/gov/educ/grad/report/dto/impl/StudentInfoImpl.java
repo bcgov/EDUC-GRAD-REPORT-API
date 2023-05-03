@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -244,7 +245,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.BIRTHDATE_FORMAT)
     public Date getBirthdate() {
         return this.birthdate;
     }
@@ -390,7 +391,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DATETIME_FORMAT)
     public Date getLastUpdateDate() {
         return this.lastUpdateDate;
     }
