@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.service.utils;
 
+import ca.bc.gov.educ.grad.report.exception.ServiceException;
 import com.fasterxml.jackson.databind.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from bytes to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from bytes to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
@@ -39,7 +40,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from String to {} is {} ms", clazz.getSimpleName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from String to {} is {} ms", clazz.getSimpleName(), (System.currentTimeMillis() - start));
         return result;
     }
 
@@ -66,7 +67,7 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from String to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from String to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
@@ -79,17 +80,17 @@ abstract class BaseTransformer implements Transformer {
         } catch (IOException e) {
             throw new TransformerException(e);
         }
-        log.info("Time taken for unmarshalling response from stream to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
+        log.debug("Time taken for unmarshalling response from stream to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
     @Override
-    public String marshall(Object input) throws TransformerException {
+    public String marshall(Object input) {
         String result = null;
         try {
             result = objectMapper.writeValueAsString(input);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            throw new ServiceException(e.getMessage());
         }
 
         return result;

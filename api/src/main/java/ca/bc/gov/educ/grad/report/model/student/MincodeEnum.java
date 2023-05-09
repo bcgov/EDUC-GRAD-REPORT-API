@@ -28,7 +28,7 @@ public enum MincodeEnum {
 
     /**
      *
-     * @param name
+     * @param value - name value
      */
     MincodeEnum(final String value) {
         this.value = value;

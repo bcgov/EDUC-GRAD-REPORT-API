@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
 import ca.bc.gov.educ.grad.report.api.client.utils.TranscriptResultListDeserializer;
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,7 +28,7 @@ public class Transcript implements Serializable {
         this.interim = value;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getIssueDate() {
         return issueDate;
     }

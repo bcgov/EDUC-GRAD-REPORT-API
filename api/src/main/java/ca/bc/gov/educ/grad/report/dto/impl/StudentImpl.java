@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
@@ -83,7 +84,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     }
 
     @Override
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public LocalDate getBirthdate() {
         return birthdate;
     }

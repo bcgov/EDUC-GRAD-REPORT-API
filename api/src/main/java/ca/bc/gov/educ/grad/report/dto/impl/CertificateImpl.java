@@ -17,6 +17,7 @@
  */
 package ca.bc.gov.educ.grad.report.dto.impl;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.cert.Certificate;
@@ -63,7 +64,7 @@ public class CertificateImpl implements Certificate, Serializable {
     }
 
     @Override
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getIssued() {
         return this.issued;
     }

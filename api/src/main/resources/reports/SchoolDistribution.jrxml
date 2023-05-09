@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentAchievementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+<!--suppress ALL -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolDistributionReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
+	<import value="org.apache.commons.lang3.StringUtils"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
 	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
 	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
@@ -114,7 +115,7 @@
 					<textFieldExpression><![CDATA["New Credentials Issued"]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="7" width="150" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
+					<reportElement x="0" y="0" width="150" height="17" uuid="6597fad4-675d-46b3-b9f5-8776e4917349">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
@@ -152,7 +153,7 @@
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="6" rightIndent="0"/>
 				</textElement>
-				<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order free printed copy(ies) of their transcript through the Student Transcripts Service.]]></text>
+				<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order one free printed copy of their transcript through the StudentTranscripts Service.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -299,7 +300,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{gradProgram} != null ? $F{gradProgram}.substring(0, 4) : ""]]></textFieldExpression>
+								<textFieldExpression><![CDATA[StringUtils.isNotBlank($F{gradProgram}) ? $F{gradProgram}.substring(0, 4) : ""]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

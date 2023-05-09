@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.dto;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.utils.Base64Deserializer;
 import ca.bc.gov.educ.grad.report.utils.Base64Serializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -24,9 +25,9 @@ public class GradReportSignatureImage extends BaseModel {
     private String gradReportSignatureCode;
     private String gradReportSignatureName;
     private String districtName;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     private Date effectiveDate;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     private Date expiryDate;
 
     @Override

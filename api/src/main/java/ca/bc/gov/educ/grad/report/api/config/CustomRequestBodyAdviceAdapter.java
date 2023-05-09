@@ -4,6 +4,7 @@ import ca.bc.gov.educ.grad.report.api.client.Pen;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.client.Student;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.SerializationUtils;
@@ -14,7 +15,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAdapter;
 
-import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Type;
 
 @ControllerAdvice

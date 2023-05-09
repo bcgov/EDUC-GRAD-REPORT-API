@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.common.party.address.PostalAddress;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -56,6 +57,7 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     }
 
     @Override
+    @JsonProperty("address3")
     public  String getStreetLine3() {
         return streetLine3;
     }
@@ -75,7 +77,22 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @Override
     @JsonProperty("postal")
     public  String getPostalCode() {
-        return this.code;
+        switch(StringUtils.trimToEmpty(getCountryCode()).toUpperCase()) {
+            case "CN", "CANADA":
+                if(StringUtils.isNotBlank(this.code) && this.code.length() == 6) {
+                    return new StringBuilder(this.code).insert(3, " ").toString();
+                } else {
+                    return this.code;
+                }
+            case "US", "USA":
+                if(StringUtils.isNotBlank(this.code) && this.code.length() == 9) {
+                    return new StringBuilder(this.code).insert(5, "-").toString();
+                } else {
+                    return this.code;
+                }
+            default:
+                return this.code;
+        }
     }
 
     @Override
@@ -145,6 +162,33 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
      */
     public void setCode(final String code) {
         this.code = code;
+    }
+
+    @Override
+    public String getFormattedAddressForLabels() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getStreetLine1());
+        if(StringUtils.isNotBlank(getStreetLine2())) {
+            sb.append("\n").append(getStreetLine2());
+        }
+        if(StringUtils.isNotBlank(getStreetLine3())) {
+            sb.append("\n").append(getStreetLine3());
+        }
+        if(StringUtils.isNotBlank(getCity())) {
+            sb.append("\n").append(getCity());
+        }
+        if(StringUtils.isNotBlank(getRegion())) {
+            sb.append(" ").append(getRegion());
+        }
+        if(StringUtils.isNotBlank(getCountryCode())) {
+            if(!"CN".equalsIgnoreCase(getCountryCode()) && !"CANADA".equalsIgnoreCase(getCountryCode())) {
+                sb.append("\n").append(getCountryCode());
+            }
+        }
+        if(StringUtils.isNotBlank(getPostalCode())) {
+            sb.append("CN".equalsIgnoreCase(getCountryCode()) || "CANADA".equalsIgnoreCase(getCountryCode()) || StringUtils.isBlank(getCountryCode()) ? "  " : " ").append(getPostalCode());
+        }
+        return sb.toString();
     }
 
     @Override

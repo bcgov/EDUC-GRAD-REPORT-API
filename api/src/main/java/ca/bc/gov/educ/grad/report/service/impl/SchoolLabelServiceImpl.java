@@ -18,7 +18,10 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
+import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
+import ca.bc.gov.educ.grad.report.dto.impl.PostalAddressImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolImpl;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolLabelReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
@@ -28,6 +31,8 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelService;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,8 +40,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -70,6 +73,9 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
     @Autowired
     GradDataConvertionBean gradDataConvertionBean;
 
+    @Autowired
+    JsonTransformer jsonTransformer;
+
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
     public SchoolLabelReport buildSchoolLabelReport() throws DomainServiceException, IOException {
@@ -88,12 +94,18 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
 
         ReportData reportData = getReportData(methodName);
 
-        LOG.log(Level.FINE,
-                "Confirmed the user is a student and retrieved the PEN.");
-
         final List<School> schools = getSchools(reportData);
 
         if(!schools.isEmpty()) {
+            for(School school: schools) {
+                String countryCode = school.getAddress().getCountryCode();
+                if(StringUtils.isNotBlank(countryCode) && countryCode.length() == 2) {
+                    TraxCountry traxCountry = getCountry(countryCode, reportData.getAccessToken());
+                    if(traxCountry != null) {
+                        ((PostalAddressImpl) school.getAddress()).setCountry(StringUtils.trimToEmpty(traxCountry.getCountryName()));
+                    }
+                }
+            }
             List<List<School>> partition = ListUtils.partition(schools, 2);
             List<Pair<School, School>> schools2Columns = new ArrayList<>();
             for(List<School> schs: partition) {
@@ -146,7 +158,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
             report = new SchoolLabelReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Label Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
-                    "Failed to generate the School Label report.", ex);
+                    "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
         LOG.exiting(CLASSNAME, methodName);

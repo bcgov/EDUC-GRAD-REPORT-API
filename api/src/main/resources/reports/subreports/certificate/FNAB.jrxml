@@ -167,7 +167,7 @@
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>
-					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("EN".equalsIgnoreCase($P{REPORT_LOCALE}.getLanguage()) ? "DISTRICT_A" : "DISTRICT_AF").toString()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{F_LABEL_MAP}.get("DISTRICT_FN").toString()]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>

@@ -1,4 +1,5 @@
 #Spring boot Properties
+#
 spring:
   jmx:
     enabled: false
@@ -16,7 +17,7 @@ spring:
     driver-class: oracle.jdbc.driver.OracleDriver
   jpa:
     show-sql: ${SHOW_SQL_LOGS}
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: none
   mvc:
@@ -98,6 +99,8 @@ endpoint:
       url: ${GRAD_TRAX_API}api/v1/trax/district/%s
     school-by-min-code:
       url: ${GRAD_TRAX_API}api/v1/trax/school/%s
+    country-by-code:
+      url: ${GRAD_TRAX_API}api/v1/trax/code/country/%s
   grad-student-api:
     read-grad-student-record:
       url: ${GRAD_STUDENT_API}api/v1/student/studentid/%s

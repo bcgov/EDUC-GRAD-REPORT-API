@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ public class Certificate implements Serializable {
     private OrderType orderType;
     private boolean isOrigin;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     public Date getIssued() {
         return issued;
     }

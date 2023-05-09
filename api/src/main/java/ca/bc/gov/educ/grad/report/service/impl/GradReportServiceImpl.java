@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
+import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -21,6 +22,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
+import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -406,28 +407,54 @@ public abstract class GradReportServiceImpl implements Serializable {
     }
 
     TraxSchool getSchool(String minCode, String accessToken) {
+        TraxSchool traxSchool = null;
         if(!StringUtils.isBlank(minCode)) {
-            return webClient.get()
+            try {
+                traxSchool = webClient.get()
                     .uri(String.format(constants.getSchoolDetails(), minCode))
                     .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(TraxSchool.class)
                     .block();
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "Unable to get TRAX school by {0} code. Reason {1}", new String[]{minCode, e.getMessage()});
+            }
         }
-        return null;
+        return traxSchool;
+    }
+
+    TraxCountry getCountry(String code, String accessToken) {
+        TraxCountry traxCountry = null;
+        if(!StringUtils.isBlank(code)) {
+            try {
+                traxCountry = webClient.get()
+                        .uri(String.format(constants.getCountryDetails(), code))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(TraxCountry.class)
+                        .block();
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "Unable to get TRAX country by {0} code. Reason {1}", new String[]{code, e.getMessage()});
+            }
+        }
+        return traxCountry;
     }
 
     GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
         GradProgramImpl result = null;
         if(!StringUtils.isBlank(programCode)) {
-            result = webClient.get()
-                    .uri(String.format(constants.getGraduationProgram(), programCode))
-                    .headers(h -> h.setBearerAuth(accessToken))
-                    .retrieve()
-                    .bodyToMono(GradProgramImpl.class)
-                    .block();
-            if(result != null) {
-                result.setCode();
+            try {
+                result = webClient.get()
+                        .uri(String.format(constants.getGraduationProgram(), programCode))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(GradProgramImpl.class)
+                        .block();
+                if (result != null) {
+                    result.setCode();
+                }
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "Unable to get graduation program by {0} code. Reason {1}", new String[]{programCode, e.getMessage()});
             }
         }
         return result;

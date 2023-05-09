@@ -458,7 +458,7 @@
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Bottom"/>
-					<textFieldExpression><![CDATA[$P{studentObj}.getLastName()+", " +$P{studentObj}.getFirstName()+ " " + $P{studentObj}.getMiddleName()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{studentObj}.getFullName()]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="GeneratedText" x="12" y="28" width="32" height="14" uuid="35b3936d-4b48-463c-bf11-09fed46ef164">
@@ -1219,7 +1219,7 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{hasStudentCourse} == "true"? "NON-PROVINCIALLY EXAMINABLE COURSES":""]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{hasStudentCourse} == "true"? "COURSES":""]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="85">

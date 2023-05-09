@@ -98,7 +98,7 @@ public class InheritableResourceBundle extends ResourceBundle {
         if (map.isEmpty()) {
             final String path = getPath(directory, baseName) + "_" + locale.toString();
 
-            LOG.log(Level.WARNING, "No resource bundle properites for {0}", path);
+            LOG.log(Level.FINE, "No resource bundle properites for {0}", path);
         }
     }
 

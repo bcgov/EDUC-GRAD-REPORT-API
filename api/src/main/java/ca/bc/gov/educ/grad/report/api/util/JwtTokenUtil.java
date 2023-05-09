@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.util.ObjectUtils;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -74,7 +75,7 @@ public class JwtTokenUtil implements Serializable {
 
     //validate token
     public boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
+        final String username = ObjectUtils.nullSafeToString(getUsernameFromToken(token));
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
@@ -96,7 +97,8 @@ public class JwtTokenUtil implements Serializable {
      */
     public static String getName(Jwt jwt) {
         StringBuilder sb = new StringBuilder();
-        if (isServiceAccount(jwt.getClaims())) {
+        String username = getUsername(jwt);
+        if (StringUtils.isBlank(username) || isServiceAccount(jwt.getClaims())) {
             sb.append("Batch Process");
         } else {
             String givenName = (String) jwt.getClaims().get("given_name");

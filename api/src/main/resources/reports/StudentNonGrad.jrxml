@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentAchievementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+<!--suppress ALL -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentNonGradReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
+	<import value="org.apache.commons.lang3.StringUtils"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
 	<style name="StaticText" isDefault="true" vTextAlign="Middle" fontName="BCSans"/>
 	<style name="Title" style="StaticText" fontSize="12" isBold="true"/>
@@ -74,9 +75,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="185" splitType="Stretch">
+		<band height="189" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="91" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
+				<reportElement mode="Opaque" x="0" y="101" width="555" height="43" backcolor="#F2F2F2" uuid="c1e06617-c0d1-488e-9d4f-7c9c63d263af"/>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="473" y="0" width="82" height="15" uuid="eb271a14-1b4d-4842-a047-1445373840f5"/>
 					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
@@ -131,7 +132,7 @@
 					<textFieldExpression><![CDATA[$V{V_FISCAL_DATES}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="0" y="14" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
+					<reportElement x="0" y="0" width="105" height="17" uuid="a98da8cb-2a29-4a0f-99e9-a0b81bcbffe8">
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					</reportElement>
 					<textElement verticalAlignment="Top">
@@ -153,7 +154,7 @@
 				<textFieldExpression><![CDATA["Ministry of Education and Child Care"]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="GeneratedText" x="0" y="170" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee">
+				<reportElement style="GeneratedText" x="0" y="174" width="268" height="15" uuid="143b4f4a-3ca1-4c67-93fa-7d7f380b63ee">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement>
@@ -162,7 +163,7 @@
 				<textFieldExpression><![CDATA[$P{school}.getMinistryCode() +"  "+$P{school}.getName()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="140" width="555" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077">
+				<reportElement x="0" y="144" width="555" height="30" uuid="019e9b0a-de63-4ef3-881e-2b8f333d8077">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -382,7 +383,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{gradProgram} != null ? $F{gradProgram}.substring(0, 4) : ""]]></textFieldExpression>
+								<textFieldExpression><![CDATA[StringUtils.isNotBlank($F{gradProgram}) ? $F{gradProgram}.substring(0, 4) : ""]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -415,7 +416,7 @@
 									<font size="8"/>
 									<paragraph lineSpacing="Single" leftIndent="5"/>
 								</textElement>
-								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd hh:mm").format($F{lastUpdateDate})]]></textFieldExpression>
+								<textFieldExpression><![CDATA[new SimpleDateFormat("YYYY/MM/dd HH:mm").format($F{lastUpdateDate})]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>

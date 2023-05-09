@@ -34,6 +34,8 @@ import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
+import jakarta.annotation.security.DeclareRoles;
+import jakarta.annotation.security.RolesAllowed;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
@@ -41,8 +43,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.security.DeclareRoles;
-import javax.annotation.security.RolesAllowed;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.*;
@@ -295,12 +295,12 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             results = gradDataConvertionBean.getTranscriptCourses(reportData);
         }
 
-        LOG.log(Level.INFO,
+        LOG.log(Level.FINE,
                 "Retrieved the collection of exam results for PEN: {0} INTERIM: {1}",
                 new Object[]{pen, interim});
 
         if (results != null && !results.isEmpty()) {
-            LOG.log(Level.INFO,
+            LOG.log(Level.FINE,
                     "Total courses {0} retrieved  for PEN: {1}",
                     new Object[]{results.size(), pen});
             LOG.log(Level.FINEST, "Retrieved student transcript course results:");

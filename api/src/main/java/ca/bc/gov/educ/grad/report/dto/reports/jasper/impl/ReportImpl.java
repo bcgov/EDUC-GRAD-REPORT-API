@@ -207,7 +207,7 @@ public abstract class ReportImpl implements Report {
     private InputStream openResource(final String resource) throws IOException {
         //final URL url = getReportResource(resource);
         URL url = this.getClass().getResource(DIR_REPORT_BASE + resource);
-        LOG.info("url == " + url.getFile());
+        LOG.fine("url == " + url.getFile());
         return url.openStream();
     }
 

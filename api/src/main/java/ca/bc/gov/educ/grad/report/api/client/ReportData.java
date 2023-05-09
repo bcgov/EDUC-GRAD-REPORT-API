@@ -4,15 +4,16 @@ import ca.bc.gov.educ.grad.report.api.client.utils.AchievementCourseListDeserial
 import ca.bc.gov.educ.grad.report.api.client.utils.ExamListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.OptionalProgramListDeserializer;
+import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlSeeAlso;
+import jakarta.xml.bind.annotation.XmlType;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
 import java.io.Serializable;
 import java.util.*;
 
@@ -55,13 +56,13 @@ public class ReportData implements Serializable {
 	private GradProgram gradProgram = new GradProgram();
 	@JsonDeserialize(as = GraduationData.class)
 	private GraduationData graduationData = new GraduationData();
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
 	private String updateDate;
 	@JsonDeserialize(as = Certificate.class)
 	private Certificate certificate = new Certificate();
 	@JsonDeserialize(as = GraduationStatus.class)
 	private GraduationStatus graduationStatus = new GraduationStatus();
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
 	private Date issueDate;
 	@JsonDeserialize(as = PackingSlip.class)
 	private PackingSlip packingSlip = new PackingSlip();
@@ -110,6 +111,9 @@ public class ReportData implements Serializable {
 	}
 
 	public void setSchools(List<School> schools) {
+		if(schools != null && !schools.isEmpty()) {
+			schools.sort(Comparator.comparing(School::getMincode));
+		}
 		this.schools = schools;
 	}
 

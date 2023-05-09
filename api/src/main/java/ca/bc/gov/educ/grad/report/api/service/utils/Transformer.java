@@ -2,8 +2,9 @@ package ca.bc.gov.educ.grad.report.api.service.utils;
 
 import javax.xml.transform.TransformerException;
 import java.io.InputStream;
+import java.io.Serializable;
 
-public interface Transformer {
+public interface Transformer extends Serializable {
 
     public Object unmarshall(byte[] input, Class<?> clazz) throws TransformerException;
 
@@ -13,7 +14,7 @@ public interface Transformer {
 
     public String marshallPrettyPrinter(Object input) throws TransformerException;
 
-    public String marshall(Object input) throws TransformerException;
+    public String marshall(Object input);
 
     public String getAccept();
 
