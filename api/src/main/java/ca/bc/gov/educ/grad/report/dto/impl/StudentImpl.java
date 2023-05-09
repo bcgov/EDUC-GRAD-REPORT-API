@@ -33,6 +33,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -46,7 +47,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private static final long serialVersionUID = 3L;
 
     private PersonalEducationNumber pen = null;
-    private Date birthdate = new Date(0L);
+    private LocalDate birthdate = LocalDate.now();
     private PostalAddress address = new PostalAddressImpl();
     private String firstName = "";
     private String middleName = "";
@@ -83,7 +84,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     @JsonFormat(pattern="yyyy-MM-dd")
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
@@ -212,7 +213,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.address = address;
     }
 
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

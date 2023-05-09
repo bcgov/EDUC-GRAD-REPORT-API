@@ -102,7 +102,7 @@
 	<field name="student.fullName" class="java.lang.String">
 		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
 	</field>
-	<field name="student.birthdate" class="java.util.Date">
+	<field name="student.birthdate" class="java.time.LocalDate">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
 	</field>
 	<field name="student.graduationProgram.description" class="java.lang.String">
@@ -172,7 +172,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 		<initialValueExpression><![CDATA[new SimpleDateFormat( "yyyy-MM-dd").format( $P{P_REPORT_DATE} ).toUpperCase()]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_BIRTHDATE" class="java.lang.String">
-		<initialValueExpression><![CDATA[new SimpleDateFormat("YY/MM/dd").format($F{student.birthdate})]]></initialValueExpression>
+		<initialValueExpression><![CDATA[$F{student.birthdate}.format(java.time.format.DateTimeFormatter.ofPattern("YY/MM/dd"))]]></initialValueExpression>
 	</variable>
 	<variable name="V_REPORT_SUMMARY" class="java.lang.String">
 		<variableExpression><![CDATA[$P{P_REPORT_TYPE}]]></variableExpression>

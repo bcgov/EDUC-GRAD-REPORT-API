@@ -31,7 +31,7 @@
 	<field name="student.fullName" class="java.lang.String">
 		<fieldDescription><![CDATA[student.fullName]]></fieldDescription>
 	</field>
-	<field name="student.birthdate" class="java.util.Date">
+	<field name="student.birthdate" class="java.time.LocalDate">
 		<fieldDescription><![CDATA[student.birthdate]]></fieldDescription>
 	</field>
 	<field name="student.address.formatted" class="java.lang.String">
@@ -59,7 +59,7 @@
 		<fieldDescription><![CDATA[student.school.address.formattedPostalCode]]></fieldDescription>
 	</field>
 	<variable name="V_BIRTHDATE" class="java.lang.String">
-		<initialValueExpression><![CDATA[new SimpleDateFormat( "MMM dd, yyyy" ).format( $F{student.birthdate} )]]></initialValueExpression>
+		<initialValueExpression><![CDATA[$F{student.birthdate}.format(java.time.format.DateTimeFormatter.ofPattern("MMM dd, yyyy"))]]></initialValueExpression>
 	</variable>
 	<pageHeader>
 		<band height="89">
