@@ -21,6 +21,10 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.impl.*;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -160,6 +164,7 @@ public class BusinessEntityAdapter {
             final ca.bc.gov.educ.grad.report.model.transcript.Transcript transcript,
             final Student student) {
         validate(transcript, "transcript for student");
+        validate(student, "student");
 
         final Map<String, AcademicSession> aSMap = new HashMap<>();
 
@@ -207,6 +212,7 @@ public class BusinessEntityAdapter {
             final ca.bc.gov.educ.grad.report.model.achievement.Achievement achievement,
             final Student student) {
         validate(achievement, "achievement for student");
+        validate(student, "student");
 
         final Map<String, AcademicSession> aSMap = new HashMap<>();
 
@@ -288,7 +294,7 @@ public class BusinessEntityAdapter {
      */
     private static AchievementResult adapt(
             final ca.bc.gov.educ.grad.report.model.achievement.AchievementResult tr) {
-        validate(tr, "transcript result");
+        validate(tr, "achievement result");
 
         final ca.bc.gov.educ.grad.report.model.transcript.Course c = tr.getCourse();
         final ca.bc.gov.educ.grad.report.model.transcript.Mark m = tr.getMark();
@@ -508,11 +514,19 @@ public class BusinessEntityAdapter {
      *
      * @throws IllegalArgumentException when o == null.
      */
-    private static void validate(final Object o, final String message) {
+    public static synchronized boolean validate(final Object o, final String message) {
         if (o == null) {
             final String msg = "The " + message + " is null.";
             throw new IllegalArgumentException(msg);
         }
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Object>> violations = validator.validate(o);
+        boolean isValidObject = violations.isEmpty();
+        for (ConstraintViolation<Object> violation : violations) {
+            LOG.log(Level.WARNING, "Validation of {0} failed with the error {1}", new Object[] {message, violation.getMessage()});
+        }
+        return isValidObject;
     }
 
     /**

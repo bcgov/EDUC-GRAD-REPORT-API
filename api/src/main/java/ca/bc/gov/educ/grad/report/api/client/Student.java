@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class Student implements Comparable<Student>, Serializable {
     private String lastName = "";
     private String gender = "";
     private String citizenship = "";
+    @NotNull(message = "DoB cannot be null")
     private LocalDate birthdate;
     private Address address = new Address();
     private String grade = "";

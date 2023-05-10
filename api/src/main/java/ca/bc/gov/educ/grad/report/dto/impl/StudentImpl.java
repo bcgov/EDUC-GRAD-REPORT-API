@@ -30,6 +30,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.NotNull;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,7 +49,8 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private static final long serialVersionUID = 3L;
 
     private PersonalEducationNumber pen = null;
-    private LocalDate birthdate = LocalDate.now();
+    @NotNull(message = "DoB cannot be null")
+    private LocalDate birthdate;
     private PostalAddress address = new PostalAddressImpl();
     private String firstName = "";
     private String middleName = "";

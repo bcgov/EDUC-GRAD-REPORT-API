@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.support.StringUtils;
+import jakarta.validation.constraints.NotNull;
 
 import javax.xml.bind.annotation.*;
 import java.time.LocalDate;
@@ -81,6 +82,7 @@ public final class Student extends BusinessEntity {
     /**
      * When the student was born.
      */
+    @NotNull(message = "DoB can't be null")
     private LocalDate birthdate;
 
     /**
