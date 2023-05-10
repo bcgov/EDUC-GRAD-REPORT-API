@@ -42,6 +42,7 @@ on:
           - develop/chris
           - develop/jinil
           - develop/km
+          - bugfix/alex-student-dob
 
 jobs:
   openshift-ci-cd:
