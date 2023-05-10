@@ -49,7 +49,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private static final long serialVersionUID = 3L;
 
     private PersonalEducationNumber pen = null;
-    @NotNull(message = "DoB cannot be null")
+    @NotNull(message = "DoB is null")
     private LocalDate birthdate;
     private PostalAddress address = new PostalAddressImpl();
     private String firstName = "";

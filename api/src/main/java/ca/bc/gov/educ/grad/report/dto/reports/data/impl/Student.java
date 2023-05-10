@@ -82,7 +82,7 @@ public final class Student extends BusinessEntity {
     /**
      * When the student was born.
      */
-    @NotNull(message = "DoB can't be null")
+    @NotNull(message = "DoB is null")
     private LocalDate birthdate;
 
     /**

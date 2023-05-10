@@ -22,7 +22,7 @@ public class Student implements Comparable<Student>, Serializable {
     private String lastName = "";
     private String gender = "";
     private String citizenship = "";
-    @NotNull(message = "DoB cannot be null")
+    @NotNull(message = "DoB is null")
     private LocalDate birthdate;
     private Address address = new Address();
     private String grade = "";
