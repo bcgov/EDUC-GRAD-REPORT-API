@@ -18,7 +18,7 @@
       "lastName" : "LUSH",
       "gender" : "Female",
       "citizenship" : null,
-      "birthdate" : "2002-05-02",
+      "birthdate" : "",
       "address" : {
         "streetLine1" : null,
         "streetLine2" : null,

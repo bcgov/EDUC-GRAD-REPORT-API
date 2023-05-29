@@ -25,6 +25,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +53,7 @@ public class StudentInfoImpl implements StudentInfo {
     private String firstName = "";
     private String middleName = "";
     private String lastName = "";
-    private Date birthdate = new Date();
+    private LocalDate birthdate = LocalDate.now();
 
     // student transcript info
     private String schoolId = "";
@@ -144,7 +145,7 @@ public class StudentInfoImpl implements StudentInfo {
             final String firstName,
             final String middleName,
             final String lastName,
-            final Date birthdate,
+            final LocalDate birthdate,
             final String localId,
             final String studGender,
             final String citizenship,
@@ -246,7 +247,7 @@ public class StudentInfoImpl implements StudentInfo {
 
     @Override
     @JsonFormat(pattern= ReportApiConstants.BIRTHDATE_FORMAT)
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return this.birthdate;
     }
 
@@ -495,9 +496,6 @@ public class StudentInfoImpl implements StudentInfo {
             return false;
         }
         if (!(this.lastName.equals(other.lastName))) {
-            return false;
-        }
-        if (!(this.birthdate.getTime() == other.birthdate.getTime())) {
             return false;
         }
         return this.schoolId.equals(other.schoolId);

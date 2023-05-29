@@ -39,6 +39,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter.validate;
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
@@ -310,6 +311,8 @@ public abstract class GradReportServiceImpl implements Serializable {
         final Map<String, SignatureBlockTypeCode> signatureBlockTypeCodes = codeService.getSignatureBlockTypeCodesMap();
         final Map<String, SignatureBlockType> signatureBlockTypes = new HashMap<>(signatureBlockTypeCodes);
         student.setSignatureBlockTypes(signatureBlockTypes);
+
+        validate(student, "student");
 
         LOG.exiting(CLASSNAME, methodName);
         return student;

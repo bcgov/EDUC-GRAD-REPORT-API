@@ -42,6 +42,7 @@ on:
           - develop/chris
           - develop/jinil
           - develop/km
+          - grad-hotfix
 
 jobs:
   openshift-ci-cd:

@@ -24,6 +24,7 @@ import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +51,7 @@ public interface Student extends Person {
      *
      * @return A non-null date.
      */
-    Date getBirthdate();
+    LocalDate getBirthdate();
 
     /**
      * Student's current grade.

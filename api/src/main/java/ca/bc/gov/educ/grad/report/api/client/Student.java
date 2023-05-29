@@ -5,8 +5,10 @@ import ca.bc.gov.educ.grad.report.api.client.utils.OtherProgramListDeserializer;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +22,8 @@ public class Student implements Comparable<Student>, Serializable {
     private String lastName = "";
     private String gender = "";
     private String citizenship = "";
-    private Date birthdate;
+    @NotNull(message = "DoB is null")
+    private LocalDate birthdate;
     private Address address = new Address();
     private String grade = "";
     private String gradProgram = "";
@@ -92,11 +95,11 @@ public class Student implements Comparable<Student>, Serializable {
     }
 
     @JsonFormat(pattern= ReportApiConstants.BIRTHDATE_FORMAT)
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date value) {
+    public void setBirthdate(LocalDate value) {
         this.birthdate = value;
     }
 
@@ -223,7 +226,7 @@ public class Student implements Comparable<Student>, Serializable {
         this.graduationStatus = graduationStatus;
     }
 
-    @JsonFormat(pattern= ReportApiConstants.DATETIME_FORMAT)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getLastUpdateDate() {
         return lastUpdateDate;
     }

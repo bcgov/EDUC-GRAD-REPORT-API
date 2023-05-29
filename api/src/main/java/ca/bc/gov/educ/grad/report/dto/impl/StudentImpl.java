@@ -30,10 +30,12 @@ import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.validation.constraints.NotNull;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -47,7 +49,8 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
     private static final long serialVersionUID = 3L;
 
     private PersonalEducationNumber pen = null;
-    private Date birthdate = new Date(0L);
+    @NotNull(message = "DoB is null")
+    private LocalDate birthdate;
     private PostalAddress address = new PostalAddressImpl();
     private String firstName = "";
     private String middleName = "";
@@ -84,7 +87,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     @Override
     @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
@@ -213,7 +216,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.address = address;
     }
 
-    public void setBirthdate(final Date birthdate) {
+    public void setBirthdate(final LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -233,7 +236,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.grade = grade;
     }
 
-    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getSccDate() {
         return sccDate;
     }
@@ -348,7 +351,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
         this.graduationStatus = graduationStatus;
     }
 
-    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getLastUpdateDate() {
         return lastUpdateDate;
     }
@@ -365,7 +368,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
             return "";
     }
 
-    @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
+    @JsonFormat(pattern="yyyy-MM-dd")
     public Date getCertificateDistributionDate() {
         return certificateDistributionDate;
     }

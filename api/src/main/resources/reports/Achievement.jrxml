@@ -291,7 +291,7 @@
 	<parameter name="grade" class="java.lang.String"/>
 	<parameter name="programName" class="java.lang.String"/>
 	<parameter name="gender" class="java.lang.String"/>
-	<parameter name="birthdate" class="java.util.Date"/>
+	<parameter name="birthdate" class="java.time.LocalDate"/>
 	<parameter name="localId" class="java.lang.String"/>
 	<parameter name="studentExam" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="studentName" class="java.lang.String"/>
@@ -523,7 +523,7 @@
 					<textElement>
 						<paragraph leftIndent="0"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new SimpleDateFormat("MMM dd, yyyy").format($P{studentObj}.getBirthdate())]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{studentObj}.getBirthdate().format(java.time.format.DateTimeFormatter.ofPattern("MMM dd, yyyy"))]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="GeneratedText" x="12" y="51" width="260" height="14" uuid="a914bc82-6728-44ee-a5dd-722965b0994c">

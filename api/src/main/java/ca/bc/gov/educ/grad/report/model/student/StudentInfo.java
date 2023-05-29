@@ -20,6 +20,7 @@ package ca.bc.gov.educ.grad.report.model.student;
 import ca.bc.gov.educ.grad.report.model.graduation.OtherProgram;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,7 @@ public interface StudentInfo {
      *
      * @return date of birth
      */
-    Date getBirthdate();
+    LocalDate getBirthdate();
 
     /**
      * get the student's address field #1.

@@ -21,10 +21,11 @@ import ca.bc.gov.educ.grad.report.dto.impl.OtherProgramImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.common.support.StringUtils;
-import jakarta.xml.bind.annotation.*;
+import jakarta.validation.constraints.NotNull;
 
+import javax.xml.bind.annotation.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -81,7 +82,8 @@ public final class Student extends BusinessEntity {
     /**
      * When the student was born.
      */
-    private Date birthdate;
+    @NotNull(message = "DoB is null")
+    private LocalDate birthdate;
 
     /**
      * The school of issuance.
@@ -224,7 +226,7 @@ public final class Student extends BusinessEntity {
      *
      * @return The student's birthdate, or Jan 1, 1900, never null.
      */
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return this.birthdate;
     }
 
@@ -325,7 +327,7 @@ public final class Student extends BusinessEntity {
      *
      * @param birthdate Passed in by the builder.
      */
-    protected void setBirthdate(final Date birthdate) {
+    protected void setBirthdate(final LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 
@@ -912,7 +914,7 @@ public final class Student extends BusinessEntity {
          * @param birthdate Date the person was born.
          * @return thisBuilder
          */
-        public Builder withBirthdate(final Date birthdate) {
+        public Builder withBirthdate(final LocalDate birthdate) {
             getObject().setBirthdate(birthdate);
             return thisBuilder();
         }

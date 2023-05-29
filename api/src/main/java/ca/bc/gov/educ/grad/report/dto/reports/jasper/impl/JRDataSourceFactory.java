@@ -25,6 +25,7 @@ import ca.bc.gov.educ.grad.report.model.assessment.RawScoreCategory;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 import static ca.bc.gov.educ.grad.report.dto.reports.data.impl.DistrictOrganisation.LOGO_CODE_BC;
@@ -624,8 +625,8 @@ public class JRDataSourceFactory {
      * 12/28/1993 must display as 28-DEC-1993. This tests the difference between
      * "dd-MMM-yyyy" (correct) and "dd-MMM-YYYY" (incorrect).
      */
-    private static Date getStudentBirthdate() {
-        return new Date(757065600000L);
+    private static LocalDate getStudentBirthdate() {
+        return LocalDate.now().minusDays(365 * 18);
     }
 
     /**
