@@ -96,8 +96,8 @@ public abstract class GradReportServiceImpl implements Serializable {
 
     void sortStudentsByProgramCompletionDateAndNames(List<Student> students) {
         students.sort(Comparator
-                .comparing(Student::getProgramCompletionDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
-                .thenComparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                //.comparing(Student::getProgramCompletionDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
+                .comparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
                 .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
     }
