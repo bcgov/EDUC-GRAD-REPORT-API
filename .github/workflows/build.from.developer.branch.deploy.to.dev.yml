@@ -42,7 +42,7 @@ on:
           - develop/chris
           - develop/jinil
           - develop/km
-          - bugfix/alex-student-dob
+          - grad-hotfix
 
 jobs:
   openshift-ci-cd:
