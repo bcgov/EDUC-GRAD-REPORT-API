@@ -164,7 +164,7 @@ public interface StudentInfo {
      *
      * @return graduation date
      */
-    Date getGradDate();
+    LocalDate getGradDate();
 
     /**
      * get the graduation program the student is associated with. This outlines
