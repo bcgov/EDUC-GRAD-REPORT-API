@@ -374,7 +374,7 @@
 			<staticText>
 				<reportElement style="SummaryTitle" x="15" y="270" width="535" height="15" uuid="50af41d5-9857-47b5-9b2c-a5961034dd68"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[2018 GRADUATION PROGRAM REQUIREMENTS]]></text>
+				<text><![CDATA[2023 GRADUATION PROGRAM REQUIREMENTS]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="SummaryBody" x="15" y="285" width="535" height="51" uuid="d572cea7-3a9b-496f-9d63-8e82da454ddd"/>
