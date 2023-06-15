@@ -261,6 +261,11 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createTranscriptReport_BC2023_IND_BLANK() throws Exception {
+		createTranscriptReport("createTranscriptReport_BC2023_IND_BLANK", "json/studentTranscriptReportRequest-BC2023-IND-BLANK.json", GraduationProgramCode.PROGRAM_2023_EN);
+	}
+
+	@Test
 	public void createTranscriptReport_BC2018_IND_PREVIEW() throws Exception {
 		createTranscriptReport("createTranscriptReport_BC2018_IND_PREVIEW", "json/studentTranscriptReportRequest-BC2018-IND-PREVIEW.json", GraduationProgramCode.PROGRAM_2018_EN);
 	}
