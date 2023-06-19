@@ -45,6 +45,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
@@ -657,7 +658,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         final GraduationData graduationData = new GraduationDataImpl();
 
-        Date gradDate = studentInfo.getGradDate();
+        LocalDate gradDate = studentInfo.getGradDate();
 
         ((GraduationDataImpl) graduationData).setGraduationDate(gradDate);
         ((GraduationDataImpl) graduationData).setHonorsFlag(studentInfo.isHonourFlag());

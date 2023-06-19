@@ -19,7 +19,7 @@ package ca.bc.gov.educ.grad.report.model.transcript;
 
 import ca.bc.gov.educ.grad.report.model.common.DomainEntity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -46,7 +46,7 @@ public interface GraduationData extends DomainEntity {
      *
      * @return Date of graduation.
      */
-    Date getGraduationDate();
+    LocalDate getGraduationDate();
 
     /**
      * Get the truncated date the student graduated in the form of yyyy/MM. This will return the current date if
