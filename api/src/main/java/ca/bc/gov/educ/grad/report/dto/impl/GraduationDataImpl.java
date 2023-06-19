@@ -20,13 +20,12 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
-import ca.bc.gov.educ.grad.report.utils.DateUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
@@ -44,7 +43,7 @@ public class GraduationDataImpl extends AbstractDomainEntity
     /**
      * null means that the student hasn't graduated.
      */
-    private LocalDate graduationDate;
+    private Date graduationDate;
     private Boolean honorsFlag = FALSE;
     private Boolean dogwoodFlag = FALSE;
     private List<String> programCodes = new ArrayList<>();
@@ -63,28 +62,28 @@ public class GraduationDataImpl extends AbstractDomainEntity
 
     @Override
     @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
-    public LocalDate getGraduationDate() {
-        return this.graduationDate == null ? LocalDate.now() : this.graduationDate;
+    public Date getGraduationDate() {
+        return this.graduationDate == null ? new Date() : this.graduationDate;
     }
 
-    public void setGraduationDate(LocalDate graduationDate) {
+    public void setGraduationDate(Date graduationDate) {
         this.graduationDate = graduationDate;
     }
 
     public String getTruncatedGraduationDate() {
-        LocalDate result = getGraduationDate();
+        Date result = getGraduationDate();
         if(result != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM");
-            return sdf.format(DateUtils.toDate(result));
+            return sdf.format(result);
         }
         return null;
     }
 
     public String getFullGraduationDate() {
-        LocalDate result = getGraduationDate();
+        Date result = getGraduationDate();
         if(result != null) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            return sdf.format(DateUtils.toDate(result));
+            return sdf.format(result);
         }
         return null;
     }

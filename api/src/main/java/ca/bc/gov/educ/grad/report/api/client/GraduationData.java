@@ -4,13 +4,13 @@ import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class GraduationData implements Serializable {
-    private LocalDate graduationDate;
+    private Date graduationDate;
     private boolean honorsFlag;
     private boolean dogwoodFlag;
     private List<String> programCodes = new ArrayList<>();
@@ -18,11 +18,11 @@ public class GraduationData implements Serializable {
     private String totalCreditsUsedForGrad = "";
 
     @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
-    public LocalDate getGraduationDate() {
+    public Date getGraduationDate() {
         return graduationDate;
     }
 
-    public void setGraduationDate(LocalDate value) {
+    public void setGraduationDate(Date value) {
         this.graduationDate = value;
     }
 

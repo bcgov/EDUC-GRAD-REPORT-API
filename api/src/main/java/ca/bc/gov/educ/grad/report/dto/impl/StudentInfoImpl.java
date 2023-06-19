@@ -66,7 +66,7 @@ public class StudentInfoImpl implements StudentInfo {
     private Boolean honourFlag = Boolean.FALSE;
     private Boolean dogwoodFlag = Boolean.FALSE;
     private String grade = "";
-    private LocalDate gradDate;
+    private Date gradDate = new Date(0L);
     private String gradProgram = "";
     private String gradReqYear = "";
     private final List<String> academicProgram = new ArrayList<>();
@@ -151,7 +151,7 @@ public class StudentInfoImpl implements StudentInfo {
             final String citizenship,
             final String mincode,
             final String studGrade,
-            final LocalDate gradDate,
+            final Date gradDate,
             final String gradProgram,
             final String gradReqYear,
             final String gradMessage,
@@ -362,7 +362,7 @@ public class StudentInfoImpl implements StudentInfo {
     }
 
     @Override
-    public LocalDate getGradDate() {
+    public Date getGradDate() {
         return this.gradDate;
     }
 
