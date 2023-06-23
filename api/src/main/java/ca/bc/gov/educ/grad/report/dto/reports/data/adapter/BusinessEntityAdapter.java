@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.impl.*;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
+import ca.bc.gov.educ.grad.report.utils.DateUtils;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -29,6 +30,7 @@ import jakarta.validation.ValidatorFactory;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -399,10 +401,10 @@ public class BusinessEntityAdapter {
         validate(graduationProgramCode, "graduation program code");
 
         final SimpleDateFormat sdf = new SimpleDateFormat(DATE_ISO_8601_YMD);
-        final Date graduationDate = academicAward.getGraduationDate();
+        final LocalDate graduationDate = academicAward.getGraduationDate();
 
         // When empty, the corresponding PESC XML document element is suppressed.
-        final String graduationDateFormatted = academicAward.hasGraduated() ? sdf.format(graduationDate) : "";
+        final String graduationDateFormatted = academicAward.hasGraduated() ? sdf.format(DateUtils.toDate(graduationDate)) : "";
 
         return new AcademicAward.Builder()
                 .withGraduationDate(graduationDateFormatted)
