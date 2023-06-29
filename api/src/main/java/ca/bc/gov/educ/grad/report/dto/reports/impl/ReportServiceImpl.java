@@ -108,6 +108,12 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
 
     @Override
     @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
+    public GraduationReport createDistrictDistributionYearEndNonGradCredentialsReport() {
+        return new SchoolGraduationReportImpl("DistrictDistYearEndNonGradCred");
+    }
+
+    @Override
+    @RolesAllowed({USER_REPORTS_SCHOOL_GRADUATION})
     public GraduationReport createSchoolDistributionYearEndNewCredentialsReport() {
         return new SchoolGraduationReportImpl("SchoolDistYearEndCred");
     }

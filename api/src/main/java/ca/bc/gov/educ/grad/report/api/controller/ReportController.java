@@ -151,7 +151,7 @@ public class ReportController extends BaseController {
 
     @PostMapping(ReportApiConstants.DISTRICT_DISTRIBUTION_YEAR_END)
     @PreAuthorize(PermissionsContants.SCHOOL_DISTRIBUTION)
-    @Operation(summary = "Generate School Distribution Report", description = "Generate School Distribution Report", tags = {"Report"})
+    @Operation(summary = "Generate District Distribution Report", description = "Generate District Distribution Year End Report", tags = {"Report"})
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getDistrictDistributionYearEnd(@RequestBody ReportRequest report, @RequestHeader(name = "Authorization") String accessToken) {
         logger.debug("getDistrictDistributionYearEnd");
@@ -160,6 +160,23 @@ public class ReportController extends BaseController {
         try {
             String reportFile = report.getOptions().getReportFile();
             byte[] resultBinary = reportService.getDistrictDistributionReportYearEnd(report);
+            return handleBinaryResponse(resultBinary, reportFile);
+        } catch (Exception e) {
+            return getInternalServerErrorResponse(e);
+        }
+    }
+
+    @PostMapping(ReportApiConstants.DISTRICT_DISTRIBUTION_YEAR_END_NONGRAD)
+    @PreAuthorize(PermissionsContants.SCHOOL_DISTRIBUTION)
+    @Operation(summary = "Generate District Distribution Report", description = "Generate District Distribution Year End Non Grad Report", tags = {"Report"})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getDistrictDistributionYearEndNonGrad(@RequestBody ReportRequest report, @RequestHeader(name = "Authorization") String accessToken) {
+        logger.debug("getDistrictDistributionYearEndNonGrad");
+        logRequest(report);
+        setAccessToken(report, accessToken);
+        try {
+            String reportFile = report.getOptions().getReportFile();
+            byte[] resultBinary = reportService.getDistrictDistributionReportYearEndNonGrad(report);
             return handleBinaryResponse(resultBinary, reportFile);
         } catch (Exception e) {
             return getInternalServerErrorResponse(e);

@@ -74,6 +74,10 @@ public class GradReportService {
 	@Autowired
 	SchoolDistributionService districtDistributionEndYearCredentialsService;
 
+	@Qualifier("districtDistributionYearEndNonGradCredentialsServiceImpl")
+	@Autowired
+	SchoolDistributionService districtDistributionEndYearNonGradCredentialsService;
+
 	@Qualifier("schoolDistributionYearEndIssuedTranscriptsServiceImpl")
 	@Autowired
 	SchoolDistributionService schoolDistributionEndYearIssuedTranscriptsService;
@@ -290,6 +294,22 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
+
+	public byte[] getDistrictDistributionReportYearEndNonGrad(ReportRequest reportRequest) {
+		String methodName = "getDistrictDistributionReportYearEndNonGrad(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			SchoolDistributionReport districtDistributionYearEndReport = getDistrictDistributionNonGradCredentialsReportDocument(reportRequest);
+			response = districtDistributionYearEndReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
 	
 	public byte[] getSchoolLabelReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolLabelReport(ReportRequest reportRequest)";
@@ -455,5 +475,10 @@ public class GradReportService {
 	private SchoolDistributionReport getDistrictDistributionCredentialsReportDocument(ReportRequest reportRequest) throws IOException {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 		return this.districtDistributionEndYearCredentialsService.buildSchoolDistributionReport();
+	}
+
+	private SchoolDistributionReport getDistrictDistributionNonGradCredentialsReportDocument(ReportRequest reportRequest) throws IOException {
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		return this.districtDistributionEndYearNonGradCredentialsService.buildSchoolDistributionReport();
 	}
 }
