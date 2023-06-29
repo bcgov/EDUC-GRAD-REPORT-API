@@ -3,6 +3,7 @@ package ca.bc.gov.educ.grad.report.service.impl;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
+import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
@@ -63,6 +64,8 @@ public abstract class GradReportServiceImpl implements Serializable {
     GradReportCodeService codeService;
     @Autowired
     GradDataConvertionBean gradDataConvertionBean;
+    @Autowired
+    JsonTransformer jsonTransformer;
     @Autowired
     transient WebClient webClient;
     @Autowired

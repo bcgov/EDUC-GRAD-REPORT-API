@@ -22,13 +22,11 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
-import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -52,9 +50,6 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
     private static final long serialVersionUID = 2L;
     static final String CLASSNAME = DistrictDistributionYearEndCredentialsServiceImpl.class.getName();
-
-    @Autowired
-    ReportService reportService;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override

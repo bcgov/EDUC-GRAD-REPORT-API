@@ -17,17 +17,13 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
-import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
-import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.impl.SchoolDistributionReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
-import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -52,15 +48,6 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
 
     private static final long serialVersionUID = 2L;
     static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
-
-    @Autowired
-    ReportService reportService;
-
-    @Autowired
-    GradDataConvertionBean gradDataConvertionBean;
-
-    @Autowired
-    JsonTransformer jsonTransformer;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
