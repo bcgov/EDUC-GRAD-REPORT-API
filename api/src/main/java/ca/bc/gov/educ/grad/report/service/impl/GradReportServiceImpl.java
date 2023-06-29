@@ -50,23 +50,23 @@ public abstract class GradReportServiceImpl implements Serializable {
 
     private static final long serialVersionUID = 5L;
 
-    private static final String CLASSNAME = StudentAchievementServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    static final String CLASSNAME = GradReportServiceImpl.class.getName();
+    static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 
     static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
 
     @Autowired
-    private ReportService reportService;
+    ReportService reportService;
     @Autowired
-    private GradReportCodeService codeService;
+    GradReportCodeService codeService;
     @Autowired
-    private GradDataConvertionBean gradDataConvertionBean;
+    GradDataConvertionBean gradDataConvertionBean;
     @Autowired
-    private transient WebClient webClient;
+    transient WebClient webClient;
     @Autowired
-    private transient EducGradReportApiConstants constants;
+    transient EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {

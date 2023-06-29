@@ -34,9 +34,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
+import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
 import static java.util.Locale.CANADA;
@@ -46,16 +46,15 @@ import static java.util.Locale.CANADA;
  * @author CGI Information Management Consultants Inc.
  */
 @Service
-@DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
+@DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER})
 public class SchoolDistributionServiceImpl extends GradReportServiceImpl
         implements SchoolDistributionService, Serializable {
 
     private static final long serialVersionUID = 2L;
-    private static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
 
     @Autowired
-    private ReportService reportService;
+    ReportService reportService;
 
     @Autowired
     GradDataConvertionBean gradDataConvertionBean;
@@ -102,6 +101,8 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
 
     @Override
     GraduationReport createGraduationReport() {
+        final String methodName = "createGraduationReport()";
+        LOG.entering(CLASSNAME, methodName);
         return reportService.createSchoolDistributionReport();
     }
 

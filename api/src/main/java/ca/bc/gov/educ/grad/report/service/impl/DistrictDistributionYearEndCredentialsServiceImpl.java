@@ -36,9 +36,9 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
+import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static java.util.Locale.CANADA;
 
@@ -47,15 +47,14 @@ import static java.util.Locale.CANADA;
  * @author CGI Information Management Consultants Inc.
  */
 @Service
-@DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
+@DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER})
 public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDistributionServiceImpl implements Serializable {
 
     private static final long serialVersionUID = 2L;
-    private static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    static final String CLASSNAME = DistrictDistributionYearEndCredentialsServiceImpl.class.getName();
 
     @Autowired
-    private ReportService reportService;
+    ReportService reportService;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
@@ -111,10 +110,12 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
     @Override
     GraduationReport createGraduationReport() {
+        final String methodName = "createGraduationReport()";
+        LOG.entering(CLASSNAME, methodName);
         return reportService.createDistrictDistributionYearEndCredentialsReport();
     }
 
-    private void sortSchools(List<School> schools) {
+    void sortSchools(List<School> schools) {
         schools.sort(Comparator.comparing(School::getName));
     }
 }
