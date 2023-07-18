@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -16,19 +15,19 @@ abstract class BaseTransformer implements Transformer {
     ObjectMapper objectMapper;
 
     @Override
-    public Object unmarshall(byte[] input, Class<?> clazz) throws TransformerException {
+    public Object unmarshall(byte[] input, Class<?> clazz) {
         Object result = null;
         long start = System.currentTimeMillis();
         try {
             result = objectMapper.readValue(input, clazz);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            log.error(e.getLocalizedMessage(), e);
         }
         log.debug("Time taken for unmarshalling response from bytes to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
-    public Object unmarshallWithWrapper(String input, Class<?> clazz) throws TransformerException {
+    public Object unmarshallWithWrapper(String input, Class<?> clazz) {
         final ObjectReader reader = objectMapper.readerFor(clazz);
         Object result = null;
         long start = System.currentTimeMillis();
@@ -38,13 +37,13 @@ abstract class BaseTransformer implements Transformer {
                     .with(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY)
                     .readValue(input);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            log.error(e.getLocalizedMessage(), e);
         }
         log.debug("Time taken for unmarshalling response from String to {} is {} ms", clazz.getSimpleName(), (System.currentTimeMillis() - start));
         return result;
     }
 
-    public String marshallWithWrapper(Object input) throws TransformerException {
+    public String marshallWithWrapper(Object input) {
         ObjectWriter prettyPrinter = objectMapper.writer();//.writerWithDefaultPrettyPrinter();
         String result = null;
         try {
@@ -52,33 +51,33 @@ abstract class BaseTransformer implements Transformer {
                     .with(SerializationFeature.WRAP_ROOT_VALUE)
                     .writeValueAsString(input);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            log.error(e.getLocalizedMessage(), e);
         }
 
         return result;
     }
 
     @Override
-    public Object unmarshall(String input, Class<?> clazz) throws TransformerException {
+    public Object unmarshall(String input, Class<?> clazz) {
         Object result = null;
         long start = System.currentTimeMillis();
         try {
             result = objectMapper.readValue(input, clazz);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            log.error(e.getLocalizedMessage(), e);
         }
         log.debug("Time taken for unmarshalling response from String to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
     }
 
     @Override
-    public Object unmarshall(InputStream input, Class<?> clazz) throws TransformerException {
+    public Object unmarshall(InputStream input, Class<?> clazz) {
         Object result = null;
         long start = System.currentTimeMillis();
         try {
             result = objectMapper.readValue(input, clazz);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            log.error(e.getLocalizedMessage(), e);
         }
         log.debug("Time taken for unmarshalling response from stream to {} is {} ms", clazz.getName(), (System.currentTimeMillis() - start));
         return result;
@@ -97,13 +96,13 @@ abstract class BaseTransformer implements Transformer {
     }
 
     @Override
-    public String marshallPrettyPrinter(Object input) throws TransformerException {
+    public String marshallPrettyPrinter(Object input) {
         ObjectWriter prettyPrinter = objectMapper.writerWithDefaultPrettyPrinter();
         String result = null;
         try {
             result = prettyPrinter.writeValueAsString(input);
         } catch (IOException e) {
-            throw new TransformerException(e);
+            log.error(e.getLocalizedMessage(), e);
         }
 
         return result;

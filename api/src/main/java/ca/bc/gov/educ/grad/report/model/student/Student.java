@@ -213,7 +213,7 @@ public interface Student extends Person {
     /**
      * Gets last update date
      *
-     * @return last update date
+     * @return last update dateNot supported yet
      */
     Date getLastUpdateDate();
 
