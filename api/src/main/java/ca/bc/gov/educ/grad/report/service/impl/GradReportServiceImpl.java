@@ -90,6 +90,13 @@ public abstract class GradReportServiceImpl implements Serializable {
         return students;
     }
 
+    void sortStudentsByNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
+    }
+
     void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
         students.sort(Comparator
                 .comparing(Student::getStringLastUpdateDate, Comparator.nullsFirst(Comparator.naturalOrder())).reversed()
@@ -158,6 +165,8 @@ public abstract class GradReportServiceImpl implements Serializable {
                 sortStudentsByProgramCompletionDateAndNames(students);
                 break;
             case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradReport()":
+                sortStudentsByNames(students);
+                break;
             default:
                 sortStudentsByLastUpdateDateAndNames(students);
                 break;
