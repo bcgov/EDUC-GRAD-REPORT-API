@@ -363,6 +363,27 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createStudentNonGradReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createStudentNonGradReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentNonGradProjectedReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createStudentNonGradReport_NOSTUDENTS");
+	}
+
+	@Test
 	public void createStudentNonGradProjectedReport() throws Exception {
 		LOG.debug("<{}.createStudentNonGradProjectedReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentNonGradProjectedReportRequest.json");
