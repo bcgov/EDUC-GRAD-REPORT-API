@@ -111,7 +111,7 @@
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Non-Graduation Transcript Distribution Report (School)"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Projected Non-Graduates Summary Report"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="105" y="15" width="341" height="15" uuid="31b126b4-76d2-4dae-a97b-a3a8266a5bf8">
@@ -170,7 +170,7 @@
 					<font size="9"/>
 					<paragraph leftIndent="6"/>
 				</textElement>
-				<text><![CDATA[Transcripts enclosed for school records. A transcript is printed for students that were reported on a graduation program and in Grade 12 or Grade AD and have not yet graduated.]]></text>
+				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>

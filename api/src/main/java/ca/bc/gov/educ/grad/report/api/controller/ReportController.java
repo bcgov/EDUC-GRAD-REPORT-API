@@ -234,9 +234,26 @@ public class ReportController extends BaseController {
         }
     }
 
+    @PostMapping(ReportApiConstants.STUDENT_NON_GRAD_PROJECTED)
+    @PreAuthorize(PermissionsContants.STUDENT_NON_GRAD)
+    @Operation(summary = "Generate Student NonGraduate Projected Requirements Report", description = "Generate Student NonGraduate Projected Requirements Report", tags = {"Report"})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> getStudentNonGradProjected(@RequestBody ReportRequest report, @RequestHeader(name = "Authorization") String accessToken) {
+        logger.debug("getStudentNonGradProjected");
+        logRequest(report);
+        setAccessToken(report, accessToken);
+        try {
+            String reportFile = report.getOptions().getReportFile();
+            byte[] resultBinary = reportService.getStudentNonGradProjectedReport(report);
+            return handleBinaryResponse(resultBinary, reportFile);
+        } catch (Exception e) {
+            return getInternalServerErrorResponse(e);
+        }
+    }
+
     @PostMapping(ReportApiConstants.STUDENT_NON_GRAD)
     @PreAuthorize(PermissionsContants.STUDENT_NON_GRAD)
-    @Operation(summary = "Generate Student NonGraduate Requirements Report", description = "Generate Student NonGraduate Requirements Report", tags = {"Report"})
+    @Operation(summary = "Generate Student NonGraduate Report", description = "Generate Student NonGraduate Report", tags = {"Report"})
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
     public ResponseEntity<byte[]> getStudentNonGrad(@RequestBody ReportRequest report, @RequestHeader(name = "Authorization") String accessToken) {
         logger.debug("getStudentNonGrad");

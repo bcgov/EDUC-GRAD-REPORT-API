@@ -164,7 +164,7 @@ public abstract class GradReportServiceImpl implements Serializable {
             case "buildSchoolDistributionReport()":
                 sortStudentsByProgramCompletionDateAndNames(students);
                 break;
-            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradReport()":
+            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradProjectedReport()","buildStudentNonGradReport()":
                 sortStudentsByNames(students);
                 break;
             default:

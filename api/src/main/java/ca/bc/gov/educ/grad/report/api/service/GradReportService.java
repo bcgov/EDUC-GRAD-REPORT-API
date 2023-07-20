@@ -19,9 +19,7 @@ import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.school.*;
-import ca.bc.gov.educ.grad.report.model.student.SchoolNonGraduationService;
-import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
-import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
+import ca.bc.gov.educ.grad.report.model.student.*;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
@@ -90,6 +88,9 @@ public class GradReportService {
 
 	@Autowired
 	SchoolNonGraduationService schoolNonGraduationService;
+
+	@Autowired
+	StudentNonGradProjectedService studentNonGradProjectedService;
 
 	@Autowired
 	StudentNonGradService studentNonGradService;
@@ -359,6 +360,22 @@ public class GradReportService {
 		return response;
 	}
 	
+	public byte[] getStudentNonGradProjectedReport(ReportRequest reportRequest) {
+		String methodName = "getStudentNonGradProjectedReport(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			StudentNonGradProjectedReport studentNonGradProjectedReport = getStudentNonGradProjectedReportDocument(reportRequest);
+			response = studentNonGradProjectedReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public byte[] getStudentNonGradReport(ReportRequest reportRequest) {
 		String methodName = "getStudentNonGradReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -451,6 +468,15 @@ public class GradReportService {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return schoolNonGraduationService.buildSchoolNonGraduationReport();
+	}
+
+	public StudentNonGradProjectedReport getStudentNonGradProjectedReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getStudentNonGradProjectedReportDocument(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		return studentNonGradProjectedService.buildStudentNonGradProjectedReport();
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
