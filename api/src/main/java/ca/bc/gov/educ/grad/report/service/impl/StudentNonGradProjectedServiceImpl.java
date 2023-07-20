@@ -17,17 +17,13 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
-import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
-import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradProjectedReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
-import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -53,15 +49,6 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
     private static final long serialVersionUID = 2L;
     private static final String CLASSNAME = StudentNonGradProjectedServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-
-    @Autowired
-    private ReportService reportService;
-
-    @Autowired
-    GradDataConvertionBean gradDataConvertionBean;
-
-    @Autowired
-    JsonTransformer jsonTransformer;
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
@@ -90,8 +77,6 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
         try {
 
             byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "student_nongrad_projected_requirements_");
-
-            // TODO: Use a constant for the name.
             report = new StudentNonGradProjectedReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Projected Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
