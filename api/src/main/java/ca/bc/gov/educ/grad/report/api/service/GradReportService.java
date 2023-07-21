@@ -19,9 +19,7 @@ import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.school.*;
-import ca.bc.gov.educ.grad.report.model.student.SchoolNonGraduationService;
-import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
-import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
+import ca.bc.gov.educ.grad.report.model.student.*;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
@@ -74,6 +72,10 @@ public class GradReportService {
 	@Autowired
 	SchoolDistributionService districtDistributionEndYearCredentialsService;
 
+	@Qualifier("districtDistributionYearEndNonGradCredentialsServiceImpl")
+	@Autowired
+	SchoolDistributionService districtDistributionEndYearNonGradCredentialsService;
+
 	@Qualifier("schoolDistributionYearEndIssuedTranscriptsServiceImpl")
 	@Autowired
 	SchoolDistributionService schoolDistributionEndYearIssuedTranscriptsService;
@@ -86,6 +88,9 @@ public class GradReportService {
 
 	@Autowired
 	SchoolNonGraduationService schoolNonGraduationService;
+
+	@Autowired
+	StudentNonGradProjectedService studentNonGradProjectedService;
 
 	@Autowired
 	StudentNonGradService studentNonGradService;
@@ -290,6 +295,22 @@ public class GradReportService {
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
 	}
+
+	public byte[] getDistrictDistributionReportYearEndNonGrad(ReportRequest reportRequest) {
+		String methodName = "getDistrictDistributionReportYearEndNonGrad(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			SchoolDistributionReport districtDistributionYearEndReport = getDistrictDistributionNonGradCredentialsReportDocument(reportRequest);
+			response = districtDistributionYearEndReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
 	
 	public byte[] getSchoolLabelReport(ReportRequest reportRequest) {
 		String methodName = "getSchoolLabelReport(ReportRequest reportRequest)";
@@ -339,6 +360,22 @@ public class GradReportService {
 		return response;
 	}
 	
+	public byte[] getStudentNonGradProjectedReport(ReportRequest reportRequest) {
+		String methodName = "getStudentNonGradProjectedReport(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			StudentNonGradProjectedReport studentNonGradProjectedReport = getStudentNonGradProjectedReportDocument(reportRequest);
+			response = studentNonGradProjectedReport.asBytes();
+		} catch (Exception e) {
+			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public byte[] getStudentNonGradReport(ReportRequest reportRequest) {
 		String methodName = "getStudentNonGradReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -433,6 +470,15 @@ public class GradReportService {
 		return schoolNonGraduationService.buildSchoolNonGraduationReport();
 	}
 
+	public StudentNonGradProjectedReport getStudentNonGradProjectedReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getStudentNonGradProjectedReportDocument(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		return studentNonGradProjectedService.buildStudentNonGradProjectedReport();
+	}
+
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
 		String methodName = "getStudentNonGradReportDocument(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -455,5 +501,10 @@ public class GradReportService {
 	private SchoolDistributionReport getDistrictDistributionCredentialsReportDocument(ReportRequest reportRequest) throws IOException {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 		return this.districtDistributionEndYearCredentialsService.buildSchoolDistributionReport();
+	}
+
+	private SchoolDistributionReport getDistrictDistributionNonGradCredentialsReportDocument(ReportRequest reportRequest) throws IOException {
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+		return this.districtDistributionEndYearNonGradCredentialsService.buildSchoolDistributionReport();
 	}
 }

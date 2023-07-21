@@ -3,6 +3,7 @@ package ca.bc.gov.educ.grad.report.service.impl;
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
+import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
@@ -50,23 +51,25 @@ public abstract class GradReportServiceImpl implements Serializable {
 
     private static final long serialVersionUID = 5L;
 
-    private static final String CLASSNAME = StudentAchievementServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    static final String CLASSNAME = GradReportServiceImpl.class.getName();
+    static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 
     static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
 
     @Autowired
-    private ReportService reportService;
+    ReportService reportService;
     @Autowired
-    private GradReportCodeService codeService;
+    GradReportCodeService codeService;
     @Autowired
-    private GradDataConvertionBean gradDataConvertionBean;
+    GradDataConvertionBean gradDataConvertionBean;
     @Autowired
-    private transient WebClient webClient;
+    JsonTransformer jsonTransformer;
     @Autowired
-    private transient EducGradReportApiConstants constants;
+    transient WebClient webClient;
+    @Autowired
+    transient EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
@@ -85,6 +88,13 @@ public abstract class GradReportServiceImpl implements Serializable {
             students.getFirst().removeIf(p -> program.equalsIgnoreCase(p.getGradProgram()));
         }
         return students;
+    }
+
+    void sortStudentsByNames(List<Student> students) {
+        students.sort(Comparator
+                .comparing(Student::getLastName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getFirstName, Comparator.nullsLast(Comparator.naturalOrder()))
+                .thenComparing(Student::getMiddleName, Comparator.nullsLast(Comparator.naturalOrder())));
     }
 
     void sortStudentsByLastUpdateDateAndNames(List<Student> students) {
@@ -154,7 +164,9 @@ public abstract class GradReportServiceImpl implements Serializable {
             case "buildSchoolDistributionReport()":
                 sortStudentsByProgramCompletionDateAndNames(students);
                 break;
-            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradReport()":
+            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradProjectedReport()","buildStudentNonGradReport()":
+                sortStudentsByNames(students);
+                break;
             default:
                 sortStudentsByLastUpdateDateAndNames(students);
                 break;

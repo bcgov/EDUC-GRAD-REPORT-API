@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class School implements Serializable {
@@ -120,7 +119,6 @@ public class School implements Serializable {
 
     public void setStudents(List<Student> students) {
         if(students != null) {
-            Collections.sort(students);
             this.students = students;
         }
     }

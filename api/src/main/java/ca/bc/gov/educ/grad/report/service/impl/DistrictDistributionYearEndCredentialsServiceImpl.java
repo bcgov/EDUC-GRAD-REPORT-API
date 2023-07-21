@@ -22,13 +22,11 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
-import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -36,9 +34,9 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
+import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static java.util.Locale.CANADA;
 
@@ -47,15 +45,11 @@ import static java.util.Locale.CANADA;
  * @author CGI Information Management Consultants Inc.
  */
 @Service
-@DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
+@DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER})
 public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDistributionServiceImpl implements Serializable {
 
     private static final long serialVersionUID = 2L;
-    private static final String CLASSNAME = SchoolDistributionServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
-
-    @Autowired
-    private ReportService reportService;
+    static final String CLASSNAME = DistrictDistributionYearEndCredentialsServiceImpl.class.getName();
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
@@ -111,10 +105,12 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
     @Override
     GraduationReport createGraduationReport() {
+        final String methodName = "createGraduationReport()";
+        LOG.entering(CLASSNAME, methodName);
         return reportService.createDistrictDistributionYearEndCredentialsReport();
     }
 
-    private void sortSchools(List<School> schools) {
+    void sortSchools(List<School> schools) {
         schools.sort(Comparator.comparing(School::getName));
     }
 }

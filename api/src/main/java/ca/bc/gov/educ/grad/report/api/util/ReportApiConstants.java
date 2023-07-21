@@ -21,12 +21,14 @@ public class ReportApiConstants {
     public static final String STUDENT_CERTIFICATE = "/certificate";
     public static final String PACKING_SLIP = "/packingslip";
     public static final String DISTRICT_DISTRIBUTION_YEAR_END = "/districtdistributionyearend";
+    public static final String DISTRICT_DISTRIBUTION_YEAR_END_NONGRAD = "/districtdistributionyearendnongrad";
     public static final String SCHOOL_DISTRIBUTION = "/schooldistribution";
     public static final String SCHOOL_DISTRIBUTION_YEAR_END = "/schooldistributionyearend";
     public static final String SCHOOL_LABEL = "/schoollabel";
     public static final String SCHOOL_GRADUATION = "/schoolgraduation";
     public static final String SCHOOL_NON_GRADUATION = "/schoolnongraduation";
     public static final String STUDENT_NON_GRAD = "/studentnongrad";
+    public static final String STUDENT_NON_GRAD_PROJECTED = "/studentnongradprojected";
 
     //Attribute Constants
     public static final String PEN_ATTRIBUTE = "pen";

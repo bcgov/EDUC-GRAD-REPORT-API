@@ -16,14 +16,19 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAdapter;
 
 import java.lang.reflect.Type;
+import java.util.Optional;
 
 @ControllerAdvice
 public class CustomRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
 
-    @Autowired
-    JsonTransformer jsonTransformer;
+    final JsonTransformer jsonTransformer;
 
     HttpServletRequest httpServletRequest;
+
+    @Autowired
+    public CustomRequestBodyAdviceAdapter(JsonTransformer jsonTransformer) {
+        this.jsonTransformer = jsonTransformer;
+    }
 
     @Autowired
     public void setHttpServletRequest(final HttpServletRequest httpServletRequest) {
@@ -39,21 +44,25 @@ public class CustomRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
     @SneakyThrows
     public Object afterBodyRead(final Object body, final HttpInputMessage inputMessage, final MethodParameter parameter, final Type targetType,
                                 final Class<? extends HttpMessageConverter<?>> converterType) {
-        Object bodyRequest;
-        if (body instanceof ReportRequest) {
-            ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest)body);
-            Student st = cloneRequest.getData().getStudent();
-            hideStudentDataForLogging(st);
-            if(cloneRequest.getData().getSchool() != null) {
-                for (Student s : cloneRequest.getData().getSchool().getStudents()) {
-                    hideStudentDataForLogging(s);
+        String appLogLevel = Optional.ofNullable(System.getenv("APP_LOG_LEVEL")).orElse("INFO");
+        boolean isDebugMode = "DEBUG".equalsIgnoreCase(appLogLevel);
+        if(isDebugMode) {
+            Object bodyRequest;
+            if (body instanceof ReportRequest) {
+                ReportRequest cloneRequest = SerializationUtils.clone((ReportRequest) body);
+                Student st = cloneRequest.getData().getStudent();
+                hideStudentDataForLogging(st);
+                if (cloneRequest.getData().getSchool() != null) {
+                    for (Student s : cloneRequest.getData().getSchool().getStudents()) {
+                        hideStudentDataForLogging(s);
+                    }
                 }
+                bodyRequest = cloneRequest;
+            } else {
+                bodyRequest = body;
             }
-            bodyRequest = cloneRequest;
-        } else {
-            bodyRequest = body;
+            this.httpServletRequest.setAttribute("payload", bodyRequest);
         }
-        this.httpServletRequest.setAttribute("payload", bodyRequest);
         return super.afterBodyRead(body, inputMessage, parameter, targetType, converterType);
     }
 

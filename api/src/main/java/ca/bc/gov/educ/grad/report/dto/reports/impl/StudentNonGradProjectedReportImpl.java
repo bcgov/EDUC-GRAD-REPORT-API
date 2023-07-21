@@ -8,13 +8,13 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 
 import java.util.List;
 
-public class NonGradReportImpl extends ReportImpl implements GraduationReport {
+public class StudentNonGradProjectedReportImpl extends ReportImpl implements GraduationReport {
 
     private List<Student> students;
     private School school;
 
-    public NonGradReportImpl() {
-        this("StudentNonGrad");
+    public StudentNonGradProjectedReportImpl() {
+        this("StudentNonGradProjected");
     }
 
     /**
@@ -22,7 +22,7 @@ public class NonGradReportImpl extends ReportImpl implements GraduationReport {
      *
      * @param name Report template name to run.
      */
-    public NonGradReportImpl(String name) {
+    public StudentNonGradProjectedReportImpl(String name) {
         super(name);
     }
 

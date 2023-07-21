@@ -17,11 +17,11 @@
  */
 package ca.bc.gov.educ.grad.report.service.impl;
 
-import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradReportImpl;
+import ca.bc.gov.educ.grad.report.dto.impl.StudentNonGradProjectedReportImpl;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
-import ca.bc.gov.educ.grad.report.model.student.StudentNonGradReport;
-import ca.bc.gov.educ.grad.report.model.student.StudentNonGradService;
+import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedReport;
+import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.stereotype.Service;
@@ -43,23 +43,23 @@ import static java.util.Locale.CANADA;
  */
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
-public class StudentNonGradServiceImpl extends GradReportServiceImpl
-        implements StudentNonGradService, Serializable {
+public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
+        implements StudentNonGradProjectedService, Serializable {
 
     private static final long serialVersionUID = 2L;
-    private static final String CLASSNAME = StudentNonGradServiceImpl.class.getName();
+    private static final String CLASSNAME = StudentNonGradProjectedServiceImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     @RolesAllowed({STUDENT_CERTIFICATE_REPORT, USER})
     @Override
-    public StudentNonGradReport buildStudentNonGradReport() throws DomainServiceException, IOException {
-        final String methodName = "buildStudentNonGradReport()";
+    public StudentNonGradProjectedReport buildStudentNonGradProjectedReport() throws DomainServiceException, IOException {
+        final String methodName = "buildStudentNonGradProjectedReport()";
         LOG.entering(CLASSNAME, methodName);
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
         LOG.exiting(CLASSNAME, methodName);
 
-        return createStudentNonGradReport(graduationReport);
+        return createStudentNonGradProjectedReport(graduationReport);
     }
 
     /**
@@ -67,20 +67,20 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
      * @return GradCertificateReport
      * @throws DomainServiceException
      */
-    private synchronized StudentNonGradReport createStudentNonGradReport(
+    private synchronized StudentNonGradProjectedReport createStudentNonGradProjectedReport(
             final GraduationReport graduationReport) throws DomainServiceException {
 
-        final String methodName = "createStudentNonGradReport(GraduationReport)";
+        final String methodName = "createStudentNonGradProjectedReport(GraduationReport)";
         LOG.entering(CLASSNAME, methodName);
 
-        StudentNonGradReport report = null;
+        StudentNonGradProjectedReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "student_nongrad_requirements_");
-            report = new StudentNonGradReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Report", CANADA));
+            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "student_nongrad_projected_requirements_");
+            report = new StudentNonGradProjectedReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Projected Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
-                    "Failed to generate the Student Non Graduation report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
+                    "Failed to generate the Student Non Graduation Projected report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
         LOG.exiting(CLASSNAME, methodName);
@@ -89,6 +89,6 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
 
     @Override
     GraduationReport createGraduationReport() {
-        return reportService.createStudentNonGradReport();
+        return reportService.createStudentNonGradProjectedReport();
     }
 }

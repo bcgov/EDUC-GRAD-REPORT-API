@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!--suppress ALL -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentNonGradReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<import value="org.apache.commons.lang3.StringUtils"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
@@ -103,14 +104,14 @@
 					<reportElement style="GeneratedText" x="473" y="15" width="82" height="15" uuid="a3914fe7-542c-4cbd-ab5a-903901eba3d4"/>
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
-				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="105" y="0" width="341" height="17" uuid="0995a7ef-70f9-4cf0-ba5c-318ae0b420bd">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Non-Graduation Transcript Distribution: School Report"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Projected Non-Graduates Summary Report"]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="105" y="15" width="341" height="15" uuid="31b126b4-76d2-4dae-a97b-a3a8266a5bf8">
@@ -169,7 +170,7 @@
 					<font size="9"/>
 					<paragraph leftIndent="6"/>
 				</textElement>
-				<text><![CDATA[Transcripts enclosed for school records. A transcript is printed for students that were reported on a graduation program and in Grade 12 or Grade AD and have not yet graduated.]]></text>
+				<text><![CDATA[A list of all current students reported on a graduation program, in grade 12 or AD, who are not projected to graduate based on missing course or assessment registrations.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>

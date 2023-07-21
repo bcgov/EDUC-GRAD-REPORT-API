@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class Student implements Comparable<Student>, Serializable {
+public class Student implements Serializable {
 
     private Pen pen = new Pen();
     private String firstName = "";
@@ -233,20 +233,6 @@ public class Student implements Comparable<Student>, Serializable {
 
     public void setLastUpdateDate(Date lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
-    }
-
-    @Override
-    public int compareTo(Student student) {
-        String lastNameSt
-                = "" + student.lastName;
-        String firstNameSt
-                = "" + student.firstName;
-        String middleNameSt
-                = "" + student.middleName;
-        String gradProgramSt = "" + student.gradProgram;
-        String lastUpdateDateSt = "" + student.lastUpdateDate;
-        return "".concat(gradProgramSt).concat("" + getLastName()).concat("" + getFirstName()).concat("" + getMiddleName()).concat(lastUpdateDateSt)
-                .compareTo("".concat("" + getGradProgram()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt).concat("" + getLastUpdateDate()));
     }
 
     @Override

@@ -3,7 +3,6 @@ package ca.bc.gov.educ.grad.report.api.util;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +24,13 @@ import java.util.Optional;
 @Component
 public class LogHelper {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    JsonTransformer jsonTransformer;
 
     private static final String EXCEPTION = "Exception ";
 
-    private LogHelper() {
-
+    @Autowired
+    public LogHelper(JsonTransformer jsonTransformer) {
+        this.jsonTransformer = jsonTransformer;
     }
 
     public void logServerHttpReqResponseDetails(@NonNull final HttpServletRequest request, final HttpServletResponse response, final boolean logging) {
@@ -56,7 +56,7 @@ public class LogHelper {
             httpMap.put("server_http_request_remote_address", request.getRemoteAddr());
             httpMap.put("server_http_request_client_name", StringUtils.trimToEmpty(request.getHeader("X-Client-Name")));
             httpMap.put("server_http_request_user_name", ReportRequestDataThreadLocal.getCurrentUser());
-            MDC.putCloseable("httpEvent", mapper.writeValueAsString(httpMap));
+            MDC.putCloseable("httpEvent", jsonTransformer.marshall(httpMap));
             if(isDebugMode) log.debug(""); else log.info("");
             MDC.clear();
         } catch (final Exception exception) {
@@ -82,7 +82,7 @@ public class LogHelper {
             if (correlationID != null) {
                 httpMap.put("correlation_id", String.join(",", correlationID));
             }
-            MDC.putCloseable("httpEvent", mapper.writeValueAsString(httpMap));
+            MDC.putCloseable("httpEvent", jsonTransformer.marshall(httpMap));
             log.info("");
             MDC.clear();
         } catch (final Exception exception) {
