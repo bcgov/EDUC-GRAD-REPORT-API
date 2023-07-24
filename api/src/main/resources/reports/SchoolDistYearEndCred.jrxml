@@ -387,26 +387,11 @@
 					</textElement>
 					<text><![CDATA[Total # of Certificates:]]></text>
 				</staticText>
-				<staticText>
-					<reportElement x="1" y="21" width="120" height="15" uuid="12dd20a8-0bf9-45b6-a9c6-1261c0dd9ca9">
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-					</reportElement>
-					<textElement>
-						<paragraph leftIndent="10"/>
-					</textElement>
-					<text><![CDATA[Total # of Transcripts:]]></text>
-				</staticText>
 				<textField>
 					<reportElement x="122" y="8" width="100" height="15" uuid="4d36f7a9-89e3-4481-ab72-0976d38c18fa">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
 					<textFieldExpression><![CDATA[$P{counts}.getTotalCertificates()]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="122" y="21" width="100" height="15" uuid="0b1770dd-7c5f-47fe-83f6-d5f6d9003ade">
-						<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					</reportElement>
-					<textFieldExpression><![CDATA[$P{counts}.getTotalTranscripts()]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
