@@ -25,6 +25,9 @@ public class EducGradReportApiConstants {
     public static final String GET_SIGNATURE_BLOCK_TYPE_CODE = "/getSignatureBlockTypeCode/{signBlockTypeCode}";
 
     public static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String SECOND_DEFAULT_DATE_FORMAT = "yyyy/MM/dd";
+    public static final String SECOND_DEFAULT_DATE_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
 
     @Value("${endpoint.educ-grad-trax-api.get-district-details.url}")
