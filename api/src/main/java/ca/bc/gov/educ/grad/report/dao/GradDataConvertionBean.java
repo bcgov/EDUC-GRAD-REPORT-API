@@ -429,7 +429,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public Pair<List<Student>, TotalCounts> getStudents(ReportData reportData) {
-        List<Student> result = new ArrayList<>();
+        Set<StudentImpl> result = new HashSet<>();
         TotalCounts totals = new TotalCounts();
         ca.bc.gov.educ.grad.report.api.client.School school = reportData.getSchool();
         List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
@@ -443,6 +443,12 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
             pen.setEntityId(st.getPen().getEntityID());
             student.setPen(pen);
+
+            if(result.add(student)) {
+                log.debug("Student {} added into unique collection for report", student);
+            } else {
+                continue;
+            }
 
             PostalAddressImpl address = new PostalAddressImpl();
             if (st.getAddress() != null) {
@@ -481,9 +487,8 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 student.setTranscriptTypes(transcriptTypes.stream().map(TranscriptTypeCodeEntity::getLabel).collect(Collectors.toList()));
                 totals.countTranscript(transcriptTypes.size());
             }
-            result.add(student);
         }
-        return Pair.of(result, totals);
+        return Pair.of(new ArrayList<>(result), totals);
     }
 
     public GraduationStudentRecord getGraduationStudentRecord(ReportData reportData) {

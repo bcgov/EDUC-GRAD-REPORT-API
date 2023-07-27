@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
  * @author CGI Information Management Consultants Inc.
  */
 
-public class StudentImpl extends AbstractDomainEntity implements Student {
+public class StudentImpl extends AbstractDomainEntity implements Student, Comparable<StudentImpl> {
 
     private static final long serialVersionUID = 3L;
 
@@ -390,5 +390,41 @@ public class StudentImpl extends AbstractDomainEntity implements Student {
 
     private boolean isBlank() {
         return !ca.bc.gov.educ.grad.report.model.common.support.StringUtils.StringUtilsIsNotBlank(getFirstName() + getLastName());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentImpl student = (StudentImpl) o;
+        return getPen().equals(student.getPen()) && getFirstName().equals(student.getFirstName()) && getMiddleName().equals(student.getMiddleName()) && getLastName().equals(student.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Objects.hash(getPen(), getFirstName(), getMiddleName(), getLastName()));
+    }
+
+    @Override
+    public int compareTo(StudentImpl student) {
+        String lastNameSt
+                = student.lastName;
+        String firstNameSt
+                = student.firstName;
+        String middleNameSt
+                = student.middleName;
+        String pen = student.pen.getPen();
+        return "".concat(pen).concat(getLastName()).concat(getFirstName()).concat(getMiddleName())
+                .compareTo("".concat(getPen().getPen()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt));
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "pen=" + pen +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                '}';
     }
 }
