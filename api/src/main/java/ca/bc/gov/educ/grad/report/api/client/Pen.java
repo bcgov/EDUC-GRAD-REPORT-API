@@ -10,7 +10,7 @@ public class Pen implements Comparable<Pen>, Serializable {
     private String entityID = "";
 
     public String getPen() {
-        return pen;
+        return pen == null ? "" : pen;
     }
 
     public void setPen(String value) {
@@ -18,7 +18,7 @@ public class Pen implements Comparable<Pen>, Serializable {
     }
 
     public String getEntityID() {
-        return entityID;
+        return entityID == null ? "" : entityID;
     }
 
     public void setEntityID(String value) {

@@ -82,7 +82,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student, Compar
     @Override
     @JsonDeserialize(as = PersonalEducationNumberObject.class)
     public PersonalEducationNumber getPen() {
-        return pen;
+        return pen == null ? PersonalEducationNumber.NULL : pen;
     }
 
     @Override
@@ -408,14 +408,14 @@ public class StudentImpl extends AbstractDomainEntity implements Student, Compar
     @Override
     public int compareTo(StudentImpl student) {
         String lastNameSt
-                = student.lastName;
+                = student.getLastName();
         String firstNameSt
-                = student.firstName;
+                = student.getFirstName();
         String middleNameSt
-                = student.middleName;
-        String pen = student.pen.getPen();
-        return "".concat(pen).concat(getLastName()).concat(getFirstName()).concat(getMiddleName())
-                .compareTo("".concat(getPen().getPen()).concat(lastNameSt).concat(firstNameSt).concat(middleNameSt));
+                = student.getMiddleName();
+        String penSt = student.getPen().getPen();
+        return "".concat(getLastName()).concat(getFirstName()).concat(getMiddleName().concat(getPen().getPen()))
+                .compareTo("".concat(lastNameSt).concat(firstNameSt).concat(middleNameSt).concat(penSt));
     }
 
     @Override

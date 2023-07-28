@@ -17,11 +17,15 @@
  */
 package ca.bc.gov.educ.grad.report.model.student;
 
+import ca.bc.gov.educ.grad.report.dto.impl.PersonalEducationNumberObject;
+
 /**
  * @author CGI Information Management Consultants Inc.
  */
 
 public interface PersonalEducationNumber {
+
+    public static final PersonalEducationNumber NULL = new PersonalEducationNumberObject("");
 
     String getValue();
 

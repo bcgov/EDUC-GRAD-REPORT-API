@@ -16,6 +16,8 @@ import java.util.Objects;
 
 public class Student implements Serializable {
 
+    public static final Pen NULL = new Pen();
+
     private Pen pen = new Pen();
     private String firstName = "";
     private String middleName = "";
@@ -47,7 +49,7 @@ public class Student implements Serializable {
 
     @JsonDeserialize(as = Pen.class)
     public Pen getPen() {
-        return pen;
+        return pen == null ? NULL : pen;
     }
 
     public void setPen(Pen value) {
