@@ -130,7 +130,7 @@
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["District Credential and Transcript Distribution Report"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Credential and Transcript Distribution: District Report"]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="GeneratedText" x="0" y="163" width="268" height="15" uuid="433d82ec-c85e-4440-bbd8-7016c2c33daf">

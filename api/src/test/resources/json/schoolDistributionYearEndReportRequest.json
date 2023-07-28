@@ -2643,10 +2643,7 @@
             }
           },
           {
-            "pen": {
-              "pen": "11111111",
-              "entityId": null
-            },
+            "pen": null,
             "firstName": "JOHN",
             "middleName": "PIRATE",
             "lastName": "SILVER",
@@ -3671,10 +3668,7 @@
             }
           },
           {
-            "pen": {
-              "pen": "11111111",
-              "entityId": null
-            },
+            "pen": null,
             "firstName": "JOHN",
             "middleName": "PIRATE",
             "lastName": "SILVER",

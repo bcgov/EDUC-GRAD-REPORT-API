@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<!--suppress ALL -->
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SchoolDistYearEndCredReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="45" bottomMargin="30" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<import value="org.apache.commons.lang3.StringUtils"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
@@ -76,7 +75,7 @@
 				<frame>
 					<reportElement mode="Opaque" x="0" y="93" width="555" height="31" backcolor="#F2F2F2" uuid="6abcf31a-03f8-4e39-bc1f-9d36c86f4e4d"/>
 					<staticText>
-						<reportElement x="0" y="0" width="136" height="17" uuid="222bd9ed-193e-428e-b936-119f8a9d8016">
+						<reportElement x="0" y="0" width="122" height="17" uuid="222bd9ed-193e-428e-b936-119f8a9d8016">
 							<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						</reportElement>
 						<textElement verticalAlignment="Top">
@@ -97,7 +96,7 @@
 					<text><![CDATA[The following students recently completed their graduation or School Completion program requirements. An original certificate is enclosed for the school's signature and distribution to the student. Transcripts are also enclosed, for school records only. Students can order one free printed copy of their transcript through the StudentTranscripts Service.]]></text>
 				</staticText>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="136" y="108" width="283" height="16" uuid="3d6a96da-75bd-4f67-ac96-20e185df0d1c">
+					<reportElement style="GeneratedText" x="122" y="108" width="323" height="16" uuid="3d6a96da-75bd-4f67-ac96-20e185df0d1c">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
@@ -130,13 +129,13 @@
 					<textFieldExpression><![CDATA[new SimpleDateFormat("yyyy/MM/dd HH:mm").format(NOW())]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement style="GeneratedText" x="136" y="93" width="283" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
+					<reportElement style="GeneratedText" x="122" y="93" width="323" height="17" uuid="be90e4b8-6540-4ee8-bc01-22932ddaff39">
 						<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center">
 						<font size="10" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Credentials and Transcript Distribution Report"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Credentials and Transcript Distribution: School Report"]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement style="GeneratedText" x="445" y="94" width="27" height="15" uuid="1bd7f145-84bc-4aef-b1b7-4964b9d58caf">
@@ -368,9 +367,9 @@
 				</staticText>
 			</frame>
 		</band>
-		<band height="50">
+		<band height="39">
 			<frame>
-				<reportElement x="0" y="4" width="555" height="43" uuid="a09e2582-ea6a-4c00-b3d1-ae514477c931">
+				<reportElement x="0" y="4" width="555" height="30" uuid="a09e2582-ea6a-4c00-b3d1-ae514477c931">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 					<printWhenExpression><![CDATA["true".equalsIgnoreCase($P{hasStudents})]]></printWhenExpression>
 				</reportElement>
