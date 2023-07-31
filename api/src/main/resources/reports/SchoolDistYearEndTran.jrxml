@@ -60,7 +60,7 @@
 		<band height="88" splitType="Stretch">
 			<printWhenExpression><![CDATA[EQUALS($V{PAGE_NUMBER},1)]]></printWhenExpression>
 			<staticText>
-				<reportElement stretchType="ContainerHeight" x="0" y="19" width="555" height="16" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
+				<reportElement stretchType="ContainerHeight" x="0" y="23" width="555" height="16" uuid="7ab3bc10-8fd4-4870-b74b-96f2b460879a">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 				</reportElement>
@@ -80,11 +80,12 @@
 				<textFieldExpression><![CDATA["Transcripts"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement stretchType="ContainerHeight" x="14" y="35" width="540" height="35" uuid="de5158b8-4bf4-4b1a-8d35-3700f3d2903e">
+				<reportElement stretchType="ContainerHeight" x="14" y="41" width="540" height="35" uuid="de5158b8-4bf4-4b1a-8d35-3700f3d2903e">
 					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
+					<font size="9"/>
 					<paragraph leftIndent="10" rightIndent="10"/>
 				</textElement>
 				<text><![CDATA[a certificate in the current distribution package.
@@ -101,22 +102,22 @@ a certificate in a prior distribution and have had additional course or assessme
 				<text><![CDATA[Transcripts are enclosed for school records only.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="0" y="32" width="27" height="26" uuid="1d0c9645-de6e-4d28-813a-390354840513">
+				<reportElement style="SummaryBody" x="0" y="39" width="27" height="26" uuid="1d0c9645-de6e-4d28-813a-390354840513">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="16"/>
+					<font size="12"/>
 				</textElement>
 				<text><![CDATA[•]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SummaryBody" x="0" y="44" width="27" height="26" uuid="f0951d82-bfc2-44cc-958c-bb9f19828daf">
+				<reportElement style="SummaryBody" x="0" y="49" width="27" height="26" uuid="f0951d82-bfc2-44cc-958c-bb9f19828daf">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font size="16"/>
+					<font size="12"/>
 				</textElement>
 				<text><![CDATA[•]]></text>
 			</staticText>
