@@ -39,6 +39,7 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -440,6 +441,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             }
             StudentImpl student = new StudentImpl();
             BeanUtils.copyProperties(st, student);
+            student.setLastUpdateDate(Date.from(st.getLastUpdateDate().atZone(ZoneId.systemDefault()).toInstant()));
             PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
             pen.setEntityId(st.getPen().getEntityID());
             student.setPen(pen);
