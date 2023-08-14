@@ -3,6 +3,7 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 import ca.bc.gov.educ.grad.report.model.graduation.GradRequirement;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.graduation.OptionalProgram;
+import ca.bc.gov.educ.grad.report.utils.DateUtils;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class OptionalProgramImpl implements OptionalProgram {
 
     @Override
     public String getProgramCompletionDate() {
-        return programCompletionDate;
+        return DateUtils.formatProgramCompletionDate(programCompletionDate);
     }
 
     @Override
