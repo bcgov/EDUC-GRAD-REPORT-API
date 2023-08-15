@@ -7,7 +7,6 @@ import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipDetails;
 import ca.bc.gov.educ.grad.report.model.reports.DestinationType;
 import ca.bc.gov.educ.grad.report.model.reports.PaperType;
 
-
 import java.util.Date;
 
 /**

@@ -1,6 +1,7 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationStatus;
+import ca.bc.gov.educ.grad.report.utils.DateUtils;
 import lombok.Data;
 
 @Data
@@ -16,4 +17,8 @@ public class GraduationStatusImpl implements GraduationStatus {
     private String certificates;
     private String graduationMessage;
     private String programName;
+
+    public String getProgramCompletionDate() {
+        return DateUtils.formatProgramCompletionDate(programCompletionDate);
+    }
 }

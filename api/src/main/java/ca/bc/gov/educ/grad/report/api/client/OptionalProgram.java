@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.client;
 
 import ca.bc.gov.educ.grad.report.api.client.utils.GradRequirementListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
+import ca.bc.gov.educ.grad.report.utils.DateUtils;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
@@ -35,7 +36,7 @@ public class OptionalProgram implements Serializable {
     }
 
     public String getProgramCompletionDate() {
-        return programCompletionDate;
+        return DateUtils.formatProgramCompletionDate(programCompletionDate);
     }
 
     public void setProgramCompletionDate(String programCompletionDate) {

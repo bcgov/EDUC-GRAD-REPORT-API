@@ -1,5 +1,7 @@
 package ca.bc.gov.educ.grad.report.api.client;
 
+import ca.bc.gov.educ.grad.report.utils.DateUtils;
+
 import java.io.Serializable;
 
 
@@ -18,7 +20,7 @@ public class GraduationStatus implements Serializable {
     private String programName = "";
 
     public String getProgramCompletionDate() {
-        return programCompletionDate;
+        return DateUtils.formatProgramCompletionDate(programCompletionDate);
     }
 
     public void setProgramCompletionDate(String programCompletionDate) {
