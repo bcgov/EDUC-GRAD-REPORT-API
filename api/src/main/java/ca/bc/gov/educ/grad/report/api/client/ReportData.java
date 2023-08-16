@@ -73,6 +73,8 @@ public class ReportData implements Serializable {
 	private String reportNumber;
 	private String reportTitle;
 	private String reportSubTitle;
+	@JsonIgnore
+	private String reportIdentity;
 
 	@JsonDeserialize(using = NonGradReasonListDeserializer.class)
 	private List<NonGradReason> nonGradReasons = new ArrayList<>();
@@ -235,6 +237,14 @@ public class ReportData implements Serializable {
 
 	public void setReportSubTitle(String reportSubTitle) {
 		this.reportSubTitle = reportSubTitle;
+	}
+
+	public String getReportIdentity() {
+		return reportIdentity;
+	}
+
+	public void setReportIdentity(String reportIdentity) {
+		this.reportIdentity = reportIdentity;
 	}
 
 	public List<NonGradReason> getNonGradReasons() {

@@ -59,6 +59,7 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
 		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
 				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
 				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
@@ -92,6 +93,7 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
 		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
 				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
 				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
@@ -125,6 +127,7 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
 		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
 				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
 				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
@@ -158,6 +161,7 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
 		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
 				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
 				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
@@ -191,6 +195,7 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		String entityId = "ac339d70-7649-1a2e-8176-4a2e693008cf";
 
 		when(this.studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
+		when(this.studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(entityId))).thenReturn(Optional.of(new Date()));
 		when(this.certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(entityId))).thenReturn(List.of(
 				CertificateTypeCodeEntity.builder().label("Dogwood (Public)").build(),
 				CertificateTypeCodeEntity.builder().label("diplôme (Programme francophone)").build()
@@ -392,6 +397,11 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		for(Student st: reportRequest.getData().getSchool().getStudents()) {
+			if(!StringUtils.isBlank(st.getPen().getEntityID())) {
+				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
+			}
+		}
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		byte[] response = apiReportService.getStudentNonGradProjectedReport(reportRequest);
