@@ -58,6 +58,9 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     @Autowired
     StudentCertificateRepository studentCertificateRepository;
 
+    @Autowired
+    StudentReportRepository studentReportRepository;
+
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);
         School school = getSchool(reportData);
@@ -441,9 +444,6 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             }
             StudentImpl student = new StudentImpl();
             BeanUtils.copyProperties(st, student);
-            if(st.getLastUpdateDate() != null) {
-                student.setLastUpdateDate(Date.from(st.getLastUpdateDate().atZone(ZoneId.systemDefault()).toInstant()));
-            }
             PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
             pen.setEntityId(st.getPen().getEntityID());
             student.setPen(pen);
@@ -479,6 +479,11 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 student.setGraduationStatus(gradStatus);
             }
 
+            Date updateDate = null;
+            if(st.getLastUpdateDate() != null) {
+                updateDate = Date.from(st.getLastUpdateDate().atZone(ZoneId.systemDefault()).toInstant());
+            }
+
             if(!StringUtils.isBlank(pen.getEntityId())) {
                 Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
                 distributionDate.ifPresent(student::setCertificateDistributionDate);
@@ -490,7 +495,15 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 List<TranscriptTypeCodeEntity> transcriptTypes = transcriptTypeCodeRepository.getStudentTranscriptTypes(UUID.fromString(pen.getEntityId()));
                 student.setTranscriptTypes(transcriptTypes.stream().map(TranscriptTypeCodeEntity::getLabel).collect(Collectors.toList()));
                 totals.countTranscript(transcriptTypes.size());
+
+                if("buildStudentNonGradProjectedReport()".equalsIgnoreCase(reportData.getReportIdentity())) {
+                    Optional<Date> reportUpdatedTimestamp = studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(pen.getEntityId()));
+                    if(reportUpdatedTimestamp.isPresent()) {
+                        updateDate = reportUpdatedTimestamp.get();
+                    }
+                }
             }
+            student.setLastUpdateDate(updateDate);
         }
         return Pair.of(new ArrayList<>(result), totals);
     }

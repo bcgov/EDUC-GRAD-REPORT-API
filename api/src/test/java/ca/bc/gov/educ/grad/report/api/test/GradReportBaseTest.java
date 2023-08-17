@@ -62,6 +62,8 @@ public abstract class GradReportBaseTest {
     @MockBean
     protected ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
     @MockBean
+    protected StudentReportRepository studentReportRepository;
+    @MockBean
     protected SignatureBlockTypeRepository signatureBlockTypeRepository;
     @MockBean
     protected DocumentStatusCodeRepository documentStatusCodeRepository;
@@ -182,6 +184,7 @@ public abstract class GradReportBaseTest {
 
         when(this.studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID())).thenReturn(studentTranscriptEntity);
         when(this.studentCertificateRepository.getCertificateDistributionDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
+        when(this.studentReportRepository.getReportUpdatedTimestamp(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
 
         return graduationStudentRecord;
     }

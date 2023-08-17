@@ -132,6 +132,8 @@ public abstract class GradReportServiceImpl implements Serializable {
             LOG.throwing(CLASSNAME, methodName, dse);
             throw dse;
         }
+
+        reportData.setReportIdentity(methodName);
         return reportData;
     }
 

@@ -26,8 +26,8 @@ public class StudentReportEntity extends BaseEntity {
     @Column(name = "REPORT_TYPE_CODE", nullable = false)
     private String reportTypeCode;
 
-    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false)
-    private String graduationStudentRecordId;
+    @Column(name = "GRADUATION_STUDENT_RECORD_ID", nullable = false, columnDefinition = "uuid")
+    private UUID graduationStudentRecordId;
 
     @Column(name = "DOCUMENT_STATUS_CODE")
     private String documentStatusCode;
