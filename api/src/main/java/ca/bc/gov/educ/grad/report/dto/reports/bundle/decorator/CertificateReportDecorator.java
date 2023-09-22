@@ -82,6 +82,6 @@ public class CertificateReportDecorator extends DocumentBundleDecorator {
 
     @Override
     protected int getRotateDegree() {
-        return 0;
+        return 90;
     }
 }
