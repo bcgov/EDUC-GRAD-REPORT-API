@@ -85,7 +85,7 @@
 						<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 					</box>
 					<textElement textAlignment="Left"/>
-					<textFieldExpression><![CDATA[$R{text.header.separator.completion}.toUpperCase() + ($P{P_REPORT_PREVIEW} ? $R{text.header.separator.completion.xml.note} : "")]]></textFieldExpression>
+					<textFieldExpression><![CDATA[($P{P_REPORT_PREVIEW} ? $R{text.header.separator.completion.xml.note}.toUpperCase() : $R{text.header.separator.completion}.toUpperCase())]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
 					<reportElement style="GraduationStatus" mode="Transparent" x="0" y="12" width="567" height="78" uuid="d31b893a-531a-4852-83a0-9c74cdf72824">
