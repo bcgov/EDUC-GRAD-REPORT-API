@@ -76,8 +76,8 @@
 		<initialValueExpression><![CDATA[new SimpleDateFormat("MMMMM yyyy", $P{REPORT_LOCALE})]]></initialValueExpression>
 	</variable>
 	<variable name="V_STUDENT_NAME" class="java.lang.String">
-		<variableExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></variableExpression>
-		<initialValueExpression><![CDATA[$F{student.firstName} + "  " + $F{student.middleNames} + "  " + $F{student.lastName}]]></initialValueExpression>
+		<variableExpression><![CDATA[$F{student.firstName} + ("".equals($F{student.middleNames}) ? "" : "  " + $F{student.middleNames}) + "  " + $F{student.lastName}]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{student.firstName} + ("".equals($F{student.middleNames}) ? "" : "  " + $F{student.middleNames}) + "  " + $F{student.lastName}]]></initialValueExpression>
 	</variable>
 	<title>
 		<band height="275">
