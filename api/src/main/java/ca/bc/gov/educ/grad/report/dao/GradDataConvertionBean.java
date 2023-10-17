@@ -488,7 +488,19 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
                 distributionDate.ifPresent(student::setCertificateDistributionDate);
 
-                List<CertificateTypeCodeEntity> certificateTypes = certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()));
+                List<String> studentCertificateTypeCodes = new ArrayList<>();
+                if(st.getGraduationStatus() != null && StringUtils.isNotBlank(st.getGraduationStatus().getCertificates())) {
+                    String studentCertificateTypeCodesString = st.getGraduationStatus().getCertificates();
+                    log.debug("Process student {} certificate credentials {}", student.getPen(), studentCertificateTypeCodesString);
+                    studentCertificateTypeCodes = Arrays.asList(StringUtils.split(studentCertificateTypeCodesString, ","));
+                }
+
+                List<CertificateTypeCodeEntity> certificateTypes;
+                if(!studentCertificateTypeCodes.isEmpty()) {
+                    certificateTypes = certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()), studentCertificateTypeCodes);
+                } else {
+                    certificateTypes = certificateTypeCodeRepository.getStudentCertificateTypes(UUID.fromString(pen.getEntityId()));
+                }
                 student.setCertificateTypes(certificateTypes.stream().map(CertificateTypeCodeEntity::getLabel).collect(Collectors.toList()));
                 totals.countCertificate(certificateTypes.size());
 
