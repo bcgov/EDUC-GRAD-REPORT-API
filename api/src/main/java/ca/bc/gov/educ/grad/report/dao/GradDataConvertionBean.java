@@ -27,6 +27,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.Transcript;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import ca.bc.gov.educ.grad.report.service.impl.BaseServiceImpl;
+import ca.bc.gov.educ.grad.report.utils.GradValidation;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -38,16 +39,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class GradDataConvertionBean extends BaseServiceImpl implements Serializable {
+public class GradDataConvertionBean extends BaseServiceImpl {
 
     private static final String CLASS_NAME = GradDataConvertionBean.class.getName();
-    private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
+    private static final Logger logger = LoggerFactory.getLogger(CLASS_NAME);
+
+    @Autowired
+    GradValidation validation;
 
     @Autowired
     TranscriptTypeCodeRepository transcriptTypeCodeRepository;
@@ -196,7 +199,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
     }
 
     public List<TranscriptCourse> getTranscriptCourses(ReportData reportData) {
-        Student student = getStudent(reportData);
+        final Student student = getStudent(reportData);
         List<TranscriptCourse> result = new ArrayList<>();
         if (reportData.getTranscript() != null && reportData.getTranscript().getResults() != null) {
             for (ca.bc.gov.educ.grad.report.api.client.TranscriptResult r : reportData.getTranscript().getResults()) {
@@ -223,6 +226,12 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
 
                 result.add(course);
             }
+        }
+        final String pen = student.getPen().getValue();
+        if(StringUtils.isNotBlank(pen) && result.isEmpty()) {
+            String message = String.format("Transcript for pen %s has no eligible courses. Transcript Report is not created", pen);
+            logger.warn(message);
+            validation.addErrorAndStop(message);
         }
         return result;
     }
@@ -439,7 +448,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
         List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
         for (ca.bc.gov.educ.grad.report.api.client.Student st : students) {
             if(st.getPen() == null || StringUtils.isBlank(st.getPen().getPen())) {
-                log.warn("Skip Student {} without Pen #", st.getPen().getEntityID());
+                logger.warn("Skip Student {} without Pen #", st.getPen().getEntityID());
                 continue;
             }
             StudentImpl student = new StudentImpl();
@@ -449,7 +458,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
             student.setPen(pen);
 
             if(result.add(student)) {
-                log.debug("Student {} added into unique collection for report", student);
+                logger.debug("Student {} added into unique collection for report", student);
             } else {
                 continue;
             }
@@ -491,7 +500,7 @@ public class GradDataConvertionBean extends BaseServiceImpl implements Serializa
                 List<String> studentCertificateTypeCodes = new ArrayList<>();
                 if(st.getGraduationStatus() != null && StringUtils.isNotBlank(st.getGraduationStatus().getCertificates())) {
                     String studentCertificateTypeCodesString = st.getGraduationStatus().getCertificates();
-                    log.debug("Process student {} certificate credentials {}", student.getPen(), studentCertificateTypeCodesString);
+                    logger.debug("Process student {} certificate credentials {}", student.getPen(), studentCertificateTypeCodesString);
                     studentCertificateTypeCodes = Arrays.asList(StringUtils.split(studentCertificateTypeCodesString, ","));
                 }
 

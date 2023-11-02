@@ -40,14 +40,13 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -93,6 +92,7 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER, FULFILLMENT_SERVICES_USER})
 public class StudentTranscriptServiceImpl extends GradReportServiceImpl implements StudentTranscriptService {
 
+    @Serial
     private static final long serialVersionUID = 5L;
 
     private static final String CLASSNAME = StudentTranscriptServiceImpl.class.getName();
@@ -159,13 +159,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * @throws IOException
      * @throws DataException
      */
-    @Override
-    @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
-    public Future<StudentTranscriptReport> buildUnofficialTranscriptReportAsync(
-            final ReportFormat format)
-            throws DomainServiceException, IOException, DataException {
-        return new AsyncResult<>(createTranscriptReport(format, true));
-    }
 
     @Override
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
@@ -554,7 +547,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
         final ReportDocument document = reportService.export(report);
 
-        LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
+        LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, stu.getPEN()});
 
         final String filename = report.getFilename();
         final byte[] content = document.asBytes();
@@ -648,7 +641,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         return "" + totalCredits;
     }
 
-    // FIXME: Pass in GraduationProgramCode enum
     private GraduationData adaptGraduationData(
             final StudentInfo studentInfo,
             final Transcript transcript) {
@@ -765,8 +757,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Comparator<TranscriptResult> result;
 
         switch (code) {
-            case PROGRAM_1950:
-            case PROGRAM_1986:
+            case PROGRAM_1950, PROGRAM_1986:
             // 1995, 2004, 2018, etc.
             default:
                 result = createRegularComparator();
@@ -782,21 +773,13 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * @return A comparator for sorting by course code.
      */
     private Comparator<TranscriptResult> createAdultComparator() {
-        return new Comparator<TranscriptResult>() {
-            @Override
-            public int compare(
-                    final TranscriptResult tr1,
-                    final TranscriptResult tr2) {
-                final String reportCourseType1 = getReportCourseType(tr1);
-                final String reportCourseType2 = getReportCourseType(tr2);
-                final String code1 = getCourseCode(tr1);
-                final String code2 = getCourseCode(tr2);
+        return (tr1, tr2) -> {
+            final String code1 = getCourseCode(tr1);
+            final String code2 = getCourseCode(tr2);
 
-                return new CompareToBuilder()
-                        //.append(reportCourseType1, reportCourseType2)
-                        .append(code1, code2)
-                        .toComparison();
-            }
+            return new CompareToBuilder()
+                    .append(code1, code2)
+                    .toComparison();
         };
     }
 
@@ -808,19 +791,16 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * sort the transcript results.
      */
     private Comparator<TranscriptResult> createRegularComparator() {
-        return new Comparator<TranscriptResult>() {
-            @Override
-            public int compare(final TranscriptResult tr1, final TranscriptResult tr2) {
-                final int level1 = getCourseLevel(tr1);
-                final int level2 = getCourseLevel(tr2);
-                final String name1 = getCourseName(tr1);
-                final String name2 = getCourseName(tr2);
+        return (tr1, tr2) -> {
+            final int level1 = getCourseLevel(tr1);
+            final int level2 = getCourseLevel(tr2);
+            final String name1 = getCourseName(tr1);
+            final String name2 = getCourseName(tr2);
 
-                return new CompareToBuilder()
-                        .append(level1, level2)
-                        .append(name1, name2)
-                        .toComparison();
-            }
+            return new CompareToBuilder()
+                    .append(level1, level2)
+                    .append(name1, name2)
+                    .toComparison();
         };
     }
 
@@ -830,22 +810,19 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * @return A comparator that can sort ungraded results.
      */
     private Comparator<TranscriptResult> createUngradedComparator() {
-        return new Comparator<TranscriptResult>() {
-            @Override
-            public int compare(final TranscriptResult tr1, final TranscriptResult tr2) {
-                final int level1 = getCourseLevel(tr1);
-                final int level2 = getCourseLevel(tr2);
+        return (tr1, tr2) -> {
+            final int level1 = getCourseLevel(tr1);
+            final int level2 = getCourseLevel(tr2);
 
-                final int comparison = new CompareToBuilder()
-                        .append(level1, level2)
-                        .toComparison();
+            final int comparison = new CompareToBuilder()
+                    .append(level1, level2)
+                    .toComparison();
 
-                return SORT_UNGRADED.equals("" + level1)
-                        || SORT_UNGRADED.equals("" + level2)
-                                ? comparison
-                                : 0;
+            return SORT_UNGRADED.equals("" + level1)
+                    || SORT_UNGRADED.equals("" + level2)
+                            ? comparison
+                            : 0;
 
-            }
         };
     }
 
@@ -855,29 +832,26 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * @return A comparator that can sort assessment results.
      */
     private Comparator<TranscriptResult> createAssessmentComparator() {
-        return new Comparator<TranscriptResult>() {
-            @Override
-            public int compare(final TranscriptResult tr1, final TranscriptResult tr2) {
-                final int level1 = getCourseLevel(tr1);
-                final int level2 = getCourseLevel(tr2);
+        return (tr1, tr2) -> {
+            final int level1 = getCourseLevel(tr1);
+            final int level2 = getCourseLevel(tr2);
 
-                final String reportCourseType1 = getReportCourseType(tr1);
-                final String reportCourseType2 = getReportCourseType(tr2);
+            final String reportCourseType1 = getReportCourseType(tr1);
+            final String reportCourseType2 = getReportCourseType(tr2);
 
-                final String courseCode1 = getCourseCode(tr1);
-                final String courseCode2 = getCourseCode(tr2);
+            final String courseCode1 = getCourseCode(tr1);
+            final String courseCode2 = getCourseCode(tr2);
 
-                final int comparison = new CompareToBuilder()
-                        .append(level1, level2)
-                        .append(reportCourseType1, reportCourseType2)
-                        .append(courseCode1, courseCode2)
-                        .toComparison();
+            final int comparison = new CompareToBuilder()
+                    .append(level1, level2)
+                    .append(reportCourseType1, reportCourseType2)
+                    .append(courseCode1, courseCode2)
+                    .toComparison();
 
-                return ASSESSMENT.isCode(reportCourseType1)
-                        || ASSESSMENT.isCode(reportCourseType2)
-                                ? comparison
-                                : 0;
-            }
+            return ASSESSMENT.isCode(reportCourseType1)
+                    || ASSESSMENT.isCode(reportCourseType2)
+                            ? comparison
+                            : 0;
         };
     }
 
@@ -890,11 +864,9 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private String getReportCourseType(final TranscriptResult tr) {
         final Course c = tr.getCourse();
-        final String reportCourseType = c == null
+        return c == null
                 ? PROVINCIALLY_EXAMINABLE.getCode()
                 : c.getType();
-
-        return reportCourseType;
     }
 
     /**

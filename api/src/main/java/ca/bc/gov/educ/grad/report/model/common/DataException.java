@@ -27,7 +27,7 @@ public class DataException extends DomainServiceException {
 
     private static final long serialVersionUID = 1817217871285315446L;
 
-    private String eid;
+    private final String eid;
 
     /**
      * Creates a new exception due to a data access layer anomaly.
@@ -38,6 +38,17 @@ public class DataException extends DomainServiceException {
     public DataException(final String eID, final DomainEntity entity) {
         super(entity);
         this.eid = eID;
+    }
+
+    /**
+     * Creates a new exception due to a data access layer anomaly.
+     *
+     * @param message The entity instance involved in the failed transaction.
+     * @param message Descriptive message explaining the problem.
+     */
+    public DataException(final String message) {
+        super(message);
+        this.eid = null;
     }
 
     /**
@@ -106,14 +117,6 @@ public class DataException extends DomainServiceException {
      */
     String getEid() {
         return this.eid;
-    }
-
-    /**
-     *
-     * @param eid The globally unique entity ID string.
-     */
-    void setEid(final String eid) {
-        this.eid = eid;
     }
 
 }
