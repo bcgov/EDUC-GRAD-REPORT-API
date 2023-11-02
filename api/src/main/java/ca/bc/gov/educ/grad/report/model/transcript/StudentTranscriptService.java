@@ -24,7 +24,6 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Future;
 
 /**
  * Provides an interface for generating official an unofficial student
@@ -33,22 +32,6 @@ import java.util.concurrent.Future;
  * @author CGI Information Management Consultants Inc.
  */
 public interface StudentTranscriptService extends BusinessService {
-
-    /**
-     * Performs an asynchronous call to
-     * <code>buildTranscriptReport(ReportFormat)</code>.
-     *
-     * This is intended to be used when loading the transcript report should be
-     * started and can continue asynchronously.
-     *
-     * @param format The final format for the filled report.
-     * @return Report data for consumption by the GUI.
-     * @throws DomainServiceException
-     * @throws IOException
-     * @throws DataException
-     */
-    Future<StudentTranscriptReport> buildUnofficialTranscriptReportAsync(ReportFormat format)
-            throws DomainServiceException, IOException, DataException;
 
     /**
      * Builds the official transcript report in PDF format.
