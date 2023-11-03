@@ -134,7 +134,7 @@ public abstract class BaseController {
             for(String error: validation.getErrors()) {
                 sb.append(error).append('\n');
             }
-            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb.toString().getBytes());
+            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } else {
             if (resultBinary.length > 0) {
                 HttpHeaders headers = new HttpHeaders();
