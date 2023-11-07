@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 import java.util.logging.Logger;
@@ -240,20 +241,17 @@ public class TranscriptCourseImpl implements TranscriptCourse {
     @Override
     public boolean compareCourse(final TranscriptCourse compareCourse) {
 
-        final int interimPercentage = getInt(this.getInterimMark());
-        final int finalPercentage = getInt(this.getFinalPercent());
-        final int compareFinalPercentage = getInt(compareCourse.getFinalPercent());
-        final int compareInterimPercentage = getInt(compareCourse.getInterimMark());
+        // Interim % should only be looked at if the courses do not have a final LG
+        final int percentage = StringUtils.isBlank(this.getFinalLetterGrade())? getInt(this.getInterimMark()) : getInt(this.getFinalPercent());
+        final int comparePercentage = StringUtils.isBlank(compareCourse.getFinalLetterGrade())? getInt(compareCourse.getInterimMark()) : getInt(compareCourse.getFinalPercent());
 
         // Removes duplication of courses by comparing and finding course with
-        //highest percentage.
-        boolean replaceCourse = ((interimPercentage < compareFinalPercentage
-                && finalPercentage < compareFinalPercentage
-                && compareFinalPercentage != 0)
-                || (finalPercentage < compareInterimPercentage
-                && finalPercentage != 0
-                && compareInterimPercentage != 0));
-        return replaceCourse;
+        // highest percentage.
+        return percentage <= comparePercentage && comparePercentage != 0;
+    }
+
+    public boolean isCompletedCourseUsedForGrad() {
+        return StringUtils.isNotBlank(this.finalLetterGrade) && StringUtils.isNotBlank(this.requirement);
     }
 
     /**

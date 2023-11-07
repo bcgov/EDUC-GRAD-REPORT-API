@@ -48,6 +48,7 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -710,12 +711,13 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     private TranscriptCourse getInterimCourse(
             TranscriptCourse course,
             final List<TranscriptCourse> results) {
-        //Check for dulicate courses
+        //Check for duplicate courses
         for (final TranscriptCourse compareCourse : results) {
             //Check and compare two courses for duplication and if required
             //replace course based on requirement.
             if (course.courseEquals(compareCourse)
-                    && course.compareCourse(compareCourse)) {
+                    && !course.isCompletedCourseUsedForGrad()
+                    && course.compareCourse(compareCourse) ) {
                 course = compareCourse;
             }
         }

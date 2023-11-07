@@ -178,4 +178,10 @@ public interface TranscriptCourse {
      * @return true when compareCourse has highest marks.
      */
     boolean compareCourse(final TranscriptCourse compareCourse);
+
+    /**
+     * Check this course is completed and used for graduation
+     * @return
+     */
+    boolean isCompletedCourseUsedForGrad();
 }
