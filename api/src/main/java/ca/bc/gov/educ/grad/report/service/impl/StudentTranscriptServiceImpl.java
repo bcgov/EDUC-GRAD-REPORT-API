@@ -40,13 +40,14 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.Serial;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -547,7 +548,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
         final ReportDocument document = reportService.export(report);
 
-        LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, stu.getPEN()});
+        LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
 
         final String filename = report.getFilename();
         final byte[] content = document.asBytes();
@@ -702,12 +703,13 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     private TranscriptCourse getInterimCourse(
             TranscriptCourse course,
             final List<TranscriptCourse> results) {
-        //Check for dulicate courses
+        //Check for duplicate courses
         for (final TranscriptCourse compareCourse : results) {
             //Check and compare two courses for duplication and if required
             //replace course based on requirement.
             if (course.courseEquals(compareCourse)
-                    && course.compareCourse(compareCourse)) {
+                    && !course.isCompletedCourseUsedForGrad()
+                    && course.compareCourse(compareCourse) ) {
                 course = compareCourse;
             }
         }
@@ -823,6 +825,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                             ? comparison
                             : 0;
 
+            }
         };
     }
 
