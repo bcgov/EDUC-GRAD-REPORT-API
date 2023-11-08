@@ -155,7 +155,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      *
      * @return
      * @throws DomainServiceException
-     * @throws IOException
      * @throws DataException
      */
 
@@ -275,7 +274,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private List<TranscriptCourse> getTranscriptCourseList(
             final String pen, final boolean interim)
-            throws DataException, DomainServiceException {
+            throws DomainServiceException {
         final String methodName = "getTranscriptCourseList(String, boolean)";
         LOG.entering(CLASSNAME, methodName);
 
@@ -314,7 +313,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      *
      * @param transcriptTypeCode
      * @param graduationProgramCode The graduation program code that influences sort order.
-     * @param transcriptCourses
+     * @param transcriptCourses Transcript Courses
      * @param issueDate
      */
     private Transcript adapt(
@@ -544,8 +543,9 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         report.setBlank(StringUtils.isBlank(student.getPen().getPen()));
 
         ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
-        final ReportDocument document = reportService.export(report);
+        LOG.log(Level.FINE, "DataSource Student created {1}.", new Object[]{stu.getPEN()});
 
+        final ReportDocument document = reportService.export(report);
         LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
 
         final String filename = report.getFilename();
