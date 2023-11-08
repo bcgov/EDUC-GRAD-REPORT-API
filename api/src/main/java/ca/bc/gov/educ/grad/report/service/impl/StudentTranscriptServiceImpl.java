@@ -543,7 +543,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         report.setBlank(StringUtils.isBlank(student.getPen().getPen()));
 
         ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
-        LOG.log(Level.FINE, "DataSource Student created {1}.", new Object[]{stu.getPEN()});
+        LOG.log(Level.FINE, "DataSource Student created {0}.", new Object[]{stu.getPEN()});
 
         final ReportDocument document = reportService.export(report);
         LOG.log(Level.FINE, "Created document {0} for student {1}.", new Object[]{document, student.getPen()});
