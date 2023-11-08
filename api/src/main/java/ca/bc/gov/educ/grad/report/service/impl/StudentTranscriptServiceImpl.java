@@ -40,14 +40,13 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -154,7 +153,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * <code>createTranscriptReport(ReportFormat, true)</code> and returns the
      * result wrapped in an AsyncResult.
      *
-     * @param format PDF, HTML, etc.
      * @return
      * @throws DomainServiceException
      * @throws IOException
@@ -822,10 +820,9 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
             return SORT_UNGRADED.equals("" + level1)
                     || SORT_UNGRADED.equals("" + level2)
-                            ? comparison
-                            : 0;
+                    ? comparison
+                    : 0;
 
-            }
         };
     }
 
