@@ -54,8 +54,7 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		certificateTypeCodeEntity.setLabel("Dogwood (Public)");
 		certificateTypeCodeEntity.setDescription("B.C. Certificate of Graduation - Public School");
 		when(certificateTypeCodeRepository.findAll()).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "List<CertificateTypeCode>"), new Exception()));
-		var result = gradReportCodeService.getCertificateTypeCodes();
-		assertNotNull(result);
+		gradReportCodeService.getCertificateTypeCodes();
 		LOG.debug(">getCertificateTypeCodes");
 	}
 
