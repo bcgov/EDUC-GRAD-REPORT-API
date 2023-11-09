@@ -444,14 +444,8 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createXmlTranscriptReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
 
-		reportRequest.getData().setAccessToken("accessToken");
+		reportRequest.setData(null);
 
-		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
-
-		String pen = reportRequest.getData().getPen().getPen();
-		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
-
-		when(apiReportService.getStudentXmlTranscriptReportDocument(reportRequest)).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)"), new Exception()));
 		apiReportService.getStudentXmlTranscriptReport(reportRequest);
 
 		LOG.debug(">createXmlTranscriptReportException");
