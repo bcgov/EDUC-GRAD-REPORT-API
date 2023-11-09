@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
 public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
@@ -77,6 +78,31 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createStudentAchievementReportException() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		when(apiReportService.getStudentAchievementReportDocument(reportRequest)).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "getStudentAchievementReport(ReportRequest reportRequest)"), new Exception()));
+		apiReportService.getStudentAchievementReport(reportRequest);
+		LOG.debug(">createStudentAchievementReportException");
 	}
 
 	@Test
@@ -418,6 +444,31 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createXmlTranscriptReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createXmlTranscriptReportException() throws Exception {
+		LOG.debug("<{}.createXmlTranscriptReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		assertNotNull(graduationStudentRecord);
+		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		when(apiReportService.getStudentXmlTranscriptReportDocument(reportRequest)).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)"), new Exception()));
+		apiReportService.getStudentXmlTranscriptReport(reportRequest);
+
+		LOG.debug(">createXmlTranscriptReportException");
 	}
 
 	@Test
