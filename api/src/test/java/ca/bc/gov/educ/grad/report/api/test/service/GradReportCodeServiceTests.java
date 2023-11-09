@@ -71,6 +71,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		LOG.debug(">getCertificateTypeCode");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void getCertificateTypeCodeException() throws Exception {
+		LOG.debug("<{}.getCertificateTypeCode at {}", CLASS_NAME, dateFormat.format(new Date()));
+		CertificateTypeCodeEntity certificateTypeCodeEntity = new CertificateTypeCodeEntity();
+		certificateTypeCodeEntity.setCertificateTypeCode("E");
+		certificateTypeCodeEntity.setLabel("Dogwood (Public)");
+		certificateTypeCodeEntity.setDescription("B.C. Certificate of Graduation - Public School");
+		when(certificateTypeCodeRepository.findByCertificateCode(certificateTypeCodeEntity.getCertificateTypeCode())).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "CertificateTypeCode"), new Exception()));
+		gradReportCodeService.getCertificateTypeCode(certificateTypeCodeEntity.getCertificateTypeCode());
+		LOG.debug(">getCertificateTypeCode");
+	}
+
 	@Test
 	public void getTranscriptTypeCodes() throws Exception {
 		LOG.debug("<{}.getTranscriptTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -81,6 +93,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		when(transcriptTypeCodeRepository.findAll()).thenReturn(List.of(transcriptTypeCodeEntity));
 		var result = gradReportCodeService.getTranscriptTypeCodes();
 		assertNotNull(result);
+		LOG.debug(">getTranscriptTypeCodes");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void getTranscriptTypeCodesException() throws Exception {
+		LOG.debug("<{}.getTranscriptTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
+		TranscriptTypeCodeEntity transcriptTypeCodeEntity = new TranscriptTypeCodeEntity();
+		transcriptTypeCodeEntity.setTranscriptTypeCode("BC2018-PUB");
+		transcriptTypeCodeEntity.setLabel("Graduation Program 2018");
+		transcriptTypeCodeEntity.setDescription("2018 Public School Transcript BC");
+		when(transcriptTypeCodeRepository.findAll()).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "List<TranscriptTypeCode>"), new Exception()));
+		gradReportCodeService.getTranscriptTypeCodes();
 		LOG.debug(">getTranscriptTypeCodes");
 	}
 
@@ -97,6 +121,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		LOG.debug(">getTranscriptTypeCode");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void getTranscriptTypeCodeException() throws Exception {
+		LOG.debug("<{}.getTranscriptTypeCode at {}", CLASS_NAME, dateFormat.format(new Date()));
+		TranscriptTypeCodeEntity transcriptTypeCodeEntity = new TranscriptTypeCodeEntity();
+		transcriptTypeCodeEntity.setTranscriptTypeCode("BC2018-PUB");
+		transcriptTypeCodeEntity.setLabel("Graduation Program 2018");
+		transcriptTypeCodeEntity.setDescription("2018 Public School Transcript BC");
+		when(transcriptTypeCodeRepository.findByTranscriptCode(transcriptTypeCodeEntity.getTranscriptTypeCode())).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "TranscriptTypeCode"), new Exception()));
+		gradReportCodeService.getTranscriptTypeCode(transcriptTypeCodeEntity.getTranscriptTypeCode());
+		LOG.debug(">getTranscriptTypeCode");
+	}
+
 	@Test
 	public void getSignatureBlockTypeCodes() throws Exception {
 		LOG.debug("<{}.getSignatureBlockTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -107,6 +143,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		when(signatureBlockTypeRepository.findAll()).thenReturn(List.of(signatureBlockTypeCodeEntity));
 		var result = gradReportCodeService.getSignatureBlockTypeCodes();
 		assertNotNull(result);
+		LOG.debug(">getSignatureBlockTypeCodes");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void getSignatureBlockTypeCodesException() throws Exception {
+		LOG.debug("<{}.getSignatureBlockTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
+		SignatureBlockTypeCodeEntity signatureBlockTypeCodeEntity = new SignatureBlockTypeCodeEntity();
+		signatureBlockTypeCodeEntity.setSignatureBlockType("MOE");
+		signatureBlockTypeCodeEntity.setLabel("Minister of Education and Child Care");
+		signatureBlockTypeCodeEntity.setDescription("Minister of Education and Child Care");
+		when(signatureBlockTypeRepository.findAll()).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "List<SignatureBlockTypeCode>"), new Exception()));
+		gradReportCodeService.getSignatureBlockTypeCodes();
 		LOG.debug(">getSignatureBlockTypeCodes");
 	}
 
@@ -123,6 +171,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		LOG.debug(">getSignatureBlockTypeCode");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void getSignatureBlockTypeCodeException() throws Exception {
+		LOG.debug("<{}.getSignatureBlockTypeCode at {}", CLASS_NAME, dateFormat.format(new Date()));
+		SignatureBlockTypeCodeEntity signatureBlockTypeCodeEntity = new SignatureBlockTypeCodeEntity();
+		signatureBlockTypeCodeEntity.setSignatureBlockType("MOE");
+		signatureBlockTypeCodeEntity.setLabel("Minister of Education and Child Care");
+		signatureBlockTypeCodeEntity.setDescription("Minister of Education and Child Care");
+		when(signatureBlockTypeRepository.findBySignatureBlockTypeCode(signatureBlockTypeCodeEntity.getSignatureBlockType())).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "SignatureBlockTypeCode"), new Exception()));
+		gradReportCodeService.getSignatureBlockTypeCode(signatureBlockTypeCodeEntity.getSignatureBlockType());
+		LOG.debug(">getSignatureBlockTypeCode");
+	}
+
 	@Test
 	public void getDocumentStatusTypeCodes() throws Exception {
 		LOG.debug("<{}.getDocumentStatusTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -133,6 +193,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		when(documentStatusCodeRepository.findAll()).thenReturn(List.of(documentStatusCodeEntity));
 		var result = gradReportCodeService.getDocumentStatusCodes();
 		assertNotNull(result);
+		LOG.debug(">getDocumentStatusCodes");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void getDocumentStatusTypeCodesException() throws Exception {
+		LOG.debug("<{}.getDocumentStatusTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
+		DocumentStatusCodeEntity documentStatusCodeEntity = new DocumentStatusCodeEntity();
+		documentStatusCodeEntity.setDocumentStatusCode("COMPL");
+		documentStatusCodeEntity.setLabel("Completed");
+		documentStatusCodeEntity.setDescription("Student has met their program requirements");
+		when(documentStatusCodeRepository.findAll()).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "List<DocumentStatusCode>"), new Exception()));
+		gradReportCodeService.getDocumentStatusCodes();
 		LOG.debug(">getDocumentStatusCodes");
 	}
 
@@ -149,6 +221,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		LOG.debug(">getDocumentStatusCode");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void getDocumentStatusCodeException() throws Exception {
+		LOG.debug("<{}.getDocumentStatusCode at {}", CLASS_NAME, dateFormat.format(new Date()));
+		DocumentStatusCodeEntity documentStatusCodeEntity = new DocumentStatusCodeEntity();
+		documentStatusCodeEntity.setDocumentStatusCode("COMPL");
+		documentStatusCodeEntity.setLabel("Completed");
+		documentStatusCodeEntity.setDescription("Student has met their program requirements");
+		when(documentStatusCodeRepository.findByDocumentStatusCode(documentStatusCodeEntity.getDocumentStatusCode())).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "DocumentStatusCode"), new Exception()));
+		gradReportCodeService.getDocumentStatusCode(documentStatusCodeEntity.getDocumentStatusCode());
+		LOG.debug(">getDocumentStatusCode");
+	}
+
 	@Test
 	public void getReportTypeTypeCodes() throws Exception {
 		LOG.debug("<{}.getReportTypeTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -162,6 +246,18 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		LOG.debug(">getReportTypeCodes");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void getReportTypeTypeCodesException() throws Exception {
+		LOG.debug("<{}.getReportTypeTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportTypeCodeEntity reportTypeCodeEntity = new ReportTypeCodeEntity();
+		reportTypeCodeEntity.setReportTypeCode("GRADREG");
+		reportTypeCodeEntity.setLabel("Graduated Students (MM YY to MM YY)");
+		reportTypeCodeEntity.setDescription("A daily, cumulative list of student in the current cycle who have graduated, based on the latest information submitted by the school. Produced as part of the Batch Graduation Algorithm Run.");
+		when(reportTypeCodeRepository.findAll()).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "List<ReportTypeCode>"), new Exception()));
+		gradReportCodeService.getReportTypeCodes();
+		LOG.debug(">getReportTypeCodes");
+	}
+
 	@Test
 	public void getReportTypeCode() throws Exception {
 		LOG.debug("<{}.getReportTypeCode at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -170,6 +266,19 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		reportTypeCodeEntity.setLabel("Graduated Students (MM YY to MM YY)");
 		reportTypeCodeEntity.setDescription("A daily, cumulative list of student in the current cycle who have graduated, based on the latest information submitted by the school. Produced as part of the Batch Graduation Algorithm Run.");
 		when(reportTypeCodeRepository.findByReportTypeCode(reportTypeCodeEntity.getReportTypeCode())).thenReturn((reportTypeCodeEntity));
+		var result = gradReportCodeService.getReportTypeCode(reportTypeCodeEntity.getReportTypeCode());
+		assertNotNull(result);
+		LOG.debug(">getReportTypeCode");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void getReportTypeCodeException() throws Exception {
+		LOG.debug("<{}.getReportTypeCode at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportTypeCodeEntity reportTypeCodeEntity = new ReportTypeCodeEntity();
+		reportTypeCodeEntity.setReportTypeCode("GRADREG");
+		reportTypeCodeEntity.setLabel("Graduated Students (MM YY to MM YY)");
+		reportTypeCodeEntity.setDescription("A daily, cumulative list of student in the current cycle who have graduated, based on the latest information submitted by the school. Produced as part of the Batch Graduation Algorithm Run.");
+		when(reportTypeCodeRepository.findByReportTypeCode(reportTypeCodeEntity.getReportTypeCode())).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "ReportTypeCode"), new Exception()));
 		var result = gradReportCodeService.getReportTypeCode(reportTypeCodeEntity.getReportTypeCode());
 		assertNotNull(result);
 		LOG.debug(">getReportTypeCode");
