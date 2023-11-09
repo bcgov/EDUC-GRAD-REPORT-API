@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.entity.*;
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,19 @@ public class GradReportCodeServiceTests extends GradReportBaseTest {
 		certificateTypeCodeEntity.setLabel("Dogwood (Public)");
 		certificateTypeCodeEntity.setDescription("B.C. Certificate of Graduation - Public School");
 		when(certificateTypeCodeRepository.findAll()).thenReturn(List.of(certificateTypeCodeEntity));
+		var result = gradReportCodeService.getCertificateTypeCodes();
+		assertNotNull(result);
+		LOG.debug(">getCertificateTypeCodes");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void getCertificateTypeCodesException() {
+		LOG.debug("<{}.getCertificateTypeCodes at {}", CLASS_NAME, dateFormat.format(new Date()));
+		CertificateTypeCodeEntity certificateTypeCodeEntity = new CertificateTypeCodeEntity();
+		certificateTypeCodeEntity.setCertificateTypeCode("E");
+		certificateTypeCodeEntity.setLabel("Dogwood (Public)");
+		certificateTypeCodeEntity.setDescription("B.C. Certificate of Graduation - Public School");
+		when(certificateTypeCodeRepository.findAll()).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "List<CertificateTypeCode>"), new Exception()));
 		var result = gradReportCodeService.getCertificateTypeCodes();
 		assertNotNull(result);
 		LOG.debug(">getCertificateTypeCodes");
