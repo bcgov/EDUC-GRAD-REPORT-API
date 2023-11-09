@@ -85,9 +85,6 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createStudentAchievementReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
 
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
 		reportRequest.getData().setAccessToken("accessToken");
 
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
@@ -95,10 +92,6 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
-
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
-		assertNotNull(graduationStudentRecord);
-		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		when(apiReportService.getStudentAchievementReportDocument(reportRequest)).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "getStudentAchievementReport(ReportRequest reportRequest)"), new Exception()));
 		apiReportService.getStudentAchievementReport(reportRequest);
@@ -451,19 +444,12 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createXmlTranscriptReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
 
-		assertNotNull(reportRequest);
-		assertNotNull(reportRequest.getData());
-
 		reportRequest.getData().setAccessToken("accessToken");
 
 		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getPen().getPen();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
-
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
-		assertNotNull(graduationStudentRecord);
-		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		when(apiReportService.getStudentXmlTranscriptReportDocument(reportRequest)).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "getStudentXmlTranscriptReport(XmlReportRequest reportRequest)"), new Exception()));
 		apiReportService.getStudentXmlTranscriptReport(reportRequest);

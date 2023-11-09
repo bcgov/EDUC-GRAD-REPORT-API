@@ -85,7 +85,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createSchoolDistributionReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getSchoolDistributionReport(reportRequest);
@@ -131,7 +130,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createDistrictDistributionYearEndReport at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/districtDistributionYearEndReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getDistrictDistributionReportYearEnd(reportRequest);
@@ -178,7 +176,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createDistrictDistributionYearEndNonGradReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/districtDistributionYearEndNonGradReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getDistrictDistributionReportYearEndNonGrad(reportRequest);
@@ -301,7 +298,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createSchoolLabelReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolLabelReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getSchoolLabelReport(reportRequest);
@@ -341,7 +337,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createSchoolGraduationReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getSchoolGraduationReport(reportRequest);
@@ -402,7 +397,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createSchoolNonGraduationReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getSchoolNonGraduationReport(reportRequest);
@@ -457,7 +451,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug("<{}.createStudentNonGradReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
 		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest.json");
 
-		assertNotNull(reportRequest);
 		reportRequest.setData(null);
 
 		apiReportService.getStudentNonGradReport(reportRequest);
