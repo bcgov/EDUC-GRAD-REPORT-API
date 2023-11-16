@@ -14,4 +14,7 @@ public interface CertificateTypeCodeRepository extends JpaRepository<Certificate
 
     @Query("select t from CertificateTypeCodeEntity t join StudentCertificateEntity c on t.certificateTypeCode = c.certificateTypeCode where c.documentStatusCode='COMPL' and c.graduationStudentRecordId=:graduationStudentRecordId")
     List<CertificateTypeCodeEntity> getStudentCertificateTypes(UUID graduationStudentRecordId);
+
+    @Query("select t from CertificateTypeCodeEntity t join StudentCertificateEntity c on t.certificateTypeCode = c.certificateTypeCode where c.documentStatusCode='COMPL' and c.graduationStudentRecordId=:graduationStudentRecordId and c.certificateTypeCode in (:certificateTypeCode)")
+    List<CertificateTypeCodeEntity> getStudentCertificateTypes(UUID graduationStudentRecordId, List<String> certificateTypeCode);
 }
