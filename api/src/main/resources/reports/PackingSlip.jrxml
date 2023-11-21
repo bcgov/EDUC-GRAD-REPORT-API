@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
-<!-- 2017-06-06T09:13:51 -->
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PackingSlip" pageWidth="612" pageHeight="793" whenNoDataType="AllSectionsNoDetail" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryNewPage="true" resourceBundle="PackingSlip" whenResourceMissingType="Empty" uuid="c014c02b-e6ca-40f9-b9e0-5ab376a22baf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\PackingSlipAdapter.xml"/>
 	<property name="net.sf.jasperreports.export.html.remove.emtpy.space.between.rows" value="false"/>
@@ -70,14 +69,14 @@
 					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 				</reportElement>
 				<frame>
-					<reportElement positionType="FixRelativeToBottom" x="17" y="8" width="277" height="53" uuid="6924188b-c6fa-4041-bb0e-16a51b564201">
+					<reportElement positionType="FixRelativeToBottom" x="17" y="4" width="293" height="71" uuid="6924188b-c6fa-4041-bb0e-16a51b564201">
 						<property name="com.jaspersoft.studio.unit.width" value="mm"/>
 						<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 						<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 						<property name="com.jaspersoft.studio.unit.x" value="mm"/>
 					</reportElement>
 					<textField>
-						<reportElement style="Address" positionType="FixRelativeToBottom" x="0" y="0" width="277" height="53" uuid="c12fe4f0-6776-4fd9-9c5d-e55852a07ff7">
+						<reportElement style="Address" positionType="FixRelativeToBottom" x="0" y="0" width="293" height="71" uuid="c12fe4f0-6776-4fd9-9c5d-e55852a07ff7">
 							<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 						</reportElement>
 						<textElement verticalAlignment="Bottom"/>
@@ -130,7 +129,7 @@
 						<reportElement style="OrderFieldName" x="0" y="0" width="160" height="40" uuid="16c220a5-9c0e-4359-b7a6-7df0c9b23bdf"/>
 						<text><![CDATA[Order #]]></text>
 					</staticText>
-					<textField isBlankWhenNull="true" textAdjust="StretchHeight">
+					<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 						<reportElement style="OrderFieldValue" x="160" y="0" width="340" height="40" uuid="9828dc8f-1a17-43de-8adb-8d24be5bb796"/>
 						<textFieldExpression><![CDATA[$F{compositeOrderNumber}]]></textFieldExpression>
 					</textField>
