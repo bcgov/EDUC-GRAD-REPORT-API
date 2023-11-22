@@ -62,7 +62,7 @@
 		<band height="513">
 			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 			<frame>
-				<reportElement x="42" y="129" width="323" height="88" uuid="460c7736-768d-4aae-a49f-61b2a0751d50">
+				<reportElement x="42" y="139" width="323" height="88" uuid="460c7736-768d-4aae-a49f-61b2a0751d50">
 					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
 					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
 					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
@@ -85,7 +85,7 @@
 				</frame>
 			</frame>
 			<textField>
-				<reportElement style="Numbers" x="400" y="129" width="20" height="70" uuid="de09dbf9-f924-40ec-9be3-1017ea8bc090">
+				<reportElement style="Numbers" x="400" y="110" width="20" height="80" uuid="de09dbf9-f924-40ec-9be3-1017ea8bc090">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 				</reportElement>
