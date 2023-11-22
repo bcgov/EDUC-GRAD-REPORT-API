@@ -62,30 +62,30 @@
 		<band height="513">
 			<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 			<frame>
-				<reportElement x="42" y="138" width="323" height="79" uuid="460c7736-768d-4aae-a49f-61b2a0751d50">
+				<reportElement x="42" y="139" width="323" height="88" uuid="460c7736-768d-4aae-a49f-61b2a0751d50">
 					<property name="com.jaspersoft.studio.unit.x" value="mm"/>
 					<property name="com.jaspersoft.studio.unit.width" value="mm"/>
 					<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 				</reportElement>
 				<frame>
-					<reportElement positionType="FixRelativeToBottom" x="17" y="4" width="293" height="71" uuid="6924188b-c6fa-4041-bb0e-16a51b564201">
+					<reportElement x="0" y="0" width="323" height="88" uuid="6924188b-c6fa-4041-bb0e-16a51b564201">
 						<property name="com.jaspersoft.studio.unit.width" value="mm"/>
 						<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 						<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 						<property name="com.jaspersoft.studio.unit.x" value="mm"/>
 					</reportElement>
-					<textField>
-						<reportElement style="Address" positionType="FixRelativeToBottom" x="0" y="0" width="293" height="71" uuid="c12fe4f0-6776-4fd9-9c5d-e55852a07ff7">
+					<textField textAdjust="ScaleFont">
+						<reportElement style="Address" x="3" y="4" width="317" height="80" uuid="c12fe4f0-6776-4fd9-9c5d-e55852a07ff7">
 							<property name="com.jaspersoft.studio.unit.height" value="mm"/>
 						</reportElement>
-						<textElement verticalAlignment="Bottom"/>
+						<textElement verticalAlignment="Top"/>
 						<textFieldExpression><![CDATA[($F{recipient} + "\n" + "ATTN:" + $F{attentionTo} + "\n" + $F{address.formatted}).toUpperCase()]]></textFieldExpression>
 					</textField>
 				</frame>
 			</frame>
 			<textField>
-				<reportElement style="Numbers" x="400" y="129" width="20" height="70" uuid="de09dbf9-f924-40ec-9be3-1017ea8bc090">
+				<reportElement style="Numbers" x="400" y="110" width="20" height="80" uuid="de09dbf9-f924-40ec-9be3-1017ea8bc090">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="mm"/>
 				</reportElement>
