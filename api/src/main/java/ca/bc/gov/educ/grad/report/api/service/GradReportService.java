@@ -9,7 +9,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderT
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolReportOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
-import ca.bc.gov.educ.grad.report.exception.ServiceException;
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementReport;
 import ca.bc.gov.educ.grad.report.model.achievement.StudentAchievementService;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
@@ -108,7 +108,7 @@ public class GradReportService {
 			ReportDocument report = getPackingSlipReportDocument(reportRequest);
 			response = report.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -145,7 +145,7 @@ public class GradReportService {
 			StudentAchievementReport report = getStudentAchievementReportDocument(reportRequest);
 			response = report.getReportData();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -172,7 +172,7 @@ public class GradReportService {
 			StudentTranscriptReport report = getStudentTranscriptReportDocument(reportRequest);
 			response = report.getReportData();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -199,7 +199,7 @@ public class GradReportService {
 			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
 			response = transcriptReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -224,7 +224,7 @@ public class GradReportService {
 			DocumentBundle documentBundle = getStudentCertificateReportDocument(reportRequest);
 			response = documentBundle.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -258,7 +258,7 @@ public class GradReportService {
 			SchoolDistributionReport schoolDistributionReport = getSchoolDistributionReportDocument(reportRequest);
 			response = schoolDistributionReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -274,7 +274,7 @@ public class GradReportService {
 			DocumentBundle schoolDistributionYearEndReport = getSchoolDistributionYearEndReportDocument(reportRequest);
 			response = schoolDistributionYearEndReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -290,7 +290,7 @@ public class GradReportService {
 			SchoolDistributionReport districtDistributionYearEndReport = getDistrictDistributionCredentialsReportDocument(reportRequest);
 			response = districtDistributionYearEndReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -306,7 +306,7 @@ public class GradReportService {
 			SchoolDistributionReport districtDistributionYearEndReport = getDistrictDistributionNonGradCredentialsReportDocument(reportRequest);
 			response = districtDistributionYearEndReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -322,7 +322,7 @@ public class GradReportService {
 			SchoolLabelReport schoolLabelReport = getSchoolLabelReportDocument(reportRequest);
 			response = schoolLabelReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -338,7 +338,7 @@ public class GradReportService {
 			SchoolGraduationReport schoolGraduationReport = getSchoolGraduationReportDocument(reportRequest);
 			response = schoolGraduationReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -354,7 +354,7 @@ public class GradReportService {
 			SchoolNonGraduationReport schoolNonGraduationReport = getSchoolNonGraduationReportDocument(reportRequest);
 			response = schoolNonGraduationReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -370,7 +370,7 @@ public class GradReportService {
 			StudentNonGradProjectedReport studentNonGradProjectedReport = getStudentNonGradProjectedReportDocument(reportRequest);
 			response = studentNonGradProjectedReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;
@@ -386,7 +386,7 @@ public class GradReportService {
 			StudentNonGradReport studentNonGradReport = getStudentNonGradReportDocument(reportRequest);
 			response = studentNonGradReport.asBytes();
 		} catch (Exception e) {
-			throw new ServiceException(String.format(EXCEPTION_MSG, methodName), e);
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
 		return response;

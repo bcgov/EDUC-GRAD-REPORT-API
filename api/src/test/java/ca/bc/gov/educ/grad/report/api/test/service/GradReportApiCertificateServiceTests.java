@@ -5,7 +5,7 @@ import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import ca.bc.gov.educ.grad.report.exception.ServiceException;
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
@@ -54,7 +54,7 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 		mockTraxSchool(school);
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
-		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ServiceException.class, () -> {
+		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ReportApiServiceException.class, () -> {
 			apiReportService.getStudentCertificateReport(reportRequest);
 		});
 

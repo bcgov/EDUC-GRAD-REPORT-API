@@ -3,7 +3,7 @@ package ca.bc.gov.educ.grad.report.service;
 import ca.bc.gov.educ.grad.report.dao.*;
 import ca.bc.gov.educ.grad.report.dto.*;
 import ca.bc.gov.educ.grad.report.entity.*;
-import ca.bc.gov.educ.grad.report.exception.ServiceException;
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import ca.bc.gov.educ.grad.report.transformer.*;
 import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import jakarta.transaction.Transactional;
@@ -12,17 +12,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
 @Service
-public class GradReportCodeService implements Serializable {
+public class GradReportCodeService {
 
     private static final String CLASS_NAME = GradReportCodeService.class.getName();
     private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
+
+    private static final String UNABLE_TO_RETRIEVE_RESOURCE = "Unable to retrieve %s";
 
     @Autowired
     CertificateTypeCodeRepository certificateTypeCodeRepository;
@@ -58,7 +59,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportCertificateTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "List<CertificateTypeCode>"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "List<CertificateTypeCode>"), e);
         }
 
         return result;
@@ -77,7 +78,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportCertificateTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "CertificateTypeCode"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "CertificateTypeCode"), e);
         }
 
         return result;
@@ -96,7 +97,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "List<TranscriptTypeCode>"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "List<TranscriptTypeCode>"), e);
         }
 
         return result;
@@ -115,7 +116,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportTranscriptTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "TranscriptTypeCode"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "TranscriptTypeCode"), e);
         }
 
         return result;
@@ -134,7 +135,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportSignatureBlockTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "List<SignatureBlockTypeCode>"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "List<SignatureBlockTypeCode>"), e);
         }
 
         return result;
@@ -155,7 +156,7 @@ public class GradReportCodeService implements Serializable {
             }
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "Map<String, SignatureBlockTypeCode>"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "Map<String, SignatureBlockTypeCode>"), e);
         }
 
         return result;
@@ -174,7 +175,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportSignatureBlockTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "SignatureBlockTypeCode"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "SignatureBlockTypeCode"), e);
         }
 
         return result;
@@ -208,7 +209,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportDocumentStatusCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "List<DocumentStatusCode>"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "List<DocumentStatusCode>"), e);
         }
 
         return result;
@@ -227,7 +228,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportDocumentStatusCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "DocumentStatusCode"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "DocumentStatusCode"), e);
         }
 
         return result;
@@ -246,7 +247,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportReportTypeCodeTransformer.transformToDTO(dtos);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "List<ReportTypeCode>"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "List<ReportTypeCode>"), e);
         }
 
         return result;
@@ -265,7 +266,7 @@ public class GradReportCodeService implements Serializable {
             result = gradReportReportTypeCodeTransformer.transformToDTO(dto);
 
         } catch (Exception e) {
-            throw new ServiceException(String.format("Unable to retrieve %s", "ReportTypeCode"));
+            throw new ReportApiServiceException(String.format(UNABLE_TO_RETRIEVE_RESOURCE, "ReportTypeCode"), e);
         }
 
         return result;

@@ -11,6 +11,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.DocumentBundle;
 import ca.bc.gov.educ.grad.report.model.common.BusinessReport;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
+import ca.bc.gov.educ.grad.report.utils.GradValidation;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -53,6 +54,9 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
 
     @Mock
     GradReportService reportService;
+
+    @Mock
+    GradValidation gradValidation;
 
     @InjectMocks
     private ReportController reportController;

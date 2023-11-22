@@ -15,13 +15,11 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.report.model.common;
 
-import java.io.Serializable;
-
 /**
  * Provides the super-interface for all business services provided by the ISD
  * business layer components.
  *
  * @author CGI Information Management Consultants Inc.
  */
-public interface BusinessService extends Serializable {
+public interface BusinessService {
 }
