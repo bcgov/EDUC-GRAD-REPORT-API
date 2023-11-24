@@ -146,9 +146,7 @@ public final class PostalAddress extends BusinessEntity {
      */
     public String getPostalCode() {
         final String code = nullSafe(this.postalCode);
-        final String result = code.replaceAll("\\s", "");
-
-        return result;
+        return code.replaceAll("\\s", "");
     }
 
     /**
@@ -293,7 +291,7 @@ public final class PostalAddress extends BusinessEntity {
         final String countryName = getCountryName();
 
         // Suppress the country name if it is Canada.
-        if (!StringUtils.equalsAnyIgnoreCase(countryName, "CANADA")) {
+        if (!StringUtils.equalsAnyIgnoreCase(countryName, "CANADA", "WORLD")) {
             formatted.append(newLine(left(countryName, LINE_LENGTH)));
         }
 
