@@ -30,6 +30,8 @@ public class EducGradReportApiConstants {
     public static final String SECOND_DEFAULT_DATE_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
     public static final String TRAX_DATE_FORMAT = "yyyyMM";
 
+    public static final String NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED = "Transcript has no eligible courses. Transcript Report is not created";
+
     @Value("${endpoint.educ-grad-trax-api.get-district-details.url}")
     private String districtDetails;
 

@@ -96,6 +96,13 @@ public class GradValidation {
     	return !warningList.get().isEmpty();
     }
 
+	public boolean containsError(String error) {
+		if(hasErrors()) {
+			return errorList.get().contains(error);
+		}
+		return false;
+	}
+
     public void clear() {
     	errorList.get().clear();
     	warningList.get().clear();

@@ -25,6 +25,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
+
 public abstract class BaseController {
 
     private static final String CLASS_NAME = BaseController.class.getName();
@@ -94,7 +96,10 @@ public abstract class BaseController {
     }
 
     protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
-        ResponseEntity<byte[]> result = null;
+
+        if(validation.containsError(NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED)) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
 
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
@@ -118,8 +123,7 @@ public abstract class BaseController {
             message = tmp.getClass().getName();
         }
 
-        result = ResponseEntity.status(httpStatus).body(message.getBytes());
-        return result;
+        return ResponseEntity.status(httpStatus).body(message.getBytes());
     }
     
     protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
@@ -129,12 +133,15 @@ public abstract class BaseController {
     protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
         ResponseEntity<byte[]> response = null;
 
+        if(validation.containsError(NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED)) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
         StringBuilder sb = new StringBuilder();
         if(validation.hasErrors()) {
             for(String error: validation.getErrors()) {
                 sb.append(error).append('\n');
             }
-            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb.toString().getBytes());
         } else {
             if (resultBinary.length > 0) {
                 HttpHeaders headers = new HttpHeaders();

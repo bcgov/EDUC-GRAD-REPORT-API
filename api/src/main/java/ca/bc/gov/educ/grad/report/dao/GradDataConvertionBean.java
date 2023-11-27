@@ -43,6 +43,8 @@ import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
+
 @Component
 public class GradDataConvertionBean extends BaseServiceImpl {
 
@@ -229,7 +231,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
         }
         final String pen = student.getPen().getValue();
         if(StringUtils.isNotBlank(pen) && result.isEmpty()) {
-            String message = String.format("Transcript for pen %s has no eligible courses. Transcript Report is not created", pen);
+            String message = NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
             logger.warn(message);
             validation.addErrorAndStop(message);
         }
