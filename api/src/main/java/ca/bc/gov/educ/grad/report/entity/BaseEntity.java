@@ -1,12 +1,10 @@
 package ca.bc.gov.educ.grad.report.entity;
 
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -16,13 +14,17 @@ public class BaseEntity {
 	@Column(name = "CREATE_USER", nullable = true)
     private String createdBy;
 	
-	@Column(name = "CREATE_DATE", nullable = true)
+	@Column(name = "CREATE_DATE", columnDefinition="datetime", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss")
     private Date createdTimestamp;
 	
 	@Column(name = "UPDATE_USER", nullable = true)
     private String updatedBy;
 	
-	@Column(name = "UPDATE_DATE", nullable = true)
+	@Column(name = "UPDATE_DATE", columnDefinition="datetime", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-mm-dd hh:mm:ss")
     private Date updatedTimestamp;
 	
 	@PrePersist
