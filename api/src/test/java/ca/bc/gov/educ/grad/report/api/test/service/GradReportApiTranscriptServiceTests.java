@@ -8,7 +8,7 @@ import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.GradProgramImpl;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
-import ca.bc.gov.educ.grad.report.exception.ServiceException;
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
 public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
@@ -77,6 +78,24 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createStudentAchievementReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createStudentAchievementReportException() throws Exception {
+		LOG.debug("<{}.createStudentAchievementReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentAchievementReportRequest.json");
+
+		reportRequest.getData().setAccessToken("accessToken");
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
+
+		when(apiReportService.getStudentAchievementReportDocument(reportRequest)).thenThrow(new ReportApiServiceException(String.format("Unable to retrieve %s", "getStudentAchievementReport(ReportRequest reportRequest)"), new Exception()));
+		apiReportService.getStudentAchievementReport(reportRequest);
+		LOG.debug(">createStudentAchievementReportException");
 	}
 
 	@Test
@@ -384,7 +403,7 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
-		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for transcripts", ServiceException.class, () -> {
+		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for transcripts", ReportApiServiceException.class, () -> {
 			apiReportService.getStudentTranscriptReport(reportRequest);
 		});
 
@@ -418,6 +437,18 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createXmlTranscriptReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createXmlTranscriptReportException() throws Exception {
+		LOG.debug("<{}.createXmlTranscriptReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		XmlReportRequest reportRequest = createXmlReportRequest("json/xmlTranscriptReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getStudentXmlTranscriptReport(reportRequest);
+
+		LOG.debug(">createXmlTranscriptReportException");
 	}
 
 	@Test

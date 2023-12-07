@@ -4,7 +4,9 @@ import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
+import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import ca.bc.gov.educ.grad.report.utils.GradValidation;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
@@ -23,10 +25,15 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
+
 public abstract class BaseController {
 
     private static final String CLASS_NAME = BaseController.class.getName();
     private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
+
+    @Autowired
+    GradValidation validation;
 
     @Value("${endpoint.educ-grad-report-api.get-signature-by-code.url}")
     String signatureImageUrlProperty;
@@ -40,7 +47,7 @@ public abstract class BaseController {
                 ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                         .getRequest();
 
-        StringBuffer requestURL = httpServletRequest.getRequestURL();
+        StringBuilder requestURL = new StringBuilder(httpServletRequest.getRequestURL().toString());
         if (httpServletRequest.getQueryString() != null) {
             requestURL.append("?").append(httpServletRequest.getQueryString());
         }
@@ -75,36 +82,48 @@ public abstract class BaseController {
             String method = httpServletRequest.getMethod();
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = protocol + serverName + ":" + port + path + accessTokenParam;
-            log.debug(username + ": " + method + "->" + signatureImageUrl);
+            log.debug("{}: {}->{}", username, method, signatureImageUrl);
         } else {
             String accessTokenParam = "?access_token=" + accessToken;
             signatureImageUrl = signatureImageUrlProperty + "/#signatureCode#" + accessTokenParam;
             log.debug(signatureImageUrl);
         }
         if (StringUtils.trimToNull(signatureImageUrl) == null) {
-            throw new RuntimeException("signatureImageUrl is undefined");
+            throw new InvalidParameterException("signatureImageUrl is undefined");
         }
         ReportRequestDataThreadLocal.setSignatureImageUrl(signatureImageUrl);
 
     }
 
     protected ResponseEntity<byte[]> getInternalServerErrorResponse(Throwable t) {
-        ResponseEntity<byte[]> result = null;
+
+        if(validation.containsError(NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED)) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+
+        HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        StringBuilder sb = new StringBuilder();
+        if(validation.hasErrors()) {
+            for(String error: validation.getErrors()) {
+                sb.append(error).append('\n');
+            }
+            httpStatus = HttpStatus.BAD_REQUEST;
+        }
 
         Throwable tmp = t;
-        String message = null;
+        String message = sb.toString();
         if (tmp.getCause() != null) {
             tmp = tmp.getCause();
-            message = tmp.getMessage();
-        } else {
+        }
+        if(StringUtils.isBlank(message)) {
             message = tmp.getMessage();
         }
-        if(message == null) {
+        if(StringUtils.isBlank(message)) {
             message = tmp.getClass().getName();
         }
 
-        result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(message.getBytes());
-        return result;
+        return ResponseEntity.status(httpStatus).body(message.getBytes());
     }
     
     protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile) {
@@ -114,16 +133,27 @@ public abstract class BaseController {
     protected ResponseEntity<byte[]> handleBinaryResponse(byte[] resultBinary, String reportFile, MediaType contentType) {
         ResponseEntity<byte[]> response = null;
 
-        if(resultBinary.length > 0) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Disposition", "inline; filename=" + reportFile);
-            response = ResponseEntity
-                    .ok()
-                    .headers(headers)
-                    .contentType(contentType)
-                    .body(resultBinary);
+        if(validation.containsError(NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED)) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        StringBuilder sb = new StringBuilder();
+        if(validation.hasErrors()) {
+            for(String error: validation.getErrors()) {
+                sb.append(error).append('\n');
+            }
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sb.toString().getBytes());
         } else {
-            response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            if (resultBinary.length > 0) {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Disposition", "inline; filename=" + reportFile);
+                response = ResponseEntity
+                        .ok()
+                        .headers(headers)
+                        .contentType(contentType)
+                        .body(resultBinary);
+            } else {
+                response = ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
         }
         return response;
     }

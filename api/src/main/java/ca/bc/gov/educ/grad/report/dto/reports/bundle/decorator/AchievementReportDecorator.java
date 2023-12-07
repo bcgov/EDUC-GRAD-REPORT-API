@@ -70,6 +70,6 @@ public class AchievementReportDecorator extends DocumentBundleDecorator {
 
     @Override
     protected int getRotateDegree() {
-        return 90;
+        return 0;
     }
 }

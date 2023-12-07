@@ -39,14 +39,13 @@ public class GradValidation {
 
 	public void addErrorAndStop(String errorMessage) {
 		errorList.get().add(errorMessage);
-		throw new GradBusinessRuleException();
-
+		throw new GradBusinessRuleException(errorMessage);
 	}
 
 	public void addErrorAndStop(String formattedErrorMessage, Object... args) {
-		errorList.get().add(String.format(formattedErrorMessage, args));
-		throw new GradBusinessRuleException();
-
+		String completeErrorMessage = String.format(formattedErrorMessage, args);
+		errorList.get().add(completeErrorMessage);
+		throw new GradBusinessRuleException(completeErrorMessage);
 	}
 
 	
@@ -75,11 +74,10 @@ public class GradValidation {
     		addError(messagesHelper.missingValue(fieldName));
     		return false;
     	}
-    	if (requiredValue instanceof String) {
-        	if (StringUtils.isBlank((String)requiredValue)) {
+    	if (requiredValue instanceof String && (StringUtils.isBlank((String)requiredValue))) {
         		addError(messagesHelper.missingValue(fieldName));
         		return false;
-        	}
+
     	}
     	return true;
     }
@@ -97,10 +95,16 @@ public class GradValidation {
     public boolean hasWarnings() {
     	return !warningList.get().isEmpty();
     }
-    
+
+	public boolean containsError(String error) {
+		if(hasErrors()) {
+			return errorList.get().contains(error);
+		}
+		return false;
+	}
+
     public void clear() {
     	errorList.get().clear();
     	warningList.get().clear();
-    	
     }
 }

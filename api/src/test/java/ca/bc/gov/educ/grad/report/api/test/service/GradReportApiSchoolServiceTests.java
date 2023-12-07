@@ -9,6 +9,7 @@ import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
 import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -79,6 +80,17 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug(">createSchoolDistributionReport");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void createSchoolDistributionReportException() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolDistributionReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getSchoolDistributionReport(reportRequest);
+		LOG.debug(">createSchoolDistributionReportException");
+	}
+
 	@Test
 	public void createDistrictDistributionYearEndReport() throws Exception {
 		LOG.debug("<{}.createDistrictDistributionYearEndReport at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -110,6 +122,18 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(response);
 		}
+		LOG.debug(">createDistrictDistributionYearEndReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createDistrictDistributionYearEndReportException() throws Exception {
+		LOG.debug("<{}.createDistrictDistributionYearEndReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/districtDistributionYearEndReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getDistrictDistributionReportYearEnd(reportRequest);
+
 		LOG.debug(">createDistrictDistributionYearEndReport");
 	}
 
@@ -147,6 +171,18 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug(">createDistrictDistributionYearEndNonGradReport");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void createDistrictDistributionYearEndNonGradReportException() throws Exception {
+		LOG.debug("<{}.createDistrictDistributionYearEndNonGradReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/districtDistributionYearEndNonGradReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getDistrictDistributionReportYearEndNonGrad(reportRequest);
+
+		LOG.debug(">createDistrictDistributionYearEndNonGradReportException");
+	}
+
 	@Test
 	public void createSchoolDistributionYearEndReport() throws Exception {
 		LOG.debug("<{}.createSchoolDistributionYearEndReport at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -179,6 +215,13 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createSchoolDistributionYearEndReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createSchoolDistributionYearEndReportException() throws Exception {
+		LOG.debug("<{}.createSchoolDistributionYearEndReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		apiReportService.getSchoolDistributionReportYearEnd(null);
+		LOG.debug(">createSchoolDistributionYearEndReportException");
 	}
 
 	@Test
@@ -250,6 +293,18 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug(">createSchoolLabelReport");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void createSchoolLabelReportException() throws Exception {
+		LOG.debug("<{}.createSchoolLabelReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolLabelReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getSchoolLabelReport(reportRequest);
+
+		LOG.debug(">createSchoolLabelReportException");
+	}
+
 	@Test
 	public void createSchoolGraduationReport() throws Exception {
 		LOG.debug("<{}.createSchoolGraduationReport at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -275,6 +330,18 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createSchoolGraduationReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createSchoolGraduationReportException() throws Exception {
+		LOG.debug("<{}.createSchoolGraduationReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getSchoolGraduationReport(reportRequest);
+
+		LOG.debug(">createSchoolGraduationReportException");
 	}
 
 	@Test
@@ -325,6 +392,18 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug(">createSchoolNonGraduationReport");
 	}
 
+	@Test(expected = ReportApiServiceException.class)
+	public void createSchoolNonGraduationReportException() throws Exception {
+		LOG.debug("<{}.createSchoolNonGraduationReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getSchoolNonGraduationReport(reportRequest);
+
+		LOG.debug(">createSchoolNonGraduationReportException");
+	}
+
 	@Test
 	public void createSchoolNonGraduationReport_NOSTUDENTS() throws Exception {
 		LOG.debug("<{}.createSchoolNonGraduationReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
@@ -365,6 +444,18 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 			out.write(response);
 		}
 		LOG.debug(">createStudentNonGradReport");
+	}
+
+	@Test(expected = ReportApiServiceException.class)
+	public void createStudentNonGradReportException() throws Exception {
+		LOG.debug("<{}.createStudentNonGradReportException at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentNonGradReportRequest.json");
+
+		reportRequest.setData(null);
+
+		apiReportService.getStudentNonGradReport(reportRequest);
+
+		LOG.debug(">createStudentNonGradReportException");
 	}
 
 	@Test

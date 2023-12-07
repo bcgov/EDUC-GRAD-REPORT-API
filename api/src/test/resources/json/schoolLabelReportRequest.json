@@ -7,7 +7,7 @@
     "schools":[
       {
         "mincode": "03939008",
-        "name": "LORD BYNG SECONDARY",
+        "name": "Ecole Secondaire Mark R. Isfeld Secondary",
         "typeIndicator": "",
         "typeBanner": "Principal",
         "signatureCode": "039",
@@ -15,12 +15,12 @@
         "schlno": "03939008",
         "schoolCategoryCode": "",
         "address": {
-          "streetLine1": "3939 16TH AVENUE W",
-          "streetLine2": "",
-          "city": "VANCOUVER",
-          "region": "BC",
-          "country": "",
-          "code": "V6R3C9"
+          "streetLine1": "4TH FLOOR 620 SUPERIOR",
+          "streetLine2": "PO BOX 9886 STN PROV GOVT",
+          "city": "VICTORIA",
+          "region": "BRITISH COLUMBIA",
+          "country": "CANADA",
+          "code": "V8W9T6"
         }
       },
       {
@@ -52,12 +52,12 @@
         "schlno": "03434052",
         "schoolCategoryCode": null,
         "address": {
-          "streetLine1": "31150 BLUE RIDGE DRIVE",
-          "streetLine2": "",
-          "city": "ABBOTSFORD",
-          "region": "BC",
-          "country": "CN",
-          "code": "V2T5R2"
+          "streetLine1": "4TH FLOOR 620 SUPERIOR",
+          "streetLine2": "PO BOX 9886 STN PROV GOVT",
+          "city": "VICTORIA",
+          "region": "BRITISH COLUMBIA",
+          "country": "CANADA",
+          "code": "V8W9T6"
         },
         "phoneNumber": "",
         "dogwoodElig": "",
@@ -202,12 +202,12 @@
         "schlno": "03939008",
         "schoolCategoryCode": "",
         "address": {
-          "streetLine1": "3939 16TH AVENUE W",
-          "streetLine2": "",
-          "city": "VANCOUVER",
-          "region": "BC",
-          "country": "",
-          "code": "V6R3C9"
+          "streetLine1": "4TH FLOOR 620 SUPERIOR",
+          "streetLine2": "PO BOX 9886 STN PROV GOVT",
+          "city": "VICTORIA",
+          "region": "BRITISH COLUMBIA",
+          "country": "CANADA",
+          "code": "V8W9T6"
         }
       },
       {
@@ -499,12 +499,12 @@
         "schlno": "03939000",
         "schoolCategoryCode": null,
         "address": {
-          "streetLine1": "6010 FRASER ST",
-          "streetLine2": "",
-          "city": "VANCOUVER",
-          "region": "BC",
-          "country": "CN",
-          "code": "V5W2Z7"
+          "streetLine1": "4TH FLOOR 620 SUPERIOR",
+          "streetLine2": "PO BOX 9886 STN PROV GOVT",
+          "city": "VICTORIA",
+          "region": "BRITISH COLUMBIA",
+          "country": "CANADA",
+          "code": "V8W9T6"
         }
       },
       {

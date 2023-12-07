@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlTransient;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Locale;
 
@@ -134,7 +135,7 @@ public final class PostalAddress extends BusinessEntity {
      * @return A non-null, trimmed, possibly empty string instance.
      */
     public String getCountryCode() {
-        return trimSafe(this.countryCode);
+        return trimSafe("CN".equalsIgnoreCase(this.countryCode) ? "CA" : this.countryCode);
     }
 
     /**
@@ -145,9 +146,7 @@ public final class PostalAddress extends BusinessEntity {
      */
     public String getPostalCode() {
         final String code = nullSafe(this.postalCode);
-        final String result = code.replaceAll("\\s", "");
-
-        return result;
+        return code.replaceAll("\\s", "");
     }
 
     /**
@@ -292,7 +291,7 @@ public final class PostalAddress extends BusinessEntity {
         final String countryName = getCountryName();
 
         // Suppress the country name if it is Canada.
-        if (!"CANADA".equalsIgnoreCase(countryName)) {
+        if (!StringUtils.equalsAnyIgnoreCase(countryName, "CANADA", "WORLD")) {
             formatted.append(newLine(left(countryName, LINE_LENGTH)));
         }
 
