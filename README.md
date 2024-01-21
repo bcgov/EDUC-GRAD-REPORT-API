@@ -13,7 +13,7 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-REPORT-API&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-REPORT-API) &nbsp;
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bcgov_EDUC-GRAD-REPORT-API&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=bcgov_EDUC-GRAD-REPORT-API) &nbsp;
 
-# EDUC-GRAD-REPORT-API &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/bcgov/EDUC-GRAD-REPORT-API)
+# EDUC-GRAD-REPORT-API &nbsp; ![GitHub repo size](https://img.shields.io/github/repo-size/bcgov/EDUC-GRAD-REPORT-API) ![GitHub Tag](https://img.shields.io/github/v/tag/bcgov/EDUC-GRAD-REPORT-API)
 
 Ministry of Education Student Report API
 
