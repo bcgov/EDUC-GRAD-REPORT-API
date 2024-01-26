@@ -3,9 +3,12 @@
 ###########################################################
 envValue=$1
 APP_NAME=$2
-OPENSHIFT_NAMESPACE=$3
+GRAD_NAMESPACE=$3
 COMMON_NAMESPACE=$4
-SPLUNK_TOKEN=$5
+BUSINESS_NAMESPACE=$5
+SPLUNK_TOKEN=$6
+APP_LOG_LEVEL=$7
+
 SPLUNK_URL="gww.splunk.educ.gov.bc.ca"
 FLB_CONFIG="[SERVICE]
    Flush        1
