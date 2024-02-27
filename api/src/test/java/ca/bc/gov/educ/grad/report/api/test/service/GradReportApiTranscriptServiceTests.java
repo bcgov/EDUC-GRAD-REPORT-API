@@ -244,6 +244,11 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 	}
 
 	@Test
+	public void createTranscriptReport_YU2023_PUB_PREVIEW() throws Exception {
+		createTranscriptReport("createTranscriptReport_YU2023_PUB_PREVIEW", "json/studentTranscriptReportRequest-YU2023-PUB-PREVIEW.json");
+	}
+
+	@Test
 	public void createTranscriptReport_BC2023_IND() throws Exception {
 		createTranscriptReport("createTranscriptReport_BC2023_IND", "json/studentTranscriptReportRequest-BC2023-IND.json");
 	}
