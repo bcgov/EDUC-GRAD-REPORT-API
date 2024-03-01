@@ -10,6 +10,7 @@ import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -193,7 +194,11 @@ public abstract class GradReportBaseTest {
     protected GradSearchStudent mockGradSearchStudent(String pen, String entityId) {
         GradSearchStudent gradSearchStudent = new GradSearchStudent();
         gradSearchStudent.setPen(pen);
-        gradSearchStudent.setStudentID(entityId);
+        if(StringUtils.isNotBlank(entityId)) {
+            gradSearchStudent.setStudentID(entityId);
+        } else {
+            gradSearchStudent.setStudentID(UUID.randomUUID().toString());
+        }
 
         final ParameterizedTypeReference<List<GradSearchStudent>> gradSearchStudentResponseType = new ParameterizedTypeReference<>() {
         };
