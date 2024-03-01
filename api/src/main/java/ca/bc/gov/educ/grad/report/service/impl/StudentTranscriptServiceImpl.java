@@ -18,7 +18,6 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
-import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dao.StudentTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
@@ -109,18 +108,12 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private static final String SORT_ASSESSMENT = "100";
 
-    private final ReportService reportService;
-
-    private final GradDataConvertionBean gradDataConvertionBean;
-
     private final ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
     private final StudentTranscriptRepository studentTranscriptRepository;
 
     @Autowired
-    public StudentTranscriptServiceImpl(ReportService reportService, GradDataConvertionBean gradDataConvertionBean, ProgramCertificateTranscriptRepository programCertificateTranscriptRepository, StudentTranscriptRepository studentTranscriptRepository) {
-        this.reportService = reportService;
-        this.gradDataConvertionBean = gradDataConvertionBean;
+    public StudentTranscriptServiceImpl(ProgramCertificateTranscriptRepository programCertificateTranscriptRepository, StudentTranscriptRepository studentTranscriptRepository) {
         this.programCertificateTranscriptRepository = programCertificateTranscriptRepository;
         this.studentTranscriptRepository = studentTranscriptRepository;
     }
