@@ -558,7 +558,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
         assert program != null;
         return new GradProgramImpl(GraduationProgramCode.valueFrom(
                 program.getCode().getCode(),
-                program.getCode().getDescription()));
+                program.getCode().getDescription()), program.getExpiryDate());
     }
 
     public List<School> getSchools(ReportData reportData) {

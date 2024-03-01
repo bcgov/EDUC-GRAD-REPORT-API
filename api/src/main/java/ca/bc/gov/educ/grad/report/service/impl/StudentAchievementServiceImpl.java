@@ -222,7 +222,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         return new GradProgramImpl(GraduationProgramCode.valueFrom(
                 code,
-                reportData.getGradProgram().getCode().getDescription()));
+                reportData.getGradProgram().getCode().getDescription()),"");
     }
 
     /**
