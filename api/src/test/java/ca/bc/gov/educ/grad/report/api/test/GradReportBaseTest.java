@@ -10,6 +10,7 @@ import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.entity.StudentTranscriptEntity;
 import ca.bc.gov.educ.grad.report.model.district.District;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -184,15 +185,20 @@ public abstract class GradReportBaseTest {
 
         when(this.studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID())).thenReturn(studentTranscriptEntity);
         when(this.studentCertificateRepository.getCertificateDistributionDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
+        when(this.studentTranscriptRepository.getTranscriptLastUpdateDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
         when(this.studentReportRepository.getReportUpdatedTimestamp(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
 
         return graduationStudentRecord;
     }
 
-    protected GradSearchStudent mockGradSearchStudent(String pen) {
+    protected GradSearchStudent mockGradSearchStudent(String pen, String entityId) {
         GradSearchStudent gradSearchStudent = new GradSearchStudent();
         gradSearchStudent.setPen(pen);
-        gradSearchStudent.setStudentID(UUID.randomUUID().toString());
+        if(StringUtils.isNotBlank(entityId)) {
+            gradSearchStudent.setStudentID(entityId);
+        } else {
+            gradSearchStudent.setStudentID(UUID.randomUUID().toString());
+        }
 
         final ParameterizedTypeReference<List<GradSearchStudent>> gradSearchStudentResponseType = new ParameterizedTypeReference<>() {
         };

@@ -35,6 +35,11 @@ public class PersonalEducationNumberObject implements PersonalEducationNumber {
         this.pen = pen;
     }
 
+    public PersonalEducationNumberObject(String pen, String entityId) {
+        this.pen = pen;
+        this.entityId = entityId;
+    }
+
     @Override
     public String getValue() {
         return pen;
