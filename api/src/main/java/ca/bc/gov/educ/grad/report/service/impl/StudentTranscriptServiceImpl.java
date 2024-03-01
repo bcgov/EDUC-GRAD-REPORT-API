@@ -40,6 +40,7 @@ import jakarta.annotation.security.RolesAllowed;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -116,6 +117,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
     private final StudentTranscriptRepository studentTranscriptRepository;
 
+    @Autowired
     public StudentTranscriptServiceImpl(ReportService reportService, GradDataConvertionBean gradDataConvertionBean, ProgramCertificateTranscriptRepository programCertificateTranscriptRepository, StudentTranscriptRepository studentTranscriptRepository) {
         this.reportService = reportService;
         this.gradDataConvertionBean = gradDataConvertionBean;
