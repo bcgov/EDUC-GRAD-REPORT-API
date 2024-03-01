@@ -184,15 +184,16 @@ public abstract class GradReportBaseTest {
 
         when(this.studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID())).thenReturn(studentTranscriptEntity);
         when(this.studentCertificateRepository.getCertificateDistributionDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
+        when(this.studentTranscriptRepository.getTranscriptLastUpdateDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
         when(this.studentReportRepository.getReportUpdatedTimestamp(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
 
         return graduationStudentRecord;
     }
 
-    protected GradSearchStudent mockGradSearchStudent(String pen) {
+    protected GradSearchStudent mockGradSearchStudent(String pen, String entityId) {
         GradSearchStudent gradSearchStudent = new GradSearchStudent();
         gradSearchStudent.setPen(pen);
-        gradSearchStudent.setStudentID(UUID.randomUUID().toString());
+        gradSearchStudent.setStudentID(entityId);
 
         final ParameterizedTypeReference<List<GradSearchStudent>> gradSearchStudentResponseType = new ParameterizedTypeReference<>() {
         };

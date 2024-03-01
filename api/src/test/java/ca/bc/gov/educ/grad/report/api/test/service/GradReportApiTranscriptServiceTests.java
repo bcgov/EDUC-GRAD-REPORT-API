@@ -64,9 +64,10 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		String entityId = reportRequest.getData().getStudent().getPen().getEntityID();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
@@ -112,7 +113,9 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		String entityId = reportRequest.getData().getStudent().getPen().getEntityID();
+
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
@@ -364,9 +367,10 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		String entityId = reportRequest.getData().getStudent().getPen().getEntityID();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
@@ -402,9 +406,10 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getStudent().getPen().getPen();
+		String entityId = reportRequest.getData().getStudent().getPen().getEntityID();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
@@ -428,9 +433,10 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		ReportRequestDataThreadLocal.setXmlReportData(reportRequest.getData());
 
 		String pen = reportRequest.getData().getPen().getPen();
+		String entityId = reportRequest.getData().getPen().getEntityID();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
