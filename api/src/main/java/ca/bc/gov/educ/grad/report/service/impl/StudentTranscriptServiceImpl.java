@@ -40,7 +40,6 @@ import jakarta.annotation.security.RolesAllowed;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -109,17 +108,20 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private static final String SORT_ASSESSMENT = "100";
 
-    @Autowired
-    private ReportService reportService;
+    private final ReportService reportService;
 
-    @Autowired
-    private GradDataConvertionBean gradDataConvertionBean;
+    private final GradDataConvertionBean gradDataConvertionBean;
 
-    @Autowired
-    private ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
+    private final ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 
-    @Autowired
-    private StudentTranscriptRepository studentTranscriptRepository;
+    private final StudentTranscriptRepository studentTranscriptRepository;
+
+    public StudentTranscriptServiceImpl(ReportService reportService, GradDataConvertionBean gradDataConvertionBean, ProgramCertificateTranscriptRepository programCertificateTranscriptRepository, StudentTranscriptRepository studentTranscriptRepository) {
+        this.reportService = reportService;
+        this.gradDataConvertionBean = gradDataConvertionBean;
+        this.programCertificateTranscriptRepository = programCertificateTranscriptRepository;
+        this.studentTranscriptRepository = studentTranscriptRepository;
+    }
 
     /**
      * Creates the student's official transcript as a PDF (no other formats are
