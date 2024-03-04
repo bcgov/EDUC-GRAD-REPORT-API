@@ -25,7 +25,7 @@ import ca.bc.gov.educ.grad.report.dto.impl.PersonalEducationNumberObject;
 
 public interface PersonalEducationNumber {
 
-    public static final PersonalEducationNumber NULL = new PersonalEducationNumberObject("");
+    public static final PersonalEducationNumber NULL = new PersonalEducationNumberObject("", "");
 
     String getValue();
 
