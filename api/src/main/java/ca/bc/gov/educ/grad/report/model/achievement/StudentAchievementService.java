@@ -134,6 +134,12 @@ public interface StudentAchievementService extends BusinessService {
             throws DomainServiceException, IOException, DataException;
 
     /**
+     *
+     * @param studentID
+     */
+    void deleteStudentReportByStudentID(String studentID);
+
+    /**
      * Retrieves a new instance of Linked Parameters to be used when preserving
      * insertion order of data is required.
      *

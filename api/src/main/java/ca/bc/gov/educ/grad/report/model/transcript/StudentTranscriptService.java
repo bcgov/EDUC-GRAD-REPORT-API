@@ -78,6 +78,11 @@ public interface StudentTranscriptService extends BusinessService {
     Transcript getTranscriptInformation(String pen) throws DomainServiceException;
 
     /**
+     * @param studentID
+     */
+    void deleteStudentTranscriptByStudentID(String studentID);
+
+    /**
      * Retrieves a new instance of Linked Parameters to be used when preserving
      * insertion order of data is required.
      *

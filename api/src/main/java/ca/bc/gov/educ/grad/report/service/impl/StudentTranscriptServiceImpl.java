@@ -207,6 +207,15 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         return transcript;
     }
 
+    /**
+     * @param studentID
+     */
+    public void deleteStudentTranscriptByStudentID(String studentID) {
+        final String methodName = "deleteStudentTranscriptByStudentID(String)";
+        LOG.entering(CLASSNAME, methodName);
+        gradDataConvertionBean.deleteTranscriptByStudentID(studentID);
+    }
+
     private GradProgram createGradProgram(String code) {
         final String methodName = "createGradProgram(String)";
         LOG.entering(CLASSNAME, methodName);
