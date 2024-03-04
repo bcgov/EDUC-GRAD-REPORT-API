@@ -144,6 +144,9 @@
 	<variable name="V_TITLE" class="java.lang.String" calculation="System">
 		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "XML Transcript Preview" : "Transcript of Grades")).toUpperCase()]]></initialValueExpression>
 	</variable>
+	<variable name="V_ISSUE_DATE" class="java.lang.String" calculation="System">
+		<initialValueExpression><![CDATA[(($P{P_REPORT_PREVIEW} ? "Last Updated:" : "Issue Date:"))]]></initialValueExpression>
+	</variable>
 	<variable name="V_STUDENT_FULL_NAME" class="java.lang.String">
 		<variableExpression><![CDATA[$F{student.fullName}]]></variableExpression>
 		<initialValueExpression><![CDATA[$F{student.fullName}]]></initialValueExpression>
@@ -299,7 +302,7 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 					<printWhenExpression><![CDATA[!$P{P_REPORT_BLANK}]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Right" verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA["Issue Date: " + $V{V_REPORT_DATE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{V_ISSUE_DATE} + " " + $V{V_REPORT_DATE}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement style="Title" x="327" y="6" width="230" height="15" uuid="05821e85-e4be-4d7f-b654-809db99c5756"/>
@@ -391,6 +394,9 @@ $V{V_SCHOOL_ADDRESS_POSTAL_CODE_NO_WHITESPACE}.substring( 0, 3 ) + " " + $V{V_SC
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_STYLE_FILE">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_STYLE_FILE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="P_REPORT_PREVIEW">
+					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/HEADER_" + $P{P_REPORT_TYPE} + $V{V_REPORT_INTERIM} + "_SUB.jasper"]]></subreportExpression>
 			</subreport>

@@ -33,7 +33,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Serializable;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -47,7 +46,7 @@ import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
 import static java.lang.Integer.parseInt;
 import static java.util.Locale.CANADA;
 
-public abstract class GradReportServiceImpl implements Serializable {
+public abstract class GradReportServiceImpl {
 
     private static final long serialVersionUID = 5L;
 
@@ -67,9 +66,9 @@ public abstract class GradReportServiceImpl implements Serializable {
     @Autowired
     JsonTransformer jsonTransformer;
     @Autowired
-    transient WebClient webClient;
+    WebClient webClient;
     @Autowired
-    transient EducGradReportApiConstants constants;
+    EducGradReportApiConstants constants;
 
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
@@ -143,7 +142,7 @@ public abstract class GradReportServiceImpl implements Serializable {
 
 
     InputStream openImageResource(final String resource) throws IOException {
-        //final URL url = getReportResource(resource);
+        /** final URL url = getReportResource(resource); **/
         URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
         assert url != null;
         return url.openStream();
