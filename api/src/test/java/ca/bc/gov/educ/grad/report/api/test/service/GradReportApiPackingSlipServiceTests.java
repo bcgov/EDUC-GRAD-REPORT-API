@@ -70,9 +70,10 @@ public class GradReportApiPackingSlipServiceTests extends GradReportBaseTest {
 		achievementReportRequest.getOptions().setReportFile("Student Achievement Report (New).pdf");
 
 		String pen = achievementReportRequest.getData().getStudent().getPen().getPen();
+		String entityId = achievementReportRequest.getData().getStudent().getPen().getEntityID();
 		achievementReportRequest.getOptions().setReportFile(String.format(achievementReportRequest.getOptions().getReportFile(), pen));
 
-		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen).getStudentID());
+		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 

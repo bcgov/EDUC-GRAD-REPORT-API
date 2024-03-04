@@ -18,8 +18,8 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
-import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ProgramCertificateTranscriptRepository;
+import ca.bc.gov.educ.grad.report.dao.StudentTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.entity.ProgramCertificateTranscriptEntity;
 import ca.bc.gov.educ.grad.report.exception.EntityNotFoundException;
@@ -108,14 +108,15 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private static final String SORT_ASSESSMENT = "100";
 
-    @Autowired
-    private ReportService reportService;
+    private final ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
+
+    private final StudentTranscriptRepository studentTranscriptRepository;
 
     @Autowired
-    private GradDataConvertionBean gradDataConvertionBean;
-
-    @Autowired
-    private ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
+    public StudentTranscriptServiceImpl(ProgramCertificateTranscriptRepository programCertificateTranscriptRepository, StudentTranscriptRepository studentTranscriptRepository) {
+        this.programCertificateTranscriptRepository = programCertificateTranscriptRepository;
+        this.studentTranscriptRepository = studentTranscriptRepository;
+    }
 
     /**
      * Creates the student's official transcript as a PDF (no other formats are
@@ -618,6 +619,17 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final String gradMessage = studentInfo.getGradMessage();
         final List<NonGradReason> nonGradReasons = adaptReasons(studentInfo);
 
+        Date issueDate = transcript.getIssueDate();
+
+        if(preview && StringUtils.isNotBlank(personalEducationNumber.getEntityId())) {
+            LOG.log(Level.FINE, "Preview transcript get Last Update Date");
+            UUID graduationStudentRecordId = UUID.fromString(personalEducationNumber.getEntityId());
+            Optional<Date> transcriptLastUpdateDate = studentTranscriptRepository.getTranscriptLastUpdateDate(graduationStudentRecordId);
+            if(transcriptLastUpdateDate.isPresent()) {
+                issueDate = transcriptLastUpdateDate.get();
+            }
+        }
+
         final StudentTranscriptReport report = createReport(
                 format,
                 preview,
@@ -628,7 +640,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 program,
                 nonGradReasons,
                 gradMessage,
-                transcript.getIssueDate(),
+                issueDate,
                 parameters,
                 graduationData
         );

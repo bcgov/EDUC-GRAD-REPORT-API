@@ -80,7 +80,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
                 student.getMiddleName(),// String middleName,
                 student.getLastName(),// String lastName,
                 student.getBirthdate() != null ? student.getBirthdate() : null,// Long birthdate,
-                student.getLocalId(),// String localId,
+                student.getPen().getEntityId(),// String localId,
                 student.getGender(),// Character studGender,
                 student.getCitizenship(), //citizenship
                 school.getMinistryCode(),// String mincode,
@@ -146,7 +146,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
         }
         StudentImpl student = new StudentImpl();
         BeanUtils.copyProperties(reportData.getStudent(), student);
-        student.setPen(new PersonalEducationNumberObject(reportData.getStudent().getPen().getPen()));
+        student.setPen(new PersonalEducationNumberObject(reportData.getStudent().getPen().getPen(), reportData.getStudent().getPen().getEntityID()));
         PostalAddressImpl address = new PostalAddressImpl();
         if (reportData.getStudent().getAddress() != null) {
             BeanUtils.copyProperties(reportData.getStudent().getAddress(), address);
@@ -478,8 +478,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
             }
             StudentImpl student = new StudentImpl();
             BeanUtils.copyProperties(st, student);
-            PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen());
-            pen.setEntityId(st.getPen().getEntityID());
+            PersonalEducationNumberObject pen = new PersonalEducationNumberObject(st.getPen().getPen(), st.getPen().getEntityID());
             student.setPen(pen);
 
             if(result.add(student)) {

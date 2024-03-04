@@ -2,19 +2,20 @@
   "options": {
     "cacheReport": false,
     "convertTo": "pdf",
+    "overwrite": false,
     "preview": true,
     "reportName": "transcript",
-    "reportFile": "Transcript Report BC2018-IND-PREVIEW.pdf"
+    "reportFile": "Transcript Report YU2023-PUB-PREVIEW.pdf"
   },
   "data": {
     "student": {
       "pen": {
-        "pen": "147395586",
-        "entityID": "0a614e84-7e27-1815-817f-095c58d42de1"
+        "pen": "11111111",
+        "entityId": null
       },
-      "firstName": "TCHAKA MAGUMU NORA",
-      "middleName": "WEBDY HILDA ROSE",
-      "lastName": "HUTSON-WILLEY",
+      "firstName": "JOHN",
+      "middleName": "PIRATE",
+      "lastName": "SILVER",
       "gender": "M",
       "birthdate": "2002-08-05",
       "address": {
@@ -34,7 +35,7 @@
     },
     "school": {
       "mincode": "03939008",
-      "name": "ELKFORD ELEMENTARY SECONDARY CATHOLIC SAINT-BAPTIST",
+      "name": "LORD BYNG SECONDARY",
       "typeIndicator": "",
       "typeBanner": "",
       "signatureCode": "039",
@@ -42,15 +43,15 @@
       "schlno": "03939008",
       "schoolCategoryCode": "",
       "address": {
-        "streetLine1": "PO BOX 910",
+        "streetLine1": "3939 16TH AVENUE W",
         "streetLine2": "",
-        "city": "ELKFORD",
+        "city": "VANCOUVER",
         "region": "BC",
         "country": "",
-        "code": "V0B 1H0"
+        "code": "V6R3C9"
       }
     },
-    "logo": "BC",
+    "logo": "YU",
     "nonGradReasons" : [
       {
         "code": "101",
@@ -65,15 +66,15 @@
       "interim": true,
       "issueDate": "2021-04-26",
       "code": {
-        "code": "BC2018-IND",
-        "description": "2018 Independent School Transcript"
+        "code": "YU2023-PUB",
+        "description": "2023 Public School Transcript Yukon"
       },
       "results": [
         {
           "course": {
-            "name": "ENGLISH 12",
+            "name": "ENGLISH 10",
             "code": "EN",
-            "level": "12",
+            "level": "10",
             "credits": "4",
             "sessionDate": "201806",
             "type": "2",
@@ -81,8 +82,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "90",
-            "examPercent": "80",
+            "schoolPercent": "",
+            "examPercent": "",
             "finalPercent": "52",
             "finalLetterGrade": "C-",
             "interimPercent": "",
@@ -105,8 +106,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "90",
-            "examPercent": "80",
+            "schoolPercent": "",
+            "examPercent": "",
             "finalPercent": "50",
             "finalLetterGrade": "C-",
             "interimPercent": "",
@@ -138,7 +139,7 @@
           },
           "requirement": "",
           "requirementName": "",
-          "equivalency": "E",
+          "equivalency": "",
           "usedForGrad": ""
         },
         {
@@ -234,7 +235,7 @@
           },
           "requirement": "8",
           "requirementName": "",
-          "equivalency": "S",
+          "equivalency": "",
           "usedForGrad": ""
         },
         {
@@ -299,14 +300,14 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "51",
-            "interimLetterGrade": "C-"
+            "finalPercent": "51",
+            "finalLetterGrade": "C-",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "2",
           "requirementName": "",
-          "equivalency": "C",
+          "equivalency": "",
           "usedForGrad": ""
         },
         {
@@ -323,10 +324,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "50",
-            "interimLetterGrade": "C-"
+            "finalPercent": "50",
+            "finalLetterGrade": "C-",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "7",
           "requirementName": "",
@@ -347,10 +348,10 @@
           "mark": {
             "schoolPercent": "",
             "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "82",
-            "interimLetterGrade": "B"
+            "finalPercent": "82",
+            "finalLetterGrade": "B",
+            "interimPercent": "",
+            "interimLetterGrade": ""
           },
           "requirement": "",
           "requirementName": "",
@@ -361,7 +362,7 @@
           "course": {
             "name": "MARINE RADIO",
             "code": "MR",
-            "level": "12",
+            "level": "11",
             "credits": "6",
             "sessionDate": "202005",
             "type": "2",
@@ -369,8 +370,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "80",
-            "examPercent": "80",
+            "schoolPercent": "",
+            "examPercent": "",
             "finalPercent": "90",
             "finalLetterGrade": "A",
             "interimPercent": "",
@@ -409,7 +410,7 @@
           "course": {
             "name": "MARINE NAVIGATION",
             "code": "MN",
-            "level": "12",
+            "level": "11",
             "credits": "6",
             "sessionDate": "202005",
             "type": "2",
@@ -417,8 +418,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "80",
-            "examPercent": "80",
+            "schoolPercent": "",
+            "examPercent": "",
             "finalPercent": "90",
             "finalLetterGrade": "A",
             "interimPercent": "",
@@ -465,8 +466,8 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "75",
-            "examPercent": "75",
+            "schoolPercent": "",
+            "examPercent": "",
             "finalPercent": "90",
             "finalLetterGrade": "A",
             "interimPercent": "",
@@ -681,7 +682,7 @@
             "relatedLevel": ""
           },
           "mark": {
-            "schoolPercent": "75",
+            "schoolPercent": "",
             "examPercent": "",
             "finalPercent": "60",
             "finalLetterGrade": "C",
@@ -745,7 +746,7 @@
           "course": {
             "name": "LITERACY ASSESSMENT 12",
             "code": "LTE12",
-            "level": "12",
+            "level": "",
             "credits": "4",
             "sessionDate": "202106",
             "type": "3",
@@ -754,7 +755,7 @@
           },
           "mark": {
             "schoolPercent": "",
-            "examPercent": "80",
+            "examPercent": "",
             "finalPercent": "XMT",
             "finalLetterGrade": "NA",
             "interimPercent": "",
@@ -786,7 +787,7 @@
           },
           "requirement": "16",
           "requirementName": "",
-          "equivalency": "A",
+          "equivalency": "",
           "usedForGrad": ""
         },
         {
@@ -812,422 +813,14 @@
           "requirementName": "",
           "equivalency": "",
           "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "YACHTMASTER COSTAL",
-            "code": "YMC",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "85",
-            "examPercent": "80",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "MARINE FIRST AID",
-            "code": "FAID",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "80",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "MARINE RADIO",
-            "code": "RADIO",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "80",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "STORM SURVIVAL",
-            "code": "STORM",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "DIESEL ENGINE MECHANIC",
-            "code": "MDM",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "70",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "NAVIGATION",
-            "code": "NAV",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "A",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "MARINE ELECTRONICS",
-            "code": "MELECT",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "70",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "BOAT SURVEYING",
-            "code": "SURV",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "85",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "METEOROLOGY",
-            "code": "METEO",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "70",
-            "finalLetterGrade": "A",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "PASSAGE PLANNING",
-            "code": "PASPLAN",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "CREW MANAGEMENT",
-            "code": "CREW",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "60",
-            "finalLetterGrade": "C",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "SEXTANT",
-            "code": "STN",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "OCEANOGRAPHY",
-            "code": "OCEAN",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "65",
-            "interimLetterGrade": "B"
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "PILOTAGE",
-            "code": "PILOT",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "75",
-            "interimLetterGrade": "B+"
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "INTERNATIONAL COLLISION REGULATIONS",
-            "code": "COLREG",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "75",
-            "finalLetterGrade": "B",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "MARINE TRAFFIC RULES AND REGULATIONS",
-            "code": "MTR",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "78",
-            "finalLetterGrade": "A",
-            "interimPercent": "",
-            "interimLetterGrade": ""
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
-        },
-        {
-          "course": {
-            "name": "MARINE TRAFFIC RULES AND REGULATIONS",
-            "code": "MTR",
-            "level": "12",
-            "credits": "4",
-            "sessionDate": "200106",
-            "type": "2",
-            "relatedCourse": "",
-            "relatedLevel": ""
-          },
-          "mark": {
-            "schoolPercent": "",
-            "examPercent": "",
-            "finalPercent": "",
-            "finalLetterGrade": "",
-            "interimPercent": "82",
-            "interimLetterGrade": "A"
-          },
-          "requirement": "",
-          "requirementName": "",
-          "equivalency": "",
-          "usedForGrad": ""
         }
       ]
     },
     "gradProgram": {
       "description": null,
       "code": {
-        "code": "2018",
-        "description": "Graduation Program 2018",
+        "code": "2023-EN",
+        "description": "Graduation Program 2023",
         "credits": 80
       }
     },
@@ -1236,16 +829,22 @@
       "honorsFlag": false,
       "dogwoodFlag": false,
       "programCodes": [
-        "XE",
-        "XP"
+        "",
+        "",
+        "",
+        "",
+        ""
       ],
       "programNames": [
+        "",
+        "",
+        "",
         "",
         ""
       ],
       "totalCreditsUsedForGrad": "0"
     },
-    "gradMessage": "Based on the information provided by the school, this student has not yet graduated in the Graduation Program 2018. Students with questions should contact their schools immediately. This student is participating in Carrier Program(s): Career Program TRADES and TECHNOLOGY",
+    "gradMessage": "Based on the information provided by the school, this student has graduated in the Graduation Program 1995. Graduation date: September 2020.",
     "updateDate": "2021-04-26"
   }
 }
