@@ -376,7 +376,7 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 
 		if(graduationProgramCode != null) {
 			mockGradProgramEntity(graduationProgramCode.getCode(), reportRequest.getData().getTranscript().getTranscriptTypeCode().getCode());
-			GradProgramImpl gradProgram = new GradProgramImpl(graduationProgramCode);
+			GradProgramImpl gradProgram = new GradProgramImpl(graduationProgramCode, "");
 			gradProgram.setProgramCode(graduationProgramCode.getCode());
 			gradProgram.setProgramName(graduationProgramCode.getDescription());
 			mockGradProgram(gradProgram);

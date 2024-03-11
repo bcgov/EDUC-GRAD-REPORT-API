@@ -34,13 +34,15 @@ public final class GradProgramImpl extends AbstractDomainEntity
     private GraduationProgramCode code;
     private String programCode;
     private String programName;
+    private String expiryDate;
 
     public GradProgramImpl() {
 
     }
 
-    public GradProgramImpl(GraduationProgramCode code) {
+    public GradProgramImpl(GraduationProgramCode code, String expiryDate) {
         setCode(code);
+        setExpiryDate(expiryDate);
     }
 
     @Override
@@ -68,5 +70,15 @@ public final class GradProgramImpl extends AbstractDomainEntity
 
     public void setProgramName(String programName) {
         this.programName = programName;
+    }
+
+    @Override
+    public String getExpiryDate() {
+        return expiryDate;
+    }
+
+    @Override
+    public void setExpiryDate(String value) {
+        this.expiryDate = value;
     }
 }
