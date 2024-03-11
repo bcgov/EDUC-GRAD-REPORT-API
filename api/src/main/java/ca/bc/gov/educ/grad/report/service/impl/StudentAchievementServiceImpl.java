@@ -139,6 +139,13 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
     }
 
     /**
+     * @param studentID
+     */
+    public void deleteStudentReportByStudentID(String studentID) {
+        gradDataConvertionBean.deleteStudentReportByStudentID(studentID);
+    }
+
+    /**
      * Builds an unofficial achievement report.
      *
      * @param format PDF, HTML, etc.

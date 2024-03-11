@@ -5,6 +5,9 @@ import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.client.XmlReportRequest;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
+import ca.bc.gov.educ.grad.report.dao.StudentCertificateRepository;
+import ca.bc.gov.educ.grad.report.dao.StudentReportRepository;
+import ca.bc.gov.educ.grad.report.dao.StudentTranscriptRepository;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.SchoolReportOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.service.BCMPBundleService;
@@ -98,6 +101,15 @@ public class GradReportService {
 	@Autowired
 	StudentXmlTranscriptService studentXmlTranscriptService;
 
+	@Autowired
+	StudentCertificateRepository studentCertificateRepository;
+
+	@Autowired
+	StudentReportRepository studentReportRepository;
+
+	@Autowired
+	StudentTranscriptRepository studentTranscriptRepository;
+
 	public byte[] getPackingSlipReport(ReportRequest reportRequest) {
 		String methodName = "getPackingSlipReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -187,6 +199,19 @@ public class GradReportService {
 			return transcriptService.buildUnOfficialTranscriptReport(ReportFormat.PDF);
 		else
 			return transcriptService.buildOfficialTranscriptReport();
+	}
+
+	public void deleteStudentReportsByStudentID(String studentID) {
+		String methodName = "deleteStudentReportsByStudentID(String studentId)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		log.debug("Deleting Certificates for studentID: [{}]", studentID);
+		certificateService.deleteStudentCertificatesByStudentID(studentID);
+		log.debug("Deleting Transcript for studentID: [{}]", studentID);
+		transcriptService.deleteStudentTranscriptByStudentID(studentID);
+		log.debug("Deleting Report (TVR) for studentID: [{}]", studentID);
+		achievementService.deleteStudentReportByStudentID(studentID);
+
 	}
 
 	public byte[] getStudentXmlTranscriptReport(XmlReportRequest reportRequest) {

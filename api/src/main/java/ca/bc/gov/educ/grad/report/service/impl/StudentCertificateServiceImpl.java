@@ -341,6 +341,10 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         return report;
     }
 
+    public void deleteStudentCertificatesByStudentID(String studentID) {
+        gradDataConvertionBean.deleteCertificateByStudentID(studentID);
+    }
+
     private String createReportTypeName(
             final CertificateType type,
             final CertificateSubType subtype,

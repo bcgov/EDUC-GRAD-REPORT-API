@@ -45,4 +45,10 @@ public interface StudentCertificateService extends BusinessService {
      */
     List<BusinessReport> buildReport() throws DomainServiceException;
 
+    /**
+     *
+     * @param studentID
+     */
+    void deleteStudentCertificatesByStudentID(String studentID);
+
 }

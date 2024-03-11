@@ -19,6 +19,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @CrossOrigin
 @RestController
 @RequestMapping(ReportApiConstants.REPORT_API_ROOT_MAPPING)
@@ -267,6 +269,22 @@ public class ReportController extends BaseController {
             return getInternalServerErrorResponse(e);
         }
     }
+
+    @DeleteMapping(ReportApiConstants.STUDENT_REPORTS_BY_ID)
+    @PreAuthorize(PermissionsContants.DELETE_STUDENT_REPORTS)
+    @Operation(summary = "Delete Student Achievement Report", description = "Delete Student Achievement Report", tags = {"Report"})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "OK")})
+    public ResponseEntity<byte[]> deleteStudentAchievementReportByStudentID(@PathVariable String studentID) {
+        logger.debug("deleteStudentAchievementReport");
+        try {
+            logger.debug("Student ID from Path: [{}]", UUID.fromString(studentID));
+            reportService.deleteStudentReportsByStudentID(studentID);
+        } catch (Exception e) {
+            return getInternalServerErrorResponse(e);
+        }
+        return null;
+    }
+
 
     private void setAccessToken(ReportRequest report, String accessToken) {
         report.getData().setAccessToken(accessToken.replace("Bearer ", ""));

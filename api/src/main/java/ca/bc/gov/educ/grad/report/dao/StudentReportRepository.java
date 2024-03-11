@@ -13,4 +13,5 @@ public interface StudentReportRepository extends JpaRepository<StudentReportEnti
     @Query("select max(c.updatedTimestamp) as UpdatedTimestamp from StudentReportEntity c where c.graduationStudentRecordId=:graduationStudentRecordId")
     Optional<Date> getReportUpdatedTimestamp(UUID graduationStudentRecordId);
 
+    StudentReportEntity findByGraduationStudentRecordId(UUID graduationStudentRecordId);
 }

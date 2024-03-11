@@ -5,8 +5,7 @@ import ca.bc.gov.educ.grad.report.dto.impl.*;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.AchievementOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.CertificateOrderTypeImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.bundle.decorator.TranscriptOrderTypeImpl;
-import ca.bc.gov.educ.grad.report.entity.CertificateTypeCodeEntity;
-import ca.bc.gov.educ.grad.report.entity.TranscriptTypeCodeEntity;
+import ca.bc.gov.educ.grad.report.entity.*;
 import ca.bc.gov.educ.grad.report.exception.InvalidParameterException;
 import ca.bc.gov.educ.grad.report.model.achievement.AchievementCourse;
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
@@ -65,6 +64,9 @@ public class GradDataConvertionBean extends BaseServiceImpl {
 
     @Autowired
     StudentReportRepository studentReportRepository;
+
+    @Autowired
+    StudentTranscriptRepository studentTranscriptRepository;
 
     public StudentInfo getStudentInfo(ReportData reportData) {
         Student student = getStudent(reportData);
@@ -336,6 +338,27 @@ public class GradDataConvertionBean extends BaseServiceImpl {
             return result;
         }
         return null;
+    }
+
+    public void deleteCertificateByStudentID(String studentID) {
+        List<StudentCertificateEntity> studentCertificates =
+                studentCertificateRepository.findAllByGraduationStudentRecordId(UUID.fromString(studentID));
+
+        studentCertificates.stream().forEach(sc -> {
+            studentCertificateRepository.delete(sc);
+        });
+    }
+
+    public void deleteTranscriptByStudentID(String studentID) {
+        StudentTranscriptEntity studentTranscript =
+                studentTranscriptRepository.findByGraduationStudentRecordId(UUID.fromString(studentID));
+        studentTranscriptRepository.delete(studentTranscript);
+    }
+
+    public void deleteStudentReportByStudentID(String studentID) {
+        StudentReportEntity studentReport =
+                studentReportRepository.findByGraduationStudentRecordId(UUID.fromString(studentID));
+        studentReportRepository.delete(studentReport);
     }
 
     public PostalDeliveryInfo getPostalDeliveryInfo(ReportData reportData) {
