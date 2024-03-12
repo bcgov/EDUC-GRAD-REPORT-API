@@ -22,6 +22,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.impl.GraduationProgram;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Status;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.TranscriptResult;
+import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
@@ -30,6 +31,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 
 import java.util.List;
+import java.util.Map;
 
 import static ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter.adapt;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.HTML;
@@ -290,6 +292,12 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     @Override
     protected void preprocessParameters() {
         super.preprocessParameters();
+        Student student = getStudent();
+        Map<String, SignatureBlockType> signatureBlockTypes = student.getSignatureBlockTypes();
+        SignatureBlockType signatureBlockType = signatureBlockTypes.get("MOE_ADM");
+        if(signatureBlockType != null) {
+            setParameter("P_SIGNATURE_LABEL", signatureBlockType.getLabel());
+        }
         setParameter("P_REPORT_PREVIEW", isPreview());
         setParameter("P_REPORT_INTERIM", isInterim());
         setParameter("P_REPORT_BLANK", isBlank());
