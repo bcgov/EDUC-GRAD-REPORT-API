@@ -2,7 +2,7 @@ UPDATE SIGNATURE_BLOCK_TYPE
 SET
     LABEL = 'Associate Deputy Minister',
     DESCRIPTION = 'Associate Deputy Minister',
-    UPDATE_USER = 'USER',
+    UPDATE_USER = 'GRAD_REPORT_API',
     UPDATE_DATE = SYSTIMESTAMP
 WHERE
     SIGNATURE_BLOCK_TYPE = 'MOE_ADM';
