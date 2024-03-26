@@ -38,4 +38,8 @@ public interface GradProgram extends DomainEntity {
      * @param code The new graduation program code.
      */
     void setCode(GraduationProgramCode code);
+
+    public String getExpiryDate();
+
+    public void setExpiryDate(String value);
 }

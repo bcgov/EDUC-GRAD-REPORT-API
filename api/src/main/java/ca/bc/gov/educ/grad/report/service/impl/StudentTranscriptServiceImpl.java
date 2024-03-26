@@ -167,10 +167,10 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         LOG.entering(CLASSNAME, methodName);
 
         final Transcript transcriptInfo = getTranscriptInformation(pen);
-        final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, transcriptInfo.getInterim());
         final StudentInfo studentInfo = getStudentInfo(pen);
         final TranscriptTypeCode transcriptTypeCode = transcriptInfo.getTranscriptTypeCode();
         final GradProgram program = createGradProgram(studentInfo.getGradReqYear());
+        final List<TranscriptCourse> transcriptCourses = getTranscriptCourseList(pen, transcriptInfo.getInterim(), StringUtils.isBlank(program.getExpiryDate()));
         final Date reportDate = transcriptInfo.getIssueDate();
 
         final Transcript transcript = adapt(
@@ -274,7 +274,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * @return
      */
     private List<TranscriptCourse> getTranscriptCourseList(
-            final String pen, final boolean interim)
+            final String pen, final boolean interim, final boolean openGradProgram)
             throws DomainServiceException {
         final String methodName = "getTranscriptCourseList(String, boolean)";
         LOG.entering(CLASSNAME, methodName);
@@ -283,7 +283,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         ReportData reportData = getReportData(methodName);
         if(interim) {
-            results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData));
+            results = filterCourses(gradDataConvertionBean.getTranscriptCourses(reportData), openGradProgram);
         } else {
             results = gradDataConvertionBean.getTranscriptCourses(reportData);
         }
@@ -683,14 +683,14 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      * @param results Courses for PEN user which might have duplicated courses
      * @return
      */
-    private List<TranscriptCourse> filterCourses(final List<TranscriptCourse> results) {
+    private List<TranscriptCourse> filterCourses(final List<TranscriptCourse> results, boolean openGradProgram) {
 
         final List<TranscriptCourse> resultOfCourses = new ArrayList<>();
         for (final TranscriptCourse course : results) {
 
             if (!resultOfCourses.contains(course)) {
                 final TranscriptCourse interimCourse
-                        = getInterimCourse(course, results);
+                        = getInterimCourse(course, results, openGradProgram);
 
                 if (!(resultOfCourses.contains(interimCourse))) {
                     resultOfCourses.add(interimCourse);
@@ -712,19 +712,25 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private TranscriptCourse getInterimCourse(
             TranscriptCourse course,
-            final List<TranscriptCourse> results) {
+            final List<TranscriptCourse> results, boolean openGradProgram) {
         //Check for duplicate courses
         for (final TranscriptCourse compareCourse : results) {
             //Check and compare two courses for duplication and if required
             //replace course based on requirement.
-            if (course.courseEquals(compareCourse)
-                    && !course.isCompletedCourseUsedForGrad()
-                    && course.compareCourse(compareCourse) ) {
+            if (isInterimCourse(course, compareCourse, openGradProgram)) {
                 course = compareCourse;
             }
         }
         return course;
 
+    }
+
+    private boolean isInterimCourse(TranscriptCourse source, TranscriptCourse target, boolean openGradProgram) {
+        if (openGradProgram) { // GRAD-2525
+            return source.courseEquals(target) && source.compareCourse(target);
+        } else { // GRAD2-2222
+            return source.courseEquals(target) && !source.isCompletedCourseUsedForGrad() && source.compareCourse(target);
+        }
     }
 
     /**
