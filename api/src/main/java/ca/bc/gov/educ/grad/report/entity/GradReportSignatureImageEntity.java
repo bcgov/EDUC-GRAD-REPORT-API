@@ -21,6 +21,9 @@ public class GradReportSignatureImageEntity extends BaseEntity {
     @Column(name = "DIGITAL_SIGNATURE_CODE", nullable = false)
     private String gradReportSignatureCode;
 
+    @Column(name = "DIGITAL_SIGNATURE_ORGANIZATION_NAME")
+    private String gradReportSignatureOrganizationName;
+
     @Column(name = "DIGITAL_SIGNATURE_NAME")
     private String gradReportSignatureName;
 
