@@ -65,7 +65,6 @@ public final class Certificate extends BusinessEntity {
     public void setIssued(final Date issued) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(issued);
-        cal.add(Calendar.DAY_OF_MONTH, 1);
         this.issued = cal.getTime();
     }
 
