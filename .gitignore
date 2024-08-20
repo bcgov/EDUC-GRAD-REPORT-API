@@ -27,5 +27,6 @@ signatures
 /.project
 .idea
 target
-original-signatures
-signatures
+
+### Local dev ###
+**/application-local.yaml
