@@ -27,6 +27,3 @@ signatures
 /.project
 .idea
 target
-
-### Local dev ###
-**/application-local.yaml
