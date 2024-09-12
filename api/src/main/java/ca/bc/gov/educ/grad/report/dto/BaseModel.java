@@ -2,7 +2,7 @@ package ca.bc.gov.educ.grad.report.dto;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 public class BaseModel {

@@ -72,6 +72,9 @@ logging:
         boot:
           autoconfigure:
             logging: INFO
+    com:
+      zaxxer:
+        hikari: ERROR
       hibernate:
         SQL: DEBUG
         type:

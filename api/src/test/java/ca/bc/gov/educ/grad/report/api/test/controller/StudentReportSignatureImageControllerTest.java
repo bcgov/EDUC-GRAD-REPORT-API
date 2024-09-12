@@ -98,6 +98,7 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode(signatureCode);
         signatureImage.setSignatureContent(imageBinary);
+        signatureImage.setGradReportSignatureOrganizationName("Kootenay");
         signatureImage.setSignatureId(UUID.randomUUID());
 
         List<GradReportSignatureImage> signatureImages = new ArrayList();

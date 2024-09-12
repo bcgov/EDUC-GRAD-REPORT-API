@@ -24,6 +24,7 @@ public class GradReportSignatureImage extends BaseModel {
     private byte[] signatureContent;
     private String gradReportSignatureCode;
     private String gradReportSignatureName;
+    private String gradReportSignatureOrganizationName;
     private String districtName;
     @JsonFormat(pattern= ReportApiConstants.DEFAULT_DATE_FORMAT)
     private Date effectiveDate;
