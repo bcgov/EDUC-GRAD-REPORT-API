@@ -21,7 +21,7 @@ public class StudentReportEntity extends BaseEntity {
     private UUID studentReportId;
 
     @Column(name = "REPORT")
-    private String REPORT;
+    private String report;
 
     @Column(name = "REPORT_TYPE_CODE", nullable = false)
     private String reportTypeCode;
@@ -34,5 +34,8 @@ public class StudentReportEntity extends BaseEntity {
 
     @Column(name = "DISTRIBUTION_DATE")
     private Date distributionDate;
+
+    @Column(name = "REPORT_UPDATE_DATE")
+    private Date reportUpdateDate;
 
 }

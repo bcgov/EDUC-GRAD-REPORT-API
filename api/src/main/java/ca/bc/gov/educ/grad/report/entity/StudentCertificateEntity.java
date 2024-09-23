@@ -21,7 +21,7 @@ public class StudentCertificateEntity extends BaseEntity {
     private UUID studentCertificateId;
 
     @Column(name = "CERTIFICATE")
-    private String CERTIFICATE;
+    private String certificate;
 
     @Column(name = "CERTIFICATE_TYPE_CODE", nullable = false)
     private String certificateTypeCode;
