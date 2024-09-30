@@ -526,4 +526,51 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		LOG.debug(">createStudentNonGradProjectedReport_NOSTUDENTS");
 	}
 
+	@Test
+	public void createStudentGradProjectedReport() throws Exception {
+		LOG.debug("<{}.createStudentGradProjectedReport at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentGradProjectedReportRequest.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		for(Student st: reportRequest.getData().getSchool().getStudents()) {
+			if(!StringUtils.isBlank(st.getPen().getEntityID())) {
+				mockGraduationStudentRecord(st.getPen().getPen(), st.getPen().getEntityID());
+			}
+		}
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentGradProjectedReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createStudentGradProjectedReport");
+	}
+
+	@Test
+	public void createStudentGradProjectedReport_NOSTUDENTS() throws Exception {
+		LOG.debug("<{}.createStudentGradProjectedReport_NOSTUDENTS at {}", CLASS_NAME, dateFormat.format(new Date()));
+		ReportRequest reportRequest = createReportRequest("json/studentGradProjectedReportRequest-NOSTUDENTS.json");
+
+		assertNotNull(reportRequest);
+		assertNotNull(reportRequest.getData());
+
+		mockTraxSchool(adaptTraxSchool(getReportDataSchool(reportRequest.getData())));
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		byte[] response = apiReportService.getStudentGradProjectedReport(reportRequest);
+
+		assertNotNull(response);
+
+		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
+			out.write(response);
+		}
+		LOG.debug(">createStudentGradProjectedReport_NOSTUDENTS");
+	}
+
 }

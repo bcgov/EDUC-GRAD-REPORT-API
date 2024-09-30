@@ -494,6 +494,11 @@ public class GradDataConvertionBean extends BaseServiceImpl {
                 updateDate = Date.from(st.getLastUpdateDate().atZone(ZoneId.systemDefault()).toInstant());
             }
 
+            Date projectedGradDate = null;
+            if(st.getProjectedGradDate() != null) {
+                projectedGradDate = Date.from(st.getProjectedGradDate().atZone(ZoneId.systemDefault()).toInstant());
+            }
+
             if(!StringUtils.isBlank(pen.getEntityId())) {
                 Optional<Date> distributionDate = studentCertificateRepository.getCertificateDistributionDate(UUID.fromString(pen.getEntityId()));
                 distributionDate.ifPresent(student::setCertificateDistributionDate);
@@ -518,7 +523,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
                 student.setTranscriptTypes(transcriptTypes.stream().map(TranscriptTypeCodeEntity::getLabel).collect(Collectors.toList()));
                 totals.countTranscript(transcriptTypes.size());
 
-                if("buildStudentNonGradProjectedReport()".equalsIgnoreCase(reportData.getReportIdentity())) {
+                if(StringUtils.containsAnyIgnoreCase(reportData.getReportIdentity(), "buildStudentNonGradProjectedReport()", "buildStudentGradProjectedReport()")) {
                     Optional<Date> reportUpdatedTimestamp = studentReportRepository.getReportUpdatedTimestamp(UUID.fromString(pen.getEntityId()));
                     if(reportUpdatedTimestamp.isPresent()) {
                         updateDate = reportUpdatedTimestamp.get();
@@ -526,6 +531,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
                 }
             }
             student.setLastUpdateDate(updateDate);
+            student.setProjectedGradDate(projectedGradDate);
         }
         return Pair.of(new ArrayList<>(result), totals);
     }

@@ -70,6 +70,7 @@ public class StudentImpl extends AbstractDomainEntity implements Student, Compar
     private String localId = "";
     private String hasOtherProgram = "";
     private Date lastUpdateDate;
+    private Date projectedGradDate;
     private Date certificateDistributionDate;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
     private List<NonGradReason> nonGradReasons = new ArrayList<>();
@@ -364,6 +365,23 @@ public class StudentImpl extends AbstractDomainEntity implements Student, Compar
     public String getStringLastUpdateDate() {
         if(getLastUpdateDate() != null)
             return new SimpleDateFormat("MM/dd/yyyy").format(getLastUpdateDate());
+        else
+            return "";
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    public Date getProjectedGradDate() {
+        return projectedGradDate;
+    }
+
+    public void setProjectedGradDate(Date projectedGradDate) {
+        this.projectedGradDate = projectedGradDate;
+    }
+
+    @Override
+    public String getStringProjectedGradDate() {
+        if(getLastUpdateDate() != null)
+            return new SimpleDateFormat("MM/dd/yyyy").format(getProjectedGradDate());
         else
             return "";
     }

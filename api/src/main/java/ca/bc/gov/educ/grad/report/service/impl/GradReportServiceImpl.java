@@ -165,7 +165,7 @@ public abstract class GradReportServiceImpl {
             case "buildSchoolDistributionReport()":
                 sortStudentsByProgramCompletionDateAndNames(students);
                 break;
-            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradProjectedReport()","buildStudentNonGradReport()":
+            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradProjectedReport()","buildStudentGradProjectedReport()","buildStudentNonGradReport()":
                 sortStudentsByNames(students);
                 break;
             default:

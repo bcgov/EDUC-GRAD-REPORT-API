@@ -29,6 +29,7 @@ public class ReportApiConstants {
     public static final String SCHOOL_NON_GRADUATION = "/schoolnongraduation";
     public static final String STUDENT_NON_GRAD = "/studentnongrad";
     public static final String STUDENT_NON_GRAD_PROJECTED = "/studentnongradprojected";
+    public static final String STUDENT_GRAD_PROJECTED = "/studentgradprojected";
 
     //Attribute Constants
     public static final String PEN_ATTRIBUTE = "pen";
