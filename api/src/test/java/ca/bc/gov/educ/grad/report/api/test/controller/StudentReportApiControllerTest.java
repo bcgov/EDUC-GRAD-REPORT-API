@@ -62,6 +62,78 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
     private ReportController reportController;
 
     @Test
+    public void getSchoolLabelReportTest() throws Exception {
+        LOG.debug("<{}.getSchoolLabelReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/schoolLabelReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getSchoolLabelReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getSchoolLabel(reportRequest, "accessToken");
+        Mockito.verify(reportService).getSchoolLabelReport(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getSchoolLabelReportTest");
+    }
+
+    @Test
+    public void getSchoolGraduationReportTest() throws Exception {
+        LOG.debug("<{}.getSchoolGraduationReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/schoolGraduationReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getSchoolGraduationReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getSchoolGraduation(reportRequest, "accessToken");
+        Mockito.verify(reportService).getSchoolGraduationReport(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getSchoolGraduationReportTest");
+    }
+
+    @Test
+    public void getSchoolNonGraduationReportTest() throws Exception {
+        LOG.debug("<{}.getSchoolNonGraduationReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/schoolNonGraduationReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getSchoolNonGraduationReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getSchoolNonGraduation(reportRequest, "accessToken");
+        Mockito.verify(reportService).getSchoolNonGraduationReport(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getSchoolNonGraduationReportTest");
+    }
+
+    @Test
     public void getSchoolDistributionReportTest() throws Exception {
         LOG.debug("<{}.getSchoolDistributionReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
 
@@ -266,4 +338,51 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         LOG.debug(">getStudentCertificateTest");
     }
 
+    @Test
+    public void getStudentGradProjectedReportTest() throws Exception {
+        LOG.debug("<{}.getStudentGradProjectedReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/studentGradProjectedReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getStudentGradProjectedReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getStudentGradProjected(reportRequest, "accessToken");
+        Mockito.verify(reportService).getStudentGradProjectedReport(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getStudentGradProjectedReportTest");
+    }
+
+    @Test
+    public void getStudentNonGradProjectedReportTest() throws Exception {
+        LOG.debug("<{}.getStudentNonGradProjectedReportTest at {}", CLASS_NAME, dateFormat.format(new Date()));
+
+        ReportRequest reportRequest = createReportRequest("json/studentNonGradProjectedReportRequest.json");
+
+        assertNotNull(reportRequest);
+        assertNotNull(reportRequest.getData());
+
+        ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+        ReportRequestDataThreadLocal.setCurrentUser("Batch Process");
+
+        byte[] resultBinary = reportRequest.getOptions().getReportFile().getBytes();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
+
+        Mockito.when(reportService.getStudentNonGradProjectedReport(reportRequest)).thenReturn(resultBinary);
+        ResponseEntity response = reportController.getStudentNonGradProjected(reportRequest, "accessToken");
+        Mockito.verify(reportService).getStudentNonGradProjectedReport(reportRequest);
+        assertNotNull(response.getBody());
+
+        LOG.debug(">getStudentNonGradProjectedReportTest");
+    }
 }
