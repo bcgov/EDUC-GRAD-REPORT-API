@@ -38,6 +38,7 @@ public final class Roles {
     public static final String USER_REPORTS_CERTIFICATES = USER_REPORTS_SERVICE + "_certificates";
     public static final String USER_REPORTS_SCHOOL_GRADUATION = USER_REPORTS_SERVICE + "_schoolgraduation";
     public static final String USER_REPORTS_NON_GRAD = USER_REPORTS_SERVICE + "_nongrad";
+    public static final String USER_REPORTS_GRAD = USER_REPORTS_SERVICE + "_grad";
 
     public static final String ADMIN_REPORTS_SERVICE = "ADMIN_REPORTS_SERVICE";
     public static final String ADMIN_REPORTS_EXPORT = ADMIN_REPORTS_SERVICE + "_export";
