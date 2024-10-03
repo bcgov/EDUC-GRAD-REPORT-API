@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
@@ -290,6 +290,14 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		try (OutputStream out = new FileOutputStream("target/"+reportRequest.getOptions().getReportFile())) {
 			out.write(response);
 		}
+
+		reportRequest.getData().setOrgCode("../038");
+
+		ReportApiServiceException exception = assertThrows(ReportApiServiceException.class, () ->
+				apiReportService.getSchoolLabelReport(reportRequest));
+
+		assertEquals("Unable to execute getSchoolLabelReport(ReportRequest reportRequest)", exception.getMessage());
+
 		LOG.debug(">createSchoolLabelReport");
 	}
 
