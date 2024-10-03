@@ -20,5 +20,7 @@ public class CertificateTypeCode extends BaseEntity {
     private String displayOrder;
     private Date effectiveDate;
     private Date expiryDate;
+    private String paperType;
+    private String language;
 
 }

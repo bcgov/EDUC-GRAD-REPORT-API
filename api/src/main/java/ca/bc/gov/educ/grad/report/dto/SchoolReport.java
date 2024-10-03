@@ -5,21 +5,19 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @Component
-public class TranscriptTypeCode extends BaseEntity {
+public class SchoolReport extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    private String transcriptTypeCode;
-    private String label;
-    private String description;
-    private String displayOrder;
-    private Date effectiveDate;
-    private Date expiryDate;
-    private String paperType;
+    private UUID schoolReportId;
+    private String report;
+    private String reportTypeCode;
+    private String schoolOfRecord;
+    private UUID schoolOfRecordId;
 
 }
