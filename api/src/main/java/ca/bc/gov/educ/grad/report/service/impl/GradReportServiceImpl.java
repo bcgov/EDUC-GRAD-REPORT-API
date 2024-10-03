@@ -143,9 +143,16 @@ public abstract class GradReportServiceImpl {
 
     InputStream openImageResource(final String resource) throws IOException {
         /** final URL url = getReportResource(resource); **/
+        validateResourcePath(resource);
         URL url = this.getClass().getResource(String.format(DIR_IMAGE_BASE, resource));
         assert url != null;
         return url.openStream();
+    }
+
+    void validateResourcePath(String resource) {
+        if(StringUtils.isBlank(resource) || resource.contains("..") || resource.contains("/") || resource.contains("\\")) {
+            throw new IllegalArgumentException("Invalid resource path");
+        }
     }
 
     GraduationReport getGraduationReport(String methodName, List<String> excludePrograms) throws IOException {
