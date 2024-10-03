@@ -52,7 +52,7 @@ public abstract class GradReportServiceImpl {
 
     static final String CLASSNAME = GradReportServiceImpl.class.getName();
     static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
+    private static final String DIR_IMAGE_BASE = "/reports/resources/images/%s";
 
     static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
@@ -143,7 +143,7 @@ public abstract class GradReportServiceImpl {
 
     InputStream openImageResource(final String resource) throws IOException {
         /** final URL url = getReportResource(resource); **/
-        URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
+        URL url = this.getClass().getResource(String.format(DIR_IMAGE_BASE, resource));
         assert url != null;
         return url.openStream();
     }
