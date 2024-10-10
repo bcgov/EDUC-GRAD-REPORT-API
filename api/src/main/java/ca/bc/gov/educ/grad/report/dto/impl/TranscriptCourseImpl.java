@@ -247,7 +247,12 @@ public class TranscriptCourseImpl implements TranscriptCourse {
 
         // Removes duplication of courses by comparing and finding course with
         // highest percentage.
-        return percentage <= comparePercentage && comparePercentage != 0;
+        // GRAD2-2905
+        if (this.isCompletedCourseUsedForGrad() && !compareCourse.isCompletedCourseUsedForGrad()) {
+            return percentage < comparePercentage && comparePercentage != 0;
+        } else {
+            return percentage <= comparePercentage && comparePercentage != 0;
+        }
     }
 
     public boolean isCompletedCourseUsedForGrad() {
