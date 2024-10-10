@@ -715,6 +715,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final List<TranscriptCourse> results, boolean openGradProgram) {
         //Check for duplicate courses
         for (final TranscriptCourse compareCourse : results) {
+            if (course.equals(compareCourse)) continue;
             //Check and compare two courses for duplication and if required
             //replace course based on requirement.
             if (isInterimCourse(course, compareCourse, openGradProgram)) {
