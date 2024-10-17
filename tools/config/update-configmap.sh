@@ -63,7 +63,7 @@ oc create -n "$GRAD_NAMESPACE"-"$envValue" configmap "$APP_NAME"-config-map \
  --from-literal=MAXIMUM_POOL_SIZE='10' \
  --from-literal=MIN_IDLE='10' \
  --from-literal=IDLE_TIMEOUT='300000' \
- --from-literal=MAX_LIFETIME='420000' \
+ --from-literal=MAX_LIFETIME='1500000' \
  --dry-run=client -o yaml | oc apply -f -
 echo
 
