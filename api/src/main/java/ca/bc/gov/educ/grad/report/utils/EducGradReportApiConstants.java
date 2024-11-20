@@ -35,7 +35,7 @@ public class EducGradReportApiConstants {
     @Value("${endpoint.educ-grad-trax-api.get-district-details.url}")
     private String districtDetails;
 
-    @Value("${endpoint.educ-grad-trax-api.school-by-min-code.url}")
+    @Value("${endpoint.educ-grad-trax-api.school-by-school-id.url}")
     private String schoolDetails;
 
     @Value("${endpoint.educ-grad-trax-api.country-by-code.url}")
