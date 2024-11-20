@@ -110,8 +110,8 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         final Student student = getStudent(reportData); //validated
         final School school = getSchool(reportData); //validated
 
-        if(school != null && !StringUtils.isBlank(school.getMinistryCode())) {
-            TraxSchool traxSchool = getSchool(school.getMinistryCode(), accessToken);
+        if(school != null && !StringUtils.isBlank(school.getSchoolId())) {
+            TraxSchool traxSchool = getSchool(school.getSchoolId(), accessToken);
             if(traxSchool != null) {
                 if ("N".equalsIgnoreCase(traxSchool.getCertificateEligibility())) {
                     EntityNotFoundException dse = new EntityNotFoundException(
@@ -122,7 +122,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                     throw dse;
                 }
                 if(StringUtils.isBlank(school.getSchoolCategoryCode())) {
-                    ((SchoolImpl) school).setSchoolCategoryCode(traxSchool.getSchoolCategoryCode());
+                    ((SchoolImpl) school).setSchoolCategoryCode(traxSchool.getSchoolCategoryLegacyCode());
                 }
             }
         }

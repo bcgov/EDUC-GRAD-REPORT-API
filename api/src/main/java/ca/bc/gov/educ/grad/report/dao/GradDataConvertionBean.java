@@ -110,7 +110,8 @@ public class GradDataConvertionBean extends BaseServiceImpl {
                 school.getAddress() != null ? school.getAddress().getRegion() : "",// String schoolProv,
                 school.getAddress() != null ? school.getAddress().getPostalCode() : "",// String schoolPostalCode,
                 school.getPhoneNumber(),// String schoolPhone,
-                school.getTypeIndicator()// Character schlIndType
+                school.getTypeIndicator(),// Character schlIndType,
+                school.getSchoolId()// String schoolId
         );
         result.setNonGradReasons(this.getNongradReasons(reportData));
         result.setHasOtherProgram(student.getHasOtherProgram());

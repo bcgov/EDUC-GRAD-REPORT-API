@@ -139,6 +139,7 @@ public class StudentInfoImpl implements StudentInfo {
      * @param schoolPostalCode
      * @param schoolPhone
      * @param schlIndType
+     * @param schoolId
      */
     public StudentInfoImpl(
             final String studNo,
@@ -178,7 +179,8 @@ public class StudentInfoImpl implements StudentInfo {
             final String schoolProv,
             final String schoolPostalCode,
             final String schoolPhone,
-            final String schlIndType) {
+            final String schlIndType,
+            final String schoolId) {
 
         this.pen = trimSafe(studNo);
         this.firstName = trimSafe(firstName);
@@ -214,7 +216,7 @@ public class StudentInfoImpl implements StudentInfo {
         this.schoolPostalCode = trimSafe(schoolPostalCode);
         this.schoolPhone = trimSafe(schoolPhone);
         this.schoolTypeIndicator = trimSafe(schlIndType);
-
+        this.schoolId = schoolId;
         //setSchoolTypeBanner();
 
         this.academicProgram.add(trimSafe(prgmCode));

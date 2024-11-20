@@ -27,6 +27,13 @@ import ca.bc.gov.educ.grad.report.model.district.District;
 public interface School extends District {
 
     /**
+     * Returns the schoolId the Institute uses to uniquely identify this school.
+     *
+     * @return schoolId
+     */
+    String getSchoolId();
+
+    /**
      * Returns the code the Ministry uses to uniquely identify this school.
      *
      * @return MINCODE ministry code
