@@ -46,6 +46,7 @@
       "nonGradReasons" : [ ]
     },
     "school" : {
+      "schoolId" : "b69bc244-b93b-2a9f-d2b1-3d8ffae92866",
       "mincode" : "00502001",
       "name" : "ROBERT EDGELL",
       "typeIndicator" : "",

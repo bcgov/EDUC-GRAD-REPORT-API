@@ -34,6 +34,7 @@ public class SchoolImpl extends DistrictImpl implements School {
 
     private static final long serialVersionUID = 4L;
 
+    private String schoolId = "";
     private String mincode = "";
     private String schlno = "";
     private String schoolCategoryCode = "";
@@ -47,6 +48,15 @@ public class SchoolImpl extends DistrictImpl implements School {
 
     public void setMincode(final String mincode) {
         this.mincode = mincode;
+    }
+
+    @Override
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 
     @JsonProperty("minCode")

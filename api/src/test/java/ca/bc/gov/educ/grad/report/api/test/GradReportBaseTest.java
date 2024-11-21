@@ -108,6 +108,7 @@ public abstract class GradReportBaseTest {
 
     protected TraxSchool adaptTraxSchool(School school) {
         TraxSchool traxSchool = new TraxSchool();
+        traxSchool.setSchoolId(school.getSchoolId());
         traxSchool.setMinCode(school.getMincode());
         traxSchool.setSchoolName(school.getName());
         if(school.getAddress() != null) {
@@ -123,7 +124,7 @@ public abstract class GradReportBaseTest {
 
     protected void mockTraxSchool(TraxSchool traxSchool) {
         when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-        when(this.requestHeadersUriMock.uri(String.format(constants.getSchoolDetails(),traxSchool.getMinCode()))).thenReturn(this.requestHeadersMock);
+        when(this.requestHeadersUriMock.uri(String.format(constants.getSchoolDetails(),traxSchool.getSchoolId()))).thenReturn(this.requestHeadersMock);
         when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
         when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
         when(this.responseMock.bodyToMono(TraxSchool.class)).thenReturn(Mono.just(traxSchool));

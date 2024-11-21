@@ -18,8 +18,8 @@ public class TraxSchool {
     private String countryCode;
     private String postal;
     private String openFlag;
+    private String schoolCategoryLegacyCode;
     private String schoolCategoryCode;
-    private String schoolCategoryCodeInstitute;
 
     public String getSchoolName() {
         return schoolName != null ? schoolName.trim() : null;
@@ -47,7 +47,7 @@ public class TraxSchool {
 
     @Override
     public String toString() {
-        return "School [minCode=" + minCode + ", schoolId=" + schoolId + ", schoolCategoryCode=" + schoolCategoryCode + ", schoolCategoryCodeInstitute=" + schoolCategoryCodeInstitute
+        return "School [minCode=" + minCode + ", schoolId=" + schoolId + ", schoolCategoryLegacyCode=" + schoolCategoryLegacyCode + ", schoolCategoryCode=" + schoolCategoryCode
                 + ", schoolName=" + schoolName + ", districtName=" + districtName + ", transcriptEligibility=" + transcriptEligibility + ", certificateEligibility=" + certificateEligibility
                 + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", provCode=" + provCode + ", countryCode=" + countryCode + ", postal=" + postal + ", openFlag=" + openFlag
                 + "]";
