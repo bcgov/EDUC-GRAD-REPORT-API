@@ -1,0 +1,461 @@
+{
+  "options": {
+    "reportName": "studentgradprojected",
+    "reportFile": "Student Graduated Projected Requirements Report.pdf"
+  },
+  "data": {
+    "school": {
+      "name": "MOUNT BAKER SECONDARY",
+      "mincode": "00502001",
+      "students": [
+        {
+          "pen": {
+            "pen": "129382610",
+            "entityID": "ac339d70-7649-1a2e-8176-4a3450c81889"
+          },
+          "firstName": "CAYMAN",
+          "lastName": "HILL",
+          "grade": "11",
+          "gender": "T",
+          "birthdate": "2010-01-01",
+          "localId": "1234567",
+          "gradProgram": "2018-PF",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": false,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "101",
+              "description": "No Language Arts 10"
+            },
+            {
+              "code": "107",
+              "description": "No Mathematics 11 or 12"
+            }
+          ],
+          "projectedGradDate": "2020-12-01 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "11111111",
+            "entityID": null
+          },
+          "firstName": "JOHN",
+          "middleName": "PIRATE",
+          "lastName": "SILVER",
+          "localId": "0987654",
+          "grade": "11",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004-PF",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "001",
+              "description": "Computer Science - A degree in computer science may sound like you’re on the right track for a successful career after graduation. However, like many of the most useless college degrees, computer science is a difficult degree to use after you graduate."
+            }
+          ],
+          "projectedGradDate": "2024-12-31 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "129054722",
+            "entityID": null
+          },
+          "firstName": "TRAVIS",
+          "lastName": "AYA",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004-EN",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Arts Education/ADST credits"
+            },
+            {
+              "code": "004",
+              "description": "No Grad Transitions/Career Life Connectivity"
+            },
+            {
+              "code": "005",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "006",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "007",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ],
+          "projectedGradDate": "2026-06-01 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "128315116",
+            "entityID": "ac339d70-7649-1a2e-8176-4a3288ef7ea2"
+          },
+          "firstName": "CARLOS",
+          "middleName": "LYNN",
+          "lastName": "CHAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004-PF",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "No Mathematics 11 or 12"
+            },
+            {
+              "code": "004",
+              "description": "No Science 11 or 12"
+            },
+            {
+              "code": "003",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "004",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "005",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "006",
+              "description": "Fewer than 28 Elective credits"
+            },
+            {
+              "code": "007",
+              "description": "No Physical and Health Education 10"
+            }
+          ],
+          "projectedGradDate": "2028-06-01 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityID": "ac339d70-7649-1a2e-8176-4a3218102c6e"
+          },
+          "firstName": "GARRY",
+          "middleName": "FAITH",
+          "lastName": "FREEDMAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ],
+          "projectedGradDate": "2029-06-01 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "123456789",
+            "entityID": "ac339d70-7649-1a2e-8176-4a31bfc50a6f"
+          },
+          "firstName": "TEST",
+          "middleName": "NEXT",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ],
+          "lastUpdateDate": "2021-01-01 13:00:05",
+          "projectedGradDate": "2029-06-01 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityID": "ac339d70-7649-1a2e-8176-4a342d9a0e8a"
+          },
+          "firstName": "STEPHANIE AREN-LEE",
+          "middleName": null,
+          "lastName": "MA",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2018-EN",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ],
+          "lastUpdateDate": "2020-05-01 13:00:05",
+          "projectedGradDate": "2029-06-01 00:00:00"
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityID": "ac339d70-7649-1a2e-8176-4a31bfc90c46"
+          },
+          "firstName": "LARRY",
+          "middleName": null,
+          "lastName": "TRUMAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "2004-EN",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": [
+            {
+              "code": "003",
+              "description": "Fewer than 4 Language Arts 10 credits"
+            },
+            {
+              "code": "004",
+              "description": "No Language Arts 11"
+            },
+            {
+              "code": "003",
+              "description": "No Social Studies 10"
+            },
+            {
+              "code": "004",
+              "description": "No Social Studies 11 or 12"
+            },
+            {
+              "code": "005",
+              "description": "No Mathematics 10"
+            },
+            {
+              "code": "006",
+              "description": "No Physical and Health Education 10"
+            },
+            {
+              "code": "007",
+              "description": "No Grad Transitions/Career Life Connecti"
+            },
+            {
+              "code": "008",
+              "description": "No Literacy 10 Assessment"
+            },
+            {
+              "code": "009",
+              "description": "No Literacy 12 Assessment"
+            },
+            {
+              "code": "010",
+              "description": "No Numeracy 10 Assessment"
+            },
+            {
+              "code": "011",
+              "description": "Fewer than 16 Gr 12 credits"
+            },
+            {
+              "code": "012",
+              "description": "Fewer than 28 Elective credits"
+            }
+          ],
+          "lastUpdateDate": "2020-12-01 13:00:05"
+        },
+        {
+          "pen": {
+            "pen": "135909257",
+            "entityID": null
+          },
+          "firstName": "GARRY",
+          "middleName": null,
+          "lastName": "TRUMAN",
+          "grade": "12",
+          "gender": "M",
+          "birthdate": "2002-08-05",
+          "gradProgram": "SCCP",
+          "graduationData": {
+            "graduationDate": "2020-09-01",
+            "honorsFlag": true,
+            "dogwoodFlag": false
+          },
+          "nonGradReasons": null,
+          "lastUpdateDate": "2020-01-01 15:00:05",
+          "projectedGradDate": "2029-06-01 00:00:00"
+        }
+      ]
+    },
+    "orgCode": "BC",
+    "issueDate": "2021-05-25",
+    "reportNumber": "TRAX241B_2018",
+    "reportTitle": "Graduation Records and Achievement Data",
+    "reportSubTitle": "Projected Non-Grad Report for Students in Grade 12 and Adult Students"
+  }
+}
