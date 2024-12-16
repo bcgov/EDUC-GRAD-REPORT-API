@@ -225,6 +225,20 @@ public interface Student extends Person {
     String getStringLastUpdateDate();
 
     /**
+     * Gets projected graduation date
+     *
+     * @return last update dateNot supported yet
+     */
+    Date getProjectedGradDate();
+
+    /**
+     * Short string value of the projected graduation date
+     *
+     * @return last update date
+     */
+    String getStringProjectedGradDate();
+
+    /**
      * Short string value of the program completion date
      *
      * @return last update date
