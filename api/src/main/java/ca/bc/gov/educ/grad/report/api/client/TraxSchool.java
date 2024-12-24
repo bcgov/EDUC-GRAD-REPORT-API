@@ -8,6 +8,7 @@ public class TraxSchool {
     private String minCode;
     private String schoolId;
     private String schoolName;
+    private String districtId;
     private String districtName;
     private String transcriptEligibility;
     private String certificateEligibility;
@@ -47,8 +48,8 @@ public class TraxSchool {
 
     @Override
     public String toString() {
-        return "School [minCode=" + minCode + ", schoolId=" + schoolId + ", schoolCategoryLegacyCode=" + schoolCategoryLegacyCode + ", schoolCategoryCode=" + schoolCategoryCode
-                + ", schoolName=" + schoolName + ", districtName=" + districtName + ", transcriptEligibility=" + transcriptEligibility + ", certificateEligibility=" + certificateEligibility
+        return "School [minCode=" + minCode + ", schoolId=" + schoolId + ", schoolName=" + schoolName + ", schoolCategoryCode=" + schoolCategoryCode + ", schoolCategoryLegacyCode=" + schoolCategoryLegacyCode
+                + ", districtId=" + districtId + ", districtName=" + districtName + ", transcriptEligibility=" + transcriptEligibility + ", certificateEligibility=" + certificateEligibility
                 + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", provCode=" + provCode + ", countryCode=" + countryCode + ", postal=" + postal + ", openFlag=" + openFlag
                 + "]";
     }
