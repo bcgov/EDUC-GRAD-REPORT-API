@@ -1,0 +1,28 @@
+meta {
+  name: Create Signature
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/reports/signatures/save
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "createdBy": "",
+    "createdTimestamp": "",
+    "updatedBy": "",
+    "updatedTimestamp": "",
+    "signatureId": "",
+    "signatureContent": [],
+    "gradReportSignatureCode": "",
+    "gradReportSignatureName": "",
+    "gradReportSignatureOrganizationName": "",
+    "districtName": "",
+    "effectiveDate": "",
+    "expiryDate": ""
+  }
+}
