@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.api.client.utils.ExamListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.NonGradReasonListDeserializer;
 import ca.bc.gov.educ.grad.report.api.client.utils.OptionalProgramListDeserializer;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
+import ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -23,6 +24,7 @@ import java.util.*;
 @XmlSeeAlso({
 		Student.class,
 		School.class,
+		DistrictImpl.class,
 		Transcript.class,
 		GradProgram.class,
 		NonGradReason.class,
@@ -31,6 +33,7 @@ import java.util.*;
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Student.class),
 		@JsonSubTypes.Type(value = School.class),
+		@JsonSubTypes.Type(value = DistrictImpl.class),
 		@JsonSubTypes.Type(value = Transcript.class),
 		@JsonSubTypes.Type(value = GradProgram.class),
 		@JsonSubTypes.Type(value = NonGradReason.class),
@@ -48,6 +51,8 @@ public class ReportData implements Serializable {
 	private Student student = new Student();
 	@JsonDeserialize(as = School.class)
 	private School school = new School();
+	@JsonDeserialize(as = DistrictImpl.class)
+	private DistrictImpl district = new DistrictImpl();
 	@JsonDeserialize(as = Transcript.class)
 	private Transcript transcript = new Transcript();
 	@JsonDeserialize(as = Assessment.class)
@@ -106,6 +111,14 @@ public class ReportData implements Serializable {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	public DistrictImpl getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(DistrictImpl district) {
+		this.district = district;
 	}
 
 	public List<School> getSchools() {
