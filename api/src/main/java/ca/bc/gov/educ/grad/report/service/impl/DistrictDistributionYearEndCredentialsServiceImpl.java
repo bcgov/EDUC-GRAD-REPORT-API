@@ -73,7 +73,7 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
                 "Confirmed the district data exists and continue.");
 
         // validate incoming data for reporting
-        final District district = getSchool(reportData);
+        final District district = reportData.getDistrict();
 
         if (district != null) {
             parameters.put("district", district);
