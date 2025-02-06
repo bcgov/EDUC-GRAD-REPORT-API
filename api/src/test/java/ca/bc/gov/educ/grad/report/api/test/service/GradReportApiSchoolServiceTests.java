@@ -2,7 +2,6 @@ package ca.bc.gov.educ.grad.report.api.test.service;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportRequest;
 import ca.bc.gov.educ.grad.report.api.client.Student;
-import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.service.GradReportService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
@@ -267,21 +266,6 @@ public class GradReportApiSchoolServiceTests extends GradReportBaseTest {
 		assertNotNull(reportRequest.getData());
 
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		TraxCountry traxCountry = new TraxCountry();
-		traxCountry.setCountryCode("US");
-		traxCountry.setCountryName("USA");
-		mockTraxCountry(traxCountry);
-
-		traxCountry = new TraxCountry();
-		traxCountry.setCountryCode("AU");
-		traxCountry.setCountryName("AUSTRIA");
-		mockTraxCountry(traxCountry);
-
-		traxCountry = new TraxCountry();
-		traxCountry.setCountryCode("NL");
-		traxCountry.setCountryName("NETHERLANDS");
-		mockTraxCountry(traxCountry);
 
 		byte[] response = apiReportService.getSchoolLabelReport(reportRequest);
 		
