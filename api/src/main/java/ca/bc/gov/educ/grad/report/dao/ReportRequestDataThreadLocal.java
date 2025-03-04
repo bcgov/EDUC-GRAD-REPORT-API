@@ -43,10 +43,6 @@ public class ReportRequestDataThreadLocal {
         user.set(username);
     }
 
-    public static void removeCurrentUser() {
-        user.remove();
-    }
-
     public static void setCorrelationID(String correlationID){
         transactionThread.set(correlationID);
     }
@@ -72,10 +68,6 @@ public class ReportRequestDataThreadLocal {
         return requestSource.get();
     }
 
-    public static void removeCorrelationID() {
-        transactionThread.remove();
-    }
-
     public static String getSignatureImageUrl() {
         return signatureImageUrlThreadLocal.get();
     }
@@ -91,7 +83,9 @@ public class ReportRequestDataThreadLocal {
     public static void clear() {
         removeReportData();
         removeXmlReportData();
-        removeCurrentUser();
+        user.remove();
+        transactionThread.remove();
+        requestSource.remove();
         setSignatureImageUrl(null);
     }
 }
