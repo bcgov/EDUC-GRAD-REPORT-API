@@ -1,0 +1,17 @@
+meta {
+  name: Return Signature Image Object
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/reports/signatures/get/:signCode
+  body: none
+  auth: none
+}
+
+params:path {
+  signCode: 
+}
+
+

@@ -1,7 +1,6 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
-import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
@@ -340,7 +339,7 @@ public abstract class GradReportServiceImpl {
 
         SchoolImpl school = new SchoolImpl();
         if(checkEligibility) {
-            TraxSchool traxSchool = getSchool(studentInfo.getMincode(), accessToken);
+            TraxSchool traxSchool = getSchool(studentInfo.getSchoolId(), accessToken);
             if (traxSchool != null && "N".equalsIgnoreCase(traxSchool.getTranscriptEligibility())) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
@@ -365,6 +364,7 @@ public abstract class GradReportServiceImpl {
     }
 
     void populateSchoolFromStudentInfo(SchoolImpl school, StudentInfo studentInfo) {
+        school.setSchoolId(studentInfo.getSchoolId());
         school.setMincode(studentInfo.getMincode());
         school.setName(studentInfo.getSchoolName());
 
@@ -382,9 +382,11 @@ public abstract class GradReportServiceImpl {
     }
 
     void populateSchoolFromTraxSchool(SchoolImpl school, TraxSchool traxSchool) {
-        school.setSchoolCategoryCode(traxSchool.getSchoolCategoryCode());
+        school.setSchoolCategoryCode(traxSchool.getSchoolCategoryLegacyCode());
+        school.setSchoolId(traxSchool.getSchoolId());
         school.setMincode(traxSchool.getMinCode());
         school.setName(traxSchool.getSchoolName());
+        school.setSchoolCategoryCode(traxSchool.getSchoolCategoryLegacyCode());
         final CanadianPostalAddressImpl address = new CanadianPostalAddressImpl();
         address.setStreetLine1(traxSchool.getAddress1());
         address.setStreetLine2(traxSchool.getAddress2());
@@ -420,38 +422,21 @@ public abstract class GradReportServiceImpl {
 
     }
 
-    TraxSchool getSchool(String minCode, String accessToken) {
+    TraxSchool getSchool(String schoolId, String accessToken) {
         TraxSchool traxSchool = null;
-        if(!StringUtils.isBlank(minCode)) {
+        if(!StringUtils.isBlank(schoolId)) {
             try {
                 traxSchool = webClient.get()
-                    .uri(String.format(constants.getSchoolDetails(), minCode))
+                    .uri(String.format(constants.getSchoolDetails(), schoolId))
                     .headers(h -> h.setBearerAuth(accessToken))
                     .retrieve()
                     .bodyToMono(TraxSchool.class)
                     .block();
             } catch (Exception e) {
-                LOG.log(Level.WARNING, "Unable to get TRAX school by {0} code. Reason {1}", new String[]{minCode, e.getMessage()});
+                LOG.log(Level.WARNING, "Unable to get TRAX school by schoolId={0}. Reason {1}", new String[]{schoolId, e.getMessage()});
             }
         }
         return traxSchool;
-    }
-
-    TraxCountry getCountry(String code, String accessToken) {
-        TraxCountry traxCountry = null;
-        if(!StringUtils.isBlank(code)) {
-            try {
-                traxCountry = webClient.get()
-                        .uri(String.format(constants.getCountryDetails(), code))
-                        .headers(h -> h.setBearerAuth(accessToken))
-                        .retrieve()
-                        .bodyToMono(TraxCountry.class)
-                        .block();
-            } catch (Exception e) {
-                LOG.log(Level.WARNING, "Unable to get TRAX country by {0} code. Reason {1}", new String[]{code, e.getMessage()});
-            }
-        }
-        return traxCountry;
     }
 
     GradProgramImpl getGraduationProgram(String programCode, String accessToken) {

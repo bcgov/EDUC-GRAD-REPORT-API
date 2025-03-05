@@ -67,7 +67,13 @@ public class GradReportSignatureService {
         List<GradReportSignatureImage> result = new ArrayList();
         for(GradReportSignatureImageEntity entity: entities) {
             GradReportSignatureImage signatureImage = gradReportSignatureTransformer.transformToDTO(entity);
-            DistrictImpl dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+
+            DistrictImpl dist = null;
+            try {
+                dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+            } catch (Exception e) {
+                log.error(String.format("Cannot retrieve District information for: %s", entity.getGradReportSignatureCode()));
+            }
             if(dist != null)
                 signatureImage.setDistrictName(dist.getDistrictName());
             result.add(signatureImage);
@@ -101,7 +107,13 @@ public class GradReportSignatureService {
         String methodName = String.format("getSignatureImageByCode(String %s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImage signatureImage = getSignatureImageByCode(code);
-        DistrictImpl dist = getDistrictInfo(signatureImage.getGradReportSignatureCode(),accessToken);
+
+        DistrictImpl dist = null;
+        try {
+            dist = getDistrictInfo(signatureImage.getGradReportSignatureCode(),accessToken);
+        } catch (Exception e) {
+            log.error(String.format("Cannot retrieve District information for: %s", signatureImage.getGradReportSignatureCode()));
+        }
         if(dist != null)
             signatureImage.setDistrictName(dist.getDistrictName());
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);

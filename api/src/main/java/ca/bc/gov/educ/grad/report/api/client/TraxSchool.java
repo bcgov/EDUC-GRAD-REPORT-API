@@ -6,64 +6,51 @@ import lombok.Data;
 public class TraxSchool {
 
     private String minCode;
+    private String schoolId;
     private String schoolName;
+    private String districtId;
     private String districtName;
     private String transcriptEligibility;
     private String certificateEligibility;
-    private String independentDesignation;
-    private String mailerType;
     private String address1;
     private String address2;
     private String city;
     private String provCode;
-    private String provinceName;
     private String countryCode;
-    private String countryName;
     private String postal;
-    private String independentAffiliation;
     private String openFlag;
-    private String signatureDistrict;
+    private String schoolCategoryLegacyCode;
     private String schoolCategoryCode;
 
     public String getSchoolName() {
-        return  schoolName != null ? schoolName.trim(): null;
+        return schoolName != null ? schoolName.trim() : null;
     }
 
     public String getDistrictName() {
-        return districtName != null ? districtName.trim(): null;
+        return districtName != null ? districtName.trim() : null;
     }
 
     public String getAddress1() {
-        return address1 != null ? address1.trim(): null;
+        return address1 != null ? address1.trim() : null;
     }
 
     public String getAddress2() {
-        return address2 != null ? address2.trim(): null;
+        return address2 != null ? address2.trim() : null;
     }
 
     public String getCity() {
-        return city != null ? city.trim(): null;
-    }
-
-    public String getProvinceName() {
-        return provinceName != null ? provinceName.trim(): null;
-    }
-
-    public String getCountryName() {
-        return countryName != null ? countryName.trim(): null;
+        return city != null ? city.trim() : null;
     }
 
     public String getPostal() {
-        return postal != null ? postal.trim(): null;
+        return postal != null ? postal.trim() : null;
     }
 
     @Override
     public String toString() {
-        return "School [minCode=" + minCode + ", schoolName=" + schoolName + ", districtName=" + districtName
-                + ", transcriptEligibility=" + transcriptEligibility + ", certificateEligibility="
-                + certificateEligibility + ", independentDesignation=" + independentDesignation + ", mailerType="
-                + mailerType + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", provCode="
-                + provCode + ", provinceName=" + provinceName + ", countryCode=" + countryCode + ", countryName="
-                + countryName + ", postal=" + postal + ", independentAffiliation=" + independentAffiliation +"]";
+        return "School [minCode=" + minCode + ", schoolId=" + schoolId + ", schoolName=" + schoolName + ", schoolCategoryCode=" + schoolCategoryCode + ", schoolCategoryLegacyCode=" + schoolCategoryLegacyCode
+                + ", districtId=" + districtId + ", districtName=" + districtName + ", transcriptEligibility=" + transcriptEligibility + ", certificateEligibility=" + certificateEligibility
+                + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", provCode=" + provCode + ", countryCode=" + countryCode + ", postal=" + postal + ", openFlag=" + openFlag
+                + "]";
     }
 }
