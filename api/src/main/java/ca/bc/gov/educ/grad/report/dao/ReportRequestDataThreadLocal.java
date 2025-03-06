@@ -7,10 +7,10 @@ public class ReportRequestDataThreadLocal {
 
     private static final InheritableThreadLocal<ReportData> reportDataThread = new InheritableThreadLocal<ReportData>();
     private static final InheritableThreadLocal<XmlReportData> xmlReportDataThread = new InheritableThreadLocal<XmlReportData>();
-    private static final InheritableThreadLocal<String> currentUserThread = new InheritableThreadLocal<String>();
+    private static final InheritableThreadLocal<String> user = new InheritableThreadLocal<String>();
     private static final InheritableThreadLocal<String> transactionThread = new InheritableThreadLocal<String>();
     private static final ThreadLocal<String> signatureImageUrlThreadLocal = new ThreadLocal<String>();
-
+    private static final InheritableThreadLocal<String> requestSource = new InheritableThreadLocal<String>();
     public static ReportData getReportData() {
         return reportDataThread.get();
     }
@@ -36,15 +36,11 @@ public class ReportRequestDataThreadLocal {
     }
 
     public static String getCurrentUser() {
-        return currentUserThread.get();
+        return user.get();
     }
 
     public static void setCurrentUser(String username) {
-        currentUserThread.set(username);
-    }
-
-    public static void removeCurrentUser() {
-        currentUserThread.remove();
+        user.set(username);
     }
 
     public static void setCorrelationID(String correlationID){
@@ -55,8 +51,21 @@ public class ReportRequestDataThreadLocal {
         return transactionThread.get();
     }
 
-    public static void removeCorrelationID() {
-        transactionThread.remove();
+    /**
+     * Set the requestSource for this thread
+     *
+     * @param reqSource
+     */
+    public static void setRequestSource(String reqSource){
+        requestSource.set(reqSource);
+    }
+    /**
+     * Get the requestSource for this thread
+     *
+     * @return the requestSource, or null if it is unknown.
+     */
+    public static String getRequestSource() {
+        return requestSource.get();
     }
 
     public static String getSignatureImageUrl() {
@@ -74,7 +83,9 @@ public class ReportRequestDataThreadLocal {
     public static void clear() {
         removeReportData();
         removeXmlReportData();
-        removeCurrentUser();
+        user.remove();
+        transactionThread.remove();
+        requestSource.remove();
         setSignatureImageUrl(null);
     }
 }
