@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.api.config;
 
+import ca.bc.gov.educ.grad.report.api.util.LogHelper;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.modelmapper.ModelMapper;
@@ -29,6 +30,8 @@ import reactor.netty.http.client.HttpClient;
 public class ReportServiceConfiguration implements WebMvcConfigurer {
 
     RequestInterceptor requestInterceptor;
+    LogHelper logHelper;
+    EducGradReportApiConstants constants;
 
     @Autowired
     public ReportServiceConfiguration(RequestInterceptor requestInterceptor) {
@@ -47,6 +50,7 @@ public class ReportServiceConfiguration implements WebMvcConfigurer {
         client.warmup().block();
         return WebClient.builder()
                 .filter(setRequestHeaders())
+                .filter(this.log())
                 .build();
     }
 
@@ -74,6 +78,19 @@ public class ReportServiceConfiguration implements WebMvcConfigurer {
                     .build();
             return next.exchange(modifiedRequest);
         };
+    }
+
+    private ExchangeFilterFunction log() {
+        return (clientRequest, next) -> next
+                .exchange(clientRequest)
+                .doOnNext((clientResponse -> logHelper.logClientHttpReqResponseDetails(
+                        clientRequest.method(),
+                        clientRequest.url().toString(),
+                        clientResponse.statusCode().value(),
+                        clientRequest.headers().get(EducGradReportApiConstants.CORRELATION_ID),
+                        clientRequest.headers().get(EducGradReportApiConstants.REQUEST_SOURCE),
+                        constants.isSplunkLogHelperEnabled())
+                ));
     }
 
 }
