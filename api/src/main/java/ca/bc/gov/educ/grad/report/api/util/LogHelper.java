@@ -48,6 +48,10 @@ public class LogHelper {
             if (correlationID != null) {
                 httpMap.put("correlation_id", correlationID);
             }
+            val requestSource = request.getHeader(EducGradReportApiConstants.REQUEST_SOURCE);
+            if (requestSource != null) {
+                httpMap.put("request_source", requestSource);
+            }
             httpMap.put("server_http_request_url", String.valueOf(request.getRequestURL()));
             httpMap.put("server_http_request_processing_time_ms", totalTime);
             if(isDebugMode) {
@@ -72,7 +76,8 @@ public class LogHelper {
      * @param responseCode
      * @param correlationID
      */
-    public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID, final boolean logging) {
+    public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID,
+                                                final List<String> requestSource, final boolean logging) {
         if (!logging) return;
         try {
             final Map<String, Object> httpMap = new HashMap<>();
@@ -81,6 +86,9 @@ public class LogHelper {
             httpMap.put("client_http_request_url", url);
             if (correlationID != null) {
                 httpMap.put("correlation_id", String.join(",", correlationID));
+            }
+            if (requestSource != null) {
+                httpMap.put("request_source", String.join(",", requestSource));
             }
             MDC.putCloseable("httpEvent", jsonTransformer.marshall(httpMap));
             log.info("");

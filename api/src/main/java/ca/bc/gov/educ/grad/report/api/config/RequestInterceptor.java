@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Component
 public class RequestInterceptor implements AsyncHandlerInterceptor {
@@ -42,18 +43,28 @@ public class RequestInterceptor implements AsyncHandlerInterceptor {
 
         // correlationID
         val correlationID = request.getHeader(EducGradReportApiConstants.CORRELATION_ID);
-        if (correlationID != null) {
-            ReportRequestDataThreadLocal.setCorrelationID(correlationID);
+        ReportRequestDataThreadLocal.setCorrelationID(correlationID != null ? correlationID : UUID.randomUUID().toString());
+
+        //Request Source
+        val requestSource = request.getHeader(EducGradReportApiConstants.REQUEST_SOURCE);
+        if(requestSource != null) {
+            ReportRequestDataThreadLocal.setRequestSource(requestSource);
         }
 
-        // username
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth instanceof JwtAuthenticationToken) {
-            JwtAuthenticationToken authenticationToken = (JwtAuthenticationToken) auth;
-            Jwt jwt = (Jwt) authenticationToken.getCredentials();
-            String username = JwtTokenUtil.getName(jwt);
-            if (username != null) {
-                ReportRequestDataThreadLocal.setCurrentUser(username);
+        // Header userName
+        val userName = request.getHeader(EducGradReportApiConstants.USER_NAME);
+        if (userName != null) {
+            ReportRequestDataThreadLocal.setCurrentUser(userName);
+        }
+        else {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            if (auth instanceof JwtAuthenticationToken) {
+                JwtAuthenticationToken authenticationToken = (JwtAuthenticationToken) auth;
+                Jwt jwt = (Jwt) authenticationToken.getCredentials();
+                String username = JwtTokenUtil.getName(jwt);
+                if (username != null) {
+                    ReportRequestDataThreadLocal.setCurrentUser(username);
+                }
             }
         }
 
@@ -71,10 +82,6 @@ public class RequestInterceptor implements AsyncHandlerInterceptor {
     @Override
     public void afterCompletion(@NonNull final HttpServletRequest request, final HttpServletResponse response, @NonNull final Object handler, final Exception ex) {
         logHelper.logServerHttpReqResponseDetails(request, response, constants.isSplunkLogHelperEnabled());
-        val correlationID = request.getHeader(EducGradReportApiConstants.CORRELATION_ID);
-        if (correlationID != null) {
-            response.setHeader(EducGradReportApiConstants.CORRELATION_ID, request.getHeader(EducGradReportApiConstants.CORRELATION_ID));
-        }
         // clear
         ReportRequestDataThreadLocal.clear();
     }
