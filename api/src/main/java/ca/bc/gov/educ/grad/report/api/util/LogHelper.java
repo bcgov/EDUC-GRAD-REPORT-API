@@ -55,7 +55,7 @@ public class LogHelper {
             httpMap.put("server_http_request_url", String.valueOf(request.getRequestURL()));
             httpMap.put("server_http_request_processing_time_ms", totalTime);
             if(isDebugMode) {
-                httpMap.put("server_http_request_payload", request.getAttribute("payload"));
+                httpMap.put("server_http_request_payload", getTruncatedPayload(request));
             }
             httpMap.put("server_http_request_remote_address", request.getRemoteAddr());
             httpMap.put("server_http_request_client_name", StringUtils.trimToEmpty(request.getHeader("X-Client-Name")));
@@ -67,6 +67,16 @@ public class LogHelper {
             log.error(EXCEPTION, exception);
         }
     }
+
+    /**
+     * Truncating payload to 1000 characters due to logging constraints.
+     * @param request * @return a String representing the truncated payload
+     **/
+    private static String getTruncatedPayload(final HttpServletRequest request) {
+        String payload = String.valueOf(request.getAttribute("payload") != null ? request.getAttribute("payload") : "");
+        return (payload.length() > 1000) ? payload.substring(0, 1000).concat("...") : payload;
+    }
+
 
     /**
      * WebClient to call other REST APIs
