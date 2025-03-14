@@ -18,7 +18,6 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
 @SuppressWarnings("ALL")
@@ -34,8 +33,10 @@ public class ReportServiceConfiguration implements WebMvcConfigurer {
     EducGradReportApiConstants constants;
 
     @Autowired
-    public ReportServiceConfiguration(RequestInterceptor requestInterceptor) {
+    public ReportServiceConfiguration(RequestInterceptor requestInterceptor, LogHelper logHelper, EducGradReportApiConstants constants) {
         this.requestInterceptor = requestInterceptor;
+        this.logHelper = logHelper;
+        this.constants = constants;
     }
 
     @Bean
