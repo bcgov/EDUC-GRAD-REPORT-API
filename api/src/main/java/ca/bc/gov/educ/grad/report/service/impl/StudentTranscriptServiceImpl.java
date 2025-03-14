@@ -518,7 +518,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
         LOG.entering(CLASSNAME, methodName);
-        try {
         final TranscriptTypeCode transcriptTypeCode = transcript.getTranscriptTypeCode();
 
         final TranscriptReport report = reportService.createTranscriptReport(transcriptTypeCode, program);
@@ -567,15 +566,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         LOG.exiting(CLASSNAME, methodName);
         return transcriptReport;
     }
-        catch (DomainServiceException | IOException e) {
-        LOG.log(Level.INFO, "Error occurred in " + methodName, e.getMessage());
-        throw e; // Rethrow to maintain method signature behavior
-    } catch (Exception e) {
-        LOG.log(Level.INFO, "Unexpected error occurred in " + methodName, e.getMessage());
-        throw new RuntimeException("Unexpected error occurred while generating the student transcript report", e);
-    }
-
-}
 
     @Override
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
@@ -601,7 +591,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final Parameters<String, Object> parameters) throws DomainServiceException, IOException {
         final String methodName = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters)";
         LOG.entering(CLASSNAME, methodName);
-        try {
         final String pen = personalEducationNumber.getValue();
         final StudentInfo studentInfo = getStudentInfo(pen);
 
@@ -622,11 +611,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         Date issueDate = transcript.getIssueDate();
 
-        if (preview && StringUtils.isNotBlank(personalEducationNumber.getEntityId())) {
+        if(preview && StringUtils.isNotBlank(personalEducationNumber.getEntityId())) {
             LOG.log(Level.FINE, "Preview transcript get Last Update Date");
             UUID graduationStudentRecordId = UUID.fromString(personalEducationNumber.getEntityId());
             Optional<Date> transcriptLastUpdateDate = studentTranscriptRepository.getTranscriptLastUpdateDate(graduationStudentRecordId);
-            if (transcriptLastUpdateDate.isPresent()) {
+            if(transcriptLastUpdateDate.isPresent()) {
                 issueDate = transcriptLastUpdateDate.get();
             }
         }
@@ -648,14 +637,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
 
         LOG.exiting(CLASSNAME, methodName);
         return report;
-    }
-    catch (DomainServiceException | IOException e) {
-        LOG.log(Level.INFO, "Error occurred in " + methodName, e.getMessage());
-        throw e;
-    } catch (Exception e) {
-        LOG.log(Level.INFO, "Unexpected error occurred in " + methodName, e.getMessage());
-        throw new RuntimeException("Unexpected error occurred while generating the student transcript report", e);
-    }
     }
 
     private String getCreditsUsedForGrad(final Transcript transcript) {
