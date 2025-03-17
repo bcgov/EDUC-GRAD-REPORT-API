@@ -20,5 +20,6 @@ public class StudentReport extends BaseEntity {
     private String gradutionStudentRecordId;
     private String documentStatusCode;
     private Date distributionDate;
+    private Date reportUpdateDate;
 
 }
