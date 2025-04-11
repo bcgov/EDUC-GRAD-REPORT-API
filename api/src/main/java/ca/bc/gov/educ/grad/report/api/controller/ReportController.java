@@ -60,7 +60,6 @@ public class ReportController extends BaseController {
             byte[] resultBinary = reportService.getStudentTranscriptReport(report);
             return handleBinaryResponse(resultBinary, reportFile);
         } catch (Exception e) {
-            logger.debug("ReportController" + e.getMessage());
             return getInternalServerErrorResponse(e);
         }
     }

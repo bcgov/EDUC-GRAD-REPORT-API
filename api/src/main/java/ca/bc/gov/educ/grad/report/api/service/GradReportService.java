@@ -172,7 +172,6 @@ public class GradReportService {
 			StudentTranscriptReport report = getStudentTranscriptReportDocument(reportRequest);
 			response = report.getReportData();
 		} catch (Exception e) {
-			log.debug("getStudentTranscriptReport" + e.getMessage());
 			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
