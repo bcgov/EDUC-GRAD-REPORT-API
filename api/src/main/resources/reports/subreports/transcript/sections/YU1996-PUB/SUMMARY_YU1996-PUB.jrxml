@@ -46,9 +46,6 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="P_SIGNATURE_FILE" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","MOE_ADM")]]></defaultValueExpression>
-	</parameter>
 	<parameter name="P_SIGNATURE_LABEL" class="java.lang.String">
 		<defaultValueExpression><![CDATA["Assistant Deputy Minister"]]></defaultValueExpression>
 	</parameter>
@@ -532,9 +529,6 @@ possible, but credit was granted on the basis of adjudication by the school]]></
 				</subreportParameter>
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
-				</subreportParameter>
-				<subreportParameter name="P_SIGNATURE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_SIGNATURE_LABEL">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_LABEL}]]></subreportParameterExpression>

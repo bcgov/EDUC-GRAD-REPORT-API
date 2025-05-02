@@ -15,14 +15,18 @@
  * ********************************************************************** */
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Certificate;
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Signatories;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateSubType;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.reports.CertificateReport;
+import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.ByteArrayInputStream;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,13 +62,15 @@ public final class CertificateReportImpl extends StudentReportImpl
 
     private Boolean independentSchool = FALSE;
     private String schoolSignatureCode = "";
+    private final GradReportSignatureService gradReportSignatureService;
 
     /**
      * Constructs a new report using the default report template for
      * certificates. The default is an SCCP report.
      */
-    public CertificateReportImpl() {
+    public CertificateReportImpl(GradReportSignatureService gradReportSignatureService) {
         super(REPORT_NAME);
+        this.gradReportSignatureService = gradReportSignatureService;
     }
 
     /**
@@ -106,16 +112,32 @@ public final class CertificateReportImpl extends StudentReportImpl
      * Called to set the signatories associated with the certificate. This will
      * apply school signatures to a certificate based on the logic inside the
      * applySchoolSignatory method.
-     *
-     * TODO: Move logic out of report services.
      */
     private void processSignatories() {
         final Signatories signatories = new Signatories();
-        signatories.setSchoolSignatory(getSchoolSignatureCode());
+        String code = getSchoolSignatureCode();
+
+        GradReportSignatureImage schoolSignatureImage = gradReportSignatureService.getSignatureImageByCode(code);
+        GradReportSignatureImage ministerSignatureImage = gradReportSignatureService.getSignatureImageByCode("MOE");
+        GradReportSignatureImage advancedSignatureImage = gradReportSignatureService.getSignatureImageByCode("MOAE");
+        GradReportSignatureImage admSignatureImage = gradReportSignatureService.getSignatureImageByCode("MOE_ADM");
+        setSignature(ministerSignatureImage, signatories::setMinisterOfEducation, "MOE");
+        setSignature(advancedSignatureImage, signatories::setMinisterOfAdvancedEducation, "MOAE");
+        setSignature(admSignatureImage, signatories::setAssistantDeputyMinister, "MOE_ADM");
+        setSignature(schoolSignatureImage, signatories::setSchoolSignatory, code);
         LOG.log(Level.FINE, "School signatory code is <{0}>.",
                 signatories.getSchoolSignatory());
 
         getCertificate().setSignatories(signatories);
+    }
+
+    private void setSignature(GradReportSignatureImage signatureImage, Consumer<ByteArrayInputStream> setter, String code) {
+        if (signatureImage == null) {
+            LOG.log(Level.WARNING, "No signature image found for code <{0}>.", code);
+            setter.accept(new ByteArrayInputStream(new byte[0]));
+        } else {
+            setter.accept(new ByteArrayInputStream(signatureImage.getSignatureContent()));
+        }
     }
 
     /**
