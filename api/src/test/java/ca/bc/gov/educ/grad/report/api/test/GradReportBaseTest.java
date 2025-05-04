@@ -176,7 +176,7 @@ public abstract class GradReportBaseTest {
         StudentTranscriptEntity studentTranscriptEntity = new StudentTranscriptEntity();
         studentTranscriptEntity.setId(UUID.randomUUID());
         studentTranscriptEntity.setGraduationStudentRecordId(graduationStudentRecord.getStudentID());
-        studentTranscriptEntity.setUpdateDate(graduationStudentRecord.getLastUpdateDate());
+        studentTranscriptEntity.setUpdatedTimestamp(graduationStudentRecord.getLastUpdateDate());
 
         when(this.studentTranscriptRepository.findByGraduationStudentRecordId(graduationStudentRecord.getStudentID())).thenReturn(studentTranscriptEntity);
         when(this.studentCertificateRepository.getCertificateDistributionDate(graduationStudentRecord.getStudentID())).thenReturn(Optional.of(new Date()));
