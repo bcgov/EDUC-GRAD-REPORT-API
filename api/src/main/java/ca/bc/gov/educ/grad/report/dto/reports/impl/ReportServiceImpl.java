@@ -26,6 +26,7 @@ import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.reports.*;
 import ca.bc.gov.educ.grad.report.model.transcript.ParameterPredicate;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
+import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -61,7 +62,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     private static transient final Logger LOG = Logger.getLogger(CLASSNAME);
 
     private static final long serialVersionUID = 2L;
+    private final GradReportSignatureService gradReportSignatureService;
 
+    public ReportServiceImpl(GradReportSignatureService gradReportSignatureService) {
+        this.gradReportSignatureService = gradReportSignatureService;
+    }
     /**
      * @throws IOException Could not read resources required for filling the
      * report (e.g., resource bundle or report template).
@@ -88,7 +93,7 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @Override
     @RolesAllowed({USER_REPORTS_CERTIFICATES, FULFILLMENT_SERVICES_USER})
     public CertificateReport createCertificateReport() {
-        return new CertificateReportImpl();
+        return new CertificateReportImpl(gradReportSignatureService);
     }
 
     /**

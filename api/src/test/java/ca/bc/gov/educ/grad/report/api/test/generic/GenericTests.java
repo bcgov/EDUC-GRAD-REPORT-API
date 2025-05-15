@@ -5,6 +5,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.impl.ReportServiceImpl;
 import ca.bc.gov.educ.grad.report.model.reports.*;
 import ca.bc.gov.educ.grad.report.model.transcript.ParameterPredicate;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
+import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
@@ -13,7 +14,7 @@ public class GenericTests {
 
     @Test
     public void reportServiceImplTest() {
-        ReportServiceImpl service = new ReportServiceImpl();
+        ReportServiceImpl service = new ReportServiceImpl(new GradReportSignatureService());
         assertNotNull(service);
         TranscriptReport transcriptReport = service.createTranscriptReport(TranscriptTypeCode.BC1950_IND, new GradProgramImpl());
         assertNotNull(transcriptReport);

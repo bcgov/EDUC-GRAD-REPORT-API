@@ -229,18 +229,6 @@ public class JRDataSourceFactory {
     }
 
     /**
-     * Returns signatures that are digitally added to certificate reports. The
-     * signatures are real, but which signatures are used is mock.
-     *
-     * @return A mock Signatories for testing purposes.
-     */
-    public static Signatories createSignatureSet() {
-        final Signatories signatures = new Signatories();
-        signatures.setSchoolSignatory(randomSchoolSignatory());
-        return signatures;
-    }
-
-    /**
      * Returns a school with mock data.
      *
      * @return A new School instance, never null.
@@ -341,86 +329,6 @@ public class JRDataSourceFactory {
                 .build();
     }
 
-    /**
-     * Returns a mock student object.
-     *
-     * @return A student in BC, never null.
-     */
-    public static Student createStudent() {
-        return createStudent(randomPEN());
-    }
-
-    /**
-     * Returns a Student instance populated with mock data for a BC district
-     * organization and graduation program of SCCP.
-     *
-     * @param pen Personal Education Number
-     * @return A mock Student for testing purposes.
-     */
-    public static Student createStudent(final String pen) {
-        return createStudent(pen, LOGO_CODE_BC);
-    }
-
-    /**
-     * Returns a Student instance populated with mock data.
-     *
-     * @param pen Personal Education Number
-     * @param logoCode "BC" or "YU" to indicate what organisation and logo.
-     * @return A mock Student for testing purposes.
-     */
-    public static Student createStudent(final String pen, final String logoCode) {
-        return createStudent(pen, logoCode, PROGRAM_1950.toString());
-    }
-
-    /**
-     * Returns a Student instance populated with mock data.
-     *
-     * @param pen Personal Education Number
-     * @param logoCode "BC" or "YU" to indicate what organisation and logo.
-     * @param grad The graduation program code.
-     * @return A mock Student for testing purposes.
-     */
-    public static Student createStudent(
-            final String pen, final String logoCode, final String grad) {
-        final DistrictOrganisation district = createDistrictOrganisation(logoCode);
-        final School school = createSchool(district);
-        final PostalAddress studentAddress = createStudentAddress();
-        final GraduationProgram graduationProgram = createGraduationProgram(grad);
-        final Status status = createStatus();
-
-        int examinable = 32;
-        int nonExaminable = 15;
-        int assessable = 0;
-
-        final List<TranscriptResult> transcriptResults = graduationProgram.isAdult()
-                ? createAdultTranscriptResults()
-                : createTranscriptResults(examinable, nonExaminable, assessable);
-
-        int size = randomPercent() % 5 + 1;
-        final List<Certificate> certificates = createCertificateResults(size);
-
-        if (randomPercent() % 2 == 0) {
-            final List<IncompletionReason> reasons = createIncompletionReasons();
-            status.setIncompletionReasons(reasons);
-        }
-
-        final Student student = new Student.Builder()
-                .withPEN(pen)
-                .withFirstName(randomFirstName())
-                .withLastName(randomLastName())
-                .withMiddleNames(randomMiddleName())
-                .withBirthdate(getStudentBirthdate())
-                .withCitizenship("CAD")
-                .withSchool(school)
-                .withAddress(studentAddress)
-                .withTranscriptResults(transcriptResults)
-                .withCertificates(certificates)
-                .withGraduationProgram(graduationProgram)
-                .withStatus(status)
-                .build();
-
-        return student;
-    }
 
     /**
      * Used by the reporting IDE to help test transcript results independently
@@ -522,18 +430,6 @@ public class JRDataSourceFactory {
         }
     }
 
-    private static List<Certificate> createCertificateResults(final int size) {
-        final List<Certificate> results = new ArrayList<>(size);
-
-        if (randomPercent() % 5 != 0) {
-            for (int i = 1; i <= size; i++) {
-                results.add(createCertificate());
-            }
-        }
-
-        return results;
-    }
-
     private static List<IncompletionReason> createIncompletionReasons() {
         final List<IncompletionReason> incompletionReasons = Arrays.asList(
                 createIncompletionReason("DSC11", "Disturbed class with Disco Duck"),
@@ -581,44 +477,12 @@ public class JRDataSourceFactory {
     }
 
     /**
-     * Returns a Certificate instance with mock data.
-     *
-     * @return A mock Certificate for testing purposes.
-     */
-    public static Certificate createCertificate() {
-        return new Certificate.Builder()
-                .withIssueDate(randomDay(2011, 3))
-                .withStudent(createStudentNamed("Delia", "Alicja", "Skinner"))
-                .withSignatories(createSignatureSet())
-                .build();
-    }
-
-    /**
-     * Returns the single student instance wrapped in a collection. The value
-     * returned is passed into the reporting engine.
-     *
-     * @return A collection with a single student instance.
-     */
-    public static Collection<Student> createStudentCollection() {
-        return Arrays.asList(createStudent());
-    }
-
-    /**
      * For testing packing slip reports using Jaspersoft Studio.
      *
      * @return A collection of 1 packing slip details instance.
      */
     public static Collection<PackingSlipDetails> createPackingSlipCollection() {
         return Arrays.asList(createPackingSlipDetails());
-    }
-
-    /**
-     * For testing certificate reports.
-     *
-     * @return A collection of 1 certificate instances.
-     */
-    public static Collection<Certificate> createCertificateCollection() {
-        return Arrays.asList(createCertificate());
     }
 
     /**
