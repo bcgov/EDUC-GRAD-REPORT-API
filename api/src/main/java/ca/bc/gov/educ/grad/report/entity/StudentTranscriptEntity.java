@@ -3,14 +3,13 @@ package ca.bc.gov.educ.grad.report.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "STUDENT_TRANSCRIPT")
-public class StudentTranscriptEntity {
+public class StudentTranscriptEntity extends BaseEntity {
 
     @Id
     @Column(name = "STUDENT_TRANSCRIPT_ID", nullable = false, columnDefinition = "uuid")
@@ -29,16 +28,9 @@ public class StudentTranscriptEntity {
     @Column(name = "DISTRIBUTION_DATE")
     private Date distributionDate;
 
-    @Column(name = "CREATE_USER", nullable = false, length = 30)
-    private String createUser;
+    @Column(name = "TRANSCRIPT_UPDATE_DATE")
+    private Date transcriptUpdateDate;
 
-    @Column(name = "CREATE_DATE", nullable = false)
-    private LocalDate createDate;
 
-    @Column(name = "UPDATE_USER", nullable = false, length = 30)
-    private String updateUser;
-
-    @Column(name = "UPDATE_DATE", nullable = false)
-    private Date updateDate;
 
 }

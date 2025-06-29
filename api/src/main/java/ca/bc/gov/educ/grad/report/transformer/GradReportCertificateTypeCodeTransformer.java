@@ -16,7 +16,7 @@ public class GradReportCertificateTypeCodeTransformer {
     ModelMapper modelMapper;
 
     public List<CertificateTypeCode> transformToDTO (List<CertificateTypeCodeEntity> entities ) {
-        List<CertificateTypeCode> codes = new ArrayList<CertificateTypeCode>();
+        List<CertificateTypeCode> codes = new ArrayList<>();
         for (CertificateTypeCodeEntity entity : entities) {
             CertificateTypeCode code = modelMapper.map(entity, CertificateTypeCode.class);
             codes.add(code);
@@ -25,7 +25,6 @@ public class GradReportCertificateTypeCodeTransformer {
     }
 
     public CertificateTypeCode transformToDTO (CertificateTypeCodeEntity entity ) {
-        CertificateTypeCode code = modelMapper.map(entity, CertificateTypeCode.class);
-        return code;
+        return modelMapper.map(entity, CertificateTypeCode.class);
     }
 }

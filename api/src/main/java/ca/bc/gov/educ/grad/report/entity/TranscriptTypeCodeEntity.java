@@ -38,4 +38,7 @@ public class TranscriptTypeCodeEntity extends BaseEntity {
     @Column(name = "EXPIRY_DATE")
     private Date expiryDate;
 
+    @Column(name = "PAPER_TYPE")
+    private String paperType;
+
 }
