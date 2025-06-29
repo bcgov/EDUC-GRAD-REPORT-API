@@ -51,7 +51,7 @@ public abstract class GradReportServiceImpl {
 
     static final String CLASSNAME = GradReportServiceImpl.class.getName();
     static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
+    private static final String DIR_IMAGE_BASE = "/reports/resources/images/%s";
 
     static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     static final String REPORT_DATA_VALIDATION = "REPORT_DATA_NOT_VALID";
@@ -142,9 +142,16 @@ public abstract class GradReportServiceImpl {
 
     InputStream openImageResource(final String resource) throws IOException {
         /** final URL url = getReportResource(resource); **/
-        URL url = this.getClass().getResource(DIR_IMAGE_BASE + resource);
+        validateResourcePath(resource);
+        URL url = this.getClass().getResource(String.format(DIR_IMAGE_BASE, resource));
         assert url != null;
         return url.openStream();
+    }
+
+    void validateResourcePath(String resource) {
+        if(StringUtils.isBlank(resource) || resource.contains("..") || resource.contains("/") || resource.contains("\\")) {
+            throw new IllegalArgumentException("Invalid resource path");
+        }
     }
 
     GraduationReport getGraduationReport(String methodName, List<String> excludePrograms) throws IOException {
@@ -164,7 +171,7 @@ public abstract class GradReportServiceImpl {
             case "buildSchoolDistributionReport()":
                 sortStudentsByProgramCompletionDateAndNames(students);
                 break;
-            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradProjectedReport()","buildStudentNonGradReport()":
+            case "buildSchoolGraduationReport()","buildSchoolNonGraduationReport()","buildStudentNonGradProjectedReport()","buildStudentGradProjectedReport()","buildStudentNonGradReport()":
                 sortStudentsByNames(students);
                 break;
             default:

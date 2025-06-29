@@ -39,6 +39,7 @@ public class Student implements Serializable {
     private String localId = "";
     private String hasOtherProgram = "";
     private LocalDateTime lastUpdateDate;
+    private LocalDateTime projectedGradDate;
     private List<OtherProgram> otherProgramParticipation = new ArrayList<>();
     private List<NonGradReason> nonGradReasons = new ArrayList<>();
 
@@ -235,6 +236,15 @@ public class Student implements Serializable {
 
     public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    public LocalDateTime getProjectedGradDate() {
+        return projectedGradDate;
+    }
+
+    public void setProjectedGradDate(LocalDateTime projectedGradDate) {
+        this.projectedGradDate = projectedGradDate;
     }
 
     @Override

@@ -1,0 +1,18 @@
+{
+  "options": {
+    "reportName": "studentgradprojected",
+    "reportFile": "Student Graduated Projected Requirements Report - NO STUDENTS.pdf"
+  },
+  "data": {
+    "school": {
+      "name": "MOUNT BAKER SECONDARY",
+      "mincode": "00502001",
+      "students": null
+    },
+    "orgCode": "BC",
+    "issueDate": "2021-05-25",
+    "reportNumber": "TRAX241B_2018",
+    "reportTitle": "Graduation Records and Achievement Data",
+    "reportSubTitle": "Projected Grad Report for Students in Grade 12 and Adult Students"
+  }
+}

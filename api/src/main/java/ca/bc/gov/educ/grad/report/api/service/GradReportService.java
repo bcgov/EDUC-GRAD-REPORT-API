@@ -93,6 +93,9 @@ public class GradReportService {
 	StudentNonGradProjectedService studentNonGradProjectedService;
 
 	@Autowired
+	StudentGradProjectedService studentGradProjectedService;
+
+	@Autowired
 	StudentNonGradService studentNonGradService;
 
 	@Autowired
@@ -376,6 +379,22 @@ public class GradReportService {
 		return response;
 	}
 
+	public byte[] getStudentGradProjectedReport(ReportRequest reportRequest) {
+		String methodName = "getStudentGradProjectedReport(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		byte[] response = null;
+
+		try {
+			StudentGradProjectedReport studentGradProjectedReport = getStudentGradProjectedReportDocument(reportRequest);
+			response = studentGradProjectedReport.asBytes();
+		} catch (Exception e) {
+			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
+		}
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+		return response;
+	}
+
 	public byte[] getStudentNonGradReport(ReportRequest reportRequest) {
 		String methodName = "getStudentNonGradReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
@@ -477,6 +496,15 @@ public class GradReportService {
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
 
 		return studentNonGradProjectedService.buildStudentNonGradProjectedReport();
+	}
+
+	public StudentGradProjectedReport getStudentGradProjectedReportDocument(ReportRequest reportRequest) throws IOException {
+		String methodName = "getStudentGradProjectedReportDocument(ReportRequest reportRequest)";
+		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
+
+		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		return studentGradProjectedService.buildStudentGradProjectedReport();
 	}
 
 	public StudentNonGradReport getStudentNonGradReportDocument(ReportRequest reportRequest) throws IOException {
