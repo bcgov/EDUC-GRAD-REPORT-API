@@ -84,7 +84,7 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @Override
     @RolesAllowed({USER_REPORTS_TRANSCRIPT, FULFILLMENT_SERVICES_USER})
     public TranscriptReport createTranscriptReport(TranscriptTypeCode transcriptTypeCode, GradProgram program) {
-        return new TranscriptReportImpl(transcriptTypeCode, program);
+        return new TranscriptReportImpl(transcriptTypeCode, program, gradReportSignatureService);
     }
 
     /**
