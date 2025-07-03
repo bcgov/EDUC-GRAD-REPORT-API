@@ -5,6 +5,7 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="net.sf.jasperreports.export.html.exclude.key.SIGNATURE"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_BASE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
@@ -39,6 +40,9 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
 	<summary>
 		<band height="792">
 			<subreport>
@@ -76,6 +80,7 @@
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "sections/" + $P{P_REPORT_TYPE} + "/SUMMARY_" + $P{P_REPORT_TYPE} + "_SUB.jasper"]]></subreportExpression>
 			</subreport>
 		</band>

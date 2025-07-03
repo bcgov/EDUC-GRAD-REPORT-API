@@ -30,7 +30,7 @@
 		<defaultValueExpression><![CDATA["Assistant Deputy Minister"]]></defaultValueExpression>
 	</parameter>
 	<field name="signatures.assistantDeputyMinister" class="java.io.InputStream">
-		<fieldDescription><![CDATA[signatories.assistantDeputyMinister]]></fieldDescription>
+		<fieldDescription><![CDATA[student.signatories.assistantDeputyMinister]]></fieldDescription>
 	</field>
 	<summary>
 		<band height="110">
