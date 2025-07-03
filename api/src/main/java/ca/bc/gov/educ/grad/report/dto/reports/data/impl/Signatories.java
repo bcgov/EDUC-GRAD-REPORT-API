@@ -22,7 +22,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.ByteArrayInputStream;
-import java.io.Serializable;
 
 /**
  * Represents a set of signatures passed into each certificate report. The

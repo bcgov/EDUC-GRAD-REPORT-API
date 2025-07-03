@@ -326,6 +326,7 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
         } else {
             signatories.setAssistantDeputyMinister(new ByteArrayInputStream(admSignatureImage.getSignatureContent()));
         }
+        getStudent().setSignatories(this.signatories);
     }
 
     /**
