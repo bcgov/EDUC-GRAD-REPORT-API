@@ -1,0 +1,39 @@
+meta {
+  name: Generate Student XML Transcript Report
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/reports/xmltranscriptreport
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "options": {
+      "cacheReport": "",
+      "convertTo": "",
+      "overwrite": "",
+      "reportName": "",
+      "reportFile": ""
+    },
+    "data": {
+      "requestTrackId": "",
+      "pen": {
+        "pen": "",
+        "entityID": ""
+      },
+      "authorizeDate": "",
+      "psis": "",
+      "organizationName": "",
+      "addressLine1": "",
+      "addressLine2": "",
+      "addressLine3": "",
+      "city": "",
+      "stateProvince": "",
+      "postalCode": ""
+    }
+  }
+}
