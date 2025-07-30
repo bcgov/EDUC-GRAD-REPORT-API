@@ -17,6 +17,8 @@
  */
 package ca.bc.gov.educ.grad.report.model.common.support;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -31,6 +33,7 @@ import java.util.logging.Logger;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class AuditEntityListener {
 
     private static final String CLASSNAME = AuditEntityListener.class.getName();
@@ -49,7 +52,7 @@ public class AuditEntityListener {
      * @param entity The entity whose audit fields need populating.
      */
     public void populateAuditFieldsCreate(Object entity) {
-        LOG.entering(CLASSNAME, "populateAuditFieldsCreate");
+        log.trace("Entering {}", "populateAuditFieldsCreate");
 
         if (entity instanceof AbstractDomainEntity && entity instanceof AuditableDetail) {
             AbstractDomainEntity domainEntity = (AbstractDomainEntity) entity;
@@ -74,7 +77,7 @@ public class AuditEntityListener {
 
             validateAuditFields(domainEntity);
         }
-        LOG.exiting(CLASSNAME, "populateAuditFieldsCreate");
+        log.trace("Exiting {}", "populateAuditFieldsCreate");
     }
 
     /**
@@ -89,7 +92,7 @@ public class AuditEntityListener {
      * @param entity The entity whose audit fields need populating.
      */
     public void populateAuditFieldsUpdate(Object entity) {
-        LOG.entering(CLASSNAME, "populateAuditFieldsUpdate");
+        log.trace("Entering {}", "populateAuditFieldsUpdate");
 
         if (entity instanceof AbstractDomainEntity) {
             AbstractDomainEntity domainEntity = (AbstractDomainEntity) entity;
@@ -116,11 +119,11 @@ public class AuditEntityListener {
             validateAuditFields(domainEntity);
         }
 
-        LOG.exiting(CLASSNAME, "populateAuditFieldsUpdate");
+        log.trace("Exiting {}", "populateAuditFieldsUpdate");
     }
 
     private void validateAuditFields(AbstractDomainEntity domainEntity) {
-        LOG.entering(CLASSNAME, "validateAuditFields");
+        log.trace("Entering {}", "validateAuditFields");
 
         String createdBy = domainEntity.getCreatedBy();
         String lastUpdatedBy = domainEntity.getLastUpdatedBy();
@@ -153,7 +156,7 @@ public class AuditEntityListener {
             throw new IllegalStateException("LastUpdatedOn should NOT be earlier than createdOn.");
         }
 
-        LOG.exiting(CLASSNAME, "validateAuditFields");
+        log.trace("Exiting {}", "validateAuditFields");
     }
 
 }

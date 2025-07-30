@@ -30,6 +30,7 @@ import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -45,6 +46,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({
     USER,
@@ -177,11 +179,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public ParameterPredicate createParameterPredicate() {
         final String methodName = "createParameterPredicate()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final ParameterPredicate pp = new ParameterPredicateImpl();
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return pp;
     }
 
@@ -192,11 +194,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final Parameters<String, Object> parameters = new LinkedParameters<>();
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return parameters;
     }
 

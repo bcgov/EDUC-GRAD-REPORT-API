@@ -44,6 +44,7 @@ import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.SerializationUtils;
@@ -69,6 +70,7 @@ import static java.util.Locale.CANADA_FRENCH;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class StudentCertificateServiceImpl extends GradReportServiceImpl
@@ -89,7 +91,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
     @Override
     public List<BusinessReport> buildReport() throws DomainServiceException {
         final String methodName = "buildReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         ReportData reportData = getReportData(methodName);
 
@@ -168,7 +170,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             certificates.add(gradCert);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return certificates;
     }
 
@@ -296,7 +298,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             final CertificateSubType rsRptSubType) throws DomainServiceException {
 
         final String methodName = "createReport(Student, School, String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
@@ -337,7 +339,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                     "Failed to generate the provincial examination report.", ex);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return report;
     }
 

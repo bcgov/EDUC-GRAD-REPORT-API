@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.model.common.support.xml.XmlBuilder;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.ReportContext;
 import net.sf.jasperreports.export.*;
@@ -53,6 +54,7 @@ import java.util.logging.Logger;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class XmlExporter implements Exporter {
 
     private static final String CLASSNAME = XmlExporter.class.getName();
@@ -80,7 +82,7 @@ public class XmlExporter implements Exporter {
     @Override
     public void exportReport() throws JRException {
         final String methodName = "exportReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         try {
             final Element docRoot = createElement("root");
@@ -117,7 +119,7 @@ public class XmlExporter implements Exporter {
             throw new JRException(ex);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
     }
 
     public Throwable getRootCause(Throwable throwable) {
@@ -158,7 +160,7 @@ public class XmlExporter implements Exporter {
 
     private Element createDataSourceElement() throws JAXBException, IOException, SAXException, ParserConfigurationException {
         final String methodName = "createDataSourceElement()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final Student student = getStudentDataSource();
         student.setCreatedOn(new Date());
@@ -204,19 +206,19 @@ public class XmlExporter implements Exporter {
     @Override
     public void setConfiguration(final ReportExportConfiguration configuration) {
         final String methodName = "setConfiguration(ReportExportConfiguration)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
     }
 
     @Override
     public void setConfiguration(final ExporterConfiguration configuration) {
         final String methodName = "setConfiguration(ExporterConfiguration)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         this.xmlExporterConfiguration = (XmlExporterConfiguration) configuration;
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
     }
 
     private XmlExporterConfiguration getXmlExporterConfiguration() {

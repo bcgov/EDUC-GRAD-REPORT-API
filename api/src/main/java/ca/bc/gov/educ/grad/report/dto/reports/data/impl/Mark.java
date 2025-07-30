@@ -21,6 +21,7 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.logging.Logger;
 
@@ -29,6 +30,7 @@ import java.util.logging.Logger;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Mark extends BusinessEntity {
@@ -315,7 +317,7 @@ public abstract class Mark extends BusinessEntity {
      */
     private void setFormattedSessionDate(final String sessionDate) {
         final String methodName = "setFormattedSessionDate(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final String session = getSessionDate();
         this.formattedSessionDate = sessionDate;
@@ -324,7 +326,7 @@ public abstract class Mark extends BusinessEntity {
             this.formattedSessionDate = formatSessionDate(session);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
     }
 
     /**

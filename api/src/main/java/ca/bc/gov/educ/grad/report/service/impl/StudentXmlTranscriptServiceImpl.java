@@ -16,6 +16,7 @@ import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
 import jakarta.annotation.security.DeclareRoles;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSC
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER, FULFILLMENT_SERVICES_USER})
 public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements StudentXmlTranscriptService {
@@ -54,7 +56,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
     @Override
     public StudentTranscriptReport buildXmlTranscriptReport() {
         final String methodName = "buildXmlTranscript()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         String pen = null;
 

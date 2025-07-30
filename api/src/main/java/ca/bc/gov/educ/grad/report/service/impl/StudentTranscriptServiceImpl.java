@@ -36,6 +36,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
@@ -88,6 +89,7 @@ import static org.apache.commons.lang3.ArrayUtils.isEmpty;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER, FULFILLMENT_SERVICES_USER})
 public class StudentTranscriptServiceImpl extends GradReportServiceImpl implements StudentTranscriptService {
@@ -164,7 +166,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     public Transcript getTranscript(
             final String pen) throws DomainServiceException {
         final String methodName = "getTranscript(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final Transcript transcriptInfo = getTranscriptInformation(pen);
         final StudentInfo studentInfo = getStudentInfo(pen);
@@ -181,7 +183,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 transcriptInfo.getInterim()
         );
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return transcript;
     }
 
@@ -189,7 +191,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     @RolesAllowed({STUDENT_TRANSCRIPT_REPORT, USER})
     public Transcript getTranscriptInformation(final String pen) throws DomainServiceException {
         final String methodName = "getTranscriptInformation(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final Transcript transcript;
 
@@ -204,13 +206,13 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             throw dex;
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return transcript;
     }
 
     private GradProgram createGradProgram(String code) {
         final String methodName = "createGradProgram(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final GradProgram gradProgram;
 
@@ -253,7 +255,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final boolean preview)
             throws DomainServiceException, IOException, DataException {
         final String methodName = "createTranscript(ReportFormat, boolean)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final PersonalEducationNumber pen = getStudentPEN();
         LOG.log(Level.FINE, "Retrieved studentInfo for pen: {0}.", pen.getValue());
@@ -261,7 +263,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final StudentTranscriptReport report = getStudentTranscriptReport(
                 pen, format, preview, null
         );
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return report;
     }
 
@@ -277,7 +279,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final String pen, final boolean interim, final boolean openGradProgram)
             throws DomainServiceException {
         final String methodName = "getTranscriptCourseList(String, boolean)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final List<TranscriptCourse> results;
 
@@ -304,7 +306,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return results;
     }
 
@@ -324,7 +326,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final Date issueDate,
             final boolean interim) {
         final String m_ = "adapt(GraduationProgramCode, List<TranscriptCourse>, Date, boolean)";
-        LOG.entering(CLASSNAME, m_, transcriptCourses);
+        log.trace("Entering {} with {}", m_, transcriptCourses);
 
         final List<TranscriptResult> transcriptResults = adapt(
                 graduationProgramCode, transcriptCourses);
@@ -335,7 +337,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         transcript.setResults(transcriptResults);
         transcript.setInterim(interim);
 
-        LOG.exiting(CLASSNAME, m_);
+        log.trace("Exiting {}", m_);
         return transcript;
     }
 
@@ -351,7 +353,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final TranscriptTypeCode transcriptTypeCode,
             final String accessToken) {
         final String m_ = "adapt(schoolCategoryCode, graduationProgramCode,transcriptTypeCode )";
-        LOG.entering(CLASSNAME, m_, transcriptTypeCode);
+        log.trace("Entering {} with {}", m_, transcriptTypeCode);
 
         GradProgram result = createGradProgram(graduationProgramCode);
 
@@ -365,7 +367,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             }
         }
 
-        LOG.exiting(CLASSNAME, m_);
+        log.trace("Exiting {}", m_);
         return result;
     }
 
@@ -381,7 +383,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final GraduationProgramCode programCode,
             final List<TranscriptCourse> transcriptCourses) {
         final String m_ = "adapt(GraduationProgramCode, List<TranscriptCourse>)";
-        LOG.entering(CLASSNAME, m_, transcriptCourses);
+        log.trace("Entering {} with {}", m_, transcriptCourses);
 
         List<TranscriptResult> transcriptResults = Collections.emptyList();
 
@@ -453,7 +455,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             sort(transcriptResults, programCode);
         }
 
-        LOG.exiting(CLASSNAME, m_);
+        log.trace("Exiting {}", m_);
         return transcriptResults;
     }
 
@@ -468,7 +470,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private List<NonGradReason> adaptReasons(final StudentInfo studentInfo) {
         final String methodName = "adaptReasons(StudentInfo)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final Map<String, String> nonGradReasons = studentInfo.getNonGradReasons();
         final List<NonGradReason> result = new ArrayList<>();
@@ -482,7 +484,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             result.add(r);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return result;
     }
 
@@ -517,7 +519,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final Parameters<String, Object> parameters,
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
         final TranscriptTypeCode transcriptTypeCode = transcript.getTranscriptTypeCode();
 
         final TranscriptReport report = reportService.createTranscriptReport(transcriptTypeCode, program);
@@ -563,7 +565,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         );
         LOG.log(Level.FINE, "Created StudentTranscriptReport {0} for student {1}.", new Object[]{transcriptReport, student.getPen()});
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return transcriptReport;
     }
 
@@ -571,11 +573,11 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         Parameters<String, Object> parameters = reportService.createParameters();
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return parameters;
     }
 
@@ -590,7 +592,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final boolean preview,
             final Parameters<String, Object> parameters) throws DomainServiceException, IOException {
         final String methodName = "getStudentTranscriptReport(String, ReportFormat, boolean, Parameters)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
         final String pen = personalEducationNumber.getValue();
         final StudentInfo studentInfo = getStudentInfo(pen);
 
@@ -635,7 +637,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                 graduationData
         );
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return report;
     }
 
@@ -656,7 +658,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final Transcript transcript) {
         final String methodName = "adaptGraduationData(StudentInfo, Transcript, String)";
         final Object[] params = {studentInfo, transcript};
-        LOG.entering(CLASSNAME, methodName, params);
+        log.trace("Entering {} with {}", methodName, params);
 
         final GraduationData graduationData = new GraduationDataImpl();
 
@@ -669,7 +671,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final String creditsUsedForGrad = getCreditsUsedForGrad(transcript);
         ((GraduationDataImpl) graduationData).setTotalCreditsUsedForGrad(creditsUsedForGrad);
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
 
         return graduationData;
     }

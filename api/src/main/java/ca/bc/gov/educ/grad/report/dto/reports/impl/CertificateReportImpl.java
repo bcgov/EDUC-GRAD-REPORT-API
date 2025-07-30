@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.model.cert.CertificateSubType;
 import ca.bc.gov.educ.grad.report.model.cert.CertificateType;
 import ca.bc.gov.educ.grad.report.model.reports.CertificateReport;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayInputStream;
@@ -41,6 +42,7 @@ import static java.util.Locale.ENGLISH;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public final class CertificateReportImpl extends StudentReportImpl
         implements CertificateReport {
 
@@ -166,14 +168,14 @@ public final class CertificateReportImpl extends StudentReportImpl
             final ca.bc.gov.educ.grad.report.model.school.School school,
             final String logoCode) {
         final String methodName = "setSchool";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         super.setSchool(school, logoCode);
         ensureValidCertificate("setSchool");
         setIndependentSchool(school.isIndependent());
         setSchoolSignatureCode(school.getSignatureCode());
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
     }
 
     /**

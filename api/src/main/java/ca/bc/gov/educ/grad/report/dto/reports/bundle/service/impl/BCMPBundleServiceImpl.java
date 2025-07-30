@@ -36,6 +36,7 @@ import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +57,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILL
  * @author CGI Information Management Consultants Inc.
  */
 
+@Slf4j
 @Service
 @DeclareRoles({
     Roles.USER_BCMP_SERVICE,
@@ -252,7 +254,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public DocumentBundle decorate(DocumentBundle documentBundle) throws IOException {
         final String methodName = "decorate(DocumentBundle)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         // Adorn the finished bundle with page numbers.
         documentBundle = enumeratePages(documentBundle);
@@ -263,7 +265,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
         documentBundle = xpif(documentBundle);
         LOG.log(Level.FINE, "Bundle size: {0} bytes", documentBundle.asBytes().length);
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return documentBundle;
     }
 
@@ -278,7 +280,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
      */
     private String generateUUID64() {
         final String methodName = "generateUUID64()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final UUID uuid = UUID.randomUUID();
         final ByteBuffer bb = ByteBuffer.wrap(new byte[16]);
@@ -290,7 +292,7 @@ public class BCMPBundleServiceImpl implements BCMPBundleService {
 
         assert retValue != null : "Post Condition Failed - Generated a Base 64 encoded UUID, but ended up with NULL!";
 
-        LOG.exiting(CLASSNAME, methodName, retValue);
+        log.trace("Exiting {} with {}", methodName, retValue);
         return retValue;
     }
 }

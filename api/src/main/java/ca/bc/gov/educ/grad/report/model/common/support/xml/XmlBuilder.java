@@ -18,6 +18,7 @@
 package ca.bc.gov.educ.grad.report.model.common.support.xml;
 
 import ca.bc.gov.educ.grad.report.model.common.Predicate;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -45,6 +46,7 @@ import static ca.bc.gov.educ.grad.report.model.common.Constants.XML_DELIM;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class XmlBuilder {
 
     private static final String CLASSNAME = XmlBuilder.class.getName();
@@ -75,7 +77,7 @@ public class XmlBuilder {
     private void toXml(final String key, final String value)
             throws ParserConfigurationException {
         final String methodName = "toXml(final String key, final String value)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         String[] tokens = key.split(XML_DELIM);
         List<String> tokenList = new ArrayList(Arrays.asList(tokens));
@@ -101,7 +103,7 @@ public class XmlBuilder {
         parentElement.appendChild(childElement);
         LOG.fine("Child element added to parent element.");
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
     }
 
     /**
@@ -113,7 +115,7 @@ public class XmlBuilder {
      */
     private Element createElementHierarchy(final String key) throws ParserConfigurationException {
         final String methodName = "createElementHierarchy(final String key)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final String[] tokens = key.split(XML_DELIM);
         final String lastToken = tokens[tokens.length - 1];
@@ -142,7 +144,7 @@ public class XmlBuilder {
         getElementMap().put(key, childElement);
         LOG.fine("Element map updated with created child element.");
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
 
         return childElement;
     }
@@ -183,7 +185,7 @@ public class XmlBuilder {
      */
     public String convertDocumentToXml(final Document document) {
         final String methodName = "convertDocumentToXml(Document)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         String result = null;
 
@@ -209,7 +211,7 @@ public class XmlBuilder {
 
     public Element buildElementFromMap(final Map<String, Object> parameterMap, Predicate<String> predicate) throws ParserConfigurationException {
         final String methodName = "buildElementFromMap(Map<String, Object>, Predicate<String>)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final Set<String> paramKeys = parameterMap.keySet();
         final Element result;
@@ -223,7 +225,7 @@ public class XmlBuilder {
 
         LOG.fine("Parameter map parsed.");
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return result;
     }
 

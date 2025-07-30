@@ -27,6 +27,7 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,7 @@ import static java.util.Locale.CANADA;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class SchoolGraduationServiceImpl extends GradReportServiceImpl
@@ -67,11 +69,11 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolGraduationReport buildSchoolGraduationReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolGraduationReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return createSchoolGraduationReport(graduationReport);
     }
 
@@ -82,7 +84,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
     private synchronized SchoolGraduationReport createSchoolGraduationReport(
             final GraduationReport graduationReport) throws DomainServiceException {
         final String methodName = "createSchoolGraduationReport(Student, School, Locale)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         SchoolGraduationReport report = null;
         try {
@@ -95,7 +97,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return report;
     }
 

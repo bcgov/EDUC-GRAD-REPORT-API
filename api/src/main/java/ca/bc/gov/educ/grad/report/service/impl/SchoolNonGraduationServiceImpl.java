@@ -27,6 +27,7 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolNonGraduationReport;
 import ca.bc.gov.educ.grad.report.model.student.SchoolNonGraduationService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,7 @@ import static java.util.Locale.CANADA;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
@@ -67,11 +69,11 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolNonGraduationReport buildSchoolNonGraduationReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolNonGraduationReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         GraduationReport nonGraduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return createSchoolNonGraduationReport(nonGraduationReport);
     }
 
@@ -82,7 +84,7 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
     private synchronized SchoolNonGraduationReport createSchoolNonGraduationReport(
             final GraduationReport graduationReport) throws DomainServiceException {
         final String methodName = "createSchoolNonGraduationReport(GraduationReport)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         SchoolNonGraduationReport report = null;
         try {
@@ -95,7 +97,7 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return report;
     }
 

@@ -24,6 +24,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ import static java.util.Locale.CANADA;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
@@ -54,10 +56,10 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
     @Override
     public StudentNonGradProjectedReport buildStudentNonGradProjectedReport() throws DomainServiceException, IOException {
         final String methodName = "buildStudentNonGradProjectedReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
 
         return createStudentNonGradProjectedReport(graduationReport);
     }
@@ -71,7 +73,7 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
             final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createStudentNonGradProjectedReport(GraduationReport)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         StudentNonGradProjectedReport report = null;
         try {
@@ -83,7 +85,7 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
                     "Failed to generate the Student Non Graduation Projected report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return report;
     }
 

@@ -19,6 +19,7 @@ package ca.bc.gov.educ.grad.report.dto.reports.jasper.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student;
 import jakarta.xml.bind.JAXBException;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
@@ -39,6 +40,7 @@ import java.util.logging.Logger;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class XmlConverterUtil {
 
     private static final String CLASSNAME = XmlConverterUtil.class.getName();
@@ -49,7 +51,7 @@ public class XmlConverterUtil {
 
     public Element marshalStudentToElement(final Student student) throws JAXBException, ParserConfigurationException, SAXException, IOException {
         final String methodName = "marshalStudentToElement(Student)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         Element dataSourceRootElement = null;
 
@@ -71,7 +73,7 @@ public class XmlConverterUtil {
             throw ex;
         }
 
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
         return dataSourceRootElement;
     }
 }

@@ -26,6 +26,7 @@ import ca.bc.gov.educ.grad.report.model.order.OrderType;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.school.SchoolReportOrderType;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptOrderType;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.naming.NamingException;
 import java.io.File;
@@ -45,6 +46,7 @@ import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class DocumentBundleImpl implements DocumentBundle {
 
     private static final String CLASSNAME = DocumentBundleImpl.class.getName();
@@ -335,7 +337,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      */
     private DocumentBundleDecorator createDecorator() {
         final String methodName = "createDecorator";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace("Entering {}", methodName);
 
         final DocumentBundleDecorator dbd;
         final OrderType ot = getOrderType();
@@ -352,7 +354,7 @@ public class DocumentBundleImpl implements DocumentBundle {
             throw new IllegalArgumentException("Unexpected order type: " + ot);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace("Exiting {}", methodName);
         return dbd;
     }
 }
