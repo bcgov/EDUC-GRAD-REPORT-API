@@ -526,6 +526,7 @@ public class BusinessEntityAdapter {
         Set<ConstraintViolation<Object>> violations = validator.validate(o);
         boolean isValidObject = violations.isEmpty();
         for (ConstraintViolation<Object> violation : violations) {
+            LOG.entering(CLASSNAME, message);
             LOG.log(Level.WARNING, "Validation of {0} failed with the error: \"{1}\"", new Object[] {message, violation.getMessage()});
         }
         return isValidObject;
