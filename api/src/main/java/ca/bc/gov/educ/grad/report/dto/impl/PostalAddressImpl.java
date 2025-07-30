@@ -44,6 +44,9 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     private String code = "";
     private String country = "";
 
+    private static final String UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE = "Not supported yet.";
+    private static final String COUNTRY_NAME_CANADA = "CANADA";
+
     @Override
     @JsonProperty("address1")
     public String getStreetLine1() {
@@ -78,7 +81,7 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
     @JsonProperty("postal")
     public  String getPostalCode() {
         switch(StringUtils.trimToEmpty(getCountryCode()).toUpperCase()) {
-            case "CN", "CANADA":
+            case "CA", COUNTRY_NAME_CANADA:
                 if(StringUtils.isNotBlank(this.code) && this.code.length() == 6) {
                     return new StringBuilder(this.code).insert(3, " ").toString();
                 } else {
@@ -180,45 +183,44 @@ public class PostalAddressImpl implements PostalAddress, Serializable {
         if(StringUtils.isNotBlank(getRegion())) {
             sb.append(" ").append(getRegion());
         }
-        if(StringUtils.isNotBlank(getCountryCode())) {
-            if(!"CN".equalsIgnoreCase(getCountryCode()) && !"CANADA".equalsIgnoreCase(getCountryCode())) {
+        if(StringUtils.isNotBlank(getCountryCode()) && !"CA".equalsIgnoreCase(getCountryCode()) && !COUNTRY_NAME_CANADA.equalsIgnoreCase(getCountryCode())) {
                 sb.append("\n").append(getCountryCode());
             }
-        }
+
         if(StringUtils.isNotBlank(getPostalCode())) {
-            sb.append("CN".equalsIgnoreCase(getCountryCode()) || "CANADA".equalsIgnoreCase(getCountryCode()) || StringUtils.isBlank(getCountryCode()) ? "  " : " ").append(getPostalCode());
+            sb.append("CA".equalsIgnoreCase(getCountryCode()) || COUNTRY_NAME_CANADA.equalsIgnoreCase(getCountryCode()) || StringUtils.isBlank(getCountryCode()) ? "  " : " ").append(getPostalCode());
         }
         return sb.toString();
     }
 
     @Override
     public String getEntityId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Date getCreatedOn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getCreatedBy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Date getLastUpdatedOn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getLastUpdatedBy() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Long getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_EXCEPTION_MESSAGE); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

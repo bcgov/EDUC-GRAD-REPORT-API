@@ -130,13 +130,7 @@ public abstract class GradReportBaseTest {
         when(this.responseMock.bodyToMono(TraxSchool.class)).thenReturn(Mono.just(traxSchool));
     }
 
-    protected void mockTraxCountry(TraxCountry traxCountry) {
-        when(this.webClient.get()).thenReturn(this.requestHeadersUriMock);
-        when(this.requestHeadersUriMock.uri(String.format(constants.getCountryDetails(),traxCountry.getCountryCode()))).thenReturn(this.requestHeadersMock);
-        when(this.requestHeadersMock.headers(any(Consumer.class))).thenReturn(this.requestHeadersMock);
-        when(this.requestHeadersMock.retrieve()).thenReturn(this.responseMock);
-        when(this.responseMock.bodyToMono(TraxCountry.class)).thenReturn(Mono.just(traxCountry));
-    }
+    
 
     protected void mockGradProgramEntity(String gradProgramCode, String transcriptTypeCode) {
         ProgramCertificateTranscriptEntity programCertificateTranscriptEntity = new ProgramCertificateTranscriptEntity();

@@ -48,10 +48,14 @@ public class LogHelper {
             if (correlationID != null) {
                 httpMap.put("correlation_id", correlationID);
             }
+            val requestSource = request.getHeader(EducGradReportApiConstants.REQUEST_SOURCE);
+            if (requestSource != null) {
+                httpMap.put("request_source", requestSource);
+            }
             httpMap.put("server_http_request_url", String.valueOf(request.getRequestURL()));
             httpMap.put("server_http_request_processing_time_ms", totalTime);
             if(isDebugMode) {
-                httpMap.put("server_http_request_payload", request.getAttribute("payload"));
+                httpMap.put("server_http_request_payload", getTruncatedPayload(request));
             }
             httpMap.put("server_http_request_remote_address", request.getRemoteAddr());
             httpMap.put("server_http_request_client_name", StringUtils.trimToEmpty(request.getHeader("X-Client-Name")));
@@ -65,6 +69,16 @@ public class LogHelper {
     }
 
     /**
+     * Truncating payload to 1000 characters due to logging constraints.
+     * @param request * @return a String representing the truncated payload
+     **/
+    private static String getTruncatedPayload(final HttpServletRequest request) {
+        String payload = String.valueOf(request.getAttribute("payload") != null ? request.getAttribute("payload") : "");
+        return (payload.length() > 1000) ? payload.substring(0, 1000).concat("...") : payload;
+    }
+
+
+    /**
      * WebClient to call other REST APIs
      *
      * @param method
@@ -72,7 +86,8 @@ public class LogHelper {
      * @param responseCode
      * @param correlationID
      */
-    public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID, final boolean logging) {
+    public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID,
+                                                final List<String> requestSource, final boolean logging) {
         if (!logging) return;
         try {
             final Map<String, Object> httpMap = new HashMap<>();
@@ -81,6 +96,9 @@ public class LogHelper {
             httpMap.put("client_http_request_url", url);
             if (correlationID != null) {
                 httpMap.put("correlation_id", String.join(",", correlationID));
+            }
+            if (requestSource != null) {
+                httpMap.put("request_source", String.join(",", requestSource));
             }
             MDC.putCloseable("httpEvent", jsonTransformer.marshall(httpMap));
             log.info("");

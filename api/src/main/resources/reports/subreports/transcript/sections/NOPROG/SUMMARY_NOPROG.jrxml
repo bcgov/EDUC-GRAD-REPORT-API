@@ -6,6 +6,7 @@
 	<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 	<property name="net.sf.jasperreports.export.html.exclude.key.SIGNATURE"/>
+	<import value="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<template><![CDATA[$P{P_REPORT_STYLE_FILE}]]></template>
 	<parameter name="P_REPORT_BASE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
@@ -40,12 +41,12 @@
 	<parameter name="P_REPORT_SIGNATURES_PATH" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{P_REPORT_IMAGES_PATH} + "signatures/"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="P_SIGNATURE_FILE" class="java.lang.String">
-		<defaultValueExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","MOE_ADM")]]></defaultValueExpression>
-	</parameter>
 	<parameter name="P_SIGNATURE_LABEL" class="java.lang.String">
 		<defaultValueExpression><![CDATA["Assistant Deputy Minister"]]></defaultValueExpression>
 	</parameter>
+	<field name="student" class="ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student">
+		<fieldDescription><![CDATA[student]]></fieldDescription>
+	</field>
 	<summary>
 		<band height="760">
 			<staticText>
@@ -698,15 +699,13 @@
 				<subreportParameter name="P_REPORT_SIGNATURES_PATH">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}]]></subreportParameterExpression>
 				</subreportParameter>
-				<subreportParameter name="P_SIGNATURE_FILE">
-					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_FILE}]]></subreportParameterExpression>
-				</subreportParameter>
 				<subreportParameter name="P_REPORT_PREVIEW">
 					<subreportParameterExpression><![CDATA[$P{P_REPORT_PREVIEW}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="P_SIGNATURE_LABEL">
 					<subreportParameterExpression><![CDATA[$P{P_SIGNATURE_LABEL}]]></subreportParameterExpression>
 				</subreportParameter>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource( java.util.Arrays.asList( $F{student} ) )]]></dataSourceExpression>
 				<subreportExpression><![CDATA[$P{P_REPORT_CONCRETE_PATH} + "Signature.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>

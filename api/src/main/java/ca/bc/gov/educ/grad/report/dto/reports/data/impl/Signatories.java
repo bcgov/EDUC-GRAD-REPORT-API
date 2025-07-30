@@ -18,6 +18,10 @@
 package ca.bc.gov.educ.grad.report.dto.reports.data.impl;
 
 import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.io.ByteArrayInputStream;
 
 /**
  * Represents a set of signatures passed into each certificate report. The
@@ -28,66 +32,18 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public final class Signatories extends BusinessEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * Filename for the signature of the Minister of Education.
-     */
-    private final static String MINISTER_OF_EDUCATION = "MOE";
-
-    /**
-     * Filename for the signature of the Minister of Advanced Education.
-     */
-    private final static String MINISTER_OF_ADV_EDUCATION = "MOAE";
-
-    /**
      * Filename for the signature of the School Superintendent / Principal /
      * Inspector. By default, the "independent" signature is used.
      */
-    private String schoolSignatory;
-
-    /**
-     * Default (empty) constructor.
-     */
-    public Signatories() {
-    }
-
-    /**
-     * Changes the signature file for the schoolSignatory signatory.
-     *
-     * @param schoolSignatory The 2-digit signatory code, based on the
-     * schoolSignatory's mincode.
-     */
-    public void setSchoolSignatory(final String schoolSignatory) {
-        this.schoolSignatory = schoolSignatory;
-    }
-
-    /**
-     * Sets the signature file for the schoolSignatory signatory.
-     *
-     * @return Signature filename.
-     */
-    public String getSchoolSignatory() {
-        return this.schoolSignatory;
-    }
-
-    /**
-     * Sets the signature file for the MoE.
-     *
-     * @return Signature filename.
-     */
-    public String getMinisterOfEducation() {
-        return MINISTER_OF_EDUCATION;
-    }
-
-    /**
-     * Sets the signature file for the MoAE.
-     *
-     * @return Signature filename.
-     */
-    public String getMinisterOfAdvancedEducation() {
-        return MINISTER_OF_ADV_EDUCATION;
-    }
+    private ByteArrayInputStream schoolSignatory;
+    private ByteArrayInputStream ministerOfEducation;
+    private ByteArrayInputStream ministerOfAdvancedEducation;
+    private ByteArrayInputStream assistantDeputyMinister;
 }

@@ -1,7 +1,6 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
-import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
@@ -438,23 +437,6 @@ public abstract class GradReportServiceImpl {
             }
         }
         return traxSchool;
-    }
-
-    TraxCountry getCountry(String code, String accessToken) {
-        TraxCountry traxCountry = null;
-        if(!StringUtils.isBlank(code)) {
-            try {
-                traxCountry = webClient.get()
-                        .uri(String.format(constants.getCountryDetails(), code))
-                        .headers(h -> h.setBearerAuth(accessToken))
-                        .retrieve()
-                        .bodyToMono(TraxCountry.class)
-                        .block();
-            } catch (Exception e) {
-                LOG.log(Level.WARNING, "Unable to get TRAX country by {0} code. Reason {1}", new String[]{code, e.getMessage()});
-            }
-        }
-        return traxCountry;
     }
 
     GradProgramImpl getGraduationProgram(String programCode, String accessToken) {

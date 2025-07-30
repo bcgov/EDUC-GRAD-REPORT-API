@@ -149,6 +149,11 @@ public final class Student extends BusinessEntity {
 
     private Map<String, SignatureBlockType> signatureBlockTypes;
 
+    /**
+     * Signatures for transcript reports.
+     */
+    private Signatories signatories;
+
     private String localId = "";
     private String hasOtherProgram = "";
     private List<OtherProgramImpl> otherProgramParticipation = new ArrayList<>();
@@ -787,6 +792,14 @@ public final class Student extends BusinessEntity {
 
     public void setSignatureBlockTypes(Map<String, SignatureBlockType> signatureBlockTypes) {
         this.signatureBlockTypes = signatureBlockTypes;
+    }
+
+    public Signatories getSignatories() {
+        return this.signatories;
+    }
+
+    public void setSignatories(Signatories signatories) {
+        this.signatories = signatories;
     }
 
     public String getLocalId() {

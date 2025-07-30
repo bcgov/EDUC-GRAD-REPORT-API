@@ -518,7 +518,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final GraduationData graduationData) throws DomainServiceException, IOException {
         final String methodName = "createReport(...)";
         LOG.entering(CLASSNAME, methodName);
-
         final TranscriptTypeCode transcriptTypeCode = transcript.getTranscriptTypeCode();
 
         final TranscriptReport report = reportService.createTranscriptReport(transcriptTypeCode, program);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SC" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0206cdd2-9edc-4f7b-9175-cb20d48cf070">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="reports\resources\adapters\CertificateAdapter.xml"/>
@@ -53,13 +53,13 @@
 	<field name="student.school.name" class="java.lang.String">
 		<fieldDescription><![CDATA[student.school.name]]></fieldDescription>
 	</field>
-	<field name="signatures.ministerOfEducation" class="java.lang.String">
+	<field name="signatures.ministerOfEducation" class="java.io.InputStream">
 		<fieldDescription><![CDATA[signatories.ministerOfEducation]]></fieldDescription>
 	</field>
-	<field name="signatures.ministerOfAdvancedEducation" class="java.lang.String">
+	<field name="signatures.ministerOfAdvancedEducation" class="java.io.InputStream">
 		<fieldDescription><![CDATA[signatories.ministerOfAdvancedEducation]]></fieldDescription>
 	</field>
-	<field name="signatures.schoolSignatory" class="java.lang.String">
+	<field name="signatures.schoolSignatory" class="java.io.InputStream">
 		<fieldDescription><![CDATA[signatories.schoolSignatory]]></fieldDescription>
 	</field>
 	<variable name="V_ISSUE_DATE_FORMAT" class="java.text.DateFormat">
@@ -156,11 +156,11 @@
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<image onErrorType="Blank">
+				<image>
 					<reportElement x="0" y="0" width="231" height="52" uuid="9390dd5b-0c05-4d67-9523-59f003e00fd0">
 						<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.ministerOfEducation} + "")]]></imageExpression>
+					<imageExpression><![CDATA[$F{signatures.ministerOfEducation}]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SignatoryTitle" x="0" y="52" width="231" height="18" uuid="13d1c10d-b002-4198-b871-8e2fc88b490d">
@@ -172,17 +172,17 @@
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="66" y="438" width="231" height="60" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
+				<reportElement x="66" y="438" width="250" height="70" uuid="55925d12-cdac-4062-8bec-eb7983f2c2c4">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<image onErrorType="Blank">
-					<reportElement x="0" y="0" width="231" height="42" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
+				<image>
+					<reportElement x="0" y="0" width="250" height="52" uuid="4983e370-7138-44f4-920d-3e534f1782f5">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#",$F{signatures.schoolSignatory} + "")]]></imageExpression>
+					<imageExpression><![CDATA[$F{signatures.schoolSignatory}]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-					<reportElement style="SignatoryTitle" x="0" y="42" width="231" height="18" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c">
+					<reportElement style="SignatoryTitle" x="0" y="52" width="231" height="18" uuid="0e47d658-50a8-423e-91fa-53fa3d4dbc4c">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Center"/>

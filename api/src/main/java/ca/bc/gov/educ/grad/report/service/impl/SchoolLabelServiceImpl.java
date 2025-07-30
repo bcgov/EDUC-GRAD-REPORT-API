@@ -18,7 +18,6 @@
 package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
-import ca.bc.gov.educ.grad.report.api.client.TraxCountry;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dto.impl.PostalAddressImpl;
@@ -100,10 +99,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
             for(School school: schools) {
                 String countryCode = school.getAddress().getCountryCode();
                 if(StringUtils.isNotBlank(countryCode) && countryCode.length() == 2) {
-                    TraxCountry traxCountry = getCountry(countryCode, reportData.getAccessToken());
-                    if(traxCountry != null) {
-                        ((PostalAddressImpl) school.getAddress()).setCountry(StringUtils.trimToEmpty(traxCountry.getCountryName()));
-                    }
+                    ((PostalAddressImpl) school.getAddress()).setCountry(countryCode);
                 }
             }
             List<List<School>> partition = ListUtils.partition(schools, 2);

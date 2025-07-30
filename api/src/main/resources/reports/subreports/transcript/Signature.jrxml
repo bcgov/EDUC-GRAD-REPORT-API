@@ -29,6 +29,9 @@
 	<parameter name="P_SIGNATURE_LABEL" class="java.lang.String">
 		<defaultValueExpression><![CDATA["Assistant Deputy Minister"]]></defaultValueExpression>
 	</parameter>
+	<field name="signatures.assistantDeputyMinister" class="java.io.InputStream">
+		<fieldDescription><![CDATA[student.signatories.assistantDeputyMinister]]></fieldDescription>
+	</field>
 	<summary>
 		<band height="110">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
@@ -41,11 +44,11 @@
 					<textElement verticalAlignment="Top"/>
 					<text><![CDATA[CERTIFIED A TRUE COPY OF THE ORIGINAL RECORD WHICH IS RETAINED AT THE MINISTRY OF EDUCATION AND CHILD CARE]]></text>
 				</staticText>
-				<image vAlign="Bottom" onErrorType="Blank">
+				<image vAlign="Bottom">
 					<reportElement x="0" y="45" width="144" height="49" uuid="110444bf-1492-4879-aefc-050341f3818a">
 						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					</reportElement>
-					<imageExpression><![CDATA[$P{P_REPORT_SIGNATURES_PATH}.replace("#signatureCode#","MOE_ADM" + "")]]></imageExpression>
+					<imageExpression><![CDATA[$F{signatures.assistantDeputyMinister}]]></imageExpression>
 				</image>
 				<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 					<reportElement style="SummaryBody" x="0" y="96" width="144" height="14" uuid="d51041c9-3107-40e0-ae91-589b3901fca6"/>

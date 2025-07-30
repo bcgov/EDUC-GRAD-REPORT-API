@@ -17,11 +17,9 @@
  */
 package ca.bc.gov.educ.grad.report.dto.reports.impl;
 
+import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntityAdapter;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.GraduationProgram;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Status;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student;
-import ca.bc.gov.educ.grad.report.dto.reports.data.impl.TranscriptResult;
+import ca.bc.gov.educ.grad.report.dto.reports.data.impl.*;
 import ca.bc.gov.educ.grad.report.model.common.SignatureBlockType;
 import ca.bc.gov.educ.grad.report.model.graduation.GradProgram;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
@@ -29,7 +27,10 @@ import ca.bc.gov.educ.grad.report.model.graduation.NonGradReason;
 import ca.bc.gov.educ.grad.report.model.reports.TranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
+import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import lombok.extern.slf4j.Slf4j;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,7 @@ import static java.lang.String.format;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class TranscriptReportImpl extends StudentReportImpl implements TranscriptReport {
 
     private static final long serialVersionUID = 8L;
@@ -61,6 +63,10 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
     private GraduationProgramCode graduationProgramCode;
 
     private TranscriptTypeCode transcriptTypeCode;
+    /**
+     * Image for ADM signature
+     */
+    private Signatories signatories;
 
     /**
      * Assume unofficial transcripts by default.
@@ -76,12 +82,14 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
      * Assume no blank marks by default.
      */
     private boolean blank;
+    private final GradReportSignatureService gradReportSignatureService;
 
     /**
      * Constructs a new report using the default report template.
      */
-    public TranscriptReportImpl(TranscriptTypeCode transcriptTypeCode, GradProgram program) {
+    public TranscriptReportImpl(TranscriptTypeCode transcriptTypeCode, GradProgram program, GradReportSignatureService gradReportSignatureService) {
         super(String.format(TRANSCRIPT_REPORT_NAME, transcriptTypeCode.getCode()));
+        this.gradReportSignatureService = gradReportSignatureService;
         setGraduationProgramCode(program.getCode());
         setTranscriptTypeCode(transcriptTypeCode);
         // Prevent two HTML header/footers from being added to the
@@ -305,6 +313,20 @@ public class TranscriptReportImpl extends StudentReportImpl implements Transcrip
         if (!isFormat(XML)) {
             setParameter(P_REPORT_TYPE, getReportType());
         }
+        processSignatories();
+    }
+
+    private void processSignatories() {
+        this.signatories = new Signatories();
+
+        GradReportSignatureImage admSignatureImage = gradReportSignatureService.getSignatureImageByCode("MOE_ADM");
+        if (admSignatureImage == null) {
+            log.warn("No signature image found for code MOE_ADM");
+            signatories.setAssistantDeputyMinister(new ByteArrayInputStream(new byte[0]));
+        } else {
+            signatories.setAssistantDeputyMinister(new ByteArrayInputStream(admSignatureImage.getSignatureContent()));
+        }
+        getStudent().setSignatories(this.signatories);
     }
 
     /**
