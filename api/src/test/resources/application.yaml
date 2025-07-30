@@ -46,23 +46,6 @@ spring:
         jwt:
           issuer-uri: https://soam-dev.apps.silver.devops.gov.bc.ca/auth/realms/master
           jwk-set-uri: https://soam-dev.apps.silver.devops.gov.bc.ca/auth/realms/master/protocol/openid-connect/certs
-      client:
-        registration:
-          report-api-client:
-            client-id: GRAD_REPORT_API_CLIENT_NAME
-            client-secret: GRAD_REPORT_API_CLIENT_SECRET
-            authorization-grant-type: client_credentials
-          grad-report-educ-student-api-client:
-            client-id: GRAD_REPORT_EDUC_STUDENT_API_CLIENT_NAME
-            client-secret: GRAD_REPORT_EDUC_STUDENT_API_CLIENT_SECRET
-            authorization-grant-type: client_credentials
-        provider:
-          report-api-client:
-            issuer-uri: https://soam-dev.apps.silver.devops.gov.bc.ca/auth/realms/master
-            token-uri: https://soam-dev.apps.silver.devops.gov.bc.ca/auth/realms/master/protocol/openid-connect/token
-          grad-report-educ-student-api-client:
-            issuer-uri: https://soam-dev.apps.silver.devops.gov.bc.ca/auth/realms/master
-            token-uri: https://soam-dev.apps.silver.devops.gov.bc.ca/auth/realms/master/protocol/openid-connect/token
 
 #Logging properties
 logging:
@@ -110,12 +93,6 @@ server:
       worker: 128
       io: 16
   port: 8080
-  max-http-request-header-size: 20000
-  compression:
-    enabled: true
-    mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/css,text/javascript,application/javascript
-    min-response-size: 2048
-    excluded-user-agents: MSIE 6.0,UCBrowser
 
 splunk:
   log-helper:
@@ -131,8 +108,6 @@ springdoc:
 
 #Endpoint properties
 endpoint:
-  keycloak:
-    getToken: https://my-keycloak.com/auth/realms/master/protocol/openid-connect/token
   educ-grad-report-api:
     get-signature-by-code:
       url: https://educ-grad-report-api-77c02f-dev.apps.silver.devops.gov.bc.ca/api/v1/reports/signatures

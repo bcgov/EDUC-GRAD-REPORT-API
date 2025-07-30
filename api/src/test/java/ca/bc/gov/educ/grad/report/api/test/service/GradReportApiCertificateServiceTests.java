@@ -11,7 +11,6 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.model.graduation.StudentCertificateService;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
 public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
@@ -56,9 +53,6 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 		school.setCertificateEligibility("N");
 		mockTraxSchool(school);
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
-
-		when(restService.get(String.format(constants.getSchoolDetails(), school.getSchoolId()), TraxSchool.class, webClient))
-				.thenReturn(school);
 
 		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ReportApiServiceException.class, () -> {
 			apiReportService.getStudentCertificateReport(reportRequest);

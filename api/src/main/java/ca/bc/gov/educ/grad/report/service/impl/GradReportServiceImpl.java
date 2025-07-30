@@ -2,7 +2,6 @@ package ca.bc.gov.educ.grad.report.service.impl;
 
 import ca.bc.gov.educ.grad.report.api.client.ReportData;
 import ca.bc.gov.educ.grad.report.api.client.TraxSchool;
-import ca.bc.gov.educ.grad.report.api.service.RESTService;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.dao.GradDataConvertionBean;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -28,7 +27,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.util.Pair;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -63,13 +61,10 @@ public abstract class GradReportServiceImpl {
     @Autowired
     GradReportCodeService codeService;
     @Autowired
-    RESTService restService;
-    @Autowired
     GradDataConvertionBean gradDataConvertionBean;
     @Autowired
     JsonTransformer jsonTransformer;
     @Autowired
-    @Qualifier("reportApiClient")
     WebClient webClient;
     @Autowired
     EducGradReportApiConstants constants;
@@ -338,13 +333,13 @@ public abstract class GradReportServiceImpl {
      *
      * @param studentInfo Student Info
      */
-    School adaptSchool(final StudentInfo studentInfo, boolean checkEligibility) {
+    School adaptSchool(final StudentInfo studentInfo, String accessToken, boolean checkEligibility) {
         final String m_ = "adaptSchool(StudentInfo)";
         LOG.entering(CLASSNAME, m_, studentInfo);
 
         SchoolImpl school = new SchoolImpl();
         if(checkEligibility) {
-            TraxSchool traxSchool = getSchool(studentInfo.getSchoolId());
+            TraxSchool traxSchool = getSchool(studentInfo.getSchoolId(), accessToken);
             if (traxSchool != null && "N".equalsIgnoreCase(traxSchool.getTranscriptEligibility())) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
@@ -427,11 +422,16 @@ public abstract class GradReportServiceImpl {
 
     }
 
-    TraxSchool getSchool(String schoolId) {
+    TraxSchool getSchool(String schoolId, String accessToken) {
         TraxSchool traxSchool = null;
         if(!StringUtils.isBlank(schoolId)) {
             try {
-                traxSchool = restService.get(String.format(constants.getSchoolDetails(), schoolId), TraxSchool.class, webClient);
+                traxSchool = webClient.get()
+                    .uri(String.format(constants.getSchoolDetails(), schoolId))
+                    .headers(h -> h.setBearerAuth(accessToken))
+                    .retrieve()
+                    .bodyToMono(TraxSchool.class)
+                    .block();
             } catch (Exception e) {
                 LOG.log(Level.WARNING, "Unable to get TRAX school by schoolId={0}. Reason {1}", new String[]{schoolId, e.getMessage()});
             }
@@ -439,11 +439,16 @@ public abstract class GradReportServiceImpl {
         return traxSchool;
     }
 
-    GradProgramImpl getGraduationProgram(String programCode) {
+    GradProgramImpl getGraduationProgram(String programCode, String accessToken) {
         GradProgramImpl result = null;
         if(!StringUtils.isBlank(programCode)) {
             try {
-                result = restService.get(String.format(constants.getGraduationProgram(), programCode), GradProgramImpl.class, webClient);
+                result = webClient.get()
+                        .uri(String.format(constants.getGraduationProgram(), programCode))
+                        .headers(h -> h.setBearerAuth(accessToken))
+                        .retrieve()
+                        .bodyToMono(GradProgramImpl.class)
+                        .block();
                 if (result != null) {
                     result.setCode();
                 }

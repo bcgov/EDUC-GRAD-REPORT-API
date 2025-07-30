@@ -37,6 +37,12 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
     private static final String STUDENT_MISSING = "STUDENT_MISSING";
 
     @Autowired
+    WebClient webClient;
+
+    @Autowired
+    ReportApiConstants reportApiConstants;
+
+    @Autowired
     XmlTransformer xmlTransformer;
 
     @Autowired
@@ -75,7 +81,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
 
             pen = reportData.getPen().getPen();
 
-            GradSearchStudent student = getStudentByPenFromStudentApi(pen);
+            GradSearchStudent student = getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
             if(student == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
@@ -84,7 +90,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
-            GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getStudentID());
+            GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getStudentID(), reportData.getAccessToken());
             if(graduationStudentRecord == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),

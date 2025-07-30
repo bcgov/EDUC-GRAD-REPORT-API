@@ -7,7 +7,8 @@ import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import ca.bc.gov.educ.grad.report.transformer.*;
 import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import jakarta.transaction.Transactional;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,12 @@ import java.util.Optional;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
-@Slf4j
 @Service
 public class GradReportCodeService {
 
     private static final String CLASS_NAME = GradReportCodeService.class.getName();
+    private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
+
     private static final String UNABLE_TO_RETRIEVE_RESOURCE = "Unable to retrieve %s";
 
     @Autowired

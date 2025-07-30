@@ -48,12 +48,4 @@ public class EducGradReportApiConstants {
     @Value("${splunk.log-helper.enabled}")
     private boolean splunkLogHelperEnabled;
 
-    @Value("${endpoint.keycloak.getToken}")
-    private String tokenUrl;
-
-    @Value("${spring.security.oauth2.client.registration.report-api-client.client-id}")
-    private String clientId;
-
-    @Value("${spring.security.oauth2.client.registration.report-api-client.client-secret}")
-    private String clientSecret;
 }

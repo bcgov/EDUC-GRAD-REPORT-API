@@ -29,10 +29,11 @@ import ca.bc.gov.educ.grad.report.model.transcript.TranscriptTypeCode;
 import ca.bc.gov.educ.grad.report.service.impl.BaseServiceImpl;
 import ca.bc.gov.educ.grad.report.utils.GradValidation;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -44,9 +45,11 @@ import java.util.stream.Collectors;
 
 import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
 
-@Slf4j
 @Component
 public class GradDataConvertionBean extends BaseServiceImpl {
+
+    private static final String CLASS_NAME = GradDataConvertionBean.class.getName();
+    private static final Logger logger = LoggerFactory.getLogger(CLASS_NAME);
 
     @Autowired
     GradValidation validation;
@@ -230,7 +233,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
         final String pen = student.getPen().getValue();
         if(StringUtils.isNotBlank(pen) && result.isEmpty()) {
             String message = NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
-            log.warn(message);
+            logger.warn(message);
             validation.addErrorAndStop(message);
         }
         return result;
@@ -448,7 +451,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
         List<ca.bc.gov.educ.grad.report.api.client.Student> students = school.getStudents();
         for (ca.bc.gov.educ.grad.report.api.client.Student st : students) {
             if(st.getPen() == null || StringUtils.isBlank(st.getPen().getPen())) {
-                log.warn("Skip Student {} without Pen #", st.getPen().getEntityID());
+                logger.warn("Skip Student {} without Pen #", st.getPen().getEntityID());
                 continue;
             }
             StudentImpl student = new StudentImpl();
@@ -457,7 +460,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
             student.setPen(pen);
 
             if(result.add(student)) {
-                log.debug("Student {} added into unique collection for report", student);
+                logger.debug("Student {} added into unique collection for report", student);
             } else {
                 continue;
             }
@@ -499,7 +502,7 @@ public class GradDataConvertionBean extends BaseServiceImpl {
                 List<String> studentCertificateTypeCodes = new ArrayList<>();
                 if(st.getGraduationStatus() != null && StringUtils.isNotBlank(st.getGraduationStatus().getCertificates())) {
                     String studentCertificateTypeCodesString = st.getGraduationStatus().getCertificates();
-                    log.debug("Process student {} certificate credentials {}", student.getPen(), studentCertificateTypeCodesString);
+                    logger.debug("Process student {} certificate credentials {}", student.getPen(), studentCertificateTypeCodesString);
                     studentCertificateTypeCodes = Arrays.asList(StringUtils.split(studentCertificateTypeCodesString, ","));
                 }
 
@@ -531,9 +534,9 @@ public class GradDataConvertionBean extends BaseServiceImpl {
     public GraduationStudentRecord getGraduationStudentRecord(ReportData reportData) {
         Student student = getStudent(reportData);
         String pen = student.getPen().getPen();
-        GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen);
+        GradSearchStudent gradSearchStudent = this.getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
         if (gradSearchStudent != null) {
-            return getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID());
+            return getGradStatusFromGradStudentApi(gradSearchStudent.getStudentID(), reportData.getAccessToken());
         }
         return null;
     }

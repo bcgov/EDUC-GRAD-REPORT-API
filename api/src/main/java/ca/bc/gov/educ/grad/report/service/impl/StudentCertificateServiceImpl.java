@@ -96,6 +96,8 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         LOG.log(Level.FINE,
                 "Confirmed the user is a student and retrieved the PEN.");
 
+        String accessToken = reportData.getAccessToken();
+
         final Certificate certificate = getCertificate(reportData);
         if (certificate == null) {
             final String msg = "Failed to find student certificate";
@@ -109,7 +111,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         final School school = getSchool(reportData); //validated
 
         if(school != null && !StringUtils.isBlank(school.getSchoolId())) {
-            TraxSchool traxSchool = getSchool(school.getSchoolId());
+            TraxSchool traxSchool = getSchool(school.getSchoolId(), accessToken);
             if(traxSchool != null) {
                 if ("N".equalsIgnoreCase(traxSchool.getCertificateEligibility())) {
                     EntityNotFoundException dse = new EntityNotFoundException(

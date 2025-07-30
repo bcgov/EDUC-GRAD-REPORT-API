@@ -721,7 +721,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             parameters.put("issueDateObj", issueDate);
         }
 
-        ca.bc.gov.educ.grad.report.model.school.School schoolObj = adaptSchool(studentInfo, false);
+        ca.bc.gov.educ.grad.report.model.school.School schoolObj = adaptSchool(studentInfo, getAccessToken(), false);
         if (schoolObj != null) {
             parameters.put("schoolObj", schoolObj);
         }

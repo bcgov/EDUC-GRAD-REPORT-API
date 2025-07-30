@@ -104,9 +104,9 @@ public class StudentReportSignatureImageControllerTest extends GradReportBaseTes
         List<GradReportSignatureImage> signatureImages = new ArrayList();
         signatureImages.add(signatureImage);
 
-        Mockito.when(reportSignatureService.getSignatureImages()).thenReturn(signatureImages);
-        signatureImages = reportSignatureController.getSignatureImages();
-        Mockito.verify(reportSignatureService).getSignatureImages();
+        Mockito.when(reportSignatureService.getSignatureImages("accessToken")).thenReturn(signatureImages);
+        signatureImages = reportSignatureController.getSignatureImages("accessToken");
+        Mockito.verify(reportSignatureService).getSignatureImages("accessToken");
         assertTrue(!signatureImages.isEmpty());
 
         LOG.debug(">getSignatureImagesTest");
