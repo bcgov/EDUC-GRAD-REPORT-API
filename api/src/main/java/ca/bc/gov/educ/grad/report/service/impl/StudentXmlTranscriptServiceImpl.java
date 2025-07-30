@@ -68,7 +68,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         REPORT_DATA_MISSING,
                         "Xml Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(methodName, dse);
                 throw dse;
             }
 
@@ -77,7 +77,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         "PEN_MISSING",
                         "Pen value must not be null");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(methodName, dse);
                 throw dse;
             }
 
@@ -89,7 +89,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         STUDENT_MISSING,
                         "Student with PEN " + pen + " value not exists in PEN system");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getStudentID(), reportData.getAccessToken());
@@ -98,7 +98,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         STUDENT_MISSING,
                         "Student with PEN " + pen + " value not exists in GRAD Student system");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             if(graduationStudentRecord.getStudentGradData() == null) {
@@ -106,7 +106,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         STUDENT_MISSING,
                         "Student with PEN " + pen + " doesn't have graduation data in GRAD Student system");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             AcademicRecordBatch academicRecordBatch = (AcademicRecordBatch)jsonTransformer.unmarshall(graduationStudentRecord.getStudentGradData(), AcademicRecordBatch.class);
@@ -122,7 +122,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
         } catch (Exception ex) {
             String msg = ex.getMessage() == null ? "Failed to access xml transcript data for student with PEN: ".concat(pen) : ex.getMessage();
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
+            log.error(msg, dex);
             throw dex;
         }
 
@@ -137,7 +137,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Xml Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(dse.getMessage(), dse);
             throw dse;
         }
         academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setRequestTrackingID(reportData.getRequestTrackId());

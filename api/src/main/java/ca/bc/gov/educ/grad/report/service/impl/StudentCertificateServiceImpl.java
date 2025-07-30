@@ -104,7 +104,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         if (certificate == null) {
             final String msg = "Failed to find student certificate";
             final DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
 
@@ -120,7 +120,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                             getClass(),
                             REPORT_DATA_VALIDATION,
                             "School is not eligible for certificates");
-                    LOG.throwing(CLASSNAME, methodName, dse);
+                    log.error(dse.getMessage(), dse);
                     throw dse;
                 }
                 if(StringUtils.isBlank(school.getSchoolCategoryCode())) {
@@ -328,7 +328,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                 String msg = "The generated report output is empty.";
                 DomainServiceException dse = new DomainServiceException(null,
                         msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(msg, dse);
                 throw dse;
             }
             byte[] rptData = inData;

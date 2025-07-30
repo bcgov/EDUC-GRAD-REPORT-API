@@ -180,7 +180,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
                         getClass(),
                         REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
 
@@ -189,7 +189,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         } catch (Exception ex) {
             String msg = "Failed to access delivery info data";
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
+            log.error(msg, dex);
             throw dex;
         }
 
@@ -211,7 +211,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
                         getClass(),
                         REPORT_DATA_MISSING,
                         "Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
 
@@ -221,7 +221,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             String msg = "Failed to access order type data";
             final DataException dex = new DataException(null, null, msg, ex);
 
-            LOG.throwing(CLASSNAME, methodName, dex);
+            log.error(msg, dex);
             throw dex;
         }
 

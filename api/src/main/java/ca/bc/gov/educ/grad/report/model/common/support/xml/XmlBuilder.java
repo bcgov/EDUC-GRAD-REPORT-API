@@ -200,10 +200,8 @@ public class XmlBuilder {
             transformer.transform(domSource, sr);
             result = sw.toString();
 
-        } catch (final TransformerConfigurationException ex) {
-            LOG.throwing(CLASSNAME, methodName, ex);
         } catch (final TransformerException ex) {
-            LOG.throwing(CLASSNAME, methodName, ex);
+            log.error(ex.getMessage(), ex);
         }
 
         return result;

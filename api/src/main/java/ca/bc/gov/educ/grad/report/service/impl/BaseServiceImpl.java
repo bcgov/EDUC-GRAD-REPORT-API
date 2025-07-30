@@ -31,7 +31,7 @@ public class BaseServiceImpl {
         {
             return webClient.get().uri(String.format(reportApiConstants.getReadGradStudentRecord(),studentID)).headers(h -> h.setBearerAuth(accessToken)).retrieve().bodyToMono(GraduationStudentRecord.class).block();
         } catch (Exception e) {
-            LOG.throwing(CLASSNAME, methodName, e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -43,7 +43,7 @@ public class BaseServiceImpl {
         {
             return webClient.get().uri(String.format(reportApiConstants.getReadGradStudentRecordPen(),pen)).headers(h -> h.setBearerAuth(accessToken)).retrieve().bodyToMono(GraduationStudentRecord.class).block();
         } catch (Exception e) {
-            LOG.throwing(CLASSNAME, methodName, e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -57,7 +57,7 @@ public class BaseServiceImpl {
                 return stuDataList.get(0);
             }
         } catch (Exception e) {
-            LOG.throwing(CLASSNAME, methodName, e);
+            log.error(e.getMessage(), e);
         }
         return null;
     }

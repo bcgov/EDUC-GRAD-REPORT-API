@@ -129,7 +129,7 @@ public abstract class GradReportServiceImpl {
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(dse.getMessage(), dse);
             throw dse;
         }
 
@@ -347,7 +347,7 @@ public abstract class GradReportServiceImpl {
                         getClass(),
                         REPORT_DATA_VALIDATION,
                         "School is not eligible for transcripts");
-                LOG.throwing(CLASSNAME, m_, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             if (traxSchool != null) {
@@ -486,7 +486,7 @@ public abstract class GradReportServiceImpl {
             String msg = "The generated report output is empty.";
             DomainServiceException dse = new DomainServiceException(null,
                     msg);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
         return inData;

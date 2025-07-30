@@ -209,7 +209,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(methodName, dse);
             throw dse;
         }
 
@@ -218,7 +218,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     "GRAD_PROGRAM_MISSING",
                     "Graduation Program not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(methodName, dse);
             throw dse;
         }
 
@@ -304,7 +304,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, m_, dse);
+            log.error(m_, dse);
             throw dse;
         }
 
@@ -356,7 +356,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, m_, dse);
+            log.error(m_, dse);
             throw dse;
         }
 
@@ -408,7 +408,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, m_, dse);
+            log.error(m_, dse);
             throw dse;
         }
 
@@ -446,7 +446,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, m_, dse);
+            log.error(m_, dse);
             throw dse;
         }
 
@@ -498,7 +498,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, m_, dse);
+            log.error(m_, dse);
             throw dse;
         }
 
@@ -543,7 +543,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, m_, dse);
+            log.error(m_, dse);
             throw dse;
         }
 
@@ -629,7 +629,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String msg = "Failed to create report.";
             LOG.log(Level.SEVERE, msg, ex);
             final DomainServiceException dse = new DomainServiceException(msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
 
@@ -639,7 +639,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         if (isEmpty(content)) {
             final String msg = "The generated report output is empty.";
             DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
 

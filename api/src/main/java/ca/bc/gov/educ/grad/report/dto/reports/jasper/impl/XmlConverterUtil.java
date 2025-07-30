@@ -69,7 +69,7 @@ public class XmlConverterUtil {
             final Document doc = db.parse(is);
             dataSourceRootElement = (Element) doc.getFirstChild();
         } catch (final ParserConfigurationException | SAXException | IOException ex) {
-            LOG.throwing(CLASSNAME, CLASSNAME, ex);
+            log.error(ex.getMessage(), ex);
             throw ex;
         }
 

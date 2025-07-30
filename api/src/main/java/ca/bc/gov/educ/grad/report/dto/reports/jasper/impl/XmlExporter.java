@@ -114,8 +114,7 @@ public class XmlExporter implements Exporter {
             exportDocument();
         } catch (final ParserConfigurationException | DOMException | JAXBException | IOException | SAXException ex) {
             final Throwable t = getRootCause(ex.getCause());
-            LOG.info(t.getMessage());
-            LOG.throwing(CLASSNAME, methodName, ex);
+            log.info(ex.getMessage());
             throw new JRException(ex);
         }
 

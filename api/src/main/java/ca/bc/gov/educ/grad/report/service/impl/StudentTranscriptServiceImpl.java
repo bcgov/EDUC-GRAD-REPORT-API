@@ -202,7 +202,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         } catch (Exception ex) {
             String msg = "Failed to access transcript data for student with PEN: ".concat(pen);
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
+            log.error(msg, dex);
             throw dex;
         }
 
@@ -223,7 +223,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
                         getClass(),
                         "GRAD_PROGRAM_MISSING",
                         "Grad Program or Grad Program Code is null");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(methodName, dse);
                 throw dse;
             }
 
@@ -232,7 +232,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         } catch (Exception ex) {
             String msg = "Failed to get grad program : ".concat(code);
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
+            log.error(methodName, dex);
             throw dex;
         }
 
@@ -556,7 +556,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         if (isEmpty(content)) {
             final String msg = "The generated report output is empty.";
             DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
 
