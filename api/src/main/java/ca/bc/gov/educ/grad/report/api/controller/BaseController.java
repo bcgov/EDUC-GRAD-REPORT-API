@@ -1,6 +1,8 @@
 package ca.bc.gov.educ.grad.report.api.controller;
 
+import antlr.Token;
 import ca.bc.gov.educ.grad.report.api.config.GradReportSignatureUser;
+import ca.bc.gov.educ.grad.report.api.service.TokenService;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.JwtTokenUtil;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
@@ -9,10 +11,9 @@ import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import ca.bc.gov.educ.grad.report.utils.GradValidation;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.RandomStringGenerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -27,19 +28,23 @@ import java.net.UnknownHostException;
 
 import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.NO_ELIGIBLE_COURSES_TRANSCRIPT_REPORT_IS_NOT_CREATED;
 
+@Slf4j
 public abstract class BaseController {
 
-    private static final String CLASS_NAME = BaseController.class.getName();
-    private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
-
-    @Autowired
     GradValidation validation;
 
     @Value("${endpoint.educ-grad-report-api.get-signature-by-code.url}")
     String signatureImageUrlProperty;
 
-    @Autowired
     JsonTransformer jsonTransformer;
+    TokenService tokenService;
+
+    @Autowired
+    public BaseController(GradValidation validation, JsonTransformer jsonTransformer, TokenService tokenService) {
+        this.validation = validation;
+        this.jsonTransformer = jsonTransformer;
+        this.tokenService = tokenService;
+    }
 
     @SneakyThrows
     protected void logRequest(Object request) {

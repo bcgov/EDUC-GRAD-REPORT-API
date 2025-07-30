@@ -19,9 +19,9 @@ package ca.bc.gov.educ.grad.report.dto.impl;
 
 import ca.bc.gov.educ.grad.report.model.assessment.AssessmentResult;
 import ca.bc.gov.educ.grad.report.model.common.support.AbstractDomainEntity;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.nullSafe;
 
@@ -29,16 +29,11 @@ import static ca.bc.gov.educ.grad.report.model.common.support.VerifyUtils.nullSa
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class AssessmentResultImpl extends AbstractDomainEntity
         implements AssessmentResult, Serializable {
 
     private static final long serialVersionUID = 3L;
-
-    private static final String CLASSNAME = AssessmentResultImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
-
-    final private static Integer DEFAULT_SCORE = -1;
-    final private static String DEFAULT_NAME = "";
 
     private String studentNumber;
     private String assessmentName;

@@ -23,8 +23,7 @@ import ca.bc.gov.educ.grad.report.model.student.*;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -35,13 +34,13 @@ import java.util.Map;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
+@Slf4j
 @Service
 public class GradReportService {
 
 	private static final String CLASS_NAME = GradReportService.class.getName();
 	private static final String EXCEPTION_MSG = "Unable to execute %s";
 
-	private static final Logger log = LoggerFactory.getLogger(CLASS_NAME);
 	private static final String DIR_REPORT_BASE = "/reports/";
 	private static final String DIR_IMAGE_BASE = "/reports/resources/images/";
 

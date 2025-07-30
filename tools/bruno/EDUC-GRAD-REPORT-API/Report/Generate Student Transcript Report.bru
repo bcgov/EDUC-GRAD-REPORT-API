@@ -10,8 +10,6 @@ post {
   auth: none
 }
 
-
-
 body:json {
   {
     "options": {
@@ -24,7 +22,10 @@ body:json {
     },
     "data": {
       "student": {
-        "pen": "",
+        "pen": {
+          "pen": "",
+          "entityID": ""
+        },
         "firstName": "",
         "middleName": "",
         "lastName": "",
@@ -95,7 +96,15 @@ body:json {
         "distno": "",
         "schlno": "",
         "schoolCategoryCode": "",
-        "address": "",
+        "address": {
+          "streetLine1": "",
+          "streetLine2": "",
+          "streetLine3": "",
+          "city": "",
+          "region": "",
+          "country": "",
+          "code": ""
+        },
         "phoneNumber": "",
         "dogwoodElig": "",
         "schoolStatistic": {
@@ -107,7 +116,102 @@ body:json {
           "evergreenCount": "",
           "totalCertificateCount": ""
         },
-        "students": []
+        "students": [
+          {
+            "pen": {
+              "pen": "",
+              "entityID": ""
+            },
+            "firstName": "",
+            "middleName": "",
+            "lastName": "",
+            "gender": "",
+            "citizenship": "",
+            "birthdate": "",
+            "address": {
+              "streetLine1": "",
+              "streetLine2": "",
+              "streetLine3": "",
+              "city": "",
+              "region": "",
+              "country": "",
+              "code": ""
+            },
+            "grade": "",
+            "gradProgram": "",
+            "gradReqYear": "",
+            "studStatus": "",
+            "sccDate": "",
+            "mincodeGrad": "",
+            "englishCert": "",
+            "frenchCert": "",
+            "localId": "",
+            "hasOtherProgram": "",
+            "lastUpdateDate": "",
+            "otherProgramParticipation": [
+              {
+                "programCode": "",
+                "programName": ""
+              }
+            ],
+            "nonGradReasons": [
+              {
+                "code": "",
+                "description": ""
+              }
+            ],
+            "graduationData": {
+              "graduationDate": "",
+              "honorsFlag": "",
+              "dogwoodFlag": "",
+              "programCodes": [],
+              "programNames": [],
+              "totalCreditsUsedForGrad": ""
+            },
+            "graduationStatus": {
+              "programCompletionDate": "",
+              "honours": "",
+              "gpa": "",
+              "studentGrade": "",
+              "studentStatus": "",
+              "studentStatusName": "",
+              "schoolAtGrad": "",
+              "schoolOfRecord": "",
+              "certificates": "",
+              "graduationMessage": "",
+              "programName": ""
+            }
+          }
+        ]
+      },
+      "district": {
+        "createdBy": "",
+        "createdOn": "",
+        "lastUpdatedOn": "",
+        "lastUpdatedBy": "",
+        "xactId": "",
+        "entityId": "",
+        "distno": "",
+        "name": "",
+        "address": {
+          "region": "",
+          "formattedAddressForLabels": "",
+          "city": "",
+          "streetLine3": "",
+          "countryCode": "",
+          "postalCode": "",
+          "streetLine1": "",
+          "streetLine2": "",
+          "id": "",
+          "entityId": "",
+          "createdOn": "",
+          "createdBy": "",
+          "lastUpdatedOn": "",
+          "lastUpdatedBy": ""
+        },
+        "id": "",
+        "districtNumber": "",
+        "districtName": ""
       },
       "transcript": {
         "interim": "",
@@ -161,10 +265,22 @@ body:json {
         ]
       },
       "gradProgram": {
-        "code": "",
+        "code": {
+          "code": "",
+          "description": "",
+          "credits": "",
+          "name": ""
+        },
         "expiryDate": ""
       },
-      "graduationData": "",
+      "graduationData": {
+        "graduationDate": "",
+        "honorsFlag": "",
+        "dogwoodFlag": "",
+        "programCodes": [],
+        "programNames": [],
+        "totalCreditsUsedForGrad": ""
+      },
       "updateDate": "",
       "certificate": {
         "issued": "",
@@ -180,16 +296,127 @@ body:json {
         },
         "isOrigin": ""
       },
-      "graduationStatus": "",
+      "graduationStatus": {
+        "programCompletionDate": "",
+        "honours": "",
+        "gpa": "",
+        "studentGrade": "",
+        "studentStatus": "",
+        "studentStatusName": "",
+        "schoolAtGrad": "",
+        "schoolOfRecord": "",
+        "certificates": "",
+        "graduationMessage": "",
+        "programName": ""
+      },
       "issueDate": "",
       "packingSlip": {
         "recipient": "",
-        "school": "",
+        "school": {
+          "schoolId": "",
+          "mincode": "",
+          "name": "",
+          "typeIndicator": "",
+          "typeBanner": "",
+          "signatureCode": "",
+          "distno": "",
+          "schlno": "",
+          "schoolCategoryCode": "",
+          "address": {
+            "streetLine1": "",
+            "streetLine2": "",
+            "streetLine3": "",
+            "city": "",
+            "region": "",
+            "country": "",
+            "code": ""
+          },
+          "phoneNumber": "",
+          "dogwoodElig": "",
+          "schoolStatistic": {
+            "transcriptCount": "",
+            "dogwoodCount": "",
+            "adultDogwoodCount": "",
+            "frenchImmersionCount": "",
+            "programFrancophoneCount": "",
+            "evergreenCount": "",
+            "totalCertificateCount": ""
+          },
+          "students": [
+            {
+              "pen": {
+                "pen": "",
+                "entityID": ""
+              },
+              "firstName": "",
+              "middleName": "",
+              "lastName": "",
+              "gender": "",
+              "citizenship": "",
+              "birthdate": "",
+              "address": {
+                "streetLine1": "",
+                "streetLine2": "",
+                "streetLine3": "",
+                "city": "",
+                "region": "",
+                "country": "",
+                "code": ""
+              },
+              "grade": "",
+              "gradProgram": "",
+              "gradReqYear": "",
+              "studStatus": "",
+              "sccDate": "",
+              "mincodeGrad": "",
+              "englishCert": "",
+              "frenchCert": "",
+              "localId": "",
+              "hasOtherProgram": "",
+              "lastUpdateDate": "",
+              "otherProgramParticipation": [
+                {
+                  "programCode": "",
+                  "programName": ""
+                }
+              ],
+              "nonGradReasons": [
+                {
+                  "code": "",
+                  "description": ""
+                }
+              ],
+              "graduationData": {
+                "graduationDate": "",
+                "honorsFlag": "",
+                "dogwoodFlag": "",
+                "programCodes": [],
+                "programNames": [],
+                "totalCreditsUsedForGrad": ""
+              },
+              "graduationStatus": {
+                "programCompletionDate": "",
+                "honours": "",
+                "gpa": "",
+                "studentGrade": "",
+                "studentStatus": "",
+                "studentStatusName": "",
+                "schoolAtGrad": "",
+                "schoolOfRecord": "",
+                "certificates": "",
+                "graduationMessage": "",
+                "programName": ""
+              }
+            }
+          ]
+        },
         "orderType": {
           "name": "",
           "packingSlipType": {
             "name": "",
-            "paperType": ""
+            "paperType": {
+              "code": ""
+            }
           }
         },
         "orderDate": "",
@@ -205,7 +432,12 @@ body:json {
       "reportNumber": "",
       "reportTitle": "",
       "reportSubTitle": "",
-      "nonGradReasons": [],
+      "nonGradReasons": [
+        {
+          "code": "",
+          "description": ""
+        }
+      ],
       "studentCourses": [
         {
           "pen": "",
@@ -232,8 +464,8 @@ body:json {
           "completedCourseLetterGrade": "",
           "interimPercent": "",
           "equivOrChallenge": "",
-          "creditsUsedForGrad": "",
-          "examinable": ""
+          "examinable": "",
+          "creditsUsedForGrad": ""
         }
       ],
       "studentExams": [
@@ -265,13 +497,146 @@ body:json {
             {
               "code": "",
               "description": "",
-              "courseDetails": []
+              "courseDetails": [
+                {
+                  "pen": "",
+                  "courseName": "",
+                  "courseCode": "",
+                  "courseLevel": "",
+                  "requirement": "",
+                  "equivalency": "",
+                  "sessionDate": "",
+                  "schoolPercent": "",
+                  "examPercent": "",
+                  "finalPercent": "",
+                  "credits": "",
+                  "finalLetterGrade": "",
+                  "courseType": "",
+                  "interimMark": "",
+                  "interimLetterGrade": "",
+                  "relatedCourse": "",
+                  "relatedLevel": "",
+                  "usedForGrad": "",
+                  "projected": "",
+                  "gradReqMet": "",
+                  "completedCoursePercentage": "",
+                  "completedCourseLetterGrade": "",
+                  "interimPercent": "",
+                  "equivOrChallenge": "",
+                  "examinable": "",
+                  "creditsUsedForGrad": ""
+                }
+              ]
             }
           ],
-          "nonGradReasons": []
+          "nonGradReasons": [
+            {
+              "code": "",
+              "description": ""
+            }
+          ]
         }
       ],
-      "schools": []
+      "schools": [
+        {
+          "schoolId": "",
+          "mincode": "",
+          "name": "",
+          "typeIndicator": "",
+          "typeBanner": "",
+          "signatureCode": "",
+          "distno": "",
+          "schlno": "",
+          "schoolCategoryCode": "",
+          "address": {
+            "streetLine1": "",
+            "streetLine2": "",
+            "streetLine3": "",
+            "city": "",
+            "region": "",
+            "country": "",
+            "code": ""
+          },
+          "phoneNumber": "",
+          "dogwoodElig": "",
+          "schoolStatistic": {
+            "transcriptCount": "",
+            "dogwoodCount": "",
+            "adultDogwoodCount": "",
+            "frenchImmersionCount": "",
+            "programFrancophoneCount": "",
+            "evergreenCount": "",
+            "totalCertificateCount": ""
+          },
+          "students": [
+            {
+              "pen": {
+                "pen": "",
+                "entityID": ""
+              },
+              "firstName": "",
+              "middleName": "",
+              "lastName": "",
+              "gender": "",
+              "citizenship": "",
+              "birthdate": "",
+              "address": {
+                "streetLine1": "",
+                "streetLine2": "",
+                "streetLine3": "",
+                "city": "",
+                "region": "",
+                "country": "",
+                "code": ""
+              },
+              "grade": "",
+              "gradProgram": "",
+              "gradReqYear": "",
+              "studStatus": "",
+              "sccDate": "",
+              "mincodeGrad": "",
+              "englishCert": "",
+              "frenchCert": "",
+              "localId": "",
+              "hasOtherProgram": "",
+              "lastUpdateDate": "",
+              "otherProgramParticipation": [
+                {
+                  "programCode": "",
+                  "programName": ""
+                }
+              ],
+              "nonGradReasons": [
+                {
+                  "code": "",
+                  "description": ""
+                }
+              ],
+              "graduationData": {
+                "graduationDate": "",
+                "honorsFlag": "",
+                "dogwoodFlag": "",
+                "programCodes": [],
+                "programNames": [],
+                "totalCreditsUsedForGrad": ""
+              },
+              "graduationStatus": {
+                "programCompletionDate": "",
+                "honours": "",
+                "gpa": "",
+                "studentGrade": "",
+                "studentStatus": "",
+                "studentStatusName": "",
+                "schoolAtGrad": "",
+                "schoolOfRecord": "",
+                "certificates": "",
+                "graduationMessage": "",
+                "programName": ""
+              }
+            }
+          ]
+        }
+      ]
     },
     "dataMap": {}
   }
