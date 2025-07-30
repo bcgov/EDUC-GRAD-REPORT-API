@@ -27,3 +27,5 @@ signatures
 /.project
 .idea
 target
+
+**/generate-local-env.sh

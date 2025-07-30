@@ -1,11 +1,13 @@
 package ca.bc.gov.educ.grad.report.api.test.service;
 
+import ca.bc.gov.educ.grad.report.api.service.RESTService;
 import ca.bc.gov.educ.grad.report.api.test.GradReportBaseTest;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.SignatureBlockTypeCode;
 import ca.bc.gov.educ.grad.report.entity.GradReportSignatureImageEntity;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
+import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -14,7 +16,10 @@ import org.mockito.Mockito;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

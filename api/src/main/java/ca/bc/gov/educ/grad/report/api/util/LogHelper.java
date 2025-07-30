@@ -72,7 +72,7 @@ public class LogHelper {
      * Truncating payload to 1000 characters due to logging constraints.
      * @param request * @return a String representing the truncated payload
      **/
-    private static String getTruncatedPayload(final HttpServletRequest request) {
+    private String getTruncatedPayload(final HttpServletRequest request) {
         String payload = String.valueOf(request.getAttribute("payload") != null ? request.getAttribute("payload") : "");
         return (payload.length() > 1000) ? payload.substring(0, 1000).concat("...") : payload;
     }
@@ -87,7 +87,7 @@ public class LogHelper {
      * @param correlationID
      */
     public void logClientHttpReqResponseDetails(@NonNull final HttpMethod method, final String url, final int responseCode, final List<String> correlationID,
-                                                final List<String> requestSource, final boolean logging) {
+                                                       final List<String> requestSource, final boolean logging) {
         if (!logging) return;
         try {
             final Map<String, Object> httpMap = new HashMap<>();
