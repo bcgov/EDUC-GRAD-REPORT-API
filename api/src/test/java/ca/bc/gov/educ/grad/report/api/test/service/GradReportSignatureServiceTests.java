@@ -138,5 +138,50 @@ public class GradReportSignatureServiceTests {
         assertEquals("My District", result.getDistrictName());
     }
 
-    // Add more edge cases, exception flows, and tests for BLANK image fallback if needed
+    @Test
+    void testGetSignatureImages_singleRecord_withDistrictInfo() {
+        DistrictImpl distImpl = new ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl();
+        distImpl.setDistno("123");
+        distImpl.setName("My District");
+
+        GradReportSignatureImageEntity entity = new GradReportSignatureImageEntity();
+        entity.setGradReportSignatureCode("456");
+
+        GradReportSignatureImage dto = new GradReportSignatureImage();
+        dto.setGradReportSignatureCode("456");
+
+        List<GradReportSignatureImageEntity> entities = List.of(entity);
+
+        when(signatureImageRepository.findAll()).thenReturn(entities);
+        when(gradReportSignatureTransformer.transformToDTO(entity)).thenReturn(dto);
+        when(constants.getDistrictDetails()).thenReturn("http://example.com/%s");
+        when(restService.get(anyString(), eq(ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl.class), eq(webClient)))
+                .thenReturn(distImpl);
+
+        List<GradReportSignatureImage> result = gradReportSignatureService.getSignatureImages();
+        assertEquals(1, result.size());
+        assertEquals("My District", result.get(0).getDistrictName());
+    }
+
+    @Test
+    void testGetSignatureImages_districtServiceThrowsException() {
+        GradReportSignatureImageEntity entity = new GradReportSignatureImageEntity();
+        entity.setGradReportSignatureCode("789");
+
+        GradReportSignatureImage dto = new GradReportSignatureImage();
+        dto.setGradReportSignatureCode("789");
+
+        List<GradReportSignatureImageEntity> entities = List.of(entity);
+
+        when(signatureImageRepository.findAll()).thenReturn(entities);
+        when(gradReportSignatureTransformer.transformToDTO(entity)).thenReturn(dto);
+        when(constants.getDistrictDetails()).thenReturn("http://example.com/%s");
+        when(restService.get(anyString(), eq(ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl.class), eq(webClient)))
+                .thenThrow(new RuntimeException("Connection error"));
+
+        List<GradReportSignatureImage> result = gradReportSignatureService.getSignatureImages();
+        assertEquals(1, result.size());
+        assertNull(result.get(0).getDistrictName());
+    }
+
 }

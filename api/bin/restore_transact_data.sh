@@ -1,1 +1,0 @@
-java -classpath "ojdbc10-19.12.0.0.jar;" RestoreTransactDataUtils jdbc:oracle:thin:<SRC_SCHEMA_USER>/<SCHEMA_PASSWORD>@<HOSTNAME>:<PORT>/<SERVICE_NAME> jdbc:oracle:thin:<TRG_SCHEMA_USER>/<PASSWORD>@<HOSTNAME>:<PORT>/<SERVICE_NAME> <SOURCE_TABLES>
