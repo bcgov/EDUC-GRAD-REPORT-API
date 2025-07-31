@@ -26,6 +26,10 @@ public class BaseServiceImpl {
     WebClient webClient;
 
     @Autowired
+    @Qualifier("gradReportEducStudentApiClient")
+    WebClient educStudentWebClient;
+
+    @Autowired
     ReportApiConstants reportApiConstants;
 
     protected GraduationStudentRecord getGradStatusFromGradStudentApi(String studentID) {
@@ -57,7 +61,7 @@ public class BaseServiceImpl {
         LOG.entering(CLASSNAME, methodName);
         try {
             List<GradSearchStudent> stuDataList = restService.get(String.format(reportApiConstants.getPenStudentApiByPenUrl(),pen),
-                    new ParameterizedTypeReference<List<GradSearchStudent>>() {}, webClient);
+                    new ParameterizedTypeReference<List<GradSearchStudent>>() {}, educStudentWebClient);
             if(stuDataList != null && !stuDataList.isEmpty()) {
                 return stuDataList.get(0);
             }

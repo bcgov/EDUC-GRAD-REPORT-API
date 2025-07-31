@@ -80,11 +80,13 @@ public abstract class GradReportBaseTest {
     protected WebClient webClient;
 
     @MockBean
+    @Qualifier("gradReportEducStudentApiClient")
+    protected WebClient educStudentWebClient;
+
+    @MockBean
     public RESTService restService;
     @Mock protected WebClient.RequestHeadersSpec requestHeadersMock;
     @Mock protected WebClient.RequestHeadersUriSpec requestHeadersUriMock;
-    @Mock protected WebClient.RequestBodySpec requestBodyMock;
-    @Mock protected WebClient.RequestBodyUriSpec requestBodyUriMock;
     @Mock protected WebClient.ResponseSpec responseMock;
 
     @Autowired

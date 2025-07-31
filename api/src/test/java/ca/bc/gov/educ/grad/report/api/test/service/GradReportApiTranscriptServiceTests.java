@@ -454,7 +454,7 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
 		when(restService.get(eq(String.format(reportApiConstants.getPenStudentApiByPenUrl(), pen)),
-				any(ParameterizedTypeReference.class), eq(webClient)))
+				any(ParameterizedTypeReference.class), eq(educStudentWebClient)))
 				.thenReturn(List.of(gradSearchStudent));
 		when(restService.get(String.format(reportApiConstants.getReadGradStudentRecord(), gradSearchStudent.getStudentID()),
 				GraduationStudentRecord.class, webClient))

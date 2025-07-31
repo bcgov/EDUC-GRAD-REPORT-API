@@ -28,20 +28,24 @@ import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTER
 public class GradReportSignatureService {
 
     private static final String CLASS_NAME = GradReportSignatureService.class.getName();
-    @Autowired
     SignatureImageRepository signatureImageRepository;
-
-    @Autowired
     GradReportSignatureTransformer gradReportSignatureTransformer;
-
-    @Autowired
-    @Qualifier("reportApiClient")
     WebClient webClient;
+    EducGradReportApiConstants constants;
+    RESTService restService;
 
     @Autowired
-    EducGradReportApiConstants constants;
-    @Autowired
-    RESTService restService;
+    public GradReportSignatureService(SignatureImageRepository signatureImageRepository,
+                                      GradReportSignatureTransformer gradReportSignatureTransformer,
+                                      @Qualifier("reportApiClient") WebClient webClient,
+                                      EducGradReportApiConstants constants,
+                                      RESTService restService) {
+        this.signatureImageRepository = signatureImageRepository;
+        this.gradReportSignatureTransformer = gradReportSignatureTransformer;
+        this.webClient = webClient;
+        this.constants = constants;
+        this.restService = restService;
+    }
 
     @Transactional
     public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
