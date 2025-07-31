@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class GradReportProgramCertificateTranscriptService {
 
-    private static final String CLASS_NAME = GradReportProgramCertificateTranscriptService.class.getName();
-
     @Autowired
     ProgramCertificateTranscriptRepository programCertificateTranscriptRepository;
 

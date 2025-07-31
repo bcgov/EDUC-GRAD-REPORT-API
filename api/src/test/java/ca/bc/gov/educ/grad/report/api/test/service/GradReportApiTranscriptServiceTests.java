@@ -13,8 +13,6 @@ import ca.bc.gov.educ.grad.report.model.common.DataException;
 import ca.bc.gov.educ.grad.report.model.graduation.GraduationProgramCode;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptService;
 import ca.bc.gov.educ.grad.report.model.transcript.TranscriptCourse;
-import org.assertj.core.condition.AnyOf;
-import org.hibernate.mapping.Any;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;

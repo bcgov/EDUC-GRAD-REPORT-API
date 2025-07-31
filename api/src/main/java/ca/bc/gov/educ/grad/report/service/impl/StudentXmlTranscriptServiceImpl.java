@@ -5,7 +5,6 @@ import ca.bc.gov.educ.grad.report.api.client.GraduationStudentRecord;
 import ca.bc.gov.educ.grad.report.api.client.XmlReportData;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.service.utils.XmlTransformer;
-import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentTranscriptReportImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.xml.AcademicRecordBatch;
@@ -19,7 +18,6 @@ import jakarta.annotation.security.DeclareRoles;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.logging.Logger;
 
