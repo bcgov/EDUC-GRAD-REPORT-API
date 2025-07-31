@@ -1,5 +1,6 @@
 package ca.bc.gov.educ.grad.report.service;
 
+import ca.bc.gov.educ.grad.report.api.service.RESTService;
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl;
@@ -8,9 +9,9 @@ import ca.bc.gov.educ.grad.report.model.common.DomainServiceException;
 import ca.bc.gov.educ.grad.report.transformer.GradReportSignatureTransformer;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import jakarta.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -22,22 +23,29 @@ import java.util.UUID;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DEBUG_LOG_PATTERN;
 
+@Slf4j
 @Service
 public class GradReportSignatureService {
 
     private static final String CLASS_NAME = GradReportSignatureService.class.getName();
-    private static Logger log = LoggerFactory.getLogger(CLASS_NAME);
-
-    @Autowired
     SignatureImageRepository signatureImageRepository;
-
-    @Autowired
     GradReportSignatureTransformer gradReportSignatureTransformer;
-
-    @Autowired WebClient webClient;
+    WebClient webClient;
+    EducGradReportApiConstants constants;
+    RESTService restService;
 
     @Autowired
-    EducGradReportApiConstants constants;
+    public GradReportSignatureService(SignatureImageRepository signatureImageRepository,
+                                      GradReportSignatureTransformer gradReportSignatureTransformer,
+                                      @Qualifier("reportApiClient") WebClient webClient,
+                                      EducGradReportApiConstants constants,
+                                      RESTService restService) {
+        this.signatureImageRepository = signatureImageRepository;
+        this.gradReportSignatureTransformer = gradReportSignatureTransformer;
+        this.webClient = webClient;
+        this.constants = constants;
+        this.restService = restService;
+    }
 
     @Transactional
     public GradReportSignatureImage getSignatureImageBySignatureId(String id) {
@@ -60,7 +68,7 @@ public class GradReportSignatureService {
     }
 
     @Transactional
-    public List<GradReportSignatureImage> getSignatureImages(String accessToken) {
+    public List<GradReportSignatureImage> getSignatureImages() {
         String methodName = "getSignatureImages()";
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         List<GradReportSignatureImageEntity> entities = signatureImageRepository.findAll();
@@ -70,7 +78,7 @@ public class GradReportSignatureService {
 
             DistrictImpl dist = null;
             try {
-                dist = getDistrictInfo(entity.getGradReportSignatureCode(),accessToken);
+                dist = getDistrictInfo(entity.getGradReportSignatureCode());
             } catch (Exception e) {
                 log.error(String.format("Cannot retrieve District information for: %s", entity.getGradReportSignatureCode()));
             }
@@ -103,14 +111,14 @@ public class GradReportSignatureService {
     }
 
     @Transactional
-    public GradReportSignatureImage getSignatureImageByCode(String code, String accessToken) {
+    public GradReportSignatureImage getSignatureImageWithDistInfoByCode(String code) {
         String methodName = String.format("getSignatureImageByCode(String %s)", code);
         log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
         GradReportSignatureImage signatureImage = getSignatureImageByCode(code);
 
         DistrictImpl dist = null;
         try {
-            dist = getDistrictInfo(signatureImage.getGradReportSignatureCode(),accessToken);
+            dist = getDistrictInfo(signatureImage.getGradReportSignatureCode());
         } catch (Exception e) {
             log.error(String.format("Cannot retrieve District information for: %s", signatureImage.getGradReportSignatureCode()));
         }
@@ -142,12 +150,7 @@ public class GradReportSignatureService {
         return imageBytes;
     }
 
-    public DistrictImpl getDistrictInfo(String districtCode, String accessToken) {
-        return webClient.get()
-                .uri(String.format(constants.getDistrictDetails(), districtCode))
-                .headers(h -> h.setBearerAuth(accessToken))
-                .retrieve()
-                .bodyToMono(DistrictImpl.class)
-                .block();
+    public DistrictImpl getDistrictInfo(String districtCode) {
+        return restService.get(String.format(constants.getDistrictDetails(), districtCode), DistrictImpl.class, webClient);
     }
 }

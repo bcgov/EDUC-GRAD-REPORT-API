@@ -5,7 +5,6 @@ import ca.bc.gov.educ.grad.report.api.client.GraduationStudentRecord;
 import ca.bc.gov.educ.grad.report.api.client.XmlReportData;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.service.utils.XmlTransformer;
-import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dto.impl.StudentTranscriptReportImpl;
 import ca.bc.gov.educ.grad.report.dto.reports.xml.AcademicRecordBatch;
@@ -19,7 +18,6 @@ import jakarta.annotation.security.DeclareRoles;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.logging.Logger;
 
@@ -35,12 +33,6 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     private static final String STUDENT_MISSING = "STUDENT_MISSING";
-
-    @Autowired
-    WebClient webClient;
-
-    @Autowired
-    ReportApiConstants reportApiConstants;
 
     @Autowired
     XmlTransformer xmlTransformer;
@@ -81,7 +73,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
 
             pen = reportData.getPen().getPen();
 
-            GradSearchStudent student = getStudentByPenFromStudentApi(pen, reportData.getAccessToken());
+            GradSearchStudent student = getStudentByPenFromStudentApi(pen);
             if(student == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),
@@ -90,7 +82,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                 LOG.throwing(CLASSNAME, methodName, dse);
                 throw dse;
             }
-            GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getStudentID(), reportData.getAccessToken());
+            GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getStudentID());
             if(graduationStudentRecord == null) {
                 EntityNotFoundException dse = new EntityNotFoundException(
                         getClass(),

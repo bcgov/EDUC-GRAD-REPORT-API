@@ -1,18 +1,15 @@
 package ca.bc.gov.educ.grad.report.api.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+@Slf4j
 public class GradReportClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
-
-    private static final String CLASSNAME = GradReportClientHttpRequestInterceptor.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
 
     @Override
     public ClientHttpResponse intercept(
@@ -24,8 +21,8 @@ public class GradReportClientHttpRequestInterceptor implements ClientHttpRequest
     }
 
     private void logRequestDetails(HttpRequest request) {
-        LOG.log(Level.INFO, "Headers: {}", request.getHeaders());
-        LOG.log(Level.INFO, "Request Method: {}", request.getMethod());
-        LOG.log(Level.INFO, "Request URI: {}", request.getURI());
+        log.info("Headers: {}", request.getHeaders());
+        log.info("Request Method: {}", request.getMethod());
+        log.info("Request URI: {}", request.getURI());
     }
 }

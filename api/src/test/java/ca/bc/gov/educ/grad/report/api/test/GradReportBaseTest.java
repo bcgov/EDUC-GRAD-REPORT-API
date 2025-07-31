@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.test;
 
 
 import ca.bc.gov.educ.grad.report.api.client.*;
+import ca.bc.gov.educ.grad.report.api.service.RESTService;
 import ca.bc.gov.educ.grad.report.api.service.utils.JsonTransformer;
 import ca.bc.gov.educ.grad.report.api.util.ReportApiConstants;
 import ca.bc.gov.educ.grad.report.dao.*;
@@ -19,6 +20,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.ParameterizedTypeReference;
@@ -74,11 +76,17 @@ public abstract class GradReportBaseTest {
     protected SignatureImageRepository signatureImageRepository;
 
     @MockBean
+    @Qualifier("reportApiClient")
     protected WebClient webClient;
+
+    @MockBean
+    @Qualifier("gradReportEducStudentApiClient")
+    protected WebClient educStudentWebClient;
+
+    @MockBean
+    public RESTService restService;
     @Mock protected WebClient.RequestHeadersSpec requestHeadersMock;
     @Mock protected WebClient.RequestHeadersUriSpec requestHeadersUriMock;
-    @Mock protected WebClient.RequestBodySpec requestBodyMock;
-    @Mock protected WebClient.RequestBodyUriSpec requestBodyUriMock;
     @Mock protected WebClient.ResponseSpec responseMock;
 
     @Autowired

@@ -348,8 +348,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
      */
     private GradProgram adapt(
             final String graduationProgramCode,
-            final TranscriptTypeCode transcriptTypeCode,
-            final String accessToken) {
+            final TranscriptTypeCode transcriptTypeCode) {
         final String m_ = "adapt(schoolCategoryCode, graduationProgramCode,transcriptTypeCode )";
         LOG.entering(CLASSNAME, m_, transcriptTypeCode);
 
@@ -358,7 +357,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         if(GraduationProgramCode.PROGRAM_BLANK.getCode().equalsIgnoreCase(graduationProgramCode) && transcriptTypeCode != null) {
             List<ProgramCertificateTranscriptEntity> entities = programCertificateTranscriptRepository.findByTranscriptTypeCode(transcriptTypeCode.getCode());
             if(!entities.isEmpty()) {
-                GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode(), accessToken);
+                GradProgramImpl gradProgram = getGraduationProgram(entities.get(0).getGraduationProgramCode());
                 if(gradProgram != null) {
                     result = gradProgram;
                 }
@@ -600,9 +599,9 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Transcript transcript = getTranscript(pen);
 
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
-        final School school = adaptSchool(studentInfo, getAccessToken(), true);
+        final School school = adaptSchool(studentInfo, true);
 
-        final GradProgram program = adapt(programCode, transcript.getTranscriptTypeCode(), getAccessToken());
+        final GradProgram program = adapt(programCode, transcript.getTranscriptTypeCode());
 
         final GraduationData graduationData = adaptGraduationData(studentInfo, transcript);
 

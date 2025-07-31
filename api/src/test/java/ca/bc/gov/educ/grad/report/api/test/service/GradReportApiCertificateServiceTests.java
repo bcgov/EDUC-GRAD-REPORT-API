@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
 public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
@@ -53,6 +54,9 @@ public class GradReportApiCertificateServiceTests extends GradReportBaseTest {
 		school.setCertificateEligibility("N");
 		mockTraxSchool(school);
 		ReportRequestDataThreadLocal.setReportData(reportRequest.getData());
+
+		when(restService.get(String.format(constants.getSchoolDetails(), school.getSchoolId()), TraxSchool.class, webClient))
+				.thenReturn(school);
 
 		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for certificates", ReportApiServiceException.class, () -> {
 			apiReportService.getStudentCertificateReport(reportRequest);
