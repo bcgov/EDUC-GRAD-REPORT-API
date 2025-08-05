@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.model.common.support.xml.XmlBuilder;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.ReportContext;
 import net.sf.jasperreports.export.*;
@@ -46,6 +47,9 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
+
 /**
  * This exporter is used in the creation of XML documents that are to be used in
  * communication with PSIs. The purpose is to parse reports and document data in
@@ -53,6 +57,7 @@ import java.util.logging.Logger;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class XmlExporter implements Exporter {
 
     private static final String CLASSNAME = XmlExporter.class.getName();
@@ -80,7 +85,7 @@ public class XmlExporter implements Exporter {
     @Override
     public void exportReport() throws JRException {
         final String methodName = "exportReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         try {
             final Element docRoot = createElement("root");
@@ -112,12 +117,11 @@ public class XmlExporter implements Exporter {
             exportDocument();
         } catch (final ParserConfigurationException | DOMException | JAXBException | IOException | SAXException ex) {
             final Throwable t = getRootCause(ex.getCause());
-            LOG.info(t.getMessage());
-            LOG.throwing(CLASSNAME, methodName, ex);
+            log.info(ex.getMessage());
             throw new JRException(ex);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     public Throwable getRootCause(Throwable throwable) {
@@ -158,7 +162,7 @@ public class XmlExporter implements Exporter {
 
     private Element createDataSourceElement() throws JAXBException, IOException, SAXException, ParserConfigurationException {
         final String methodName = "createDataSourceElement()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final Student student = getStudentDataSource();
         student.setCreatedOn(new Date());
@@ -204,19 +208,19 @@ public class XmlExporter implements Exporter {
     @Override
     public void setConfiguration(final ReportExportConfiguration configuration) {
         final String methodName = "setConfiguration(ReportExportConfiguration)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     @Override
     public void setConfiguration(final ExporterConfiguration configuration) {
         final String methodName = "setConfiguration(ExporterConfiguration)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         this.xmlExporterConfiguration = (XmlExporterConfiguration) configuration;
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     private XmlExporterConfiguration getXmlExporterConfiguration() {

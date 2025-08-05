@@ -16,23 +16,22 @@ import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
 import jakarta.annotation.security.DeclareRoles;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.logging.Logger;
-
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
 
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER, FULFILLMENT_SERVICES_USER})
 public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements StudentXmlTranscriptService {
 
-    private static final String CLASSNAME = StudentXmlTranscriptServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     private static final String STUDENT_MISSING = "STUDENT_MISSING";
 
@@ -54,7 +53,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
     @Override
     public StudentTranscriptReport buildXmlTranscriptReport() {
         final String methodName = "buildXmlTranscript()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         String pen = null;
 
@@ -66,7 +65,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         REPORT_DATA_MISSING,
                         "Xml Report Data not exists for the current report generation");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(methodName, dse);
                 throw dse;
             }
 
@@ -75,7 +74,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         "PEN_MISSING",
                         "Pen value must not be null");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(methodName, dse);
                 throw dse;
             }
 
@@ -87,7 +86,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         STUDENT_MISSING,
                         "Student with PEN " + pen + " value not exists in PEN system");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             GraduationStudentRecord graduationStudentRecord = getGradStatusFromGradStudentApi(student.getStudentID(), reportData.getAccessToken());
@@ -96,7 +95,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         STUDENT_MISSING,
                         "Student with PEN " + pen + " value not exists in GRAD Student system");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             if(graduationStudentRecord.getStudentGradData() == null) {
@@ -104,7 +103,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                         getClass(),
                         STUDENT_MISSING,
                         "Student with PEN " + pen + " doesn't have graduation data in GRAD Student system");
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             AcademicRecordBatch academicRecordBatch = (AcademicRecordBatch)jsonTransformer.unmarshall(graduationStudentRecord.getStudentGradData(), AcademicRecordBatch.class);
@@ -120,14 +119,13 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
         } catch (Exception ex) {
             String msg = ex.getMessage() == null ? "Failed to access xml transcript data for student with PEN: ".concat(pen) : ex.getMessage();
             final DataException dex = new DataException(null, null, msg, ex);
-            LOG.throwing(CLASSNAME, methodName, dex);
+            log.error(msg, dex);
             throw dex;
         }
 
     }
 
     private void setDefaultValues(AcademicRecordBatch academicRecordBatch) {
-        final String methodName = "setDefaultValues(AcademicRecordBatch academicRecordBatch)";
         XmlReportData reportData = ReportRequestDataThreadLocal.getXmlReportData();
 
         if (reportData == null) {
@@ -135,7 +133,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Xml Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(dse.getMessage(), dse);
             throw dse;
         }
         academicRecordBatch.getHighSchoolTranscript().getTransmissionData().setRequestTrackingID(reportData.getRequestTrackId());

@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,9 +43,12 @@ import static ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntity
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.lang.Integer.parseInt;
 import static java.util.Locale.CANADA;
 
+@Slf4j
 public abstract class GradReportServiceImpl {
 
     private static final long serialVersionUID = 5L;
@@ -72,11 +76,11 @@ public abstract class GradReportServiceImpl {
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         Parameters<String, Object> parameters = reportService.createParameters();
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return parameters;
     }
 
@@ -127,7 +131,7 @@ public abstract class GradReportServiceImpl {
                     getClass(),
                     REPORT_DATA_MISSING,
                     "Report Data not exists for the current report generation");
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(dse.getMessage(), dse);
             throw dse;
         }
 
@@ -210,7 +214,7 @@ public abstract class GradReportServiceImpl {
 
     protected List<School> getSchools(ReportData reportData) {
         final String methodName = "getSchools()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         return gradDataConvertionBean.getSchools(reportData);
     }
@@ -219,37 +223,37 @@ public abstract class GradReportServiceImpl {
 
     String getAccessToken() throws DomainServiceException {
         final String methodName = "getAccessToken()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
         String accessToken = reportData.getAccessToken();
 
         assert accessToken != null;
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return accessToken;
     }
 
     PersonalEducationNumber getStudentPEN() throws DomainServiceException {
         final String methodName = "getStudentPEN()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
 
         return gradDataConvertionBean.getStudent(reportData).getPen();
     }
 
     Date getIssueDate() throws DomainServiceException {
         final String methodName = "getIssueDate()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
         LOG.log(Level.FINER,
                 "Retrieved issue date: {0}", reportData.getIssueDate());
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return reportData.getIssueDate();
     }
 
@@ -262,7 +266,7 @@ public abstract class GradReportServiceImpl {
      */
     StudentInfo getStudentInfo(final String pen) throws DomainServiceException {
         final String methodName = "getStudentInfo(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
@@ -276,7 +280,7 @@ public abstract class GradReportServiceImpl {
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return student;
     }
 
@@ -292,7 +296,7 @@ public abstract class GradReportServiceImpl {
 
         final String methodName = "adaptStudent(PersonalEducationNumber, StudentInfo)";
         final Object[] params = {pen, studentInfo};
-        LOG.entering(CLASSNAME, methodName, params);
+        log.trace("Entering {} with {}", methodName, params);
 
         final StudentImpl student = new StudentImpl();
         student.setPen(pen);
@@ -324,7 +328,7 @@ public abstract class GradReportServiceImpl {
 
         validate(student, "student");
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return student;
     }
 
@@ -335,7 +339,7 @@ public abstract class GradReportServiceImpl {
      */
     School adaptSchool(final StudentInfo studentInfo, String accessToken, boolean checkEligibility) {
         final String m_ = "adaptSchool(StudentInfo)";
-        LOG.entering(CLASSNAME, m_, studentInfo);
+        log.trace("Entering {} with {}", m_, studentInfo);
 
         SchoolImpl school = new SchoolImpl();
         if(checkEligibility) {
@@ -345,7 +349,7 @@ public abstract class GradReportServiceImpl {
                         getClass(),
                         REPORT_DATA_VALIDATION,
                         "School is not eligible for transcripts");
-                LOG.throwing(CLASSNAME, m_, dse);
+                log.error(dse.getMessage(), dse);
                 throw dse;
             }
             if (traxSchool != null) {
@@ -359,7 +363,7 @@ public abstract class GradReportServiceImpl {
             populateSchoolFromStudentInfo(school, studentInfo);
         }
 
-        LOG.exiting(CLASSNAME, m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return school;
     }
 
@@ -407,7 +411,7 @@ public abstract class GradReportServiceImpl {
      */
     int parseCredits(final String credits) {
         final String methodName = "parseCredits(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         // Strip out any non-digits.
         final String numericCredits = credits.replaceAll("[^\\d.]", "");
@@ -417,7 +421,7 @@ public abstract class GradReportServiceImpl {
             result = parseInt(numericCredits);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
 
     }
@@ -467,24 +471,15 @@ public abstract class GradReportServiceImpl {
                 + locale.getISO3Language();
     }
 
-    byte[] getPdfReportAsBytes(GraduationReport graduationReport, String methodName, String reportFilePrefix) throws IOException {
-        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
+    byte[] getPdfReportAsBytes(GraduationReport graduationReport) throws IOException {
         final ReportDocument rptDoc = reportService.export(graduationReport);
-
-        StringBuilder sb = new StringBuilder(reportFilePrefix);
-        sb.append(CANADA.toLanguageTag());
-        sb.append("_");
-        sb.append(timestamp);
-        sb.append(".");
-        sb.append(PDF.getFilenameExtension());
-
         byte[] inData = rptDoc.asBytes();
         inData = ArrayUtils.nullToEmpty(inData);
         if (ArrayUtils.isEmpty(inData)) {
             String msg = "The generated report output is empty.";
             DomainServiceException dse = new DomainServiceException(null,
                     msg);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
         return inData;
