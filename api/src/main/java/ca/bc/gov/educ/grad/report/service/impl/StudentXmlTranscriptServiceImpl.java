@@ -32,7 +32,6 @@ import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TR
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER, FULFILLMENT_SERVICES_USER})
 public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements StudentXmlTranscriptService {
 
-    private static final String CLASSNAME = StudentXmlTranscriptServiceImpl.class.getName();
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     private static final String STUDENT_MISSING = "STUDENT_MISSING";
 

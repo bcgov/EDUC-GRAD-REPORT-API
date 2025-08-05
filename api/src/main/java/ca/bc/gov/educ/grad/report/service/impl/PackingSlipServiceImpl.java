@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
 import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
@@ -29,7 +28,6 @@ import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TR
 @Service
 public class PackingSlipServiceImpl implements PackingSlipService {
 
-    private static final String CLASSNAME = PackingSlipServiceImpl.class.getName();
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
 
     private static final long serialVersionUID = 5L;
