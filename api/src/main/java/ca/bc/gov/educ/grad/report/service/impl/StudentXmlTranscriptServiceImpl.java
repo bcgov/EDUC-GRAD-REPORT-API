@@ -22,8 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.logging.Logger;
-
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
@@ -35,7 +33,6 @@ import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TR
 public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements StudentXmlTranscriptService {
 
     private static final String CLASSNAME = StudentXmlTranscriptServiceImpl.class.getName();
-    private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String REPORT_DATA_MISSING = "REPORT_DATA_MISSING";
     private static final String STUDENT_MISSING = "STUDENT_MISSING";
 
@@ -130,7 +127,6 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
     }
 
     private void setDefaultValues(AcademicRecordBatch academicRecordBatch) {
-        final String methodName = "setDefaultValues(AcademicRecordBatch academicRecordBatch)";
         XmlReportData reportData = ReportRequestDataThreadLocal.getXmlReportData();
 
         if (reportData == null) {

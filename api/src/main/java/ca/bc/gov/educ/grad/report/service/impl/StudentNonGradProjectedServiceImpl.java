@@ -80,7 +80,7 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
         StudentNonGradProjectedReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, "student_nongrad_projected_requirements_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport);
             report = new StudentNonGradProjectedReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Projected Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,

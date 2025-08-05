@@ -59,8 +59,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
-import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
-import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.*;
 import static java.text.NumberFormat.getIntegerInstance;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
@@ -328,7 +327,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final Date issueDate,
             final boolean interim) {
         final String m_ = "adapt(GraduationProgramCode, List<TranscriptCourse>, Date, boolean)";
-        log.trace("Entering {} with {}", m_, transcriptCourses);
+        log.trace(LOG_TRACE_ENTERING_WITH_ARGS, m_, transcriptCourses);
 
         final List<TranscriptResult> transcriptResults = adapt(
                 graduationProgramCode, transcriptCourses);
@@ -355,7 +354,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final TranscriptTypeCode transcriptTypeCode,
             final String accessToken) {
         final String m_ = "adapt(schoolCategoryCode, graduationProgramCode,transcriptTypeCode )";
-        log.trace("Entering {} with {}", m_, transcriptTypeCode);
+        log.trace(LOG_TRACE_ENTERING_WITH_ARGS, m_, transcriptTypeCode);
 
         GradProgram result = createGradProgram(graduationProgramCode);
 
@@ -385,7 +384,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final GraduationProgramCode programCode,
             final List<TranscriptCourse> transcriptCourses) {
         final String m_ = "adapt(GraduationProgramCode, List<TranscriptCourse>)";
-        log.trace("Entering {} with {}", m_, transcriptCourses);
+        log.trace(LOG_TRACE_ENTERING_WITH_ARGS, m_, transcriptCourses);
 
         List<TranscriptResult> transcriptResults = Collections.emptyList();
 
@@ -660,7 +659,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final Transcript transcript) {
         final String methodName = "adaptGraduationData(StudentInfo, Transcript, String)";
         final Object[] params = {studentInfo, transcript};
-        log.trace("Entering {} with {}", methodName, params);
+        log.trace(LOG_TRACE_ENTERING_WITH_ARGS, methodName, params);
 
         final GraduationData graduationData = new GraduationDataImpl();
 

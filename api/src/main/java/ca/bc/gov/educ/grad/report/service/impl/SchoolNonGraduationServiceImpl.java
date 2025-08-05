@@ -91,7 +91,7 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
         SchoolNonGraduationReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, "school_non_graduation_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport);
 
             report = new SchoolNonGraduationReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Non Graduation Report", CANADA));
         } catch (final IOException ex) {

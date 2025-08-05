@@ -471,17 +471,8 @@ public abstract class GradReportServiceImpl {
                 + locale.getISO3Language();
     }
 
-    byte[] getPdfReportAsBytes(GraduationReport graduationReport, String reportFilePrefix) throws IOException {
-        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
+    byte[] getPdfReportAsBytes(GraduationReport graduationReport) throws IOException {
         final ReportDocument rptDoc = reportService.export(graduationReport);
-
-        StringBuilder sb = new StringBuilder(reportFilePrefix);
-        sb.append(CANADA.toLanguageTag());
-        sb.append("_");
-        sb.append(timestamp);
-        sb.append(".");
-        sb.append(PDF.getFilenameExtension());
-
         byte[] inData = rptDoc.asBytes();
         inData = ArrayUtils.nullToEmpty(inData);
         if (ArrayUtils.isEmpty(inData)) {

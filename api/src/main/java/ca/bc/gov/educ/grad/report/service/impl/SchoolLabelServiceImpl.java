@@ -153,7 +153,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
         SchoolLabelReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, "school_label_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport);
 
             report = new SchoolLabelReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Label Report", CANADA));
         } catch (final IOException ex) {

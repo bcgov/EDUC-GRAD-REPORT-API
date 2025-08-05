@@ -302,8 +302,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         final String methodName = "createReport(Student, School, String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
         log.trace(LOG_TRACE_ENTERING, methodName);
 
-        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
-
         CertificateReport certificateReport = reportService.createCertificateReport();
         certificateReport.setReportType(rsRptType);
         certificateReport.setReportSubtype(rsRptSubType);
@@ -315,13 +313,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         GradCertificateReport report = null;
         try {
             final ReportDocument rptDoc = reportService.export(certificateReport);
-
-            StringBuilder sb = new StringBuilder("certificate_");
-            sb.append(location.toLanguageTag());
-            sb.append("_");
-            sb.append(timestamp);
-            sb.append(".");
-            sb.append(PDF.getFilenameExtension());
             final String filename = certificateReport.getFilename();
 
             byte[] inData = rptDoc.asBytes();
