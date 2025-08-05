@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
+
 @Slf4j
 @Service
 public class PackingSlipServiceImpl implements PackingSlipService {
@@ -59,7 +62,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final int current,
             final int total) throws DomainServiceException {
         final String methodName = "createStudentPackingSlipReport(Long, String, Date, OrderType, int)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         PostalDeliveryInfo deliveryInfo = getPostalDeliveryInfo();
         OrderType orderType = getOrderType();
@@ -67,7 +70,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
         final PackingSlipDetails details = createPackingSlipDetails(deliveryInfo, orderType, orderNumber, ordered, orderedBy, quantity, current, total);
         final ReportDocument packingSlipReport = createPackingSlipReport(details, orderType);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return packingSlipReport;
     }
 
@@ -90,7 +93,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final int total)
             throws DomainServiceException {
         final String methodName = "createPackingSlipDetails(PostalDeliveryInfo, Date, int)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final PackingSlipDetailsImpl details = new PackingSlipDetailsImpl(address);
 
@@ -105,7 +108,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             throw new DomainServiceException("Could not create or set packing slip details.", ex);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return details;
     }
 
@@ -131,14 +134,14 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final int total
     ) throws DomainServiceException {
         final String methodName = "createPackingSlipDetails(PostalDeliveryInfo, Long, String, int)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final PackingSlipDetailsImpl details = createPackingSlipDetails(address, ordered, quantity, current, total);
         details.setOrderNumber(Long.toString(orderNumber));
         details.setOrderedByName(orderedBy);
         details.setPaperType(orderType.getPaperType());
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return details;
     }
 
@@ -147,7 +150,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             final OrderType orderType)
             throws DomainServiceException {
         final String methodName = "createPackingSlipReport(PackingSlipDetails, OrderType)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final ReportDocument report;
 
@@ -162,13 +165,13 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             throw new DomainServiceException("Could not create packing slip report.", e);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
     private PostalDeliveryInfo getPostalDeliveryInfo() throws DomainServiceException {
         final String methodName = "getPostalDeliveryInfo(String)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final PostalDeliveryInfo postalDeliveryInfo;
 
@@ -193,13 +196,13 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             throw dex;
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return postalDeliveryInfo;
     }
 
     private OrderType getOrderType() throws DomainServiceException {
         final String methodName = "getOrderType(String)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final OrderType orderType;
 
@@ -225,7 +228,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
             throw dex;
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return orderType;
     }
 }

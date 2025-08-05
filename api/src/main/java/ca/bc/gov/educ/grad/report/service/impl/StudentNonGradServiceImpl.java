@@ -36,6 +36,8 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
@@ -56,10 +58,10 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
     @Override
     public StudentNonGradReport buildStudentNonGradReport() throws DomainServiceException, IOException {
         final String methodName = "buildStudentNonGradReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
 
         return createStudentNonGradReport(graduationReport);
     }
@@ -73,19 +75,19 @@ public class StudentNonGradServiceImpl extends GradReportServiceImpl
             final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createStudentNonGradReport(GraduationReport)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         StudentNonGradReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "student_nongrad_requirements_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport, "student_nongrad_requirements_");
             report = new StudentNonGradReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the Student Non Graduation report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 

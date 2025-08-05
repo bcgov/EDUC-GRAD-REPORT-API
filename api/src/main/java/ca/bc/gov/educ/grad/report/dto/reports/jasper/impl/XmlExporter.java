@@ -47,6 +47,9 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
+
 /**
  * This exporter is used in the creation of XML documents that are to be used in
  * communication with PSIs. The purpose is to parse reports and document data in
@@ -82,7 +85,7 @@ public class XmlExporter implements Exporter {
     @Override
     public void exportReport() throws JRException {
         final String methodName = "exportReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         try {
             final Element docRoot = createElement("root");
@@ -118,7 +121,7 @@ public class XmlExporter implements Exporter {
             throw new JRException(ex);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     public Throwable getRootCause(Throwable throwable) {
@@ -159,7 +162,7 @@ public class XmlExporter implements Exporter {
 
     private Element createDataSourceElement() throws JAXBException, IOException, SAXException, ParserConfigurationException {
         final String methodName = "createDataSourceElement()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final Student student = getStudentDataSource();
         student.setCreatedOn(new Date());
@@ -205,19 +208,19 @@ public class XmlExporter implements Exporter {
     @Override
     public void setConfiguration(final ReportExportConfiguration configuration) {
         final String methodName = "setConfiguration(ReportExportConfiguration)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     @Override
     public void setConfiguration(final ExporterConfiguration configuration) {
         final String methodName = "setConfiguration(ExporterConfiguration)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         this.xmlExporterConfiguration = (XmlExporterConfiguration) configuration;
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     private XmlExporterConfiguration getXmlExporterConfiguration() {

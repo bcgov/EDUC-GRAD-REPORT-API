@@ -25,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
+
 /**
  * Mark grades are used for both examination results and transcript results.
  *
@@ -317,7 +320,7 @@ public abstract class Mark extends BusinessEntity {
      */
     private void setFormattedSessionDate(final String sessionDate) {
         final String methodName = "setFormattedSessionDate(String)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final String session = getSessionDate();
         this.formattedSessionDate = sessionDate;
@@ -326,7 +329,7 @@ public abstract class Mark extends BusinessEntity {
             this.formattedSessionDate = formatSessionDate(session);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     /**

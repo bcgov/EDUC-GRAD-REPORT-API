@@ -36,6 +36,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static com.itextpdf.text.pdf.PdfName.ROTATE;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.apache.commons.lang3.StringUtils.replaceEach;
@@ -90,7 +92,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      */
     public byte[] appendReportDocument(final List<ReportDocument> reports) throws IOException {
         final String methodName = "append(List<ReportDocument>)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final List<byte[]> pdfs = new ArrayList<>();
         final byte[] bundleContent = getDocumentBundleBytes();
@@ -120,13 +122,13 @@ public abstract class DocumentBundleDecorator implements Serializable {
 
         final byte[] result = writeBundle(pdfs);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 
     public byte[] appendBusinessReport(final List<BusinessReport> reports) throws IOException {
         final String methodName = "appendBytes(BusinessReport report)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final List<byte[]> pdfs = new ArrayList<>();
         final byte[] bundleContent = getDocumentBundleBytes();
@@ -156,7 +158,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
 
         final byte[] result = writeBundle(pdfs);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 
@@ -268,7 +270,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      */
     public byte[] enumeratePages() throws IOException {
         final String methodName = "enumeratePages()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final byte[] pdf = getDocumentBundleBytes();
         final byte[] result;
@@ -302,7 +304,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
             throw new IOException(e);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 
@@ -325,7 +327,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      */
     public byte[] xpif() throws IOException {
         final String methodName = "xpif()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final byte[] result;
 
@@ -347,7 +349,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
             throw new IOException(ex);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 
@@ -399,7 +401,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
      */
     protected String fillXpif(final String xml) {
         final String methodName = "fillXpif(String)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final String result = replaceEach(xml, new String[]{
             "${JOB_RECIPIENT_NAME}",
@@ -413,7 +415,7 @@ public abstract class DocumentBundleDecorator implements Serializable {
             getFilename()
         });
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 

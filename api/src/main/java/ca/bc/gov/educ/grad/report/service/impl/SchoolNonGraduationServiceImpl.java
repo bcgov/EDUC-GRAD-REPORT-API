@@ -40,6 +40,8 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
@@ -69,11 +71,11 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolNonGraduationReport buildSchoolNonGraduationReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolNonGraduationReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         GraduationReport nonGraduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return createSchoolNonGraduationReport(nonGraduationReport);
     }
 
@@ -84,12 +86,12 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
     private synchronized SchoolNonGraduationReport createSchoolNonGraduationReport(
             final GraduationReport graduationReport) throws DomainServiceException {
         final String methodName = "createSchoolNonGraduationReport(GraduationReport)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         SchoolNonGraduationReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_non_graduation_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport, "school_non_graduation_");
 
             report = new SchoolNonGraduationReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Non Graduation Report", CANADA));
         } catch (final IOException ex) {
@@ -97,7 +99,7 @@ public class SchoolNonGraduationServiceImpl extends GradReportServiceImpl
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 

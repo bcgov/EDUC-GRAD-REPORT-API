@@ -62,6 +62,8 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.ASSESSMENT;
 import static ca.bc.gov.educ.grad.report.model.course.ReportCourseType.PROVINCIALLY_EXAMINABLE;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.text.NumberFormat.getIntegerInstance;
 import static org.apache.commons.lang3.ArrayUtils.isEmpty;
 
@@ -196,7 +198,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
     private GradProgram createGradProgram(String code) {
         final String methodName = "createGradProgram(String code)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         if (StringUtils.trimToNull(code) == null) {
             code = GraduationProgramCode.PROGRAM_2018.getCode();
@@ -243,7 +245,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final boolean preview, final boolean interim)
             throws DomainServiceException, IOException, DataException {
         final String methodName = "createAchievement(ReportFormat, boolean)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final PersonalEducationNumber pen = getStudentPEN();
         LOG.log(Level.FINE, "Retrieved studentInfo for pen: {0}.", pen.getValue());
@@ -251,7 +253,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         final StudentAchievementReport report = getStudentAchievementReport(
                 pen, format, preview, null, interim
         );
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
@@ -272,13 +274,13 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final boolean preview, final PersonalEducationNumber pen, final Parameters parameters, final boolean interim)
             throws DomainServiceException, IOException, DataException {
         final String methodName = "createAchievement(ReportFormat, boolean)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         LOG.log(Level.FINE, "Retrieved achievement for pen: {0}.", pen.getValue());
 
         final StudentAchievementReport report = getStudentAchievementReport(pen, format, preview, parameters, interim);
         LOG.log(Level.FINE, "Created StudentAchievementReport for pen: {0}.", pen.getValue());
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
@@ -293,7 +295,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String pen, final boolean interim)
             throws DataException, DomainServiceException {
         final String m_ = "getAchievementCourseList(String, boolean)";
-        log.trace("Entering {}", m_);
+        log.trace(LOG_TRACE_ENTERING, m_);
 
         final List<AchievementCourse> results;
 
@@ -326,7 +328,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return results;
     }
 
@@ -341,7 +343,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String pen)
             throws DataException, DomainServiceException {
         final String m_ = "getAssessmentList(String, boolean)";
-        log.trace("Entering {}", m_);
+        log.trace(LOG_TRACE_ENTERING, m_);
 
         final List<AssessmentResult> results;
 
@@ -378,7 +380,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return results;
     }
 
@@ -393,7 +395,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String pen)
             throws DataException, DomainServiceException {
         final String m_ = "getAssessmentList(String, boolean)";
-        log.trace("Entering {}", m_);
+        log.trace(LOG_TRACE_ENTERING, m_);
 
         final GraduationStatus result;
 
@@ -416,7 +418,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         BeanUtils.copyProperties(reportData.getGraduationStatus(), result);
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return result;
     }
 
@@ -431,7 +433,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String pen)
             throws DataException, DomainServiceException {
         final String m_ = "getAssessmentList(String, boolean)";
-        log.trace("Entering {}", m_);
+        log.trace(LOG_TRACE_ENTERING, m_);
 
         final List<Exam> results;
 
@@ -468,7 +470,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return results;
     }
 
@@ -483,7 +485,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String pen)
             throws DataException, DomainServiceException {
         final String m_ = "getOptionalProgramList(String)";
-        log.trace("Entering {}", m_);
+        log.trace(LOG_TRACE_ENTERING, m_);
 
         final List<OptionalProgram> results;
 
@@ -520,7 +522,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return results;
     }
 
@@ -528,7 +530,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final String pen)
             throws DataException, DomainServiceException {
         final String m_ = "getCareerProgramList(String)";
-        log.trace("Entering {}", m_);
+        log.trace(LOG_TRACE_ENTERING, m_);
 
         final List<String> results;
 
@@ -560,7 +562,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return results;
     }
 
@@ -574,7 +576,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
      */
     private List<NonGradReason> adaptReasons(final StudentInfo student) {
         final String methodName = "adaptReasons(StudentInfo)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final Map<String, String> gradReasons = student.getNonGradReasons();
         final List<NonGradReason> reasons = new ArrayList<>();
@@ -588,7 +590,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             reasons.add(r);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return reasons;
     }
 
@@ -607,7 +609,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             final boolean interim,
             final String gradProgram) throws DomainServiceException {
         final String methodName = "createReport(...)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final AchievementReport report = reportService.createAchievementReport();
 
@@ -648,7 +650,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         );
         LOG.log(Level.FINE, "Created StudentAchievementReport {0}.", new Object[]{achievementReport});
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return achievementReport;
     }
 
@@ -659,7 +661,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
             Parameters parameters,
             final boolean interim) throws DomainServiceException, IOException {
         final String methodName = "getStudentAchievementReport(String, ReportFormat, boolean, Parameters, boolean)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         if (parameters == null) {
             parameters = createParameters();
@@ -751,7 +753,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
                 gradReqYear
         );
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
@@ -786,7 +788,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         final String creditsUsedForGrad = getCreditsUsedForGrad(achievement);
         ((GraduationDataImpl) graduationData).setTotalCreditsUsedForGrad(creditsUsedForGrad);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
 
         return graduationData;
     }

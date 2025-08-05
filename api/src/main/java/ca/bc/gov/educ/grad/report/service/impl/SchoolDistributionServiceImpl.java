@@ -36,6 +36,8 @@ import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIF
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
@@ -55,11 +57,11 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolDistributionReport buildSchoolDistributionReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolDistributionReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of());
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return createSchoolDistributionReport(graduationReport);
     }
 
@@ -70,26 +72,26 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     protected synchronized SchoolDistributionReport createSchoolDistributionReport(final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createSchoolDistributionReport(GraduationReport)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         SchoolDistributionReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_distribution_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport, "school_distribution_");
             report = new SchoolDistributionReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Distribution Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
     @Override
     GraduationReport createGraduationReport() {
         final String methodName = "createGraduationReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         return reportService.createSchoolDistributionReport();
     }
 

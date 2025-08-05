@@ -63,6 +63,8 @@ import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIF
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 import static java.util.Locale.CANADA_FRENCH;
 
@@ -91,7 +93,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
     @Override
     public List<BusinessReport> buildReport() throws DomainServiceException {
         final String methodName = "buildReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
@@ -170,7 +172,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             certificates.add(gradCert);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return certificates;
     }
 
@@ -298,7 +300,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             final CertificateSubType rsRptSubType) throws DomainServiceException {
 
         final String methodName = "createReport(Student, School, String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
 
@@ -339,7 +341,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                     "Failed to generate the provincial examination report.", ex);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 

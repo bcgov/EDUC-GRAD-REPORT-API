@@ -43,6 +43,8 @@ import static ca.bc.gov.educ.grad.report.dto.reports.data.adapter.BusinessEntity
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.lang.Integer.parseInt;
 import static java.util.Locale.CANADA;
 
@@ -74,11 +76,11 @@ public abstract class GradReportServiceImpl {
     @RolesAllowed({FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         Parameters<String, Object> parameters = reportService.createParameters();
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return parameters;
     }
 
@@ -212,7 +214,7 @@ public abstract class GradReportServiceImpl {
 
     protected List<School> getSchools(ReportData reportData) {
         final String methodName = "getSchools()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         return gradDataConvertionBean.getSchools(reportData);
     }
@@ -221,37 +223,37 @@ public abstract class GradReportServiceImpl {
 
     String getAccessToken() throws DomainServiceException {
         final String methodName = "getAccessToken()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
         String accessToken = reportData.getAccessToken();
 
         assert accessToken != null;
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return accessToken;
     }
 
     PersonalEducationNumber getStudentPEN() throws DomainServiceException {
         final String methodName = "getStudentPEN()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
 
         return gradDataConvertionBean.getStudent(reportData).getPen();
     }
 
     Date getIssueDate() throws DomainServiceException {
         final String methodName = "getIssueDate()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
         LOG.log(Level.FINER,
                 "Retrieved issue date: {0}", reportData.getIssueDate());
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return reportData.getIssueDate();
     }
 
@@ -264,7 +266,7 @@ public abstract class GradReportServiceImpl {
      */
     StudentInfo getStudentInfo(final String pen) throws DomainServiceException {
         final String methodName = "getStudentInfo(String)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
@@ -278,7 +280,7 @@ public abstract class GradReportServiceImpl {
         }
 
         LOG.log(Level.FINE, "Completed call to TRAX.");
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return student;
     }
 
@@ -326,7 +328,7 @@ public abstract class GradReportServiceImpl {
 
         validate(student, "student");
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return student;
     }
 
@@ -361,7 +363,7 @@ public abstract class GradReportServiceImpl {
             populateSchoolFromStudentInfo(school, studentInfo);
         }
 
-        log.trace("Exiting {}", m_);
+        log.trace(LOG_TRACE_EXITING, m_);
         return school;
     }
 
@@ -409,7 +411,7 @@ public abstract class GradReportServiceImpl {
      */
     int parseCredits(final String credits) {
         final String methodName = "parseCredits(String)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         // Strip out any non-digits.
         final String numericCredits = credits.replaceAll("[^\\d.]", "");
@@ -419,7 +421,7 @@ public abstract class GradReportServiceImpl {
             result = parseInt(numericCredits);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
 
     }
@@ -469,7 +471,7 @@ public abstract class GradReportServiceImpl {
                 + locale.getISO3Language();
     }
 
-    byte[] getPdfReportAsBytes(GraduationReport graduationReport, String methodName, String reportFilePrefix) throws IOException {
+    byte[] getPdfReportAsBytes(GraduationReport graduationReport, String reportFilePrefix) throws IOException {
         String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
         final ReportDocument rptDoc = reportService.export(graduationReport);
 

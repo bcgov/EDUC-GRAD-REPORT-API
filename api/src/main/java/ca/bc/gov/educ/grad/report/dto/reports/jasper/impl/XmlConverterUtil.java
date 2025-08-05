@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+
 /**
  * This converter class is meant to take a Student object and marshal it to an
  * XML string.
@@ -51,7 +53,7 @@ public class XmlConverterUtil {
 
     public Element marshalStudentToElement(final Student student) throws JAXBException, ParserConfigurationException, SAXException, IOException {
         final String methodName = "marshalStudentToElement(Student)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         Element dataSourceRootElement = null;
 
@@ -73,7 +75,7 @@ public class XmlConverterUtil {
             throw ex;
         }
 
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         return dataSourceRootElement;
     }
 }

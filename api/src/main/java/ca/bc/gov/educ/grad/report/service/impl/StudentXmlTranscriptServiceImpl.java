@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
 
 @Slf4j
 @Service
@@ -56,7 +57,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
     @Override
     public StudentTranscriptReport buildXmlTranscriptReport() {
         final String methodName = "buildXmlTranscript()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         String pen = null;
 

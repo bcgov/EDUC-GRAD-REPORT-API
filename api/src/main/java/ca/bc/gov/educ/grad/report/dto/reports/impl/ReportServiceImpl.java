@@ -39,6 +39,8 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.reports.impl.constants.Roles.*;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 
 /**
  * Provides a mechanism to create reports to fill out and produce a specific
@@ -179,11 +181,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public ParameterPredicate createParameterPredicate() {
         final String methodName = "createParameterPredicate()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final ParameterPredicate pp = new ParameterPredicateImpl();
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return pp;
     }
 
@@ -194,11 +196,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final Parameters<String, Object> parameters = new LinkedParameters<>();
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return parameters;
     }
 

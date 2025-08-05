@@ -40,6 +40,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static net.sf.jasperreports.export.type.HtmlSizeUnitEnum.POINT;
 
 /**
@@ -73,7 +75,7 @@ public class JasperReportImpl {
 
     public ReportDocument export() throws IOException {
         final String methodName = "export()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final ReportFormat format = getFormat();
         final Exporter exporter = createExporter();
@@ -121,7 +123,7 @@ public class JasperReportImpl {
 
         final ReportDocumentImpl result = new ReportDocumentImpl(bytes);
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 

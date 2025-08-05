@@ -26,6 +26,7 @@ import java.io.Serializable;
 
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
 
 /**
  *
@@ -42,7 +43,7 @@ public class DistrictDistributionYearEndNonGradCredentialsServiceImpl extends Di
     @Override
     GraduationReport createGraduationReport() {
         final String methodName = "createGraduationReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         return reportService.createDistrictDistributionYearEndNonGradCredentialsReport();
     }
 }

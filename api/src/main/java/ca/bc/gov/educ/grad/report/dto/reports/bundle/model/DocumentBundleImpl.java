@@ -40,6 +40,8 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_SAFE_FILENAME;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 
 /**
  * Defines common attributes and behavior of all types of Bundled Documents
@@ -337,7 +339,7 @@ public class DocumentBundleImpl implements DocumentBundle {
      */
     private DocumentBundleDecorator createDecorator() {
         final String methodName = "createDecorator";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final DocumentBundleDecorator dbd;
         final OrderType ot = getOrderType();
@@ -354,7 +356,7 @@ public class DocumentBundleImpl implements DocumentBundle {
             throw new IllegalArgumentException("Unexpected order type: " + ot);
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return dbd;
     }
 }

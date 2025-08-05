@@ -33,6 +33,8 @@ import java.util.logging.Logger;
 
 import static ca.bc.gov.educ.grad.report.model.cert.CertificateSubType.REPRINT;
 import static ca.bc.gov.educ.grad.report.model.cert.CertificateType.SC;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.lang.Boolean.FALSE;
 import static java.util.Locale.CANADA_FRENCH;
 import static java.util.Locale.ENGLISH;
@@ -168,14 +170,14 @@ public final class CertificateReportImpl extends StudentReportImpl
             final ca.bc.gov.educ.grad.report.model.school.School school,
             final String logoCode) {
         final String methodName = "setSchool";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         super.setSchool(school, logoCode);
         ensureValidCertificate("setSchool");
         setIndependentSchool(school.isIndependent());
         setSchoolSignatureCode(school.getSignatureCode());
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     /**

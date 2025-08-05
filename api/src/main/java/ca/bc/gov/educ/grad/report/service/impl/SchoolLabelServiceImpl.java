@@ -52,6 +52,8 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
@@ -81,11 +83,11 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolLabelReport buildSchoolLabelReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolLabelReport()";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of());
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return createSchoolLabelReport(graduationReport);
     }
 
@@ -146,12 +148,12 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
     private synchronized SchoolLabelReport createSchoolLabelReport(final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createSchoolLabelReport(GraduationReport)";
-        log.trace("Entering {}", methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         SchoolLabelReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_label_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport, "school_label_");
 
             report = new SchoolLabelReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Label Report", CANADA));
         } catch (final IOException ex) {
@@ -159,7 +161,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        log.trace("Exiting {}", methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
