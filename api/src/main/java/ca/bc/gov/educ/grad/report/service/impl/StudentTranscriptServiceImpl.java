@@ -603,7 +603,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final Transcript transcript = getTranscript(pen);
 
         final Student student = adaptStudent(personalEducationNumber, studentInfo);
-        final School school = adaptSchool(studentInfo, getAccessToken(), true);
+        final School school = adaptSchool(studentInfo, getAccessToken(), false);
 
         final GradProgram program = adapt(programCode, transcript.getTranscriptTypeCode(), getAccessToken());
 
@@ -789,22 +789,6 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
     }
 
     /**
-     * Returns a comparator that can sort by course code.
-     *
-     * @return A comparator for sorting by course code.
-     */
-    private Comparator<TranscriptResult> createAdultComparator() {
-        return (tr1, tr2) -> {
-            final String code1 = getCourseCode(tr1);
-            final String code2 = getCourseCode(tr2);
-
-            return new CompareToBuilder()
-                    .append(code1, code2)
-                    .toComparison();
-        };
-    }
-
-    /**
      * Called for non-Adult reports to provide comparators that can perform
      * stable sub-sorts on the transcript results.
      *
@@ -913,9 +897,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
             final NumberFormat nf = getIntegerInstance();
             result = nf.parse(courseLevel).intValue();
         } catch (final Exception ex) {
-            LOG.log(Level.SEVERE,
-                    "Could not parse course level into integer: " + courseLevel,
-                    ex);
+            log.error("Could not parse course level into integer: {}", courseLevel, ex);
         }
 
         return result;
