@@ -83,7 +83,7 @@ public class GradReportSignatureImageServiceTests extends GradReportBaseTest {
 
 		List<SignatureBlockTypeCode> signatureBlockTypeCodes = gradReportCodeService.getSignatureBlockTypeCodes();
 		assertNotNull(signatureBlockTypeCodes);
-		assertTrue(signatureBlockTypeCodes.size() > 0);
+        assertFalse(signatureBlockTypeCodes.isEmpty());
 
 		LOG.debug(">getSignatureBlockTypesTest");
 	}
@@ -94,7 +94,7 @@ public class GradReportSignatureImageServiceTests extends GradReportBaseTest {
 
 		List<SignatureBlockTypeCode> signatureBlockTypeCodes = gradReportCodeService.getSignatureBlockTypeCodes();
 		assertNotNull(signatureBlockTypeCodes);
-		assertTrue(signatureBlockTypeCodes.size() > 0);
+        assertFalse(signatureBlockTypeCodes.isEmpty());
 
 		SignatureBlockTypeCode saveCode = signatureBlockTypeCodes.get(0);
 		assertNotNull(saveCode);

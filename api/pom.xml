@@ -864,10 +864,6 @@
             <id>oracle-xwiki</id>
             <url>https://maven.xwiki.org/externals/</url>
         </repository>
-        <repository>
-            <id>pentaho-omni</id>
-            <url>https://nexus.pentaho.org/content/groups/omni/</url>
-        </repository>
     </repositories>
     <profiles>
         <profile>

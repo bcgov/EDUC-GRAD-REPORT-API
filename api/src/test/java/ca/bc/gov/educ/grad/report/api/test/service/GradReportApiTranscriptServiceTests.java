@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.FileOutputStream;
@@ -27,6 +28,8 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
@@ -413,6 +416,12 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
 
+		when(restService.get(String.format(reportApiConstants.getReadGradStudentRecord(),graduationStudentRecord.getStudentID()),
+				GraduationStudentRecord.class, webClient))
+				.thenReturn(graduationStudentRecord);
+		when(restService.get(String.format(constants.getSchoolDetails(), school.getSchoolId()), TraxSchool.class, webClient))
+				.thenReturn(school);
+
 		assertThrows("REPORT_DATA_NOT_VALID=School is not eligible for transcripts", ReportApiServiceException.class, () -> {
 			apiReportService.getStudentTranscriptReport(reportRequest);
 		});
@@ -436,9 +445,18 @@ public class GradReportApiTranscriptServiceTests extends GradReportBaseTest {
 		String entityId = reportRequest.getData().getPen().getEntityID();
 		reportRequest.getOptions().setReportFile(String.format(reportRequest.getOptions().getReportFile(), pen));
 
+		GradSearchStudent gradSearchStudent = mockGradSearchStudent(pen, entityId);
+		assertNotNull(gradSearchStudent);
 		GraduationStudentRecord graduationStudentRecord = mockGraduationStudentRecord(pen, mockGradSearchStudent(pen, entityId).getStudentID());
 		assertNotNull(graduationStudentRecord);
 		assertNotNull(graduationStudentRecord.getLastUpdateDate());
+
+		when(restService.get(eq(String.format(reportApiConstants.getPenStudentApiByPenUrl(), pen)),
+				any(ParameterizedTypeReference.class), eq(educStudentWebClient)))
+				.thenReturn(List.of(gradSearchStudent));
+		when(restService.get(String.format(reportApiConstants.getReadGradStudentRecord(), gradSearchStudent.getStudentID()),
+				GraduationStudentRecord.class, webClient))
+				.thenReturn(graduationStudentRecord);
 
 		byte[] response = apiReportService.getStudentXmlTranscriptReport(reportRequest);
 		
