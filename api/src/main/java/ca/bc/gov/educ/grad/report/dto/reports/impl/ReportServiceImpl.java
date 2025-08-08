@@ -30,6 +30,7 @@ import ca.bc.gov.educ.grad.report.service.GradReportSignatureService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -38,6 +39,8 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.reports.impl.constants.Roles.*;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.FULFILLMENT_SERVICES_USER;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 
 /**
  * Provides a mechanism to create reports to fill out and produce a specific
@@ -45,6 +48,7 @@ import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({
     USER,
@@ -177,11 +181,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public ParameterPredicate createParameterPredicate() {
         final String methodName = "createParameterPredicate()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final ParameterPredicate pp = new ParameterPredicateImpl();
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return pp;
     }
 
@@ -192,11 +196,11 @@ public class ReportServiceImpl extends AbstractReportService implements ReportSe
     @RolesAllowed({USER, FULFILLMENT_SERVICES_USER})
     public Parameters<String, Object> createParameters() {
         final String methodName = "createParameters()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final Parameters<String, Object> parameters = new LinkedParameters<>();
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return parameters;
     }
 

@@ -26,6 +26,7 @@ import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
@@ -38,12 +39,15 @@ import java.util.logging.Level;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER})
 public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDistributionServiceImpl implements Serializable {
@@ -55,11 +59,11 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
     @Override
     public SchoolDistributionReport buildSchoolDistributionReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolDistributionReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of());
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return createSchoolDistributionReport(graduationReport);
     }
 
@@ -106,7 +110,7 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
     @Override
     GraduationReport createGraduationReport() {
         final String methodName = "createGraduationReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         return reportService.createDistrictDistributionYearEndCredentialsReport();
     }
 

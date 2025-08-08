@@ -27,6 +27,7 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolGraduationService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,12 +40,15 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class SchoolGraduationServiceImpl extends GradReportServiceImpl
@@ -67,11 +71,11 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolGraduationReport buildSchoolGraduationReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolGraduationReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return createSchoolGraduationReport(graduationReport);
     }
 
@@ -82,12 +86,12 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
     private synchronized SchoolGraduationReport createSchoolGraduationReport(
             final GraduationReport graduationReport) throws DomainServiceException {
         final String methodName = "createSchoolGraduationReport(Student, School, Locale)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         SchoolGraduationReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_graduation_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport);
 
             report = new SchoolGraduationReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Graduation Report", CANADA));
         } catch (final IOException ex) {
@@ -95,7 +99,7 @@ public class SchoolGraduationServiceImpl extends GradReportServiceImpl
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
