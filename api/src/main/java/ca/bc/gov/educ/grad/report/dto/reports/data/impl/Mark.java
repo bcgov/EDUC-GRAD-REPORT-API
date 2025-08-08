@@ -21,14 +21,19 @@ import ca.bc.gov.educ.grad.report.dto.reports.data.BusinessEntity;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.logging.Logger;
+
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 
 /**
  * Mark grades are used for both examination results and transcript results.
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Mark extends BusinessEntity {
@@ -315,7 +320,7 @@ public abstract class Mark extends BusinessEntity {
      */
     private void setFormattedSessionDate(final String sessionDate) {
         final String methodName = "setFormattedSessionDate(String)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final String session = getSessionDate();
         this.formattedSessionDate = sessionDate;
@@ -324,7 +329,7 @@ public abstract class Mark extends BusinessEntity {
             this.formattedSessionDate = formatSessionDate(session);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
     }
 
     /**

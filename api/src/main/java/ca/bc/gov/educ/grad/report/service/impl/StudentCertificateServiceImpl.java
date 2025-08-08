@@ -44,6 +44,7 @@ import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.SerializableMap;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.SerializationUtils;
@@ -62,6 +63,8 @@ import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIF
 import static ca.bc.gov.educ.grad.report.model.common.Constants.DATE_ISO_8601_FULL;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 import static java.util.Locale.CANADA_FRENCH;
 
@@ -69,6 +72,7 @@ import static java.util.Locale.CANADA_FRENCH;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class StudentCertificateServiceImpl extends GradReportServiceImpl
@@ -89,7 +93,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
     @Override
     public List<BusinessReport> buildReport() throws DomainServiceException {
         final String methodName = "buildReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         ReportData reportData = getReportData(methodName);
 
@@ -100,7 +104,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         if (certificate == null) {
             final String msg = "Failed to find student certificate";
             final DomainServiceException dse = new DomainServiceException(msg);
-            LOG.throwing(CLASSNAME, methodName, dse);
+            log.error(msg, dse);
             throw dse;
         }
 
@@ -116,7 +120,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                             getClass(),
                             REPORT_DATA_VALIDATION,
                             "School is not eligible for certificates");
-                    LOG.throwing(CLASSNAME, methodName, dse);
+                    log.error(dse.getMessage(), dse);
                     throw dse;
                 }
                 if(StringUtils.isBlank(school.getSchoolCategoryCode())) {
@@ -166,7 +170,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             certificates.add(gradCert);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return certificates;
     }
 
@@ -294,9 +298,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
             final CertificateSubType rsRptSubType) throws DomainServiceException {
 
         final String methodName = "createReport(Student, School, String, Certificate, Locale, CertificateReportType, CertificateReportSubtype)";
-        LOG.entering(CLASSNAME, methodName);
-
-        String timestamp = new SimpleDateFormat(DATE_ISO_8601_FULL).format(new Date());
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         CertificateReport certificateReport = reportService.createCertificateReport();
         certificateReport.setReportType(rsRptType);
@@ -309,13 +311,6 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         GradCertificateReport report = null;
         try {
             final ReportDocument rptDoc = reportService.export(certificateReport);
-
-            StringBuilder sb = new StringBuilder("certificate_");
-            sb.append(location.toLanguageTag());
-            sb.append("_");
-            sb.append(timestamp);
-            sb.append(".");
-            sb.append(PDF.getFilenameExtension());
             final String filename = certificateReport.getFilename();
 
             byte[] inData = rptDoc.asBytes();
@@ -324,7 +319,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                 String msg = "The generated report output is empty.";
                 DomainServiceException dse = new DomainServiceException(null,
                         msg);
-                LOG.throwing(CLASSNAME, methodName, dse);
+                log.error(msg, dse);
                 throw dse;
             }
             byte[] rptData = inData;
@@ -335,7 +330,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
                     "Failed to generate the provincial examination report.", ex);
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 

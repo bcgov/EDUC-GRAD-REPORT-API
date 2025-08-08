@@ -24,6 +24,7 @@ import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -35,12 +36,15 @@ import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIF
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_TRANSCRIPT_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_TRANSCRIPT_REPORT, USER})
 public class SchoolDistributionServiceImpl extends GradReportServiceImpl
@@ -53,11 +57,11 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     @Override
     public SchoolDistributionReport buildSchoolDistributionReport() throws DomainServiceException, IOException {
         final String methodName = "buildSchoolDistributionReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         GraduationReport graduationReport = getGraduationReport(methodName, List.of());
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return createSchoolDistributionReport(graduationReport);
     }
 
@@ -68,26 +72,26 @@ public class SchoolDistributionServiceImpl extends GradReportServiceImpl
     protected synchronized SchoolDistributionReport createSchoolDistributionReport(final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createSchoolDistributionReport(GraduationReport)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         SchoolDistributionReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "school_distribution_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport);
             report = new SchoolDistributionReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("School Distribution Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the School Distribution report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
     @Override
     GraduationReport createGraduationReport() {
         final String methodName = "createGraduationReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         return reportService.createSchoolDistributionReport();
     }
 

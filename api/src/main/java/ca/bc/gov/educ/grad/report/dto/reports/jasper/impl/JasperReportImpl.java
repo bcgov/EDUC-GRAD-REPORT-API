@@ -23,6 +23,7 @@ import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
@@ -39,6 +40,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static net.sf.jasperreports.export.type.HtmlSizeUnitEnum.POINT;
 
 /**
@@ -49,6 +52,7 @@ import static net.sf.jasperreports.export.type.HtmlSizeUnitEnum.POINT;
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 public class JasperReportImpl {
 
     private static final String CLASSNAME = JasperReportImpl.class.getName();
@@ -71,7 +75,7 @@ public class JasperReportImpl {
 
     public ReportDocument export() throws IOException {
         final String methodName = "export()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         final ReportFormat format = getFormat();
         final Exporter exporter = createExporter();
@@ -119,7 +123,7 @@ public class JasperReportImpl {
 
         final ReportDocumentImpl result = new ReportDocumentImpl(bytes);
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return result;
     }
 

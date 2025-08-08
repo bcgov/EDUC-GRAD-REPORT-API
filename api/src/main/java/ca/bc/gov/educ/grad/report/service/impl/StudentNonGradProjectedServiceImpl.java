@@ -24,6 +24,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedReport;
 import ca.bc.gov.educ.grad.report.model.student.StudentNonGradProjectedService;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -35,12 +36,15 @@ import java.util.logging.Logger;
 import static ca.bc.gov.educ.grad.report.dto.impl.constants.Roles.STUDENT_CERTIFICATE_REPORT;
 import static ca.bc.gov.educ.grad.report.model.common.support.impl.Roles.USER;
 import static ca.bc.gov.educ.grad.report.model.reports.ReportFormat.PDF;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_ENTERING;
+import static ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants.LOG_TRACE_EXITING;
 import static java.util.Locale.CANADA;
 
 /**
  *
  * @author CGI Information Management Consultants Inc.
  */
+@Slf4j
 @Service
 @DeclareRoles({STUDENT_CERTIFICATE_REPORT, USER})
 public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
@@ -54,10 +58,10 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
     @Override
     public StudentNonGradProjectedReport buildStudentNonGradProjectedReport() throws DomainServiceException, IOException {
         final String methodName = "buildStudentNonGradProjectedReport()";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
         GraduationReport graduationReport = getGraduationReport(methodName, List.of("SCCP"));
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
 
         return createStudentNonGradProjectedReport(graduationReport);
     }
@@ -71,19 +75,19 @@ public class StudentNonGradProjectedServiceImpl extends GradReportServiceImpl
             final GraduationReport graduationReport) throws DomainServiceException {
 
         final String methodName = "createStudentNonGradProjectedReport(GraduationReport)";
-        LOG.entering(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_ENTERING, methodName);
 
         StudentNonGradProjectedReport report = null;
         try {
 
-            byte[] rptData = getPdfReportAsBytes(graduationReport, methodName, "student_nongrad_projected_requirements_");
+            byte[] rptData = getPdfReportAsBytes(graduationReport);
             report = new StudentNonGradProjectedReportImpl(rptData, PDF, graduationReport.getFilename(), createReportTypeName("Student NonGrad Projected Report", CANADA));
         } catch (final IOException ex) {
             LOG.log(Level.SEVERE,
                     "Failed to generate the Student Non Graduation Projected report: Message {0} payload {1}", new String[] {ex.getMessage(), jsonTransformer.marshall(graduationReport)});
         }
 
-        LOG.exiting(CLASSNAME, methodName);
+        log.trace(LOG_TRACE_EXITING, methodName);
         return report;
     }
 
