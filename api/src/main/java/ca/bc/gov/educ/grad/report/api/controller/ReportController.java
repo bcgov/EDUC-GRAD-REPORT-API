@@ -61,13 +61,9 @@ public class ReportController extends BaseController {
         log.debug("getStudentTranscriptReport");
         logRequest(report);
         setAccessToken(report, tokenService.getAccessToken().toString());
-        try {
-            String reportFile = report.getOptions().getReportFile();
-            byte[] resultBinary = reportService.getStudentTranscriptReport(report);
-            return handleBinaryResponse(resultBinary, reportFile);
-        } catch (Exception e) {
-            return getInternalServerErrorResponse(e);
-        }
+        String reportFile = report.getOptions().getReportFile();
+        byte[] resultBinary = reportService.getStudentTranscriptReport(report);
+        return handleBinaryResponse(resultBinary, reportFile);
     }
 
     @PostMapping(ReportApiConstants.STUDENT_XML_TRANSCRIPT_REPORT)
@@ -78,13 +74,9 @@ public class ReportController extends BaseController {
         log.debug("getStudentTranscriptReport");
         logRequest(report);
         setAccessToken(report, tokenService.getAccessToken().toString());
-        try {
-            String reportFile = report.getOptions().getReportFile();
-            byte[] resultBinary = reportService.getStudentXmlTranscriptReport(report);
-            return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_XML);
-        } catch (Exception e) {
-            return getInternalServerErrorResponse(e);
-        }
+        String reportFile = report.getOptions().getReportFile();
+        byte[] resultBinary = reportService.getStudentXmlTranscriptReport(report);
+        return handleBinaryResponse(resultBinary, reportFile, MediaType.APPLICATION_XML);
     }
 
     @PostMapping(ReportApiConstants.STUDENT_CERTIFICATE)
