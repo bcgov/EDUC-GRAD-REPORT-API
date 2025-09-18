@@ -1,14 +1,14 @@
 package ca.bc.gov.educ.grad.report.exception;
 
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-/**
- * EntityNotFoundException to provide more details in error description
- */
+@NoArgsConstructor
+@SuppressWarnings("squid:S3740")
 public class EntityNotFoundException extends RuntimeException {
 
     public EntityNotFoundException(Class clazz, String... searchParamsMap) {
@@ -17,7 +17,7 @@ public class EntityNotFoundException extends RuntimeException {
 
     private static String generateMessage(String entity, Map<String, String> searchParams) {
         return StringUtils.capitalize(entity) +
-                " throws error for conditions " +
+                " was not found for parameters " +
                 searchParams;
     }
 
@@ -30,4 +30,5 @@ public class EntityNotFoundException extends RuntimeException {
                         (m, i) -> m.put(keyType.cast(entries[i]), valueType.cast(entries[i + 1])),
                         Map::putAll);
     }
+
 }
