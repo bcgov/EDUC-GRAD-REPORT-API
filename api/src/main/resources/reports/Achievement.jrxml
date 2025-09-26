@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentAchievementReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="635c3496-e99f-4205-93b8-cf5b07ae8dcb">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<style name="GeneratedText" fontName="BCSans" fontSize="9"/>
@@ -374,7 +374,7 @@
 				<textElement>
 					<font size="9"/>
 				</textElement>
-				<text><![CDATA[This document is for verifying records reported to the Ministry TRAX system by schools and confirming a student’s graduation or completion status. It is not a report card or transcript alternative.]]></text>
+				<text><![CDATA[This document is for verifying records reported to the Ministry by schools and confirming a student’s graduation or completion status. It is not a report card or transcript alternative.]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
