@@ -198,6 +198,7 @@ public class GradReportService {
 			StudentTranscriptReport transcriptReport = getStudentXmlTranscriptReportDocument(reportRequest);
 			response = transcriptReport.asBytes();
 		} catch (Exception e) {
+			log.error("Error occurred generating transcript: {}", e.getMessage());
 			throw new ReportApiServiceException(String.format(EXCEPTION_MSG, methodName), e);
 		}
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
