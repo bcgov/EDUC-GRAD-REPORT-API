@@ -18,6 +18,6 @@ public interface StudentTranscriptRepository extends JpaRepository<StudentTransc
     @Query("select t from TranscriptTypeCodeEntity t join StudentTranscriptEntity c on t.transcriptTypeCode = c.transcriptTypeCode where c.documentStatusCode='COMPL' and c.graduationStudentRecordId=:graduationStudentRecordId")
     List<TranscriptTypeCodeEntity> getStudentTranscriptTypes(UUID graduationStudentRecordId);
 
-    @Query("select max(c.updateDate) as updateDate from StudentTranscriptEntity c where c.graduationStudentRecordId=:graduationStudentRecordId")
+    @Query("select max(c.transcriptUpdateDate) as updateDate from StudentTranscriptEntity c where c.graduationStudentRecordId=:graduationStudentRecordId")
     Optional<Date> getTranscriptLastUpdateDate(UUID graduationStudentRecordId);
 }

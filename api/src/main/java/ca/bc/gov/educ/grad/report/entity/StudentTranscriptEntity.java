@@ -41,4 +41,7 @@ public class StudentTranscriptEntity {
     @Column(name = "UPDATE_DATE", nullable = false)
     private Date updateDate;
 
+    @Column(name = "TRANSCRIPT_UPDATE_DATE")
+    private Date transcriptUpdateDate;
+
 }
