@@ -161,6 +161,10 @@ public class GradReportService {
 		return achievementService.buildOfficialAchievementReport();
 	}
 
+	public boolean hasTranscriptResult(ReportRequest reportRequest) {
+    return reportRequest.getData().getTranscript() != null && reportRequest.getData().getTranscript().getResults() != null && !reportRequest.getData().getTranscript().getResults().isEmpty();
+	}
+
 	public byte[] getStudentTranscriptReport(ReportRequest reportRequest) {
 		String methodName = "getStudentTranscriptReport(ReportRequest reportRequest)";
 		log.debug(DEBUG_LOG_PATTERN, methodName, CLASS_NAME);
