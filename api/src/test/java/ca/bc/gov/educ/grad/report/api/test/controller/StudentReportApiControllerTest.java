@@ -232,6 +232,7 @@ public class StudentReportApiControllerTest extends GradReportBaseTest {
         headers.add("Content-Disposition", "inline; filename=" + reportRequest.getOptions().getReportFile());
 
         Mockito.when(reportService.getStudentTranscriptReport(reportRequest)).thenReturn(resultBinary);
+        Mockito.when(reportService.hasTranscriptResult(reportRequest)).thenReturn(true);
         Mockito.when(tokenService.getAccessToken()).thenReturn(Mono.just("token"));
         ResponseEntity response = reportController.getStudentTranscriptReport(reportRequest);
         Mockito.verify(reportService).getStudentTranscriptReport(reportRequest);
