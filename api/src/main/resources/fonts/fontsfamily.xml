@@ -5,7 +5,7 @@
 		<bold><![CDATA[fonts/Arimo/Arimo-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/Arimo/Arimo-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/Arimo/Arimo-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
 		<pdfEmbedded><![CDATA[false]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
@@ -14,13 +14,13 @@
 		<bold><![CDATA[fonts/Carlito/Carlito-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/Carlito/Carlito-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/Carlito/Carlito-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
 		<exportFonts/>
 	</fontFamily>
 	<fontFamily name="Inconsolata">
 		<normal><![CDATA[fonts/Inconsolata/InconsolataNoslash-Regular.otf]]></normal>
 		<bold><![CDATA[fonts/Inconsolata/InconsolataNoslash-Bold.otf]]></bold>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
 		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
@@ -29,7 +29,7 @@
 		<bold><![CDATA[fonts/LiberationSans/LiberationSans-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/LiberationSans/LiberationSans-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/LiberationSans/LiberationSans-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
 		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
@@ -38,7 +38,7 @@
 		<bold><![CDATA[fonts/BCSans/BCSans-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/BCSans/BCSans-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/BCSans/BCSans-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
 		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
@@ -47,7 +47,7 @@
 		<bold><![CDATA[fonts/TexGyreSchola/texgyreschola-bold.otf]]></bold>
 		<italic><![CDATA[fonts/TexGyreSchola/texgyreschola-italic.otf]]></italic>
 		<boldItalic><![CDATA[fonts/TexGyreSchola/texgyreschola-bolditalic.otf]]></boldItalic>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
 		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
@@ -56,7 +56,7 @@
 		<bold><![CDATA[fonts/Tinos/Tinos-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/Tinos/Tinos-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/Tinos/Tinos-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding><![CDATA[UTF-8]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
 		<exportFonts/>
 	</fontFamily>
 </fontFamilies>
