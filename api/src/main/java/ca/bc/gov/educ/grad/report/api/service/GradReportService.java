@@ -28,6 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -162,7 +164,17 @@ public class GradReportService {
 	}
 
 	public boolean hasTranscriptResult(ReportRequest reportRequest) {
-    return reportRequest.getData().getTranscript() != null && reportRequest.getData().getTranscript().getResults() != null && !reportRequest.getData().getTranscript().getResults().isEmpty();
+		String pen = null;
+		if (reportRequest.getData().getStudent() != null
+				&& reportRequest.getData().getStudent().getPen() != null) {
+			pen = reportRequest.getData().getStudent().getPen().getPen();
+		}
+
+		boolean hasResults = reportRequest.getData().getTranscript() != null
+				&& reportRequest.getData().getTranscript().getResults() != null
+				&& !reportRequest.getData().getTranscript().getResults().isEmpty();
+
+		return hasResults || StringUtils.isBlank(pen);
 	}
 
 	public byte[] getStudentTranscriptReport(ReportRequest reportRequest) {
