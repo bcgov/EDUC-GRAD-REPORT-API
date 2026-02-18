@@ -33,6 +33,7 @@ import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.Course;
 import ca.bc.gov.educ.grad.report.model.transcript.GraduationData;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -677,6 +678,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         List<Exam> sExamObjList = getStudentExamList(pen);
         parameters.put("hasStudentExam", "false");
         if (!sExamObjList.isEmpty()) {
+            TextNormalizer.normalizeObject(sExamObjList);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sExamObjList);
             parameters.put("studentExam", jrBeanCollectionDataSource);
             parameters.put("hasStudentExam", "true");
@@ -685,6 +687,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         List<AchievementCourse> sCourseObjList = getAchievementCourseList(pen, interim);
         parameters.put("hasStudentCourse", "false");
         if (!sCourseObjList.isEmpty()) {
+            TextNormalizer.normalizeObject(sCourseObjList);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sCourseObjList);
             parameters.put("studentCourse", jrBeanCollectionDataSource);
             parameters.put("hasStudentCourse", "true");
@@ -693,6 +696,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         List<AssessmentResult> sAssessmentObjList = this.getAssessmentResultList(pen);
         parameters.put("hasStudentAssessment", "false");
         if (!sAssessmentObjList.isEmpty()) {
+            TextNormalizer.normalizeObject(sAssessmentObjList);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(sAssessmentObjList);
             parameters.put("studentAssessment", jrBeanCollectionDataSource);
             parameters.put("hasStudentAssessment", "true");
@@ -701,6 +705,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         List<ca.bc.gov.educ.grad.report.model.graduation.NonGradReason> nongradList = adaptReasons(studentInfo);
         parameters.put("hasNonGradReasons", "false");
         if (!nongradList.isEmpty()) {
+            TextNormalizer.normalizeObject(nongradList);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(nongradList);
             parameters.put("nonGradReason", jrBeanCollectionDataSource);
             parameters.put("hasNonGradReasons", "true");
@@ -709,6 +714,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         List<OptionalProgram> optionalProgramList = this.getOptionalProgramList(pen);
         parameters.put("hasOptionalPrograms", "false");
         if (!optionalProgramList.isEmpty()) {
+            TextNormalizer.normalizeObject(optionalProgramList);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(optionalProgramList);
             parameters.put("optionalProgram", jrBeanCollectionDataSource);
             parameters.put("hasOptionalPrograms", "true");
