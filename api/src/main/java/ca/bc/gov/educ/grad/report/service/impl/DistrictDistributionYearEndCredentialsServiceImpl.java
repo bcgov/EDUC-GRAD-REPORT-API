@@ -24,6 +24,7 @@ import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -87,6 +88,7 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
         sortSchools(schools);
 
         if(!schools.isEmpty()) {
+            TextNormalizer.normalizeObject(schools);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(schools);
             parameters.put("schools", jrBeanCollectionDataSource);
             parameters.put("hasSchools", "true");

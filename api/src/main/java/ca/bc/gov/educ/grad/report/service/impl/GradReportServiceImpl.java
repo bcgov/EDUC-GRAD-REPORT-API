@@ -22,6 +22,7 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -184,6 +185,7 @@ public abstract class GradReportServiceImpl {
         final School school = getSchool(reportData);
 
         if(!students.isEmpty()) {
+            TextNormalizer.normalizeObject(students);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
             parameters.put("students", jrBeanCollectionDataSource);
             parameters.put("hasStudents", "true");
