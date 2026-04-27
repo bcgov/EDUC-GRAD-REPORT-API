@@ -38,7 +38,7 @@
 		<bold><![CDATA[fonts/BCSans/BCSans-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/BCSans/BCSans-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/BCSans/BCSans-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding><![CDATA[Cp1252]]></pdfEncoding>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
 		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
