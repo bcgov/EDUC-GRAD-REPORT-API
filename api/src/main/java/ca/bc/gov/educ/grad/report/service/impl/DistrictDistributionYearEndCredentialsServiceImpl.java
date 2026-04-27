@@ -24,6 +24,7 @@ import ca.bc.gov.educ.grad.report.model.reports.GraduationReport;
 import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolDistributionReport;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -78,12 +79,14 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
         // validate incoming data for reporting
         final District district = reportData.getDistrict();
+        TextNormalizer.normalizeObject(district);
 
         if (district != null) {
             parameters.put("district", district);
         }
 
         final List<School> schools = getSchools(reportData);
+        TextNormalizer.normalizeObject(schools);
         sortSchools(schools);
 
         if(!schools.isEmpty()) {
@@ -94,9 +97,9 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
         addReportLogo(parameters, reportData);
 
-        parameters.put("reportNumber", reportData.getReportNumber());
-        parameters.put("reportTitle", reportData.getReportTitle());
-        parameters.put("reportSubTitle", reportData.getReportSubTitle());
+        parameters.put("reportNumber", TextNormalizer.normalize(reportData.getReportNumber()));
+        parameters.put("reportTitle", TextNormalizer.normalize(reportData.getReportTitle()));
+        parameters.put("reportSubTitle", TextNormalizer.normalize(reportData.getReportSubTitle()));
 
         GraduationReport graduationReport = createGraduationReport();
         graduationReport.setLocale(CANADA);

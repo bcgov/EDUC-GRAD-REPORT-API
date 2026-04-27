@@ -30,6 +30,7 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportService;
 import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelReport;
 import ca.bc.gov.educ.grad.report.model.school.SchoolLabelService;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -106,6 +107,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
                     ((PostalAddressImpl) school.getAddress()).setCountry(countryCode);
                 }
             }
+            TextNormalizer.normalizeObject(schools);
             List<List<School>> partition = ListUtils.partition(schools, 2);
             List<Pair<School, School>> schools2Columns = new ArrayList<>();
             for(List<School> schs: partition) {
@@ -121,6 +123,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
                 Pair<School, School> p = Pair.of(schoolLeft, schoolRight);
                 schools2Columns.add(p);
             }
+            TextNormalizer.normalizeObject(schools2Columns);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(schools2Columns);
             parameters.put("schools", jrBeanCollectionDataSource);
             parameters.put("hasSchools", "true");
@@ -131,7 +134,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
             parameters.put("orgImage", inputLogo);
         }
 
-        parameters.put("reportNumber", reportData.getReportNumber());
+        parameters.put("reportNumber", TextNormalizer.normalize(reportData.getReportNumber()));
 
         GraduationReport graduationReport = createGraduationReport();
         graduationReport.setLocale(CANADA);

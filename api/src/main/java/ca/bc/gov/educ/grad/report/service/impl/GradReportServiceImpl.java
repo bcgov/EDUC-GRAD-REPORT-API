@@ -22,6 +22,7 @@ import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.EducGradReportApiConstants;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import ca.bc.gov.educ.grad.report.utils.TotalCounts;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -168,6 +169,7 @@ public abstract class GradReportServiceImpl {
         final Pair<List<Student>, TotalCounts> studentsResult = getStudents(reportData, excludePrograms);
         final List<Student> students = studentsResult.getFirst();
         final TotalCounts counts = studentsResult.getSecond();
+        TextNormalizer.normalizeObject(students);
 
         switch (methodName) {
             case "buildSchoolDistributionReport()":
@@ -182,6 +184,7 @@ public abstract class GradReportServiceImpl {
         }
 
         final School school = getSchool(reportData);
+        TextNormalizer.normalizeObject(school);
 
         if(!students.isEmpty()) {
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
@@ -197,9 +200,9 @@ public abstract class GradReportServiceImpl {
 
         addReportLogo(parameters, reportData);
 
-        parameters.put("reportNumber", reportData.getReportNumber());
-        parameters.put("reportTitle", reportData.getReportTitle());
-        parameters.put("reportSubTitle", reportData.getReportSubTitle());
+        parameters.put("reportNumber", TextNormalizer.normalize(reportData.getReportNumber()));
+        parameters.put("reportTitle", TextNormalizer.normalize(reportData.getReportTitle()));
+        parameters.put("reportSubTitle", TextNormalizer.normalize(reportData.getReportSubTitle()));
 
         GraduationReport graduationReport = createGraduationReport();
         graduationReport.setLocale(CANADA);
