@@ -79,16 +79,17 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
         // validate incoming data for reporting
         final District district = reportData.getDistrict();
+        TextNormalizer.normalizeObject(district);
 
         if (district != null) {
             parameters.put("district", district);
         }
 
         final List<School> schools = getSchools(reportData);
+        TextNormalizer.normalizeObject(schools);
         sortSchools(schools);
 
         if(!schools.isEmpty()) {
-            TextNormalizer.normalizeObject(schools);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(schools);
             parameters.put("schools", jrBeanCollectionDataSource);
             parameters.put("hasSchools", "true");
@@ -96,9 +97,9 @@ public class DistrictDistributionYearEndCredentialsServiceImpl extends SchoolDis
 
         addReportLogo(parameters, reportData);
 
-        parameters.put("reportNumber", reportData.getReportNumber());
-        parameters.put("reportTitle", reportData.getReportTitle());
-        parameters.put("reportSubTitle", reportData.getReportSubTitle());
+        parameters.put("reportNumber", TextNormalizer.normalize(reportData.getReportNumber()));
+        parameters.put("reportTitle", TextNormalizer.normalize(reportData.getReportTitle()));
+        parameters.put("reportSubTitle", TextNormalizer.normalize(reportData.getReportSubTitle()));
 
         GraduationReport graduationReport = createGraduationReport();
         graduationReport.setLocale(CANADA);

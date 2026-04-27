@@ -107,6 +107,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
                     ((PostalAddressImpl) school.getAddress()).setCountry(countryCode);
                 }
             }
+            TextNormalizer.normalizeObject(schools);
             List<List<School>> partition = ListUtils.partition(schools, 2);
             List<Pair<School, School>> schools2Columns = new ArrayList<>();
             for(List<School> schs: partition) {
@@ -133,7 +134,7 @@ public class SchoolLabelServiceImpl extends GradReportServiceImpl
             parameters.put("orgImage", inputLogo);
         }
 
-        parameters.put("reportNumber", reportData.getReportNumber());
+        parameters.put("reportNumber", TextNormalizer.normalize(reportData.getReportNumber()));
 
         GraduationReport graduationReport = createGraduationReport();
         graduationReport.setLocale(CANADA);

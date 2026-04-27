@@ -34,6 +34,7 @@ import ca.bc.gov.educ.grad.report.model.student.PersonalEducationNumber;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.model.student.StudentInfo;
 import ca.bc.gov.educ.grad.report.model.transcript.*;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -521,6 +522,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final String methodName = "createReport(...)";
         log.trace(LOG_TRACE_ENTERING, methodName);
         final TranscriptTypeCode transcriptTypeCode = transcript.getTranscriptTypeCode();
+        final String normalizedGradMessage = TextNormalizer.normalize(gradMessage);
 
         final TranscriptReport report = reportService.createTranscriptReport(transcriptTypeCode, program);
 
@@ -535,7 +537,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         report.setSchool(school, logo);
         report.setGraduationProgram(program);
         report.setTranscript(transcript);
-        report.setGraduationStatus(nonGradReasons, gradMessage);
+        report.setGraduationStatus(nonGradReasons, normalizedGradMessage);
         report.setReportDate(issueDate);
         report.setFormat(reportFormat);
         report.setGraduationData(graduationData);
@@ -543,6 +545,7 @@ public class StudentTranscriptServiceImpl extends GradReportServiceImpl implemen
         final boolean interim = ((TranscriptImpl) transcript).getInterim();
         report.setInterim(interim);
         report.setBlank(StringUtils.isBlank(student.getPen().getPen()));
+        TextNormalizer.normalizeObject(report.getDataSource());
 
         ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student stu = (ca.bc.gov.educ.grad.report.dto.reports.data.impl.Student)report.getDataSource();
         LOG.log(Level.FINE, "DataSource Student created {0}.", new Object[]{stu.getPEN()});

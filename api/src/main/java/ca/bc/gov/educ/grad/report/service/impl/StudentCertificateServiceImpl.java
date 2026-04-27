@@ -42,6 +42,7 @@ import ca.bc.gov.educ.grad.report.model.school.School;
 import ca.bc.gov.educ.grad.report.model.student.Student;
 import ca.bc.gov.educ.grad.report.service.GradReportCodeService;
 import ca.bc.gov.educ.grad.report.utils.SerializableMap;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.extern.slf4j.Slf4j;
@@ -307,6 +308,7 @@ public class StudentCertificateServiceImpl extends GradReportServiceImpl
         certificateReport.setStudent(student);
         certificateReport.setCertificate(certificate);
         certificateReport.setSchool(school);
+        TextNormalizer.normalizeObject(certificateReport.getDataSource());
 
         GradCertificateReport report = null;
         try {

@@ -23,7 +23,6 @@ import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
-import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -224,8 +223,6 @@ public class JasperReportImpl {
     protected JRBeanCollectionDataSource createBeanDataSource(final Object data) {
         final Collection<?> list = (Collection<?>) (data instanceof Collection
                 ? data : Arrays.asList(data));
-
-        TextNormalizer.normalizeObject(list);
 
         return new JRBeanCollectionDataSource(list);
     }

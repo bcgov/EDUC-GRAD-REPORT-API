@@ -14,6 +14,7 @@ import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentTranscriptReport;
 import ca.bc.gov.educ.grad.report.model.transcript.StudentXmlTranscriptService;
 import ca.bc.gov.educ.grad.report.utils.MessageHelper;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import jakarta.annotation.security.DeclareRoles;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -100,6 +101,7 @@ public class StudentXmlTranscriptServiceImpl extends BaseServiceImpl implements 
             }
             AcademicRecordBatch academicRecordBatch = (AcademicRecordBatch)jsonTransformer.unmarshall(graduationStudentRecord.getStudentGradData(), AcademicRecordBatch.class);
             setDefaultValues(academicRecordBatch);
+            TextNormalizer.normalizeObject(academicRecordBatch);
             StudentTranscriptReportImpl transcriptReport = new StudentTranscriptReportImpl(
                     xmlTransformer.marshallPrettyPrinter(academicRecordBatch).getBytes(),
                     ReportFormat.XML,

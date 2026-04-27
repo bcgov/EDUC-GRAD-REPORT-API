@@ -1,24 +1,29 @@
 package ca.bc.gov.educ.grad.report.utils;
 
+import ca.bc.gov.educ.grad.report.exception.ReportApiServiceException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.text.Normalizer;
 import java.util.*;
 
 /**
  * Utility to recursively normalize all String fields in an object and its children.
- * This ensures Indigenous language combining diacritics (like ̓) are preserved.
+ * This ensures Indigenous language combining diacritics are preserved.
  *
  * Usage:
  *   MyReportData data = createReportData();
  *   TextNormalizer.normalizeObject(data);
  *   String json = objectMapper.writeValueAsString(data);
  */
-public class TextNormalizer {
+public final class TextNormalizer {
 
     private static final Set<Class<?>> WRAPPER_TYPES = new HashSet<>(Arrays.asList(
             Boolean.class, Character.class, Byte.class, Short.class,
             Integer.class, Long.class, Float.class, Double.class, Void.class
     ));
+
+    private TextNormalizer() {
+    }
 
     /**
      * Normalize all String fields in an object and its children recursively.
@@ -33,9 +38,9 @@ public class TextNormalizer {
         }
 
         try {
-            normalizeRecursive(obj, new HashSet<>());
+            normalizeRecursive(obj, Collections.newSetFromMap(new IdentityHashMap<>()));
         } catch (Exception e) {
-            throw new RuntimeException("Failed to normalize object", e);
+            throw new ReportApiServiceException("Failed to normalize object", e);
         }
 
         return obj;
@@ -51,8 +56,14 @@ public class TextNormalizer {
 
         Class<?> clazz = obj.getClass();
 
+        // Handle String
+        if (obj instanceof String) {
+            // Can't modify String in-place, caller must handle
+            return;
+        }
+
         // Skip primitives and wrappers
-        if (clazz.isPrimitive() || WRAPPER_TYPES.contains(clazz)) {
+        if (clazz.isPrimitive() || clazz.isEnum() || WRAPPER_TYPES.contains(clazz)) {
             return;
         }
 
@@ -60,12 +71,6 @@ public class TextNormalizer {
         String className = clazz.getName();
         if (className.startsWith("java.") || className.startsWith("javax.") ||
             className.startsWith("jdk.") || className.startsWith("sun.")) {
-            return;
-        }
-
-        // Handle String
-        if (obj instanceof String) {
-            // Can't modify String in-place, caller must handle
             return;
         }
 
@@ -102,6 +107,10 @@ public class TextNormalizer {
         // Walk up the inheritance hierarchy
         while (clazz != null && clazz != Object.class) {
             for (Field field : clazz.getDeclaredFields()) {
+                if (Modifier.isStatic(field.getModifiers())) {
+                    continue;
+                }
+
                 field.setAccessible(true);
 
                 Object value = field.get(obj);
@@ -207,10 +216,10 @@ public class TextNormalizer {
     }
 
     /**
-     * Normalize a single string to NFC form
-     * NFC = Canonical Composition (keeps combining marks attached to base characters)
+     * Normalize a single string to NFC form.
+     * NFC = Canonical Composition (keeps combining marks attached to base characters).
      */
-    private static String normalize(String text) {
+    public static String normalize(String text) {
         if (text == null || text.isEmpty()) {
             return text;
         }

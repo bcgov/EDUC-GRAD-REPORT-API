@@ -14,6 +14,7 @@ import ca.bc.gov.educ.grad.report.model.packingslip.PackingSlipService;
 import ca.bc.gov.educ.grad.report.model.reports.PackingSlipReport;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportService;
+import ca.bc.gov.educ.grad.report.utils.TextNormalizer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -156,6 +157,7 @@ public class PackingSlipServiceImpl implements PackingSlipService {
 
             packingSlip.setPackingSlipDetails(details);
             packingSlip.setOrderType(orderType);
+            TextNormalizer.normalizeObject(packingSlip.getDataSource());
 
             report = reportService.export(packingSlip);
         } catch (final NullPointerException | IOException e) {

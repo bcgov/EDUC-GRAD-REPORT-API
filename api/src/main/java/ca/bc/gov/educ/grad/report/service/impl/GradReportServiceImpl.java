@@ -169,6 +169,7 @@ public abstract class GradReportServiceImpl {
         final Pair<List<Student>, TotalCounts> studentsResult = getStudents(reportData, excludePrograms);
         final List<Student> students = studentsResult.getFirst();
         final TotalCounts counts = studentsResult.getSecond();
+        TextNormalizer.normalizeObject(students);
 
         switch (methodName) {
             case "buildSchoolDistributionReport()":
@@ -183,9 +184,9 @@ public abstract class GradReportServiceImpl {
         }
 
         final School school = getSchool(reportData);
+        TextNormalizer.normalizeObject(school);
 
         if(!students.isEmpty()) {
-            TextNormalizer.normalizeObject(students);
             JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(students);
             parameters.put("students", jrBeanCollectionDataSource);
             parameters.put("hasStudents", "true");
@@ -199,9 +200,9 @@ public abstract class GradReportServiceImpl {
 
         addReportLogo(parameters, reportData);
 
-        parameters.put("reportNumber", reportData.getReportNumber());
-        parameters.put("reportTitle", reportData.getReportTitle());
-        parameters.put("reportSubTitle", reportData.getReportSubTitle());
+        parameters.put("reportNumber", TextNormalizer.normalize(reportData.getReportNumber()));
+        parameters.put("reportTitle", TextNormalizer.normalize(reportData.getReportTitle()));
+        parameters.put("reportSubTitle", TextNormalizer.normalize(reportData.getReportSubTitle()));
 
         GraduationReport graduationReport = createGraduationReport();
         graduationReport.setLocale(CANADA);

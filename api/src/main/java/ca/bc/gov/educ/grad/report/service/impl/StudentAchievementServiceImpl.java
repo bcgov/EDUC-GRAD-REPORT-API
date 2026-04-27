@@ -622,7 +622,9 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         report.setPreview(preview);
         report.setFormat(reportFormat);
         report.setInterim(interim);
-        report.setGraduationProgram(createGradProgram(gradProgram));
+        final var graduationProgram = createGradProgram(gradProgram);
+        TextNormalizer.normalizeObject(graduationProgram);
+        report.setGraduationProgram(graduationProgram);
 
         final ReportDocument document;
 
@@ -723,7 +725,7 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
         List<String> careerProgramCodes = this.getCareerProgramList(pen);
         if (careerProgramCodes != null && !careerProgramCodes.isEmpty()) {
             String careerPrograms = careerProgramCodes.stream().map(Object::toString).collect(Collectors.joining(", "));
-            parameters.put("careerProgramsObj", careerPrograms);
+            parameters.put("careerProgramsObj", TextNormalizer.normalize(careerPrograms));
         }
 
         Date issueDate = getIssueDate();
@@ -733,16 +735,19 @@ public class StudentAchievementServiceImpl extends GradReportServiceImpl impleme
 
         ca.bc.gov.educ.grad.report.model.school.School schoolObj = adaptSchool(studentInfo, false);
         if (schoolObj != null) {
+            TextNormalizer.normalizeObject(schoolObj);
             parameters.put("schoolObj", schoolObj);
         }
 
         ca.bc.gov.educ.grad.report.model.student.Student studentObj = adaptStudent(personalEducationNumber, studentInfo);
         if (studentObj != null) {
+            TextNormalizer.normalizeObject(studentObj);
             parameters.put("studentObj", studentObj);
         }
 
         GraduationStatus graduationStatus = getGraduationStatus(pen);
         if (graduationStatus != null) {
+            TextNormalizer.normalizeObject(graduationStatus);
             parameters.put("gradObj", graduationStatus);
         }
 
