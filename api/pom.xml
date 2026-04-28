@@ -781,7 +781,7 @@
                             <artifactId>itext</artifactId>
                             <version>2.1.8.js8</version>
                             <packaging>jar</packaging>
-                            <file>${basedir}/lib/itext-4.2.1.jar</file>
+                            <file>${basedir}/lib/itext-2.1.7.js7.jar</file>
                         </configuration>
                     </execution>
                     <execution>
@@ -795,7 +795,7 @@
                             <artifactId>itext</artifactId>
                             <version>2.1.7.js8</version>
                             <packaging>jar</packaging>
-                            <file>${basedir}/lib/itext-4.2.1.jar</file>
+                            <file>${basedir}/lib/itext-2.1.7.js7.jar</file>
                         </configuration>
                     </execution>
                 </executions>
