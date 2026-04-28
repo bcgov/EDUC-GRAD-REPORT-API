@@ -38,8 +38,8 @@
 		<bold><![CDATA[fonts/BCSans/BCSans-Bold.ttf]]></bold>
 		<italic><![CDATA[fonts/BCSans/BCSans-Italic.ttf]]></italic>
 		<boldItalic><![CDATA[fonts/BCSans/BCSans-BoldItalic.ttf]]></boldItalic>
-		<pdfEncoding>Identity-H</pdfEncoding>
-		<pdfEmbedded>true</pdfEmbedded>
+		<pdfEncoding><![CDATA[Identity-H]]></pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
 		<exportFonts/>
 	</fontFamily>
 	<fontFamily name="TexGyreSchola">
