@@ -57,6 +57,10 @@ public class JasperReportImpl {
 
     private static final String CLASSNAME = JasperReportImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String PDF_GLYPH_RENDERER_BLOCKS_PROPERTY =
+            PdfReportConfiguration.PROPERTY_PREFIX_GLYPH_RENDERER_BLOCKS + "indigenous";
+    private static final String PDF_GLYPH_RENDERER_BLOCKS =
+            "COMBINING_DIACRITICAL_MARKS,IPA_EXTENSIONS,SPACING_MODIFIER_LETTERS,PHONETIC_EXTENSIONS";
 
     /**
      * Controls scaling images written to the browser.
@@ -85,6 +89,9 @@ public class JasperReportImpl {
             //final JasperPrint print = format.equals(XML) ? createEmptyReport() : createFilledReport();
 
             final JasperPrint print = createFilledReport();
+            if (ReportFormat.PDF.equals(format)) {
+                configurePdfGlyphRendering(print);
+            }
 
             switch (format) {
                 case CSV:
@@ -181,6 +188,11 @@ public class JasperReportImpl {
      */
     private JasperPrint createEmptyReport() {
         return new JasperPrint();
+    }
+
+    private void configurePdfGlyphRendering(final JasperPrint print) {
+        print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
+        print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
     }
 
     /**
