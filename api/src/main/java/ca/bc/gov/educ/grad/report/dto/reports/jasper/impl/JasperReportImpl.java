@@ -29,6 +29,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.PdfGlyphRenderer;
 import net.sf.jasperreports.export.*;
 
 import java.awt.font.GlyphVector;
@@ -193,21 +194,28 @@ public class JasperReportImpl {
     }
 
     private void configurePdfGlyphRendering(final JasperPrint print) {
-        warnIfPdfGlyphRenderingUnsupported();
+        logPdfGlyphRenderingSupport();
         print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
         print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
     }
 
-    private void warnIfPdfGlyphRenderingUnsupported() {
+    private void logPdfGlyphRenderingSupport() {
         try {
             com.lowagie.text.pdf.PdfContentByte.class.getMethod("showText", GlyphVector.class);
+            final URL source = getPdfContentByteSource();
+            LOG.info("PDF glyph rendering support detected. Jasper supported="
+                    + PdfGlyphRenderer.supported()
+                    + ", iText source=" + source);
         } catch (final NoSuchMethodException ex) {
-            final URL source = com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource() == null
-                    ? null
-                    : com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource().getLocation();
             LOG.warning("PDF glyph rendering is disabled because the loaded iText jar does not support "
-                    + "PdfContentByte.showText(GlyphVector): " + source);
+                    + "PdfContentByte.showText(GlyphVector): " + getPdfContentByteSource());
         }
+    }
+
+    private URL getPdfContentByteSource() {
+        return com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource() == null
+                ? null
+                : com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource().getLocation();
     }
 
     /**
