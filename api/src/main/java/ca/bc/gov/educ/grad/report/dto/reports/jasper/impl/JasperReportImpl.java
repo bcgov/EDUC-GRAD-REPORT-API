@@ -31,9 +31,11 @@ import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.*;
 
+import java.awt.font.GlyphVector;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
@@ -191,8 +193,21 @@ public class JasperReportImpl {
     }
 
     private void configurePdfGlyphRendering(final JasperPrint print) {
+        warnIfPdfGlyphRenderingUnsupported();
         print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
         print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
+    }
+
+    private void warnIfPdfGlyphRenderingUnsupported() {
+        try {
+            com.lowagie.text.pdf.PdfContentByte.class.getMethod("showText", GlyphVector.class);
+        } catch (final NoSuchMethodException ex) {
+            final URL source = com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource() == null
+                    ? null
+                    : com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource().getLocation();
+            LOG.warning("PDF glyph rendering is disabled because the loaded iText jar does not support "
+                    + "PdfContentByte.showText(GlyphVector): " + source);
+        }
     }
 
     /**
