@@ -76,6 +76,11 @@ public class JasperReportImpl {
     private static final String CLASSNAME = JasperReportImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
     private static final String FONT_FAMILIES_RESOURCE = "fonts/fontsfamily.xml";
+    private static final String BCSANS_FONT_FAMILY = "BCSans";
+    private static final String BCSANS_REGULAR_FACE = "BC Sans Regular";
+    private static final String BCSANS_BOLD_FACE = "BC Sans Bold";
+    private static final String BCSANS_ITALIC_FACE = "BC Sans Italic";
+    private static final String BCSANS_BOLD_ITALIC_FACE = "BC Sans Bold Italic";
     private static final String PDF_GLYPH_RENDERER_BLOCKS_PROPERTY =
             PdfReportConfiguration.PROPERTY_PREFIX_GLYPH_RENDERER_BLOCKS + "indigenous";
     private static final String PDF_GLYPH_RENDERER_BLOCKS =
@@ -232,6 +237,7 @@ public class JasperReportImpl {
         logPdfFontExtensionDiagnostics();
         print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
         print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
+        applyPdfGlyphRendererFontAliases(print);
         logPdfGlyphRendererCandidates(print);
     }
 
@@ -334,6 +340,51 @@ public class JasperReportImpl {
             logBundledPdfFontDiagnostics();
             LOG.info("PDF glyph renderer candidate text elements=" + candidates.size() + "; " + candidates);
         }
+    }
+
+    private void applyPdfGlyphRendererFontAliases(final JasperPrint print) {
+        int updatedTextElements = 0;
+        final List<JRPrintPage> pages = print.getPages();
+
+        for (final JRPrintPage page : pages) {
+            updatedTextElements += applyPdfGlyphRendererFontAliases(page.getElements());
+        }
+
+        if (updatedTextElements > 0) {
+            LOG.info("PDF glyph renderer BCSans font aliases applied to text elements=" + updatedTextElements);
+        }
+    }
+
+    private int applyPdfGlyphRendererFontAliases(final List<JRPrintElement> elements) {
+        int updatedTextElements = 0;
+
+        for (final JRPrintElement element : elements) {
+            if (element instanceof JRPrintText) {
+                final JRPrintText text = (JRPrintText) element;
+                if (BCSANS_FONT_FAMILY.equals(text.getFontName())
+                        && containsPdfGlyphRendererCandidate(text.getFullText())) {
+                    text.setFontName(getBcSansFaceName(text));
+                    updatedTextElements++;
+                }
+            } else if (element instanceof JRPrintFrame) {
+                updatedTextElements += applyPdfGlyphRendererFontAliases(((JRPrintFrame) element).getElements());
+            }
+        }
+
+        return updatedTextElements;
+    }
+
+    private String getBcSansFaceName(final JRPrintText text) {
+        if (text.isBold() && text.isItalic()) {
+            return BCSANS_BOLD_ITALIC_FACE;
+        }
+        if (text.isBold()) {
+            return BCSANS_BOLD_FACE;
+        }
+        if (text.isItalic()) {
+            return BCSANS_ITALIC_FACE;
+        }
+        return BCSANS_REGULAR_FACE;
     }
 
     private void collectPdfGlyphRendererCandidates(final List<JRPrintElement> elements,
