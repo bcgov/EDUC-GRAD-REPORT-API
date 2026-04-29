@@ -63,7 +63,7 @@ public class JasperReportImpl {
     private static final String PDF_GLYPH_RENDERER_BLOCKS_PROPERTY =
             PdfReportConfiguration.PROPERTY_PREFIX_GLYPH_RENDERER_BLOCKS + "indigenous";
     private static final String PDF_GLYPH_RENDERER_BLOCKS =
-            "COMBINING_DIACRITICAL_MARKS,IPA_EXTENSIONS,SPACING_MODIFIER_LETTERS,PHONETIC_EXTENSIONS";
+            "BASIC_LATIN,COMBINING_DIACRITICAL_MARKS,IPA_EXTENSIONS,SPACING_MODIFIER_LETTERS,PHONETIC_EXTENSIONS";
 
     /**
      * Controls scaling images written to the browser.
