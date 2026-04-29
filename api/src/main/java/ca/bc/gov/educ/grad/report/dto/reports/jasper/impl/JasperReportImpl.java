@@ -37,9 +37,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -63,7 +67,14 @@ public class JasperReportImpl {
     private static final String PDF_GLYPH_RENDERER_BLOCKS_PROPERTY =
             PdfReportConfiguration.PROPERTY_PREFIX_GLYPH_RENDERER_BLOCKS + "indigenous";
     private static final String PDF_GLYPH_RENDERER_BLOCKS =
-            "BASIC_LATIN,COMBINING_DIACRITICAL_MARKS,IPA_EXTENSIONS,SPACING_MODIFIER_LETTERS,PHONETIC_EXTENSIONS";
+            "COMBINING_DIACRITICAL_MARKS,IPA_EXTENSIONS,SPACING_MODIFIER_LETTERS,PHONETIC_EXTENSIONS";
+    private static final Set<Character.UnicodeBlock> PDF_GLYPH_RENDERER_UNICODE_BLOCKS =
+            new LinkedHashSet<>(Arrays.asList(
+                    Character.UnicodeBlock.COMBINING_DIACRITICAL_MARKS,
+                    Character.UnicodeBlock.IPA_EXTENSIONS,
+                    Character.UnicodeBlock.SPACING_MODIFIER_LETTERS,
+                    Character.UnicodeBlock.PHONETIC_EXTENSIONS
+            ));
 
     /**
      * Controls scaling images written to the browser.
@@ -197,6 +208,7 @@ public class JasperReportImpl {
         logPdfGlyphRenderingSupport();
         print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
         print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
+        logPdfGlyphRendererCandidates(print);
     }
 
     private void logPdfGlyphRenderingSupport() {
@@ -216,6 +228,70 @@ public class JasperReportImpl {
         return com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource() == null
                 ? null
                 : com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource().getLocation();
+    }
+
+    private void logPdfGlyphRendererCandidates(final JasperPrint print) {
+        final List<String> candidates = new ArrayList<>();
+        final List<JRPrintPage> pages = print.getPages();
+
+        for (int pageIndex = 0; pageIndex < pages.size(); pageIndex++) {
+            collectPdfGlyphRendererCandidates(pages.get(pageIndex).getElements(), pageIndex, candidates);
+        }
+
+        if (candidates.isEmpty()) {
+            LOG.info("PDF glyph renderer candidate text elements=0");
+        } else {
+            LOG.info("PDF glyph renderer candidate text elements=" + candidates.size() + "; " + candidates);
+        }
+    }
+
+    private void collectPdfGlyphRendererCandidates(final List<JRPrintElement> elements,
+                                                  final int pageIndex,
+                                                  final List<String> candidates) {
+        for (final JRPrintElement element : elements) {
+            if (element instanceof JRPrintText) {
+                final JRPrintText text = (JRPrintText) element;
+                final String fullText = text.getFullText();
+                if (containsPdfGlyphRendererCandidate(fullText)) {
+                    candidates.add("page=" + pageIndex
+                            + ", key=" + element.getKey()
+                            + ", font=" + text.getFontName()
+                            + ", bold=" + text.isBold()
+                            + ", italic=" + text.isItalic()
+                            + ", codepoints=" + getPdfGlyphRendererCandidateCodepoints(fullText));
+                }
+            } else if (element instanceof JRPrintFrame) {
+                collectPdfGlyphRendererCandidates(((JRPrintFrame) element).getElements(), pageIndex, candidates);
+            }
+        }
+    }
+
+    private boolean containsPdfGlyphRendererCandidate(final String text) {
+        if (text == null) {
+            return false;
+        }
+
+        for (int offset = 0; offset < text.length(); ) {
+            final int codePoint = text.codePointAt(offset);
+            if (PDF_GLYPH_RENDERER_UNICODE_BLOCKS.contains(Character.UnicodeBlock.of(codePoint))) {
+                return true;
+            }
+            offset += Character.charCount(codePoint);
+        }
+
+        return false;
+    }
+
+    private Set<String> getPdfGlyphRendererCandidateCodepoints(final String text) {
+        final Set<String> codepoints = new LinkedHashSet<>();
+        for (int offset = 0; offset < text.length(); ) {
+            final int codePoint = text.codePointAt(offset);
+            if (PDF_GLYPH_RENDERER_UNICODE_BLOCKS.contains(Character.UnicodeBlock.of(codePoint))) {
+                codepoints.add(String.format("U+%04X", codePoint));
+            }
+            offset += Character.charCount(codePoint);
+        }
+        return codepoints;
     }
 
     /**
