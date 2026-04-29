@@ -30,6 +30,10 @@ import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.PdfGlyphRenderer;
+import net.sf.jasperreports.engine.fonts.FontFamily;
+import net.sf.jasperreports.engine.fonts.FontInfo;
+import net.sf.jasperreports.engine.fonts.FontUtil;
+import net.sf.jasperreports.engine.fonts.SimpleFontExtensionHelper;
 import net.sf.jasperreports.engine.util.JRStyledText;
 import net.sf.jasperreports.engine.util.JRTextAttribute;
 import net.sf.jasperreports.export.*;
@@ -71,6 +75,7 @@ public class JasperReportImpl {
 
     private static final String CLASSNAME = JasperReportImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
+    private static final String FONT_FAMILIES_RESOURCE = "fonts/fontsfamily.xml";
     private static final String PDF_GLYPH_RENDERER_BLOCKS_PROPERTY =
             PdfReportConfiguration.PROPERTY_PREFIX_GLYPH_RENDERER_BLOCKS + "indigenous";
     private static final String PDF_GLYPH_RENDERER_BLOCKS =
@@ -82,6 +87,7 @@ public class JasperReportImpl {
                     Character.UnicodeBlock.SPACING_MODIFIER_LETTERS,
                     Character.UnicodeBlock.PHONETIC_EXTENSIONS
             ));
+    private static final JasperReportsContext JASPER_REPORTS_CONTEXT = createJasperReportsContext();
 
     /**
      * Controls scaling images written to the browser.
@@ -183,7 +189,7 @@ public class JasperReportImpl {
                 exporter = new HtmlExporter();
                 break;
             case PDF:
-                exporter = new JRPdfExporter();
+                exporter = new JRPdfExporter(JASPER_REPORTS_CONTEXT);
                 break;
             case XML:
                 exporter = new XmlExporter();
@@ -223,9 +229,32 @@ public class JasperReportImpl {
 
     private void configurePdfGlyphRendering(final JasperPrint print) {
         logPdfGlyphRenderingSupport();
+        logPdfFontExtensionDiagnostics();
         print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
         print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
         logPdfGlyphRendererCandidates(print);
+    }
+
+    private static JasperReportsContext createJasperReportsContext() {
+        final SimpleJasperReportsContext context =
+                new SimpleJasperReportsContext(DefaultJasperReportsContext.getInstance());
+
+        try (final InputStream inputStream = JasperReportImpl.class.getClassLoader()
+                .getResourceAsStream(FONT_FAMILIES_RESOURCE)) {
+            if (inputStream == null) {
+                LOG.warning("Unable to load Jasper font families because the resource is missing: "
+                        + FONT_FAMILIES_RESOURCE);
+                return context;
+            }
+
+            final List<FontFamily> fontFamilies = SimpleFontExtensionHelper.getInstance()
+                    .loadFontFamilies(context, inputStream);
+            context.setExtensions(FontFamily.class, fontFamilies);
+        } catch (final IOException | RuntimeException ex) {
+            LOG.warning("Unable to load Jasper font families from " + FONT_FAMILIES_RESOURCE + ": " + ex.getMessage());
+        }
+
+        return context;
     }
 
     private void logPdfGlyphRenderingSupport() {
@@ -267,6 +296,22 @@ public class JasperReportImpl {
         } catch (final FontFormatException | IOException ex) {
             diagnostics.add(label + " error=" + ex.getClass().getSimpleName() + ": " + ex.getMessage());
         }
+    }
+
+    private void logPdfFontExtensionDiagnostics() {
+        final List<String> fontFamilyNames = new ArrayList<>();
+        final List<FontFamily> fontFamilies = JASPER_REPORTS_CONTEXT.getExtensions(FontFamily.class);
+        if (fontFamilies != null) {
+            for (final FontFamily fontFamily : fontFamilies) {
+                fontFamilyNames.add(fontFamily.getName());
+            }
+        }
+
+        final FontInfo bcSansFontInfo = FontUtil.getInstance(JASPER_REPORTS_CONTEXT)
+                .getFontInfo("BCSans", null);
+        LOG.info("PDF Jasper font extension diagnostics: BCSans found="
+                + (bcSansFontInfo != null)
+                + ", fontFamilies=" + fontFamilyNames);
     }
 
     private URL getPdfContentByteSource() {
@@ -318,7 +363,7 @@ public class JasperReportImpl {
 
         try {
             final JRStyledText styledText = text.getFullStyledText(
-                    JRStyledTextAttributeSelector.getAllSelector(DefaultJasperReportsContext.getInstance()));
+                    JRStyledTextAttributeSelector.getAllSelector(JASPER_REPORTS_CONTEXT));
             if (styledText == null) {
                 diagnostics.add("styledText=null");
                 return diagnostics;
@@ -403,7 +448,7 @@ public class JasperReportImpl {
         parameters.put(JRParameter.REPORT_FORMAT_FACTORY,
                 new ReportFormatFactory(report.getResourceBundle()));
 
-        return JasperFillManager.fillReport(
+        return JasperFillManager.getInstance(JASPER_REPORTS_CONTEXT).fill(
                 is, report.getParameters(), getJRDataSource(report));
     }
 
