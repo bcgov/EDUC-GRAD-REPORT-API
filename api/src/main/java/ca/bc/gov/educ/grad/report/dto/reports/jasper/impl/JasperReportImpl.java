@@ -37,6 +37,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -125,7 +126,14 @@ public class JasperReportImpl {
                 case XML:
                     exporter.setConfiguration(createXmlExporterConfiguration());
                     exporter.setReportContext(createXmlReportContext());
+                    exporter.setExporterOutput(
+                            new SimpleOutputStreamExporterOutput(out));
+                    break;
                 case PDF:
+                    exporter.setConfiguration(createPdfExporterConfiguration());
+                    exporter.setExporterOutput(
+                            new SimpleOutputStreamExporterOutput(out));
+                    break;
                 default:
                     exporter.setExporterOutput(
                             new SimpleOutputStreamExporterOutput(out));
@@ -136,6 +144,9 @@ public class JasperReportImpl {
             exporter.setExporterInput(exporterInput);
             exporter.exportReport();
             bytes = out.toByteArray();
+            if (ReportFormat.PDF.equals(format)) {
+                logPdfActualTextDiagnostic(bytes);
+            }
         } catch (final Exception ex) {
             final String msg = "Could not export report";
             LOG.log(Level.SEVERE, msg, ex);
@@ -399,6 +410,17 @@ public class JasperReportImpl {
      */
     private SimpleCsvExporterConfiguration createCsvExporterConfiguration() {
         return new SimpleCsvExporterConfiguration();
+    }
+
+    private SimplePdfExporterConfiguration createPdfExporterConfiguration() {
+        final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+        configuration.setCompressed(false);
+        return configuration;
+    }
+
+    private void logPdfActualTextDiagnostic(final byte[] bytes) {
+        final String pdfContent = new String(bytes, StandardCharsets.ISO_8859_1);
+        LOG.info("PDF ActualText marker present=" + pdfContent.contains("/ActualText"));
     }
 
     /**
