@@ -30,14 +30,20 @@ import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.PdfGlyphRenderer;
+import net.sf.jasperreports.engine.util.JRStyledText;
+import net.sf.jasperreports.engine.util.JRTextAttribute;
 import net.sf.jasperreports.export.*;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.font.GlyphVector;
+import java.awt.font.TextAttribute;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -235,6 +241,34 @@ public class JasperReportImpl {
         }
     }
 
+    private void logBundledPdfFontDiagnostics() {
+        final List<String> diagnostics = new ArrayList<>();
+        addBundledFontDiagnostic("BCSans-Regular", "fonts/BCSans/BCSans-Regular.ttf", diagnostics);
+        addBundledFontDiagnostic("BCSans-Bold", "fonts/BCSans/BCSans-Bold.ttf", diagnostics);
+        addBundledFontDiagnostic("BCSans-Italic", "fonts/BCSans/BCSans-Italic.ttf", diagnostics);
+        addBundledFontDiagnostic("BCSans-BoldItalic", "fonts/BCSans/BCSans-BoldItalic.ttf", diagnostics);
+        LOG.info("PDF bundled font diagnostics=" + diagnostics);
+    }
+
+    private void addBundledFontDiagnostic(final String label,
+                                          final String resource,
+                                          final List<String> diagnostics) {
+        try (final InputStream inputStream = JasperReportImpl.class.getClassLoader().getResourceAsStream(resource)) {
+            if (inputStream == null) {
+                diagnostics.add(label + " resourceMissing=" + resource);
+                return;
+            }
+
+            final Font font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+            diagnostics.add(label
+                    + " family=" + font.getFamily()
+                    + ", fontName=" + font.getFontName()
+                    + ", psName=" + font.getPSName());
+        } catch (final FontFormatException | IOException ex) {
+            diagnostics.add(label + " error=" + ex.getClass().getSimpleName() + ": " + ex.getMessage());
+        }
+    }
+
     private URL getPdfContentByteSource() {
         return com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource() == null
                 ? null
@@ -252,6 +286,7 @@ public class JasperReportImpl {
         if (candidates.isEmpty()) {
             LOG.info("PDF glyph renderer candidate text elements=0");
         } else {
+            logBundledPdfFontDiagnostics();
             LOG.info("PDF glyph renderer candidate text elements=" + candidates.size() + "; " + candidates);
         }
     }
@@ -269,12 +304,59 @@ public class JasperReportImpl {
                             + ", font=" + text.getFontName()
                             + ", bold=" + text.isBold()
                             + ", italic=" + text.isItalic()
-                            + ", codepoints=" + getPdfGlyphRendererCandidateCodepoints(fullText));
+                            + ", codepoints=" + getPdfGlyphRendererCandidateCodepoints(fullText)
+                            + ", styledRuns=" + getStyledTextFontDiagnostics(text));
                 }
             } else if (element instanceof JRPrintFrame) {
                 collectPdfGlyphRendererCandidates(((JRPrintFrame) element).getElements(), pageIndex, candidates);
             }
         }
+    }
+
+    private List<String> getStyledTextFontDiagnostics(final JRPrintText text) {
+        final List<String> diagnostics = new ArrayList<>();
+
+        try {
+            final JRStyledText styledText = text.getFullStyledText(
+                    JRStyledTextAttributeSelector.getAllSelector(DefaultJasperReportsContext.getInstance()));
+            if (styledText == null) {
+                diagnostics.add("styledText=null");
+                return diagnostics;
+            }
+
+            final AttributedCharacterIterator iterator = styledText.getAttributedString().getIterator();
+            int run = 0;
+            int index = iterator.getBeginIndex();
+            iterator.setIndex(index);
+
+            while (index < iterator.getEndIndex()) {
+                final Map<AttributedCharacterIterator.Attribute, Object> attributes = iterator.getAttributes();
+                diagnostics.add("run=" + run
+                        + ", range=" + index + "-" + iterator.getRunLimit()
+                        + ", family=" + attributes.get(TextAttribute.FAMILY)
+                        + ", fontInfo=" + sanitizeAttributeValue(attributes.get(JRTextAttribute.FONT_INFO))
+                        + ", pdfFontName=" + attributes.get(JRTextAttribute.PDF_FONT_NAME)
+                        + ", pdfEncoding=" + attributes.get(JRTextAttribute.PDF_ENCODING)
+                        + ", pdfEmbedded=" + attributes.get(JRTextAttribute.IS_PDF_EMBEDDED)
+                        + ", weight=" + attributes.get(TextAttribute.WEIGHT)
+                        + ", posture=" + attributes.get(TextAttribute.POSTURE)
+                        + ", size=" + attributes.get(TextAttribute.SIZE));
+                index = iterator.getRunLimit();
+                iterator.setIndex(index);
+                run++;
+            }
+        } catch (final Exception ex) {
+            diagnostics.add("error=" + ex.getClass().getSimpleName() + ": " + ex.getMessage());
+        }
+
+        return diagnostics;
+    }
+
+    private String sanitizeAttributeValue(final Object value) {
+        if (value == null) {
+            return null;
+        }
+        return value.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(value));
     }
 
     private boolean containsPdfGlyphRendererCandidate(final String text) {
