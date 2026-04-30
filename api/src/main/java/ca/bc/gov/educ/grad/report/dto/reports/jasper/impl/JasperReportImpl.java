@@ -23,41 +23,20 @@ import ca.bc.gov.educ.grad.report.model.reports.Parameters;
 import ca.bc.gov.educ.grad.report.model.reports.Report;
 import ca.bc.gov.educ.grad.report.model.reports.ReportDocument;
 import ca.bc.gov.educ.grad.report.model.reports.ReportFormat;
-import com.lowagie.text.pdf.BaseFont;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.engine.export.JRCsvExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.PdfGlyphRenderer;
-import net.sf.jasperreports.engine.fonts.AwtFontAttribute;
-import net.sf.jasperreports.engine.fonts.FontFace;
-import net.sf.jasperreports.engine.fonts.FontFamily;
-import net.sf.jasperreports.engine.fonts.FontInfo;
-import net.sf.jasperreports.engine.fonts.FontUtil;
-import net.sf.jasperreports.engine.fonts.SimpleFontExtensionHelper;
-import net.sf.jasperreports.engine.util.JRStyledText;
-import net.sf.jasperreports.engine.util.JRTextAttribute;
 import net.sf.jasperreports.export.*;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.font.GlyphVector;
-import java.awt.font.TextAttribute;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.text.AttributedCharacterIterator;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -78,20 +57,6 @@ public class JasperReportImpl {
 
     private static final String CLASSNAME = JasperReportImpl.class.getName();
     private static final Logger LOG = Logger.getLogger(CLASSNAME);
-    private static final String FONT_FAMILIES_RESOURCE = "fonts/fontsfamily.xml";
-    private static final String BCSANS_FONT_FAMILY = "BCSans";
-    private static final String PDF_GLYPH_RENDERER_BLOCKS_PROPERTY =
-            PdfReportConfiguration.PROPERTY_PREFIX_GLYPH_RENDERER_BLOCKS + "indigenous";
-    private static final String PDF_GLYPH_RENDERER_BLOCKS =
-            "COMBINING_DIACRITICAL_MARKS,IPA_EXTENSIONS,SPACING_MODIFIER_LETTERS,PHONETIC_EXTENSIONS";
-    private static final Set<Character.UnicodeBlock> PDF_GLYPH_RENDERER_UNICODE_BLOCKS =
-            new LinkedHashSet<>(Arrays.asList(
-                    Character.UnicodeBlock.COMBINING_DIACRITICAL_MARKS,
-                    Character.UnicodeBlock.IPA_EXTENSIONS,
-                    Character.UnicodeBlock.SPACING_MODIFIER_LETTERS,
-                    Character.UnicodeBlock.PHONETIC_EXTENSIONS
-            ));
-    private static final SimpleJasperReportsContext JASPER_REPORTS_CONTEXT = createJasperReportsContext();
 
     /**
      * Controls scaling images written to the browser.
@@ -120,9 +85,6 @@ public class JasperReportImpl {
             //final JasperPrint print = format.equals(XML) ? createEmptyReport() : createFilledReport();
 
             final JasperPrint print = createFilledReport();
-            if (ReportFormat.PDF.equals(format)) {
-                configurePdfGlyphRendering(print);
-            }
 
             switch (format) {
                 case CSV:
@@ -142,14 +104,7 @@ public class JasperReportImpl {
                 case XML:
                     exporter.setConfiguration(createXmlExporterConfiguration());
                     exporter.setReportContext(createXmlReportContext());
-                    exporter.setExporterOutput(
-                            new SimpleOutputStreamExporterOutput(out));
-                    break;
                 case PDF:
-                    exporter.setConfiguration(createPdfExporterConfiguration());
-                    exporter.setExporterOutput(
-                            new SimpleOutputStreamExporterOutput(out));
-                    break;
                 default:
                     exporter.setExporterOutput(
                             new SimpleOutputStreamExporterOutput(out));
@@ -160,9 +115,6 @@ public class JasperReportImpl {
             exporter.setExporterInput(exporterInput);
             exporter.exportReport();
             bytes = out.toByteArray();
-            if (ReportFormat.PDF.equals(format)) {
-                logPdfActualTextDiagnostic(bytes);
-            }
         } catch (final Exception ex) {
             final String msg = "Could not export report";
             LOG.log(Level.SEVERE, msg, ex);
@@ -193,7 +145,7 @@ public class JasperReportImpl {
                 exporter = new HtmlExporter();
                 break;
             case PDF:
-                exporter = new JRPdfExporter(JASPER_REPORTS_CONTEXT);
+                exporter = new JRPdfExporter();
                 break;
             case XML:
                 exporter = new XmlExporter();
@@ -231,361 +183,6 @@ public class JasperReportImpl {
         return new JasperPrint();
     }
 
-    private void configurePdfGlyphRendering(final JasperPrint print) {
-        logPdfGlyphRenderingSupport();
-        logPdfFontExtensionDiagnostics();
-        print.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
-        print.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
-        logPdfGlyphRendererCandidates(print);
-    }
-
-    private static SimpleJasperReportsContext createJasperReportsContext() {
-        final SimpleJasperReportsContext context =
-                new SimpleJasperReportsContext(DefaultJasperReportsContext.getInstance());
-        context.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
-        context.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
-
-        try (final InputStream inputStream = JasperReportImpl.class.getClassLoader()
-                .getResourceAsStream(FONT_FAMILIES_RESOURCE)) {
-            if (inputStream == null) {
-                LOG.warning("Unable to load Jasper font families because the resource is missing: "
-                        + FONT_FAMILIES_RESOURCE);
-                return context;
-            }
-
-            final List<FontFamily> fontFamilies = SimpleFontExtensionHelper.getInstance()
-                    .loadFontFamilies(context, inputStream);
-            context.setExtensions(FontFamily.class, fontFamilies);
-        } catch (final IOException | RuntimeException ex) {
-            LOG.warning("Unable to load Jasper font families from " + FONT_FAMILIES_RESOURCE + ": " + ex.getMessage());
-        }
-
-        return context;
-    }
-
-    private void logPdfGlyphRenderingSupport() {
-        try {
-            com.lowagie.text.pdf.PdfContentByte.class.getMethod("showText", GlyphVector.class);
-            final URL source = getPdfContentByteSource();
-            LOG.info("PDF glyph rendering support detected. Jasper supported="
-                    + PdfGlyphRenderer.supported()
-                    + ", iText source=" + source);
-        } catch (final NoSuchMethodException ex) {
-            LOG.warning("PDF glyph rendering is disabled because the loaded iText jar does not support "
-                    + "PdfContentByte.showText(GlyphVector): " + getPdfContentByteSource());
-        }
-    }
-
-    private void logBundledPdfFontDiagnostics() {
-        final List<String> diagnostics = new ArrayList<>();
-        addBundledFontDiagnostic("BCSans-Regular", "fonts/BCSans/BCSans-Regular.ttf", diagnostics);
-        addBundledFontDiagnostic("BCSans-Bold", "fonts/BCSans/BCSans-Bold.ttf", diagnostics);
-        addBundledFontDiagnostic("BCSans-Italic", "fonts/BCSans/BCSans-Italic.ttf", diagnostics);
-        addBundledFontDiagnostic("BCSans-BoldItalic", "fonts/BCSans/BCSans-BoldItalic.ttf", diagnostics);
-        LOG.info("PDF bundled font diagnostics=" + diagnostics);
-    }
-
-    private void addBundledFontDiagnostic(final String label,
-                                          final String resource,
-                                          final List<String> diagnostics) {
-        try (final InputStream inputStream = JasperReportImpl.class.getClassLoader().getResourceAsStream(resource)) {
-            if (inputStream == null) {
-                diagnostics.add(label + " resourceMissing=" + resource);
-                return;
-            }
-
-            final Font font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-            diagnostics.add(label
-                    + " family=" + font.getFamily()
-                    + ", fontName=" + font.getFontName()
-                    + ", psName=" + font.getPSName());
-        } catch (final FontFormatException | IOException ex) {
-            diagnostics.add(label + " error=" + ex.getClass().getSimpleName() + ": " + ex.getMessage());
-        }
-    }
-
-    private void logPdfFontExtensionDiagnostics() {
-        final List<String> fontFamilyNames = new ArrayList<>();
-        final List<FontFamily> fontFamilies = JASPER_REPORTS_CONTEXT.getExtensions(FontFamily.class);
-        if (fontFamilies != null) {
-            for (final FontFamily fontFamily : fontFamilies) {
-                fontFamilyNames.add(fontFamily.getName());
-            }
-        }
-
-        final FontInfo bcSansFontInfo = FontUtil.getInstance(JASPER_REPORTS_CONTEXT)
-                .getFontInfo("BCSans", null);
-        LOG.info("PDF Jasper font extension diagnostics: BCSans found="
-                + (bcSansFontInfo != null)
-                + ", fontFamilies=" + fontFamilyNames);
-    }
-
-    private URL getPdfContentByteSource() {
-        return com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource() == null
-                ? null
-                : com.lowagie.text.pdf.PdfContentByte.class.getProtectionDomain().getCodeSource().getLocation();
-    }
-
-    private void logPdfGlyphRendererCandidates(final JasperPrint print) {
-        final List<String> candidates = new ArrayList<>();
-        final List<JRPrintPage> pages = print.getPages();
-
-        for (int pageIndex = 0; pageIndex < pages.size(); pageIndex++) {
-            collectPdfGlyphRendererCandidates(pages.get(pageIndex).getElements(), pageIndex, candidates);
-        }
-
-        if (candidates.isEmpty()) {
-            LOG.info("PDF glyph renderer candidate text elements=0");
-        } else {
-            logBundledPdfFontDiagnostics();
-            LOG.info("PDF glyph renderer candidate text elements=" + candidates.size() + "; " + candidates);
-        }
-    }
-
-    private void collectPdfGlyphRendererCandidates(final List<JRPrintElement> elements,
-                                                  final int pageIndex,
-                                                  final List<String> candidates) {
-        for (final JRPrintElement element : elements) {
-            if (element instanceof JRPrintText) {
-                final JRPrintText text = (JRPrintText) element;
-                final String fullText = text.getFullText();
-                if (containsPdfGlyphRendererCandidate(fullText)) {
-                    candidates.add("page=" + pageIndex
-                            + ", key=" + element.getKey()
-                            + ", font=" + text.getFontName()
-                            + ", bold=" + text.isBold()
-                            + ", italic=" + text.isItalic()
-                            + ", codepoints=" + getPdfGlyphRendererCandidateCodepoints(fullText)
-                            + ", styledRuns=" + getStyledTextFontDiagnostics(text));
-                }
-            } else if (element instanceof JRPrintFrame) {
-                collectPdfGlyphRendererCandidates(((JRPrintFrame) element).getElements(), pageIndex, candidates);
-            }
-        }
-    }
-
-    private List<String> getStyledTextFontDiagnostics(final JRPrintText text) {
-        final List<String> diagnostics = new ArrayList<>();
-
-        try {
-            final JRStyledText styledText = text.getFullStyledText(
-                    JRStyledTextAttributeSelector.getAllSelector(JASPER_REPORTS_CONTEXT));
-            if (styledText == null) {
-                diagnostics.add("styledText=null");
-                return diagnostics;
-            }
-
-            final AttributedCharacterIterator iterator = styledText.getAttributedString().getIterator();
-            int run = 0;
-            int index = iterator.getBeginIndex();
-            iterator.setIndex(index);
-
-            while (index < iterator.getEndIndex()) {
-                final Map<AttributedCharacterIterator.Attribute, Object> attributes = iterator.getAttributes();
-                diagnostics.add("run=" + run
-                        + ", range=" + index + "-" + iterator.getRunLimit()
-                        + ", family=" + attributes.get(TextAttribute.FAMILY)
-                        + ", fontInfo=" + sanitizeAttributeValue(attributes.get(JRTextAttribute.FONT_INFO))
-                        + ", pdfFontName=" + attributes.get(JRTextAttribute.PDF_FONT_NAME)
-                        + ", pdfEncoding=" + attributes.get(JRTextAttribute.PDF_ENCODING)
-                        + ", pdfEmbedded=" + attributes.get(JRTextAttribute.IS_PDF_EMBEDDED)
-                        + ", weight=" + attributes.get(TextAttribute.WEIGHT)
-                        + ", posture=" + attributes.get(TextAttribute.POSTURE)
-                        + ", size=" + attributes.get(TextAttribute.SIZE)
-                        + ", eligibility=" + getGlyphRendererEligibilityDiagnostics(attributes));
-                index = iterator.getRunLimit();
-                iterator.setIndex(index);
-                run++;
-            }
-        } catch (final Exception ex) {
-            diagnostics.add("error=" + ex.getClass().getSimpleName() + ": " + ex.getMessage());
-        }
-
-        return diagnostics;
-    }
-
-    private String getGlyphRendererEligibilityDiagnostics(
-            final Map<AttributedCharacterIterator.Attribute, Object> attributes) {
-        try {
-            final String family = (String) attributes.get(TextAttribute.FAMILY);
-            final FontInfo attributeFontInfo = (FontInfo) attributes.get(JRTextAttribute.FONT_INFO);
-            final AwtFontAttribute fontAttribute = new AwtFontAttribute(family, attributeFontInfo);
-            if (!fontAttribute.hasAttribute()) {
-                return "canUse=false, reason=missingFontAttribute";
-            }
-
-            final int style = getAwtStyle(attributes);
-            final FontUtil fontUtil = FontUtil.getInstance(JASPER_REPORTS_CONTEXT);
-            final FontInfo resolvedFontInfo = attributeFontInfo == null
-                    ? fontUtil.getFontInfo(family, null) : attributeFontInfo;
-            final Font awtFontFromBundles = fontUtil.getAwtFontFromBundles(
-                    fontAttribute, style, 10f, null, true);
-            final Font awtFont = awtFontFromBundles == null
-                    ? new Font(family, style, 10) : awtFontFromBundles;
-
-            final String pdfFontName = resolvePdfFontName(
-                    resolvedFontInfo, style, (String) attributes.get(JRTextAttribute.PDF_FONT_NAME));
-            final String pdfEncoding = resolvePdfEncoding(
-                    resolvedFontInfo, (String) attributes.get(JRTextAttribute.PDF_ENCODING));
-            final boolean pdfEmbedded = resolvePdfEmbedded(
-                    resolvedFontInfo, Boolean.TRUE.equals(attributes.get(JRTextAttribute.IS_PDF_EMBEDDED)));
-            final BaseFont baseFont = createBaseFont(pdfFontName, pdfEncoding, pdfEmbedded);
-
-            final List<String> pdfFontNames = getPdfFullFontNames(baseFont);
-            final boolean fontTypeSupported = baseFont.getFontType() == BaseFont.FONT_TYPE_TTUNI;
-            final boolean nameMatch = pdfFontNames.contains(awtFont.getFontName());
-            final boolean canUse = fontTypeSupported && !baseFont.isFontSpecific() && nameMatch;
-
-            return "canUse=" + canUse
-                    + ", resolvedFontInfo=" + (resolvedFontInfo != null)
-                    + ", awtFontName=" + awtFont.getFontName()
-                    + ", awtFontFamily=" + awtFont.getFamily()
-                    + ", pdfFontName=" + pdfFontName
-                    + ", pdfEncoding=" + pdfEncoding
-                    + ", pdfEmbedded=" + pdfEmbedded
-                    + ", baseFontType=" + baseFont.getFontType()
-                    + ", fontSpecific=" + baseFont.isFontSpecific()
-                    + ", nameMatch=" + nameMatch
-                    + ", pdfFullNames=" + pdfFontNames;
-        } catch (final Exception ex) {
-            return "error=" + ex.getClass().getSimpleName() + ": " + ex.getMessage();
-        }
-    }
-
-    private int getAwtStyle(final Map<AttributedCharacterIterator.Attribute, Object> attributes) {
-        int style = Font.PLAIN;
-        if (TextAttribute.WEIGHT_BOLD.equals(attributes.get(TextAttribute.WEIGHT))) {
-            style |= Font.BOLD;
-        }
-        if (TextAttribute.POSTURE_OBLIQUE.equals(attributes.get(TextAttribute.POSTURE))) {
-            style |= Font.ITALIC;
-        }
-        return style;
-    }
-
-    private String resolvePdfFontName(final FontInfo fontInfo,
-                                      final int style,
-                                      final String fallbackPdfFontName) {
-        if (fontInfo == null) {
-            return fallbackPdfFontName;
-        }
-
-        final FontFace fontFace = resolveFontFace(fontInfo, style);
-        if (fontFace != null) {
-            final String pdfFontName = fontFace.getPdf();
-            return pdfFontName == null ? fontFace.getTtf() : pdfFontName;
-        }
-
-        return fallbackPdfFontName;
-    }
-
-    private FontFace resolveFontFace(final FontInfo fontInfo, final int style) {
-        if (fontInfo.getFontFace() != null) {
-            return fontInfo.getFontFace();
-        }
-
-        final FontFamily fontFamily = fontInfo.getFontFamily();
-        if ((style & Font.BOLD) > 0 && (style & Font.ITALIC) > 0 && fontFamily.getBoldItalicFace() != null) {
-            return fontFamily.getBoldItalicFace();
-        }
-        if ((style & Font.BOLD) > 0 && fontFamily.getBoldFace() != null) {
-            return fontFamily.getBoldFace();
-        }
-        if ((style & Font.ITALIC) > 0 && fontFamily.getItalicFace() != null) {
-            return fontFamily.getItalicFace();
-        }
-        return fontFamily.getNormalFace();
-    }
-
-    private String resolvePdfEncoding(final FontInfo fontInfo, final String fallbackPdfEncoding) {
-        if (fontInfo != null && fontInfo.getFontFamily().getPdfEncoding() != null) {
-            return fontInfo.getFontFamily().getPdfEncoding();
-        }
-        return fallbackPdfEncoding;
-    }
-
-    private boolean resolvePdfEmbedded(final FontInfo fontInfo, final boolean fallbackPdfEmbedded) {
-        if (fontInfo != null && fontInfo.getFontFamily().isPdfEmbedded() != null) {
-            return fontInfo.getFontFamily().isPdfEmbedded();
-        }
-        return fallbackPdfEmbedded;
-    }
-
-    private BaseFont createBaseFont(final String pdfFontName,
-                                    final String pdfEncoding,
-                                    final boolean pdfEmbedded) throws Exception {
-        final byte[] fontData = readResourceBytes(pdfFontName);
-        if (fontData != null) {
-            return BaseFont.createFont(pdfFontName, pdfEncoding, pdfEmbedded, true, fontData, null);
-        }
-        return BaseFont.createFont(pdfFontName, pdfEncoding, pdfEmbedded);
-    }
-
-    private byte[] readResourceBytes(final String resource) throws IOException {
-        if (resource == null) {
-            return null;
-        }
-
-        try (final InputStream inputStream = JasperReportImpl.class.getClassLoader().getResourceAsStream(resource)) {
-            if (inputStream == null) {
-                return null;
-            }
-
-            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            final byte[] buffer = new byte[8192];
-            int bytesRead;
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            return outputStream.toByteArray();
-        }
-    }
-
-    private List<String> getPdfFullFontNames(final BaseFont baseFont) {
-        final List<String> names = new ArrayList<>();
-        for (final String[] nameParts : baseFont.getFullFontName()) {
-            if (nameParts.length >= 4) {
-                names.add(nameParts[3]);
-            }
-        }
-        return names;
-    }
-
-    private String sanitizeAttributeValue(final Object value) {
-        if (value == null) {
-            return null;
-        }
-        return value.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(value));
-    }
-
-    private boolean containsPdfGlyphRendererCandidate(final String text) {
-        if (text == null) {
-            return false;
-        }
-
-        for (int offset = 0; offset < text.length(); ) {
-            final int codePoint = text.codePointAt(offset);
-            if (PDF_GLYPH_RENDERER_UNICODE_BLOCKS.contains(Character.UnicodeBlock.of(codePoint))) {
-                return true;
-            }
-            offset += Character.charCount(codePoint);
-        }
-
-        return false;
-    }
-
-    private Set<String> getPdfGlyphRendererCandidateCodepoints(final String text) {
-        final Set<String> codepoints = new LinkedHashSet<>();
-        for (int offset = 0; offset < text.length(); ) {
-            final int codePoint = text.codePointAt(offset);
-            if (PDF_GLYPH_RENDERER_UNICODE_BLOCKS.contains(Character.UnicodeBlock.of(codePoint))) {
-                codepoints.add(String.format("U+%04X", codePoint));
-            }
-            offset += Character.charCount(codePoint);
-        }
-        return codepoints;
-    }
-
     /**
      * Fills the report using the parameters and JR data source.
      *
@@ -602,7 +199,7 @@ public class JasperReportImpl {
         parameters.put(JRParameter.REPORT_FORMAT_FACTORY,
                 new ReportFormatFactory(report.getResourceBundle()));
 
-        return JasperFillManager.getInstance(JASPER_REPORTS_CONTEXT).fill(
+        return JasperFillManager.fillReport(
                 is, report.getParameters(), getJRDataSource(report));
     }
 
@@ -691,17 +288,6 @@ public class JasperReportImpl {
      */
     private SimpleCsvExporterConfiguration createCsvExporterConfiguration() {
         return new SimpleCsvExporterConfiguration();
-    }
-
-    private SimplePdfExporterConfiguration createPdfExporterConfiguration() {
-        final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-        configuration.setCompressed(false);
-        return configuration;
-    }
-
-    private void logPdfActualTextDiagnostic(final byte[] bytes) {
-        final String pdfContent = new String(bytes, StandardCharsets.ISO_8859_1);
-        LOG.info("PDF ActualText marker present=" + pdfContent.contains("/ActualText"));
     }
 
     /**
