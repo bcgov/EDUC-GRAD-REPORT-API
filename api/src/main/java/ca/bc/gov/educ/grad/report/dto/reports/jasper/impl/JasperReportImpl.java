@@ -91,7 +91,7 @@ public class JasperReportImpl {
                     Character.UnicodeBlock.SPACING_MODIFIER_LETTERS,
                     Character.UnicodeBlock.PHONETIC_EXTENSIONS
             ));
-    private static final JasperReportsContext JASPER_REPORTS_CONTEXT = createJasperReportsContext();
+    private static final SimpleJasperReportsContext JASPER_REPORTS_CONTEXT = createJasperReportsContext();
 
     /**
      * Controls scaling images written to the browser.
@@ -239,9 +239,11 @@ public class JasperReportImpl {
         logPdfGlyphRendererCandidates(print);
     }
 
-    private static JasperReportsContext createJasperReportsContext() {
+    private static SimpleJasperReportsContext createJasperReportsContext() {
         final SimpleJasperReportsContext context =
                 new SimpleJasperReportsContext(DefaultJasperReportsContext.getInstance());
+        context.setProperty(PDF_GLYPH_RENDERER_BLOCKS_PROPERTY, PDF_GLYPH_RENDERER_BLOCKS);
+        context.setProperty(PdfReportConfiguration.PROPERTY_GLYPH_RENDERER_ADD_ACTUAL_TEXT, Boolean.TRUE.toString());
 
         try (final InputStream inputStream = JasperReportImpl.class.getClassLoader()
                 .getResourceAsStream(FONT_FAMILIES_RESOURCE)) {
