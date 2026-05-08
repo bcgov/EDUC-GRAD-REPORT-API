@@ -24,7 +24,9 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineBreakMeasurer;
+import java.awt.font.TextHitInfo;
 import java.awt.font.TextLayout;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -47,6 +49,7 @@ final class IndigenousTextOverlayRenderer {
 
     private static final Logger LOG = Logger.getLogger(IndigenousTextOverlayRenderer.class.getName());
     private static final int IMAGE_SCALE = 4;
+    private static final int COMBINING_COMMA_ABOVE = 0x0313;
     private static final String FONT_BC_SANS = "BCSans";
     private static final Map<String, Font> FONT_CACHE = new ConcurrentHashMap<>();
 
@@ -160,9 +163,9 @@ final class IndigenousTextOverlayRenderer {
         float y = topPadding + verticalOffset(textElement, contentHeight, totalHeight);
 
         for (final LineLayout line : lines) {
-            y += line.layout.getAscent();
-            line.layout.draw(graphics, leftPadding + horizontalOffset(textElement, contentWidth, line), y);
-            y += line.layout.getDescent() + line.layout.getLeading();
+            y += line.ascent();
+            line.draw(graphics, leftPadding + horizontalOffset(textElement, contentWidth, line), y);
+            y += line.descent() + line.leading();
         }
     }
 
@@ -183,9 +186,12 @@ final class IndigenousTextOverlayRenderer {
             final int end = paragraph.length();
 
             while (measurer.getPosition() < end) {
-                final TextLayout layout = measurer.nextLayout(width);
+                final int start = measurer.getPosition();
+                measurer.nextLayout(width);
+                final int lineEnd = measurer.getPosition();
                 final boolean lastLine = measurer.getPosition() >= end;
-                lines.add(new LineLayout(justify(layout, width, lastLine, textElement)));
+                final String lineText = paragraph.substring(start, lineEnd);
+                lines.add(new LineLayout(lineText, font, frc, width, lastLine, textElement));
             }
         }
 
@@ -198,7 +204,8 @@ final class IndigenousTextOverlayRenderer {
             return font;
         }
 
-        final TextLayout layout = new TextLayout(text, font, frc);
+        final String baseText = stripManualMarks(text).text;
+        final TextLayout layout = new TextLayout(baseText.isEmpty() ? " " : baseText, font, frc);
         final float layoutHeight = layout.getAscent() + layout.getDescent() + layout.getLeading();
         final float widthScale = layout.getAdvance() <= 0f ? 1f : width / layout.getAdvance();
         final float heightScale = layoutHeight <= 0f ? 1f : height / layoutHeight;
@@ -222,10 +229,10 @@ final class IndigenousTextOverlayRenderer {
         final HorizontalTextAlignEnum alignment = textElement.getHorizontalTextAlign();
 
         if (alignment == HorizontalTextAlignEnum.CENTER) {
-            return Math.max(0f, (width - line.layout.getAdvance()) / 2f);
+            return Math.max(0f, (width - line.advance()) / 2f);
         }
         if (alignment == HorizontalTextAlignEnum.RIGHT) {
-            return Math.max(0f, width - line.layout.getAdvance());
+            return Math.max(0f, width - line.advance());
         }
         return 0f;
     }
@@ -345,15 +352,123 @@ final class IndigenousTextOverlayRenderer {
         return Color.WHITE;
     }
 
+    private static StrippedText stripManualMarks(final String text) {
+        final StringBuilder stripped = new StringBuilder();
+        final List<ManualMark> marks = new ArrayList<>();
+        int previousBaseOffset = -1;
+
+        for (int offset = 0; offset < text.length();) {
+            final int codePoint = text.codePointAt(offset);
+            final int charCount = Character.charCount(codePoint);
+
+            if (codePoint == COMBINING_COMMA_ABOVE) {
+                marks.add(new ManualMark(previousBaseOffset, codePoint));
+            } else {
+                final int strippedOffset = stripped.length();
+                stripped.appendCodePoint(codePoint);
+                if (!isCombiningMark(codePoint)) {
+                    previousBaseOffset = strippedOffset;
+                }
+            }
+
+            offset += charCount;
+        }
+
+        return new StrippedText(stripped.toString(), marks);
+    }
+
+    private static boolean isCombiningMark(final int codePoint) {
+        final int type = Character.getType(codePoint);
+        return type == Character.NON_SPACING_MARK
+                || type == Character.COMBINING_SPACING_MARK
+                || type == Character.ENCLOSING_MARK;
+    }
+
+    private static final class StrippedText {
+        private final String text;
+        private final List<ManualMark> marks;
+
+        private StrippedText(final String text, final List<ManualMark> marks) {
+            this.text = text;
+            this.marks = marks;
+        }
+    }
+
+    private static final class ManualMark {
+        private final int previousBaseOffset;
+        private final int codePoint;
+
+        private ManualMark(final int previousBaseOffset, final int codePoint) {
+            this.previousBaseOffset = previousBaseOffset;
+            this.codePoint = codePoint;
+        }
+    }
+
     private static final class LineLayout {
-        private final TextLayout layout;
+        private final TextLayout baseLayout;
+        private final List<ManualMark> marks;
+        private final Font font;
+        private final FontRenderContext fontRenderContext;
 
         private LineLayout(final TextLayout layout) {
-            this.layout = layout;
+            this.baseLayout = layout;
+            this.marks = new ArrayList<>();
+            this.font = null;
+            this.fontRenderContext = null;
+        }
+
+        private LineLayout(final String text, final Font font, final FontRenderContext fontRenderContext,
+                           final float width, final boolean lastLine, final JRPrintText textElement) {
+            final StrippedText stripped = stripManualMarks(text);
+            final String baseText = stripped.text.isEmpty() ? " " : stripped.text;
+            this.baseLayout = justify(new TextLayout(baseText, font, fontRenderContext),
+                    width, lastLine, textElement);
+            this.marks = stripped.marks;
+            this.font = font;
+            this.fontRenderContext = fontRenderContext;
+        }
+
+        private void draw(final Graphics2D graphics, final float x, final float baseline) {
+            baseLayout.draw(graphics, x, baseline);
+            if (marks.isEmpty() || font == null || fontRenderContext == null) {
+                return;
+            }
+
+            for (final ManualMark mark : marks) {
+                if (mark.previousBaseOffset < 0 || mark.previousBaseOffset >= baseLayout.getCharacterCount()) {
+                    continue;
+                }
+
+                final TextLayout markLayout = new TextLayout(new String(Character.toChars(mark.codePoint)),
+                        font, fontRenderContext);
+                final Rectangle2D markBounds = markLayout.getBounds();
+                final float[] before = baseLayout.getCaretInfo(TextHitInfo.beforeOffset(mark.previousBaseOffset));
+                final float[] after = baseLayout.getCaretInfo(TextHitInfo.afterOffset(mark.previousBaseOffset));
+                final float baseGlyphCenter = (before[0] + after[0]) / 2f;
+                final float markX = x + baseGlyphCenter - (float) markBounds.getCenterX();
+
+                markLayout.draw(graphics, markX, baseline);
+            }
+        }
+
+        private float advance() {
+            return baseLayout.getAdvance();
+        }
+
+        private float ascent() {
+            return baseLayout.getAscent();
+        }
+
+        private float descent() {
+            return baseLayout.getDescent();
+        }
+
+        private float leading() {
+            return baseLayout.getLeading();
         }
 
         private float height() {
-            return layout.getAscent() + layout.getDescent() + layout.getLeading();
+            return ascent() + descent() + leading();
         }
     }
 }
