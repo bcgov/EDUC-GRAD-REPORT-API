@@ -85,9 +85,6 @@ public class JasperReportImpl {
             //final JasperPrint print = format.equals(XML) ? createEmptyReport() : createFilledReport();
 
             final JasperPrint print = createFilledReport();
-            if (format == ReportFormat.PDF) {
-                IndigenousTextOverlayRenderer.apply(print);
-            }
 
             switch (format) {
                 case CSV:
