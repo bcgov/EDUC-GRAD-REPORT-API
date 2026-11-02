@@ -62,6 +62,8 @@ public class GradReportSignatureImageServiceTests extends GradReportBaseTest {
 		GradReportSignatureImage signatureImage = new GradReportSignatureImage();
 		signatureImage.setGradReportSignatureCode(signatureCode);
 		signatureImage.setSignatureContent(imageBinary);
+		signatureImage.setGradReportSignatureName("Test Superintendent");
+		signatureImage.setGradReportSignatureOrganizationName("Test District");
 		signatureImage.setSignatureId(UUID.randomUUID());
 
 		GradReportSignatureImageEntity signatureImages = new GradReportSignatureImageEntity();

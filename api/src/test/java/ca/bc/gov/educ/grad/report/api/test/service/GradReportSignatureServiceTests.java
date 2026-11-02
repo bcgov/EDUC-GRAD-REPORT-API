@@ -2,6 +2,7 @@ package ca.bc.gov.educ.grad.report.api.test.service;
 
 
 import ca.bc.gov.educ.grad.report.api.service.RESTService;
+import ca.bc.gov.educ.grad.report.dao.ReportRequestDataThreadLocal;
 import ca.bc.gov.educ.grad.report.dao.SignatureImageRepository;
 import ca.bc.gov.educ.grad.report.dto.GradReportSignatureImage;
 import ca.bc.gov.educ.grad.report.dto.impl.DistrictImpl;
@@ -75,7 +76,7 @@ public class GradReportSignatureServiceTests {
 
     @Test
     void testSaveSignatureImage_insertNew() {
-        GradReportSignatureImage dto = new GradReportSignatureImage();
+        GradReportSignatureImage dto = validSignatureImageToSave();
         GradReportSignatureImageEntity entity = new GradReportSignatureImageEntity();
 
         when(gradReportSignatureTransformer.transformToEntity(dto)).thenReturn(entity);
@@ -87,26 +88,79 @@ public class GradReportSignatureServiceTests {
     }
 
     @Test
-    void testSaveSignatureImage_updateExisting() {
+    void testSaveSignatureImage_updateExisting_savesImageNameOrganizationAndUpdatedBy() {
         UUID id = UUID.randomUUID();
-        GradReportSignatureImage dto = new GradReportSignatureImage();
-        byte[] content = new byte[]{1, 2, 3};
-        dto.setSignatureContent(content);
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        dto.setSignatureId(id);
 
         GradReportSignatureImageEntity entity = new GradReportSignatureImageEntity();
         entity.setSignatureId(id);
 
         GradReportSignatureImageEntity existing = new GradReportSignatureImageEntity();
         existing.setSignatureId(id);
+        existing.setGradReportSignatureCode("083");
+        existing.setGradReportSignatureName("Old Superintendent");
+        existing.setGradReportSignatureOrganizationName("Old Organization");
+        existing.setUpdatedBy("GRAD_REPORT_API");
 
         when(gradReportSignatureTransformer.transformToEntity(dto)).thenReturn(entity);
         when(signatureImageRepository.findById(id)).thenReturn(Optional.of(existing));
         when(signatureImageRepository.save(any())).thenReturn(existing);
         when(gradReportSignatureTransformer.transformToDTO(existing)).thenReturn(dto);
 
-        entity.setSignatureId(id);
-        GradReportSignatureImage result = gradReportSignatureService.saveSignatureImage(dto);
-        assertNotNull(result);
+        ReportRequestDataThreadLocal.setCurrentUser("ACOORDINATOR");
+        try {
+            GradReportSignatureImage result = gradReportSignatureService.saveSignatureImage(dto);
+            assertNotNull(result);
+        } finally {
+            ReportRequestDataThreadLocal.setCurrentUser(null);
+        }
+
+        assertArrayEquals(dto.getSignatureContent(), existing.getSignatureContent());
+        assertEquals("New Superintendent", existing.getGradReportSignatureName());
+        assertEquals("K̓wsaltktnéws ne Secwepemcúl'ecw", existing.getGradReportSignatureOrganizationName());
+        assertEquals("083", existing.getGradReportSignatureCode());
+        assertEquals("ACOORDINATOR", existing.getUpdatedBy());
+    }
+
+    @Test
+    void testSaveSignatureImage_rejectsNonPngImage() {
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        dto.setSignatureContent(new byte[]{(byte) 0xFF, (byte) 0xD8, (byte) 0xFF, (byte) 0xE0, 0, 0, 0, 0});
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
+        assertEquals("Signature image must be a PNG file", exception.getMessage());
+        verify(signatureImageRepository, never()).save(any());
+    }
+
+    @Test
+    void testSaveSignatureImage_rejectsBlankOrganizationName() {
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        dto.setGradReportSignatureOrganizationName(" ");
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
+        assertEquals("Organization Name is required", exception.getMessage());
+        verify(signatureImageRepository, never()).save(any());
+    }
+
+    @Test
+    void testSaveSignatureImage_rejectsOrganizationNameOverColumnByteLimit() {
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        // 40 characters but 80 bytes in UTF-8, so it would not fit the VARCHAR2(64 BYTE) column
+        dto.setGradReportSignatureOrganizationName("é".repeat(40));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
+        assertTrue(exception.getMessage().startsWith("Organization Name is too long: 80 bytes, maximum is 64"));
+        verify(signatureImageRepository, never()).save(any());
+    }
+
+    private static GradReportSignatureImage validSignatureImageToSave() {
+        GradReportSignatureImage signatureImage = new GradReportSignatureImage();
+        signatureImage.setGradReportSignatureCode("083");
+        signatureImage.setSignatureContent(new byte[]{(byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n', 0, 0});
+        signatureImage.setGradReportSignatureName("New Superintendent");
+        signatureImage.setGradReportSignatureOrganizationName("K̓wsaltktnéws ne Secwepemcúl'ecw");
+        return signatureImage;
     }
 
     @Test
