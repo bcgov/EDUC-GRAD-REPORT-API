@@ -149,6 +149,26 @@ public class GradReportSignatureServiceTests {
     }
 
     @Test
+    void testSaveSignatureImage_rejectsImageOverMaxFileSize() {
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        dto.setSignatureContent(Arrays.copyOf(dto.getSignatureContent(), 1024 * 1024 + 1));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
+        assertEquals("Signature image is too large: maximum is 1 MB", exception.getMessage());
+        verify(signatureImageRepository, never()).save(any());
+    }
+
+    @Test
+    void testSaveSignatureImage_rejectsImageOverMaxDimensions() {
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        dto.setSignatureContent(pngImage(3001, 1));
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
+        assertEquals("Signature image is too large: 3001x1 pixels, maximum is 3000x3000", exception.getMessage());
+        verify(signatureImageRepository, never()).save(any());
+    }
+
+    @Test
     void testSaveSignatureImage_rejectsBlankOrganizationName() {
         GradReportSignatureImage dto = validSignatureImageToSave();
         dto.setGradReportSignatureOrganizationName(" ");
@@ -172,16 +192,16 @@ public class GradReportSignatureServiceTests {
     private static GradReportSignatureImage validSignatureImageToSave() {
         GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode("083");
-        signatureImage.setSignatureContent(onePixelPngImage());
+        signatureImage.setSignatureContent(pngImage(1, 1));
         signatureImage.setGradReportSignatureName("New Superintendent");
         signatureImage.setGradReportSignatureOrganizationName("K̓wsaltktnéws ne Secwepemcúl'ecw");
         return signatureImage;
     }
 
-    private static byte[] onePixelPngImage() {
+    private static byte[] pngImage(int width, int height) {
         try {
             ByteArrayOutputStream pngBytes = new ByteArrayOutputStream();
-            ImageIO.write(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), "png", pngBytes);
+            ImageIO.write(new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB), "png", pngBytes);
             return pngBytes.toByteArray();
         } catch (IOException e) {
             throw new UncheckedIOException(e);

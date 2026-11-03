@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.MemoryCacheImageInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +40,10 @@ public class GradReportSignatureService {
     private static final String CLASS_NAME = GradReportSignatureService.class.getName();
     private static final int SIGNATURE_TEXT_COLUMN_MAX_BYTES = 64;
     private static final byte[] PNG_FILE_SIGNATURE = {(byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n'};
+    private static final int SIGNATURE_IMAGE_MAX_BYTES = 1024 * 1024;
+    // sample signatures in the repo are 900x200; the cap stops a small, highly compressed file from decoding into gigabytes
+    private static final int SIGNATURE_IMAGE_MAX_PIXELS_PER_SIDE = 3000;
+    private static final String INVALID_SIGNATURE_IMAGE_MESSAGE = "Signature image must be a valid PNG file";
     SignatureImageRepository signatureImageRepository;
     GradReportSignatureTransformer gradReportSignatureTransformer;
     WebClient webClient;
@@ -157,24 +164,36 @@ public class GradReportSignatureService {
     }
 
     private void validateSignatureImageForSave(GradReportSignatureImage signatureImage) {
-        if (!isDecodablePngImage(signatureImage.getSignatureContent())) {
-            throw new IllegalArgumentException("Signature image must be a valid PNG file");
-        }
+        validateSignatureImageContent(signatureImage.getSignatureContent());
         validateRequiredSignatureTextColumn(signatureImage.getGradReportSignatureName(), "Signature Name");
         validateRequiredSignatureTextColumn(signatureImage.getGradReportSignatureOrganizationName(), "Organization Name");
     }
 
-    private static boolean isDecodablePngImage(byte[] imageContent) {
+    private static void validateSignatureImageContent(byte[] imageContent) {
         if (imageContent == null
                 || imageContent.length < PNG_FILE_SIGNATURE.length
                 || !Arrays.equals(imageContent, 0, PNG_FILE_SIGNATURE.length, PNG_FILE_SIGNATURE, 0, PNG_FILE_SIGNATURE.length)) {
-            return false;
+            throw new IllegalArgumentException(INVALID_SIGNATURE_IMAGE_MESSAGE);
         }
-        // the header alone doesn't prove the file is intact; decode it so a corrupt upload can't break certificates
-        try {
-            return ImageIO.read(new ByteArrayInputStream(imageContent)) != null;
+        if (imageContent.length > SIGNATURE_IMAGE_MAX_BYTES) {
+            throw new IllegalArgumentException("Signature image is too large: maximum is 1 MB");
+        }
+        ImageReader pngReader = ImageIO.getImageReadersByFormatName("png").next();
+        try (ImageInputStream imageInput = new MemoryCacheImageInputStream(new ByteArrayInputStream(imageContent))) {
+            pngReader.setInput(imageInput);
+            // check the size declared in the header before decoding any pixels
+            int imageWidth = pngReader.getWidth(0);
+            int imageHeight = pngReader.getHeight(0);
+            if (imageWidth > SIGNATURE_IMAGE_MAX_PIXELS_PER_SIDE || imageHeight > SIGNATURE_IMAGE_MAX_PIXELS_PER_SIDE) {
+                throw new IllegalArgumentException(String.format("Signature image is too large: %dx%d pixels, maximum is %dx%d",
+                        imageWidth, imageHeight, SIGNATURE_IMAGE_MAX_PIXELS_PER_SIDE, SIGNATURE_IMAGE_MAX_PIXELS_PER_SIDE));
+            }
+            // the header alone doesn't prove the file is intact; decode it so a corrupt upload can't break certificates
+            pngReader.read(0);
         } catch (IOException e) {
-            return false;
+            throw new IllegalArgumentException(INVALID_SIGNATURE_IMAGE_MESSAGE, e);
+        } finally {
+            pngReader.dispose();
         }
     }
 
