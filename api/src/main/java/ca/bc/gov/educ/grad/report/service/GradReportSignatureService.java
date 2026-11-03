@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -154,17 +157,25 @@ public class GradReportSignatureService {
     }
 
     private void validateSignatureImageForSave(GradReportSignatureImage signatureImage) {
-        if (!isPngImage(signatureImage.getSignatureContent())) {
-            throw new IllegalArgumentException("Signature image must be a PNG file");
+        if (!isDecodablePngImage(signatureImage.getSignatureContent())) {
+            throw new IllegalArgumentException("Signature image must be a valid PNG file");
         }
         validateRequiredSignatureTextColumn(signatureImage.getGradReportSignatureName(), "Signature Name");
         validateRequiredSignatureTextColumn(signatureImage.getGradReportSignatureOrganizationName(), "Organization Name");
     }
 
-    private static boolean isPngImage(byte[] imageContent) {
-        return imageContent != null
-                && imageContent.length >= PNG_FILE_SIGNATURE.length
-                && Arrays.equals(imageContent, 0, PNG_FILE_SIGNATURE.length, PNG_FILE_SIGNATURE, 0, PNG_FILE_SIGNATURE.length);
+    private static boolean isDecodablePngImage(byte[] imageContent) {
+        if (imageContent == null
+                || imageContent.length < PNG_FILE_SIGNATURE.length
+                || !Arrays.equals(imageContent, 0, PNG_FILE_SIGNATURE.length, PNG_FILE_SIGNATURE, 0, PNG_FILE_SIGNATURE.length)) {
+            return false;
+        }
+        // the header alone doesn't prove the file is intact; decode it so a corrupt upload can't break certificates
+        try {
+            return ImageIO.read(new ByteArrayInputStream(imageContent)) != null;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     private static void validateRequiredSignatureTextColumn(String value, String fieldName) {

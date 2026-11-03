@@ -17,6 +17,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -129,7 +134,17 @@ public class GradReportSignatureServiceTests {
         dto.setSignatureContent(new byte[]{(byte) 0xFF, (byte) 0xD8, (byte) 0xFF, (byte) 0xE0, 0, 0, 0, 0});
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
-        assertEquals("Signature image must be a PNG file", exception.getMessage());
+        assertEquals("Signature image must be a valid PNG file", exception.getMessage());
+        verify(signatureImageRepository, never()).save(any());
+    }
+
+    @Test
+    void testSaveSignatureImage_rejectsCorruptPngImage() {
+        GradReportSignatureImage dto = validSignatureImageToSave();
+        dto.setSignatureContent(new byte[]{(byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n', 0, 0});
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> gradReportSignatureService.saveSignatureImage(dto));
+        assertEquals("Signature image must be a valid PNG file", exception.getMessage());
         verify(signatureImageRepository, never()).save(any());
     }
 
@@ -157,10 +172,20 @@ public class GradReportSignatureServiceTests {
     private static GradReportSignatureImage validSignatureImageToSave() {
         GradReportSignatureImage signatureImage = new GradReportSignatureImage();
         signatureImage.setGradReportSignatureCode("083");
-        signatureImage.setSignatureContent(new byte[]{(byte) 0x89, 'P', 'N', 'G', '\r', '\n', 0x1A, '\n', 0, 0});
+        signatureImage.setSignatureContent(onePixelPngImage());
         signatureImage.setGradReportSignatureName("New Superintendent");
         signatureImage.setGradReportSignatureOrganizationName("K̓wsaltktnéws ne Secwepemcúl'ecw");
         return signatureImage;
+    }
+
+    private static byte[] onePixelPngImage() {
+        try {
+            ByteArrayOutputStream pngBytes = new ByteArrayOutputStream();
+            ImageIO.write(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB), "png", pngBytes);
+            return pngBytes.toByteArray();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
     @Test
