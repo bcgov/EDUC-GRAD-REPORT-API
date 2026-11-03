@@ -156,6 +156,7 @@ public class GradReportSignatureService {
                 signEntity.setGradReportSignatureName(signatureImage.getGradReportSignatureName());
                 signEntity.setGradReportSignatureOrganizationName(signatureImage.getGradReportSignatureOrganizationName());
                 // BaseEntity only fills updatedBy when blank, so set it here to record who made this change
+                // TODO: the current user comes from the caller-supplied User-Name header (RequestInterceptor); take it from the token instead
                 signEntity.setUpdatedBy(ReportRequestDataThreadLocal.getCurrentUser());
                 return gradReportSignatureTransformer.transformToDTO(signatureImageRepository.save(signEntity));
             }
